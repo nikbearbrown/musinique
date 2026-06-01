@@ -1,0 +1,128 @@
+# Hero Image Prompts: The Strategic Architecture of Music Promotion in 2026
+
+Source file: `musinique-pantry-the-strategic-architecture-of-music-promotion-in-2026-draft.md`
+Output target: `images/musinique-pantry-the-strategic-architecture-of-music-promotion-in-2026-draft-prompts.md`
+
+## Thematic Extraction
+
+**Core message:** A professional-level analysis of algorithmic optimization, community engineering, and multi-channel digital marketing for independent artists and music executives in 2026. Covers DSP mechanics, short-form video strategy, paid media, and direct-to-fan infrastructure.
+
+**Concept type:** Process
+
+**Emotional register:** lyrical, intimate, defiant
+
+## Character Selection
+
+| Candidate | Type | Why This Character Fits |
+|---|---|---|
+| Option 1: independent musician holding an unmarked lyric sheet | archetype | Keeps the artist, not the tool, at the center. |
+| Option 2: small conductor silhouette before floating sound waves | archetype | Shows music as direction, memory, and embodied rhythm. |
+| Option 3: paper songbird perched at a mixing desk | fictional construct | Makes the song itself feel like a living collaborator without using a literal celebrity likeness. |
+
+**Selected character:** an independent musician seen in three-quarter silhouette
+
+**Reason:** This character carries the article's emotional pressure while avoiding a literal product shot or generic AI image.
+
+## Environment Metaphors
+
+1. a studio where wires become roots
+2. a stage built from sheet music with no readable notes
+3. a river of sound passing through a small room
+
+## Prompt 1: Safe / Proven
+
+**Character:** an independent musician seen in three-quarter silhouette
+
+**Environment:** a studio where wires become roots
+
+**Mood:** lyrical
+
+**Best for:** Primary Substack/web hero where the image must read quickly.
+
+**Prompt:**
+an independent musician seen in three-quarter silhouette, standing within a studio where wires become roots, environment shaped by the article's claim: A professional-level analysis of algorithmic optimization, community engineering, and multi-channel digital marketing for independent artists and music executives in 2026. Covers DSP mechanics, short-form video strategy, paid media, and direct-to-fan infrastructure., lyrical, intimate, defiant mood, matte textures, deep brown, warm cream, muted gold palette, candle / single source light, rule-of-thirds composition, strong negative space for headline overlay, full-bleed magazine hero image, restrained editorial realism --v 7 --style raw --stylize 75 --ar 16:9 --no text, letters, words, numbers, labels, signs, captions, annotations, watermarks, typography, glyphs, neon, bokeh, glossy plastic, photorealistic portrait, face visible, copyrighted character
+
+**Why it works:**
+This is the clearest editorial direction: one protagonist, one system, one visual argument.
+
+## Prompt 2: Editorial Stretch
+
+**Character:** small conductor silhouette before floating sound waves
+
+**Environment:** a stage built from sheet music with no readable notes
+
+**Mood:** unsettling but humane
+
+**Best for:** A more symbolic treatment for a feature image or repost.
+
+**Prompt:**
+small conductor silhouette before floating sound waves, inside a stage built from sheet music with no readable notes, the environment subtly echoing this article summary: The Strategic Architecture of Music Promotion in 2026 Draft rewrite for Musinique Substack MASTHEAD Comprehensive Analysis Music Industry 2026 The Strategic Architecture of Music Promotion in 2026 Algorithmic Optimization Community Engineering and Multi Channel Digital Marketing for the Modern Independent Artist TOC Contents 1 Introduction, unsettling humane editorial mood, matte textures, deep brown, warm cream, muted gold palette, overcast flat light, asymmetric composition, strong negative space for headline overlay, full-bleed magazine hero image, clean editorial illustration --v 7 --style raw --stylize 75 --ar 16:9 --no text, letters, words, numbers, labels, signs, captions, annotations, watermarks, typography, glyphs, neon, bokeh, glossy plastic, photorealistic portrait, face visible, copyrighted character
+
+**Why it works:**
+This pushes the concept away from literal illustration and toward metaphor while keeping the character readable.
+
+## Prompt 3: Cover-Worthy
+
+**Character:** paper songbird perched at a mixing desk
+
+**Environment:** a river of sound passing through a small room
+
+**Mood:** provocative and memorable
+
+**Best for:** A bolder image for social sharing or a magazine-style cover crop.
+
+**Prompt:**
+paper songbird perched at a mixing desk, confronting a river of sound passing through a small room, large quiet scale contrast, no readable markings anywhere, provocative memorable editorial mood, matte textures, deep brown, warm cream, muted gold palette, high-contrast studio light, centered panoramic composition, strong negative space for headline overlay, full-bleed magazine hero image, symbolic editorial illustration --v 7 --style raw --stylize 75 --ar 16:9 --no text, letters, words, numbers, labels, signs, captions, annotations, watermarks, typography, glyphs, neon, bokeh, glossy plastic, photorealistic portrait, face visible, copyrighted character
+
+**Why it works:**
+The character choice creates immediate narrative tension before the reader reaches the headline.
+
+## Optional Prompt 4: Minimal / Brutalist
+
+**Character:** an independent musician seen in three-quarter silhouette
+
+**Environment:** a sparse white institutional space with one severe architectural form
+
+**Mood:** severe, quiet, exact
+
+**Best for:** NikBearBrown / Humanitarians AI brutalist visual language.
+
+**Prompt:**
+an independent musician seen in three-quarter silhouette, small against a sparse white institutional space, one severe black architectural form looming behind them, severe quiet exact mood, matte textures, pure white, soot black, dried red palette, cold fluorescent light, asymmetric brutalist composition, strong negative space for headline overlay, full-bleed magazine hero image, minimal brutalist editorial illustration --v 7 --style raw --stylize 75 --ar 16:9 --no text, letters, words, numbers, labels, signs, captions, annotations, watermarks, typography, glyphs, neon, bokeh, glossy plastic, photorealistic portrait, face visible, copyrighted character
+
+**Why it works:**
+This keeps the image clean enough for typography while preserving the required protagonist.
+
+## Optional Prompt 5: Human / Documentary
+
+**Character:** independent musician holding an unmarked lyric sheet
+
+**Environment:** a studio where wires become roots
+
+**Mood:** observed, human, grounded
+
+**Best for:** A warmer image when the post needs less abstraction and more reader identification.
+
+**Prompt:**
+independent musician holding an unmarked lyric sheet, captured from behind in a studio where wires become roots, documentary editorial still, no readable surfaces, observed human grounded mood, matte textures, deep brown, warm cream, muted gold palette, soft editorial diffused light, rule-of-thirds composition, strong negative space for headline overlay, full-bleed magazine hero image, documentary editorial realism --v 7 --style raw --stylize 75 --ar 16:9 --no text, letters, words, numbers, labels, signs, captions, annotations, watermarks, typography, glyphs, neon, bokeh, glossy plastic, photorealistic portrait, face visible, copyrighted character
+
+**Why it works:**
+This gives the reader a person to follow without implying a real identifiable portrait.
+
+## Crop Notes
+
+- Desktop 16:9: primary composition; keep the character fully visible.
+- Article 3:2: preserve the character's upper body or silhouette.
+- Social 4:5: keep the character near the center safe zone.
+- Story 9:16: crop around the character first, then environment.
+- Headline safe zone: leave the upper-left or upper-right third visually quiet, opposite the character's primary mass.
+
+## Ethics Checklist
+
+- [x] central character present
+- [x] no embedded text requested
+- [x] no identifiable real person requested
+- [x] no careless cultural symbolism requested
+- [x] no copyrighted character imitation requested
+- [x] character survives mobile crop by design
+- [x] prompt avoids generic AI imagery
