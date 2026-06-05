@@ -205,3 +205,28 @@ The obvious alternative is continued denial and crisis management as needed — 
 ---
 
 *brandy_spotify_february_25_2026 — point-in-time snapshot. Platform metrics, regulatory conditions, and competitive dynamics change. Re-run when: (1) MLC appeal decided; (2) FTC payola guidance issued; (3) Living Wage for Musicians Act advances to committee vote; (4) Wrapped 2026 campaign launches.*
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** spotify, journalism
+
+**Research notes:**
+- Spotify-related claims should distinguish editorial pitching, algorithmic recommendation, playlist exposure, and paid/opt-in tools such as Discovery Mode. Treating them as one black box weakens the argument.
+- Spotify defines artificial streaming around listening intent and manipulation, including bots/scripts and paid services that guarantee streams. For playlist-vetting pieces, the central test is whether listener behavior remains durable after exposure ends.
+- Discovery Mode terms are useful because Spotify explicitly says the program does not guarantee placement, streams, new listeners, or followers. That caveat supports a careful distinction between influence, exposure, and outcome.
+- Music-journalism and audit drafts should anchor criticism in observable platform behavior, artist incentives, documented policy, and measurable listener effects rather than mood alone.
+- A strong Musinique essay can be polemical, but the accusation should be narrower than the feeling: identify the specific mechanism, who benefits, who bears risk, and what evidence would change the conclusion.
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [Spotify support: third-party services that guarantee streams](https://support.spotify.com/is-en/artists/article/third-party-services-that-guarantee-streams/)
+- [Spotify support: pitching music to playlist editors](https://support.spotify.com/to/artists/article/pitching-music-to-playlist-editors/)
+- [Spotify for Artists: Discovery Mode support](https://support.spotify.com/na-en/artists/article/using-discovery-mode-in-spotify-for-artists/)
+- [Spotify legal: Discovery Mode self-serve terms](https://www.spotify.com/us/legal/discovery-mode-selfserve/)
+- [IFPI Global Music Report 2026 announcement](https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/)
+- [RIAA 2025 Year-End Recorded Music Revenue Report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/)
+

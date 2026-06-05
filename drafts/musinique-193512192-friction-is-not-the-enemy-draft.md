@@ -101,3 +101,21 @@ Remove it entirely, and creation becomes faster.
 But the work becomes easier to produce and harder to mean.
 
 And meaning is the only thing that stays.
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** journalism
+
+**Research notes:**
+- Music-journalism and audit drafts should anchor criticism in observable platform behavior, artist incentives, documented policy, and measurable listener effects rather than mood alone.
+- A strong Musinique essay can be polemical, but the accusation should be narrower than the feeling: identify the specific mechanism, who benefits, who bears risk, and what evidence would change the conclusion.
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [IFPI Global Music Report 2026 announcement](https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/)
+- [RIAA 2025 Year-End Recorded Music Revenue Report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/)
+

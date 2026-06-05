@@ -123,3 +123,30 @@ That truth has not changed. It has only been temporarily buried under sixty thou
 ---
 
 **Tags:** pentatonic scale harmonic series physical truth, recommendation algorithm commercial invention music, discovered vs invented music history philosophy, functional music neurobiological wellbeing retention, circle of fifths algorithmic opacity unilateral revision
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** spotify, theory
+
+**Research notes:**
+- Spotify-related claims should distinguish editorial pitching, algorithmic recommendation, playlist exposure, and paid/opt-in tools such as Discovery Mode. Treating them as one black box weakens the argument.
+- Spotify defines artificial streaming around listening intent and manipulation, including bots/scripts and paid services that guarantee streams. For playlist-vetting pieces, the central test is whether listener behavior remains durable after exposure ends.
+- Discovery Mode terms are useful because Spotify explicitly says the program does not guarantee placement, streams, new listeners, or followers. That caveat supports a careful distinction between influence, exposure, and outcome.
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+- The strongest theory writing alternates between technical naming and audible consequence: what does the concept let the musician hear, predict, vary, or repair?
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [Spotify support: third-party services that guarantee streams](https://support.spotify.com/is-en/artists/article/third-party-services-that-guarantee-streams/)
+- [Spotify support: pitching music to playlist editors](https://support.spotify.com/to/artists/article/pitching-music-to-playlist-editors/)
+- [Spotify for Artists: Discovery Mode support](https://support.spotify.com/na-en/artists/article/using-discovery-mode-in-spotify-for-artists/)
+- [Spotify legal: Discovery Mode self-serve terms](https://www.spotify.com/us/legal/discovery-mode-selfserve/)
+- [Britannica: Essential elements of music](https://www.britannica.com/art/Essential-elements-of-music)
+- [Britannica: Melody](https://www.britannica.com/art/melody)
+- [Britannica: Musical composition](https://www.britannica.com/art/musical-composition)
+

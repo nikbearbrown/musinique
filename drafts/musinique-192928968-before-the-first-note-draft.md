@@ -111,3 +111,22 @@ The evidence, carried in the work itself, that someone decided this was worth sa
 That decision is the origin.
 
 And origin is the one thing that cannot be added later.
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** cognition
+
+**Research notes:**
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+
+**Sources to verify/use:**
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+

@@ -116,3 +116,32 @@ Before a draft is done, check:
 - What can AI produce?
 - What can AI not supply?
 - What distinction should the reader never confuse again?
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** spotify, songwriting, theory, cognition
+
+**Research notes:**
+- Spotify-related claims should distinguish editorial pitching, algorithmic recommendation, playlist exposure, and paid/opt-in tools such as Discovery Mode. Treating them as one black box weakens the argument.
+- Spotify defines artificial streaming around listening intent and manipulation, including bots/scripts and paid services that guarantee streams. For playlist-vetting pieces, the central test is whether listener behavior remains durable after exposure ends.
+- Discovery Mode terms are useful because Spotify explicitly says the program does not guarantee placement, streams, new listeners, or followers. That caveat supports a careful distinction between influence, exposure, and outcome.
+- For songwriting drafts, make the craft layer explicit: lyric, melody, harmony, rhythm, phrasing, rhyme placement, section contrast, and title placement do different jobs in the listener memory system.
+- A good revision move is to identify the song seed. Does the draft begin from a lyric image, melodic contour, rhythmic feel, harmonic movement, story premise, or production texture?
+- When the piece is about children, teaching, or folk material, emphasize repeatability and participatory memory: repetition, call-and-response, rhyme, and predictable variation are features, not simplifications.
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [Spotify support: third-party services that guarantee streams](https://support.spotify.com/is-en/artists/article/third-party-services-that-guarantee-streams/)
+- [Spotify support: pitching music to playlist editors](https://support.spotify.com/to/artists/article/pitching-music-to-playlist-editors/)
+- [Spotify for Artists: Discovery Mode support](https://support.spotify.com/na-en/artists/article/using-discovery-mode-in-spotify-for-artists/)
+- [Spotify legal: Discovery Mode self-serve terms](https://www.spotify.com/us/legal/discovery-mode-selfserve/)
+- [Berklee: Composing Independent Melodies](https://www.berklee.edu/berklee-today/fall-2014/composing-independent-melodies)
+- [Berklee Online: Lyric Writing to Music course](https://online.berklee.edu/courses/lyric-writing-writing-lyrics-to-music)
+- [Berklee Online: Songwriting handbook](https://assets.online.berklee.edu/handbooks/berklee-online-songwriting-handbook.pdf)
+

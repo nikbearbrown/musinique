@@ -101,3 +101,32 @@ Pythagoras heard the blacksmiths’ hammers and turned the noise into mathematic
 ---
 
 **Tags:** AI music non-musical input post-Pythagorean, chiptune NES square wave acoustic theory, blue note microtonal AI raw audio generation, cave acoustics archaeoacoustics shamanic music discovery, equal temperament breakdown generative AI music
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** ai, theory, cognition
+
+**Research notes:**
+- AI-music pieces should separate creation, disclosure, impersonation, spam, and stream fraud. A song can be AI-assisted without being deceptive; a voice clone or fake upload can be deceptive even if the composition is otherwise ordinary.
+- Spotify policy addresses unauthorized voice impersonation, and Deezer has moved toward AI tagging/detection. The strongest article angle is platform governance: how provenance, labeling, and recommendation systems protect or obscure human authorship.
+- Synthetic-catalog claims need evidence about upload volume, recommendation exposure, and royalty flow. Do not infer listener harm only from AI presence; show where measurement, consent, attribution, or economic allocation fails.
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+- The strongest theory writing alternates between technical naming and audible consequence: what does the concept let the musician hear, predict, vary, or repair?
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+
+**Sources to verify/use:**
+- [Spotify support: music that impersonates another artist voice](https://support.spotify.com/ht-en/artists/article/music-that-impersonates-another-artists-voice/)
+- [TechCrunch: Spotify AI policy updates](https://techcrunch.com/2025/09/25/spotify-updates-ai-policy-to-label-tracks-cut-down-on-spam/)
+- [Deezer AI tagging announcement mirror](https://www.webdisclosure.com/press-release/deezer-epa-deezr-deezer-launches-worlds-first-ai-tagging-system-for-music-streaming-oPW5xoFmvrS)
+- [Britannica: Essential elements of music](https://www.britannica.com/art/Essential-elements-of-music)
+- [Britannica: Melody](https://www.britannica.com/art/melody)
+- [Britannica: Musical composition](https://www.britannica.com/art/musical-composition)
+- [Britannica: Music theory portal](https://www.britannica.com/browse/Music-Theory)
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+

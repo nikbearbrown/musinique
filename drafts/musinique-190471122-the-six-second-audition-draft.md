@@ -97,3 +97,32 @@ The six-second audition is not with the curator. It is with the listener the cur
 The Focus Score tells you which playlists have attracted the right audience. The skip rate does the rest.
 
 Thanks for reading Musinique! Subscribe for free to receive new posts and support my work.
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** journalism, spotify, songwriting, cognition
+
+**Research notes:**
+- Spotify-related claims should distinguish editorial pitching, algorithmic recommendation, playlist exposure, and paid/opt-in tools such as Discovery Mode. Treating them as one black box weakens the argument.
+- Spotify defines artificial streaming around listening intent and manipulation, including bots/scripts and paid services that guarantee streams. For playlist-vetting pieces, the central test is whether listener behavior remains durable after exposure ends.
+- Discovery Mode terms are useful because Spotify explicitly says the program does not guarantee placement, streams, new listeners, or followers. That caveat supports a careful distinction between influence, exposure, and outcome.
+- For songwriting drafts, make the craft layer explicit: lyric, melody, harmony, rhythm, phrasing, rhyme placement, section contrast, and title placement do different jobs in the listener memory system.
+- A good revision move is to identify the song seed. Does the draft begin from a lyric image, melodic contour, rhythmic feel, harmonic movement, story premise, or production texture?
+- When the piece is about children, teaching, or folk material, emphasize repeatability and participatory memory: repetition, call-and-response, rhyme, and predictable variation are features, not simplifications.
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [Spotify support: third-party services that guarantee streams](https://support.spotify.com/is-en/artists/article/third-party-services-that-guarantee-streams/)
+- [Spotify support: pitching music to playlist editors](https://support.spotify.com/to/artists/article/pitching-music-to-playlist-editors/)
+- [Spotify for Artists: Discovery Mode support](https://support.spotify.com/na-en/artists/article/using-discovery-mode-in-spotify-for-artists/)
+- [Spotify legal: Discovery Mode self-serve terms](https://www.spotify.com/us/legal/discovery-mode-selfserve/)
+- [Berklee: Composing Independent Melodies](https://www.berklee.edu/berklee-today/fall-2014/composing-independent-melodies)
+- [Berklee Online: Lyric Writing to Music course](https://online.berklee.edu/courses/lyric-writing-writing-lyrics-to-music)
+- [Berklee Online: Songwriting handbook](https://assets.online.berklee.edu/handbooks/berklee-online-songwriting-handbook.pdf)
+

@@ -78,3 +78,23 @@ Place this placeholder directly below the headline:
 ```html
 <!-- HERO IMAGE PLACEHOLDER: create prompts using drafts/hero.md after this draft is complete. -->
 ```
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** theory
+
+**Research notes:**
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+- The strongest theory writing alternates between technical naming and audible consequence: what does the concept let the musician hear, predict, vary, or repair?
+
+**Sources to verify/use:**
+- [Britannica: Essential elements of music](https://www.britannica.com/art/Essential-elements-of-music)
+- [Britannica: Melody](https://www.britannica.com/art/melody)
+- [Britannica: Musical composition](https://www.britannica.com/art/musical-composition)
+- [Britannica: Music theory portal](https://www.britannica.com/browse/Music-Theory)
+

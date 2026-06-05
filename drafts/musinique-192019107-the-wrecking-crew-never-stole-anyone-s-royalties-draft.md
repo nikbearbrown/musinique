@@ -103,3 +103,30 @@ The artists who will navigate the next decade most effectively are the ones who 
 *Musinique builds AI tools to support and protect independent artists including helping them find legitimate production collaborations and playlist placements that serve their careers rather than extract from them.*
 
 Thanks for reading Musinique! Subscribe for free to receive new posts and support my work.
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** industry, cognition
+
+**Research notes:**
+- Use current industry economics carefully: IFPI reports global recorded-music revenue growth and continued paid-streaming importance, while RIAA separates wholesale revenue, retail revenue, paid subscriptions, ad-supported streams, physical, sync, and downloads.
+- Royalty arguments should separate sound recording royalties, composition/publishing royalties, performance royalties, distributor fees, label deals, and non-interactive digital performance royalties collected through SoundExchange in the United States.
+- For pro-rata versus user-centric royalty discussions, name the allocation mechanism before judging fairness: the dispute is not only payout size, but whether attention from one listener subsidizes music that listener never heard.
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+
+**Sources to verify/use:**
+- [IFPI Global Music Report 2026 announcement](https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/)
+- [RIAA 2025 Year-End Recorded Music Revenue Report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/)
+- [SoundExchange FAQ](https://www.soundexchange.com/frequently-asked-questions/)
+- [SoundExchange Licensing 101](https://www.soundexchange.com/service-provider/licensing-101/)
+- [Spotify Loud & Clear](https://loudandclear.byspotify.com/)
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+

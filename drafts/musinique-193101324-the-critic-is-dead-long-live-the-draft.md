@@ -99,3 +99,27 @@ The honest one is still necessary. Whether anyone still wants it is a separate q
 ---
 
 **Tags:** music criticism streaming era, algorithm versus critic, gatekeeping cultural authority, Robert Christgau Jessica Hopper, music journalism 2026
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** journalism, cognition
+
+**Research notes:**
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+- Music-journalism and audit drafts should anchor criticism in observable platform behavior, artist incentives, documented policy, and measurable listener effects rather than mood alone.
+- A strong Musinique essay can be polemical, but the accusation should be narrower than the feeling: identify the specific mechanism, who benefits, who bears risk, and what evidence would change the conclusion.
+
+**Sources to verify/use:**
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [IFPI Global Music Report 2026 announcement](https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/)
+- [RIAA 2025 Year-End Recorded Music Revenue Report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/)
+

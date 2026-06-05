@@ -253,3 +253,32 @@ To greet the holy light
 ```
 width=”100%” height=”352” frameBorder=”0” allowfullscreen=”“ allow=”autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture” loading=”lazy”></iframe>
 ```
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** ai, songwriting, theory, cognition
+
+**Research notes:**
+- AI-music pieces should separate creation, disclosure, impersonation, spam, and stream fraud. A song can be AI-assisted without being deceptive; a voice clone or fake upload can be deceptive even if the composition is otherwise ordinary.
+- Spotify policy addresses unauthorized voice impersonation, and Deezer has moved toward AI tagging/detection. The strongest article angle is platform governance: how provenance, labeling, and recommendation systems protect or obscure human authorship.
+- Synthetic-catalog claims need evidence about upload volume, recommendation exposure, and royalty flow. Do not infer listener harm only from AI presence; show where measurement, consent, attribution, or economic allocation fails.
+- For songwriting drafts, make the craft layer explicit: lyric, melody, harmony, rhythm, phrasing, rhyme placement, section contrast, and title placement do different jobs in the listener memory system.
+- A good revision move is to identify the song seed. Does the draft begin from a lyric image, melodic contour, rhythmic feel, harmonic movement, story premise, or production texture?
+- When the piece is about children, teaching, or folk material, emphasize repeatability and participatory memory: repetition, call-and-response, rhyme, and predictable variation are features, not simplifications.
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+
+**Sources to verify/use:**
+- [Spotify support: music that impersonates another artist voice](https://support.spotify.com/ht-en/artists/article/music-that-impersonates-another-artists-voice/)
+- [TechCrunch: Spotify AI policy updates](https://techcrunch.com/2025/09/25/spotify-updates-ai-policy-to-label-tracks-cut-down-on-spam/)
+- [Deezer AI tagging announcement mirror](https://www.webdisclosure.com/press-release/deezer-epa-deezr-deezer-launches-worlds-first-ai-tagging-system-for-music-streaming-oPW5xoFmvrS)
+- [Berklee: Composing Independent Melodies](https://www.berklee.edu/berklee-today/fall-2014/composing-independent-melodies)
+- [Berklee Online: Lyric Writing to Music course](https://online.berklee.edu/courses/lyric-writing-writing-lyrics-to-music)
+- [Berklee Online: Songwriting handbook](https://assets.online.berklee.edu/handbooks/berklee-online-songwriting-handbook.pdf)
+- [Britannica: Essential elements of music](https://www.britannica.com/art/Essential-elements-of-music)
+- [Britannica: Melody](https://www.britannica.com/art/melody)
+

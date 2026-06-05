@@ -579,3 +579,32 @@ That’s a beautiful idea. It’s also unfalsifiable. And in the space between b
 ---
 
 **Tags:** Daniel Levitin, music neuroscience, therapeutic applications of music, default mode network, pragmatics of musical meaning
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** songwriting, theory, cognition
+
+**Research notes:**
+- For songwriting drafts, make the craft layer explicit: lyric, melody, harmony, rhythm, phrasing, rhyme placement, section contrast, and title placement do different jobs in the listener memory system.
+- A good revision move is to identify the song seed. Does the draft begin from a lyric image, melodic contour, rhythmic feel, harmonic movement, story premise, or production texture?
+- When the piece is about children, teaching, or folk material, emphasize repeatability and participatory memory: repetition, call-and-response, rhyme, and predictable variation are features, not simplifications.
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+- The strongest theory writing alternates between technical naming and audible consequence: what does the concept let the musician hear, predict, vary, or repair?
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+
+**Sources to verify/use:**
+- [Berklee: Composing Independent Melodies](https://www.berklee.edu/berklee-today/fall-2014/composing-independent-melodies)
+- [Berklee Online: Lyric Writing to Music course](https://online.berklee.edu/courses/lyric-writing-writing-lyrics-to-music)
+- [Berklee Online: Songwriting handbook](https://assets.online.berklee.edu/handbooks/berklee-online-songwriting-handbook.pdf)
+- [Britannica: Essential elements of music](https://www.britannica.com/art/Essential-elements-of-music)
+- [Britannica: Melody](https://www.britannica.com/art/melody)
+- [Britannica: Musical composition](https://www.britannica.com/art/musical-composition)
+- [Britannica: Music theory portal](https://www.britannica.com/browse/Music-Theory)
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+

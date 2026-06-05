@@ -966,3 +966,22 @@ Despite 29 chapters of neurological investigation, Sacks essentially admits: **W
 The book succeeds at demonstrating music’s neural reality and documenting its power. It fails—necessarily, given current neuroscience—at explaining why music has this power.
 
 **Tags:** neuroscience of music, musical hallucinations clinical cases, amusia and brain lesions, musical memory in dementia, musicophilia neurological mechanisms
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** cognition
+
+**Research notes:**
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+
+**Sources to verify/use:**
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+

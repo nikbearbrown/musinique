@@ -123,3 +123,22 @@ These frameworks do not arrive as instruction. They arrive encoded in events, in
 **Tags:** Travelling Musicians Grimm recognition-prior community utility-prior social belonging developmental, category threat response power perception intergroup social psychology pedagogy, purpose flexibility goal-purpose need-purpose resilience purpose transfer oral tradition, Tuzi Brown source credibility narrative encoding Holiday tradition testimony, oral tradition survival test fairy tale cognitive frameworks transferable learning
 
 #MusiqueAI #HumansAndAI #TuziBrown #GhostArtists #SpiritSongs #SpokenWord #LyricalLiteracy #MusicResearch #AIforHumans #OpenSourceAI
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** cognition
+
+**Research notes:**
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+
+**Sources to verify/use:**
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+

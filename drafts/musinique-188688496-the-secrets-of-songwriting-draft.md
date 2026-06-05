@@ -315,3 +315,28 @@ That is a smaller book than Tucker promised. But it is the true one.
 ---
 
 **Tags:** Nashville songwriting craft, creative process testimony, survivorship bias creative careers, writer’s block creative psychology, commercial music craft development
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** songwriting, cognition
+
+**Research notes:**
+- For songwriting drafts, make the craft layer explicit: lyric, melody, harmony, rhythm, phrasing, rhyme placement, section contrast, and title placement do different jobs in the listener memory system.
+- A good revision move is to identify the song seed. Does the draft begin from a lyric image, melodic contour, rhythmic feel, harmonic movement, story premise, or production texture?
+- When the piece is about children, teaching, or folk material, emphasize repeatability and participatory memory: repetition, call-and-response, rhyme, and predictable variation are features, not simplifications.
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+
+**Sources to verify/use:**
+- [Berklee: Composing Independent Melodies](https://www.berklee.edu/berklee-today/fall-2014/composing-independent-melodies)
+- [Berklee Online: Lyric Writing to Music course](https://online.berklee.edu/courses/lyric-writing-writing-lyrics-to-music)
+- [Berklee Online: Songwriting handbook](https://assets.online.berklee.edu/handbooks/berklee-online-songwriting-handbook.pdf)
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+

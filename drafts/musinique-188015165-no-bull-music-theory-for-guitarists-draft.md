@@ -372,3 +372,23 @@ The question: Is a simplified system that works for practical purposes more valu
 For guitarists who need to write songs, analyze chord progressions, and choose scales for improvisation, *No Bull Music Theory* delivers. For those who want to understand *why music works*—acoustically, historically, mathematically—the book provides a starting point but not a destination. And perhaps that’s enough. Perhaps the greatest service a pedagogical text can provide is helping students play music confidently, even if full understanding comes later.
 
 **Tags:** music theory pedagogy, guitar instruction methods, diatonic harmony fundamentals, operational vs conceptual learning, scale construction patterns
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** theory
+
+**Research notes:**
+- Music-theory claims should keep the elements distinct: pitch organizes high/low relations, rhythm organizes duration and pulse, melody orders pitches through time, harmony stacks or relates pitches, and timbre identifies sound color.
+- For guitar/theory pieces, translate notation into action. Readers need to know what their fingers, ears, and attention should do differently after the concept is introduced.
+- The strongest theory writing alternates between technical naming and audible consequence: what does the concept let the musician hear, predict, vary, or repair?
+
+**Sources to verify/use:**
+- [Britannica: Essential elements of music](https://www.britannica.com/art/Essential-elements-of-music)
+- [Britannica: Melody](https://www.britannica.com/art/melody)
+- [Britannica: Musical composition](https://www.britannica.com/art/musical-composition)
+- [Britannica: Music theory portal](https://www.britannica.com/browse/Music-Theory)
+

@@ -83,3 +83,21 @@ And yet, and yet. There’s something in here that transcends the privilege prob
 This is true whether you’re Rick Rubin producing albums in Malibu or a poet writing in your car on your lunch break. The cosmic consciousness language is optional. The underlying truth—that creativity is a practice, that it requires both surrender and discipline, that the work itself is the teacher—remains regardless of how you frame it.
 
 *The Creative Act* will irritate you, inspire you, and make you want to immediately start creating something. If you can hold the contradiction—taking what’s useful while dismissing what’s precious—you’ll find genuine wisdom here. Just don’t expect it to pay your rent. The universe, it turns out, does not directly deposit into your bank account, no matter how clearly you tune your antenna.
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** journalism
+
+**Research notes:**
+- Music-journalism and audit drafts should anchor criticism in observable platform behavior, artist incentives, documented policy, and measurable listener effects rather than mood alone.
+- A strong Musinique essay can be polemical, but the accusation should be narrower than the feeling: identify the specific mechanism, who benefits, who bears risk, and what evidence would change the conclusion.
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [IFPI Global Music Report 2026 announcement](https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/)
+- [RIAA 2025 Year-End Recorded Music Revenue Report](https://www.riaa.com/riaa-reports-us-recorded-music-annual-revenue-achieves-new-high-of-11-5-billion-in-2025/)
+

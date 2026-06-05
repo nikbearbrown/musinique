@@ -75,3 +75,22 @@ More next week.
 *Clafacio Lobo is the Project Manager for Musinique, an AI music research project at Humanitarians.ai.* *Follow the project at musinique.net · humanitarians.ai/clafacio-lobo*
 
 Thanks for reading Musinique! Subscribe for free to receive new posts and support my work.
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** ai
+
+**Research notes:**
+- AI-music pieces should separate creation, disclosure, impersonation, spam, and stream fraud. A song can be AI-assisted without being deceptive; a voice clone or fake upload can be deceptive even if the composition is otherwise ordinary.
+- Spotify policy addresses unauthorized voice impersonation, and Deezer has moved toward AI tagging/detection. The strongest article angle is platform governance: how provenance, labeling, and recommendation systems protect or obscure human authorship.
+- Synthetic-catalog claims need evidence about upload volume, recommendation exposure, and royalty flow. Do not infer listener harm only from AI presence; show where measurement, consent, attribution, or economic allocation fails.
+
+**Sources to verify/use:**
+- [Spotify support: music that impersonates another artist voice](https://support.spotify.com/ht-en/artists/article/music-that-impersonates-another-artists-voice/)
+- [TechCrunch: Spotify AI policy updates](https://techcrunch.com/2025/09/25/spotify-updates-ai-policy-to-label-tracks-cut-down-on-spam/)
+- [Deezer AI tagging announcement mirror](https://www.webdisclosure.com/press-release/deezer-epa-deezr-deezer-launches-worlds-first-ai-tagging-system-for-music-streaming-oPW5xoFmvrS)
+

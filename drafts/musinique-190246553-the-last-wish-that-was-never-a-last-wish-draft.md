@@ -151,3 +151,22 @@ I shoulda bit not played by chance
 **Tags:** pedagogical paradox genuine constraint prefrontal cortex stress response fable sweet spot, constraint reframing metacognitive frame-switch divergent thinking resource extraction, five-link causal chain proverb grammar as-music-does automatic retrieval memory systems, second-order theory of mind two-level modeling kid wolf presentation mechanism separate, lamb question kid question together complete epistemology power asymmetry navigation
 
 #MusiqueAI #HumansAndAI #AIMusic #LyricalLiteracy #SpiritSongs #GhostArtists #OpenSourceAI #MusicResearch #AIforHumans #IndieMusician
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** cognition
+
+**Research notes:**
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+- The listener is not a passive receiver. Anticipation, repetition, surprise, entrainment, and memory help explain why a simple musical event can feel larger than its acoustic facts.
+
+**Sources to verify/use:**
+- [Oliver Sacks: Musicophilia](https://www.oliversacks.com/books-by-oliver-sacks/musicophilia/)
+- [Britannica: Music](https://www.britannica.com/art/music)
+- [Britannica: Musical notation](https://www.britannica.com/art/musical-notation)
+

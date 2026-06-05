@@ -137,3 +137,32 @@ width=”100%” height=”352” frameBorder=”0” allowfullscreen=”“ all
 ---
 
 **Tags:** Velvet Sundown, Spotify algorithm, AI music, streaming fraud, music industry
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** ai, spotify, cognition
+
+**Research notes:**
+- Spotify-related claims should distinguish editorial pitching, algorithmic recommendation, playlist exposure, and paid/opt-in tools such as Discovery Mode. Treating them as one black box weakens the argument.
+- Spotify defines artificial streaming around listening intent and manipulation, including bots/scripts and paid services that guarantee streams. For playlist-vetting pieces, the central test is whether listener behavior remains durable after exposure ends.
+- Discovery Mode terms are useful because Spotify explicitly says the program does not guarantee placement, streams, new listeners, or followers. That caveat supports a careful distinction between influence, exposure, and outcome.
+- AI-music pieces should separate creation, disclosure, impersonation, spam, and stream fraud. A song can be AI-assisted without being deceptive; a voice clone or fake upload can be deceptive even if the composition is otherwise ordinary.
+- Spotify policy addresses unauthorized voice impersonation, and Deezer has moved toward AI tagging/detection. The strongest article angle is platform governance: how provenance, labeling, and recommendation systems protect or obscure human authorship.
+- Synthetic-catalog claims need evidence about upload volume, recommendation exposure, and royalty flow. Do not infer listener harm only from AI presence; show where measurement, consent, attribution, or economic allocation fails.
+- Music-cognition pieces should avoid reducing music to brain trivia. The interesting point is how perception, expectation, memory, movement, emotion, and social context make sound meaningful.
+- For music-as-medicine or music-and-memory claims, keep the clinical language cautious: distinguish anecdotal therapeutic power from controlled evidence, and name the mechanism being proposed.
+
+**Sources to verify/use:**
+- [Spotify for Artists: Artificial Streaming](https://artists.spotify.com/en/artificial-streaming)
+- [Spotify support: third-party services that guarantee streams](https://support.spotify.com/is-en/artists/article/third-party-services-that-guarantee-streams/)
+- [Spotify support: pitching music to playlist editors](https://support.spotify.com/to/artists/article/pitching-music-to-playlist-editors/)
+- [Spotify for Artists: Discovery Mode support](https://support.spotify.com/na-en/artists/article/using-discovery-mode-in-spotify-for-artists/)
+- [Spotify legal: Discovery Mode self-serve terms](https://www.spotify.com/us/legal/discovery-mode-selfserve/)
+- [Spotify support: music that impersonates another artist voice](https://support.spotify.com/ht-en/artists/article/music-that-impersonates-another-artists-voice/)
+- [TechCrunch: Spotify AI policy updates](https://techcrunch.com/2025/09/25/spotify-updates-ai-policy-to-label-tracks-cut-down-on-spam/)
+- [Deezer AI tagging announcement mirror](https://www.webdisclosure.com/press-release/deezer-epa-deezr-deezer-launches-worlds-first-ai-tagging-system-for-music-streaming-oPW5xoFmvrS)
+

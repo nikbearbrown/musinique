@@ -99,3 +99,22 @@ Robinson just made the thing.
 *Vocal clone: Nik Bear Brown baritone, processed through the Musinique production chain. Visual prompts: Songbird*`song`*mode. Video generation: CapCut AI. Source poem: Edwin Arlington Robinson, “Miniver Cheevy” (1910), public domain.*
 
 **Tags:** AI video generation, public domain poetry, music production, Songbird, creative AI tools
+
+---
+
+## Research Addendum (2026-06-03)
+
+**Research date:** 2026-06-03
+
+**Topic tags:** songwriting
+
+**Research notes:**
+- For songwriting drafts, make the craft layer explicit: lyric, melody, harmony, rhythm, phrasing, rhyme placement, section contrast, and title placement do different jobs in the listener memory system.
+- A good revision move is to identify the song seed. Does the draft begin from a lyric image, melodic contour, rhythmic feel, harmonic movement, story premise, or production texture?
+- When the piece is about children, teaching, or folk material, emphasize repeatability and participatory memory: repetition, call-and-response, rhyme, and predictable variation are features, not simplifications.
+
+**Sources to verify/use:**
+- [Berklee: Composing Independent Melodies](https://www.berklee.edu/berklee-today/fall-2014/composing-independent-melodies)
+- [Berklee Online: Lyric Writing to Music course](https://online.berklee.edu/courses/lyric-writing-writing-lyrics-to-music)
+- [Berklee Online: Songwriting handbook](https://assets.online.berklee.edu/handbooks/berklee-online-songwriting-handbook.pdf)
+
