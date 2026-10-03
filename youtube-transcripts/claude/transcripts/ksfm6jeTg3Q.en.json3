@@ -1,0 +1,3931 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 0,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "You can tell\nwe’re API nerds,"
+    } ]
+  }, {
+    "tStartMs": 1334,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "because we're saying\nagents"
+    } ]
+  }, {
+    "tStartMs": 2293,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "should talk to each other\nthrough API."
+    } ]
+  }, {
+    "tStartMs": 18268,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "It's been a crazy\nsix months."
+    } ]
+  }, {
+    "tStartMs": 19561,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "Because I think"
+    } ]
+  }, {
+    "tStartMs": 20020,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "if we look back\nsix months,"
+    } ]
+  }, {
+    "tStartMs": 21187,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "most of what\nthe Claude Platform"
+    } ]
+  }, {
+    "tStartMs": 22564,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "was, was an API"
+    } ]
+  }, {
+    "tStartMs": 24190,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "that got you\naccess"
+    } ]
+  }, {
+    "tStartMs": 25483,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "to inference\nand tokens."
+    } ]
+  }, {
+    "tStartMs": 26651,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "And out of the\nmodel and"
+    } ]
+  }, {
+    "tStartMs": 28236,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "sure, we had\nstarted to build"
+    } ]
+  }, {
+    "tStartMs": 29154,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "some interesting\ntools around the model"
+    } ]
+  }, {
+    "tStartMs": 30864,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "that could get you"
+    } ]
+  }, {
+    "tStartMs": 31448,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "more intelligence,\nor could help you"
+    } ]
+  }, {
+    "tStartMs": 33283,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "lower your costs\nor get more speed."
+    } ]
+  }, {
+    "tStartMs": 35118,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "But I think of late\nwe've started to launch"
+    } ]
+  }, {
+    "tStartMs": 37203,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "some really rich features\nwithin the platform"
+    } ]
+  }, {
+    "tStartMs": 39914,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "that help you get"
+    } ]
+  }, {
+    "tStartMs": 40832,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "a ton"
+    } ]
+  }, {
+    "tStartMs": 41291,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "more out of the model\nthat help"
+    } ]
+  }, {
+    "tStartMs": 42876,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "take infrastructure\nproblems off your hands,"
+    } ]
+  }, {
+    "tStartMs": 45295,
+    "dDurationMs": 333,
+    "segs": [ {
+      "utf8": "and help"
+    } ]
+  }, {
+    "tStartMs": 45628,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "take harness"
+    } ]
+  }, {
+    "tStartMs": 46171,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "engineering problems\noff your hands"
+    } ]
+  }, {
+    "tStartMs": 47422,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "so that you can really\nget that intelligence,"
+    } ]
+  }, {
+    "tStartMs": 49382,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "at a much lower\ncost for your team."
+    } ]
+  }, {
+    "tStartMs": 51676,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "Angela, what has been"
+    } ]
+  }, {
+    "tStartMs": 52510,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "some of the most\ninteresting"
+    } ]
+  }, {
+    "tStartMs": 53470,
+    "dDurationMs": 2168,
+    "segs": [ {
+      "utf8": "feedback patterns you've\nseen from customers?"
+    } ]
+  }, {
+    "tStartMs": 55638,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "I think\nthe most exciting ones"
+    } ]
+  }, {
+    "tStartMs": 56723,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "have been around\nmanaged agents,"
+    } ]
+  }, {
+    "tStartMs": 58016,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "which has been\nreally awesome,"
+    } ]
+  }, {
+    "tStartMs": 58975,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "and I know you, \nobviously product manage"
+    } ]
+  }, {
+    "tStartMs": 60894,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "to manage agents."
+    } ]
+  }, {
+    "tStartMs": 62645,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "But it's been great."
+    } ]
+  }, {
+    "tStartMs": 63229,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "I think the feedback,"
+    } ]
+  }, {
+    "tStartMs": 64522,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "has been really awesome,"
+    } ]
+  }, {
+    "tStartMs": 66149,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "especially around"
+    } ]
+  }, {
+    "tStartMs": 67108,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "concepts\nlike memory and concepts"
+    } ]
+  }, {
+    "tStartMs": 68943,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "like outcomes\nand dreaming."
+    } ]
+  }, {
+    "tStartMs": 70528,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "But I think my favorite\none actually"
+    } ]
+  }, {
+    "tStartMs": 71780,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "is a bit old school, but,\nI did hear"
+    } ]
+  }, {
+    "tStartMs": 74324,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "a developer\nwho was using it"
+    } ]
+  }, {
+    "tStartMs": 75617,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "say they just really love\nthe abstraction levels."
+    } ]
+  }, {
+    "tStartMs": 78078,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "And, that always warms\nmy heart a little bit."
+    } ]
+  }, {
+    "tStartMs": 80288,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "Even as these workflows\nare evolving,"
+    } ]
+  }, {
+    "tStartMs": 82499,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "there's still"
+    } ]
+  }, {
+    "tStartMs": 83124,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "this concept\nof agent identity."
+    } ]
+  }, {
+    "tStartMs": 84709,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "And so how do we think\nabout the idea"
+    } ]
+  }, {
+    "tStartMs": 86169,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "of workflows combined\nwith agent identity?"
+    } ]
+  }, {
+    "tStartMs": 88171,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "Yeah,\nI think agent Identity"
+    } ]
+  }, {
+    "tStartMs": 89547,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "will actually probably\nneed to be"
+    } ]
+  }, {
+    "tStartMs": 90757,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "almost somewhat separate."
+    } ]
+  }, {
+    "tStartMs": 92050,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "Like almost\nthe agent needs"
+    } ]
+  }, {
+    "tStartMs": 92967,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "to have its own identity."
+    } ]
+  }, {
+    "tStartMs": 94135,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "I think today it's\nstill a little bit early."
+    } ]
+  }, {
+    "tStartMs": 95428,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "People are still\ndiscovering"
+    } ]
+  }, {
+    "tStartMs": 96262,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "interesting use cases,"
+    } ]
+  }, {
+    "tStartMs": 97180,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "and there's\nstill a lot of trust"
+    } ]
+  }, {
+    "tStartMs": 98515,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "that you need\nto give an agent."
+    } ]
+  }, {
+    "tStartMs": 100100,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "But I think increasingly"
+    } ]
+  }, {
+    "tStartMs": 101601,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "that agent identity\nis closer"
+    } ]
+  }, {
+    "tStartMs": 103353,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "to something\nwhere the agent listens"
+    } ]
+  }, {
+    "tStartMs": 105438,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "to an outcome"
+    } ]
+  }, {
+    "tStartMs": 105855,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "that you want,"
+    } ]
+  }, {
+    "tStartMs": 106397,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "and then it probably"
+    } ]
+  }, {
+    "tStartMs": 106940,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "comes back to you\nand asks like, hey,"
+    } ]
+  }, {
+    "tStartMs": 108650,
+    "dDurationMs": 250,
+    "segs": [ {
+      "utf8": "in order"
+    } ]
+  }, {
+    "tStartMs": 108900,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "to accomplish the outcome\nthat you gave me,"
+    } ]
+  }, {
+    "tStartMs": 110485,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "I need access\nto A, B, C, and D,"
+    } ]
+  }, {
+    "tStartMs": 113029,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "and you may say,\nyou know,"
+    } ]
+  }, {
+    "tStartMs": 114364,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "A, B, and C\nare okay,"
+    } ]
+  }, {
+    "tStartMs": 116199,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "but I don't want\nyou to touch D,"
+    } ]
+  }, {
+    "tStartMs": 117742,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "and then the agent\nis able to go"
+    } ]
+  }, {
+    "tStartMs": 119077,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "and see if you can\naccomplish that."
+    } ]
+  }, {
+    "tStartMs": 120203,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "And then when it does do\nthat,"
+    } ]
+  }, {
+    "tStartMs": 121412,
+    "dDurationMs": 1127,
+    "segs": [ {
+      "utf8": "it's able\nto kind of almost create"
+    } ]
+  }, {
+    "tStartMs": 122539,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "a service account\nfor itself."
+    } ]
+  }, {
+    "tStartMs": 123957,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "And in that world\nthen you can audit it."
+    } ]
+  }, {
+    "tStartMs": 125708,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "You can make sure that,"
+    } ]
+  }, {
+    "tStartMs": 127043,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "it's successfully doing\nthe things that you want."
+    } ]
+  }, {
+    "tStartMs": 129170,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "And I think that is\nprobably closer to the"
+    } ]
+  }, {
+    "tStartMs": 130713,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "operating model\nwe’ll see"
+    } ]
+  }, {
+    "tStartMs": 131506,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "with the\nidentity layer"
+    } ]
+  }, {
+    "tStartMs": 133133,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "kind of evolving."
+    } ]
+  }, {
+    "tStartMs": 133925,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "So a lot of what's\ninteresting"
+    } ]
+  }, {
+    "tStartMs": 135135,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "about\nhow agents can talk to"
+    } ]
+  }, {
+    "tStartMs": 137053,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "each other is like,"
+    } ]
+  }, {
+    "tStartMs": 138012,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "you can build an agent\nand you can"
+    } ]
+  }, {
+    "tStartMs": 139305,
+    "dDurationMs": 2837,
+    "segs": [ {
+      "utf8": "expose an API,\nor you can expose"
+    } ]
+  }, {
+    "tStartMs": 142142,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "just some mechanism\nby which,"
+    } ]
+  }, {
+    "tStartMs": 143685,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "like another agent\ncan talk to that agent"
+    } ]
+  }, {
+    "tStartMs": 145770,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "the same way\nthat a person"
+    } ]
+  }, {
+    "tStartMs": 147105,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "might interact\nwith that agent."
+    } ]
+  }, {
+    "tStartMs": 148606,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "And we've seen people\ndoing"
+    } ]
+  }, {
+    "tStartMs": 150358,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "some really\ninteresting stuff"
+    } ]
+  }, {
+    "tStartMs": 151734,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "from this perspective,\nlike,"
+    } ]
+  }, {
+    "tStartMs": 153027,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "some folks have built"
+    } ]
+  }, {
+    "tStartMs": 153987,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "on Claude managed agents\nwithin the platform,"
+    } ]
+  }, {
+    "tStartMs": 156656,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "and then have"
+    } ]
+  }, {
+    "tStartMs": 157490,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "built like a nice\nthin MCP server"
+    } ]
+  }, {
+    "tStartMs": 159868,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "that they can go\nand expose,"
+    } ]
+  }, {
+    "tStartMs": 161369,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "and then"
+    } ]
+  }, {
+    "tStartMs": 161911,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "you can have another\nagent just know"
+    } ]
+  }, {
+    "tStartMs": 163496,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "exactly how to call in"
+    } ]
+  }, {
+    "tStartMs": 164581,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "to you\ntalking to that agent."
+    } ]
+  }, {
+    "tStartMs": 166040,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "And so, I think that is\nextremely helpful."
+    } ]
+  }, {
+    "tStartMs": 168626,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "And, you know,"
+    } ]
+  }, {
+    "tStartMs": 169961,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "just people\nhave been able"
+    } ]
+  }, {
+    "tStartMs": 170753,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "to do really creative\nstuff like that."
+    } ]
+  }, {
+    "tStartMs": 172547,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "So, why are these kind"
+    } ]
+  }, {
+    "tStartMs": 173756,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "of workflows\nlegitimate now?"
+    } ]
+  }, {
+    "tStartMs": 175049,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "Like what had to change\nat the model"
+    } ]
+  }, {
+    "tStartMs": 176676,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "or at the infrastructure"
+    } ]
+  }, {
+    "tStartMs": 177594,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "layer\nfor this to be possible?"
+    } ]
+  }, {
+    "tStartMs": 179095,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "Models have obviously\njust gotten better."
+    } ]
+  }, {
+    "tStartMs": 181181,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "I think\nthat's a huge part of it,"
+    } ]
+  }, {
+    "tStartMs": 183016,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "because I think\npreviously"
+    } ]
+  }, {
+    "tStartMs": 184100,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "you would have had to\nmaybe build a whole ton"
+    } ]
+  }, {
+    "tStartMs": 185894,
+    "dDurationMs": 2168,
+    "segs": [ {
+      "utf8": "of scaffolding\naround the model"
+    } ]
+  }, {
+    "tStartMs": 188062,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "and, standard operating\nprocedure type stuff"
+    } ]
+  }, {
+    "tStartMs": 190231,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "that make sure\nthat you have,"
+    } ]
+  }, {
+    "tStartMs": 192108,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "this stuff happens"
+    } ]
+  }, {
+    "tStartMs": 193526,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "and then that stuff\nhappens, right?"
+    } ]
+  }, {
+    "tStartMs": 194819,
+    "dDurationMs": 376,
+    "segs": [ {
+      "utf8": "Like"
+    } ]
+  }, {
+    "tStartMs": 195195,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "the nondeterminism\nof the model used to be"
+    } ]
+  }, {
+    "tStartMs": 197447,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "a lot more problematic\nthan it is today."
+    } ]
+  }, {
+    "tStartMs": 199699,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "I think today"
+    } ]
+  }, {
+    "tStartMs": 200700,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "the models\nare really great"
+    } ]
+  }, {
+    "tStartMs": 202243,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "and can actually\nfigure out"
+    } ]
+  }, {
+    "tStartMs": 203745,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "within some reasonable\nguardrails,"
+    } ]
+  }, {
+    "tStartMs": 205538,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "like what are the steps\nI need to take?"
+    } ]
+  }, {
+    "tStartMs": 206956,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "And what are the"
+    } ]
+  }, {
+    "tStartMs": 207373,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "things that I need to do,"
+    } ]
+  }, {
+    "tStartMs": 208750,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "I think they've also been\nable to run for longer."
+    } ]
+  }, {
+    "tStartMs": 211169,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "Like we have the right\ninfrastructure to"
+    } ]
+  }, {
+    "tStartMs": 213004,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "let an agent be, ambient\nwithin a workspace,"
+    } ]
+  }, {
+    "tStartMs": 215965,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "and it can get triggered\nby something,"
+    } ]
+  }, {
+    "tStartMs": 217592,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "and then it can go off\nand run"
+    } ]
+  }, {
+    "tStartMs": 219135,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "at some workflow\nfor some period of time."
+    } ]
+  }, {
+    "tStartMs": 221137,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "And, you know, come back"
+    } ]
+  }, {
+    "tStartMs": 222597,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "when it's actually ready."
+    } ]
+  }, {
+    "tStartMs": 223473,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "So I think some of\nthis is"
+    } ]
+  }, {
+    "tStartMs": 224974,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "evolution of the model."
+    } ]
+  }, {
+    "tStartMs": 225975,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "I think some of this is\nevolution"
+    } ]
+  }, {
+    "tStartMs": 227268,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "of the infrastructure\nin the way"
+    } ]
+  }, {
+    "tStartMs": 228978,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "that people are able\nto actually stand up"
+    } ]
+  }, {
+    "tStartMs": 230605,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "and build agents\naround it."
+    } ]
+  }, {
+    "tStartMs": 231898,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "Angela,\nI would love to hear"
+    } ]
+  }, {
+    "tStartMs": 232899,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "your thoughts\non how this, like,"
+    } ]
+  }, {
+    "tStartMs": 234817,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "nondeterminism that\nKatelyn is talking about"
+    } ]
+  }, {
+    "tStartMs": 236819,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "has really evolved\nthe harness layer."
+    } ]
+  }, {
+    "tStartMs": 238863,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "Yeah,\nI think in the past,"
+    } ]
+  }, {
+    "tStartMs": 240531,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "it just felt like\na couple months ago,"
+    } ]
+  }, {
+    "tStartMs": 241532,
+    "dDurationMs": 376,
+    "segs": [ {
+      "utf8": "really,"
+    } ]
+  }, {
+    "tStartMs": 241908,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "where people would\nactually create these,"
+    } ]
+  }, {
+    "tStartMs": 243409,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "like,\nvery complex boxes of"
+    } ]
+  }, {
+    "tStartMs": 245036,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "business processes\nthat they'd put together."
+    } ]
+  }, {
+    "tStartMs": 246829,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "So first"
+    } ]
+  }, {
+    "tStartMs": 247288,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "it needs to go through\nstep A and then step A"
+    } ]
+  }, {
+    "tStartMs": 249290,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "can only go to B\nif and only"
+    } ]
+  }, {
+    "tStartMs": 250917,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "if all this kind\nof stuff."
+    } ]
+  }, {
+    "tStartMs": 251751,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "And it's a very complex\nweb of things."
+    } ]
+  }, {
+    "tStartMs": 253795,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "And it ended up\nbeing like very fragile,"
+    } ]
+  }, {
+    "tStartMs": 255672,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "I think."
+    } ]
+  }, {
+    "tStartMs": 256214,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "in terms of an agent\nactually"
+    } ]
+  }, {
+    "tStartMs": 258216,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "being able to exhibit"
+    } ]
+  }, {
+    "tStartMs": 259676,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "the intelligence"
+    } ]
+  }, {
+    "tStartMs": 260468,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "that you were\nhoping it to have,"
+    } ]
+  }, {
+    "tStartMs": 261511,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "and you were obviously"
+    } ]
+  }, {
+    "tStartMs": 262345,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "trying\nto automate something"
+    } ]
+  }, {
+    "tStartMs": 264013,
+    "dDurationMs": 2253,
+    "segs": [ {
+      "utf8": "or make it a you know,\na little bit more useful."
+    } ]
+  }, {
+    "tStartMs": 266266,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "And we've kind of tried"
+    } ]
+  }, {
+    "tStartMs": 267475,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "to box\nin a lot of the model."
+    } ]
+  }, {
+    "tStartMs": 269060,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "As Katelyn mentioned,"
+    } ]
+  }, {
+    "tStartMs": 270019,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "with the model\ngetting smarter"
+    } ]
+  }, {
+    "tStartMs": 271020,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "and I think more\nand more capable"
+    } ]
+  }, {
+    "tStartMs": 272272,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "more agentic in its"
+    } ]
+  }, {
+    "tStartMs": 273606,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "tool calling\nand also deeper"
+    } ]
+  }, {
+    "tStartMs": 274899,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "in it's own\nreasoning."
+    } ]
+  }, {
+    "tStartMs": 275984,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "It's actually able\nto get to a place where"
+    } ]
+  }, {
+    "tStartMs": 277527,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "you can kind of start\nto delete some of those,"
+    } ]
+  }, {
+    "tStartMs": 279570,
+    "dDurationMs": 2962,
+    "segs": [ {
+      "utf8": "you know, restrictive\nparts of the harness."
+    } ]
+  }, {
+    "tStartMs": 282532,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "And so I see harnesses\nactually"
+    } ]
+  }, {
+    "tStartMs": 283783,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "getting thinner\nand thinner over time."
+    } ]
+  }, {
+    "tStartMs": 285368,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "The other thing I see"
+    } ]
+  }, {
+    "tStartMs": 286286,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "is that with harnesses\ngetting thinner,"
+    } ]
+  }, {
+    "tStartMs": 288371,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "you almost have like,\nmeta harnesses."
+    } ]
+  }, {
+    "tStartMs": 289956,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "I don't know what\nto call those things."
+    } ]
+  }, {
+    "tStartMs": 291082,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "Maybe\nthey're like saddles"
+    } ]
+  }, {
+    "tStartMs": 292250,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "or something\nin the future."
+    } ]
+  }, {
+    "tStartMs": 293876,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "But, I do think they,"
+    } ]
+  }, {
+    "tStartMs": 295461,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "they tend to combine\nstrategies."
+    } ]
+  }, {
+    "tStartMs": 296879,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "So, for example,"
+    } ]
+  }, {
+    "tStartMs": 297880,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "we've seen"
+    } ]
+  }, {
+    "tStartMs": 298381,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "people do really\ninnovative stuff"
+    } ]
+  }, {
+    "tStartMs": 299632,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "where it's"
+    } ]
+  }, {
+    "tStartMs": 300591,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "multiple agents,\nand this is built into"
+    } ]
+  }, {
+    "tStartMs": 302760,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "the harness in itself,\nbut multiple agents"
+    } ]
+  }, {
+    "tStartMs": 304679,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "actually compete"
+    } ]
+  }, {
+    "tStartMs": 305388,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "to go try and solve\na problem together."
+    } ]
+  }, {
+    "tStartMs": 307015,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "And there's another\ninstance in which,"
+    } ]
+  }, {
+    "tStartMs": 308349,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "you spin up two of them,"
+    } ]
+  }, {
+    "tStartMs": 309726,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "and one of them\ngenerates an idea,"
+    } ]
+  }, {
+    "tStartMs": 311019,
+    "dDurationMs": 1584,
+    "segs": [ {
+      "utf8": "and then the other one's\nadversarial to it."
+    } ]
+  }, {
+    "tStartMs": 312603,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "And there's\nso many other strategies"
+    } ]
+  }, {
+    "tStartMs": 313688,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "you can build on\ntop of it."
+    } ]
+  }, {
+    "tStartMs": 314522,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "We recently did\nadvisor strategy"
+    } ]
+  }, {
+    "tStartMs": 316274,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "as an example, where"
+    } ]
+  }, {
+    "tStartMs": 317358,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "if the model can't\nfigure out what to do,"
+    } ]
+  }, {
+    "tStartMs": 318818,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "it actually just goes,\nreaches out,"
+    } ]
+  }, {
+    "tStartMs": 319944,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "and calls a friend,\nand that friend"
+    } ]
+  }, {
+    "tStartMs": 320945,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "is hopefully smarter\nand helps it figure out."
+    } ]
+  }, {
+    "tStartMs": 322864,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "So I think things like\nthat is increasingly"
+    } ]
+  }, {
+    "tStartMs": 324490,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "where harness\ninnovation will go."
+    } ]
+  }, {
+    "tStartMs": 325867,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "And we'll see a lot of, \nincredible ways"
+    } ]
+  }, {
+    "tStartMs": 328119,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "where agents, through\nthat expansive"
+    } ]
+  }, {
+    "tStartMs": 329704,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "architecture,\nare able to solve"
+    } ]
+  }, {
+    "tStartMs": 330747,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "more and more complex\nproblems."
+    } ]
+  }, {
+    "tStartMs": 331998,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 332373,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "I think this is, really\ngetting to the heart"
+    } ]
+  }, {
+    "tStartMs": 334167,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "of how we think"
+    } ]
+  }, {
+    "tStartMs": 334709,
+    "dDurationMs": 3837,
+    "segs": [ {
+      "utf8": "about harness evolution,\nbecause, ultimately"
+    } ]
+  }, {
+    "tStartMs": 338546,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "you have all these\ndifferent composite"
+    } ]
+  }, {
+    "tStartMs": 339922,
+    "dDurationMs": 2545,
+    "segs": [ {
+      "utf8": "strategies, and over\ntime, we'll be evolving"
+    } ]
+  }, {
+    "tStartMs": 342467,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "to having hybrids\nof these strategies"
+    } ]
+  }, {
+    "tStartMs": 344093,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "like you could start\nwith, the best of end,"
+    } ]
+  }, {
+    "tStartMs": 346596,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "sort of like\nexpansive approach."
+    } ]
+  }, {
+    "tStartMs": 348181,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "And then"
+    } ]
+  }, {
+    "tStartMs": 348473,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "once you decide\non the right, framework,"
+    } ]
+  }, {
+    "tStartMs": 350391,
+    "dDurationMs": 1961,
+    "segs": [ {
+      "utf8": "then you can iterate on\nthat, single framework."
+    } ]
+  }, {
+    "tStartMs": 352352,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "So you mentioned complex\nproblems."
+    } ]
+  }, {
+    "tStartMs": 353728,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "Tell me about\na particularly"
+    } ]
+  }, {
+    "tStartMs": 354687,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "complex problem\nthat has inspired"
+    } ]
+  }, {
+    "tStartMs": 356022,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "you recently."
+    } ]
+  }, {
+    "tStartMs": 357357,
+    "dDurationMs": 2377,
+    "segs": [ {
+      "utf8": "There was this one\nreally great hackathon"
+    } ]
+  }, {
+    "tStartMs": 359734,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "winner that was\nsuper inspirational."
+    } ]
+  }, {
+    "tStartMs": 361736,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "I believe\nit's called Urrea."
+    } ]
+  }, {
+    "tStartMs": 363196,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "I might be mispronouncing\nthat,"
+    } ]
+  }, {
+    "tStartMs": 364405,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "but they, you know,"
+    } ]
+  }, {
+    "tStartMs": 365656,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "had this problem\nwhere inside"
+    } ]
+  }, {
+    "tStartMs": 367033,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "a bunch of different\nmanufacturing facilities,"
+    } ]
+  }, {
+    "tStartMs": 369077,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "there is this\nneed for an expert"
+    } ]
+  }, {
+    "tStartMs": 371287,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "who really understands\nthe machinery."
+    } ]
+  }, {
+    "tStartMs": 372914,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "And then you have to kind"
+    } ]
+  }, {
+    "tStartMs": 373831,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "of listen to"
+    } ]
+  }, {
+    "tStartMs": 374832,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "and monitor\nwhether or not"
+    } ]
+  }, {
+    "tStartMs": 376459,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "certain machines\nare going up or down."
+    } ]
+  }, {
+    "tStartMs": 378294,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "And then you also have to"
+    } ]
+  }, {
+    "tStartMs": 379087,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "then read the manuals\nfor like that"
+    } ]
+  }, {
+    "tStartMs": 380505,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "specific component\ninside the machine."
+    } ]
+  }, {
+    "tStartMs": 382465,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And traditionally\nthere's one person"
+    } ]
+  }, {
+    "tStartMs": 384175,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "in that factory\nwho has figured that out"
+    } ]
+  }, {
+    "tStartMs": 386302,
+    "dDurationMs": 2753,
+    "segs": [ {
+      "utf8": "over the course of maybe\nlike 10, 15, 20 years"
+    } ]
+  }, {
+    "tStartMs": 389055,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "working in that plant,"
+    } ]
+  }, {
+    "tStartMs": 390139,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "and then they retire\nvery reasonably."
+    } ]
+  }, {
+    "tStartMs": 392058,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "And then you just,\nyou don't have"
+    } ]
+  }, {
+    "tStartMs": 393017,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "that expertise anymore."
+    } ]
+  }, {
+    "tStartMs": 394310,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "This person\nwas actually able"
+    } ]
+  }, {
+    "tStartMs": 395520,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "to take all of these"
+    } ]
+  }, {
+    "tStartMs": 396354,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "types of pieces and say,\nokay,"
+    } ]
+  }, {
+    "tStartMs": 398064,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "if I upload the standard\noperating procedure,"
+    } ]
+  }, {
+    "tStartMs": 399649,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "if I build in monitoring,"
+    } ]
+  }, {
+    "tStartMs": 401067,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "I just attract signals"
+    } ]
+  }, {
+    "tStartMs": 402235,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "from all the different"
+    } ]
+  }, {
+    "tStartMs": 403111,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "types\nof parts of the plant."
+    } ]
+  }, {
+    "tStartMs": 404654,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "Then I can actually have\nagents"
+    } ]
+  }, {
+    "tStartMs": 405863,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "try to mimic\nthat human judgment."
+    } ]
+  }, {
+    "tStartMs": 407657,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "And it was really cool\nto see them"
+    } ]
+  }, {
+    "tStartMs": 409700,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "actually be able to take"
+    } ]
+  }, {
+    "tStartMs": 410910,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "a significant"
+    } ]
+  }, {
+    "tStartMs": 411744,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "proportion of that\nand then build in"
+    } ]
+  }, {
+    "tStartMs": 413371,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "what is basically\nredundancy in,"
+    } ]
+  }, {
+    "tStartMs": 415498,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "you know, that person"
+    } ]
+  }, {
+    "tStartMs": 416124,
+    "dDurationMs": 2502,
+    "segs": [ {
+      "utf8": "retiring and actually\nbeing able to return to"
+    } ]
+  }, {
+    "tStartMs": 418626,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "that agentic system\nand say, okay,"
+    } ]
+  }, {
+    "tStartMs": 420420,
+    "dDurationMs": 2293,
+    "segs": [ {
+      "utf8": "I can rely on this\nas a place to accumulate"
+    } ]
+  }, {
+    "tStartMs": 422713,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "the really important, \nyou know,"
+    } ]
+  }, {
+    "tStartMs": 424757,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "factory knowledge\nthat's necessary."
+    } ]
+  }, {
+    "tStartMs": 426384,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "What about you, Katelyn?"
+    } ]
+  }, {
+    "tStartMs": 427218,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "What's\nan interesting problem"
+    } ]
+  }, {
+    "tStartMs": 428219,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "you've seen solved\nrecently?"
+    } ]
+  }, {
+    "tStartMs": 429470,
+    "dDurationMs": 209,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 429679,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "I think one of the cool\nthings"
+    } ]
+  }, {
+    "tStartMs": 430721,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "that's happening\nwithin"
+    } ]
+  }, {
+    "tStartMs": 431973,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "engineering team\nspecifically, or"
+    } ]
+  }, {
+    "tStartMs": 433724,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "not even actually\nengineering teams"
+    } ]
+  }, {
+    "tStartMs": 434934,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "just like\ndevelopment teams"
+    } ]
+  }, {
+    "tStartMs": 436185,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "that are trying\nto get work done,"
+    } ]
+  }, {
+    "tStartMs": 438229,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "is people are coming\nup with agents"
+    } ]
+  }, {
+    "tStartMs": 439897,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "that are just\nmore powerful than just,"
+    } ]
+  }, {
+    "tStartMs": 442233,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "I can get some code\nwritten, like"
+    } ]
+  }, {
+    "tStartMs": 444402,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "we have excellent"
+    } ]
+  }, {
+    "tStartMs": 445361,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "like, Claude Code"
+    } ]
+  }, {
+    "tStartMs": 445945,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "is an excellent product,\na whole bunch"
+    } ]
+  }, {
+    "tStartMs": 447071,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "of excellent\nproducts around,"
+    } ]
+  }, {
+    "tStartMs": 448281,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "how can you actually\nwrite code?"
+    } ]
+  }, {
+    "tStartMs": 449824,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "And I'm seeing people now"
+    } ]
+  }, {
+    "tStartMs": 450992,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "go further than that\nand say,"
+    } ]
+  }, {
+    "tStartMs": 452577,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "okay, if I'm starting"
+    } ]
+  }, {
+    "tStartMs": 453536,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "from the very beginning\nof a project,"
+    } ]
+  }, {
+    "tStartMs": 455455,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "what are all the things"
+    } ]
+  }, {
+    "tStartMs": 456289,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "that are going\nto have to happen"
+    } ]
+  }, {
+    "tStartMs": 457248,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "in order for\nthat work to get done?"
+    } ]
+  }, {
+    "tStartMs": 459000,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "How do I need to think"
+    } ]
+  }, {
+    "tStartMs": 459876,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "about running my\ndevelopment environment"
+    } ]
+  }, {
+    "tStartMs": 461627,
+    "dDurationMs": 1836,
+    "segs": [ {
+      "utf8": "to actually test the code\nthat I'm running?"
+    } ]
+  }, {
+    "tStartMs": 463463,
+    "dDurationMs": 291,
+    "segs": [ {
+      "utf8": "Right?"
+    } ]
+  }, {
+    "tStartMs": 463754,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "Like,"
+    } ]
+  }, {
+    "tStartMs": 464297,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "How do I,"
+    } ]
+  }, {
+    "tStartMs": 465089,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "you know,"
+    } ]
+  }, {
+    "tStartMs": 465715,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "actually\nwrite the PR up front,"
+    } ]
+  }, {
+    "tStartMs": 467800,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "like the requirements\ndocuments"
+    } ]
+  }, {
+    "tStartMs": 468593,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "and then like\nlater on"
+    } ]
+  }, {
+    "tStartMs": 469844,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "verify all the\nQA testing"
+    } ]
+  }, {
+    "tStartMs": 471762,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "sort of things\nthat need to happen."
+    } ]
+  }, {
+    "tStartMs": 473264,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "And so there's\na few examples"
+    } ]
+  }, {
+    "tStartMs": 474390,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "out there right now\nwhere people,"
+    } ]
+  }, {
+    "tStartMs": 476225,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "in larger companies"
+    } ]
+  }, {
+    "tStartMs": 477727,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "have actually"
+    } ]
+  }, {
+    "tStartMs": 478227,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "put together full agenda\nsystems and platforms."
+    } ]
+  }, {
+    "tStartMs": 481981,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "That help them do"
+    } ]
+  }, {
+    "tStartMs": 483065,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "pretty custom\nend to end development."
+    } ]
+  }, {
+    "tStartMs": 485151,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "And I think a really\ngood example is"
+    } ]
+  }, {
+    "tStartMs": 487778,
+    "dDurationMs": 2962,
+    "segs": [ {
+      "utf8": "Shopify recently talked\nabout doing this with,"
+    } ]
+  }, {
+    "tStartMs": 490740,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "I think\nthey called it River."
+    } ]
+  }, {
+    "tStartMs": 491991,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "And, you know,"
+    } ]
+  }, {
+    "tStartMs": 492950,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "there's been a few other\nexamples like this."
+    } ]
+  }, {
+    "tStartMs": 494368,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "And I think this is\none of the evolutions"
+    } ]
+  }, {
+    "tStartMs": 496037,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "that has been made\npossible"
+    } ]
+  }, {
+    "tStartMs": 497538,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "by just the evolution"
+    } ]
+  }, {
+    "tStartMs": 499123,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "of what\nagents are capable of."
+    } ]
+  }, {
+    "tStartMs": 500541,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "So it's clear\nthat some organizations"
+    } ]
+  }, {
+    "tStartMs": 502126,
+    "dDurationMs": 376,
+    "segs": [ {
+      "utf8": "are seeing"
+    } ]
+  }, {
+    "tStartMs": 502502,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "a massive amount\nof ceiling"
+    } ]
+  }, {
+    "tStartMs": 503753,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "raising on the problems"
+    } ]
+  }, {
+    "tStartMs": 504587,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "that they're\nable to solve."
+    } ]
+  }, {
+    "tStartMs": 505922,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "But not all organizations\nare feeling that."
+    } ]
+  }, {
+    "tStartMs": 507757,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "So what do you think"
+    } ]
+  }, {
+    "tStartMs": 508424,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "is the biggest barrier\nto that?"
+    } ]
+  }, {
+    "tStartMs": 509926,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "Actual boundaries,\nlike the things"
+    } ]
+  }, {
+    "tStartMs": 511469,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "that can get in the way\nfor people."
+    } ]
+  }, {
+    "tStartMs": 513095,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "Security\nand compliance guardrails"
+    } ]
+  }, {
+    "tStartMs": 515723,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "that they need\nto have in place in order"
+    } ]
+  }, {
+    "tStartMs": 517266,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "to feel comfortable,\nlike having agents"
+    } ]
+  }, {
+    "tStartMs": 519143,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "do the work\nthat they're able to do."
+    } ]
+  }, {
+    "tStartMs": 521020,
+    "dDurationMs": 2377,
+    "segs": [ {
+      "utf8": "Evals, I think\nis a big one, too."
+    } ]
+  }, {
+    "tStartMs": 523397,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "In order to actually get"
+    } ]
+  }, {
+    "tStartMs": 524273,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "the most out of\nthe technology."
+    } ]
+  }, {
+    "tStartMs": 526192,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "Security and compliance"
+    } ]
+  }, {
+    "tStartMs": 527193,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "is definitely a big"
+    } ]
+  }, {
+    "tStartMs": 527860,
+    "dDurationMs": 376,
+    "segs": [ {
+      "utf8": "one here,"
+    } ]
+  }, {
+    "tStartMs": 528236,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "because I think that a"
+    } ]
+  }, {
+    "tStartMs": 529779,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "lot of teams\nare operating on,"
+    } ]
+  }, {
+    "tStartMs": 531739,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "security assumptions"
+    } ]
+  }, {
+    "tStartMs": 533032,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "that prevailed,\nyou know, 20 years ago."
+    } ]
+  }, {
+    "tStartMs": 535284,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "And now agents are"
+    } ]
+  }, {
+    "tStartMs": 536577,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "fundamentally\nchanging everything."
+    } ]
+  }, {
+    "tStartMs": 537954,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "And along with\nthat comes security."
+    } ]
+  }, {
+    "tStartMs": 539705,
+    "dDurationMs": 1544,
+    "segs": [ {
+      "utf8": "So I think that we have"
+    } ]
+  }, {
+    "tStartMs": 541249,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "a pretty fundamental idea"
+    } ]
+  }, {
+    "tStartMs": 542583,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "of what makes a"
+    } ]
+  }, {
+    "tStartMs": 544043,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "safe agent\nwith strong guardrails."
+    } ]
+  }, {
+    "tStartMs": 546379,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "I think pushing that\nconcept uphill and"
+    } ]
+  }, {
+    "tStartMs": 549423,
+    "dDurationMs": 3838,
+    "segs": [ {
+      "utf8": "revising the checklist,\nhas been a bit of a,"
+    } ]
+  }, {
+    "tStartMs": 553553,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "a bit of a journey."
+    } ]
+  }, {
+    "tStartMs": 554804,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "Yes. Yeah."
+    } ]
+  }, {
+    "tStartMs": 555304,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "And Curious"
+    } ]
+  }, {
+    "tStartMs": 556013,
+    "dDurationMs": 1961,
+    "segs": [ {
+      "utf8": "for how you think\nabout ROI of agents"
+    } ]
+  }, {
+    "tStartMs": 557974,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "and how enterprises\ncan manage that?"
+    } ]
+  }, {
+    "tStartMs": 560017,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "Yeah,\nI think it's a very,"
+    } ]
+  }, {
+    "tStartMs": 561477,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "top of mind question"
+    } ]
+  }, {
+    "tStartMs": 562228,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "for a ton of\ndifferent companies"
+    } ]
+  }, {
+    "tStartMs": 563437,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "right now as they\nlook at"
+    } ]
+  }, {
+    "tStartMs": 564814,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "how everything\nis accelerating"
+    } ]
+  }, {
+    "tStartMs": 566065,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "and how they can\naccelerate themselves."
+    } ]
+  }, {
+    "tStartMs": 568317,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "I think, \nyou know,"
+    } ]
+  }, {
+    "tStartMs": 569986,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "there's a couple\ndifferent ways"
+    } ]
+  }, {
+    "tStartMs": 570778,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "to think about this,"
+    } ]
+  }, {
+    "tStartMs": 571445,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "but I tried to kind"
+    } ]
+  }, {
+    "tStartMs": 572488,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "of encourage\na slightly more like"
+    } ]
+  }, {
+    "tStartMs": 573489,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "simplified mental model."
+    } ]
+  }, {
+    "tStartMs": 574949,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "I think oftentimes"
+    } ]
+  }, {
+    "tStartMs": 575741,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "people\nwant to jump to like,"
+    } ]
+  }, {
+    "tStartMs": 576534,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "how do I agentify\ngigantic"
+    } ]
+  }, {
+    "tStartMs": 578286,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "old school processes\nthat I have,"
+    } ]
+  }, {
+    "tStartMs": 579620,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "and maybe\nthey have 120 of them"
+    } ]
+  }, {
+    "tStartMs": 581205,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "and they want to go down\nthe laundry list"
+    } ]
+  }, {
+    "tStartMs": 582415,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "or they're like, great,\nthis is my moment."
+    } ]
+  }, {
+    "tStartMs": 584584,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "If consumer preferences\nare changing"
+    } ]
+  }, {
+    "tStartMs": 586294,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "to fundamentally\ntransform"
+    } ]
+  }, {
+    "tStartMs": 587587,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "our entire product\nservice."
+    } ]
+  }, {
+    "tStartMs": 588921,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "And I think all those\nthings are great,"
+    } ]
+  }, {
+    "tStartMs": 590047,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "but it's obviously\nvery hard"
+    } ]
+  }, {
+    "tStartMs": 590965,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "to go\nthrough all of those."
+    } ]
+  }, {
+    "tStartMs": 591841,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "And there's a very,\nvery wide"
+    } ]
+  }, {
+    "tStartMs": 593968,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "array of things there."
+    } ]
+  }, {
+    "tStartMs": 594844,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "I do think that"
+    } ]
+  }, {
+    "tStartMs": 595595,
+    "dDurationMs": 1584,
+    "segs": [ {
+      "utf8": "from an ROI\npoint of view,"
+    } ]
+  }, {
+    "tStartMs": 597179,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "it's easier\nto almost start"
+    } ]
+  }, {
+    "tStartMs": 598055,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "from the individual,\nactually,"
+    } ]
+  }, {
+    "tStartMs": 599473,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "and to be focused"
+    } ]
+  }, {
+    "tStartMs": 600850,
+    "dDurationMs": 3044,
+    "segs": [ {
+      "utf8": "on how much faster that\nindividual is getting."
+    } ]
+  }, {
+    "tStartMs": 604061,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "And it sounds really"
+    } ]
+  }, {
+    "tStartMs": 605021,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "almost like simple\nand kind of,"
+    } ]
+  }, {
+    "tStartMs": 607106,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "you know, like\nnot sophisticated enough."
+    } ]
+  }, {
+    "tStartMs": 609108,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "But I actually think\nif you start there"
+    } ]
+  }, {
+    "tStartMs": 610443,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "and you are able\nto accelerate"
+    } ]
+  }, {
+    "tStartMs": 611777,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "that one individual,"
+    } ]
+  }, {
+    "tStartMs": 612862,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "you can move from that\nto then a team."
+    } ]
+  }, {
+    "tStartMs": 614905,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "And as you get to\nthe team level,"
+    } ]
+  }, {
+    "tStartMs": 615906,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "you start to think about\nthe speed"
+    } ]
+  }, {
+    "tStartMs": 616949,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "that you're\ngenerating there."
+    } ]
+  }, {
+    "tStartMs": 618326,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "And then,"
+    } ]
+  }, {
+    "tStartMs": 619243,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "and probably only"
+    } ]
+  }, {
+    "tStartMs": 619994,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "then I would\nactually start then"
+    } ]
+  }, {
+    "tStartMs": 621120,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "to encourage say,\nokay,"
+    } ]
+  }, {
+    "tStartMs": 622455,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "if I can make this\nteam faster,"
+    } ]
+  }, {
+    "tStartMs": 624290,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "now what is my ability"
+    } ]
+  }, {
+    "tStartMs": 626751,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "to take this team\nand think"
+    } ]
+  }, {
+    "tStartMs": 628044,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "through a process\nacross my company?"
+    } ]
+  }, {
+    "tStartMs": 629879,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "And realistically,"
+    } ]
+  }, {
+    "tStartMs": 631255,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "a process\ntypically requires"
+    } ]
+  }, {
+    "tStartMs": 632882,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "many different teams\nand many different"
+    } ]
+  }, {
+    "tStartMs": 634342,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "individuals\nwho don't share"
+    } ]
+  }, {
+    "tStartMs": 635885,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "standard\noperating procedures,"
+    } ]
+  }, {
+    "tStartMs": 636927,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "who don't share maybe\nthe exact same expertise."
+    } ]
+  }, {
+    "tStartMs": 639096,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "And that's why we have\nall them together"
+    } ]
+  }, {
+    "tStartMs": 640264,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "probably, you know, duct"
+    } ]
+  }, {
+    "tStartMs": 641349,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "taping a bunch of things\ntogether."
+    } ]
+  }, {
+    "tStartMs": 642475,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "But if you go through\nthat kind of phase"
+    } ]
+  }, {
+    "tStartMs": 643976,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "where you think about"
+    } ]
+  }, {
+    "tStartMs": 644477,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "speed\nat the individual layer,"
+    } ]
+  }, {
+    "tStartMs": 645936,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "team and\ntheir productivity,"
+    } ]
+  }, {
+    "tStartMs": 648397,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "and then lastly\nfollowed by"
+    } ]
+  }, {
+    "tStartMs": 649649,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "how you're able to"
+    } ]
+  }, {
+    "tStartMs": 650358,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "string these workflows\ntogether."
+    } ]
+  }, {
+    "tStartMs": 651525,
+    "dDurationMs": 1127,
+    "segs": [ {
+      "utf8": "I think you're able\nas a company,"
+    } ]
+  }, {
+    "tStartMs": 652652,
+    "dDurationMs": 1584,
+    "segs": [ {
+      "utf8": "to basically almost\nlight up"
+    } ]
+  }, {
+    "tStartMs": 654236,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "every single bar"
+    } ]
+  }, {
+    "tStartMs": 655237,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "that you eventually\ncare about,"
+    } ]
+  }, {
+    "tStartMs": 656405,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "so you can eventually\nmake your way"
+    } ]
+  }, {
+    "tStartMs": 657531,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "to that kind of list\nof 120 workflows"
+    } ]
+  }, {
+    "tStartMs": 659909,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "that you wish\nyou could be agentifying."
+    } ]
+  }, {
+    "tStartMs": 661661,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "And I think\nif you think about it"
+    } ]
+  }, {
+    "tStartMs": 662578,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "from that point of view,"
+    } ]
+  }, {
+    "tStartMs": 663621,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "most of your ROI"
+    } ]
+  }, {
+    "tStartMs": 664538,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "calculations should\nprobably be on speed"
+    } ]
+  }, {
+    "tStartMs": 666290,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "first and foremost,\nand productivity."
+    } ]
+  }, {
+    "tStartMs": 667875,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "It tends to be much more\nleading and successful"
+    } ]
+  }, {
+    "tStartMs": 670086,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "as the primary\nmechanism"
+    } ]
+  }, {
+    "tStartMs": 672046,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "to take a look at\nas that starts to,"
+    } ]
+  }, {
+    "tStartMs": 674090,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "I think, flower"
+    } ]
+  }, {
+    "tStartMs": 674757,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "a little bit\ninside of a company,"
+    } ]
+  }, {
+    "tStartMs": 675925,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "then it makes more sense"
+    } ]
+  }, {
+    "tStartMs": 676926,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "to kind of transition\na bit to be like,"
+    } ]
+  }, {
+    "tStartMs": 678302,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "okay, well,"
+    } ]
+  }, {
+    "tStartMs": 679053,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "you know, maybe there are"
+    } ]
+  }, {
+    "tStartMs": 680054,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "financial metrics\nthat I wanted to push."
+    } ]
+  }, {
+    "tStartMs": 681389,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "Maybe there are, user\nmetrics"
+    } ]
+  }, {
+    "tStartMs": 683057,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "that will help drive\nthe overall"
+    } ]
+  }, {
+    "tStartMs": 684975,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "like outcome productivity\nthat I care about."
+    } ]
+  }, {
+    "tStartMs": 687144,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "And I think if\nleaders and companies"
+    } ]
+  }, {
+    "tStartMs": 689522,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "are able to follow\nthat kind of process."
+    } ]
+  }, {
+    "tStartMs": 690981,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "They're actually able to\ndrive more of that ROI."
+    } ]
+  }, {
+    "tStartMs": 693317,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "And see,\nit's stage by stage."
+    } ]
+  }, {
+    "tStartMs": 695236,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "Katelyn, you keep saying\nengineering teams"
+    } ]
+  }, {
+    "tStartMs": 697279,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "and I want to double\nclick on that"
+    } ]
+  }, {
+    "tStartMs": 699073,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "and say what is an\nengineering team anymore?"
+    } ]
+  }, {
+    "tStartMs": 701659,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "So engineering\nteam for us"
+    } ]
+  }, {
+    "tStartMs": 703411,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "is a set of humans\nthat actually doesn't"
+    } ]
+  }, {
+    "tStartMs": 705329,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "look that different\nthan an engineering"
+    } ]
+  }, {
+    "tStartMs": 707498,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "team looked\n6 months ago,"
+    } ]
+  }, {
+    "tStartMs": 708999,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "12 months ago."
+    } ]
+  }, {
+    "tStartMs": 709959,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "You still kind of need\nthat set of humans"
+    } ]
+  }, {
+    "tStartMs": 712002,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "to understand the system\nthat they are building,"
+    } ]
+  }, {
+    "tStartMs": 715005,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "how to operate it,"
+    } ]
+  }, {
+    "tStartMs": 716173,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "how to be on call\nwhen something's"
+    } ]
+  }, {
+    "tStartMs": 717800,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "going wrong, all of these\nsorts of things."
+    } ]
+  }, {
+    "tStartMs": 719927,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "But each of those humans\nis just insanely turbo"
+    } ]
+  }, {
+    "tStartMs": 722430,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "charged by agents"
+    } ]
+  }, {
+    "tStartMs": 724265,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "that can help them\nget their work done."
+    } ]
+  }, {
+    "tStartMs": 726225,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "And so what we're\nkind of seeing"
+    } ]
+  }, {
+    "tStartMs": 728185,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "is a bit of a shift\nfrom an engineering team"
+    } ]
+  }, {
+    "tStartMs": 730396,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "that was maybe, like one"
+    } ]
+  }, {
+    "tStartMs": 731814,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "technical lead who's got,"
+    } ]
+  }, {
+    "tStartMs": 733649,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "you know, opinions on"
+    } ]
+  }, {
+    "tStartMs": 734692,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "how we should design\nthe system, right?"
+    } ]
+  }, {
+    "tStartMs": 736193,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "And then a whole bunch\nof engineers who are,"
+    } ]
+  }, {
+    "tStartMs": 739071,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "you know,\npicking up tickets"
+    } ]
+  }, {
+    "tStartMs": 740114,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "and getting work done\nto almost the whole team"
+    } ]
+  }, {
+    "tStartMs": 743576,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "are people\nwho have strong opinions"
+    } ]
+  }, {
+    "tStartMs": 745703,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "on here's\nhow we end to end"
+    } ]
+  }, {
+    "tStartMs": 747246,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "build a product\nor build a system."
+    } ]
+  }, {
+    "tStartMs": 748998,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "Here's\nwhat the technical design"
+    } ]
+  }, {
+    "tStartMs": 750207,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "needs to look like."
+    } ]
+  }, {
+    "tStartMs": 750958,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "And then they're kind of"
+    } ]
+  }, {
+    "tStartMs": 751667,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "orchestrating\ntheir Claudes,"
+    } ]
+  }, {
+    "tStartMs": 753335,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "for lack of a better\nterm,"
+    } ]
+  }, {
+    "tStartMs": 754628,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "to get the work done."
+    } ]
+  }, {
+    "tStartMs": 756088,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "And so, for us,\nour engineering teams"
+    } ]
+  }, {
+    "tStartMs": 758466,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "actually\nlook pretty similar."
+    } ]
+  }, {
+    "tStartMs": 759925,
+    "dDurationMs": 2253,
+    "segs": [ {
+      "utf8": "But they're able to just\nget so much more work"
+    } ]
+  }, {
+    "tStartMs": 762178,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "done, than\nthey were in the past."
+    } ]
+  }, {
+    "tStartMs": 764263,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "I'm curious"
+    } ]
+  }, {
+    "tStartMs": 764972,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "how you think about\npotential failure"
+    } ]
+  }, {
+    "tStartMs": 766640,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "modes of reliance on"
+    } ]
+  }, {
+    "tStartMs": 768017,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "agents\nin an organization?"
+    } ]
+  }, {
+    "tStartMs": 770227,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "I do think\nit does create a"
+    } ]
+  }, {
+    "tStartMs": 771562,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "sense of like,\nhyper independence"
+    } ]
+  }, {
+    "tStartMs": 773022,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "in a way that is\nmaybe slightly false."
+    } ]
+  }, {
+    "tStartMs": 775316,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "Like, you think that."
+    } ]
+  }, {
+    "tStartMs": 776358,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "Of course, now"
+    } ]
+  }, {
+    "tStartMs": 776942,
+    "dDurationMs": 835,
+    "segs": [ {
+      "utf8": "everyone's a builder,"
+    } ]
+  }, {
+    "tStartMs": 777777,
+    "dDurationMs": 1584,
+    "segs": [ {
+      "utf8": "so I can go\nand build and yes,"
+    } ]
+  }, {
+    "tStartMs": 779361,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "I can like spin up\nlike ten prototypes."
+    } ]
+  }, {
+    "tStartMs": 781113,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "And for you, normally\nyou'd be like, well,"
+    } ]
+  }, {
+    "tStartMs": 782865,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "which of these options\nis the best option?"
+    } ]
+  }, {
+    "tStartMs": 784283,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "You do a little bit\nthinking you"
+    } ]
+  }, {
+    "tStartMs": 785618,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "now have the ability to"
+    } ]
+  }, {
+    "tStartMs": 786243,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "be like, well,\nthis is cheap."
+    } ]
+  }, {
+    "tStartMs": 787286,
+    "dDurationMs": 334,
+    "segs": [ {
+      "utf8": "Like,"
+    } ]
+  }, {
+    "tStartMs": 787620,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "why don't I just like\nlaunch all ten"
+    } ]
+  }, {
+    "tStartMs": 788788,
+    "dDurationMs": 1292,
+    "segs": [ {
+      "utf8": "and then whichever one's\nthe winner"
+    } ]
+  }, {
+    "tStartMs": 790080,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "is the one\nthat they will pick."
+    } ]
+  }, {
+    "tStartMs": 791457,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "And so I do think\nit creates this like"
+    } ]
+  }, {
+    "tStartMs": 792625,
+    "dDurationMs": 2335,
+    "segs": [ {
+      "utf8": "hyper independence\non every single person."
+    } ]
+  }, {
+    "tStartMs": 794960,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "But oftentimes,"
+    } ]
+  }, {
+    "tStartMs": 796212,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "you know,"
+    } ]
+  }, {
+    "tStartMs": 797004,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "I think the quality"
+    } ]
+  }, {
+    "tStartMs": 798255,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "that comes together\nfrom something"
+    } ]
+  }, {
+    "tStartMs": 799423,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "that's like"
+    } ]
+  }, {
+    "tStartMs": 799715,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "more systematic,\nmore holistic tends to"
+    } ]
+  }, {
+    "tStartMs": 801926,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "then be a little bit\nharder to coordinate."
+    } ]
+  }, {
+    "tStartMs": 803594,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "So I do think that's"
+    } ]
+  }, {
+    "tStartMs": 804345,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "a little bit of\nthe failure mode is like"
+    } ]
+  }, {
+    "tStartMs": 805679,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "if by giving everyone\nhyper independence,"
+    } ]
+  }, {
+    "tStartMs": 807389,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "but not necessarily"
+    } ]
+  }, {
+    "tStartMs": 808474,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "organizing them together\nto a concrete direction,"
+    } ]
+  }, {
+    "tStartMs": 810434,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "you might see like sprawl"
+    } ]
+  }, {
+    "tStartMs": 811393,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "that looks a little bit\nlike this."
+    } ]
+  }, {
+    "tStartMs": 812603,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "And that can have pros\nand cons,"
+    } ]
+  }, {
+    "tStartMs": 815272,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "but I think there's\ndefinitely failure"
+    } ]
+  }, {
+    "tStartMs": 816482,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "modes that result\nfrom things like that."
+    } ]
+  }, {
+    "tStartMs": 817900,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "So where do you think\nthe puck is going?"
+    } ]
+  }, {
+    "tStartMs": 819151,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "What is the future\nof agentic development?"
+    } ]
+  }, {
+    "tStartMs": 821570,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "I think it's like"
+    } ]
+  }, {
+    "tStartMs": 822613,
+    "dDurationMs": 2794,
+    "segs": [ {
+      "utf8": "deeply embedded\ninside the organization"
+    } ]
+  }, {
+    "tStartMs": 825407,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "to a point\nwhere you probably don't"
+    } ]
+  }, {
+    "tStartMs": 827785,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "really use tools\nin the way that's like"
+    } ]
+  }, {
+    "tStartMs": 830955,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "so obviously\ninstantiated."
+    } ]
+  }, {
+    "tStartMs": 832540,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "And what I mean by\nthat is you know, today"
+    } ]
+  }, {
+    "tStartMs": 834041,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "we all are reaching\nfor this"
+    } ]
+  }, {
+    "tStartMs": 835668,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "agentic tool\nor that agentic tool."
+    } ]
+  }, {
+    "tStartMs": 837086,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "And this one's\ngood at this"
+    } ]
+  }, {
+    "tStartMs": 837962,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "and that's good at that."
+    } ]
+  }, {
+    "tStartMs": 838963,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "And I think in the future\nit'll be closer to like"
+    } ]
+  }, {
+    "tStartMs": 841006,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "maybe there's\nsome common substrate"
+    } ]
+  }, {
+    "tStartMs": 842299,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "where we all kind\nof engage."
+    } ]
+  }, {
+    "tStartMs": 843759,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "It's like\nfamiliar interfaces"
+    } ]
+  }, {
+    "tStartMs": 844927,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "and everything like that."
+    } ]
+  }, {
+    "tStartMs": 846011,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "But you kind of\nare just able"
+    } ]
+  }, {
+    "tStartMs": 847429,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "to kind of tag an agent,\nspin it up"
+    } ]
+  }, {
+    "tStartMs": 849515,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "and down as you see fit,"
+    } ]
+  }, {
+    "tStartMs": 850766,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "and it just does a lot of"
+    } ]
+  }, {
+    "tStartMs": 851809,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "like work by itself\ninvisibly."
+    } ]
+  }, {
+    "tStartMs": 853394,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And so and it might even\nactually be proactive."
+    } ]
+  }, {
+    "tStartMs": 855104,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "Maybe it's the one coming\nto you and saying, hey,"
+    } ]
+  }, {
+    "tStartMs": 856981,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "you know, we noticed\nthis thing went down."
+    } ]
+  }, {
+    "tStartMs": 858566,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "And so\nI dug into the details"
+    } ]
+  }, {
+    "tStartMs": 860526,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "and I figured it out\nand I fixed it."
+    } ]
+  }, {
+    "tStartMs": 862069,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "And here's the PR maybe\nyou want to review it."
+    } ]
+  }, {
+    "tStartMs": 864780,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "And maybe\nyou even told it,"
+    } ]
+  }, {
+    "tStartMs": 865948,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "like next time\nin the future"
+    } ]
+  }, {
+    "tStartMs": 867408,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "for things so small,\ndon't bother me."
+    } ]
+  }, {
+    "tStartMs": 869118,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "Just go ahead\nand, like, ship it."
+    } ]
+  }, {
+    "tStartMs": 870327,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "And I think it'll look\na little bit like that"
+    } ]
+  }, {
+    "tStartMs": 871662,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "where it almost\nfeels like,"
+    } ]
+  }, {
+    "tStartMs": 872955,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "almost like an invisible\nlike substrate"
+    } ]
+  }, {
+    "tStartMs": 875082,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "that you engage with."
+    } ]
+  }, {
+    "tStartMs": 876250,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "And in that world,"
+    } ]
+  }, {
+    "tStartMs": 877668,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "I think that every person\nends up"
+    } ]
+  }, {
+    "tStartMs": 879461,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "being at a place"
+    } ]
+  }, {
+    "tStartMs": 880421,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "where they\nalmost kind of like,"
+    } ]
+  }, {
+    "tStartMs": 882423,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "are able"
+    } ]
+  }, {
+    "tStartMs": 882923,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "to build kind of team"
+    } ]
+  }, {
+    "tStartMs": 884633,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "oriented agents,"
+    } ]
+  }, {
+    "tStartMs": 885384,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "but maybe not\nin the sense of like"
+    } ]
+  }, {
+    "tStartMs": 887428,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "it's like another team\nmate,"
+    } ]
+  }, {
+    "tStartMs": 888888,
+    "dDurationMs": 583,
+    "segs": [ {
+      "utf8": "but more that"
+    } ]
+  }, {
+    "tStartMs": 889471,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "like the team orientation"
+    } ]
+  }, {
+    "tStartMs": 890806,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "of some workflow\nthat say, you and I have"
+    } ]
+  }, {
+    "tStartMs": 893309,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "there's an agent\nfor that,"
+    } ]
+  }, {
+    "tStartMs": 894518,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "and it's able\nto actually map"
+    } ]
+  }, {
+    "tStartMs": 896186,
+    "dDurationMs": 1127,
+    "segs": [ {
+      "utf8": "to the kind\nof preferences"
+    } ]
+  }, {
+    "tStartMs": 897313,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "the two of us\nhave been in."
+    } ]
+  }, {
+    "tStartMs": 898188,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "The three of us\nhave a team based agent"
+    } ]
+  }, {
+    "tStartMs": 899690,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "and it like,"
+    } ]
+  }, {
+    "tStartMs": 900274,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "understands a slightly\ndifferent preference,"
+    } ]
+  }, {
+    "tStartMs": 901734,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "and it starts\nto kind of fill"
+    } ]
+  }, {
+    "tStartMs": 902818,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "in a lot of the gaps\nthat are necessary."
+    } ]
+  }, {
+    "tStartMs": 904445,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "And again,"
+    } ]
+  }, {
+    "tStartMs": 904862,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "I think still have\nthe common interfaces"
+    } ]
+  }, {
+    "tStartMs": 906447,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "and things we have,"
+    } ]
+  }, {
+    "tStartMs": 907114,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "but we might see it\na bit more of"
+    } ]
+  }, {
+    "tStartMs": 908198,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "as like\nan operating system or,"
+    } ]
+  }, {
+    "tStartMs": 910242,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "or something like that\ninstead of,"
+    } ]
+  }, {
+    "tStartMs": 911619,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "specific tools that we\nactively reach out for."
+    } ]
+  }, {
+    "tStartMs": 914663,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "And how do you think\nClaude Platform"
+    } ]
+  }, {
+    "tStartMs": 915956,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "will help us\nget to that vision?"
+    } ]
+  }, {
+    "tStartMs": 917333,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "Yeah,\nI think one of the bigger"
+    } ]
+  }, {
+    "tStartMs": 918417,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "things that\nwe've been kind of trying"
+    } ]
+  }, {
+    "tStartMs": 920085,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "to push the boundaries"
+    } ]
+  }, {
+    "tStartMs": 920836,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "on recently\nare some concepts, like"
+    } ]
+  }, {
+    "tStartMs": 923255,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "outcomes is a big one."
+    } ]
+  }, {
+    "tStartMs": 924632,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "Like we shipped in Claude\nmanaged angents"
+    } ]
+  }, {
+    "tStartMs": 926050,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "this idea of an outcome\nwhere you tell"
+    } ]
+  }, {
+    "tStartMs": 927885,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "Claude, like, here's\nwhat good looks like."
+    } ]
+  }, {
+    "tStartMs": 929678,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "Give it a rubric."
+    } ]
+  }, {
+    "tStartMs": 930638,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "How many times\ncan it iterate"
+    } ]
+  }, {
+    "tStartMs": 931263,
+    "dDurationMs": 3212,
+    "segs": [ {
+      "utf8": "to go and try and get\nthat outcome successfully"
+    } ]
+  }, {
+    "tStartMs": 934475,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "before it stops, right?"
+    } ]
+  }, {
+    "tStartMs": 937519,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "And I think as we evolve\nthat concept,"
+    } ]
+  }, {
+    "tStartMs": 939813,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "we'll probably get closer"
+    } ]
+  }, {
+    "tStartMs": 940898,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "and closer to a world"
+    } ]
+  }, {
+    "tStartMs": 941815,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "where you're talking to\nClaude and you're saying,"
+    } ]
+  }, {
+    "tStartMs": 944109,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "I want this outcome\nand here's a budget."
+    } ]
+  }, {
+    "tStartMs": 946487,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "Go."
+    } ]
+  }, {
+    "tStartMs": 947071,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "You know,\nand you don't really have"
+    } ]
+  }, {
+    "tStartMs": 948238,
+    "dDurationMs": 1544,
+    "segs": [ {
+      "utf8": "to think beyond that."
+    } ]
+  }, {
+    "tStartMs": 949782,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "And I think\nthe idea of what"
+    } ]
+  }, {
+    "tStartMs": 951700,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "we're trying\nto get out with"
+    } ]
+  }, {
+    "tStartMs": 952409,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "the platform\nis make that so easy."
+    } ]
+  }, {
+    "tStartMs": 954995,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "And being in a world"
+    } ]
+  }, {
+    "tStartMs": 955913,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "where you're spinning up\nan agent every day"
+    } ]
+  }, {
+    "tStartMs": 957748,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "because you're like,\ntoday,"
+    } ]
+  }, {
+    "tStartMs": 959124,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "I have to summarize\nsome interview notes"
+    } ]
+  }, {
+    "tStartMs": 961710,
+    "dDurationMs": 2795,
+    "segs": [ {
+      "utf8": "and put together a packet\nof feedback, right?"
+    } ]
+  }, {
+    "tStartMs": 964505,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "Or something like that."
+    } ]
+  }, {
+    "tStartMs": 965255,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "You can say, okay, great\nagents, I want notes"
+    } ]
+  }, {
+    "tStartMs": 968509,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "look good,\nlooks like this."
+    } ]
+  }, {
+    "tStartMs": 969677,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "And you can spend\nthis amount."
+    } ]
+  }, {
+    "tStartMs": 971220,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "Go. Right?"
+    } ]
+  }, {
+    "tStartMs": 972137,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "And then you'll get back\nwhat you want"
+    } ]
+  }, {
+    "tStartMs": 974139,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "and making it"
+    } ]
+  }, {
+    "tStartMs": 975099,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "so that you don't\nhave to work harder,"
+    } ]
+  }, {
+    "tStartMs": 976600,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "think hard to\nactually create that,"
+    } ]
+  }, {
+    "tStartMs": 978894,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "is the gap that\nwe're trying to fill."
+    } ]
+  }, {
+    "tStartMs": 981063,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "Making\nthat super easy."
+    } ]
+  }, {
+    "tStartMs": 982481,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "This has been so\nmuch fun talking"
+    } ]
+  }, {
+    "tStartMs": 983649,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "about the future\nof agents."
+    } ]
+  }, {
+    "tStartMs": 984733,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "Thanks so much, guys."
+    } ]
+  } ]
+}

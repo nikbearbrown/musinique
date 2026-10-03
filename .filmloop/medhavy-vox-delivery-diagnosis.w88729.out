@@ -1,0 +1,9 @@
+DONE. Final cut is 16 s newer than the sheet.
+
+**Summary — cancer-nanomedicine/medhavy-vox-delivery-diagnosis:**
+
+- **Audit fixes:** dropped dead ElevenLabs `voice_id` + `clock` from metadata; rewrote B02/B08 FormACard placeholder ellipsis-lines into compressed insight lines.
+- **Punts authored:** 5 pipeline-owned Manim GRAPHIC beats had `graphic.manim = B0X_*` scene names that don't exist in `animated_graphics.py` — routed each to FormACard with an authored short line from the beat's own `production_viz`; logged as shot-form migrations in `TEMPLATE-MISSES.md` (intents preserved for future authoring). 5 more declared slates (B01/B03/B06/B10/B12) that were rendering as compile.py "SCRIPTING GAP" placeholders got real FormACard patterns from their `card.copy`/`document.quote`.
+- **Compile:** `vox-delivery-diagnosis-slate.mp4` — 223.8 s, **14/14 VIDEO, 0 slates**, GATE T + FRAME + LANE + AUDIO all PASS, `mean_volume −24.0 dB`. Cut 16 s newer than sheet.
+- **Non-Claude channel preserved:** Medhavy `Wonder` register + Kokoro `af_kore` audio + OutroSeries/OutroCTA. No Claude bookends forced.
+- `AUDIT.md`, `REBUILD-LOG.md`, `TEMPLATE-MISSES.md`, and a `FILMLOOP-LOG.md` block written; `beat_sheet.pre-rebuild.json` saved.

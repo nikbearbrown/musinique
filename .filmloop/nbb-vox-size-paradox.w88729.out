@@ -1,0 +1,12 @@
+Reel done.
+
+**nbb-vox-size-paradox** — review cut `vox-size-paradox-slate.mp4` (277.3 s, mean_volume −24.0 dB, `Counter({'VIDEO': 17})`).
+
+Highlights:
+- Merged dual bookends (empty `B00/BVDT/BHTF/BOUT` stubs + populated `NBB00-03`) into canonical `B00/BVDT/BHTF/BOUT` with real content; renamed the four Kokoro mp3s to match.
+- Authored a real BVDT from body numbers (6.2/2.1 % ID/g · 15/72 % shrinkage · IFP rim-trap · 80 % core reach) with heading "distribution beats total mass".
+- Replaced the 3,472-sheet BHTF template with a scaffolded exercise on the reel's own size-vs-distribution framework.
+- Spark: `Yassou, Liam` (Greek, unused by adjacent cancer-nanomedicine reels).
+- Body B01–B13 symlinked to the source vox reel's Aug-27 rebuilt clips; four bookends re-rendered via Remotion.
+- GATE T PASS, GATE AUDIO PASS, Gate V frames clean (composer, verdict, your-turn, outro, plus B03/B09 body).
+- Cut mtime (03:20:02) newer than sheet mtime (03:19:30); AUDIT.md, REBUILD-LOG.md, FILMLOOP-LOG.md written.

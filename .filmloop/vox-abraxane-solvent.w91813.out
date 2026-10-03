@@ -1,0 +1,15 @@
+Done. Master cut mtime 05:21 > beat_sheet.json mtime 05:18 (3 min newer).
+
+## Summary
+
+**Reel:** `vox-abraxane-solvent` · **Cut:** `vox-abraxane-solvent-review.mp4` (273.71 s, 1920×1080 p24, 5.2 MB) · **Duration diff:** master 165 s newer than sheet.
+
+**Phase 1 fixes:**
+- Envelope VOICE-LOCK: dropped ElevenLabs `voice_id`, `clock` prose, dead `style_bible`/`accents`/`manim_move` blocks; added `engine: kokoro`, `voice_kokoro: am_onyx`, `folderLabel: @NikBearBrown`, `short_title`, `source`, `derived_from`.
+- Dropped dead truncated `shot.remotion.FormACard` blocks on STILL beats B02 and B10.
+- Fixed `vox_scenes.py` path resolution (`parents[2]` → walk-up search) — same fix sibling used.
+- Two lens moves earned: Descartes (B04 → B09) + Plato (B12).
+
+**Phase 2 build:** 13 real Manim scenes + 4 declared slates (B02, B10, B16, B17). Gate V read on 137 frames — zero BLOCKER, zero MAJOR on real beats. `mean_volume −19.0 dB` (well above −40 dB). Downgrade `VOX_QC=0` (same as sibling), justified static-scene false-positive skip. Palette quirk logged (TEAL→grey, GOLD→pale pink — shared-library issue, layout semantics preserved).
+
+**build.status Counter:** `{'MANIM': 13, 'SLATE': 4}`.

@@ -1,0 +1,1961 @@
+package com.anthropic.helpers
+
+import com.anthropic.core.JsonField
+import com.anthropic.core.JsonMissing
+import com.anthropic.core.JsonNull
+import com.anthropic.core.JsonString
+import com.anthropic.core.JsonValue
+import com.anthropic.core.jsonMapper
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.anthropic.models.beta.messages.*
+import com.anthropic.models.beta.messages.BetaRawContentBlockStartEvent.ContentBlock
+import com.anthropic.models.messages.Model
+import com.fasterxml.jackson.databind.JsonNode
+import java.util.Optional
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatNoException
+import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Test
+
+internal class BetaMessageAccumulatorTest {
+    companion object {
+        private const val INPUT_TOKENS: Long = 42L
+
+        /** A value that is "not set" has no effect on any existing value when accumulated. */
+        private val NOT_SET = JsonMissing.of()
+
+        /** A value that is "set to null" resets any existing value to `null` when accumulated. */
+        private val SET_TO_NULL = JsonNull.of()
+    }
+
+    @Test
+    fun mergeMessageUsage() {
+        val usage1 =
+            BetaMessageAccumulator.mergeMessageUsage(
+                usage(INPUT_TOKENS),
+                BetaMessageDeltaUsage.builder()
+                    .fallbackCredit(null)
+                    .outputTokens(44L)
+                    .outputTokensDetails(
+                        BetaOutputTokensDetails.builder().thinkingTokens(0L).build()
+                    )
+                    .cacheCreationInputTokens(0L)
+                    .cacheReadInputTokens(0L)
+                    .inputTokens(INPUT_TOKENS) // Use test constant
+                    .serverToolUse(
+                        BetaServerToolUsage.builder()
+                            .webSearchRequests(0L)
+                            .webFetchRequests(0L)
+                            .build()
+                    )
+                    .iterations(null)
+                    .build(),
+            )
+        val usage2 =
+            BetaMessageAccumulator.mergeMessageUsage(
+                usage1,
+                BetaMessageDeltaUsage.builder()
+                    .fallbackCredit(null)
+                    .outputTokens(11L)
+                    .outputTokensDetails(
+                        BetaOutputTokensDetails.builder().thinkingTokens(0L).build()
+                    )
+                    .cacheCreationInputTokens(0L)
+                    .cacheReadInputTokens(0L)
+                    .inputTokens(INPUT_TOKENS) // Use test constant
+                    .serverToolUse(
+                        BetaServerToolUsage.builder()
+                            .webSearchRequests(0L)
+                            .webFetchRequests(0L)
+                            .build()
+                    )
+                    .iterations(null)
+                    .build(),
+            )
+
+        assertThat(usage1.inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(usage1.outputTokens()).isEqualTo(44L)
+
+        assertThat(usage2.inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(usage2.outputTokens()).isEqualTo(11L)
+    }
+
+    @Test
+    fun mergeMessageUsageWithNullCountersKeepsMessageStartValues() {
+        val startUsage =
+            usage(INPUT_TOKENS)
+                .toBuilder()
+                .cacheCreationInputTokens(10L)
+                .cacheReadInputTokens(5L)
+                .serverToolUse(
+                    BetaServerToolUsage.builder().webSearchRequests(2L).webFetchRequests(1L).build()
+                )
+                .outputTokensDetails(BetaOutputTokensDetails.builder().thinkingTokens(3L).build())
+                .build()
+
+        val merged =
+            BetaMessageAccumulator.mergeMessageUsage(
+                startUsage,
+                jsonMapper()
+                    .readValue(
+                        """{"output_tokens":5,"input_tokens":null,"cache_creation_input_tokens":null,"cache_read_input_tokens":null,"server_tool_use":null,"output_tokens_details":null,"fallback_credit":null,"iterations":null}""",
+                        BetaMessageDeltaUsage::class.java,
+                    ),
+            )
+
+        assertThat(merged.outputTokens()).isEqualTo(5L)
+        assertThat(merged.inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(merged.cacheCreationInputTokens()).hasValue(10L)
+        assertThat(merged.cacheReadInputTokens()).hasValue(5L)
+        assertThat(merged.serverToolUse()).isEqualTo(startUsage.serverToolUse())
+        assertThat(merged.outputTokensDetails()).isEqualTo(startUsage.outputTokensDetails())
+        assertThat(merged.iterations()).hasValue(listOf())
+    }
+
+    // The chain shape `BetaRefusalFallbackInterceptor` (and server-side `fallbacks`) writes into
+    // the terminal message_delta's usage labels the serving hop `fallback_message`.
+    @Test
+    fun mergeMessageUsageMapsFallbackMessageIterations() {
+        val fallbackIteration =
+            BetaFallbackMessageIterationUsage.builder()
+                .model(Model.of("fallback-model"))
+                .inputTokens(28L)
+                .outputTokens(106L)
+                .cacheReadInputTokens(0L)
+                .cacheCreationInputTokens(0L)
+                .cacheCreation(null as BetaCacheCreation?)
+                .build()
+
+        val usage =
+            BetaMessageAccumulator.mergeMessageUsage(
+                usage(INPUT_TOKENS),
+                BetaMessageDeltaUsage.builder()
+                    .fallbackCredit(null)
+                    .outputTokens(106L)
+                    .outputTokensDetails(
+                        BetaOutputTokensDetails.builder().thinkingTokens(0L).build()
+                    )
+                    .cacheCreationInputTokens(0L)
+                    .cacheReadInputTokens(0L)
+                    .inputTokens(INPUT_TOKENS)
+                    .serverToolUse(
+                        BetaServerToolUsage.builder()
+                            .webSearchRequests(0L)
+                            .webFetchRequests(0L)
+                            .build()
+                    )
+                    .iterations(
+                        listOf(BetaMessageDeltaUsage.Iteration.ofFallbackMessage(fallbackIteration))
+                    )
+                    .build(),
+            )
+
+        assertThat(usage.iterations())
+            .hasValue(listOf(BetaUsage.Iteration.ofFallbackMessage(fallbackIteration)))
+    }
+
+    @Test
+    fun mergeMessageUsageWhenParsedUsageOmitsIterations() {
+        // A live `message_start` usage carries no `iterations` key (the server sends it only
+        // under its gating betas). The merge must not throw on the rebuild.
+        val startUsage =
+            jsonMapper()
+                .readValue(
+                    """{"input_tokens":10,"output_tokens":1,"cache_creation_input_tokens":0,"cache_read_input_tokens":0}""",
+                    BetaUsage::class.java,
+                )
+
+        val merged =
+            BetaMessageAccumulator.mergeMessageUsage(
+                startUsage,
+                BetaMessageDeltaUsage.builder()
+                    .fallbackCredit(null)
+                    .outputTokens(3L)
+                    .outputTokensDetails(null)
+                    .cacheCreationInputTokens(0L)
+                    .cacheReadInputTokens(0L)
+                    .inputTokens(10L)
+                    .serverToolUse(null)
+                    .iterations(JsonMissing.of())
+                    .build(),
+            )
+
+        assertThat(merged.outputTokens()).isEqualTo(3L)
+        assertThat(merged._iterations().isMissing()).isTrue()
+    }
+
+    @Test
+    fun mergeMessageUsageKeepsAllIterationVariants() {
+        // `iterations` must survive the merge with every variant intact — including variants
+        // unknown to the union (e.g. fallback iteration types), which ride through as raw values.
+        val deltaUsage =
+            jsonMapper()
+                .readValue(
+                    """
+                    {
+                      "input_tokens": 10,
+                      "output_tokens": 7,
+                      "iterations": [
+                        {"type": "message", "input_tokens": 10, "output_tokens": 3},
+                        {"type": "advisor_message", "input_tokens": 4, "output_tokens": 2},
+                        {"type": "fallback_message", "model": "model-b", "input_tokens": 10, "output_tokens": 4}
+                      ]
+                    }
+                    """,
+                    BetaMessageDeltaUsage::class.java,
+                )
+
+        val merged = BetaMessageAccumulator.mergeMessageUsage(usage(INPUT_TOKENS), deltaUsage)
+
+        val iterations = merged.iterations().get()
+        assertThat(iterations).hasSize(3)
+        assertThat(iterations[0].isMessage()).isTrue()
+        assertThat(iterations[1].isAdvisorMessage()).isTrue()
+
+        val serialized = jsonMapper().valueToTree<JsonNode>(merged)
+        assertThat(serialized.at("/iterations/2/type").asText()).isEqualTo("fallback_message")
+        assertThat(serialized.at("/iterations/2/model").asText()).isEqualTo("model-b")
+    }
+
+    @Test
+    fun mergeMessageUsageMergesOutputTokensDetails() {
+        val merged =
+            BetaMessageAccumulator.mergeMessageUsage(
+                usage(INPUT_TOKENS),
+                BetaMessageDeltaUsage.builder()
+                    .fallbackCredit(null)
+                    .outputTokens(7L)
+                    .outputTokensDetails(
+                        BetaOutputTokensDetails.builder().thinkingTokens(89L).build()
+                    )
+                    .cacheCreationInputTokens(0L)
+                    .cacheReadInputTokens(0L)
+                    .inputTokens(INPUT_TOKENS)
+                    .serverToolUse(null)
+                    .iterations(null)
+                    .build(),
+            )
+
+        assertThat(merged.outputTokensDetails().get().thinkingTokens()).isEqualTo(89L)
+    }
+
+    @Test
+    fun mergeMessageUsageMergesFallbackCredit() {
+        // The fallback-credit outcome arrives only on the terminal `message_delta` usage, so it
+        // must be carried onto the accumulated usage.
+        val fallbackCredit =
+            BetaFallbackCreditUsage.builder()
+                .status(BetaFallbackCreditRedeemed.builder().build())
+                .build()
+
+        val merged =
+            BetaMessageAccumulator.mergeMessageUsage(
+                usage(INPUT_TOKENS),
+                BetaMessageDeltaUsage.builder()
+                    .fallbackCredit(fallbackCredit)
+                    .outputTokens(7L)
+                    .outputTokensDetails(null)
+                    .cacheCreationInputTokens(0L)
+                    .cacheReadInputTokens(0L)
+                    .inputTokens(INPUT_TOKENS)
+                    .serverToolUse(null)
+                    .iterations(null)
+                    .build(),
+            )
+
+        assertThat(merged.fallbackCredit()).hasValue(fallbackCredit)
+    }
+
+    @Test
+    fun mergeTextDeltaWrongBlockType() {
+        assertThatThrownBy {
+                BetaMessageAccumulator.mergeTextDelta(
+                    com.anthropic.models.beta.messages.BetaContentBlock.ofThinking(thinkingBlock()),
+                    textDelta("hello"),
+                )
+            }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Content block is not a text block.")
+    }
+
+    @Test
+    fun mergeTextDelta() {
+        // Add citations and later check they are preserved by the "merge" operation. This proves
+        // (enough) that "toBuilder()" is being called to copy everything, not just the text.
+        val text1 =
+            BetaMessageAccumulator.mergeTextDelta(
+                com.anthropic.models.beta.messages.BetaContentBlock.ofText(
+                    textBlock("hello")
+                        .toBuilder()
+                        .addCitation(citationPageLocation(123L))
+                        .addCitation(citationPageLocation(456L))
+                        .build()
+                ),
+                textDelta(" world"),
+            )
+        val text2 = BetaMessageAccumulator.mergeTextDelta(text1, textDelta("!!!"))
+        val citations2 = text2.asText().citations().get()
+
+        assertThat(text1.isText()).isTrue()
+        assertThat(text1.text().get().text()).isEqualTo("hello world")
+
+        assertThat(text2.isText()).isTrue()
+        assertThat(text2.text().get().text()).isEqualTo("hello world!!!")
+
+        assertThat(citations2.size).isEqualTo(2)
+        assertThat(citations2[0].pageLocation().get().startPageNumber()).isEqualTo(123L)
+        assertThat(citations2[1].pageLocation().get().startPageNumber()).isEqualTo(456L)
+    }
+
+    @Test
+    fun mergeCitationsDeltaWrongBlockType() {
+        assertThatThrownBy {
+                BetaMessageAccumulator.mergeCitationsDelta(
+                    com.anthropic.models.beta.messages.BetaContentBlock.ofThinking(thinkingBlock()),
+                    citationsDelta(123L),
+                )
+            }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Content block is not a text block.")
+    }
+
+    @Test
+    fun mergeCitationsDelta() {
+        // Use all types of citation to exercise the code in [citationsDeltaToTextCitation].
+        val text1 =
+            BetaMessageAccumulator.mergeCitationsDelta(
+                com.anthropic.models.beta.messages.BetaContentBlock.ofText(textBlock("hello")),
+                citationsDelta(123L),
+            )
+        val text2 = BetaMessageAccumulator.mergeCitationsDelta(text1, citationsDelta(456L))
+        val text3 =
+            BetaMessageAccumulator.mergeCitationsDelta(
+                text2,
+                BetaCitationsDelta.builder().citation(citationCharLocation(789L)).build(),
+            )
+        val text4 =
+            BetaMessageAccumulator.mergeCitationsDelta(
+                text3,
+                BetaCitationsDelta.builder().citation(citationContentBlockLocation(890L)).build(),
+            )
+        val citations4 = text4.asText().citations().get()
+
+        assertThat(text1.isText()).isTrue()
+        assertThat(text1.text().get().text()).isEqualTo("hello")
+
+        assertThat(text2.isText()).isTrue()
+        assertThat(text2.text().get().text()).isEqualTo("hello")
+
+        assertThat(citations4.size).isEqualTo(4)
+        assertThat(citations4[0].pageLocation().get().startPageNumber()).isEqualTo(123L)
+        assertThat(citations4[1].pageLocation().get().startPageNumber()).isEqualTo(456L)
+        assertThat(citations4[2].charLocation().get().startCharIndex()).isEqualTo(789L)
+        assertThat(citations4[3].contentBlockLocation().get().startBlockIndex()).isEqualTo(890L)
+    }
+
+    @Test
+    fun mergeThinkingDeltaWrongBlockType() {
+        assertThatThrownBy {
+                BetaMessageAccumulator.mergeThinkingDelta(
+                    com.anthropic.models.beta.messages.BetaContentBlock.ofText(textBlock("hello")),
+                    thinkingDelta("hmm...let me think..."),
+                )
+            }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Content block is not a thinking block.")
+    }
+
+    @Test
+    fun mergeThinkingDelta() {
+        val thinking1 =
+            BetaMessageAccumulator.mergeThinkingDelta(
+                com.anthropic.models.beta.messages.BetaContentBlock.ofThinking(
+                    thinkingBlock("Let me see...", "sig-1")
+                ),
+                thinkingDelta(" Nope."),
+            )
+        val thinking2 =
+            BetaMessageAccumulator.mergeThinkingDelta(thinking1, thinkingDelta(" Not a clue."))
+
+        assertThat(thinking1.isThinking()).isTrue()
+        assertThat(thinking1.thinking().get().thinking()).isEqualTo("Let me see... Nope.")
+
+        assertThat(thinking2.isThinking()).isTrue()
+        assertThat(thinking2.thinking().get().thinking())
+            .isEqualTo("Let me see... Nope. Not a clue.")
+
+        assertThat(thinking2.thinking().get().signature()).isEqualTo("sig-1")
+    }
+
+    @Test
+    fun mergeSignatureDeltaWrongBlockType() {
+        assertThatThrownBy {
+                BetaMessageAccumulator.mergeSignatureDelta(
+                    com.anthropic.models.beta.messages.BetaContentBlock.ofText(
+                        textBlock("Yours sincerely,")
+                    ),
+                    signatureDelta("John Hancock"),
+                )
+            }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Content block is not a thinking block.")
+    }
+
+    @Test
+    fun mergeSignatureDelta() {
+        val thinking1 =
+            BetaMessageAccumulator.mergeSignatureDelta(
+                com.anthropic.models.beta.messages.BetaContentBlock.ofThinking(
+                    thinkingBlock("Hmm...", "sig-1")
+                ),
+                signatureDelta("sig-2"),
+            )
+        val thinking2 =
+            BetaMessageAccumulator.mergeSignatureDelta(thinking1, signatureDelta("sig-3"))
+
+        assertThat(thinking1.isThinking()).isTrue()
+        assertThat(thinking1.thinking().get().thinking()).isEqualTo("Hmm...")
+        // Signatures are not concatenated. The last signature delta is used as the only signature.
+        assertThat(thinking1.thinking().get().signature()).isEqualTo("sig-2")
+
+        assertThat(thinking2.isThinking()).isTrue()
+        assertThat(thinking2.thinking().get().thinking()).isEqualTo("Hmm...")
+        assertThat(thinking2.thinking().get().signature()).isEqualTo("sig-3")
+    }
+
+    @Test
+    fun mergeCompactionDeltaWrongBlockType() {
+        assertThatThrownBy {
+                BetaMessageAccumulator.mergeCompactionDelta(
+                    com.anthropic.models.beta.messages.BetaContentBlock.ofText(textBlock("hello")),
+                    compactionDelta("Summary of conversation"),
+                )
+            }
+            .isExactlyInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Content block is not a compaction block.")
+    }
+
+    @Test
+    fun mergeCompactionDelta() {
+        val compaction1 =
+            BetaMessageAccumulator.mergeCompactionDelta(
+                com.anthropic.models.beta.messages.BetaContentBlock.ofCompaction(
+                    compactionBlock("")
+                ),
+                compactionDelta("Summary of the conversation so far."),
+            )
+
+        assertThat(compaction1.isCompaction()).isTrue()
+        assertThat(compaction1.compaction().get().content().get())
+            .isEqualTo("Summary of the conversation so far.")
+    }
+
+    @Test
+    fun messageNotStarted() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        assertThatThrownBy { accumulator.message() }
+            .isExactlyInstanceOf(IllegalStateException::class.java)
+            .hasMessage("'message_stop' event not yet received.")
+    }
+
+    @Test
+    fun structuredMessageNotStarted() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        assertThatThrownBy { accumulator.message(String::class.java) }
+            .isExactlyInstanceOf(IllegalStateException::class.java)
+            .hasMessage("'message_stop' event not yet received.")
+    }
+
+    @Test
+    fun messageNotStopped() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        assertThatThrownBy { accumulator.message() }
+            .isExactlyInstanceOf(IllegalStateException::class.java)
+            .hasMessage("'message_stop' event not yet received.")
+    }
+
+    @Test
+    fun accumulateStopEventBeforeStarted() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        assertThatThrownBy { accumulator.accumulate(messageStopEvent()) }
+            .isExactlyInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("'message_start' event not received.")
+    }
+
+    @Test
+    fun accumulateDeltaEventBeforeStarted() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        assertThatThrownBy { accumulator.accumulate(messageDeltaEvent()) }
+            .isExactlyInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("'message_start' event not received.")
+    }
+
+    @Test
+    fun accumulateStartEventAfterStart() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        assertThatThrownBy { accumulator.accumulate(messageStartEvent()) }
+            .isExactlyInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("'message_start' event already received.")
+    }
+
+    @Test
+    fun accumulateStopEventAfterStopped() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageStopEvent())
+
+        assertThatThrownBy { accumulator.accumulate(messageStopEvent()) }
+            .isExactlyInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("'message_stop' event already received.")
+    }
+
+    @Test
+    fun accumulateStartEventAfterStopped() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageStopEvent())
+
+        assertThatThrownBy { accumulator.accumulate(messageStartEvent()) }
+            .isExactlyInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("'message_stop' event already received.")
+    }
+
+    @Test
+    fun accumulateDeltaEventAfterStopped() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageStopEvent())
+
+        assertThatThrownBy { accumulator.accumulate(messageDeltaEvent()) }
+            .isExactlyInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("'message_stop' event already received.")
+    }
+
+    @Test
+    fun messageWithNoDeltasOrContent() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageStopEvent())
+
+        assertThatNoException().isThrownBy { accumulator.message() }
+
+        val message = accumulator.message()
+
+        assertThat(message.id()).isEqualTo("message-id")
+        assertThat(message.model()).isEqualTo(Model.CLAUDE_SONNET_4_5)
+
+        assertThat(message.content()).isEmpty()
+
+        assertThat(message.stopReason()).isNotPresent()
+        assertThat(message.stopSequence()).isNotPresent()
+
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().cacheCreationInputTokens()).hasValue(0L)
+        assertThat(message.usage().cacheReadInputTokens()).hasValue(0L)
+        assertThat(message.usage().outputTokens()).isEqualTo(0L)
+    }
+
+    @Test
+    fun messageWithDeltasAndNoContent() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(
+            messageDeltaEvent(JsonField.of(BetaStopReason.END_TURN), outputTokens = 96L)
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        assertThatNoException().isThrownBy { accumulator.message() }
+
+        val message = accumulator.message()
+
+        assertThat(message.id()).isEqualTo("message-id")
+        assertThat(message.model()).isEqualTo(Model.CLAUDE_SONNET_4_5)
+
+        assertThat(message.content()).isEmpty()
+
+        assertThat(message.stopReason()).hasValue(BetaStopReason.END_TURN)
+        assertThat(message.stopSequence()).isNotPresent()
+
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().cacheCreationInputTokens()).hasValue(0L)
+        assertThat(message.usage().cacheReadInputTokens()).hasValue(0L)
+        assertThat(message.usage().outputTokens()).isEqualTo(96L)
+    }
+
+    @Test
+    fun messageBetaStopReasonDefaultsToMissing() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageStopEvent())
+
+        // Check both the non-public "raw" JSON value and the public `Optional` value (which will
+        // be `null` if the "raw" value is missing).
+        assertThat(accumulator.message()._stopReason().isMissing()).isEqualTo(true)
+        assertThat(accumulator.message().stopReason()).isEmpty()
+    }
+
+    @Test
+    fun messageDeltaWithNullBetaStopReason() {
+        // The default stop reason is `JsonMissing`. See if an explicit `null` works instead and
+        // that an explicit `JsonMissing` does not override the `null`.
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageDeltaEvent(stopReason = SET_TO_NULL))
+        accumulator.accumulate(messageDeltaEvent(stopReason = NOT_SET)) // Should be ignored.
+        accumulator.accumulate(messageStopEvent())
+
+        assertThat(accumulator.message()._stopReason().isMissing()).isEqualTo(false)
+        assertThat(accumulator.message()._stopReason().isNull()).isEqualTo(true)
+        assertThat(accumulator.message().stopReason()).isEmpty()
+    }
+
+    @Test
+    fun messageDeltaWithNonNullBetaStopReason() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        // The last non-missing value should "win".
+        accumulator.accumulate(messageDeltaEvent(stopReason = SET_TO_NULL))
+        accumulator.accumulate(messageDeltaEvent(stopReason = NOT_SET)) // Should be ignored.
+        accumulator.accumulate(
+            messageDeltaEvent(stopReason = JsonField.of(BetaStopReason.END_TURN))
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        assertThat(accumulator.message()._stopReason().isMissing()).isEqualTo(false)
+        assertThat(accumulator.message()._stopReason().isNull()).isEqualTo(false)
+        assertThat(accumulator.message().stopReason()).hasValue(BetaStopReason.END_TURN)
+    }
+
+    @Test
+    fun messageStopSequenceDefaultsToMissing() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageStopEvent())
+
+        // Check both the non-public "raw" JSON value and the public `Optional` value (which will
+        // be `null` if the "raw" value is missing).
+        assertThat(accumulator.message()._stopSequence().isMissing()).isEqualTo(true)
+        assertThat(accumulator.message().stopSequence()).isEmpty()
+    }
+
+    @Test
+    fun messageDeltaWithNullStopSequence() {
+        // The default stop sequence is `JsonMissing`. See if an explicit `null` works instead and
+        // that an explicit `JsonMissing` does not override the `null`.
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageDeltaEvent(stopSequence = SET_TO_NULL))
+        accumulator.accumulate(messageDeltaEvent(stopSequence = NOT_SET)) // Should be ignored.
+        accumulator.accumulate(messageStopEvent())
+
+        assertThat(accumulator.message()._stopSequence().isMissing()).isEqualTo(false)
+        assertThat(accumulator.message()._stopSequence().isNull()).isEqualTo(true)
+        assertThat(accumulator.message().stopSequence()).isEmpty()
+    }
+
+    @Test
+    fun messageDeltaWithNonNullStopSequence() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        // The last non-missing value should "win".
+        accumulator.accumulate(messageDeltaEvent(stopSequence = SET_TO_NULL))
+        accumulator.accumulate(messageDeltaEvent(stopSequence = NOT_SET)) // Should be ignored.
+        accumulator.accumulate(messageDeltaEvent(stopSequence = JsonField.of("hello world")))
+        accumulator.accumulate(messageStopEvent())
+
+        assertThat(accumulator.message()._stopSequence().isMissing()).isEqualTo(false)
+        assertThat(accumulator.message()._stopSequence().isNull()).isEqualTo(false)
+        assertThat(accumulator.message().stopSequence()).hasValue("hello world")
+    }
+
+    @Test
+    fun structuredMessageDeltaWithNonNullStopSequence() {
+        // Just check that `message(Class<T>)` works like `message()` for this simple test.
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        // The last non-missing value should "win".
+        accumulator.accumulate(messageDeltaEvent(stopSequence = SET_TO_NULL))
+        accumulator.accumulate(messageDeltaEvent(stopSequence = NOT_SET)) // Should be ignored.
+        accumulator.accumulate(messageDeltaEvent(stopSequence = JsonField.of("hello world")))
+        accumulator.accumulate(messageStopEvent())
+
+        // No deserialization is attempted, so the `Class<T>` does not matter. Deserialization is
+        // beyond the scope of this test; it is tested elsewhere at a lower level. All that is
+        // necessary to test is that the `StructuredMessage<T>` wraps the accumulated `Message`.
+        val message = accumulator.message(String::class.java)
+
+        assertThat(message._stopSequence().isMissing()).isEqualTo(false)
+        assertThat(message._stopSequence().isNull()).isEqualTo(false)
+        assertThat(message.stopSequence()).hasValue("hello world")
+    }
+
+    @Test
+    fun messageDeltaWithUsage() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(messageDeltaEvent(outputTokens = 11L))
+        accumulator.accumulate(messageDeltaEvent(outputTokens = 12L))
+        accumulator.accumulate(messageDeltaEvent(outputTokens = 13L))
+        accumulator.accumulate(messageStopEvent())
+
+        assertThat(accumulator.message().usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(accumulator.message().usage().outputTokens()).isEqualTo(13L)
+    }
+
+    @Test
+    fun messageDeltaAppliesContextManagementAndContainer() {
+        // `context_management` (a top-level key of the `message_delta` event, not of its `delta`)
+        // and `container` are never sent on `message_start`, so that event is their only source.
+        // `input_transformations` on `message_delta` replaces the `message_start` value.
+        val accumulator = BetaMessageAccumulator.create()
+        val startInputTransformation =
+            inputTransformation(
+                "messages.2.content.0",
+                BetaThinkingDroppedInputTransformation.Reason.PREFIX_BINDING_MISMATCH,
+            )
+        val deltaInputTransformation =
+            inputTransformation(
+                "messages.0.content.0",
+                BetaThinkingDroppedInputTransformation.Reason.MODEL_BINDING_MISMATCH,
+            )
+        val container =
+            BetaContainer.builder()
+                .id("container-id")
+                .expiresAt(java.time.OffsetDateTime.parse("2050-01-01T00:00:00Z"))
+                .skills(listOf())
+                .build()
+        val contextManagement =
+            BetaContextManagementResponse.builder()
+                .addAppliedEdit(
+                    BetaClearToolUses20250919EditResponse.builder()
+                        .clearedInputTokens(5L)
+                        .clearedToolUses(1L)
+                        .build()
+                )
+                .build()
+
+        accumulator.accumulate(
+            BetaRawMessageStreamEvent.ofMessageStart(
+                BetaRawMessageStartEvent.builder()
+                    .message(
+                        BetaMessage.builder()
+                            .id("message-id")
+                            .model(Model.CLAUDE_SONNET_4_5)
+                            .content(listOf())
+                            .usage(usage(INPUT_TOKENS))
+                            .stopDetails(NOT_SET)
+                            .stopReason(NOT_SET)
+                            .stopSequence(NOT_SET)
+                            .container(null as BetaContainer?)
+                            .contextManagement(null as BetaContextManagementResponse?)
+                            .diagnostics(null)
+                            .addInputTransformation(startInputTransformation)
+                            .build()
+                    )
+                    .build()
+            )
+        )
+        accumulator.accumulate(
+            BetaRawMessageStreamEvent.ofMessageDelta(
+                BetaRawMessageDeltaEvent.builder()
+                    .contextManagement(contextManagement)
+                    .addInputTransformation(deltaInputTransformation)
+                    .delta(
+                        BetaRawMessageDeltaEvent.Delta.builder()
+                            .container(container)
+                            .stopDetails(NOT_SET)
+                            .stopReason(JsonField.of(BetaStopReason.END_TURN))
+                            .stopSequence(NOT_SET)
+                            .build()
+                    )
+                    .usage(
+                        BetaMessageDeltaUsage.builder()
+                            .fallbackCredit(null)
+                            .outputTokens(96L)
+                            .outputTokensDetails(
+                                BetaOutputTokensDetails.builder().thinkingTokens(64L).build()
+                            )
+                            .cacheCreationInputTokens(7L)
+                            .cacheReadInputTokens(9L)
+                            .inputTokens(101L)
+                            .serverToolUse(
+                                BetaServerToolUsage.builder()
+                                    .webSearchRequests(2L)
+                                    .webFetchRequests(1L)
+                                    .build()
+                            )
+                            .iterations(null)
+                            .build()
+                    )
+                    .build()
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+
+        assertThat(message.contextManagement()).hasValue(contextManagement)
+        assertThat(message.container()).hasValue(container)
+        assertThat(message.inputTransformations())
+            .hasValue(listOf(BetaInputTransformation.ofThinkingDropped(deltaInputTransformation)))
+        assertThat(message.usage().outputTokens()).isEqualTo(96L)
+        assertThat(message.usage().inputTokens()).isEqualTo(101L)
+        assertThat(message.usage().outputTokensDetails().get().thinkingTokens()).isEqualTo(64L)
+        // Never re-sent on `message_delta`, so these must survive from `message_start`.
+        assertThat(message.usage().serviceTier()).hasValue(BetaUsage.ServiceTier.STANDARD)
+        assertThat(message.usage().cacheCreation().get().ephemeral5mInputTokens()).isEqualTo(0L)
+    }
+
+    @Test
+    fun messageDeltaInputTransformationsReplaceMessageStartListOnlyWhenPresent() {
+        // `input_transformations` is on `message_delta` only after a mid-stream model fallback: the
+        // key is omitted otherwise (never `null`), may be an empty list, and replaces (never merges
+        // with) the `message_start` list.
+        val x =
+            BetaInputTransformation.ofThinkingDropped(
+                inputTransformation(
+                    "messages.0.content.0",
+                    BetaThinkingDroppedInputTransformation.Reason.PREFIX_BINDING_MISMATCH,
+                )
+            )
+        val y =
+            BetaInputTransformation.ofThinkingMismatchAllowed(
+                BetaThinkingMismatchAllowedInputTransformation.builder()
+                    .path("messages.2.content.0")
+                    .reason(
+                        BetaThinkingMismatchAllowedInputTransformation.Reason.MODEL_BINDING_MISMATCH
+                    )
+                    .build()
+            )
+        val z =
+            BetaInputTransformation.ofThinkingDropped(
+                inputTransformation(
+                    "messages.4.content.0",
+                    BetaThinkingDroppedInputTransformation.Reason.MODEL_BINDING_MISMATCH,
+                )
+            )
+
+        assertThat(accumulateInputTransformations(JsonField.of(listOf(x)), NOT_SET))
+            .hasValue(listOf(x))
+        assertThat(
+                accumulateInputTransformations(JsonField.of(listOf(x)), JsonField.of(listOf(y, z)))
+            )
+            .hasValue(listOf(y, z))
+        assertThat(accumulateInputTransformations(JsonField.of(listOf(x)), JsonField.of(listOf())))
+            .hasValue(listOf())
+    }
+
+    @Test
+    fun messageDeltaInputTransformationOfUnknownTypeIsKeptAsJson() {
+        val accumulator = BetaMessageAccumulator.create()
+        val unknownEntry = mapOf("type" to "thinking_rewritten", "path" to "messages.0.content.0")
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(
+            jsonMapper()
+                .convertValue(
+                    mapOf(
+                        "type" to "message_delta",
+                        "delta" to mapOf("stop_reason" to "end_turn", "stop_sequence" to null),
+                        "usage" to mapOf("output_tokens" to 1),
+                        "input_transformations" to listOf(unknownEntry),
+                    ),
+                    BetaRawMessageStreamEvent::class.java,
+                )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val entry = accumulator.message().inputTransformations().get().single()
+        assertThat(entry.isThinkingDropped()).isFalse()
+        assertThat(entry.isThinkingMismatchAllowed()).isFalse()
+        assertThat(entry._json()).hasValue(JsonValue.from(unknownEntry))
+    }
+
+    @Test
+    fun accumulateContentBlocksWithDuplicateIndexes() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(textContentBlockStartEvent(0L, "0-ONE."))
+        accumulator.accumulate(textContentBlockStartEvent(1L, "1-ONE."))
+        accumulator.accumulate(textContentBlockDeltaEvent(0L, "0-TWO."))
+
+        assertThatThrownBy { accumulator.accumulate(textContentBlockStartEvent(0L, "0-ONE.")) }
+            .isInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("Content block already started for index 0.")
+    }
+
+    @Test
+    fun accumulateContentBlocksStopWithoutStart() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(textContentBlockStartEvent(0L, "0-ONE."))
+
+        assertThatThrownBy { accumulator.accumulate(contentBlockStopEvent(1L)) }
+            .isInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("Content block not started for index 1.")
+    }
+
+    @Test
+    fun accumulateContentBlocksDeltaWithoutStart() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(textContentBlockStartEvent(0L, "0-ONE."))
+
+        assertThatThrownBy { accumulator.accumulate(textContentBlockDeltaEvent(1L, "1-TWO.")) }
+            .isInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("Content block not started for index 1.")
+    }
+
+    @Test
+    fun accumulateTextContentBlockWithTextDeltasAndCitationsDeltas() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        // Deliberately use non-zero-based and non-consecutive indexes and start the blocks out of
+        // order. In the final message there should be two blocks in the indexed order, but using
+        // indexes 0 and 1. While this might not be realistic, it should demonstrate the tolerance
+        // of the implementation for indexes arriving out-of-order and having gaps.
+        accumulator.accumulate(textContentBlockStartEvent(3L, "3-ONE."))
+        accumulator.accumulate(textContentBlockStartEvent(1L, "1-ONE.", 987L))
+
+        accumulator.accumulate(textContentBlockDeltaEvent(1L, "1-TWO."))
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-TWO."))
+
+        accumulator.accumulate(citationContentBlockDeltaEvent(3L, 234L))
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-THREE."))
+        accumulator.accumulate(citationContentBlockDeltaEvent(3L, 123L))
+
+        accumulator.accumulate(textContentBlockDeltaEvent(1L, "1-THREE."))
+        accumulator.accumulate(citationContentBlockDeltaEvent(1L, 654L))
+
+        accumulator.accumulate(contentBlockStopEvent(3L))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.END_TURN),
+                outputTokens = 99L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.END_TURN)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(99L)
+
+        assertThat(content.size).isEqualTo(2)
+        assertThat(content[0].asText().text()).isEqualTo("1-ONE.1-TWO.1-THREE.")
+        assertThat(content[0].asText().citations())
+            .hasValue(listOf(textCitation(987L), textCitation(654L)))
+
+        assertThat(content[1].asText().text()).isEqualTo("3-ONE.3-TWO.3-THREE.")
+        assertThat(content[1].asText().citations())
+            .hasValue(listOf(textCitation(234L), textCitation(123L)))
+    }
+
+    @Test
+    fun accumulateTextContentBlockWithCitationsDeltasWithoutInitialCitations() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        // A real streamed `content_block_start` payload omits the `citations` field entirely, so
+        // the text block starts with `citations` missing rather than set to an empty list.
+        accumulator.accumulate(
+            contentBlockStartEvent(
+                0L,
+                ContentBlock.ofText(
+                    BetaTextBlock.builder().text("").citations(JsonMissing.of()).build()
+                ),
+            )
+        )
+        accumulator.accumulate(textContentBlockDeltaEvent(0L, "The grass is green."))
+        accumulator.accumulate(citationContentBlockDeltaEvent(0L, 123L))
+        accumulator.accumulate(citationContentBlockDeltaEvent(0L, 456L))
+        accumulator.accumulate(contentBlockStopEvent(0L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(stopReason = JsonField.of(BetaStopReason.END_TURN), outputTokens = 9L)
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val content = accumulator.message().content()
+
+        assertThat(content.size).isEqualTo(1)
+        assertThat(content[0].asText().text()).isEqualTo("The grass is green.")
+        assertThat(content[0].asText().citations())
+            .hasValue(listOf(textCitation(123L), textCitation(456L)))
+    }
+
+    @Test
+    fun accumulateToolUseContentBlockWithoutAnyDelta() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(toolUseContentBlockStartEvent(1L, "1-TOOL."))
+
+        // There must be at least one `content_block_delta` event before the end of the block to
+        // define the input JSON string.
+        assertThatThrownBy { accumulator.accumulate(contentBlockStopEvent(1L)) }
+            .isInstanceOf(AnthropicInvalidDataException::class.java)
+            .hasMessage("Missing input JSON for index 1.")
+    }
+
+    @Test
+    fun accumulateToolUseContentBlockWithEmptyInput() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(toolUseContentBlockStartEvent(1L, "1-TOOL."))
+
+        // Tool use content block deltas will build up the JSON string: {}
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "{"))
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "}"))
+
+        accumulator.accumulate(contentBlockStopEvent(1L))
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.TOOL_USE),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.TOOL_USE)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(88L)
+
+        assertThat(content.size).isEqualTo(1)
+        assertThat(content[0].asToolUse().name()).isEqualTo("1-TOOL.")
+        assertThat(content[0].asToolUse()._input().asObject().get()).isEmpty()
+    }
+
+    @Test
+    fun accumulateToolUseContentBlockWithNoInputCanBeSentBackToTheApi() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(toolUseContentBlockStartEvent(1L, "1-TOOL."))
+        // A tool that declares no parameters streams one empty `input_json_delta`.
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, ""))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.TOOL_USE),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        // Appending the assistant turn back into the conversation is the normal
+        // shape of a tool-use loop. `tool_use.input` is required, so a param
+        // whose `input` is missing is rejected with a 400:
+        //   messages.N.content.M.tool_use.input: Field required
+        val toolUse =
+            accumulator.message().toParam().content().betaContentBlockParams().get()[0].asToolUse()
+
+        assertThat(toolUse._input().asObject().get()).isEmpty()
+    }
+
+    @Test
+    fun accumulateToolUseContentBlockWithNoInput() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(toolUseContentBlockStartEvent(1L, "1-TOOL."))
+
+        // Tool use content block deltas will build up an empty JSON string. This behavior was
+        // observed in issue #249. A tool that declares no parameters has an
+        // input of `{}` — the only object it can be. Whitespace should be ignored.
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, ""))
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, " "))
+
+        accumulator.accumulate(contentBlockStopEvent(1L))
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.TOOL_USE),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.TOOL_USE)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(88L)
+
+        assertThat(content.size).isEqualTo(1)
+        assertThat(content[0].asToolUse().name()).isEqualTo("1-TOOL.")
+        assertThat(content[0].asToolUse()._input().asObject().get()).isEmpty()
+    }
+
+    @Test
+    fun accumulateTextAndToolUseContentBlocks() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        accumulator.accumulate(textContentBlockStartEvent(3L, "3-ONE."))
+        accumulator.accumulate(toolUseContentBlockStartEvent(1L, "1-TOOL."))
+
+        // Tool use content block deltas will build up the JSON string: {"hello":"world"}
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "{\"hel"))
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-TWO."))
+
+        accumulator.accumulate(citationContentBlockDeltaEvent(3L, 234L))
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "lo\":\"wo"))
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-THREE."))
+
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "rld\"}"))
+
+        accumulator.accumulate(contentBlockStopEvent(3L))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.TOOL_USE),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.TOOL_USE)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(88L)
+
+        assertThat(content.size).isEqualTo(2)
+        assertThat(content[0].asToolUse().name()).isEqualTo("1-TOOL.")
+        assertThat(content[0].asToolUse()._input().asObject().get()["hello"])
+            .isEqualTo(JsonString.of("world"))
+
+        assertThat(content[1].asText().text()).isEqualTo("3-ONE.3-TWO.3-THREE.")
+        assertThat(content[1].asText().citations()).hasValue(listOf(textCitation(234L)))
+    }
+
+    @Test
+    fun accumulateToolUseContentBlockTruncatedByMaxTokens() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(toolUseContentBlockStartEvent(0L, "get_weather"))
+
+        // The stream hits `max_tokens` mid tool call, so the block stops on a fragment that can
+        // never become valid JSON. This is a legal stream and must still yield a final message.
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(0L, "{\"location\": \"San Fr"))
+        assertThatNoException().isThrownBy { accumulator.accumulate(contentBlockStopEvent(0L)) }
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.MAX_TOKENS),
+                outputTokens = 9L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopReason()).hasValue(BetaStopReason.MAX_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(9L)
+
+        assertThat(content.size).isEqualTo(1)
+        assertThat(content[0].asToolUse().id()).isEqualTo("tool-id")
+        assertThat(content[0].asToolUse().name()).isEqualTo("get_weather")
+        // The unparseable fragment is dropped; `input` stays the empty object the block started as.
+        assertThat(content[0].asToolUse()._input().asObject().get()).isEmpty()
+    }
+
+    @Test
+    fun accumulateToolUseContentBlockWithInvalidJson() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(toolUseContentBlockStartEvent(1L, "test-tool"))
+
+        // Build up invalid JSON string: {invalid"json}. At `content_block_stop` this is
+        // indistinguishable from a fragment truncated by `max_tokens`, so it is tolerated the
+        // same way rather than thrown.
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "{invalid\""))
+        accumulator.accumulate(toolUseContentBlockDeltaEvent(1L, "json}"))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.TOOL_USE),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val toolUse = accumulator.message().content()[0].asToolUse()
+
+        assertThat(toolUse.name()).isEqualTo("test-tool")
+        assertThat(toolUse._input().asObject().get()).isEmpty()
+    }
+
+    @Test
+    fun accumulateThinkingAndTextContentBlocks() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        accumulator.accumulate(textContentBlockStartEvent(3L, "3-ONE."))
+        accumulator.accumulate(thinkingContentBlockStartEvent(1L, "1-ONE."))
+
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-TWO."))
+        accumulator.accumulate(thinkingContentBlockDeltaEvent(1L, "1-TWO."))
+
+        accumulator.accumulate(citationContentBlockDeltaEvent(3L, 234L))
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-THREE."))
+
+        accumulator.accumulate(signatureContentBlockDeltaEvent(1L))
+
+        accumulator.accumulate(contentBlockStopEvent(3L))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.END_TURN),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.END_TURN)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(88L)
+
+        assertThat(content.size).isEqualTo(2)
+        assertThat(content[0].asThinking().thinking()).isEqualTo("1-ONE.1-TWO.")
+        assertThat(content[0].asThinking().signature()).isEqualTo("a-signature")
+
+        assertThat(content[1].asText().text()).isEqualTo("3-ONE.3-TWO.3-THREE.")
+        assertThat(content[1].asText().citations()).hasValue(listOf(textCitation(234L)))
+    }
+
+    @Test
+    fun accumulateCompactionAndTextContentBlocks() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        accumulator.accumulate(textContentBlockStartEvent(0L, "Hello."))
+        accumulator.accumulate(compactionContentBlockStartEvent(1L, ""))
+
+        accumulator.accumulate(textContentBlockDeltaEvent(0L, " World."))
+        accumulator.accumulate(
+            compactionContentBlockDeltaEvent(1L, "Summary of the conversation so far.")
+        )
+
+        accumulator.accumulate(contentBlockStopEvent(0L))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.END_TURN),
+                outputTokens = 50L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.END_TURN)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(50L)
+
+        assertThat(content.size).isEqualTo(2)
+        assertThat(content[0].asText().text()).isEqualTo("Hello. World.")
+
+        assertThat(content[1].asCompaction().content())
+            .hasValue("Summary of the conversation so far.")
+    }
+
+    @Test
+    fun accumulateMcpToolListingContentBlock() {
+        val mcpToolListing =
+            BetaMcpToolListingBlock.builder()
+                .mcpServerName("docs")
+                .addTool(
+                    BetaMcpTool.builder()
+                        .inputSchema(BetaMcpTool.InputSchema.builder().build())
+                        .name("search")
+                        .description("Search the docs.")
+                        .build()
+                )
+                .build()
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(
+            contentBlockStartEvent(0L, ContentBlock.ofMcpToolListing(mcpToolListing))
+        )
+        accumulator.accumulate(contentBlockStopEvent(0L))
+        accumulator.accumulate(
+            messageDeltaEvent(stopReason = JsonField.of(BetaStopReason.END_TURN), outputTokens = 1L)
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        assertThat(accumulator.message().content().single().asMcpToolListing())
+            .isEqualTo(mcpToolListing)
+    }
+
+    @Test
+    fun accumulateCompactionContentBlockWithEncryptedContent() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        accumulator.accumulate(compactionContentBlockStartEvent(0L, ""))
+        accumulator.accumulate(
+            compactionContentBlockDeltaEvent(
+                0L,
+                "Summary of the conversation so far.",
+                "encrypted-content",
+            )
+        )
+        accumulator.accumulate(contentBlockStopEvent(0L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.END_TURN),
+                outputTokens = 50L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(content.size).isEqualTo(1)
+        assertThat(content[0].asCompaction().content())
+            .hasValue("Summary of the conversation so far.")
+        assertThat(content[0].asCompaction().encryptedContent()).hasValue("encrypted-content")
+    }
+
+    @Test
+    fun accumulateRedactedThinkingAndTextContentBlocks() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent())
+
+        accumulator.accumulate(textContentBlockStartEvent(3L, "3-ONE."))
+        accumulator.accumulate(redactedThinkingContentBlockStartEvent(1L, "1-ONE."))
+
+        // `redacting_thinking` content blocks never have any delta events.
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-TWO."))
+
+        accumulator.accumulate(citationContentBlockDeltaEvent(3L, 234L))
+        accumulator.accumulate(textContentBlockDeltaEvent(3L, "3-THREE."))
+
+        accumulator.accumulate(contentBlockStopEvent(3L))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.END_TURN),
+                outputTokens = 88L,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.stopSequence()).isEmpty()
+        assertThat(message.stopReason()).hasValue(BetaStopReason.END_TURN)
+        assertThat(message.usage().inputTokens()).isEqualTo(INPUT_TOKENS)
+        assertThat(message.usage().outputTokens()).isEqualTo(88L)
+
+        assertThat(content.size).isEqualTo(2)
+        assertThat(content[0].asRedactedThinking().data()).isEqualTo("1-ONE.")
+
+        assertThat(content[1].asText().text()).isEqualTo("3-ONE.3-TWO.3-THREE.")
+        assertThat(content[1].asText().citations()).hasValue(listOf(textCitation(234L)))
+    }
+
+    @Test
+    fun accumulateFallbackContentBlockRelabelsModel() {
+        val accumulator = BetaMessageAccumulator.create()
+
+        // `messageStartEvent()` names the requested model; the fallback content block then
+        // declares that a different model served the response. The accumulated message's `model`
+        // should reflect the serving model, matching the relabeled non-streaming message.
+        accumulator.accumulate(messageStartEvent())
+        accumulator.accumulate(
+            fallbackContentBlockStartEvent(0L, Model.CLAUDE_SONNET_4_5, Model.CLAUDE_HAIKU_4_5)
+        )
+        accumulator.accumulate(contentBlockStopEvent(0L))
+        accumulator.accumulate(
+            messageDeltaEvent(stopReason = JsonField.of(BetaStopReason.END_TURN), outputTokens = 9L)
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val message = accumulator.message()
+        val content = message.content()
+
+        assertThat(message.model()).isEqualTo(Model.CLAUDE_HAIKU_4_5)
+
+        assertThat(content.size).isEqualTo(1)
+        assertThat(content[0].asFallback().from().model()).isEqualTo(Model.CLAUDE_SONNET_4_5)
+        assertThat(content[0].asFallback().to().model()).isEqualTo(Model.CLAUDE_HAIKU_4_5)
+    }
+
+    @Test
+    fun accumulateUnknownContentBlockAndDeltaTypes() {
+        val accumulator = BetaMessageAccumulator.create()
+        val unknownBlockJson =
+            """{"type":"zz_future_block","id":"zzblk_1","payload":{"level":2,"tags":["a","b"]}}"""
+
+        accumulator.accumulate(messageStartEvent())
+
+        accumulator.accumulate(
+            contentBlockStartEvent(
+                0L,
+                jsonMapper().readValue(unknownBlockJson, ContentBlock::class.java),
+            )
+        )
+        accumulator.accumulate(unknownContentBlockDeltaEvent(0L))
+        accumulator.accumulate(contentBlockStopEvent(0L))
+
+        accumulator.accumulate(textContentBlockStartEvent(1L, "ONE."))
+        accumulator.accumulate(unknownContentBlockDeltaEvent(1L))
+        accumulator.accumulate(textContentBlockDeltaEvent(1L, "TWO."))
+        accumulator.accumulate(contentBlockStopEvent(1L))
+
+        accumulator.accumulate(
+            messageDeltaEvent(stopReason = JsonField.of(BetaStopReason.END_TURN), outputTokens = 9L)
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        val content = accumulator.message().content()
+
+        assertThat(content.size).isEqualTo(2)
+        assertThat(jsonMapper().writeValueAsString(content[0])).isEqualTo(unknownBlockJson)
+        assertThat(content[1].asText().text()).isEqualTo("ONE.TWO.")
+    }
+
+    @Test
+    fun fixtureCreation() {
+        // A quick smoke test to ensure that all the test fixture factory functions work without
+        // throwing any exceptions unless expected to do so.
+
+        // MESSAGE EVENTS
+        assertThatNoException().isThrownBy { messageStartEvent() }
+
+        assertThatNoException().isThrownBy {
+            messageDeltaEvent(stopReason = JsonField.of(BetaStopReason.END_TURN))
+        }
+        assertThatNoException().isThrownBy { messageDeltaEvent(outputTokens = 99) }
+        assertThatNoException().isThrownBy {
+            messageDeltaEvent(
+                JsonField.of(BetaStopReason.STOP_SEQUENCE),
+                JsonField.of("stop sequence"),
+            )
+        }
+        // Expect no enforcement of requiring `stop_sequence` if `stop_reason` is `"stop_sequence"`.
+        assertThatNoException().isThrownBy {
+            messageDeltaEvent(
+                JsonField.of(BetaStopReason.STOP_SEQUENCE),
+                stopSequence = SET_TO_NULL,
+            )
+        }
+        // Expect no enforcement of requiring `stop_reason` is `"stop_sequence"` when
+        // `stop_sequence` is set.
+        assertThatNoException().isThrownBy {
+            messageDeltaEvent(stopReason = SET_TO_NULL, JsonField.of("stop sequence"))
+        }
+        assertThatNoException().isThrownBy {
+            messageDeltaEvent(JsonField.of(BetaStopReason.END_TURN), JsonField.of("stop sequence"))
+        }
+
+        assertThatNoException().isThrownBy { messageStopEvent() }
+
+        // TEXT CONTENT BLOCK EVENTS (INCLUDING CITATIONS)
+        assertThatNoException().isThrownBy { textContentBlockStartEvent(1L, "text") }
+        assertThatNoException().isThrownBy { textContentBlockStartEvent(1L, "text", 101L) }
+        assertThatNoException().isThrownBy { textContentBlockDeltaEvent(1L, "more text") }
+        assertThatNoException().isThrownBy { citationContentBlockDeltaEvent(1L, 102L) }
+
+        // TOOL USE CONTENT BLOCK EVENTS
+        assertThatNoException().isThrownBy { toolUseContentBlockStartEvent(1L) }
+        assertThatNoException().isThrownBy { toolUseContentBlockDeltaEvent(1L, "{") }
+
+        // THINKING CONTENT BLOCK EVENTS (INCLUDING SIGNATURES)
+        assertThatNoException().isThrownBy { thinkingContentBlockStartEvent(1L) }
+        assertThatNoException().isThrownBy { thinkingContentBlockDeltaEvent(1L, "[thought-2]") }
+        assertThatNoException().isThrownBy { signatureContentBlockDeltaEvent(1L) }
+
+        // REDACTED THINKING CONTENT BLOCK EVENTS
+        assertThatNoException().isThrownBy { redactedThinkingContentBlockStartEvent(1L, null) }
+        assertThatNoException().isThrownBy { redactedThinkingContentBlockStartEvent(1L, "data") }
+
+        // COMPACTION CONTENT BLOCK EVENTS
+        assertThatNoException().isThrownBy { compactionContentBlockStartEvent(1L) }
+        assertThatNoException().isThrownBy { compactionContentBlockDeltaEvent(1L, "summary") }
+
+        // FALLBACK CONTENT BLOCK EVENTS
+        assertThatNoException().isThrownBy {
+            fallbackContentBlockStartEvent(1L, Model.CLAUDE_SONNET_4_5, Model.CLAUDE_HAIKU_4_5)
+        }
+
+        // COMMON CONTENT BLOCK STOP EVENT
+        assertThatNoException().isThrownBy { contentBlockStopEvent(1L) }
+    }
+
+    // --------------------------------------------------------------------------------------------
+    // In all the following test fixture factory functions, the `type` property (where relevant) is
+    // not set explicitly, as it always has an appropriate non-null default value.
+
+    private fun messageStartEvent(
+        inputTransformations: JsonField<List<BetaInputTransformation>> = NOT_SET
+    ) =
+        BetaRawMessageStreamEvent.ofMessageStart(
+            BetaRawMessageStartEvent.builder()
+                .message(
+                    BetaMessage.builder()
+                        .id("message-id")
+                        .model(Model.CLAUDE_SONNET_4_5)
+                        .content(listOf())
+                        .usage(usage(INPUT_TOKENS))
+                        // `stopReason()` and `stopSequence()` must be set explicitly or an error
+                        // will occur, but there is no appropriate value other than an explicit "not
+                        // set" for a `message_start` event. The final values will be notified in
+                        // one or more later `message_delta` events.
+                        .stopDetails(NOT_SET)
+                        .stopReason(NOT_SET)
+                        .stopSequence(NOT_SET)
+                        .container(
+                            BetaContainer.builder()
+                                .id("container-id")
+                                .expiresAt(java.time.OffsetDateTime.now().plusDays(1))
+                                .skills(listOf())
+                                .build()
+                        )
+                        .contextManagement(
+                            BetaContextManagementResponse.builder()
+                                .addAppliedEdit(
+                                    BetaClearToolUses20250919EditResponse.builder()
+                                        .clearedInputTokens(0L)
+                                        .clearedToolUses(0L)
+                                        .build()
+                                )
+                                .build()
+                        )
+                        .diagnostics(null)
+                        .inputTransformations(inputTransformations)
+                        // The default non-null value for `role` suffices.
+                        .build()
+                )
+                .build()
+        )
+
+    /**
+     * Creates a `message_delta` event that can set the `stop_reason` and the `stop_sequence`, and
+     * increment the count of `output_tokens`.
+     *
+     * When all `message_delta` events have been accumulated, the `stop_reason` should be set to a
+     * non-`null` value to emulate what happens in real-world scenarios. The `stop_sequence` should
+     * be set to a non-`null` value if the `stop_reason` is `"stop_sequence"`. None of these
+     * expectations are enforced either here or in the Message API.
+     *
+     * @param stopReason The default value is `NOT_SET` (`JsonMissing`), which is interpreted as the
+     *   field not being set, not even to `null`; when the event is accumulated with the message,
+     *   any existing value of the stop reason will remain unchanged. Use `SET_TO_NULL` to
+     *   explicitly set the field to have a `null` (really `JsonNull`) value, when the event is
+     *   accumulated with the message, any existing value of the stop reason will be overwritten
+     *   with `null`. Otherwise, set the value to the required stop reason; when the event is
+     *   accumulated with the message, any existing value of the stop reason will be replaced with
+     *   the new value.
+     * @param stopSequence The behavior follows the pattern of [stopReason].
+     * @param outputTokens The number of output tokens to _add_ to the current count of output
+     *   tokens already accumulated by the message.
+     * @param inputTransformations Follows the pattern of [stopReason], except that `SET_TO_NULL` is
+     *   ignored like `NOT_SET` (the accumulated list is left unchanged) — the API omits the key
+     *   rather than sending `null`.
+     */
+    private fun messageDeltaEvent(
+        stopReason: JsonField<BetaStopReason> = NOT_SET,
+        stopSequence: JsonField<String> = NOT_SET,
+        outputTokens: Long = 0L,
+        inputTokens: Long = INPUT_TOKENS,
+        cacheCreationInputTokens: Long = 0L,
+        cacheReadInputTokens: Long = 0L,
+        webSearchRequests: Long = 0L,
+        inputTransformations: JsonField<List<BetaInputTransformation>> = NOT_SET,
+    ) =
+        BetaRawMessageStreamEvent.ofMessageDelta(
+            BetaRawMessageDeltaEvent.builder()
+                .contextManagement(
+                    BetaContextManagementResponse.builder()
+                        .addAppliedEdit(
+                            BetaClearToolUses20250919EditResponse.builder()
+                                .clearedInputTokens(0L)
+                                .clearedToolUses(0L)
+                                .build()
+                        )
+                        .build()
+                )
+                .delta(
+                    BetaRawMessageDeltaEvent.Delta.builder()
+                        .container(
+                            BetaContainer.builder()
+                                .id("container-id")
+                                .expiresAt(java.time.OffsetDateTime.now().plusDays(1))
+                                .skills(listOf())
+                                .build()
+                        )
+                        .stopDetails(NOT_SET)
+                        .stopReason(stopReason)
+                        .stopSequence(stopSequence)
+                        .build()
+                )
+                .usage(
+                    BetaMessageDeltaUsage.builder()
+                        .fallbackCredit(null)
+                        .outputTokens(outputTokens)
+                        .outputTokensDetails(
+                            BetaOutputTokensDetails.builder().thinkingTokens(0L).build()
+                        )
+                        .cacheCreationInputTokens(cacheCreationInputTokens)
+                        .cacheReadInputTokens(cacheReadInputTokens)
+                        .inputTokens(inputTokens)
+                        .serverToolUse(
+                            BetaServerToolUsage.builder()
+                                .webSearchRequests(webSearchRequests)
+                                .webFetchRequests(0L)
+                                .build()
+                        )
+                        .iterations(null)
+                        .build()
+                )
+                .inputTransformations(inputTransformations)
+                .build()
+        )
+
+    private fun messageStopEvent() =
+        BetaRawMessageStreamEvent.ofMessageStop(BetaRawMessageStopEvent.builder().build())
+
+    private fun inputTransformation(
+        path: String,
+        reason: BetaThinkingDroppedInputTransformation.Reason,
+    ) = BetaThinkingDroppedInputTransformation.builder().path(path).reason(reason).build()
+
+    /**
+     * Accumulates a `message_start` event, one `message_delta` event and a `message_stop` event and
+     * returns the `input_transformations` of the accumulated message.
+     *
+     * @param startInputTransformations The `input_transformations` of the `message_start` message.
+     * @param deltaInputTransformations The `input_transformations` of the `message_delta` event;
+     *   `NOT_SET` omits the key, as the API does when no model fallback happened.
+     */
+    private fun accumulateInputTransformations(
+        startInputTransformations: JsonField<List<BetaInputTransformation>>,
+        deltaInputTransformations: JsonField<List<BetaInputTransformation>>,
+    ): Optional<List<BetaInputTransformation>> {
+        val accumulator = BetaMessageAccumulator.create()
+
+        accumulator.accumulate(messageStartEvent(inputTransformations = startInputTransformations))
+        accumulator.accumulate(
+            messageDeltaEvent(
+                stopReason = JsonField.of(BetaStopReason.END_TURN),
+                inputTransformations = deltaInputTransformations,
+            )
+        )
+        accumulator.accumulate(messageStopEvent())
+
+        return accumulator.message().inputTransformations()
+    }
+
+    /**
+     * @param citationPageNumber Omit (or use `null`) to create a text content block without any
+     *   citations.
+     */
+    private fun textContentBlockStartEvent(
+        index: Long,
+        text: String,
+        citationPageNumber: Long? = null,
+    ) =
+        contentBlockStartEvent(
+            index,
+            ContentBlock.ofText(
+                BetaTextBlock.builder()
+                    .text(text)
+                    .apply {
+                        // `citations` cannot remain `null` when `build()` is called, so set the "no
+                        // citations" state explicitly with an empty list if needed.
+                        citationPageNumber?.let {
+                            addCitation(
+                                BetaTextCitation.ofPageLocation(
+                                    citationPageLocation(citationPageNumber)
+                                )
+                            )
+                        } ?: citations(listOf())
+                    }
+                    .build()
+            ),
+        )
+
+    private fun textContentBlockDeltaEvent(index: Long, text: String) =
+        contentBlockDeltaEvent(index, textDelta(text))
+
+    /**
+     * Creates a citation content block delta event. This can be used to add a citation to a text
+     * content block and should be used between [textContentBlockStartEvent] and its corresponding
+     * [contentBlockStopEvent].
+     */
+    private fun citationContentBlockDeltaEvent(index: Long, pageNumber: Long) =
+        contentBlockDeltaEvent(index, citationsDelta(pageNumber))
+
+    private fun toolUseContentBlockStartEvent(index: Long, name: String = "tool-name") =
+        contentBlockStartEvent(
+            index,
+            ContentBlock.ofToolUse(
+                BetaToolUseBlock.builder().id("tool-id").name(name).input(SET_TO_NULL).build()
+            ),
+        )
+
+    private fun toolUseContentBlockDeltaEvent(index: Long, partialJson: String) =
+        contentBlockDeltaEvent(index, BetaInputJsonDelta.builder().partialJson(partialJson).build())
+
+    private fun thinkingContentBlockStartEvent(index: Long, thinking: String = "[thought-1") =
+        contentBlockStartEvent(
+            index,
+            ContentBlock.ofThinking(
+                BetaThinkingBlock.builder()
+                    .thinking(thinking)
+                    // No signature is set for the `content_block_start` event. A single
+                    // `content_block_delta` event, just before the `content_block_stop` event will
+                    // provide the final signature.
+                    .signature(SET_TO_NULL)
+                    .build()
+            ),
+        )
+
+    private fun thinkingContentBlockDeltaEvent(index: Long, thinking: String) =
+        contentBlockDeltaEvent(index, thinkingDelta(thinking))
+
+    /**
+     * Creates a `redacted_thinking` content block start event. This type of content block will
+     * never have any associated content block delta events.
+     */
+    private fun redactedThinkingContentBlockStartEvent(index: Long, data: String?) =
+        contentBlockStartEvent(
+            index,
+            ContentBlock.ofRedactedThinking(
+                BetaRedactedThinkingBlock.builder().data(JsonField.ofNullable(data)).build()
+            ),
+        )
+
+    private fun compactionContentBlockStartEvent(index: Long, content: String = "") =
+        contentBlockStartEvent(
+            index,
+            ContentBlock.ofCompaction(
+                BetaCompactionBlock.builder().content(content).encryptedContent("").build()
+            ),
+        )
+
+    private fun compactionContentBlockDeltaEvent(
+        index: Long,
+        content: String,
+        encryptedContent: String = "",
+    ) = contentBlockDeltaEvent(index, compactionDelta(content, encryptedContent))
+
+    /**
+     * Creates a `fallback` content block start event. This type of content block will never have
+     * any associated content block delta events.
+     */
+    private fun fallbackContentBlockStartEvent(index: Long, fromModel: Model, toModel: Model) =
+        contentBlockStartEvent(
+            index,
+            ContentBlock.ofFallback(
+                BetaFallbackBlock.builder()
+                    .from(BetaFallbackInfo.builder().model(fromModel).build())
+                    .to(BetaFallbackInfo.builder().model(toModel).build())
+                    .trigger(BetaFallbackRefusalTrigger.builder().category(null).build())
+                    .build()
+            ),
+        )
+
+    /**
+     * Creates a signature content block delta event. This can be used to add a signature to a
+     * `tool_use` content block and should be used between [toolUseContentBlockStartEvent] and its
+     * corresponding [contentBlockStopEvent].
+     */
+    private fun signatureContentBlockDeltaEvent(index: Long) =
+        contentBlockDeltaEvent(index, signatureDelta("a-signature"))
+
+    private fun unknownContentBlockDeltaEvent(index: Long) =
+        contentBlockDeltaEvent(
+            index,
+            jsonMapper()
+                .readValue(
+                    """{"type":"zz_future_delta","fragment":"x"}""",
+                    BetaRawContentBlockDelta::class.java,
+                ),
+        )
+
+    private fun contentBlockStartEvent(index: Long, contentBlock: ContentBlock) =
+        BetaRawMessageStreamEvent.ofContentBlockStart(
+            BetaRawContentBlockStartEvent.builder().index(index).contentBlock(contentBlock).build()
+        )
+
+    private fun contentBlockDeltaEvent(index: Long, delta: Any) =
+        BetaRawMessageStreamEvent.ofContentBlockDelta(
+            BetaRawContentBlockDeltaEvent.builder()
+                .index(index)
+                .apply {
+                    when (delta) {
+                        is BetaRawContentBlockDelta -> delta(delta)
+                        is BetaTextDelta -> delta(delta)
+                        is BetaCitationsDelta -> delta(delta)
+                        is BetaInputJsonDelta -> delta(delta)
+                        is BetaThinkingDelta -> delta(delta)
+                        is BetaSignatureDelta -> delta(delta)
+                        is BetaCompactionContentBlockDelta -> delta(delta)
+                        // There are no delta events for `redacted_thinking` content blocks.
+                        else ->
+                            throw IllegalArgumentException(
+                                "Unknown delta type ${delta::class.java}"
+                            )
+                    }
+                }
+                .build()
+        )
+
+    // One type of `content_block_stop` event that is common to all types of content blocks.
+    private fun contentBlockStopEvent(index: Long) =
+        BetaRawMessageStreamEvent.ofContentBlockStop(
+            BetaRawContentBlockStopEvent.builder().index(index).build()
+        )
+
+    private fun usage(inputTokens: Long) =
+        BetaUsage.builder()
+            .fallbackCredit(null)
+            .inputTokens(inputTokens)
+            .cacheCreation(
+                BetaCacheCreation.builder()
+                    .ephemeral1hInputTokens(0L)
+                    .ephemeral5mInputTokens(0L)
+                    .build()
+            )
+            .cacheCreationInputTokens(0L)
+            .cacheReadInputTokens(0L)
+            .inferenceGeo("us")
+            .iterations(listOf())
+            .outputTokens(0L)
+            .outputTokensDetails(BetaOutputTokensDetails.builder().thinkingTokens(0L).build())
+            .serverToolUse(
+                BetaServerToolUsage.builder().webSearchRequests(0L).webFetchRequests(0L).build()
+            )
+            .serviceTier(BetaUsage.ServiceTier.STANDARD)
+            .speed(null)
+            .build()
+
+    private fun textDelta(text: String) = BetaTextDelta.builder().text(text).build()
+
+    private fun citationsDelta(pageNumber: Long) =
+        BetaCitationsDelta.builder().citation(citationPageLocation(pageNumber)).build()
+
+    private fun citationPageLocation(pageNumber: Long) =
+        BetaCitationPageLocation.builder()
+            .fileId("fileId")
+            .documentTitle("Document Title")
+            .documentIndex(11L)
+            .citedText("cited text")
+            .startPageNumber(pageNumber)
+            .endPageNumber(pageNumber)
+            .build()
+
+    private fun citationContentBlockLocation(blockIndex: Long) =
+        BetaCitationContentBlockLocation.builder()
+            .fileId("fileId")
+            .documentTitle("Document Title")
+            .documentIndex(11L)
+            .citedText("cited text")
+            .startBlockIndex(blockIndex)
+            .endBlockIndex(blockIndex)
+            .build()
+
+    private fun citationCharLocation(charIndex: Long) =
+        BetaCitationCharLocation.builder()
+            .fileId("fileId")
+            .documentTitle("Document Title")
+            .documentIndex(11L)
+            .citedText("cited text")
+            .startCharIndex(charIndex)
+            .endCharIndex(charIndex)
+            .build()
+
+    private fun textCitation(pageNumber: Long) =
+        BetaTextCitation.ofPageLocation(citationPageLocation(pageNumber))
+
+    private fun thinkingDelta(thinking: String) =
+        BetaThinkingDelta.builder().estimatedTokens(null).thinking(thinking).build()
+
+    private fun signatureDelta(signature: String) =
+        BetaSignatureDelta.builder().signature(signature).build()
+
+    private fun compactionDelta(content: String, encryptedContent: String = "") =
+        BetaCompactionContentBlockDelta.builder()
+            .content(content)
+            .encryptedContent(encryptedContent)
+            .build()
+
+    private fun textBlock(text: String) =
+        BetaTextBlock.builder().text(text).citations(listOf()).build()
+
+    private fun thinkingBlock(thinking: String = "[thinking]", signature: String = "[signature]") =
+        BetaThinkingBlock.builder().thinking(thinking).signature(signature).build()
+
+    private fun compactionBlock(content: String = "") =
+        BetaCompactionBlock.builder().content(content).encryptedContent("").build()
+}

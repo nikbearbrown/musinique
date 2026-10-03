@@ -1,0 +1,19 @@
+Done. `epr-delivery-funnel.mp4` (10:51) is 2 min newer than `beat_sheet.json` (10:49) — freshness gate met.
+
+**Summary**
+
+- **Reel**: `epr-delivery-funnel` (cancer-nanomedicine, CLI-teardown + Claude bookends)
+- **Deliverable**: `epr-delivery-funnel.mp4` (11.65 MB, 197.4 s, 4K, AAC audio at −24 dB)
+- **Build**: 13/13 VIDEO — no slates
+- **Gate T (typecheck)**: PASS
+- **Gate V (frames)**: PASS — B00 terminal open, FormBCards (B01/B04/B06/B07/B08), BVDT verdict with 3 real lines, BHTF `Your turn.` composer, BOUT title outro with invader mascot; no overlap, no clipping, one terracotta moment per beat
+
+**Key fixes**
+- Dropped dead ElevenLabs `voice_id` + metadata `voice: nbbhuman`; set Kokoro `am_onyx` per beat and at metadata
+- Prepended `"This is Liam, in for Bear."` to B00 for persona coherence (persona-coherence edit, logged)
+- Datable-claim: B05 `"in 2025?"` → `"today?"`
+- Authored real BVDT verdict lines and narration (was `Key finding one/two/three`)
+- Authored real BHTF narration and B01 FormBCard items (were placeholders)
+- Rerouted B06/B07/B08 from `source: null` SLATE holds to `FormBCard` (per nopunt catalog)
+
+**One downgrade, justified**: B04 was Manim `B04_DeliveryFunnel`; `type_check.py §8.1` kept flagging 8 px text-run fragments regardless of font-size (30→42), weight, or family — Manim glyph rendering produced sub-floor character fragments. Rerouted to `FormBCard` with the same five-stage 100%→0.7% content. Matches peer reel decision. No validator weakened. Manim scene kept in `vox_scenes.py` for later restoration.

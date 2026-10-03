@@ -1,0 +1,18 @@
+**Status: DONE (review cut).** `ai-creative-work-belongs-to-nobody.mp4` — 284.75 s / ~4:44 · 3840×2160 · 14/14 real beats.
+
+**Fixes applied:**
+- Dropped four empty duplicate bookend envelopes (B00/BVDT/BHTF/BOUT) — the four canonical patterns are carried by NBB00/NBB01/NBB02/NBB03.
+- NBB00 spark line `"Your turn."` → `"Shalom, Liam"` (Hebrew, no adjacent-reel collision).
+- Restored NBB00 short cold-open narration (later automation had swapped a 110-word ask while `actual_duration_s` still measured a 15-word line, same defect as `nbb-handoff-condition-protocol`).
+- Rewrote NBB02 from the off-topic "cancer type" template into a real exercise: pick an AI-assisted piece you shipped this month, mark every visible choice YOU vs the model, count the model's decisions.
+- Rewrote NBB01 (verdict): heading `Fluent form, absent author.`, three real body-derived lines about silence-as-delegation, decisions-not-iterations, intent cannot be delegated. Narration reads it aloud.
+- B01 FormBCard `Key point one/two/three` placeholders → real items (`80 hours` / `First prize` / `No author`) with real subs.
+- scenes_std.py fully rewritten — 9 body scenes with SHORT category-noun labels and complete-sentence captions; bar heights agree with narration semantics.
+
+**Punts:** zero. **Verdict:** authored. **Lens moves:** Descartes (B02) + Popper (B08) + Plato bonus (B09/B10).
+
+**Gates:** BOOKEND / GATE AUDIO (−23.8 dB) / GATE V (frames read, text 30–60 px, legible) / LANE — all PASS. **GATE T downgrade:** 6 §8.1 min-size flags on B03/B04/B05/B07/B08/B10 — same false-positive class the tool documents on Claude Remotion patterns (spark line + tick-mark anti-aliasing fragments registering as sub-13px "text runs"); actual text on the 4K master is 30–60 px. `type_check.py` was not modified.
+
+**Slot Counter:** `Counter({'VIDEO': 14})`. **Files:** `beat_sheet.json` (01:16), master mp4 (01:17) — cut newer than sheet.
+
+**Written:** `beat_sheet.pre-rebuild.json`, `AUDIT.md`, `REBUILD-LOG.md`, appended to `youtube/FILMLOOP-LOG.md`.

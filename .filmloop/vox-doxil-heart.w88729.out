@@ -1,0 +1,10 @@
+**vox-doxil-heart — DONE.**
+
+Deliverable: `anthropics/youtube/cancer-nanomedicine/youtube/vox-doxil-heart/vox-doxil-heart-slate.mp4` (170.4s / 2:50, mp4 47s newer than sheet).
+
+What actually happened:
+- **Phase 0**: snapshotted `beat_sheet.pre-rebuild.json`, dropped dead ElevenLabs `voice_id`, added `engine: kokoro` + `voice_kokoro: am_onyx`. Purged July-8 ElevenLabs mp3s.
+- **Phase 1**: vox skin retained (Claude-bookend checks N/A). GATE T PASS. Verdict (B12 endcard) real. Two lens moves earned (Plato B09, Popper B11).
+- **Phase 2**: Kokoro `am_onyx` audio for all 14 beats. Manim renders for the 10 GRAPHIC/CARD/DOCUMENT beats via `vox_scenes.py` at 480p15. Remotion FormACard fallback for B02/B06 (STILL·ai holds). Remotion OutroSeries/OutroCTA for B13/B14. **Caught a real bug pre-final-compile**: B13/B14 props were legacy shape (`seriesTitle`/`authorName` etc.), so Remotion had been rendering defaults ("CLAUDE COWORK / Part of the Claude Cowork series." and "@nikbearbrown") — reshaped to schema-correct `{eyebrow, line}` / `{line, handle}`, re-rendered, then final `--force` compile. All 14/14 filled, 0 pipeline slates, mean_volume −24.0 dB, lane-check PASS. `build.status` Counter: `{'MANIM': 10, 'VIDEO': 4}`.
+
+Punts left open: B02 and B06 STILL·ai holds (editorial illustrations, not archival photos — flagged for a human illustration pass but served by FormACard for review). No validators disabled.

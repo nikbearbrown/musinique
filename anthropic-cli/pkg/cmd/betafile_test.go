@@ -1,0 +1,96 @@
+package cmd
+
+import (
+	"strings"
+	"testing"
+
+	"github.com/anthropics/anthropic-cli/internal/mocktest"
+)
+
+func TestBetaFilesList(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:files", "list",
+			"--max-items", "10",
+			"--id", "string",
+			"--limit", "1",
+			"--page", "page",
+			"--scope-id", "scope_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaFilesDelete(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:files", "delete",
+			"--file-id", "file_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaFilesDownload(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:files", "download",
+			"--file-id", "file_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+			"--output", "/dev/null",
+		)
+	})
+}
+
+func TestBetaFilesRetrieveMetadata(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:files", "retrieve-metadata",
+			"--file-id", "file_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaFilesUpload(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:files", "upload",
+			"--file", mocktest.TestFile(t, "Example data"),
+			"--expires-in-seconds", "3600",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+
+	t.Run("piping data", func(t *testing.T) {
+		testFile := mocktest.TestFile(t, "Example data")
+		// Test piping YAML data over stdin
+		pipeDataStr := "" +
+			"file: Example data\n" +
+			"expires_in_seconds: 3600\n"
+		pipeDataStr = strings.ReplaceAll(pipeDataStr, "Example data", testFile)
+		pipeData := []byte(pipeDataStr)
+		mocktest.TestRunMockTestWithPipeAndFlags(
+			t, pipeData,
+			"--api-key", "string",
+			"beta:files", "upload",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}

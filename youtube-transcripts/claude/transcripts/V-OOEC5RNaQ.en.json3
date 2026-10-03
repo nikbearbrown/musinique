@@ -1,0 +1,313 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 41,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "I'm Karina."
+    } ]
+  }, {
+    "tStartMs": 875,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "I teach elementary school students"
+    } ]
+  }, {
+    "tStartMs": 3169,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "where most of my kids are \nEnglish language learners."
+    } ]
+  }, {
+    "tStartMs": 5338,
+    "dDurationMs": 3796,
+    "segs": [ {
+      "utf8": "With Claude for Teachers,\nit works across the tools I already use"
+    } ]
+  }, {
+    "tStartMs": 9134,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "and then it keeps doing it for me\non a schedule I set myself."
+    } ]
+  }, {
+    "tStartMs": 12971,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "I'd rather just talk it through out loud."
+    } ]
+  }, {
+    "tStartMs": 15181,
+    "dDurationMs": 3671,
+    "segs": [ {
+      "utf8": "There's so much I want to know that\ntyping it all out would take forever."
+    } ]
+  }, {
+    "tStartMs": 18852,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "So I give it one brief by voice."
+    } ]
+  }, {
+    "tStartMs": 21813,
+    "dDurationMs": 4463,
+    "segs": [ {
+      "utf8": "I tell Claude, “Pull my latest\nsecond grade ELA lesson from TeachFX.”"
+    } ]
+  }, {
+    "tStartMs": 26276,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "“Tell me what resonated with students,\nand what didn't.”"
+    } ]
+  }, {
+    "tStartMs": 29154,
+    "dDurationMs": 2794,
+    "segs": [ {
+      "utf8": "“Review talk time, questioning, and engagement.”"
+    } ]
+  }, {
+    "tStartMs": 31948,
+    "dDurationMs": 4254,
+    "segs": [ {
+      "utf8": "“Then draft tomorrow's lesson plan, \nand add advise based on the lesson’s transcript.”"
+    } ]
+  }, {
+    "tStartMs": 36202,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "“Align to state standards.”"
+    } ]
+  }, {
+    "tStartMs": 37662,
+    "dDurationMs": 4963,
+    "segs": [ {
+      "utf8": "“And be sure to meet California's ELD standards\nfor my English language learners.”"
+    } ]
+  }, {
+    "tStartMs": 43251,
+    "dDurationMs": 3879,
+    "segs": [ {
+      "utf8": "Claude finds yesterday's lesson on its own through TeachFX."
+    } ]
+  }, {
+    "tStartMs": 47130,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "That's the recording of how the lesson\nactually landed with my students."
+    } ]
+  }, {
+    "tStartMs": 51676,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "In one go, Claude came back with both."
+    } ]
+  }, {
+    "tStartMs": 54387,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "A coaching summary of how today actually went,"
+    } ]
+  }, {
+    "tStartMs": 56598,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "and tomorrow's lesson plan \nalready adapted to it."
+    } ]
+  }, {
+    "tStartMs": 59893,
+    "dDurationMs": 2794,
+    "segs": [ {
+      "utf8": "Let me look at the coaching summary first."
+    } ]
+  }, {
+    "tStartMs": 62687,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "It walks me through the lesson\nthe way a coach would."
+    } ]
+  }, {
+    "tStartMs": 65106,
+    "dDurationMs": 4129,
+    "segs": [ {
+      "utf8": "The good stuff, my opening hook\nand my turn-and-talks really landed."
+    } ]
+  }, {
+    "tStartMs": 69235,
+    "dDurationMs": 3254,
+    "segs": [ {
+      "utf8": "And my teacher-to-student talk\nratio looks great."
+    } ]
+  }, {
+    "tStartMs": 72489,
+    "dDurationMs": 4421,
+    "segs": [ {
+      "utf8": "My kids are talking more than I am,\nwhich is exactly what I want to see."
+    } ]
+  }, {
+    "tStartMs": 76910,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "Where I can do better?"
+    } ]
+  }, {
+    "tStartMs": 78453,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "I asked a lot of great, \nopen-ended questions, "
+    } ]
+  }, {
+    "tStartMs": 80997,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "but I didn't leave enough\nwait time for student thinking."
+    } ]
+  }, {
+    "tStartMs": 83625,
+    "dDurationMs": 2752,
+    "segs": [ {
+      "utf8": "So my one thing for tomorrow is simple."
+    } ]
+  }, {
+    "tStartMs": 86377,
+    "dDurationMs": 4588,
+    "segs": [ {
+      "utf8": "Ask the question then wait five seconds\nbefore I call on anyone."
+    } ]
+  }, {
+    "tStartMs": 90965,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "That's feedback I got right away,"
+    } ]
+  }, {
+    "tStartMs": 92675,
+    "dDurationMs": 3546,
+    "segs": [ {
+      "utf8": "instead of waiting for my monthly check-in\nwith our instructional coach."
+    } ]
+  }, {
+    "tStartMs": 96262,
+    "dDurationMs": 4380,
+    "segs": [ {
+      "utf8": "Now the lesson plan, and it's already\nbuilt around what the coaching found."
+    } ]
+  }, {
+    "tStartMs": 100642,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "Claude pulled up the lesson planning \nskill it comes with"
+    } ]
+  }, {
+    "tStartMs": 103478,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "and grounded the plan in our standards."
+    } ]
+  }, {
+    "tStartMs": 105939,
+    "dDurationMs": 4045,
+    "segs": [ {
+      "utf8": "It also added the California ELD supports\nmy English learners need,"
+    } ]
+  }, {
+    "tStartMs": 109984,
+    "dDurationMs": 3129,
+    "segs": [ {
+      "utf8": "drawing on the Learning Commons\nknowledge graph."
+    } ]
+  }, {
+    "tStartMs": 113113,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "And the best part?"
+    } ]
+  }, {
+    "tStartMs": 114572,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "The coaching notes\nare right inside the plan,"
+    } ]
+  }, {
+    "tStartMs": 116741,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "so I actually hit my goal."
+    } ]
+  }, {
+    "tStartMs": 118743,
+    "dDurationMs": 4171,
+    "segs": [ {
+      "utf8": "I liked this enough that I didn't want \nto do it by hand every afternoon,"
+    } ]
+  }, {
+    "tStartMs": 122914,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "so I just asked Claude \nto keep it going."
+    } ]
+  }, {
+    "tStartMs": 125166,
+    "dDurationMs": 4505,
+    "segs": [ {
+      "utf8": "I tell Claude, “Great, please do this \nevery weekday at 4 p.m.”"
+    } ]
+  }, {
+    "tStartMs": 131381,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "I run it once, just to be sure."
+    } ]
+  }, {
+    "tStartMs": 137804,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "And there it goes."
+    } ]
+  }, {
+    "tStartMs": 138847,
+    "dDurationMs": 3670,
+    "segs": [ {
+      "utf8": "While I'm driving home, Claude's reviewing\nhow my lesson actually went,"
+    } ]
+  }, {
+    "tStartMs": 142517,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "and getting tomorrow's ready."
+    } ]
+  }, {
+    "tStartMs": 144102,
+    "dDurationMs": 3628,
+    "segs": [ {
+      "utf8": "Now I get the instructional feedback\nI've always craved"
+    } ]
+  }, {
+    "tStartMs": 147730,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "without adding a single minute to my day."
+    } ]
+  }, {
+    "tStartMs": 151693,
+    "dDurationMs": 4212,
+    "segs": [ {
+      "utf8": "Claude for Teachers is free\nfor every verified U.S. K-12 teacher."
+    } ]
+  }, {
+    "tStartMs": 155905,
+    "dDurationMs": 4505,
+    "segs": [ {
+      "utf8": "Give your students your best lesson\nevery day without giving up your evenings."
+    } ]
+  } ]
+}

@@ -1,0 +1,735 @@
+package cmd
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/anthropics/anthropic-cli/internal/apiquery"
+	"github.com/anthropics/anthropic-cli/internal/requestflag"
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/option"
+	"github.com/tidwall/gjson"
+	"github.com/urfave/cli/v3"
+)
+
+var betaSessionsCreate = requestflag.WithInnerFlags(cli.Command{
+	Name:    "create",
+	Usage:   "Create Session",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[any]{
+			Name:     "agent",
+			Usage:    "Agent identifier. Accepts the `agent` ID string, which pins the latest version for the session, or an `agent` object with both id and version specified.",
+			Required: true,
+			BodyPath: "agent",
+		},
+		&requestflag.Flag[string]{
+			Name:     "environment-id",
+			Usage:    "ID of the `environment` defining the container configuration for this session.",
+			Required: true,
+			BodyPath: "environment_id",
+		},
+		&requestflag.Flag[map[string]any]{
+			Name:     "budget",
+			Usage:    "A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.",
+			BodyPath: "budget",
+		},
+		&requestflag.Flag[[]map[string]any]{
+			Name:     "initial-event",
+			Usage:    "Initial events to send to the `session` at creation, processed in order. Supports `user.message` and `user.define_outcome` events. Maximum 50 events.",
+			BodyPath: "initial_events",
+		},
+		&requestflag.Flag[map[string]any]{
+			Name:     "metadata",
+			Usage:    "Arbitrary key-value metadata attached to the session. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.",
+			BodyPath: "metadata",
+		},
+		&requestflag.Flag[[]map[string]any]{
+			Name:     "resource",
+			Usage:    "Resources (e.g. repositories, files) to mount into the session's container.",
+			BodyPath: "resources",
+		},
+		&requestflag.Flag[*string]{
+			Name:     "title",
+			Usage:    "Human-readable session title.",
+			BodyPath: "title",
+		},
+		&requestflag.Flag[[]string]{
+			Name:     "vault-id",
+			Usage:    "Vault IDs for stored credentials the agent can use during the session.",
+			BodyPath: "vault_ids",
+		},
+		&requestflag.Flag[[]string]{
+			Name:       "beta",
+			Usage:      "Optional header to specify the beta version(s) you want to use.",
+			HeaderPath: "anthropic-beta",
+		},
+		&requestflag.Flag[string]{
+			Name:       "workspace-id",
+			Usage:      "Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).\n\nOnly needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.",
+			HeaderPath: "anthropic-workspace-id",
+		},
+	},
+	Action:          handleBetaSessionsCreate,
+	HideHelpCommand: true,
+}, map[string][]requestflag.HasOuterFlag{
+	"agent": {
+		&requestflag.InnerFlag[string]{
+			Name:       "agent.id",
+			Usage:      "The `agent` ID.",
+			InnerField: "id",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "agent.type",
+			Usage:      `Allowed values: "agent", "agent_with_overrides".`,
+			InnerField: "type",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "agent.mcp-servers",
+			InnerField: "mcp_servers",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "agent.model",
+			InnerField: "model",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "agent.skills",
+			InnerField: "skills",
+		},
+		&requestflag.InnerFlag[*string]{
+			Name:       "agent.system",
+			Usage:      "Replacement system prompt. Up to 100,000 characters. Set to null to clear the agent's system prompt; omit to preserve it.",
+			InnerField: "system",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "agent.tools",
+			InnerField: "tools",
+		},
+		&requestflag.InnerFlag[int64]{
+			Name:       "agent.version",
+			Usage:      "The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.",
+			InnerField: "version",
+		},
+	},
+	"budget": {
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "budget.max-list-cost",
+			Usage:      "A monetary amount in a specific currency.",
+			InnerField: "max_list_cost",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "budget.type",
+			Usage:      `Allowed values: "limit".`,
+			InnerField: "type",
+		},
+	},
+	"initial-event": {
+		&requestflag.InnerFlag[string]{
+			Name:       "initial-event.type",
+			Usage:      `Allowed values: "user.message", "user.define_outcome".`,
+			InnerField: "type",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "initial-event.content",
+			InnerField: "content",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "initial-event.description",
+			Usage:      "What the agent should produce. This is the task specification.",
+			InnerField: "description",
+		},
+		&requestflag.InnerFlag[*int64]{
+			Name:       "initial-event.max-iterations",
+			Usage:      "Eval→revision cycles before giving up. Default 3, max 20.",
+			InnerField: "max_iterations",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "initial-event.rubric",
+			InnerField: "rubric",
+		},
+	},
+	"resource": {
+		&requestflag.InnerFlag[string]{
+			Name:       "resource.type",
+			Usage:      `Allowed values: "github_repository", "file", "memory_store".`,
+			InnerField: "type",
+		},
+		&requestflag.InnerFlag[*string]{
+			Name:       "resource.access",
+			Usage:      "Access mode for an attached memory store.",
+			InnerField: "access",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "resource.authorization-token",
+			Usage:      "GitHub authorization token used to clone the repository. Required for private repositories; optional for public ones.",
+			InnerField: "authorization_token",
+		},
+		&requestflag.InnerFlag[any]{
+			Name:       "resource.checkout",
+			InnerField: "checkout",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "resource.file-id",
+			Usage:      "ID of a previously uploaded file.",
+			InnerField: "file_id",
+		},
+		&requestflag.InnerFlag[*string]{
+			Name:       "resource.instructions",
+			Usage:      "Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.",
+			InnerField: "instructions",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "resource.memory-store-id",
+			Usage:      "The memory store ID (memstore_...). Must belong to the caller's organization and workspace.",
+			InnerField: "memory_store_id",
+		},
+		&requestflag.InnerFlag[*string]{
+			Name:       "resource.mount-path",
+			Usage:      "Mount path in the container. Defaults to `/workspace/<repo-name>`.",
+			InnerField: "mount_path",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "resource.url",
+			Usage:      "Github URL of the repository",
+			InnerField: "url",
+		},
+	},
+})
+
+var betaSessionsRetrieve = cli.Command{
+	Name:    "retrieve",
+	Usage:   "Get Session",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:      "session-id",
+			Required:  true,
+			PathParam: "session_id",
+		},
+		&requestflag.Flag[[]string]{
+			Name:       "beta",
+			Usage:      "Optional header to specify the beta version(s) you want to use.",
+			HeaderPath: "anthropic-beta",
+		},
+		&requestflag.Flag[string]{
+			Name:       "workspace-id",
+			Usage:      "Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).\n\nOnly needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.",
+			HeaderPath: "anthropic-workspace-id",
+		},
+	},
+	Action:          handleBetaSessionsRetrieve,
+	HideHelpCommand: true,
+}
+
+var betaSessionsUpdate = requestflag.WithInnerFlags(cli.Command{
+	Name:    "update",
+	Usage:   "Update Session",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:        "session-id",
+			Required:    true,
+			PathParam:   "session_id",
+			DataAliases: []string{"id"},
+		},
+		&requestflag.Flag[map[string]any]{
+			Name:     "agent",
+			Usage:    "Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.",
+			BodyPath: "agent",
+		},
+		&requestflag.Flag[map[string]any]{
+			Name:     "budget",
+			Usage:    "A hard spend ceiling. The session stops issuing new model requests once the tracked list cost reaches `max_list_cost`.",
+			BodyPath: "budget",
+		},
+		&requestflag.Flag[map[string]any]{
+			Name:     "metadata",
+			Usage:    "Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve.",
+			BodyPath: "metadata",
+		},
+		&requestflag.Flag[*string]{
+			Name:     "title",
+			Usage:    "Human-readable session title.",
+			BodyPath: "title",
+		},
+		&requestflag.Flag[[]string]{
+			Name:     "vault-id",
+			Usage:    "Vault IDs (`vlt_*`) to attach to the session. Not yet supported; requests setting this field are rejected. Reserved for future use.",
+			BodyPath: "vault_ids",
+		},
+		&requestflag.Flag[[]string]{
+			Name:       "beta",
+			Usage:      "Optional header to specify the beta version(s) you want to use.",
+			HeaderPath: "anthropic-beta",
+		},
+		&requestflag.Flag[string]{
+			Name:       "workspace-id",
+			Usage:      "Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).\n\nOnly needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.",
+			HeaderPath: "anthropic-workspace-id",
+		},
+	},
+	Action:          handleBetaSessionsUpdate,
+	HideHelpCommand: true,
+}, map[string][]requestflag.HasOuterFlag{
+	"agent": {
+		&requestflag.InnerFlag[[]map[string]any]{
+			Name:       "agent.mcp-servers",
+			Usage:      "Replacement MCP server list. Full replacement: the provided array becomes the new value. Send an empty array to clear; omit to preserve.",
+			InnerField: "mcp_servers",
+		},
+		&requestflag.InnerFlag[[]map[string]any]{
+			Name:       "agent.tools",
+			Usage:      "Replacement tool list. Full replacement: the provided array becomes the new value. Send an empty array to clear; omit to preserve.",
+			InnerField: "tools",
+		},
+	},
+	"budget": {
+		&requestflag.InnerFlag[map[string]any]{
+			Name:       "budget.max-list-cost",
+			Usage:      "A monetary amount in a specific currency.",
+			InnerField: "max_list_cost",
+		},
+		&requestflag.InnerFlag[string]{
+			Name:       "budget.type",
+			Usage:      `Allowed values: "limit".`,
+			InnerField: "type",
+		},
+	},
+})
+
+var betaSessionsList = cli.Command{
+	Name:    "list",
+	Usage:   "List Sessions",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:      "agent-id",
+			Usage:     "Filter sessions created with this agent ID.",
+			QueryPath: "agent_id",
+		},
+		&requestflag.Flag[int64]{
+			Name:      "agent-version",
+			Usage:     "Filter by agent version. Only applies when `agent_id` is also set.",
+			QueryPath: "agent_version",
+		},
+		&requestflag.Flag[any]{
+			Name:      "created-at-gt",
+			Usage:     "Return sessions created after this time (exclusive).",
+			QueryPath: "created_at[gt]",
+		},
+		&requestflag.Flag[any]{
+			Name:      "created-at-gte",
+			Usage:     "Return sessions created at or after this time (inclusive).",
+			QueryPath: "created_at[gte]",
+		},
+		&requestflag.Flag[any]{
+			Name:      "created-at-lt",
+			Usage:     "Return sessions created before this time (exclusive).",
+			QueryPath: "created_at[lt]",
+		},
+		&requestflag.Flag[any]{
+			Name:      "created-at-lte",
+			Usage:     "Return sessions created at or before this time (inclusive).",
+			QueryPath: "created_at[lte]",
+		},
+		&requestflag.Flag[string]{
+			Name:      "deployment-id",
+			Usage:     "Filter sessions created by this deployment ID.",
+			QueryPath: "deployment_id",
+		},
+		&requestflag.Flag[bool]{
+			Name:      "include-archived",
+			Usage:     "When true, includes archived sessions. Default: false (exclude archived).",
+			QueryPath: "include_archived",
+		},
+		&requestflag.Flag[int64]{
+			Name:      "limit",
+			Usage:     "Maximum number of results to return.",
+			QueryPath: "limit",
+		},
+		&requestflag.Flag[string]{
+			Name:      "memory-store-id",
+			Usage:     "Filter sessions whose resources contain a `memory_store` with this memory store ID.",
+			QueryPath: "memory_store_id",
+		},
+		&requestflag.Flag[string]{
+			Name:      "order",
+			Usage:     "Sort direction for results, ordered by `created_at`. Defaults to `desc` (newest first).",
+			QueryPath: "order",
+		},
+		&requestflag.Flag[string]{
+			Name:      "page",
+			Usage:     "Opaque pagination cursor from a previous response.",
+			QueryPath: "page",
+		},
+		&requestflag.Flag[[]string]{
+			Name:      "status",
+			Usage:     "Filter by session status. Repeat the parameter to match any of multiple statuses.",
+			QueryPath: "statuses",
+		},
+		&requestflag.Flag[[]string]{
+			Name:       "beta",
+			Usage:      "Optional header to specify the beta version(s) you want to use.",
+			HeaderPath: "anthropic-beta",
+		},
+		&requestflag.Flag[string]{
+			Name:       "workspace-id",
+			Usage:      "Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).\n\nOnly needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.",
+			HeaderPath: "anthropic-workspace-id",
+		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
+	},
+	Action:          handleBetaSessionsList,
+	HideHelpCommand: true,
+}
+
+var betaSessionsDelete = cli.Command{
+	Name:    "delete",
+	Usage:   "Delete Session",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:      "session-id",
+			Required:  true,
+			PathParam: "session_id",
+		},
+		&requestflag.Flag[[]string]{
+			Name:       "beta",
+			Usage:      "Optional header to specify the beta version(s) you want to use.",
+			HeaderPath: "anthropic-beta",
+		},
+		&requestflag.Flag[string]{
+			Name:       "workspace-id",
+			Usage:      "Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).\n\nOnly needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.",
+			HeaderPath: "anthropic-workspace-id",
+		},
+	},
+	Action:          handleBetaSessionsDelete,
+	HideHelpCommand: true,
+}
+
+var betaSessionsArchive = cli.Command{
+	Name:    "archive",
+	Usage:   "Archive Session",
+	Suggest: true,
+	Flags: []cli.Flag{
+		&requestflag.Flag[string]{
+			Name:      "session-id",
+			Required:  true,
+			PathParam: "session_id",
+		},
+		&requestflag.Flag[[]string]{
+			Name:       "beta",
+			Usage:      "Optional header to specify the beta version(s) you want to use.",
+			HeaderPath: "anthropic-beta",
+		},
+		&requestflag.Flag[string]{
+			Name:       "workspace-id",
+			Usage:      "Optional header to select the Workspace for this request. The value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).\n\nOnly needed for credentials that can act on more than one Workspace. A credential that belongs to a specific Workspace may omit it; if sent, it must match that Workspace.",
+			HeaderPath: "anthropic-workspace-id",
+		},
+	},
+	Action:          handleBetaSessionsArchive,
+	HideHelpCommand: true,
+}
+
+func handleBetaSessionsCreate(ctx context.Context, cmd *cli.Command) error {
+	client := anthropic.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatBrackets,
+		apiquery.ArrayQueryFormatBrackets,
+		ApplicationJSON,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	params := anthropic.BetaSessionNewParams{}
+
+	var res []byte
+	options = append(options, option.WithResponseBodyInto(&res))
+	_, err = client.Beta.Sessions.New(ctx, params, options...)
+	if err != nil {
+		return err
+	}
+
+	obj := gjson.ParseBytes(res)
+	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
+	transform := cmd.Root().String("transform")
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
+		Title:          "beta:sessions create",
+		Transform:      transform,
+	})
+}
+
+func handleBetaSessionsRetrieve(ctx context.Context, cmd *cli.Command) error {
+	client := anthropic.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("session-id") && len(unusedArgs) > 0 {
+		cmd.Set("session-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatBrackets,
+		apiquery.ArrayQueryFormatBrackets,
+		EmptyBody,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	params := anthropic.BetaSessionGetParams{}
+
+	var res []byte
+	options = append(options, option.WithResponseBodyInto(&res))
+	_, err = client.Beta.Sessions.Get(
+		ctx,
+		cmd.Value("session-id").(string),
+		params,
+		options...,
+	)
+	if err != nil {
+		return err
+	}
+
+	obj := gjson.ParseBytes(res)
+	format := "explore"
+	explicitFormat := cmd.Root().IsSet("format")
+	if explicitFormat {
+		format = cmd.Root().String("format")
+	}
+	transform := cmd.Root().String("transform")
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
+		Title:          "beta:sessions retrieve",
+		Transform:      transform,
+	})
+}
+
+func handleBetaSessionsUpdate(ctx context.Context, cmd *cli.Command) error {
+	client := anthropic.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("session-id") && len(unusedArgs) > 0 {
+		cmd.Set("session-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatBrackets,
+		apiquery.ArrayQueryFormatBrackets,
+		ApplicationJSON,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	params := anthropic.BetaSessionUpdateParams{}
+
+	var res []byte
+	options = append(options, option.WithResponseBodyInto(&res))
+	_, err = client.Beta.Sessions.Update(
+		ctx,
+		cmd.Value("session-id").(string),
+		params,
+		options...,
+	)
+	if err != nil {
+		return err
+	}
+
+	obj := gjson.ParseBytes(res)
+	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
+	transform := cmd.Root().String("transform")
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
+		Title:          "beta:sessions update",
+		Transform:      transform,
+	})
+}
+
+func handleBetaSessionsList(ctx context.Context, cmd *cli.Command) error {
+	client := anthropic.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatBrackets,
+		apiquery.ArrayQueryFormatBrackets,
+		EmptyBody,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	params := anthropic.BetaSessionListParams{}
+
+	format := "explore"
+	explicitFormat := cmd.Root().IsSet("format")
+	if explicitFormat {
+		format = cmd.Root().String("format")
+	}
+	transform := cmd.Root().String("transform")
+	if format == "raw" {
+		var res []byte
+		options = append(options, option.WithResponseBodyInto(&res))
+		_, err = client.Beta.Sessions.List(ctx, params, options...)
+		if err != nil {
+			return err
+		}
+		obj := gjson.ParseBytes(res)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
+			Title:          "beta:sessions list",
+			Transform:      transform,
+		})
+	} else {
+		iter := client.Beta.Sessions.ListAutoPaging(ctx, params, options...)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
+			Title:          "beta:sessions list",
+			Transform:      transform,
+		})
+	}
+}
+
+func handleBetaSessionsDelete(ctx context.Context, cmd *cli.Command) error {
+	client := anthropic.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("session-id") && len(unusedArgs) > 0 {
+		cmd.Set("session-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatBrackets,
+		apiquery.ArrayQueryFormatBrackets,
+		EmptyBody,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	params := anthropic.BetaSessionDeleteParams{}
+
+	var res []byte
+	options = append(options, option.WithResponseBodyInto(&res))
+	_, err = client.Beta.Sessions.Delete(
+		ctx,
+		cmd.Value("session-id").(string),
+		params,
+		options...,
+	)
+	if err != nil {
+		return err
+	}
+
+	obj := gjson.ParseBytes(res)
+	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
+	transform := cmd.Root().String("transform")
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
+		Title:          "beta:sessions delete",
+		Transform:      transform,
+	})
+}
+
+func handleBetaSessionsArchive(ctx context.Context, cmd *cli.Command) error {
+	client := anthropic.NewClient(getDefaultRequestOptions(cmd)...)
+	unusedArgs := cmd.Args().Slice()
+	if !cmd.IsSet("session-id") && len(unusedArgs) > 0 {
+		cmd.Set("session-id", unusedArgs[0])
+		unusedArgs = unusedArgs[1:]
+	}
+	if len(unusedArgs) > 0 {
+		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
+	}
+
+	options, err := flagOptions(
+		cmd,
+		apiquery.NestedQueryFormatBrackets,
+		apiquery.ArrayQueryFormatBrackets,
+		EmptyBody,
+		false,
+	)
+	if err != nil {
+		return err
+	}
+
+	params := anthropic.BetaSessionArchiveParams{}
+
+	var res []byte
+	options = append(options, option.WithResponseBodyInto(&res))
+	_, err = client.Beta.Sessions.Archive(
+		ctx,
+		cmd.Value("session-id").(string),
+		params,
+		options...,
+	)
+	if err != nil {
+		return err
+	}
+
+	obj := gjson.ParseBytes(res)
+	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
+	transform := cmd.Root().String("transform")
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
+		Title:          "beta:sessions archive",
+		Transform:      transform,
+	})
+}

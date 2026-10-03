@@ -1,0 +1,8 @@
+**Reel: `medhavy-vox-delivery-funnel` — DONE (review slate cut).**
+
+- **Output:** `vox-delivery-funnel-slate.mp4`, 165.4 s, 13/13 filled, 0 slates.
+- **`build.status` Counter (verbatim):** `Counter({'VIDEO': 13})`
+- **Gates:** CONTENT ✓ / FRAME ✓ / LANE ✓ / TYPECHECK ✓ (5 §8.10 recite advisories, structural, no FAIL) / AUDIO ✓ (mean −23.9 dB, max −7.2 dB) / Gate V ✓ (7 sampled frames, zero BLOCKER/MAJOR, Medhavy outro branded correctly).
+- **Freshness:** mp4 mtime is 6 s newer than beat_sheet.json (03:23:30 vs 03:23:24). No post-compile sheet edit.
+- **What was fixed:** dropped ElevenLabs `voice_id`/`clock`/`style_bible`/`accents`, added `folderLabel:"@MedhavyAI"`, converted 11 slate body punts (5 gen-AI, 6 missing-Manim) to real FormACard renders, re-schema'd the Medhavy OutroSeries/OutroCTA outros (they were silently Claude-defaulting), fresh Kokoro `af_kore` audio for all 13 beats. Narration LOCKED verbatim (no datable-claim edits needed).
+- **Honest note:** text-heavy card-only cut; six drawn-graphic beats (B04–B08, B10) are honest FormACard text substitutes — reel folder has no `scenes_std.py`. Same tradeoff as peer `medhavy-vox-complexity-yield`. Logged in REBUILD-LOG for a future Manim pass.

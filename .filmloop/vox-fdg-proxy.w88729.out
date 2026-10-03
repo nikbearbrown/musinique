@@ -1,0 +1,16 @@
+Reel `vox-fdg-proxy` is done.
+
+**Cut:** `vox-fdg-proxy-slate.mp4` — 181.0 s (3:01) · 1280×720 · cut 14s newer than beat_sheet.json (DONE-check satisfied).
+
+**Build:** 14/14 filled — 9 Manim scenes (B01/B03/B04/B05/B07/B08/B10/B11/B12), 5 Remotion (B02/B06/B09 FormACard, B13 OutroSeries, B14 OutroCTA). Zero slates, zero gen-AI. lane-check PASS. GATE T PASS (2 §8.10 advisories, non-blocking). GATE AUDIO PASS at −24.5 dB.
+
+**Key fixes:**
+- Envelope: dropped ElevenLabs `voice_id` + old `clock` prose; added VOICE-LOCK fields (kokoro/am_onyx) on metadata and every beat; added `channel`/`folderLabel`.
+- `shot.form` derived per beat.
+- B02 + B09 punt costumes (`STILL src=ai` for a PET scan / illustrative case note) → authored `CARD` FormACards drawn from locked narration.
+- B06 FormACard lines rewritten (was mid-word truncated `…`).
+- B03 section-card copy tightened (was a full-paragraph recital).
+- B13/B14 Remotion prop names fixed to match component zod schemas — the wrong props had defaulted B13 to "Part of the Claude Cowork series."
+- Copied `vox_graphics.py` in from a sibling so `vox_scenes.py` could import (upstream `vox/…/manim/` toolkit path is gone).
+
+Narration locked; no datable claims to edit. `beat_sheet.pre-rebuild.json` saved byte-exact before any edit. AUDIT.md, REBUILD-LOG.md, TYPECHECK.md, and FILMLOOP-LOG entry all written.

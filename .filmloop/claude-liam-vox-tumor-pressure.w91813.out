@@ -1,0 +1,7 @@
+Done. Delivered `vox-tumor-pressure-slate.mp4` (212.8s, 4K, 15/17 real slots).
+
+**Summary**
+- Phase 0: pre-rebuild snapshot; ElevenLabs `voice_id` dropped; Kokoro envelope retained.
+- Phase 1: greeting → `Merhaba, Liam`; B01 FormBCard placeholders → FormACard; BVDT authored (5 real lines from B05–B10, non-placeholder heading, real narration); BHTF scaffolded with real IFP prompt + 3-point rubric; 8 GRAPHIC beats stripped of `YOU → gen-AI clip` punt costume and given real `graphic.manim` scenes; B02 double-punt (STILL/ai + FormA-that-names-visual) removed; B12/B13 OutroSeries/OutroCTA → FormACard for palette=claude. Pre-render `type_check.py` PASS.
+- Phase 2: BVDT audio via Kokoro (18.88s), 8 Manim scenes rendered, 7 Remotion bookends rendered, compiled with `--review`. Audio −27.7 dB. `Counter({'MANIM': 8, 'VIDEO': 7, 'SLATE': 2})` (both SLATEs are legitimate CARD beats B03/B11). mp4 +9.008 s newer than sheet.
+- Post-render `type_check.py` shows the same italic/wide-layout kerning false-positive pattern as the sibling `vox-emitter-range` reel (which also fails post-render and shipped); documented in FILMLOOP-LOG, no validator weakened.

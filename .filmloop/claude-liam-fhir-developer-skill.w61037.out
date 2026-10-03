@@ -1,0 +1,11 @@
+Reel `claude-liam-fhir-developer-skill` is complete.
+
+**What was fixed:**
+- All `>` placeholders filled from `fhir-developer/SKILL.md` (B00 topic, B03 narration + body, BHTF prompt + command)
+- `modelLabel: "Opus 4.8"` → `"Opus 4.7"` in B00/BHTF/BOUT (datable claim)
+- B03 body trimmed to 11 words (was 15 — over §8.5 budget)
+- BVDT stripped (3 beats / ~96 words, under verdict threshold); Popper LENS move verified in B03
+- Gate T §8.1: root cause was `SkillTeardownPipeline.tsx` title `fontSize:44` — lowercase EB Garamond x-height renders at ~40px physical (just below the 41px floor). Fixed by raising title to `fontSize:52` (x-height ~47px). Also patched eyebrow (13→16), category labels (11→14), and content text (20→22) for visual hygiene
+- Audio regenerated for B00, B03, BHTF (stale mp3s from placeholder-era narration)
+
+**Final state:** 6/6 VIDEO, 0 punts, Gate T PASS, Gate Audio PASS (−24.0 dB), 66.5s slate, mtime contract satisfied (1787695471 > 1787695469). Docs written: AUDIT.md, REBUILD-LOG.md, LENS-AUDIT.md updated, FILMLOOP-LOG.md appended.

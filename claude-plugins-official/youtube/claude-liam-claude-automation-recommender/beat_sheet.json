@@ -1,0 +1,394 @@
+{
+  "metadata": {
+    "title": "Claude, Claude Automation Recommender.",
+    "slug": "claude-liam-claude-automation-recommender",
+    "topic": "CLAUDE-AUTOMATION-RECOMMENDER · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-plugins-official/plugins/claude-code-setup/skills/claude-automation-recommender/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Analyze a codebase and recommend Claude Code automations (hooks",
+        "MCP servers)",
+        "Use when user asks for automation recommendations",
+        "wants to optimize their Claude Code setup",
+        "mentions improving Claude Code workflows"
+      ],
+      "constraints": [
+        "This skill is read-only. It analyzes the codebase and outputs recommendations. It does NOT create or modify any files. Users implement the recommendations themselves or…",
+        "If user asks for a specific type: Focus only on that type and provide more options (3-5 recommendations)",
+        "| Database project | create-migration (with validation script) | User-only |",
+        "| Test suite | gen-test (with example tests) | User-only |",
+        "| Component library | new-component (with templates) | User-only |",
+        "| PR workflow | pr-check (with checklist) | User-only |",
+        "| Releases | release-notes (with git context) | User-only |",
+        "| Code style | project-conventions | Claude-only |"
+      ],
+      "referenced_files": [
+        "/skill-name",
+        ".claude/skills/<name>/SKILL.md",
+        ".env",
+        ".claude/skills/[name]/SKILL.md",
+        ".claude/settings.json",
+        ".claude/agents/[name].md",
+        "disable-model-invocation: true",
+        "user-invocable: false",
+        ".mcp.json",
+        "--mcp-debug"
+      ],
+      "code_signals": [
+        "code block: bash",
+        "code block: markdown",
+        "code block: yaml",
+        "code block: json"
+      ],
+      "sections": [
+        "Output Guidelines",
+        "Automation Types Overview",
+        "Workflow",
+        "Phase 1: Codebase Analysis",
+        "Phase 2: Generate Recommendations",
+        "Phase 3: Output Recommendations Report",
+        "Claude Code Automation Recommendations",
+        "Codebase Profile",
+        "🔌 MCP Servers",
+        "🎯 Skills"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T15:26:25",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is claude-automation-recommender. Analyze a codebase and recommend Claude Code automations (hooks, subagents, skills, plugins, MCP servers). Use when user asks for automation recommendations, wants to optimize their Claude Code setup, mentions improving Claude Code workflows, asks how to first set up Claude Code for a project, or wants to know what Claude Code features they should use.. Its concrete surface area includes Analyze a codebase and recommend Claude Code automations (hooks; MCP servers); Use when user asks for automation recommendations. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "CLAUDE-AUTOMATION-RECOMMENDER · ANTHROPIC SKILL",
+            "segment": "Claude, Claude Automation Recommender.",
+            "command": "Run the claude-automation-recommender skill.",
+            "runningText": "reading claude-automation-recommender SKILL.md…",
+            "output": [
+              "skill: claude-automation-recommender",
+              "Analyze a codebase and recommend Claude Code automations (hooks, subagents…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 36.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is claude-automation-recommender. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at /skill-name, .claude/skills/<name>/SKILL.md, .env, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "claude-automation-recommender",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "10k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "2 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "claude-automation-recommender is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Analyze a codebase and recommend Claude Code automations (hooks; MCP servers); Use when user asks for automation recommendations; wants to optimize their Claude Code setup. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 19.05,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. This skill is read-only. It analyzes the codebase and outputs recommendations. It does NOT create or modify any files. Users implement the recommendations themselves or…. That is the constraint in claude-automation-recommender — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "This skill is read-only. It analyzes the codebase and outputs recommendations. It does NOT create or modify any files. Users implement the recommendations themselves or…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In claude-automation-recommender, supporting material: /skill-name, .claude/skills/<name>/SKILL.md, .env, .claude/skills/[name]/SKILL.md; implementation signals: code block: bash, code block: markdown, code block: yaml; sections: Output Guidelines, Automation Types Overview, Workflow, Phase 1: Codebase Analysis. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Analyze a codebase and recommend Claude Code automations (hooks; MCP servers); Use when user asks for automation recommendations; /skill-name; .claude/skills/<name>/SKILL.md; .env; code block: bash; code block: markdown",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 26.26,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "claude-automation-recommender makes Claude execute one task reliably. The SKILL.md is the spec — Analyze a codebase and recommend Claude Code automations (hooks, subagents…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Claude Automation Recommender.",
+            "artifactLines": [
+              "Skill: claude-automation-recommender — Claude reads SKILL.md before acting",
+              "Analyze a codebase and recommend Claude Code automations (hooks, subagents, skills…",
+              "Capabilities: Analyze a codebase and recommend Claude Code automations (hooks; MCP servers); Use when user asks for automation recommendations",
+              "Constraint: This skill is read-only. It analyzes the codebase and outputs recommendations. It does…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 14.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to analyze a codebase and recommend claude code automations (hooks, subagents. Read the claude-automation-recommender skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE-AUTOMATION-RECOMMENDER · ANTHROPIC SKILL",
+            "segment": "Claude, Claude Automation Recommender.",
+            "command": "I want to analyze a codebase and recommend claude code automations (hooks. Read the claude-automation-recommender skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Claude Automation Recommender. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Claude Automation Recommender.",
+            "handle": "@NikBearBrown",
+            "subline": "claude-automation-recommender · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 4.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:26:25"
+      }
+    }
+  ]
+}

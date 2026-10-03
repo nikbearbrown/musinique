@@ -1,0 +1,12 @@
+Staleness confirmed: mp4 (`1787918708`) still 8 s newer than beat_sheet.json (`1787918700`). No post-compile sheet edits.
+
+**Reel `nbb-vox-doxil-heart` — REVIEW SLATE SHIPPED.**
+
+- **Deliverable**: `vox-doxil-heart-slate.mp4` — 233.1 s, 720p review cut, h264+aac, `mean_volume −23.9 dB`.
+- **Fixes**: collapsed duplicate `B00/BVDT/BHTF/BOUT` scaffold vs filled `NBB00–NBB03` set (renamed NBB→canonical, dropped empty scaffolds); `B00.greeting` `"Liam"` → `"Annyeong, Liam"` (Korean, unused in adjacent nbb-vox reels); segments de-truncated to `"doxil · cardiac protection is the win"`; dropped stale `modelLabel`/`effortLabel`; B01 `Key point one/two/three` items filled with real subs; authored a real 4-line BVDT verdict from body nouns/numbers (360 mg/m² · PEGylated liposome · cardiac drug levels · EPR misread) and rewrote BVDT narration to say it aloud; body B02–B11 reshaped as `FormACard` (locked Manim mechanics preserved verbatim in `graphic.production_viz` for the future pass); regenerated all 16 mp3s via Kokoro `am_onyx` (ElevenLabs source banned).
+- **Gates**: CONTENT PASS · FRAME PASS · LANE PASS (`known_slates=['B12']`) · GATE T PASS (§8.10 recite advisories on B02/B11/BVDT — advisory only) · AUDIO PASS · V PASS (117 fps=0.5 frames + per-beat spots; no BLOCKER/MAJOR on real beats).
+- **build.status Counter**: `Counter({'VIDEO': 15, 'SLATE': 1})`.
+- **Staleness**: mp4 `+8 s` newer than sheet ✓.
+- **Honest note**: Phase-2 review slate. Eight body GRAPHIC/COMPOSITE/DOCUMENT beats' locked Manim shot lists preserved verbatim for a later full-render pass.
+
+Stopping. Supervisor starts the next reel.

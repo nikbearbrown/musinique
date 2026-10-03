@@ -1,0 +1,15 @@
+{
+  "name": "ai+1",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI+1",
+  "scripts": {
+    "svg-to-png": "node SCRIPTS/svg-to-png.mjs",
+    "audit:format": "node scripts/svg-format-audit.mjs images",
+    "postsvg-to-png": "node scripts/svg-format-audit.mjs images"
+  },
+  "dependencies": {
+    "glob": "^10.5.0",
+    "sharp": "^0.33.5"
+  }
+}

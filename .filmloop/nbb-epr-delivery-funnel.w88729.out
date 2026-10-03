@@ -1,0 +1,5 @@
+BUILT. `epr-delivery-funnel.mp4` (199.2 s, 4K, 12/12 VIDEO, no slates). Cut mtime 00:26 > sheet mtime 00:24.
+
+**Fixes applied**: dropped legacy NBB00–NBB03 scaffold + pre-canonical B00 NikBearBrownOpen; authored canonical B00 `Kia ora, Liam.` ClaudeComposerAsk; authored real BVDT verdict (0.7% / Wilhelm 2016 / Doxil cardiotoxicity / Abraxane SPARC-gp60 / IFP+corona) with matching narration; authored real BHTF 5-stage funnel exercise; filled B01 FormBCard subs from source; reused source-reel media/mp3 for B01–B08.
+
+**Gate V**: PASS after reading frames 002/010/030/070/080/092/098 — all clean, single terracotta per composer, no overflow. **GATE AUDIO**: PASS at −24.1 dB. **Punts**: zero.

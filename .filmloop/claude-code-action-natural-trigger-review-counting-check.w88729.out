@@ -1,0 +1,8 @@
+Done. **Status: DONE** — `claude-code-action-natural-trigger-review-counting-check.mp4` (4K, 121.6 s, mean_volume −24.5 dB) with cut mtime 19:45 > sheet mtime 19:44.
+
+- **Sheet rebuilt** from a locked-narration snapshot (`beat_sheet.pre-rebuild.json`): dropped stale design-v1 `YOURTURN`+`OUTRO` duplicates; authored real shots for B01–B05 (FormB/FormA per nopunt catalog); authored real BVDT (4 content-bearing artifactLines + 22 s stated verdict); authored real BHTF exercise ("open one repo you protect… three questions… move to `pull_request_target`"). Rotated B00 greeting `Konnichiwa, Liam` → `Salaam, Liam` off two adjacent unbuilt reels.
+- **All body narration LOCKED** — no edits to B00–B05 narration.
+- **Gates:** GATE T PASS, GATE V PASS (20 sampled frames), GATE AUDIO PASS (−24.5 dB), no `--no-gate`, no validator loosened.
+- **Punt counter post-build:** `Counter({'VIDEO': 9})` — 9/9 real, zero slates.
+- Lens moves executed: Popper (BVDT states the falsifier) + Plato (B03 names artifact / world / relationship).
+- Logged in `youtube/FILMLOOP-LOG.md`; `AUDIT.md` + `REBUILD-LOG.md` written in the reel folder.

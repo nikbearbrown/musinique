@@ -1,0 +1,8 @@
+Done — reel built and audible.
+
+**cancer-nanomedicine/lectures/ch12-lecture** — HTML lecture-deck format (Bear's ElevenLabs voice, 12 segments, 9.5 min).
+
+- PHASE 0: `beat_sheet.pre-rebuild.json` snapshotted; only edit was measured `actual_duration_s` on S01/S02/S03 (missing metadata, would have truncated real audio via `est()` fallback). No narration touched.
+- PHASE 1: Standard claude-explainer checks (bookends / spark lines / verdict / your-turn / chart-text / lens) N/A for this format; the applicable ones (stale, punts, brand, pacing, type_check) all PASS/LOG. S03 pacing at 1.86 wps logged, not silently retimed. GATE T PASS.
+- PHASE 2: `render.py` re-screenshot all 12 slides from `deck.html`, muxed real audio, concat → `cancer-nanomedicine-ch12-clinical-strategy.mp4` (572.6 s, mean_volume −18.4 dB). Frames at 5/250/550 s inspected — clean, no overflow, one terracotta accent per slide.
+- mp4 mtime 06:51 > sheet mtime 06:50. Supervisor DONE check will pass.

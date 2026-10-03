@@ -1,0 +1,12 @@
+You've hit your session limit · resets 2:10pm (America/New_York)
+You've hit your session limit · resets 2:10pm (America/New_York)
+Done. Report:
+
+**`nbb-vox-light-ceiling-slate.mp4`** — 205.7 s, 720p, mp4 mtime +8s newer than beat_sheet.json ✓
+
+- **Content fixed**: B00 spark line ("Kia ora, Liam"), B01 FormBCard placeholder items → three real labels/subs/icons, B02 FormACard truncated fragment → three full lines, BVDT placeholder verdict → four-line authored verdict from body content, dupe closing block collapsed (NBB01/2/3 renamed to canonical BVDT/BHTF/BOUT, mp3s renamed, three placeholder bookends deleted, dead ElevenLabs envelope fields dropped).
+- **Rendered**: 6 Remotion patterns + 6 Manim scenes (via ../vox-light-ceiling/vox_scenes.py + books/vox/…/vox_graphics.py at 720p24).
+- **Slates**: 2 declared — B03 question card and B10 endcard, both type=CARD non-pipeline holds.
+- **Gates**: CARD LINT / CONTENT / FRAME / LANE all PASS. Gate V spot-checked 103 sampled frames — text clean, no SAFE-inset overflow, one accent per beat. Gate AUDIO: mean_volume −27.5 dB (threshold −40).
+- **build.status Counter**: `Counter({'VIDEO': 6, 'MANIM': 6, 'SLATE': 2})`.
+- Logs written: `AUDIT.md`, `REBUILD-LOG.md` in the reel, appended to `youtube/FILMLOOP-LOG.md`.

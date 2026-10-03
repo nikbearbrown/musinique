@@ -1,0 +1,281 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Resources
+    class Beta
+      class Vaults
+        class Credentials
+          # Create Credential
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialCreateParams} for more details.
+          #
+          # @overload create(vault_id, auth:, display_name: nil, metadata: nil, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param vault_id [String] Path param: Identifier of the vault to create the credential in.
+          #
+          # @param auth [Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthCreateParams, Anthropic::Models::Beta::Vaults::BetaManagedAgentsStaticBearerCreateParams, Anthropic::Models::Beta::Vaults::BetaManagedAgentsEnvironmentVariableCreateParams] Body param: Authentication details for creating a credential.
+          #
+          # @param display_name [String, nil] Body param: Human-readable name for the credential. Up to 255 characters.
+          #
+          # @param metadata [Hash{Symbol=>String}] Body param: Arbitrary key-value metadata to attach to the credential. Maximum 16
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Models::Beta::Vaults::BetaManagedAgentsCredential]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialCreateParams
+          def create(vault_id, params)
+            parsed, options = Anthropic::Beta::Vaults::CredentialCreateParams.dump_request(params)
+            header_params = {betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"}
+            @client.request(
+              method: :post,
+              path: ["v1/vaults/%1$s/credentials?beta=true", vault_id],
+              headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+              body: parsed.except(*header_params.keys),
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsCredential,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # Get Credential
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialRetrieveParams} for more details.
+          #
+          # @overload retrieve(credential_id, vault_id:, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param credential_id [String] Path param: Unique identifier of the credential to retrieve.
+          #
+          # @param vault_id [String] Path param: Identifier of the vault containing the credential.
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Models::Beta::Vaults::BetaManagedAgentsCredential]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialRetrieveParams
+          def retrieve(credential_id, params)
+            parsed, options = Anthropic::Beta::Vaults::CredentialRetrieveParams.dump_request(params)
+            vault_id =
+              parsed.delete(:vault_id) do
+                raise ArgumentError.new("missing required path argument #{_1}")
+              end
+            @client.request(
+              method: :get,
+              path: ["v1/vaults/%1$s/credentials/%2$s?beta=true", vault_id, credential_id],
+              headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsCredential,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # Update Credential
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialUpdateParams} for more details.
+          #
+          # @overload update(credential_id, vault_id:, auth: nil, display_name: nil, metadata: nil, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param credential_id [String] Path param: Unique identifier of the credential to update.
+          #
+          # @param vault_id [String] Path param: Identifier of the vault containing the credential.
+          #
+          # @param auth [Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthUpdateParams, Anthropic::Models::Beta::Vaults::BetaManagedAgentsStaticBearerUpdateParams, Anthropic::Models::Beta::Vaults::BetaManagedAgentsEnvironmentVariableUpdateParams] Body param: Updated authentication details for a credential.
+          #
+          # @param display_name [String, nil] Body param: Updated human-readable name for the credential. 1-255 characters.
+          #
+          # @param metadata [Hash{Symbol=>String, nil}, nil] Body param: Metadata patch. Set a key to a string to upsert it, or to null to de
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Models::Beta::Vaults::BetaManagedAgentsCredential]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialUpdateParams
+          def update(credential_id, params)
+            parsed, options = Anthropic::Beta::Vaults::CredentialUpdateParams.dump_request(params)
+            vault_id =
+              parsed.delete(:vault_id) do
+                raise ArgumentError.new("missing required path argument #{_1}")
+              end
+            header_params = {betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"}
+            @client.request(
+              method: :post,
+              path: ["v1/vaults/%1$s/credentials/%2$s?beta=true", vault_id, credential_id],
+              headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+              body: parsed.except(*header_params.keys),
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsCredential,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # List Credentials
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialListParams} for more details.
+          #
+          # @overload list(vault_id, include_archived: nil, limit: nil, page: nil, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param vault_id [String] Path param: Identifier of the vault to list credentials for.
+          #
+          # @param include_archived [Boolean] Query param: Whether to include archived credentials in the results.
+          #
+          # @param limit [Integer] Query param: Maximum number of credentials to return per page. Defaults to 20, m
+          #
+          # @param page [String] Query param: Opaque pagination token from a previous `list_credentials` response
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Internal::PageCursor<Anthropic::Models::Beta::Vaults::BetaManagedAgentsCredential>]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialListParams
+          def list(vault_id, params = {})
+            query_params = [:include_archived, :limit, :page]
+            parsed, options = Anthropic::Beta::Vaults::CredentialListParams.dump_request(params)
+            query = Anthropic::Internal::Util.encode_query_params(parsed.slice(*query_params))
+            @client.request(
+              method: :get,
+              path: ["v1/vaults/%1$s/credentials?beta=true", vault_id],
+              query: query,
+              headers: parsed.except(*query_params).transform_keys(
+                betas: "anthropic-beta",
+                workspace_id: "anthropic-workspace-id"
+              ),
+              page: Anthropic::Internal::PageCursor,
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsCredential,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # Delete Credential
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialDeleteParams} for more details.
+          #
+          # @overload delete(credential_id, vault_id:, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param credential_id [String] Path param: Unique identifier of the credential to delete.
+          #
+          # @param vault_id [String] Path param: Identifier of the vault containing the credential.
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Models::Beta::Vaults::BetaManagedAgentsDeletedCredential]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialDeleteParams
+          def delete(credential_id, params)
+            parsed, options = Anthropic::Beta::Vaults::CredentialDeleteParams.dump_request(params)
+            vault_id =
+              parsed.delete(:vault_id) do
+                raise ArgumentError.new("missing required path argument #{_1}")
+              end
+            @client.request(
+              method: :delete,
+              path: ["v1/vaults/%1$s/credentials/%2$s?beta=true", vault_id, credential_id],
+              headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsDeletedCredential,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # Archive Credential
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialArchiveParams} for more details.
+          #
+          # @overload archive(credential_id, vault_id:, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param credential_id [String] Path param: Unique identifier of the credential to archive.
+          #
+          # @param vault_id [String] Path param: Identifier of the vault containing the credential.
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Models::Beta::Vaults::BetaManagedAgentsCredential]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialArchiveParams
+          def archive(credential_id, params)
+            parsed, options = Anthropic::Beta::Vaults::CredentialArchiveParams.dump_request(params)
+            vault_id =
+              parsed.delete(:vault_id) do
+                raise ArgumentError.new("missing required path argument #{_1}")
+              end
+            @client.request(
+              method: :post,
+              path: ["v1/vaults/%1$s/credentials/%2$s/archive?beta=true", vault_id, credential_id],
+              headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsCredential,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # Validate Credential
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::Vaults::CredentialMCPOAuthValidateParams} for more
+          # details.
+          #
+          # @overload mcp_oauth_validate(credential_id, vault_id:, betas: nil, workspace_id: nil, request_options: {})
+          #
+          # @param credential_id [String] Path param: Unique identifier of the credential to validate.
+          #
+          # @param vault_id [String] Path param: Identifier of the vault containing the credential.
+          #
+          # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+          #
+          # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+          #
+          # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+          #
+          # @return [Anthropic::Models::Beta::Vaults::BetaManagedAgentsCredentialValidation]
+          #
+          # @see Anthropic::Models::Beta::Vaults::CredentialMCPOAuthValidateParams
+          def mcp_oauth_validate(credential_id, params)
+            parsed, options = Anthropic::Beta::Vaults::CredentialMCPOAuthValidateParams.dump_request(params)
+            vault_id =
+              parsed.delete(:vault_id) do
+                raise ArgumentError.new("missing required path argument #{_1}")
+              end
+            @client.request(
+              method: :post,
+              path: ["v1/vaults/%1$s/credentials/%2$s/mcp_oauth_validate?beta=true", vault_id, credential_id],
+              headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+              model: Anthropic::Beta::Vaults::BetaManagedAgentsCredentialValidation,
+              options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+            )
+          end
+
+          # @api private
+          #
+          # @param client [Anthropic::Client]
+          def initialize(client:)
+            @client = client
+          end
+        end
+      end
+    end
+  end
+end

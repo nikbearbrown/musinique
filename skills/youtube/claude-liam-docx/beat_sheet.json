@@ -1,0 +1,400 @@
+{
+  "metadata": {
+    "title": "Claude, Docx.",
+    "slug": "claude-liam-docx",
+    "topic": "DOCX · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/skills/skills/docx/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Use this skill whenever the user wants to create",
+        "or manipulate Word documents (.docx files)",
+        "Triggers include: any mention of 'Word doc'",
+        "'word document'",
+        "or requests to produce professional documents with formatting like tables of contents"
+      ],
+      "constraints": [
+        "description: \"Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc'…",
+        "Legacy .doc files must be converted before editing:",
+        "paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } }, // outlineLevel required for TOC",
+        "### Lists (NEVER use unicode bullets)",
+        "// ❌ WRONG - never manually insert bullet characters",
+        "columnWidths: [4680, 4680], // Must sum to table width (DXA: 1440 = 1 inch)",
+        "columnWidths: [7000, 2360] // Must sum to table width",
+        "Always use WidthType.DXA — never WidthType.PERCENTAGE (incompatible with Google Docs)"
+      ],
+      "referenced_files": [
+        "docx-js",
+        ".doc",
+        "npm install -g docx",
+        "WidthType.DXA",
+        "WidthType.PERCENTAGE",
+        "type: SectionType.NEXT_COLUMN",
+        "orientation: PageOrientation.LANDSCAPE",
+        "LevelFormat.BULLET",
+        "ShadingType.CLEAR",
+        "--merge-runs false"
+      ],
+      "code_signals": [
+        "code block: bash",
+        "code block: javascript",
+        "code block: xml"
+      ],
+      "sections": [
+        "Overview",
+        "Quick Reference",
+        "Converting .doc to .docx",
+        "Reading Content",
+        "Converting to Images",
+        "Accepting Tracked Changes",
+        "Creating New Documents",
+        "Setup",
+        "Validation",
+        "Page Size"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T12:13:07",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is docx. Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.. Its concrete surface area includes Use this skill whenever the user wants to create; or manipulate Word documents (.docx files); Triggers include: any mention of 'Word doc'. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "DOCX · ANTHROPIC SKILL",
+            "segment": "Claude, Docx.",
+            "command": "Run the docx skill.",
+            "runningText": "reading docx SKILL.md…",
+            "output": [
+              "skill: docx",
+              "Use this skill whenever the user wants to create, read, edit, or manipulate…",
+              "steps: 3 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 58.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is docx. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at docx-js, .doc, npm install -g docx, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "docx",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📝",
+                "name": "LICENSE.txt",
+                "size": "1k",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "19k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "3 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 3 steps. Unpack → Edit XML → Pack. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Unpack",
+                "desc": "Extracts XML, pretty-prints, merges adjacent runs, and…",
+                "accent": true
+              },
+              {
+                "label": "Edit XML",
+                "desc": "Edit files in unpacked/word/. See XML Reference below for…",
+                "accent": false
+              },
+              {
+                "label": "Pack",
+                "desc": "Validates with auto-repair, condenses XML, and creates…",
+                "accent": false
+              }
+            ],
+            "footerNote": "3 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 10.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. description: \"Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc'…. That is the constraint in docx — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "description: \"Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc'…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In docx, supporting material: docx-js, .doc, npm install -g docx, WidthType.DXA; implementation signals: code block: bash, code block: javascript, code block: xml; sections: Overview, Quick Reference, Converting .doc to .docx, Reading Content. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Use this skill whenever the user wants to create; or manipulate Word documents (.docx files); Triggers include: any mention of 'Word doc'; docx-js; .doc; npm install -g docx; code block: bash; code block: javascript",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "docx makes Claude execute one task reliably. The SKILL.md is the spec — Use this skill whenever the user wants to create, read, edit, or manipulate…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Docx.",
+            "artifactLines": [
+              "Skill: docx — Claude reads SKILL.md before acting",
+              "Use this skill whenever the user wants to create, read, edit, or manipulate Word…",
+              "3-step pipeline: Unpack → Edit XML → Pack",
+              "Constraint: description: \"Use this skill whenever the user wants to create, read, edit, or manipulate…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 13.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to use this skill whenever the user wants to create, read, edit, or manipulate. Read the docx skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "DOCX · ANTHROPIC SKILL",
+            "segment": "Claude, Docx.",
+            "command": "I want to use this skill whenever the user wants to create, read, edit, or. Read the docx skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 14.42,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Docx. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Docx.",
+            "handle": "@NikBearBrown",
+            "subline": "docx · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:13:07"
+      }
+    }
+  ]
+}

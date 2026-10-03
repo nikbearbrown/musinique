@@ -1,0 +1,9 @@
+Done. `hai-vox-tumor-pressure-slate.mp4` (152.2 s, 720p review cut) shipped 2026-08-28 at `youtube/cancer-nanomedicine/youtube/hai-vox-tumor-pressure/`.
+
+**Summary**:
+- Cohort C legacy-vox rebuild for HAI channel. Pre-rebuild snapshot preserved byte-exact.
+- Envelope fixed: ElevenLabs `voice_id`/legacy `_variant_todo`/lying `metadata.build` dropped; slug corrected `vox-tumor-pressure` → `hai-vox-tumor-pressure`; kokoro `am_onyx` + `@humanitariansai` VOICE-LOCK in place.
+- 7 pipeline-owned slates routed to real Remotion patterns (6× FormBCard, 2× FormACard incl. B02). B12/B13 outros reshaped to current `eyebrow`/`line`/`handle` props (fixed peer Claude-wash silent-fallback defect).
+- `build.status Counter({'VIDEO': 9, 'SLATE': 4})` — the 4 remaining SLATEs (B01 title, B03 question, B09 quote-DOCUMENT, B11 endcard) are declared CARD/DOCUMENT lanes, legal in a review cut.
+- Gate T PASS, Gate CONTENT/FRAME/LANE/AUDIO all PASS, `mean_volume −23.9 dB`.
+- Staleness: mp4 mtime 5 s newer than beat_sheet.json; no post-compile sheet edits. AUDIT.md + FILMLOOP-LOG entry written.

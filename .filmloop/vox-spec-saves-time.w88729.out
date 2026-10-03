@@ -1,0 +1,23 @@
+BUILT — `vox-spec-saves-time`.
+
+**Cut**: `vox-spec-saves-time-slate.mp4` · 270.6s (4:31) · video+audio streams · mean_volume −27.3 dB.
+
+**Sheet freshness**: `beat_sheet.json` 16:27 → `.mp4` 16:34 (cut newer by ~7 min; sheet untouched after final compile).
+
+**Fixes applied before final compile**:
+- B00 spark line: `"Liam"` → `"Jambo, Liam"` (Swahili, no adjacent-reel collision).
+- B07: stripped a duplicate `ClaudeTitleOutro` and `act: OUTRO` bolted on the beat's real comparison graphic.
+- BVDT: real verdict authored from body nouns/numbers (was `Key finding one/two/three`); narration rewritten to discuss the card (§8.10 redundancy 0.86 → 0.24).
+- BHTF: real exercise + 3 real output lines + spoken narration authored (was the "[X] and apply it to your own work" placeholder).
+- §5b chart fixes: `scenes_std.py` B06/B09/B10 rewrote `Text(narration_fragment[:30])` labels into SHORT CATEGORY NOUNS. Re-rendered before final compile.
+
+**Gates**: content ✓ · frame ✓ · lane ✓ · audio ✓ · GATE T PASS.
+
+**Counter (`build.status`)**: `Counter({'VIDEO': 5, 'MANIM': 10, 'STILL': 1})` — 16/16 filled, zero slates in cut.
+
+**Logged, not fixed** (surfaced to Bear via slate review):
+- B01/B02/B07/B11 CARD Manim renderers still cut sentences off the right edge — same class of bug as the §5b fixes but on non-chart card beats.
+- B03 STILL PNG truncates at "…the relevant CLAUDE" and shows the `[STILL ai]` sidecar label on-frame — legacy PNG defect, out of scope for scene-source fix.
+- Pacing: B08 = 3.75 wps (above 3.4 ceiling); every other beat 2.7–3.3 wps.
+
+Artifacts: `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, `beat_sheet.pre-rebuild.json`, `_qc/frames/`, appended block in `youtube/FILMLOOP-LOG.md`.

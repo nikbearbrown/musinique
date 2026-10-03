@@ -1,0 +1,10 @@
+Done. Reel built: `vox-trial-failure-tree-slate.mp4` (216.6s, 4.51MB, 3840×2160/24fps).
+
+**Result summary**
+- All 7 PHASE 1 fixes applied to the sheet BEFORE the compile — pre-rebuild backup made, ElevenLabs `voice_id` dropped, `clock` prose rewritten, two gen-AI STILL punts (B02, B11) converted to honest CARDs.
+- Filled 7 pipeline-owned Manim beats (B04, B06–B10, B12) by copying HAI's byte-identical-palette manim renders; rendered fresh Medhavy-branded B14/B15 outros via `remotion_scenes.py`.
+- Build counter: `Counter({'SLATE': 6, 'MANIM': 7, 'VIDEO': 2})`. Six review slates are legitimate (CARD/DOCUMENT beats).
+- Gates: content-check PASS · frame-check PASS · lane-check PASS (zero pipeline-slate) · audio −24.0 dB PASS · cut mtime 10s newer than sheet.
+- Downgrade logged (not fixed): B10 contrast 4.39:1 vs WCAG 4.5:1 and B12 min-size 8px vs 9px floor — both inherited from HAI manim renders; requires editing `scenes.py` and re-rendering, deferred out of scope for a slate review cut.
+- No post-compile sheet edits — freshness gate preserved.
+- `AUDIT.md` and `FILMLOOP-LOG.md` entries written.

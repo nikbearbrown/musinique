@@ -1,0 +1,13 @@
+BLOCKED. Same fingerprint as `medhavy-vox-tumor-pressure` (blocked 2026-08-27):
+
+- Vox-style medhavy audience variant — wrong pipeline for the Brutalist/Claude-Liam factory prompt.
+- 14 beats; 10 are pipeline-owned (B02 FormACard, B04–B08/B10/B11 Manim, B13/B14 Remotion outros) and every one is currently a slate.
+- Zero of the 7 required Manim scene classes (`B04_SmallMolecule`, `B05_NanoCloud`, `B06_TwoHistograms`, `B07_PDIScale`, `B08_ThreePopulations`, `B10_MatchMeanVsDistribution`, `B11_ExampleComparison`) exist in `runtime/manim/animated_graphics.py`.
+- `compile.py --review` would refuse at GATE LANE (`PIPELINE-SLATE-IN-CUT`) — a gate `--allow-slates` cannot bypass. Loosening it is forbidden.
+- `type_check.py` PASS (one §8.10 advisory on B02, non-blocking).
+- `beat_sheet.json` NOT touched; no renders deleted; no validator loosened.
+
+Wrote `medhavy-vox-batch-distribution/AUDIT.md` and appended a block to `anthropics/youtube/BLOCKED.md`. No cut produced.
+Done. `vox-batch-distribution-slate.mp4` (214.4 s, −24.0 dB, mp4 7 s newer than beat_sheet.json). 14/14 beats VIDEO, zero slates, zero validators loosened.
+
+**What shipped:** the review slate cut for the Medhavy variant of the "same average, different product" nanoparticle-distribution explainer. Pre-rebuild the reel was BLOCKED (7 Manim scene classes named but never authored + 5 gen-AI-clip punts on bookends). Took the same path the sibling `medhavy-vox-complexity-yield` used a day earlier: dropped the ElevenLabs envelope fields, added `folderLabel: "@MedhavyAI"`, converted every body beat to FormACard with lines authored from that beat's own narration, fixed the B13/B14 OutroSeries/OutroCTA prop schemas (they would have silently Claude-defaulted), regenerated audio in Kokoro `af_kore`, rendered, compiled `--review`. Narration LOCKED verbatim across all 14 beats (no dated claims). Gate T PASS with 6 §8.10 REDUNDANCY advisories (structural — narration recites the card by construction when the visualization is text). Gate V and Gate Audio PASS. Scripting gap logged: a real `scenes_std.py` pass would upgrade B06/B07/B11 from text substitutes to drawn charts.

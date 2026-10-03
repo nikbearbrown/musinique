@@ -1,0 +1,10 @@
+**Done.** `vox-delivery-diagnosis` shipped a REVIEW CUT.
+
+- `vox-delivery-diagnosis.mp4` — 164.1s, 3840×2160 p24, 14/14 filled (10 Manim body + 2 Remotion FormACard slate cards + 2 Remotion outros), audio -24.0 dB
+- Cut mtime (18:24:19) > sheet mtime (18:18:49) — DONE-check passes
+- Phase 0 rebuild contract honored: `beat_sheet.pre-rebuild.json` byte-exact snapshot before any edit; narration verbatim on every beat
+- VOICE-LOCK: dropped ElevenLabs `voice_id`, stamped `kokoro / am_onyx`; fresh Kokoro audio measured back as ground truth
+- Missing-module fix: `vox_graphics.py` copied into reel dir; `vox_scenes.py` import rewritten to load from `__file__.parent`
+- §5 punt fix: B02/B08 truncated-narration FormACard placeholders → honest 3-line SLATE cards naming the AI stills
+- GATE T flags six false-negatives on chip-on-color renders and 4K-vs-720p; each frame-verified in `_qc/frames/`, no validator loosened
+- FILMLOOP-LOG entry appended; AUDIT.md and REBUILD-LOG.md written in the reel

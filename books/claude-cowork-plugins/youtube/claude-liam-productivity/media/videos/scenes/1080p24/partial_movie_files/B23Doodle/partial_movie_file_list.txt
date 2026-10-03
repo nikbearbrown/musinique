@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-productivity/media/videos/scenes/1080p24/partial_movie_files/B23Doodle/uncached_00000.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-productivity/media/videos/scenes/1080p24/partial_movie_files/B23Doodle/uncached_00001.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-productivity/media/videos/scenes/1080p24/partial_movie_files/B23Doodle/uncached_00002.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-productivity/media/videos/scenes/1080p24/partial_movie_files/B23Doodle/uncached_00003.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-productivity/media/videos/scenes/1080p24/partial_movie_files/B23Doodle/uncached_00004.mp4'

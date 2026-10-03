@@ -1,0 +1,114 @@
+module Anthropic
+  module Models
+    module Beta
+      type environment_create_params =
+        {
+          name: String,
+          config: Anthropic::Models::Beta::EnvironmentCreateParams::config?,
+          description: String?,
+          metadata: ::Hash[Symbol, String],
+          scope: Anthropic::Models::Beta::EnvironmentCreateParams::scope?,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String
+        }
+        & Anthropic::Internal::Type::request_parameters
+
+      class EnvironmentCreateParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        attr_accessor name: String
+
+        attr_accessor config: Anthropic::Models::Beta::EnvironmentCreateParams::config?
+
+        attr_accessor description: String?
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_accessor scope: Anthropic::Models::Beta::EnvironmentCreateParams::scope?
+
+        attr_reader betas: ::Array[Anthropic::Models::anthropic_beta]?
+
+        def betas=: (
+          ::Array[Anthropic::Models::anthropic_beta]
+        ) -> ::Array[Anthropic::Models::anthropic_beta]
+
+        attr_reader workspace_id: String?
+
+        def workspace_id=: (String) -> String
+
+        def initialize: (
+          name: String,
+          ?config: Anthropic::Models::Beta::EnvironmentCreateParams::config?,
+          ?description: String?,
+          ?metadata: ::Hash[Symbol, String],
+          ?scope: Anthropic::Models::Beta::EnvironmentCreateParams::scope?,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          config: Anthropic::Models::Beta::EnvironmentCreateParams::config?,
+          description: String?,
+          metadata: ::Hash[Symbol, String],
+          scope: Anthropic::Models::Beta::EnvironmentCreateParams::scope?,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String,
+          request_options: Anthropic::RequestOptions
+        }
+
+        type config =
+          Anthropic::Beta::BetaCloudConfigParams
+          | Anthropic::Beta::BetaSelfHostedConfigParams
+
+        module Config
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :cloud | :self_hosted
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            CLOUD: :cloud
+            SELF_HOSTED: :self_hosted
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::EnvironmentCreateParams::Config::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::EnvironmentCreateParams::config]
+
+          def self.new:
+            (
+              type: :cloud | "cloud",
+              ?networking: Anthropic::Models::Beta::BetaCloudConfigParams::networking?,
+              ?packages: Anthropic::Beta::BetaPackagesParams?
+            ) -> Anthropic::Beta::BetaCloudConfigParams
+            | (
+              type: :self_hosted | "self_hosted"
+            ) -> Anthropic::Beta::BetaSelfHostedConfigParams
+            | (
+              type: Anthropic::Models::Beta::EnvironmentCreateParams::Config::type_
+              | String,
+              ?networking: Anthropic::Models::Beta::BetaCloudConfigParams::networking?,
+              ?packages: Anthropic::Beta::BetaPackagesParams?
+            ) -> Anthropic::Models::Beta::EnvironmentCreateParams::config
+        end
+
+        type scope = :organization | :account
+
+        module Scope
+          extend Anthropic::Internal::Type::Enum
+
+          ORGANIZATION: :organization
+          ACCOUNT: :account
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::EnvironmentCreateParams::scope]
+        end
+      end
+    end
+  end
+end

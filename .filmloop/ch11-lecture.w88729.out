@@ -1,0 +1,7 @@
+Reel done. `cancer-nanomedicine-ch11-characterization-manufacturing.mp4` — 12 slides, 679 s (11.3 min), audio=REAL, mean_volume −18.5 dB, mp4 (Aug 31 07:15) newer than beat_sheet.json (Jul 12 17:05).
+
+- **Format:** HTML lecture deck — most PHASE 1 checks N/A (no bookends, ClaudeComposerAsk, verdict, Your-Turn, Manim charts, cards, lens).
+- **Applicable checks:** all PASS. Pacing 2.02–2.56 wps across all 12 segments; punt sweep clean; type_check GATE T PASS; brand fields consistent (@NikBearBrown, EL Bear clone).
+- **Rebuild contract:** `beat_sheet.pre-rebuild.json` byte-exact backup created; sheet never edited.
+- **Gate V:** 7 frames read (t=15/100/200/340/480/600/660 s) — no BLOCKER, no MAJOR. Zero validators loosened, zero downgrades.
+- Logged to `youtube/FILMLOOP-LOG.md`.

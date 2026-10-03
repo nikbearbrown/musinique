@@ -1,0 +1,15 @@
+Done. `nbb-ifp-pressure-barrier` shipped a review slate cut.
+
+**Deliverable**: `ifp-pressure-barrier-slate.mp4` — 256.6s, 13/13 beats VIDEO (zero slates), mean_volume −23.9 dB, mtime 19.6 s newer than sheet.
+
+**What changed** (all before final compile — narration LOCKED):
+- Stripped 3 trailing BVDT/BHTF/BOUT placeholder shells (duplicated NBB01–03 with real content).
+- NBB00 greeting `"Your turn."` → `"Marhaba, Liam."` (world-hello, distinct from adjacent Namaste/Jambo/Zdravo/Aloha).
+- NBB01 verdict: authored 3 real key findings + heading `"IFP: physics fights delivery"` from body nouns/numbers.
+- NBB02 your-turn: bracket-template command → real IFP exercise.
+- B01 FormBCard: 14-word title + `"Key point one/two/three"` empty subs → `"The IFP problem"` + 3 real cards.
+- B04: source Manim scene had broken `vox_graphics` import (parents[3] path wrong) → converted to FormBCard three-panel comparison.
+- B06/B07/B08 `shot.source: null` → authored FormBCard specs from each beat's narration.
+- Removed broken `../ifp-pressure-barrier/` source refs (source reel has no built mp3s/clips — Cohort B).
+
+**Gates**: TYPECHECK PASS · content-check PASS · frame-check PASS · lane-check PASS · GATE AUDIO PASS · Gate V (sampled frames) PASS on all real beats. Zero validators loosened. `AUDIT.md` + `REBUILD-LOG.md` + FILMLOOP-LOG entry written; `beat_sheet.pre-rebuild.json` preserved byte-exact.

@@ -1,0 +1,89 @@
+module Anthropic
+  module Models
+    type error_object =
+      Anthropic::InvalidRequestError
+      | Anthropic::AuthenticationError
+      | Anthropic::BillingError
+      | Anthropic::PermissionError
+      | Anthropic::NotFoundError
+      | Anthropic::RateLimitError
+      | Anthropic::GatewayTimeoutError
+      | Anthropic::APIErrorObject
+      | Anthropic::OverloadedError
+
+    module ErrorObject
+      extend Anthropic::Internal::Type::Union
+
+      type type_ =
+        :invalid_request_error
+        | :authentication_error
+        | :billing_error
+        | :permission_error
+        | :not_found_error
+        | :rate_limit_error
+        | :timeout_error
+        | :api_error
+        | :overloaded_error
+
+      module Type
+        extend Anthropic::Internal::Type::Enum
+
+        INVALID_REQUEST_ERROR: :invalid_request_error
+        AUTHENTICATION_ERROR: :authentication_error
+        BILLING_ERROR: :billing_error
+        PERMISSION_ERROR: :permission_error
+        NOT_FOUND_ERROR: :not_found_error
+        RATE_LIMIT_ERROR: :rate_limit_error
+        TIMEOUT_ERROR: :timeout_error
+        API_ERROR: :api_error
+        OVERLOADED_ERROR: :overloaded_error
+
+        def self?.values: -> ::Array[Anthropic::Models::ErrorObject::type_]
+      end
+
+      def self?.variants: -> ::Array[Anthropic::Models::error_object]
+
+      def self.new:
+        (
+          type: :invalid_request_error | "invalid_request_error",
+          message: String
+        ) -> Anthropic::InvalidRequestError
+        | (
+          type: :authentication_error | "authentication_error",
+          message: String
+        ) -> Anthropic::AuthenticationError
+        | (
+          type: :billing_error | "billing_error",
+          message: String
+        ) -> Anthropic::BillingError
+        | (
+          type: :permission_error | "permission_error",
+          message: String
+        ) -> Anthropic::PermissionError
+        | (
+          type: :not_found_error | "not_found_error",
+          message: String
+        ) -> Anthropic::NotFoundError
+        | (
+          type: :rate_limit_error | "rate_limit_error",
+          message: String
+        ) -> Anthropic::RateLimitError
+        | (
+          type: :timeout_error | "timeout_error",
+          message: String
+        ) -> Anthropic::GatewayTimeoutError
+        | (
+          type: :api_error | "api_error",
+          message: String
+        ) -> Anthropic::APIErrorObject
+        | (
+          type: :overloaded_error | "overloaded_error",
+          message: String
+        ) -> Anthropic::OverloadedError
+        | (
+          type: Anthropic::Models::ErrorObject::type_ | String,
+          message: String
+        ) -> Anthropic::Models::error_object
+    end
+  end
+end

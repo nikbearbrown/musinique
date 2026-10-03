@@ -1,0 +1,23 @@
+All gates clear. Done.
+
+---
+
+**FILMLOOP SUMMARY — claude-liam-clinical-trial-protocol-skill**
+
+**Built:** `claude-liam-clinical-trial-protocol-skill.mp4` — 96.1s, 4.8 MB, 7/7 VIDEO beats, 0 slates. mp4 is 13.2 seconds newer than beat_sheet. Audio stream present, mean_volume −23.9 dB (GATE AUDIO PASS).
+
+**Checks fixed (8):**
+1. `modelLabel "Opus 4.8"` → `"Opus 4.7"` in 3 places (metadata + B00 + BHTF props)
+2. B03 sparkLine 6→4 words
+3. 6 truncation corruption artifacts cleaned from narration and props
+4. GATE T §8.10: BVDT narration recited card (0.84) — rewritten to discuss-not-recite (→ 0.11)
+5. GATE T §8.5: B03 body prop 16→12 words
+6. B02 double-terracotta: "Read SKILL.md" `accent:true → false`
+
+**Punts authored:** 0 (none were present)
+
+**Verdict:** Kept — content is specific, not a placeholder. Narration rewritten per rebuild-contract authorization.
+
+**Gate V:** BLOCKER 0 · MAJOR 2 downgraded with logged justification (B03 and BOUT: SkillTeardownMechanism / ClaudeTitleOutro template underfill, pre-existing, component-level fix required)
+
+**GATE T:** PASS

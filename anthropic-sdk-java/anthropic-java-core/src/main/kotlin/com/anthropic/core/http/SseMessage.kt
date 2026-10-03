@@ -1,0 +1,86 @@
+package com.anthropic.core.http
+
+import com.anthropic.core.checkRequired
+import com.anthropic.core.contentToString
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.databind.json.JsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Objects
+
+internal class SseMessage
+private constructor(
+    val jsonMapper: JsonMapper,
+    val event: String?,
+    val data: String,
+    val id: String?,
+    val retry: Int?,
+    /**
+     * The message's original wire lines (fields the decoder doesn't model included, like comment
+     * lines), for byte-exact pass-through.
+     */
+    val rawLines: List<String>,
+) {
+
+    companion object {
+        @JvmStatic fun builder() = Builder()
+    }
+
+    class Builder internal constructor() {
+
+        private var jsonMapper: JsonMapper? = null
+        private var event: String? = null
+        private var data: String = ""
+        private var id: String? = null
+        private var retry: Int? = null
+        private var rawLines: List<String> = emptyList()
+
+        fun jsonMapper(jsonMapper: JsonMapper) = apply { this.jsonMapper = jsonMapper }
+
+        fun event(event: String?) = apply { this.event = event }
+
+        fun data(data: String) = apply { this.data = data }
+
+        fun id(id: String?) = apply { this.id = id }
+
+        fun retry(retry: Int?) = apply { this.retry = retry }
+
+        fun rawLines(rawLines: List<String>) = apply { this.rawLines = rawLines }
+
+        fun build(): SseMessage =
+            SseMessage(checkRequired("jsonMapper", jsonMapper), event, data, id, retry, rawLines)
+    }
+
+    inline fun <reified T> json(): T =
+        try {
+            jsonMapper.readerFor(jacksonTypeRef<T>()).readValue(jsonNode)
+        } catch (e: Exception) {
+            throw AnthropicInvalidDataException("Error reading response", e)
+        }
+
+    private val jsonNode by lazy {
+        try {
+            jsonMapper.readTree(data)
+        } catch (e: Exception) {
+            throw AnthropicInvalidDataException("Error reading response", e)
+        }
+    }
+
+    // `rawLines` is deliberately excluded from equality: the wire framing (comments, padding,
+    // field order) is incidental to which message was received.
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is SseMessage &&
+            event == other.event &&
+            data == other.data &&
+            id == other.id &&
+            retry == other.retry
+    }
+
+    override fun hashCode(): Int = Objects.hash(event, data, id, retry)
+
+    override fun toString(): String =
+        "SseMessage{event=${event.contentToString()}, data=$data, id=${id.contentToString()}, retry=${retry.contentToString()}}"
+}

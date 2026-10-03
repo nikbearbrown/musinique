@@ -1,0 +1,325 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 208,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "I'm Zac and I teach high schoolers\nin San Francisco."
+    } ]
+  }, {
+    "tStartMs": 3461,
+    "dDurationMs": 3629,
+    "segs": [ {
+      "utf8": "Nothing matters more than really knowing\nhow my students are performing."
+    } ]
+  }, {
+    "tStartMs": 7090,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "But the assessment scores, exit tickets,"
+    } ]
+  }, {
+    "tStartMs": 9801,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "attendance trackers,"
+    } ]
+  }, {
+    "tStartMs": 11052,
+    "dDurationMs": 3629,
+    "segs": [ {
+      "utf8": "all live in different places\nand can be really difficult to connect."
+    } ]
+  }, {
+    "tStartMs": 14764,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "Pulling it together into the best possible\nplan usually means giving up my weekend."
+    } ]
+  }, {
+    "tStartMs": 19352,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "Here's how Claude helps me."
+    } ]
+  }, {
+    "tStartMs": 21646,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "The first time I opened it,\nit asked about my classroom."
+    } ]
+  }, {
+    "tStartMs": 24774,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "What I teach. Which grades."
+    } ]
+  }, {
+    "tStartMs": 26985,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "So it already knows my classroom\nbefore I ask it anything."
+    } ]
+  }, {
+    "tStartMs": 29904,
+    "dDurationMs": 3212,
+    "segs": [ {
+      "utf8": "Now it's the middle of the year\nand all my class data"
+    } ]
+  }, {
+    "tStartMs": 33116,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "is sitting in one folder on my desktop."
+    } ]
+  }, {
+    "tStartMs": 35201,
+    "dDurationMs": 4922,
+    "segs": [ {
+      "utf8": "Roster, fall and winter diagnostics, \nattendance, my own grouping notes,"
+    } ]
+  }, {
+    "tStartMs": 40123,
+    "dDurationMs": 3337,
+    "segs": [ {
+      "utf8": "22 kids, and one prep period \nto make sense of it."
+    } ]
+  }, {
+    "tStartMs": 43501,
+    "dDurationMs": 4797,
+    "segs": [ {
+      "utf8": "So instead of opening them one at a time,\nI just hand Claude the whole folder."
+    } ]
+  }, {
+    "tStartMs": 48298,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "Claude for Teachers is designed\nwith student privacy in mind."
+    } ]
+  }, {
+    "tStartMs": 51551,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "I choose what it sees."
+    } ]
+  }, {
+    "tStartMs": 52969,
+    "dDurationMs": 4004,
+    "segs": [ {
+      "utf8": "I tell Claude, “Look in this folder\nfor the latest about my algebra class.”"
+    } ]
+  }, {
+    "tStartMs": 56973,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "“How are my students doing?”"
+    } ]
+  }, {
+    "tStartMs": 58266,
+    "dDurationMs": 3962,
+    "segs": [ {
+      "utf8": "“Give me a report on my classroom\nand how everyone is performing.”"
+    } ]
+  }, {
+    "tStartMs": 63563,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "It doesn't jump straight to an answer."
+    } ]
+  }, {
+    "tStartMs": 65732,
+    "dDurationMs": 5047,
+    "segs": [ {
+      "utf8": "It reads everything first and tells me\nwhat it's looking at as it goes."
+    } ]
+  }, {
+    "tStartMs": 71071,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "The report opens right next to the chat."
+    } ]
+  }, {
+    "tStartMs": 73698,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "Proficiency more than doubled since fall."
+    } ]
+  }, {
+    "tStartMs": 75992,
+    "dDurationMs": 4505,
+    "segs": [ {
+      "utf8": "Most of my class hit their growth target,\nall grouped by how they're performing now."
+    } ]
+  }, {
+    "tStartMs": 80497,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "And it confirms something\nI'd already had a feeling about."
+    } ]
+  }, {
+    "tStartMs": 82957,
+    "dDurationMs": 4213,
+    "segs": [ {
+      "utf8": "My two chronically absent kids are\nthe same two whose scores have gone flat."
+    } ]
+  }, {
+    "tStartMs": 87212,
+    "dDurationMs": 2377,
+    "segs": [ {
+      "utf8": "I'd watched those absences pile up."
+    } ]
+  }, {
+    "tStartMs": 89589,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "Now I've got the data to bring it back up,"
+    } ]
+  }, {
+    "tStartMs": 92092,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "and to bring to their families when I call."
+    } ]
+  }, {
+    "tStartMs": 94511,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "Claude even gives me a place to start."
+    } ]
+  }, {
+    "tStartMs": 97347,
+    "dDurationMs": 3336,
+    "segs": [ {
+      "utf8": "Reteach graphing equations\nwith real world context."
+    } ]
+  }, {
+    "tStartMs": 100683,
+    "dDurationMs": 4046,
+    "segs": [ {
+      "utf8": "So now I actually understand\nhow my whole class is performing."
+    } ]
+  }, {
+    "tStartMs": 104729,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "The next thing I want is to \nput that to work for tomorrow."
+    } ]
+  }, {
+    "tStartMs": 107732,
+    "dDurationMs": 5923,
+    "segs": [ {
+      "utf8": "I tell Claude, “Put everyone into small\ngroups: reteach, on-level, extension.”"
+    } ]
+  }, {
+    "tStartMs": 113655,
+    "dDurationMs": 3962,
+    "segs": [ {
+      "utf8": "“And make a differentiated lesson plan\nwith student worksheets for each group.”"
+    } ]
+  }, {
+    "tStartMs": 117617,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "Claude pulls up the differentiation\nskill that comes built in,"
+    } ]
+  }, {
+    "tStartMs": 120495,
+    "dDurationMs": 3629,
+    "segs": [ {
+      "utf8": "and it grounds the lessons\nin the standards I'm actually held to."
+    } ]
+  }, {
+    "tStartMs": 124165,
+    "dDurationMs": 4088,
+    "segs": [ {
+      "utf8": "It gets those from the Learning Commons\nconnector, not from guessing."
+    } ]
+  }, {
+    "tStartMs": 128378,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "I end up with three worksheets\nand a plan for me."
+    } ]
+  }, {
+    "tStartMs": 131673,
+    "dDurationMs": 2335,
+    "segs": [ {
+      "utf8": "Every group's\nworking towards the same goal."
+    } ]
+  }, {
+    "tStartMs": 134008,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "What changes is how each one gets there."
+    } ]
+  }, {
+    "tStartMs": 137303,
+    "dDurationMs": 4713,
+    "segs": [ {
+      "utf8": "My extension learners get additional \nproblem solving tasks that \npreview unit five systems."
+    } ]
+  }, {
+    "tStartMs": 142016,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "Claude noticed that my reteach group includes \nnewcomers and multilingual learners,"
+    } ]
+  }, {
+    "tStartMs": 144310,
+    "dDurationMs": 6507,
+    "segs": [ {
+      "utf8": "so those worksheets include explicit \nvocabulary with sentence stems."
+    } ]
+  }, {
+    "tStartMs": 150942,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "Before it finishes, Claude asks \nme about a few small changes"
+    } ]
+  }, {
+    "tStartMs": 154237,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "it could make, and I pick\nthe ones that fit my classroom."
+    } ]
+  }, {
+    "tStartMs": 157949,
+    "dDurationMs": 3378,
+    "segs": [ {
+      "utf8": "Claude helps with the analysis\nand planning,"
+    } ]
+  }, {
+    "tStartMs": 161327,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "and what reaches my kids \ntomorrow is my call."
+    } ]
+  }, {
+    "tStartMs": 162662,
+    "dDurationMs": 4129,
+    "segs": [ {
+      "utf8": "Claude for Teachers is free for\nevery verified U.S. K-12 teacher."
+    } ]
+  }, {
+    "tStartMs": 166875,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "Make sense of your data, differentiate\nfor every student,"
+    } ]
+  }, {
+    "tStartMs": 169836,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "and spend your time teaching,\nnot buried in spreadsheets."
+    } ]
+  } ]
+}

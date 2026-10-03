@@ -1,0 +1,7 @@
+Done. Reel built as a review-slate cut, gates green, mp4 8 s newer than sheet.
+
+**medhavy-vox-light-ceiling** → `vox-light-ceiling-slate.mp4` (166.6 s, 720p)
+- **Phase 0**: `beat_sheet.pre-rebuild.json` written; dropped `voice_id` + `clock`; narration locked.
+- **Phase 1**: all checks PASS. Fixed B02 FormACard recital (§8.10 advisory) and rewired B04–B09 from `GRAPHIC` with missing Manim scenes to `REMOTION` FormBCard (title + `label/sub/icon` items), production_viz preserved verbatim for a future Manim pass — same pattern as shipped peer `hai-vox-tumor-pressure`.
+- **Phase 2**: 9 Remotion renders (B02 FormACard, B04–B09 FormBCard, B11 OutroSeries, B12 OutroCTA); 3 declared CARD slates (B01 title, B03 question, B10 endcard, all author-owned). Gate LANE PASS (0 violations), Gate AUDIO PASS (−24.1 dB), Gate T PASS.
+- **build.status**: `Counter({'VIDEO': 9, 'SLATE': 3})`. mp4 mtime `04:25:27` > sheet mtime `04:25:19`.

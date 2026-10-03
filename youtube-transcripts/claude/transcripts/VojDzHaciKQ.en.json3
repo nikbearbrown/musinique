@@ -1,0 +1,253 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 12320,
+    "dDurationMs": 1191,
+    "segs": [ {
+      "utf8": "Hey, I'm Lydia."
+    } ]
+  }, {
+    "tStartMs": 13520,
+    "dDurationMs": 2360,
+    "segs": [ {
+      "utf8": "I work on Claude Code here at Anthropic."
+    } ]
+  }, {
+    "tStartMs": 15880,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "Today we're launching Claude Tag,\nwhich lets Claude collaborate"
+    } ]
+  }, {
+    "tStartMs": 19080,
+    "dDurationMs": 1562,
+    "segs": [ {
+      "utf8": "right alongside your team."
+    } ]
+  }, {
+    "tStartMs": 20642,
+    "dDurationMs": 2918,
+    "segs": [ {
+      "utf8": "At Anthropic, we've been tagging\nClaude in for most of this year,"
+    } ]
+  }, {
+    "tStartMs": 23560,
+    "dDurationMs": 2920,
+    "segs": [ {
+      "utf8": "so honestly, all of this\nis just how we work now."
+    } ]
+  }, {
+    "tStartMs": 26480,
+    "dDurationMs": 5088,
+    "segs": [ {
+      "utf8": "And across Anthropic, Claude Tag opens 65%\nof our product pull requests."
+    } ]
+  }, {
+    "tStartMs": 31568,
+    "dDurationMs": 4629,
+    "segs": [ {
+      "utf8": "So for example here, we have a team\nabout a week out from shipping a product."
+    } ]
+  }, {
+    "tStartMs": 37531,
+    "dDurationMs": 1789,
+    "segs": [ {
+      "utf8": "So, what's going on in engineering?"
+    } ]
+  }, {
+    "tStartMs": 39720,
+    "dDurationMs": 3900,
+    "segs": [ {
+      "utf8": "Drew heard from a sales rep\nthat one feature—Scheduled Exports—"
+    } ]
+  }, {
+    "tStartMs": 43620,
+    "dDurationMs": 2700,
+    "segs": [ {
+      "utf8": "is the thing their biggest deals\nare waiting on."
+    } ]
+  }, {
+    "tStartMs": 46320,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "He doesn't own it,\nso he asks the person who does."
+    } ]
+  }, {
+    "tStartMs": 50040,
+    "dDurationMs": 2200,
+    "segs": [ {
+      "utf8": "Notice that this is all multi-player."
+    } ]
+  }, {
+    "tStartMs": 52640,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "Nadia tags Claude,\nthen Claude keeps up with the group thread,"
+    } ]
+  }, {
+    "tStartMs": 56000,
+    "dDurationMs": 2600,
+    "segs": [ {
+      "utf8": "reacting to product decisions\nmade in real time."
+    } ]
+  }, {
+    "tStartMs": 59758,
+    "dDurationMs": 2752,
+    "segs": [ {
+      "utf8": "It opens the PR and it lands the change."
+    } ]
+  }, {
+    "tStartMs": 65430,
+    "dDurationMs": 2991,
+    "segs": [ {
+      "utf8": "And the cool part is that Claude\nknew what the feature was"
+    } ]
+  }, {
+    "tStartMs": 68432,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "and where in the codebase to go."
+    } ]
+  }, {
+    "tStartMs": 69892,
+    "dDurationMs": 3669,
+    "segs": [ {
+      "utf8": "It scoped each channel\nand the context each team has,"
+    } ]
+  }, {
+    "tStartMs": 73561,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "and over time, it builds memory\nas the work happens."
+    } ]
+  }, {
+    "tStartMs": 77520,
+    "dDurationMs": 2131,
+    "segs": [ {
+      "utf8": "Claude knows here that\nwhat it just pushed"
+    } ]
+  }, {
+    "tStartMs": 79651,
+    "dDurationMs": 1333,
+    "segs": [ {
+      "utf8": "affects launch marketing."
+    } ]
+  }, {
+    "tStartMs": 81248,
+    "dDurationMs": 1612,
+    "segs": [ {
+      "utf8": "Claude keeps the team moving"
+    } ]
+  }, {
+    "tStartMs": 82861,
+    "dDurationMs": 2819,
+    "segs": [ {
+      "utf8": "without the typical cross-team\ncommunication lag."
+    } ]
+  }, {
+    "tStartMs": 86440,
+    "dDurationMs": 2759,
+    "segs": [ {
+      "utf8": "Also, notice that Priya didn't open drive."
+    } ]
+  }, {
+    "tStartMs": 89800,
+    "dDurationMs": 1640,
+    "segs": [ {
+      "utf8": "Claude made the edit itself;"
+    } ]
+  }, {
+    "tStartMs": 91440,
+    "dDurationMs": 3472,
+    "segs": [ {
+      "utf8": "it has its own accounts\nand its own permissions."
+    } ]
+  }, {
+    "tStartMs": 94912,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "Claude has access\nto the systems it needs"
+    } ]
+  }, {
+    "tStartMs": 96914,
+    "dDurationMs": 2286,
+    "segs": [ {
+      "utf8": "on a per-team,\nper-channel basis."
+    } ]
+  }, {
+    "tStartMs": 99200,
+    "dDurationMs": 3344,
+    "segs": [ {
+      "utf8": "So, Claude in the legal channel\ncan see contract information."
+    } ]
+  }, {
+    "tStartMs": 102560,
+    "dDurationMs": 2680,
+    "segs": [ {
+      "utf8": "In the engineering channel,\nit edits the codebase."
+    } ]
+  }, {
+    "tStartMs": 105240,
+    "dDurationMs": 3960,
+    "segs": [ {
+      "utf8": "But if you tag Claude in the legal channel\nto edit the codebase, it won't."
+    } ]
+  }, {
+    "tStartMs": 109200,
+    "dDurationMs": 3769,
+    "segs": [ {
+      "utf8": "Not because it's being polite,\nbut because it literally cannot see it."
+    } ]
+  }, {
+    "tStartMs": 112988,
+    "dDurationMs": 1812,
+    "segs": [ {
+      "utf8": "Memory respects the same boundaries."
+    } ]
+  }, {
+    "tStartMs": 114804,
+    "dDurationMs": 3920,
+    "segs": [ {
+      "utf8": "So what it learned in a private channel\nor a DM stays there."
+    } ]
+  }, {
+    "tStartMs": 118724,
+    "dDurationMs": 2356,
+    "segs": [ {
+      "utf8": "Just to repeat:\nClaude has its own account,"
+    } ]
+  }, {
+    "tStartMs": 121080,
+    "dDurationMs": 2023,
+    "segs": [ {
+      "utf8": "so every credential use is logged."
+    } ]
+  }, {
+    "tStartMs": 123103,
+    "dDurationMs": 3794,
+    "segs": [ {
+      "utf8": "Tagging in Claude has changed how I work,\nand how our teams at Anthropic work."
+    } ]
+  }, {
+    "tStartMs": 126897,
+    "dDurationMs": 4004,
+    "segs": [ {
+      "utf8": "Just add Claude to one channel,\ntag it in, and see what happens."
+    } ]
+  }, {
+    "tStartMs": 130901,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "Let us know what you think."
+    } ]
+  } ]
+}

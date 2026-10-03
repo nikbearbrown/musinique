@@ -1,0 +1,8 @@
+DONE. `vox-delivery-funnel-slate.mp4` shipped:
+
+- **Sheet mtime 00:41 < mp4 mtime 00:44** — fresh, no post-compile sheet edits.
+- **15/15 beats VIDEO** (Counter: `{'VIDEO': 15}`), zero slates.
+- **Gate T PASS**, **Gate LANE PASS**, **Gate AUDIO PASS** (mean −27.5 dB).
+- **Duration 178.3 s**.
+
+**Key fixes**: rebuilt envelope (dropped `voice_id`/`clock`/legacy metadata); removed legacy B12/B13 OutroXxx per peer strategy; B00 spark `"Hola, Liam"` (Spanish, unused by rebuilt peers); authored real BVDT verdict + narration from body content; authored BHTF close with Popperian rubric; converted 11 SLATE punts (gen-AI + missing Manim + placeholder card) to real FormBCard renders from LOCKED narration; two §8.9 truncation false-positives rephrased. `beat_sheet.pre-rebuild.json`, `REBUILD-LOG.md`, `AUDIT.md`, `TYPECHECK.md` written; FILMLOOP-LOG entry appended.

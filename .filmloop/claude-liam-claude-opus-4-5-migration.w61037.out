@@ -1,0 +1,14 @@
+Done. Final state summary:
+
+**claude-liam-claude-opus-4-5-migration — DONE**
+
+`claude-liam-claude-opus-4-5-migration.mp4` written at 11:45 (beat_sheet.json 11:44). 325.4s, 7/7 VIDEO beats, mean_volume −23.8 dB.
+
+**3 fixes applied before compile:**
+1. BHTF greeting `"Your Turn"` → `"Your turn."` (HANDOFF LAW)
+2. modelLabel `"Opus 4.8"` → `"Opus 4.7"` in B00 and BHTF (datable claim — Opus 4.8 does not exist)
+3. B05 sparkLine 13 words → `"Solid frame. Real gaps."` (GATE T §8.5 fix; FAIL → PASS)
+
+**1 item logged, not fixed:** B01 pacing 1.79 wps below 2.0 floor — narration locked by rebuild contract.
+
+**Gate V:** 0 BLOCKER, 0 MAJOR on all 7 real beats.

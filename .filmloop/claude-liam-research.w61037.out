@@ -1,0 +1,15 @@
+Done. Final state:
+
+```
+claude-liam-research-slate.mp4  393.0s  Aug 26 11:04:24
+beat_sheet.json                          Aug 26 11:04:10  ← slate is newer ✓
+GATE AUDIO: PASS  mean_volume -25.8 dB
+slots: 33/33 filled — VIDEO:27  MANIM:6  SLATE:0
+```
+
+**What changed this session (Phase 2 continuation):**
+
+- **Gate V** — found and fixed systematic text overflow in all 6 doodle beats (B02, B08, B13, B16, B20, B21): single-line body strings were rendering off the right edge of the canvas. Fixed by writing proper 2-line body text with `\n` in scenes.py, re-rendered all 6, recompiled. All other real beats clean.
+- **FILMLOOP-LOG.md** written at `books/claude-cowork-plugins/youtube/FILMLOOP-LOG.md`.
+
+Bookends, fixed B12 (ClaudeComposerAsk), authored BVDT verdict, corrected BHTF folderLabel, all Manim scene beats, all doodle beats — visually confirmed clean. Factory run complete.

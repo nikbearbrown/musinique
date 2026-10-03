@@ -1,0 +1,10 @@
+DONE.
+
+**cancer-nanomedicine-ch01-what-counts** built as an HTML lecture-deck reel — same pipeline as ch03/ch08/ch12 built earlier today.
+
+- `beat_sheet.pre-rebuild.json` backed up byte-exact (sha1 `d9c6d091…`); sheet UNTOUCHED.
+- All 12 `actual_duration_s` already present and match ffprobe — no writeback needed.
+- PHASE 1: checks 2/3/4/5/5b/5c/7/8 N/A for lecture-deck format. Checks 1/6/9/10/11 all PASS. Pacing 2.17–2.66 wps across 12 segments.
+- `render.py`: 12/12 slides screenshot from `deck.html`, 12/12 clips concat → `cancer-nanomedicine-ch01-what-counts.mp4` (541.6 s, 9.0 min, audio=REAL).
+- Gate V: four PNGs read (S01 HOOK, S06 CHARACTERIZATION, S08 TWO LIPOSOMES, S12 CLOSE) — all clean, no BLOCKER, no MAJOR. Master `mean_volume −18.5 dB` (max −0.5 dB).
+- mp4 mtime 07:08 vs sheet mtime Jul 12 17:05 — cut newest. Supervisor DONE check passes.

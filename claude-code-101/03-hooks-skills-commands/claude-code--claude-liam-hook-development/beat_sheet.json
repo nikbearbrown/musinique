@@ -1,0 +1,405 @@
+{
+  "metadata": {
+    "title": "Claude, Hook Development.",
+    "slug": "claude-liam-hook-development",
+    "topic": "HOOK DEVELOPMENT · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code/plugins/plugin-dev/skills/hook-development/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Enable strict validation only when needed",
+        "Temporary debugging hooks",
+        "Project-specific hook behavior",
+        "Feature flags for hooks",
+        "Best practice:: Document activation mechanism in plugin README so users know how to enable/disable temporary hooks."
+      ],
+      "constraints": [
+        "hooks field is required wrapper containing actual hook events",
+        "$CLAUDE_ENV_FILE - SessionStart only: persist env vars here",
+        "// Bash commands only",
+        "# Only active when flag file exists",
+        "Enable strict validation only when needed",
+        "Cannot hot-swap hooks:",
+        "Must restart Claude Code: exit and run claude again"
+      ],
+      "referenced_files": [
+        "hooks/hooks.json",
+        ".claude/settings.json",
+        "{\"hooks\": {...}}",
+        "$CLAUDE_ENV_FILE",
+        "examples/load-context.sh",
+        "tool_name",
+        "tool_input",
+        "tool_result",
+        "user_prompt",
+        "$TOOL_INPUT"
+      ],
+      "code_signals": [
+        "code block: json",
+        "code block: bash"
+      ],
+      "sections": [
+        "Overview",
+        "Hook Types",
+        "Prompt-Based Hooks (Recommended)",
+        "Command Hooks",
+        "Hook Configuration Formats",
+        "Plugin hooks.json Format",
+        "Settings Format (Direct)",
+        "Hook Events",
+        "PreToolUse",
+        "PostToolUse"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T13:37:18",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is Hook Development. This skill should be used when the user asks to \"create a hook\", \"add a PreToolUse/PostToolUse/Stop hook\", \"validate tool use\", \"implement prompt-based hooks\", \"use ${CLAUDE_PLUGIN_ROOT}\", \"set up event-driven automation\", \"block dangerous commands\", or mentions hook events (PreToolUse, PostToolUse, Stop, SubagentStop, SessionStart, SessionEnd, UserPromptSubmit, PreCompact, Notification). Provides comprehensive guidance for creating and implementing Claude Code plugin hooks with focus on advanced prompt-based hooks API.. Its concrete surface area includes Enable strict validation only when needed; Temporary debugging hooks; Project-specific hook behavior. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "HOOK DEVELOPMENT · ANTHROPIC SKILL",
+            "segment": "Claude, Hook Development.",
+            "command": "Run the Hook Development skill.",
+            "runningText": "reading Hook Development SKILL.md…",
+            "output": [
+              "skill: Hook Development",
+              "This skill should be used when the user asks to \"create a hook\", \"add a…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 42.43,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is Hook Development. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at hooks/hooks.json, .claude/settings.json, {\"hooks\": {...}}, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "Hook Development",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "15k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "examples",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "4 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "Hook Development is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Enable strict validation only when needed; Temporary debugging hooks; Project-specific hook behavior; Feature flags for hooks. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.04,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. hooks field is required wrapper containing actual hook events. That is the constraint in Hook Development — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "hooks field is required wrapper containing actual hook events",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 11.65,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In Hook Development, supporting material: hooks/hooks.json, .claude/settings.json, {\"hooks\": {...}}, $CLAUDE_ENV_FILE; implementation signals: code block: json, code block: bash; sections: Overview, Hook Types, Prompt-Based Hooks (Recommended), Command Hooks. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Enable strict validation only when needed; Temporary debugging hooks; Project-specific hook behavior; hooks/hooks.json; .claude/settings.json; {\"hooks\": {...}}; code block: json; code block: bash",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "Hook Development makes Claude execute one task reliably. The SKILL.md is the spec — This skill should be used when the user asks to \"create a hook\", \"add a…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Hook Development.",
+            "artifactLines": [
+              "Skill: Hook Development — Claude reads SKILL.md before acting",
+              "This skill should be used when the user asks to \"create a hook\", \"add a…",
+              "Capabilities: Enable strict validation only when needed; Temporary debugging hooks; Project-specific hook behavior",
+              "Constraint: hooks field is required wrapper containing actual hook events",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 13.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to this skill should be used when the user asks to \"create a hook\", \"add a. Read the Hook Development skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "HOOK DEVELOPMENT · ANTHROPIC SKILL",
+            "segment": "Claude, Hook Development.",
+            "command": "I want to this skill should be used when the user asks to \"create a hook\", \"add. Read the Hook Development skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 13.8,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Hook Development. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Hook Development.",
+            "handle": "@NikBearBrown",
+            "subline": "Hook Development · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.18,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:37:18"
+      }
+    }
+  ]
+}

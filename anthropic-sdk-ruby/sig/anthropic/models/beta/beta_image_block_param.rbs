@@ -1,0 +1,85 @@
+module Anthropic
+  module Models
+    class BetaImageBlockParam = Beta::BetaImageBlockParam
+
+    module Beta
+      type beta_image_block_param =
+        {
+          source: Anthropic::Models::Beta::BetaImageBlockParam::source,
+          type: :image,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          transformations: Anthropic::Beta::BetaImageTransformationsParam?
+        }
+
+      class BetaImageBlockParam < Anthropic::Internal::Type::BaseModel
+        attr_accessor source: Anthropic::Models::Beta::BetaImageBlockParam::source
+
+        attr_accessor type: :image
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        attr_accessor transformations: Anthropic::Beta::BetaImageTransformationsParam?
+
+        def initialize: (
+          source: Anthropic::Models::Beta::BetaImageBlockParam::source,
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?transformations: Anthropic::Beta::BetaImageTransformationsParam?,
+          ?type: :image
+        ) -> void
+
+        def to_hash: -> {
+          source: Anthropic::Models::Beta::BetaImageBlockParam::source,
+          type: :image,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          transformations: Anthropic::Beta::BetaImageTransformationsParam?
+        }
+
+        type source =
+          Anthropic::Beta::BetaBase64ImageSource
+          | Anthropic::Beta::BetaURLImageSource
+          | Anthropic::Beta::BetaFileImageSource
+
+        module Source
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :base64 | :url | :file
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            BASE64: :base64
+            URL: :url
+            FILE: :file
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaImageBlockParam::Source::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaImageBlockParam::source]
+
+          def self.new:
+            (
+              type: :base64 | "base64",
+              data: String,
+              media_type: Anthropic::Models::Beta::BetaBase64ImageSource::media_type
+            ) -> Anthropic::Beta::BetaBase64ImageSource
+            | (
+              type: :url | "url",
+              url: String
+            ) -> Anthropic::Beta::BetaURLImageSource
+            | (
+              type: :file | "file",
+              file_id: String
+            ) -> Anthropic::Beta::BetaFileImageSource
+            | (
+              type: Anthropic::Models::Beta::BetaImageBlockParam::Source::type_
+              | String,
+              ?data: String,
+              ?media_type: Anthropic::Models::Beta::BetaBase64ImageSource::media_type,
+              ?url: String,
+              ?file_id: String
+            ) -> Anthropic::Models::Beta::BetaImageBlockParam::source
+        end
+      end
+    end
+  end
+end

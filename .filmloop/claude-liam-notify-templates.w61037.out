@@ -1,0 +1,19 @@
+Both show `07:00` at minute resolution, but epoch confirms mp4 (1787742055) is 3 seconds newer than sheet (1787742052). ✓
+
+---
+
+**DONE.**
+
+**claude-liam-notify-templates** — `claude-liam-notify-templates-slate.mp4`, 92.3s / 1:32, all 7 beats VIDEO.
+
+**Checks fixed (Phase 1):**
+- Check 9: `modelLabel: "Opus 4.8"` (non-existent) → `"claude-opus-4-7"` in 3 locations
+- Check 5/4: BVDT artifactLines[1] truncated mid-word → `"Trigger: notify · alert · email · tell ops"`
+- Check 11 (GATE T FAIL): B03 body 21 words de-wordified to 9 words — GATE T PASS
+- 4 narration truncation defects (garbled TTS: `"Load this whenever the ta."`, `"Load ."`, `"escalati."`) — restored from B00 context, all logged in REBUILD-LOG.md; audio regenerated
+
+**Punts authored:** 0 — all 7 beats filled by verified Remotion components  
+**Verdict:** already reel-specific, not authored  
+**Gate V:** PASS — 0 BLOCKER, 0 MAJOR; 1 advisory (SkillTeardown* sparkLine/accent overlap, component-level)  
+**Audio:** GATE AUDIO PASS, −23.9 dB  
+**mp4 newer than sheet:** ✓

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Detecting breaking changes"
+
+TEST_PATHS=(
+	anthropic-java-core/src/test/kotlin/com/anthropic/models
+	anthropic-java-core/src/test/kotlin/com/anthropic/services
+)
+
+for PATHSPEC in "${TEST_PATHS[@]}"; do
+    # Try to check out previous versions of the test files
+    # with the current SDK.
+    git checkout "$1" -- "${PATHSPEC}" 2>/dev/null || true
+done
+
+# Compile the test source set so the Kotlin compiler typechecks the restored
+# old test files against the current SDK. Compilation alone is sufficient to
+# surface a breaking API change; assembling jars (`./scripts/build`) is not
+# needed here.
+./gradlew :anthropic-java-core:testClasses

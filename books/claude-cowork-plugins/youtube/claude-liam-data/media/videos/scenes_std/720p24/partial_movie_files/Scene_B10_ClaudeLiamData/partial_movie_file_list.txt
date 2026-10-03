@@ -1,0 +1,9 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3977736291_2743622331_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_2874094520_3758295366.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_4079250704_675421762.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_730289645_1031918748.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_3804649550_371344028.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_1842824581_4010255300.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_1905074999_2939833903.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-data/media/videos/scenes_std/720p24/partial_movie_files/Scene_B10_ClaudeLiamData/3000796802_397916015_2498421638.mp4'

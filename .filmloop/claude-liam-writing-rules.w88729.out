@@ -1,0 +1,8 @@
+BUILT — `claude-liam-writing-rules.mp4` 277.7s @ 4K, all 7 beats VIDEO (zero slates), GATE T PASS, GATE AUDIO −23.7 dB, master 2m31s newer than sheet, no post-compile sheet edits.
+
+Fixes landed before final compile:
+- Datable claim: B00 `modelLabel` Opus 4.8 → 4.7 (does not exist)
+- §8.5 wordy card: B01 sparkLine 13 → 9 words
+- §8.2 overflow + Gate V overlap: `HookifyTell.tsx` header got safe insets + smaller fontSize, sparkLine raised, redundant callout removed (only this reel uses HookifyTell)
+- Stale renders deleted before rebuild
+- `beat_sheet.pre-rebuild.json`, `REBUILD-LOG.md`, `AUDIT.md`, `youtube/FILMLOOP-LOG.md` all written

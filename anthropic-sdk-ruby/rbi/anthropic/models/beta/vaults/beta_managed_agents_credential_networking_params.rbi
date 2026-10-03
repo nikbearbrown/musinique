@@ -1,0 +1,86 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    module Beta
+      module Vaults
+        module BetaManagedAgentsCredentialNetworkingParams
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::Vaults::BetaManagedAgentsUnrestrictedCredentialNetworkingParams,
+                Anthropic::Beta::Vaults::BetaManagedAgentsLimitedCredentialNetworkingParams
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            UNRESTRICTED =
+              T.let(
+                :unrestricted,
+                Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Type::TaggedSymbol
+              )
+            LIMITED =
+              T.let(
+                :limited,
+                Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type:
+                Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Type::OrSymbol,
+              allowed_hosts: T::Array[String]
+            ).returns(
+              Anthropic::Beta::Vaults::BetaManagedAgentsCredentialNetworkingParams::Variants
+            )
+          end
+          def self.new(
+            type:,
+            # Hostnames on which the secret will be substituted. Each entry is a bare hostname
+            # (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard
+            # (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At
+            # most 16 entries.
+            allowed_hosts: nil
+          )
+          end
+        end
+      end
+    end
+  end
+end

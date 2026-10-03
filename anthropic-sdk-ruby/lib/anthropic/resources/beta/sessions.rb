@@ -1,0 +1,281 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Resources
+    class Beta
+      class Sessions
+        # @return [Anthropic::Resources::Beta::Sessions::Events]
+        attr_reader :events
+
+        # @return [Anthropic::Resources::Beta::Sessions::Resources]
+        attr_reader :resources
+
+        # @return [Anthropic::Resources::Beta::Sessions::Threads]
+        attr_reader :threads
+
+        # Create Session
+        #
+        # Some parameter documentations has been truncated, see
+        # {Anthropic::Models::Beta::SessionCreateParams} for more details.
+        #
+        # @overload create(agent:, environment_id:, budget: nil, initial_events: nil, metadata: nil, resources: nil, title: nil, vault_ids: nil, betas: nil, workspace_id: nil, request_options: {})
+        #
+        # @param agent [Anthropic::Models::Beta::BetaManagedAgentsAgentParams, Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams, String] Body param: Agent identifier. Accepts the `agent` ID string, which pins the late
+        #
+        # @param environment_id [String] Body param: ID of the `environment` defining the container configuration for thi
+        #
+        # @param budget [Anthropic::Models::Beta::BetaManagedAgentsBudgetLimit] Body param: A hard spend ceiling. The session stops issuing new model requests o
+        #
+        # @param initial_events [Array<Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserMessageEventParams, Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams>] Body param: Initial events to send to the `session` at creation, processed in or
+        #
+        # @param metadata [Hash{Symbol=>String}] Body param: Arbitrary key-value metadata attached to the session. Maximum 16 pai
+        #
+        # @param resources [Array<Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams, Anthropic::Models::Beta::BetaManagedAgentsFileResourceParams, Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam>] Body param: Resources (e.g. repositories, files) to mount into the session's con
+        #
+        # @param title [String, nil] Body param: Human-readable session title.
+        #
+        # @param vault_ids [Array<String>] Body param: Vault IDs for stored credentials the agent can use during the sessio
+        #
+        # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+        #
+        # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+        #
+        # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Anthropic::Models::Beta::BetaManagedAgentsSession]
+        #
+        # @see Anthropic::Models::Beta::SessionCreateParams
+        def create(params)
+          parsed, options = Anthropic::Beta::SessionCreateParams.dump_request(params)
+          header_params = {betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"}
+          @client.request(
+            method: :post,
+            path: "v1/sessions?beta=true",
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
+            model: Anthropic::Beta::BetaManagedAgentsSession,
+            options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+          )
+        end
+
+        # Get Session
+        #
+        # Some parameter documentations has been truncated, see
+        # {Anthropic::Models::Beta::SessionRetrieveParams} for more details.
+        #
+        # @overload retrieve(session_id, betas: nil, workspace_id: nil, request_options: {})
+        #
+        # @param session_id [String]
+        #
+        # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Optional header to specify the beta version(s) you want to use.
+        #
+        # @param workspace_id [String] Optional header to select the Workspace for this request. The value is a Workspa
+        #
+        # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Anthropic::Models::Beta::BetaManagedAgentsSession]
+        #
+        # @see Anthropic::Models::Beta::SessionRetrieveParams
+        def retrieve(session_id, params = {})
+          parsed, options = Anthropic::Beta::SessionRetrieveParams.dump_request(params)
+          @client.request(
+            method: :get,
+            path: ["v1/sessions/%1$s?beta=true", session_id],
+            headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+            model: Anthropic::Beta::BetaManagedAgentsSession,
+            options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+          )
+        end
+
+        # Update Session
+        #
+        # Some parameter documentations has been truncated, see
+        # {Anthropic::Models::Beta::SessionUpdateParams} for more details.
+        #
+        # @overload update(session_id, agent: nil, budget: nil, metadata: nil, title: nil, vault_ids: nil, betas: nil, workspace_id: nil, request_options: {})
+        #
+        # @param session_id [String] Path param
+        #
+        # @param agent [Anthropic::Models::Beta::BetaManagedAgentsSessionAgentUpdate] Body param: Mid-session agent configuration update. Only `tools` and `mcp_server
+        #
+        # @param budget [Anthropic::Models::Beta::BetaManagedAgentsBudgetLimit, nil] Body param: A hard spend ceiling. The session stops issuing new model requests o
+        #
+        # @param metadata [Hash{Symbol=>String, nil}, nil] Body param: Metadata patch. Set a key to a string to upsert it, or to null to de
+        #
+        # @param title [String, nil] Body param: Human-readable session title.
+        #
+        # @param vault_ids [Array<String>] Body param: Vault IDs (`vlt_*`) to attach to the session. Not yet supported; req
+        #
+        # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+        #
+        # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+        #
+        # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Anthropic::Models::Beta::BetaManagedAgentsSession]
+        #
+        # @see Anthropic::Models::Beta::SessionUpdateParams
+        def update(session_id, params = {})
+          parsed, options = Anthropic::Beta::SessionUpdateParams.dump_request(params)
+          header_params = {betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"}
+          @client.request(
+            method: :post,
+            path: ["v1/sessions/%1$s?beta=true", session_id],
+            headers: parsed.slice(*header_params.keys).transform_keys(header_params),
+            body: parsed.except(*header_params.keys),
+            model: Anthropic::Beta::BetaManagedAgentsSession,
+            options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+          )
+        end
+
+        # List Sessions
+        #
+        # Some parameter documentations has been truncated, see
+        # {Anthropic::Models::Beta::SessionListParams} for more details.
+        #
+        # @overload list(agent_id: nil, agent_version: nil, created_at_gt: nil, created_at_gte: nil, created_at_lt: nil, created_at_lte: nil, deployment_id: nil, include_archived: nil, limit: nil, memory_store_id: nil, order: nil, page: nil, statuses: nil, betas: nil, workspace_id: nil, request_options: {})
+        #
+        # @param agent_id [String] Query param: Filter sessions created with this agent ID.
+        #
+        # @param agent_version [Integer] Query param: Filter by agent version. Only applies when `agent_id` is also set.
+        #
+        # @param created_at_gt [Time] Query param: Return sessions created after this time (exclusive).
+        #
+        # @param created_at_gte [Time] Query param: Return sessions created at or after this time (inclusive).
+        #
+        # @param created_at_lt [Time] Query param: Return sessions created before this time (exclusive).
+        #
+        # @param created_at_lte [Time] Query param: Return sessions created at or before this time (inclusive).
+        #
+        # @param deployment_id [String] Query param: Filter sessions created by this deployment ID.
+        #
+        # @param include_archived [Boolean] Query param: When true, includes archived sessions. Default: false (exclude arch
+        #
+        # @param limit [Integer] Query param: Maximum number of results to return.
+        #
+        # @param memory_store_id [String] Query param: Filter sessions whose resources contain a `memory_store` with this
+        #
+        # @param order [Symbol, Anthropic::Models::Beta::SessionListParams::Order] Query param: Sort direction for results, ordered by `created_at`. Defaults to `d
+        #
+        # @param page [String] Query param: Opaque pagination cursor from a previous response.
+        #
+        # @param statuses [Array<Symbol, Anthropic::Models::Beta::SessionListParams::Status>] Query param: Filter by session status. Repeat the parameter to match any of mult
+        #
+        # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Header param: Optional header to specify the beta version(s) you want to use.
+        #
+        # @param workspace_id [String] Header param: Optional header to select the Workspace for this request. The valu
+        #
+        # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Anthropic::Internal::BidirectionalPageCursor<Anthropic::Models::Beta::BetaManagedAgentsSession>]
+        #
+        # @see Anthropic::Models::Beta::SessionListParams
+        def list(params = {})
+          query_params =
+            [
+              :agent_id,
+              :agent_version,
+              :created_at_gt,
+              :created_at_gte,
+              :created_at_lt,
+              :created_at_lte,
+              :deployment_id,
+              :include_archived,
+              :limit,
+              :memory_store_id,
+              :order,
+              :page,
+              :statuses
+            ]
+          parsed, options = Anthropic::Beta::SessionListParams.dump_request(params)
+          query = Anthropic::Internal::Util.encode_query_params(parsed.slice(*query_params))
+          @client.request(
+            method: :get,
+            path: "v1/sessions?beta=true",
+            query: query.transform_keys(
+              created_at_gt: "created_at[gt]",
+              created_at_gte: "created_at[gte]",
+              created_at_lt: "created_at[lt]",
+              created_at_lte: "created_at[lte]"
+            ),
+            headers: parsed.except(*query_params).transform_keys(
+              betas: "anthropic-beta",
+              workspace_id: "anthropic-workspace-id"
+            ),
+            page: Anthropic::Internal::BidirectionalPageCursor,
+            model: Anthropic::Beta::BetaManagedAgentsSession,
+            options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+          )
+        end
+
+        # Delete Session
+        #
+        # Some parameter documentations has been truncated, see
+        # {Anthropic::Models::Beta::SessionDeleteParams} for more details.
+        #
+        # @overload delete(session_id, betas: nil, workspace_id: nil, request_options: {})
+        #
+        # @param session_id [String]
+        #
+        # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Optional header to specify the beta version(s) you want to use.
+        #
+        # @param workspace_id [String] Optional header to select the Workspace for this request. The value is a Workspa
+        #
+        # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Anthropic::Models::Beta::BetaManagedAgentsDeletedSession]
+        #
+        # @see Anthropic::Models::Beta::SessionDeleteParams
+        def delete(session_id, params = {})
+          parsed, options = Anthropic::Beta::SessionDeleteParams.dump_request(params)
+          @client.request(
+            method: :delete,
+            path: ["v1/sessions/%1$s?beta=true", session_id],
+            headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+            model: Anthropic::Beta::BetaManagedAgentsDeletedSession,
+            options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+          )
+        end
+
+        # Archive Session
+        #
+        # Some parameter documentations has been truncated, see
+        # {Anthropic::Models::Beta::SessionArchiveParams} for more details.
+        #
+        # @overload archive(session_id, betas: nil, workspace_id: nil, request_options: {})
+        #
+        # @param session_id [String]
+        #
+        # @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Optional header to specify the beta version(s) you want to use.
+        #
+        # @param workspace_id [String] Optional header to select the Workspace for this request. The value is a Workspa
+        #
+        # @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [Anthropic::Models::Beta::BetaManagedAgentsSession]
+        #
+        # @see Anthropic::Models::Beta::SessionArchiveParams
+        def archive(session_id, params = {})
+          parsed, options = Anthropic::Beta::SessionArchiveParams.dump_request(params)
+          @client.request(
+            method: :post,
+            path: ["v1/sessions/%1$s/archive?beta=true", session_id],
+            headers: parsed.transform_keys(betas: "anthropic-beta", workspace_id: "anthropic-workspace-id"),
+            model: Anthropic::Beta::BetaManagedAgentsSession,
+            options: {extra_headers: {"anthropic-beta" => "managed-agents-2026-04-01"}, **options}
+          )
+        end
+
+        # @api private
+        #
+        # @param client [Anthropic::Client]
+        def initialize(client:)
+          @client = client
+          @events = Anthropic::Resources::Beta::Sessions::Events.new(client: client)
+          @resources = Anthropic::Resources::Beta::Sessions::Resources.new(client: client)
+          @threads = Anthropic::Resources::Beta::Sessions::Threads.new(client: client)
+        end
+      end
+    end
+  end
+end

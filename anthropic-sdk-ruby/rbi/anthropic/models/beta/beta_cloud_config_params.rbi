@@ -1,0 +1,189 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaCloudConfigParams = Beta::BetaCloudConfigParams
+
+    module Beta
+      class BetaCloudConfigParams < Anthropic::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaCloudConfigParams,
+              Anthropic::Internal::AnyHash
+            )
+          end
+
+        # Environment type
+        sig { returns(Symbol) }
+        attr_accessor :type
+
+        # Network configuration policy. Omit on update to preserve the existing value.
+        sig do
+          returns(
+            T.nilable(
+              T.any(
+                Anthropic::Beta::BetaUnrestrictedNetwork,
+                Anthropic::Beta::BetaLimitedNetworkParams
+              )
+            )
+          )
+        end
+        attr_accessor :networking
+
+        # Specify packages (and optionally their versions) available in this environment.
+        #
+        # When versioning, use the version semantics relevant for the package manager,
+        # e.g. for `pip` use `package==1.0.0`. You are responsible for validating the
+        # package and version exist. Unversioned installs the latest.
+        #
+        # Under `limited` networking, requires `networking.allow_package_managers` to be
+        # `true`.
+        sig { returns(T.nilable(Anthropic::Beta::BetaPackagesParams)) }
+        attr_reader :packages
+
+        sig do
+          params(
+            packages: T.nilable(Anthropic::Beta::BetaPackagesParams::OrHash)
+          ).void
+        end
+        attr_writer :packages
+
+        # Request params for `cloud` environment configuration.
+        #
+        # Fields default to null; on update, omitted fields preserve the existing value.
+        sig do
+          params(
+            networking:
+              T.nilable(
+                T.any(
+                  Anthropic::Beta::BetaUnrestrictedNetwork::OrHash,
+                  Anthropic::Beta::BetaLimitedNetworkParams::OrHash
+                )
+              ),
+            packages: T.nilable(Anthropic::Beta::BetaPackagesParams::OrHash),
+            type: Symbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Network configuration policy. Omit on update to preserve the existing value.
+          networking: nil,
+          # Specify packages (and optionally their versions) available in this environment.
+          #
+          # When versioning, use the version semantics relevant for the package manager,
+          # e.g. for `pip` use `package==1.0.0`. You are responsible for validating the
+          # package and version exist. Unversioned installs the latest.
+          #
+          # Under `limited` networking, requires `networking.allow_package_managers` to be
+          # `true`.
+          packages: nil,
+          # Environment type
+          type: :cloud
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              type: Symbol,
+              networking:
+                T.nilable(
+                  T.any(
+                    Anthropic::Beta::BetaUnrestrictedNetwork,
+                    Anthropic::Beta::BetaLimitedNetworkParams
+                  )
+                ),
+              packages: T.nilable(Anthropic::Beta::BetaPackagesParams)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Network configuration policy. Omit on update to preserve the existing value.
+        module Networking
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaUnrestrictedNetwork,
+                Anthropic::Beta::BetaLimitedNetworkParams
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Anthropic::Beta::BetaCloudConfigParams::Networking::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            UNRESTRICTED =
+              T.let(
+                :unrestricted,
+                Anthropic::Beta::BetaCloudConfigParams::Networking::Type::TaggedSymbol
+              )
+            LIMITED =
+              T.let(
+                :limited,
+                Anthropic::Beta::BetaCloudConfigParams::Networking::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::BetaCloudConfigParams::Networking::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaCloudConfigParams::Networking::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type:
+                Anthropic::Beta::BetaCloudConfigParams::Networking::Type::OrSymbol,
+              allow_mcp_servers: T.nilable(T::Boolean),
+              allow_package_managers: T.nilable(T::Boolean),
+              allowed_hosts: T.nilable(T::Array[String])
+            ).returns(
+              Anthropic::Beta::BetaCloudConfigParams::Networking::Variants
+            )
+          end
+          def self.new(
+            type:,
+            # Permits outbound access to MCP server endpoints configured on the agent, beyond
+            # those listed in the `allowed_hosts` array. Defaults to `false`.
+            allow_mcp_servers: nil,
+            # Permits outbound access to public package registries (PyPI, npm, etc.) beyond
+            # those listed in the `allowed_hosts` array. Defaults to `false` on creation. Must
+            # be `true` when `packages` are specified.
+            allow_package_managers: nil,
+            # Specifies domains the container can reach.
+            allowed_hosts: nil
+          )
+          end
+        end
+      end
+    end
+  end
+end

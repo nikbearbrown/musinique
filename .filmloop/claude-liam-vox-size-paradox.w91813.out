@@ -1,0 +1,20 @@
+Reel done. Review-slate cut is on disk, gates all green, freshness intact.
+
+**vox-size-paradox — DONE (review slate)**
+
+- Cut: `vox-size-paradox-slate.mp4` (225.9 s · 1280×720p24 · 6.5 MB)
+- `build.status` Counter: `{'VIDEO': 19}` — 19/19 filled, 0 slates
+- `metadata.build`: `{cut: review, filled: 19, of: 19, slates: [], skin_warnings: []}`
+- Freshness: mp4 mtime 02:19:54 > sheet mtime 02:19:39 (cut ≻ sheet ✓)
+- GATE AUDIO: mean_volume −27.1 dB (well above −40 dB floor)
+- All compile-time gates green (CARD LINT · CONTENT · FRAME · LANE · SKIN LINT · PIPELINE-CARD · AUDIO)
+- Gate V (frames read at 10-s cadence): composer, FormBCards (2/3/4-up), verdict pagination, title outro — all clean, no overflow, no clipping
+
+**Fixes shipped**
+- Phase 0 rebuild contract: `beat_sheet.pre-rebuild.json` snapshotted
+- Envelope VOICE-LOCK: dropped `voice_id`, ElevenLabs `clock` prose, `_variant_todo`, stale `metadata.build`
+- B00 spark line `"Liam"` → `"Hej, Liam"` (Swedish/Danish — rotates against adjacent Hola / Salaam)
+- BVDT verdict authored from body numbers (6.2%/2.1%/15%/72%) with matching narration; BHTF "your turn" close authored
+- 13 body slates → real FormBCards; icons remapped to workspace's Lucide set
+- No gen-AI punts, no validator loosened, no post-compile sheet edit
+- `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, and `FILMLOOP-LOG.md` entry all written

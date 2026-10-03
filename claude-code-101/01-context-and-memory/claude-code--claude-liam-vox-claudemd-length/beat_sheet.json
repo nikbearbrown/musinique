@@ -1,0 +1,617 @@
+{
+  "metadata": {
+    "slug": "vox-claudemd-length",
+    "title": "Why CLAUDE.md Breaks When It Gets Too Long",
+    "topic": "CLAUDE CODE",
+    "source": "claude-code-for-teachers/chapters/03-claude-md.md",
+    "purpose": "vox-explainer slate cut. Mechanism: CLAUDE.md's instructions compete with other context for Claude's attention; beyond ~200 lines the probabilistic instruction-following degrades and key rules are ignored; the fix is to keep CLAUDE.md lean by offloading workflow content to Skills and enforcing inviolable rules as Hooks.",
+    "clock": "narration (Kokoro am_onyx, VOICE-LOCK) — actual_duration_s below is measured from mp3s",
+    "aspect_ratio": "16:9",
+    "style_preset": "vox-editorial",
+    "color_semantics": "TEAL = short CLAUDE.md / rule followed; CRIMSON = long CLAUDE.md / rule ignored; never swap mid-film",
+    "note": "Exclusions honored: NO context-window math or token-count discussion, NO comparison with other tools' context files, NO full Skills/Hooks explanation. One mechanism: CLAUDE.md length degrades compliance; stay under 200 lines, offload to Skills/Hooks.",
+    "total_estimated_duration_seconds": 187.93,
+    "audience": "Claude",
+    "derived_from": "beat_sheet.json",
+    "register": "Teardown",
+    "palette": "claude",
+    "outro_source": "AUTHOR.MD :: NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "design_version": "v1",
+    "build": {
+      "at": "2026-08-31T23:49:23",
+      "cut": "review",
+      "filled": 13,
+      "of": 14,
+      "slates": [
+        "B05"
+      ],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "lane": "BOOKEND",
+      "narration_text": "",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 15,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "CLAUDE CODE",
+            "segment": "Why CLAUDE.md Breaks When It Gets Too Long",
+            "command": "Why does CLAUDE.md stop working past two hundred lines?",
+            "runningText": "building the answer…",
+            "output": [],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      },
+      "actual_duration_s": 15.0
+    },
+    {
+      "beat_id": "B01",
+      "t_start": 0.0,
+      "estimated_duration_s": 9.0,
+      "narration_text": "This is Liam, in for Bear. The teacher's CLAUDE.md has a clear rule on line twelve: Vanilla CSS only — no Tailwind. The project is on its third build. Claude generates a component. It uses Tailwind classes. The rule is still there on line twelve.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "THE RULE ON LINE 12",
+            "items": [
+              {
+                "label": "Line 12",
+                "sub": "Vanilla CSS only — no Tailwind.",
+                "icon": "BOX",
+                "cueFrame": 0
+              },
+              {
+                "label": "Third build",
+                "sub": "Claude generates a component using Tailwind classes.",
+                "icon": "BOX",
+                "cueFrame": 96
+              },
+              {
+                "label": "Rule ignored",
+                "sub": "The rule is still there on line twelve — Claude does not follow it.",
+                "icon": "BOX",
+                "cueFrame": 192
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "card": {
+        "kind": "title",
+        "copy": "Why CLAUDE.md breaks when it gets too long",
+        "eyebrow": "CLAUDE CODE"
+      },
+      "new_visual_element": "[TITLE] CLAUDE.md breaks when too long",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "t_start": 9.0,
+      "estimated_duration_s": 13.0,
+      "narration_text": "Session one: forty-seven lines. Stack rules. Code style. Environment quirks. Never-rules. Claude follows the Vanilla-CSS rule every time. Session two: eighty lines. Grading workflow notes. New never-rules. Lessons-learned entries. Still working. Session three: the simulation build. Sprint goals added. Architecture notes. A colleague's phone number. Four near-duplicate CSS rules. Two-hundred-twenty lines.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "media": "media/B02.mp4",
+        "manim": {
+          "scene_class": "B02_ClaudeLiamVox",
+          "scenes_file": "scenes.py",
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "graphic": {
+        "manim": "B02_GrowingDoc",
+        "production_viz": {
+          "label": "CLAUDE.md grows: 47 → 80 → 220 lines across three builds",
+          "mechanic": "three vertical bars growing taller in sequence — 47 lines (teal), 80 lines (teal), 220 lines (crimson at the top portion); labeled with the line counts",
+          "colors": [
+            "#1F6F5C",
+            "#BF3339"
+          ]
+        }
+      },
+      "new_visual_element": "[GRAPHIC] growing document bar with compliance meter",
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 21.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B02.mp4",
+        "filled_by": "manim:B02_ClaudeLiamVox",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "t_start": 22.0,
+      "estimated_duration_s": 9.0,
+      "narration_text": "Here is the question. Adding more rules to CLAUDE.md should make Claude more reliable. Here is the project where Claude began ignoring key rules as CLAUDE.md grew past two hundred lines. Why?",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "MORE RULES. LESS COMPLIANCE.",
+            "items": [
+              {
+                "label": "Add rules",
+                "sub": "More instructions should make Claude more reliable.",
+                "icon": "BOX",
+                "cueFrame": 0
+              },
+              {
+                "label": "Past 200 lines",
+                "sub": "Claude begins ignoring key rules as CLAUDE.md grows.",
+                "icon": "BOX",
+                "cueFrame": 72
+              },
+              {
+                "label": "Why?",
+                "sub": "The rule is still on line twelve. Adherence dropped anyway.",
+                "icon": "BOX",
+                "cueFrame": 168
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "card": {
+        "kind": "question",
+        "copy": "More rules. Less compliance. Why?"
+      },
+      "new_visual_element": "[CARD] the question on screen",
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 10.92,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "t_start": 31.0,
+      "estimated_duration_s": 13.0,
+      "narration_text": "CLAUDE.md is advisory. Claude reads it at session start. It tries to follow it. The compliance is probabilistic — Claude may sometimes generate code that violates a CLAUDE.md rule, especially under prompt pressure. In a short file, the Vanilla CSS rule is prominent. In a three-hundred-line file, it competes with sprint goals, duplicate entries, personal reminders, and workflow notes that should be in a Skill.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "media": "media/B04.mp4",
+        "manim": {
+          "scene_class": "B04_ClaudeLiamVox",
+          "scenes_file": "scenes.py",
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "graphic": {
+        "manim": "B04_CompetingContext",
+        "production_viz": {
+          "label": "signal vs noise — the rule competes for attention",
+          "mechanic": "two bars side by side: short file (teal, tall) where 'the rule' is prominent; long file (crimson, tall) where 'the rule' shares the page with sprint goals, duplicates, personal notes — a signal-to-noise chart",
+          "colors": [
+            "#BF3339",
+            "#1F6F5C"
+          ]
+        }
+      },
+      "new_visual_element": "[GRAPHIC] signal-to-noise: rule vs noise",
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.53,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B04.mp4",
+        "filled_by": "manim:B04_ClaudeLiamVox",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "t_start": 44.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The example. After the simulation build, the teacher's CLAUDE.md is at two-hundred-twenty lines. Claude generates Tailwind classes on a new component despite Vanilla CSS only on line twelve. The teacher trims to ninety-five lines. Moves grading workflow to a Skill. Converts the grade-generation rule to a Hook. Claude respects the CSS rule again.",
+      "shot": {
+        "type": "CARD",
+        "source": "own",
+        "form": "A",
+        "polarity": "light",
+        "card": {
+          "kind": "text-only",
+          "typography": "EB Garamond",
+          "ground": "#FAF9F5",
+          "ink": "#3D3929",
+          "copy": "220 lines → 95 lines. Rule respected again."
+        }
+      },
+      "scene_description": "a title card with the before/after line counts and a one-line result",
+      "image_prompt": "B05, editorial title card: '220 lines → 95 lines' with the sub-line 'Rule respected again', EB Garamond, cream ground, ink text, terracotta accent under the arrow",
+      "new_visual_element": "[CARD] 220 → 95 lines, rule respected",
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 19.84,
+      "build": {
+        "status": "SLATE",
+        "src": null,
+        "filled_by": null,
+        "at": "2026-08-31T23:49:23",
+        "needs": "SCRIPTING GAP — B05 has no drawable spec. Author a diagram, a Remotion pattern, or a Manim scene. Do not fill this with generated media."
+      }
+    },
+    {
+      "beat_id": "B06",
+      "t_start": 56.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The fix has three moves. Keep CLAUDE.md under two hundred lines — the five categories that belong in it: bash commands, code style deviations, test runners, architectural decisions, environment quirks. Move workflow content to Skills — on-demand files that are not loaded at session start. Convert inviolable rules to Hooks — scripts that execute regardless of what Claude decides.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "media": "media/B06.mp4",
+        "manim": {
+          "scene_class": "B06_ClaudeLiamVox",
+          "scenes_file": "scenes.py",
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "graphic": {
+        "manim": "B06_ThreeMove",
+        "production_viz": {
+          "label": "three moves: trim, Skills, Hooks",
+          "mechanic": "three labeled rows drawing in teal: 'Trim CLAUDE.md — under 200 lines'; 'Move workflows to Skills'; 'Convert rules to Hooks'",
+          "colors": [
+            "#1F6F5C"
+          ]
+        }
+      },
+      "new_visual_element": "[GRAPHIC] three-move fix: trim, Skills, Hooks",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 20.5,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B06.mp4",
+        "filled_by": "manim:B06_ClaudeLiamVox",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "YOURTURN",
+      "act": "your-turn",
+      "narration_text": "Your turn. Paste this: your CLAUDE.md is long and Claude isn't following some of the rules in it. Ask Claude to explain the length failure mode — what happens to rule adherence as CLAUDE.md grows — and give you the rule for what to cut, what to keep, and how short is short enough.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · @NikBearBrown",
+            "command": "My CLAUDE.md is long and Claude is no longer following some of the rules in it. Explain the length failure mode: what happens to rule adherence as CLAUDE.md grows — and give me the rule for what to cut, what to keep, and how short the file needs to be for Claude to reliably follow every rule.",
+            "runningText": "paste your spec, CLAUDE.md, or build plan here…",
+            "folderLabel": "@NikBearBrown",
+            "segment": "Why CLAUDE.md Breaks When It Gets Too Long",
+            "modelLabel": "Claude Sonnet"
+          },
+          "rendered": {
+            "out": "media/YOURTURN.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/YOURTURN.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      },
+      "design_version": "v1",
+      "actual_duration_s": 14.66,
+      "audio_file": "mp3/beat-YOURTURN.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "t_start": 68.0,
+      "estimated_duration_s": 12.0,
+      "narration_text": "The compliance meter. Short CLAUDE.md: rule-following high. Past two hundred lines: compliance begins to degrade. Past three hundred: key rules get ignored under prompt pressure. The meter is not about line count for its own sake — it is about signal-to-noise. Every entry added dilutes every other entry.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "media": "media/B07.mp4",
+        "manim": {
+          "scene_class": "B07_ClaudeLiamVox",
+          "scenes_file": "scenes.py",
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "graphic": {
+        "manim": "B07_ComplianceMeter",
+        "production_viz": {
+          "label": "compliance meter: high at 50 lines, dips at 200, fails at 300",
+          "mechanic": "a horizontal axis showing line count (50, 100, 200, 300); a compliance curve starting high (teal), staying flat to 150, beginning to dip at 200, falling at 300 (crimson); labeled milestones",
+          "colors": [
+            "#1F6F5C",
+            "#BF3339"
+          ]
+        }
+      },
+      "new_visual_element": "[GRAPHIC] compliance curve vs line count",
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 16.73,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B07.mp4",
+        "filled_by": "manim:B07_ClaudeLiamVox",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "t_start": 80.0,
+      "estimated_duration_s": 11.0,
+      "narration_text": "The practical move: audit your CLAUDE.md now. For each entry: does Claude know this from the code already? Cut. Does this change session to session? Move it to TODO.md. Is it a workflow? Move it to a Skill. Must it hold every time without exception? Convert it to a Hook. What remains is what belongs.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "motion": "drawon",
+        "media": "media/B08.mp4",
+        "manim": {
+          "scene_class": "B08_ClaudeLiamVox",
+          "scenes_file": "scenes.py",
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "graphic": {
+        "manim": "B08_AuditQuestions",
+        "production_viz": {
+          "label": "four audit questions for each CLAUDE.md entry",
+          "mechanic": "a four-row decision table drawing in: 'Claude infers it from code → cut'; 'Changes session to session → TODO.md'; 'A workflow → Skill'; 'Must hold always → Hook'",
+          "colors": [
+            "#1F6F5C",
+            "#2F2A26"
+          ]
+        }
+      },
+      "new_visual_element": "[GRAPHIC] four-question audit table",
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 15.79,
+      "build": {
+        "status": "MANIM",
+        "src": "manim/B08.mp4",
+        "filled_by": "manim:B08_ClaudeLiamVox",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "t_start": 91.0,
+      "estimated_duration_s": 10.0,
+      "narration_text": "A maintained fifty-line CLAUDE.md beats an abandoned five-hundred-line one every time. The rule on line twelve works when it is the most specific thing on the page. It stops working when it is noise.",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "remotion",
+        "motion": "fade",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "SHORT AND SPECIFIC WINS",
+            "items": [
+              {
+                "label": "50 maintained",
+                "sub": "A maintained fifty-line CLAUDE.md beats an abandoned five-hundred-line one.",
+                "icon": "BOX",
+                "cueFrame": 0
+              },
+              {
+                "label": "Most specific",
+                "sub": "The rule works when it is the most specific thing on the page.",
+                "icon": "BOX",
+                "cueFrame": 84
+              },
+              {
+                "label": "Or noise",
+                "sub": "It stops working when it is noise.",
+                "icon": "BOX",
+                "cueFrame": 168
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": ""
+          }
+        }
+      },
+      "card": {
+        "kind": "endcard",
+        "copy": "Short and specific. Not long and aspirational.",
+        "sub": "CLAUDE CODE"
+      },
+      "new_visual_element": "[CARD] endcard — short and specific",
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 11.69,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict recap",
+      "lane": "BOOKEND",
+      "narration_text": "The verdict. CLAUDE.md is advisory, and Claude's compliance with it is probabilistic. Under two hundred lines, rules hold. Past three hundred, key rules get ignored under prompt pressure. The fix is three moves: trim CLAUDE.md, move workflows to Skills, convert inviolable rules to Hooks. Signal-to-noise is what compliance tracks — not line count for its own sake.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Why CLAUDE.md Breaks When It Gets Too Long",
+            "artifactHeading": "The mechanism, and the fix",
+            "artifactLines": [
+              "CLAUDE.md is advisory — compliance is probabilistic and degrades with length.",
+              "Under 200 lines: rules hold. Past 300: key rules get ignored under pressure.",
+              "Trim CLAUDE.md, move workflows to Skills, convert inviolable rules to Hooks."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      },
+      "actual_duration_s": 19.46,
+      "audio_file": "mp3/beat-BVDT.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "BOOKEND",
+      "narration_text": "Your turn. Open your CLAUDE.md. Count the lines. For each entry, ask four questions. Does Claude already infer this from the code? Cut it. Does it change session to session? Move it to TODO.md. Is it a workflow? Move it to a Skill. Must it hold every time without exception? Convert it to a Hook. What remains is what belongs.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · @NikBearBrown",
+            "segment": "Audit your own CLAUDE.md",
+            "command": "Open your CLAUDE.md. For each entry, ask: does Claude infer this from the code (cut), does it change session to session (move to TODO.md), is it a workflow (move to a Skill), must it hold every time (convert to a Hook). Paste every line you cut, and one sentence per line explaining why it was noise.",
+            "runningText": "paste your CLAUDE.md here to audit it line by line…",
+            "output": [
+              "cut → the entries Claude already infers from the code",
+              "session-varying entries → move them to TODO.md",
+              "workflow content → move it into a Skill",
+              "inviolable rules → convert them to a Hook"
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      },
+      "actual_duration_s": 16.87,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "BOOKEND",
+      "narration_text": "",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 8,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Why CLAUDE.md Breaks When It Gets Too Long",
+            "slug": "vox-claudemd-length"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T23:49:23"
+      },
+      "actual_duration_s": 8.0
+    }
+  ]
+}

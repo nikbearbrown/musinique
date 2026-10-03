@@ -1,0 +1,22 @@
+[package]
+name = "example-bsr-quickstart"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = """
+Minimal example using the published `buf.build/anthropics/buffa` BSR remote
+plugin with `file_per_package=true` and a hand-written `mod.rs`. See
+`docs/guide.md#using-buf` for the full set of build setups.
+"""
+
+[dependencies]
+# crates.io releases, not path dependencies: `src/gen/` is output from the
+# published plugin pinned in `buf.gen.yaml`, which trails `main`, so it only
+# compiles against the runtime from that same release. Keep these versions
+# equal to that pin. In your own project, `version = "0.9"` is enough.
+buffa = { version = "=0.9.2", features = ["json"] }
+buffa-types = { version = "=0.9.2", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[workspace]

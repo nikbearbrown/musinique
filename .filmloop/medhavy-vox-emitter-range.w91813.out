@@ -1,0 +1,7 @@
+DONE — `medhavy-vox-emitter-range`.
+
+`vox-emitter-range.mp4` — 186.22 s, 3840×2160 4K, h264+aac at mean_volume −24.0 dB. 14/14 beats VIDEO (12 FormACard body + OutroSeries + OutroCTA); zero slates. Cut mtime 19:35:27 > sheet mtime 19:35:05 → DONE-check passes.
+
+Rebuild summary: Cohort C legacy vox → current envelope. Dropped ElevenLabs `voice_id` + prose `clock`, added `subtitle` + `folderLabel: @MedhavyAI`, kept `voice_kokoro: af_kore` (sibling standard). Narration byte-identical to `beat_sheet.pre-rebuild.json`. Body beats rebuilt from CARD/GRAPHIC/STILL scaffolding to `REMOTION FormACard` with 3-line spark compressions; outros migrated to current zod prop shapes (`OutroSeries {eyebrow, line}`, `OutroCTA {line, handle}`). Legacy `image_prompt` demoted to a read-only `scene_description`; `graphic.production_viz` metadata retained for a future full-Manim pass.
+
+Gates: type_check PASS (4 §8.10 advisories, non-blocking); content/frame/lane checks all PASS; sampled frames B01/B02/B04/B07/B08/B11/B12/B13/B14 clean — text centered, one legal terracotta accent on B13 underline, no overflow, no wordy card. Zero validators loosened. Files touched: `beat_sheet.json`, `beat_sheet.pre-rebuild.json`, `REBUILD-LOG.md`, `AUDIT.md`, `TYPECHECK.md`, `media/B01…B14.mp4`, `clips/B01…B14.mp4`, `vox-emitter-range.mp4`, `_qc/frames/00001…00372.png`; FILMLOOP-LOG entry appended.

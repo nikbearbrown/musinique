@@ -1,0 +1,7 @@
+**BUILT.** `vox-fdg-proxy-slate.mp4` — 225.7 s, 12/16 real / 4 declared review slates, mean_volume −24.6 dB. Cut mtime 06:11:54 > sheet 06:07:07 (287 s newer, DONE-check clean).
+
+**What the reel needed:** Dual-bookend cleanup (`B00 / BVDT / BHTF / BOUT` were empty SLATE duplicates scaffolded on top of the real NBB00–NBB03 bookends — deleted). Placeholder repair (NBB00 greeting `"Your turn."` → `"Salve, Liam."`; NBB01 truncated heading + 4 fragment lines → complete heading + 4 reel-specific verdict lines; NBB02 generic bracket-template → concrete PET-proxy exercise; B01/B02/B06/B09 placeholder/truncated card text → authored). Rendered 8 Remotion beats; reused pipeline-owned Manim B04/B10 from source; declared review-cut slates on 4 CARD/DOCUMENT beats.
+
+**One logged downgrade:** B04 and B10 source Manim clips carry 8–12 px caption text (source rendered at 720p; below the 13 px §8.1 floor). Slating would trip GATE LANE on pipeline-owned beats. Reused as-is for the review cut; scene re-render at higher DPI is out of scope. No validator loosened.
+
+**Logs written:** `AUDIT.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json` in the reel folder; appended entry to `anthropics/youtube/FILMLOOP-LOG.md`.

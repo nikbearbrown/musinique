@@ -1,0 +1,7 @@
+Reel done. `vox-subagent-context-slate.mp4` — 199.9s, 13/13 slots filled, cut 15 minutes newer than the sheet.
+
+Rebuild summary:
+- **PHASE 0**: `beat_sheet.pre-rebuild.json` snapshotted; 9 body narrations locked verbatim; empty BVDT/BHTF authored per rebuild-rule exception.
+- **PHASE 1 fixes**: B00 greeting `Liam` → `Bonjour, Liam` (French; adjacent reels used Namaste/Aloha/Salam); BVDT `Key finding one/two/three` → 3 real lines from body; BHTF `Take what you learned from [X]…` template → real subagent exercise; legacy `YOURTURN` inline composer removed (duplicated BHTF); B07 slate-in-a-costume (image_prompt + stray ClaudeTitleOutro) → real Manim graphic (25 tally marks × two panels); every Manim scene rewritten with short category labels and narration-matched bar heights.
+- **PHASE 2**: 11 Kokoro mp3s (am_onyx); 7 Remotion + 6 Manim renders at 4K. GATE T PASS after three content iterations — B04 terra blocks overlapped into one structural column, B08 arrows switched to INK, B07 caption buff raised. No validator weakened. GATE AUDIO PASS (−27.2 dB mean). Gate V PASS.
+- `build.status: slots: 13/13 filled — B00:VIDEO B01:VIDEO B02:MANIM B03:VIDEO B04:MANIM B05:MANIM B06:MANIM B07:MANIM B08:MANIM B09:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO`.

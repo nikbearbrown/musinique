@@ -1,0 +1,41 @@
+module Anthropic
+  module Models
+    module BetaOutputBehavior = Beta::BetaOutputBehavior
+
+    module Beta
+      type beta_output_behavior =
+        Anthropic::Beta::BetaOutputBehaviorCreateNew
+        | Anthropic::Beta::BetaOutputBehaviorUpdateExisting
+
+      module BetaOutputBehavior
+        extend Anthropic::Internal::Type::Union
+
+        type type_ = :create_new | :update_existing
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          CREATE_NEW: :create_new
+          UPDATE_EXISTING: :update_existing
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaOutputBehavior::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_output_behavior]
+
+        def self.new:
+          (
+            type: :create_new | "create_new"
+          ) -> Anthropic::Beta::BetaOutputBehaviorCreateNew
+          | (
+            type: :update_existing | "update_existing",
+            memory_store_id: String
+          ) -> Anthropic::Beta::BetaOutputBehaviorUpdateExisting
+          | (
+            type: Anthropic::Models::Beta::BetaOutputBehavior::type_ | String,
+            ?memory_store_id: String
+          ) -> Anthropic::Models::Beta::beta_output_behavior
+      end
+    end
+  end
+end

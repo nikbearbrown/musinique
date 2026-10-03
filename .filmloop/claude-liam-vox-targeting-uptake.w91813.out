@@ -1,0 +1,9 @@
+Done. `claude-liam-vox-targeting-uptake` shipped as a review-slate cut.
+
+**Deliverable:** `vox-targeting-uptake-slate.mp4` — 153.2s, 1280×720, AAC 48kHz, `mean_volume −27.1 dB`, mp4 mtime `16:13:27` (6s newer than sheet `16:13:21`).
+
+**PHASE 1:** 11/11 checks FIXED or PASS. Bookend `B00` greeting `Liam` → `Ni hao, Liam.`; BVDT verdict AUTHORED (3 specific lines + 75-word narration replacing template `Key finding one/two/three`); B01 FormBCard placeholders authored; B02–B10 rerouted from missing-Manim slates and gen-AI still to FormBCard/FormACard; three §8.9 truncation FAILs fixed; B03 §8.10 redundancy fixed (1.00 → 0.25). Envelope stripped of dead ElevenLabs fields. Legacy `B11 OutroSeries` / `B12 OutroCTA` dropped (no rendered mp4s existed).
+
+**PHASE 2:** Kokoro `am_onyx` audio (12 beats), Remotion rendered all 14 patterns, compile PASS (content/frame/lane/audio gates all green), 77 QC frames sampled at 0.5 fps — no overflow/clipping. `build.status Counter({'VIDEO': 14})`.
+
+`beat_sheet.pre-rebuild.json`, `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, and the `FILMLOOP-LOG.md` entry all written.

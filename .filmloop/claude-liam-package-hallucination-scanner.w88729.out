@@ -1,0 +1,8 @@
+Done. Master mp4 (23:26) is newer than beat_sheet.json (23:25).
+
+**Result: DONE — real 4K master rendered end-to-end, all beats real.**
+
+- Rebuilt bookends (B00 `NikBearBrownOpen` → `ClaudeComposerAsk`; canonical BVDT/BHTF/BOUT authored with real content), converted legacy `NikBearBrownTerminalAsk`/`NikBearBrownCodeBlock` to Claude-skin equivalents, rerouted B04/B06 from FormBCard punt-costumes to `ClaudeCodeBeat` terminal output, fixed B01/B08 FormBCard labels/subs, dropped legacy YOURTURN and B07 outro (scripts preserved in BHTF and BVDT).
+- Verdict authored (3 findings from the body's own nouns), BHTF placeholder replaced with real exercise + 3 concrete next-steps.
+- GATE T PASS after one §8.12 fix (B06 tokens); GATE V caught a real defect (BVDT paginated to `1/2` but composition duration (34s) vs. trimmed 10s clip meant page 2 never rendered) — shortened `artifactLines` to 3 lines, re-rendered BVDT only, recompiled; verified all findings on-screen for the full BVDT window.
+- Master 111.6s, 3840×2160, mean_volume −24.4 dB. All gates PASS. FILMLOOP-LOG appended.

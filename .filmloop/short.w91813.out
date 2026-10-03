@@ -1,0 +1,30 @@
+Done. Here is the honest log for the morning read.
+
+---
+
+**`mas-short-verdict-short` — BUILT**
+
+Reel: `anthropics/youtube/mas-short-verdict/short` | 44.5s | 9:16 Short
+
+**What was fixed (9 items):**
+1. Created `beat_sheet.pre-rebuild.json` (Phase 0, before any edit)
+2. Deleted 13 stale renders in `clips/`, `manim/`, `media/`
+3. B01 `props.greeting` "The ask," → "Bonjour, Liam" (spark line law — world-language hello + persona)
+4. Fresh Kokoro audio generated (`am_onyx`, all 7 beats, $0.00)
+5. Remotion re-rendered B01/B06/B07 via `remotion_scenes.py`
+6. B03/B04/B05 manim segments generated from pantry clip (3 time offsets)
+7. Gate V caught center-crop defect: only right side of Figure 5 visible, narrated values (17%, 35%) off-screen. Regenerated with pillarbox crop (full chart shown at 1216×684 on 1216×2160 cream canvas)
+8. Compiled review cut: `mas-short-verdict-short-slate.mp4` (8/8 filled, zero slates)
+9. GATE T run fresh: PASS
+
+**Verdict:** KEPT — "Adding agents makes decisions worse" (3 specific data-grounded lines, not boilerplate)
+
+**Lens:** Two moves — Plato ("It's not in the caption") + Hume temporal hedge ("Right now")
+
+**Gate V:** Zero BLOCKERs, zero MAJORs on real beats
+
+**GATE AUDIO:** −24.8 dB (PASS) | **mtime:** mp4 1787848073 > sheet 1787848071 (2 s)
+
+**Build counter:** `{'VIDEO': 3, 'STILL': 2, 'MANIM': 3}` — zero slates
+
+**Advisory for human pass:** B03/B04/B05 production cut needs focus-aware 9:16 overrides at `pantry/B03-916.mp4`, `B04-916.mp4`, `B05-916.mp4`. Review cut uses pillarbox approximation — chart is correct but small (~32% of frame height).

@@ -1,0 +1,306 @@
+module Anthropic
+  module Models
+    module BetaContentBlockParam = Beta::BetaContentBlockParam
+
+    module Beta
+      type beta_content_block_param =
+        Anthropic::Beta::BetaTextBlockParam
+        | Anthropic::Beta::BetaImageBlockParam
+        | Anthropic::Beta::BetaRequestDocumentBlock
+        | Anthropic::Beta::BetaSearchResultBlockParam
+        | Anthropic::Beta::BetaThinkingBlockParam
+        | Anthropic::Beta::BetaRedactedThinkingBlockParam
+        | Anthropic::Beta::BetaToolUseBlockParam
+        | Anthropic::Beta::BetaToolResultBlockParam
+        | Anthropic::Beta::BetaServerToolUseBlockParam
+        | Anthropic::Beta::BetaWebSearchToolResultBlockParam
+        | Anthropic::Beta::BetaWebFetchToolResultBlockParam
+        | Anthropic::Beta::BetaAdvisorToolResultBlockParam
+        | Anthropic::Beta::BetaCodeExecutionToolResultBlockParam
+        | Anthropic::Beta::BetaBashCodeExecutionToolResultBlockParam
+        | Anthropic::Beta::BetaTextEditorCodeExecutionToolResultBlockParam
+        | Anthropic::Beta::BetaToolSearchToolResultBlockParam
+        | Anthropic::Beta::BetaMCPToolUseBlockParam
+        | Anthropic::Beta::BetaRequestMCPToolResultBlockParam
+        | Anthropic::Beta::BetaContainerUploadBlockParam
+        | Anthropic::Beta::BetaCompactionBlockParam
+        | Anthropic::Beta::BetaRequestToolAdditionBlock
+        | Anthropic::Beta::BetaRequestToolRemovalBlock
+        | Anthropic::Beta::BetaMCPToolListingBlockParam
+        | Anthropic::Beta::BetaFallbackBlockParam
+
+      module BetaContentBlockParam
+        extend Anthropic::Internal::Type::Union
+
+        type type_ =
+          :text
+          | :image
+          | :document
+          | :search_result
+          | :thinking
+          | :redacted_thinking
+          | :tool_use
+          | :tool_result
+          | :server_tool_use
+          | :web_search_tool_result
+          | :web_fetch_tool_result
+          | :advisor_tool_result
+          | :code_execution_tool_result
+          | :bash_code_execution_tool_result
+          | :text_editor_code_execution_tool_result
+          | :tool_search_tool_result
+          | :mcp_tool_use
+          | :mcp_tool_result
+          | :container_upload
+          | :compaction
+          | :tool_addition
+          | :tool_removal
+          | :mcp_tool_listing
+          | :fallback
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          TEXT: :text
+          IMAGE: :image
+          DOCUMENT: :document
+          SEARCH_RESULT: :search_result
+          THINKING: :thinking
+          REDACTED_THINKING: :redacted_thinking
+          TOOL_USE: :tool_use
+          TOOL_RESULT: :tool_result
+          SERVER_TOOL_USE: :server_tool_use
+          WEB_SEARCH_TOOL_RESULT: :web_search_tool_result
+          WEB_FETCH_TOOL_RESULT: :web_fetch_tool_result
+          ADVISOR_TOOL_RESULT: :advisor_tool_result
+          CODE_EXECUTION_TOOL_RESULT: :code_execution_tool_result
+          BASH_CODE_EXECUTION_TOOL_RESULT: :bash_code_execution_tool_result
+          TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT: :text_editor_code_execution_tool_result
+          TOOL_SEARCH_TOOL_RESULT: :tool_search_tool_result
+          MCP_TOOL_USE: :mcp_tool_use
+          MCP_TOOL_RESULT: :mcp_tool_result
+          CONTAINER_UPLOAD: :container_upload
+          COMPACTION: :compaction
+          TOOL_ADDITION: :tool_addition
+          TOOL_REMOVAL: :tool_removal
+          MCP_TOOL_LISTING: :mcp_tool_listing
+          FALLBACK: :fallback
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaContentBlockParam::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_content_block_param]
+
+        def self.new:
+          (
+            type: :text | "text",
+            text: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?citations: ::Array[Anthropic::Models::Beta::beta_text_citation_param]?
+          ) -> Anthropic::Beta::BetaTextBlockParam
+          | (
+            type: :image | "image",
+            source: Anthropic::Models::Beta::BetaImageBlockParam::source,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?transformations: Anthropic::Beta::BetaImageTransformationsParam?
+          ) -> Anthropic::Beta::BetaImageBlockParam
+          | (
+            type: :document | "document",
+            source: Anthropic::Models::Beta::BetaRequestDocumentBlock::source,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?citations: Anthropic::Beta::BetaCitationsConfigParam?,
+            ?context: String?,
+            ?title: String?
+          ) -> Anthropic::Beta::BetaRequestDocumentBlock
+          | (
+            type: :search_result | "search_result",
+            content: ::Array[Anthropic::Beta::BetaTextBlockParam],
+            source: String,
+            title: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?citations: Anthropic::Beta::BetaCitationsConfigParam
+          ) -> Anthropic::Beta::BetaSearchResultBlockParam
+          | (
+            type: :thinking | "thinking",
+            signature: String,
+            thinking: String
+          ) -> Anthropic::Beta::BetaThinkingBlockParam
+          | (
+            type: :redacted_thinking | "redacted_thinking",
+            data: String
+          ) -> Anthropic::Beta::BetaRedactedThinkingBlockParam
+          | (
+            type: :tool_use | "tool_use",
+            id: String,
+            input: ::Hash[Symbol, top],
+            name: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?caller_: Anthropic::Models::Beta::BetaToolUseBlockParam::caller_,
+            ?toolset_name: String?
+          ) -> Anthropic::Beta::BetaToolUseBlockParam
+          | (
+            type: :tool_result | "tool_result",
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?content: Anthropic::Models::Beta::BetaToolResultBlockParam::content,
+            ?is_error: bool,
+            ?toolset_name: String?
+          ) -> Anthropic::Beta::BetaToolResultBlockParam
+          | (
+            type: :server_tool_use | "server_tool_use",
+            id: String,
+            input: ::Hash[Symbol, top],
+            name: Anthropic::Models::Beta::BetaServerToolUseBlockParam::name_,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?caller_: Anthropic::Models::Beta::BetaServerToolUseBlockParam::caller_
+          ) -> Anthropic::Beta::BetaServerToolUseBlockParam
+          | (
+            type: :web_search_tool_result | "web_search_tool_result",
+            content: Anthropic::Models::Beta::beta_web_search_tool_result_block_param_content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?caller_: Anthropic::Models::Beta::BetaWebSearchToolResultBlockParam::caller_
+          ) -> Anthropic::Beta::BetaWebSearchToolResultBlockParam
+          | (
+            type: :web_fetch_tool_result | "web_fetch_tool_result",
+            content: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?caller_: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_
+          ) -> Anthropic::Beta::BetaWebFetchToolResultBlockParam
+          | (
+            type: :advisor_tool_result | "advisor_tool_result",
+            content: Anthropic::Models::Beta::BetaAdvisorToolResultBlockParam::content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaAdvisorToolResultBlockParam
+          | (
+            type: :code_execution_tool_result | "code_execution_tool_result",
+            content: Anthropic::Models::Beta::beta_code_execution_tool_result_block_param_content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaCodeExecutionToolResultBlockParam
+          | (
+            type: :bash_code_execution_tool_result
+            | "bash_code_execution_tool_result",
+            content: Anthropic::Models::Beta::BetaBashCodeExecutionToolResultBlockParam::content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaBashCodeExecutionToolResultBlockParam
+          | (
+            type: :text_editor_code_execution_tool_result
+            | "text_editor_code_execution_tool_result",
+            content: Anthropic::Models::Beta::BetaTextEditorCodeExecutionToolResultBlockParam::content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaTextEditorCodeExecutionToolResultBlockParam
+          | (
+            type: :tool_search_tool_result | "tool_search_tool_result",
+            content: Anthropic::Models::Beta::BetaToolSearchToolResultBlockParam::content,
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaToolSearchToolResultBlockParam
+          | (
+            type: :mcp_tool_use | "mcp_tool_use",
+            id: String,
+            input: ::Hash[Symbol, top],
+            name: String,
+            server_name: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaMCPToolUseBlockParam
+          | (
+            type: :mcp_tool_result | "mcp_tool_result",
+            tool_use_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?content: Anthropic::Models::Beta::BetaRequestMCPToolResultBlockParam::content,
+            ?is_error: bool
+          ) -> Anthropic::Beta::BetaRequestMCPToolResultBlockParam
+          | (
+            type: :container_upload | "container_upload",
+            file_id: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaContainerUploadBlockParam
+          | (
+            type: :compaction | "compaction",
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?content: String?,
+            ?encrypted_content: String?,
+            ?signature: String?,
+            ?tool_changes: ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]?
+          ) -> Anthropic::Beta::BetaCompactionBlockParam
+          | (
+            type: :tool_addition | "tool_addition",
+            tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaRequestToolAdditionBlock
+          | (
+            type: :tool_removal | "tool_removal",
+            tool: Anthropic::Models::Beta::BetaRequestToolRemovalBlock::tool,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+          ) -> Anthropic::Beta::BetaRequestToolRemovalBlock
+          | (
+            type: :mcp_tool_listing | "mcp_tool_listing",
+            mcp_server_name: String,
+            tools: ::Array[Anthropic::Beta::BetaMCPToolParam]
+          ) -> Anthropic::Beta::BetaMCPToolListingBlockParam
+          | (
+            type: :fallback | "fallback",
+            from: Anthropic::Beta::BetaFallbackInfoParam,
+            to: Anthropic::Beta::BetaFallbackInfoParam,
+            ?trigger: top
+          ) -> Anthropic::Beta::BetaFallbackBlockParam
+          | (
+            type: Anthropic::Models::Beta::BetaContentBlockParam::type_
+            | String,
+            ?text: String,
+            ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+            ?citations: ::Array[Anthropic::Models::Beta::beta_text_citation_param]?
+            | Anthropic::Beta::BetaCitationsConfigParam?
+            | Anthropic::Beta::BetaCitationsConfigParam,
+            ?source: Anthropic::Models::Beta::BetaImageBlockParam::source
+            | Anthropic::Models::Beta::BetaRequestDocumentBlock::source
+            | String,
+            ?transformations: Anthropic::Beta::BetaImageTransformationsParam?,
+            ?context: String?,
+            ?title: String? | String,
+            ?content: ::Array[Anthropic::Beta::BetaTextBlockParam]
+            | Anthropic::Models::Beta::BetaToolResultBlockParam::content
+            | Anthropic::Models::Beta::beta_web_search_tool_result_block_param_content
+            | Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content
+            | Anthropic::Models::Beta::BetaAdvisorToolResultBlockParam::content
+            | Anthropic::Models::Beta::beta_code_execution_tool_result_block_param_content
+            | Anthropic::Models::Beta::BetaBashCodeExecutionToolResultBlockParam::content
+            | Anthropic::Models::Beta::BetaTextEditorCodeExecutionToolResultBlockParam::content
+            | Anthropic::Models::Beta::BetaToolSearchToolResultBlockParam::content
+            | Anthropic::Models::Beta::BetaRequestMCPToolResultBlockParam::content
+            | String?,
+            ?signature: String | String?,
+            ?thinking: String,
+            ?data: String,
+            ?id: String,
+            ?input: ::Hash[Symbol, top],
+            ?name: String
+            | Anthropic::Models::Beta::BetaServerToolUseBlockParam::name_,
+            ?caller_: Anthropic::Models::Beta::BetaToolUseBlockParam::caller_
+            | Anthropic::Models::Beta::BetaServerToolUseBlockParam::caller_
+            | Anthropic::Models::Beta::BetaWebSearchToolResultBlockParam::caller_
+            | Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_,
+            ?toolset_name: String?,
+            ?tool_use_id: String,
+            ?is_error: bool,
+            ?server_name: String,
+            ?file_id: String,
+            ?encrypted_content: String?,
+            ?tool_changes: ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]?,
+            ?tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool
+            | Anthropic::Models::Beta::BetaRequestToolRemovalBlock::tool,
+            ?mcp_server_name: String,
+            ?tools: ::Array[Anthropic::Beta::BetaMCPToolParam],
+            ?from: Anthropic::Beta::BetaFallbackInfoParam,
+            ?to: Anthropic::Beta::BetaFallbackInfoParam,
+            ?trigger: top
+          ) -> Anthropic::Models::Beta::beta_content_block_param
+      end
+    end
+  end
+end

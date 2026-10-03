@@ -1,0 +1,21 @@
+mp4 is newer. Reel is done.
+
+---
+
+**FILMLOOP-LOG — claude-liam-mining**
+
+**Checks fixed (5):**
+- `modelLabel` "Opus 4.8" → "Opus 4.7" in B00 props, BHTF props, metadata — non-existent model, datable-claim fix
+- BOUT `subline` removed — OUTRO-LOCK violation (no subline on claude-liam outros)
+- B03 canvas fill — SkillTeardownMechanism heading moved from 13%→26%, body 27%→44%, fonts enlarged (72→96 / 38→52), `verdictLabel: "REPEATABLE"` added to anchor lower area
+- B01 canvas fill — SkillTeardownAnatomy font sizes enlarged (title 44→64, file 20→28, callout 20→28)
+
+**Punts authored:** 0 — all 7 beats were registered Remotion components.
+
+**Verdict:** Present and specific. Not stripped.
+
+**Duration:** 71.4s. **Audio:** −24.1 dB.
+
+**Gate V:** PASS — 0 BLOCKERs, 0 MAJORs on real beats. B01 residual dead space downgraded to MINOR (1-file skill, structural). B02 dual-terracotta advisory (component design). BHTF grammar error ("I want to where diamonds spawn") logged for human edit — narration locked.
+
+**Build stamp:** `beat_sheet.json` 07:27:25 → `claude-liam-mining.mp4` 07:27:34 (9s newer). DONE check passes.

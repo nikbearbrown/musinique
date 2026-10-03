@@ -1,0 +1,398 @@
+{
+  "metadata": {
+    "title": "Claude, Xlsx.",
+    "slug": "claude-liam-xlsx",
+    "topic": "XLSX · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/skills/skills/xlsx/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Use this skill any time a spreadsheet file is the primary input or output",
+        "This means any task where the user wants to: open",
+        "or fix an existing .xlsx",
+        "or .tsv file (e.g.",
+        "adding columns"
+      ],
+      "constraints": [
+        "description: \"Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an…",
+        "Every Excel model MUST be delivered with ZERO formula errors (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?)",
+        "Never impose standardized formatting on files with established patterns",
+        "#### Required Format Rules",
+        "LibreOffice Required for Formula Recalculation: You can assume LibreOffice is installed for recalculating formula values using the scripts/recalc.py script. The script…",
+        "\"error_summary\": { // Only present if errors found"
+      ],
+      "referenced_files": [
+        "scripts/recalc.py",
+        "scripts/office/soffice.py",
+        "errors_found",
+        "error_summary",
+        "#DIV/0!",
+        "pd.notna()",
+        "data_only=True",
+        "load_workbook('file.xlsx', data_only=True)",
+        "read_only=True",
+        "write_only=True"
+      ],
+      "code_signals": [
+        "code block: python",
+        "code block: bash",
+        "code block: json"
+      ],
+      "sections": [
+        "All Excel files",
+        "Professional Font",
+        "Zero Formula Errors",
+        "Preserve Existing Templates (when updating templates)",
+        "Financial models",
+        "Color Coding Standards",
+        "Number Formatting Standards",
+        "Formula Construction Rules",
+        "Overview",
+        "Important Requirements"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T13:11:37",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is xlsx. Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \\\"the xlsx in my downloads\\\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved.. Its concrete surface area includes Use this skill any time a spreadsheet file is the primary input or output; This means any task where the user wants to: open; or fix an existing .xlsx. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "XLSX · ANTHROPIC SKILL",
+            "segment": "Claude, Xlsx.",
+            "command": "Run the xlsx skill.",
+            "runningText": "reading xlsx SKILL.md…",
+            "output": [
+              "skill: xlsx",
+              "Use this skill any time a spreadsheet file is the primary input or output. This…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 70.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is xlsx. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at scripts/recalc.py, scripts/office/soffice.py, errors_found, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "xlsx",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📝",
+                "name": "LICENSE.txt",
+                "size": "1k",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "11k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "3 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.39,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "xlsx is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Use this skill any time a spreadsheet file is the primary input or output; This means any task where the user wants to: open; or fix an existing .xlsx; or .tsv file (e.g.. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. description: \"Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an…. That is the constraint in xlsx — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "description: \"Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.55,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In xlsx, supporting material: scripts/recalc.py, scripts/office/soffice.py, errors_found, error_summary; implementation signals: code block: python, code block: bash, code block: json; sections: All Excel files, Professional Font, Zero Formula Errors, Preserve Existing Templates (when updating templates). That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Use this skill any time a spreadsheet file is the primary input or output; This means any task where the user wants to: open; or fix an existing .xlsx; scripts/recalc.py; scripts/office/soffice.py; errors_found; code…",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 24.62,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "xlsx makes Claude execute one task reliably. The SKILL.md is the spec — Use this skill any time a spreadsheet file is the primary input or output. This…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Xlsx.",
+            "artifactLines": [
+              "Skill: xlsx — Claude reads SKILL.md before acting",
+              "Use this skill any time a spreadsheet file is the primary input or output. This means any…",
+              "Capabilities: Use this skill any time a spreadsheet file is the primary input or output; This means any task where the user wants to: open; or fix an existing .xlsx",
+              "Constraint: description: \"Use this skill any time a spreadsheet file is the primary input or output.…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 14.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to use this skill any time a spreadsheet file is the primary input or output. this. Read the xlsx skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "XLSX · ANTHROPIC SKILL",
+            "segment": "Claude, Xlsx.",
+            "command": "I want to use this skill any time a spreadsheet file is the primary input or. Read the xlsx skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Xlsx. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Xlsx.",
+            "handle": "@NikBearBrown",
+            "subline": "xlsx · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:11:37"
+      }
+    }
+  ]
+}

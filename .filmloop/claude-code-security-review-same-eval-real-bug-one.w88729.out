@@ -1,0 +1,7 @@
+**Done. Reel built.**
+
+- **`claude-code-security-review-same-eval-real-bug-one.mp4`** — 80.8s, 4K, 8/8 REAL beats (no slates), audio −24.2 dB, GATE T PASS, GATE V zero BLOCKER/MAJOR, mp4 mtime 28s newer than beat_sheet.json.
+- **Rebuild:** backup saved; dropped dead `metadata.clock`; derived `shot.form`; B00 greeting `"Konnichiwa, Liam"`.
+- **Content fixes:** B01 real subs; B02/B03/B04/B05 authored real shots (FormBCard × 3, ClaudeCodeBeat for the two-eval example); B05 recap card; BHTF real trace-one-line exercise; BOUT sign-off.
+- **Removed:** BVDT stripped (verdict body 138 words < 180 threshold; BVDT legally absent per amendment); YOURTURN + OUTRO removed as pre-canonical duplicates (narration folded into BHTF).
+- **Log:** AUDIT.md, REBUILD-LOG.md, FILMLOOP-LOG.md all appended.

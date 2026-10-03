@@ -1,0 +1,85 @@
+module Anthropic
+  module Models
+    BetaIterationsUsage: Anthropic::Internal::Type::Converter
+
+    module Beta
+      type beta_iterations_usage_item =
+        Anthropic::Beta::BetaMessageIterationUsage
+        | Anthropic::Beta::BetaCompactionIterationUsage
+        | Anthropic::Beta::BetaAdvisorMessageIterationUsage
+        | Anthropic::Beta::BetaFallbackMessageIterationUsage
+
+      module BetaIterationsUsageItem
+        extend Anthropic::Internal::Type::Union
+
+        type type_ =
+          :message | :compaction | :advisor_message | :fallback_message
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          MESSAGE: :message
+          COMPACTION: :compaction
+          ADVISOR_MESSAGE: :advisor_message
+          FALLBACK_MESSAGE: :fallback_message
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaIterationsUsageItem::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_iterations_usage_item]
+
+        def self.new:
+          (
+            type: :message | "message",
+            cache_creation: Anthropic::Beta::BetaCacheCreation?,
+            cache_creation_input_tokens: Integer,
+            cache_read_input_tokens: Integer,
+            input_tokens: Integer,
+            model: Anthropic::Models::model?,
+            output_tokens: Integer
+          ) -> Anthropic::Beta::BetaMessageIterationUsage
+          | (
+            type: :compaction | "compaction",
+            cache_creation: Anthropic::Beta::BetaCacheCreation?,
+            cache_creation_input_tokens: Integer,
+            cache_read_input_tokens: Integer,
+            input_tokens: Integer,
+            output_tokens: Integer
+          ) -> Anthropic::Beta::BetaCompactionIterationUsage
+          | (
+            type: :advisor_message | "advisor_message",
+            cache_creation: Anthropic::Beta::BetaCacheCreation?,
+            cache_creation_input_tokens: Integer,
+            cache_read_input_tokens: Integer,
+            input_tokens: Integer,
+            model: Anthropic::Models::model,
+            output_tokens: Integer
+          ) -> Anthropic::Beta::BetaAdvisorMessageIterationUsage
+          | (
+            type: :fallback_message | "fallback_message",
+            cache_creation: Anthropic::Beta::BetaCacheCreation?,
+            cache_creation_input_tokens: Integer,
+            cache_read_input_tokens: Integer,
+            input_tokens: Integer,
+            model: Anthropic::Models::model,
+            output_tokens: Integer
+          ) -> Anthropic::Beta::BetaFallbackMessageIterationUsage
+          | (
+            type: Anthropic::Models::Beta::BetaIterationsUsageItem::type_
+            | String,
+            cache_creation: Anthropic::Beta::BetaCacheCreation?,
+            cache_creation_input_tokens: Integer,
+            cache_read_input_tokens: Integer,
+            input_tokens: Integer,
+            output_tokens: Integer,
+            ?model: Anthropic::Models::model? | Anthropic::Models::model
+          ) -> Anthropic::Models::Beta::beta_iterations_usage_item
+      end
+
+      type beta_iterations_usage =
+        ::Array[Anthropic::Models::Beta::beta_iterations_usage_item]?
+
+      BetaIterationsUsage: Anthropic::Internal::Type::Converter
+    end
+  end
+end

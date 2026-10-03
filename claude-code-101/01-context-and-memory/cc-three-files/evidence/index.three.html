@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thursday study group</title>
+<style>
+  :root {
+    --ink: #111111;
+    --page: #f6f2ec;
+    --rule: #d8d2c6;
+    --accent: #D97757;
+  }
+  html, body { margin: 0; padding: 0; background: var(--page); color: var(--ink); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    padding: 6rem 1.5rem 4rem;
+  }
+  main { max-width: 60ch; margin: 0 auto; }
+  h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 1.5rem; letter-spacing: -0.01em; }
+  p { margin: 0 0 1.25rem; }
+  .when { font-weight: 600; }
+  form { margin-top: 2.25rem; display: flex; flex-direction: column; gap: 1rem; }
+  label { display: block; }
+  .field {
+    display: block;
+    margin-top: 0.35rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--rule);
+    background: #ffffff;
+    color: inherit;
+    font: inherit;
+    border-radius: 4px;
+  }
+  .field:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  button {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+    padding: 0.65rem 1.4rem;
+    background: var(--accent);
+    color: #ffffff;
+    border: 0;
+    border-radius: 4px;
+    font: inherit;
+    cursor: pointer;
+  }
+  button:hover { filter: brightness(0.96); }
+  #confirmed { margin-top: 2.25rem; }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Thursday study group</h1>
+  <p>We meet next on <span class="when" id="when"></span>. Same room, same time.</p>
+  <p>If you're coming, leave your first name.</p>
+
+  <form id="signup" novalidate>
+    <label>First name
+      <input class="field" type="text" id="name" name="name" autocomplete="given-name" required>
+    </label>
+    <button type="submit">Count me in</button>
+  </form>
+
+  <p id="confirmed" hidden></p>
+</main>
+
+<script>
+  (function () {
+    var now = new Date();
+    var offset = (4 - now.getDay() + 7) % 7;
+    var thursday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    var pretty = thursday.toLocaleDateString(undefined, {
+      weekday: 'long', month: 'long', day: 'numeric'
+    });
+    document.getElementById('when').textContent = pretty;
+
+    var form = document.getElementById('signup');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      if (!name) { document.getElementById('name').focus(); return; }
+      var out = document.getElementById('confirmed');
+      out.textContent = 'Thanks, ' + name + '. See you ' + pretty + '.';
+      out.hidden = false;
+      form.hidden = true;
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+[package]
+name = "bench-buffa"
+version = "0.1.0"
+edition = "2021"
+publish = false
+autobenches = false  # all bench targets are listed explicitly; keep benches/common.rs (shared include) from being auto-discovered
+
+# Disable lib benchmarks so `cargo bench -- --save-baseline X` only hits
+# the criterion binary (not the libtest harness which rejects criterion args).
+[lib]
+bench = false
+
+[dependencies]
+buffa = { path = "../../buffa", features = ["json"] }
+buffa-descriptor = { path = "../../buffa-descriptor", features = ["reflect", "json", "std"] }
+buffa-smolstr = { path = "../../examples/buffa-smolstr", features = ["serde"], optional = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+bytes = "1"
+smallvec = { version = "1", features = ["serde"], optional = true }
+
+[build-dependencies]
+buffa-build = { path = "../../buffa-build" }
+
+[dev-dependencies]
+criterion = "0.5"
+
+[features]
+default = ["api_response", "log_record", "analytics_event", "google_message1", "media_frame", "packed_tile", "mesh", "column_batch", "reflect", "lazy"]
+api_response = []
+log_record = []
+analytics_event = []
+analytics_owned_types = ["dep:buffa-smolstr", "dep:smallvec"]
+google_message1 = []
+media_frame = []
+packed_tile = []
+mesh = []
+column_batch = []
+reflect = []
+lazy = []
+# `iso` gates the per-message isolated targets out of the default `task bench` run.
+iso = []
+# `encode_sink` gates the sink-comparison bench (`task bench-encode-sink`) out of
+# the default run for the same reason: its IDs must not enter saved baselines.
+encode_sink = []
+
+[[bench]]
+name = "protobuf"
+harness = false
+required-features = ["api_response", "log_record", "analytics_event", "google_message1", "media_frame", "packed_tile", "mesh", "column_batch", "lazy"]
+
+[[bench]]
+name = "reflect"
+harness = false
+required-features = ["api_response", "log_record", "analytics_event", "google_message1", "media_frame", "packed_tile", "mesh", "column_batch", "reflect", "lazy"]
+
+[[bench]]
+name = "api_response"
+harness = false
+required-features = ["iso", "api_response"]
+
+[[bench]]
+name = "log_record"
+harness = false
+required-features = ["iso", "log_record"]
+
+[[bench]]
+name = "analytics_event"
+harness = false
+required-features = ["iso", "analytics_event"]
+
+[[bench]]
+name = "analytics_owned_types"
+harness = false
+required-features = ["iso", "analytics_owned_types"]
+
+[[bench]]
+name = "google_message1"
+harness = false
+required-features = ["iso", "google_message1"]
+
+[[bench]]
+name = "media_frame"
+harness = false
+required-features = ["iso", "media_frame"]
+
+[[bench]]
+name = "packed_tile"
+harness = false
+required-features = ["iso", "packed_tile"]
+
+[[bench]]
+name = "mesh"
+harness = false
+required-features = ["iso", "mesh"]
+
+# Build with fat LTO and a single codegen unit for a fair, reproducible
+# cross-impl comparison — the profile a consumer who opts into `lto = true`
+# gets, and the one the per-release benchmark history pins. (A plain downstream
+# `cargo build --release` is thin-local LTO at 16 codegen units; see
+# `bench-nolto` below.) These crates are excluded from the root
+# workspace, so [profile.*] in a parent manifest is ignored; the empty [workspace]
+# table makes each crate its own workspace root, which is what lets [profile.bench]
+# take effect here. Without it cargo silently builds at cgu=16/lto=off.
+[workspace]
+
+[profile.bench]
+lto = true
+codegen-units = 1
+
+# What a downstream crate gets from a plain `cargo build --release` (cargo's
+# release defaults, no `[profile.release]` keys of its own): cross-crate calls
+# that are not `#[inline]` stay out of line. `benches/encode_sink.rs` is run at
+# both profiles to check that its results do not depend on fat LTO.
+[profile.bench-nolto]
+inherits = "release"
+
+[[bench]]
+name = "column_batch"
+harness = false
+required-features = ["iso", "column_batch"]
+
+[[bench]]
+name = "encode_sink"
+harness = false
+required-features = ["encode_sink", "api_response", "log_record", "google_message1", "media_frame"]

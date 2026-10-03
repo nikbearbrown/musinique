@@ -1,0 +1,154 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaThinkingConfigEnabled = Beta::BetaThinkingConfigEnabled
+
+    module Beta
+      class BetaThinkingConfigEnabled < Anthropic::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaThinkingConfigEnabled,
+              Anthropic::Internal::AnyHash
+            )
+          end
+
+        # Determines how many tokens Claude can use for its internal reasoning process.
+        # Larger budgets can enable more thorough analysis for complex problems, improving
+        # response quality.
+        #
+        # Must be ≥1024 and less than `max_tokens`.
+        #
+        # See
+        # [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking)
+        # for details.
+        sig { returns(Integer) }
+        attr_accessor :budget_tokens
+
+        sig { returns(Symbol) }
+        attr_accessor :type
+
+        # Controls for block binding: what happens when a thinking block this request
+        # sends back fails the conversation check. Every field is optional; an empty
+        # object means every default.
+        sig { returns(T.nilable(Anthropic::Beta::BetaThinkingBlockBinding)) }
+        attr_reader :block_binding
+
+        sig do
+          params(
+            block_binding:
+              T.nilable(Anthropic::Beta::BetaThinkingBlockBinding::OrHash)
+          ).void
+        end
+        attr_writer :block_binding
+
+        # Controls how thinking content appears in the response. When set to `summarized`,
+        # thinking is returned normally. When set to `omitted`, thinking content is
+        # redacted but a signature is returned for multi-turn continuity. Defaults to
+        # `summarized`.
+        sig do
+          returns(
+            T.nilable(
+              Anthropic::Beta::BetaThinkingConfigEnabled::Display::OrSymbol
+            )
+          )
+        end
+        attr_accessor :display_
+
+        sig do
+          params(
+            budget_tokens: Integer,
+            block_binding:
+              T.nilable(Anthropic::Beta::BetaThinkingBlockBinding::OrHash),
+            display_:
+              T.nilable(
+                Anthropic::Beta::BetaThinkingConfigEnabled::Display::OrSymbol
+              ),
+            type: Symbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Determines how many tokens Claude can use for its internal reasoning process.
+          # Larger budgets can enable more thorough analysis for complex problems, improving
+          # response quality.
+          #
+          # Must be ≥1024 and less than `max_tokens`.
+          #
+          # See
+          # [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking)
+          # for details.
+          budget_tokens:,
+          # Controls for block binding: what happens when a thinking block this request
+          # sends back fails the conversation check. Every field is optional; an empty
+          # object means every default.
+          block_binding: nil,
+          # Controls how thinking content appears in the response. When set to `summarized`,
+          # thinking is returned normally. When set to `omitted`, thinking content is
+          # redacted but a signature is returned for multi-turn continuity. Defaults to
+          # `summarized`.
+          display_: nil,
+          type: :enabled
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              budget_tokens: Integer,
+              type: Symbol,
+              block_binding:
+                T.nilable(Anthropic::Beta::BetaThinkingBlockBinding),
+              display_:
+                T.nilable(
+                  Anthropic::Beta::BetaThinkingConfigEnabled::Display::OrSymbol
+                )
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Controls how thinking content appears in the response. When set to `summarized`,
+        # thinking is returned normally. When set to `omitted`, thinking content is
+        # redacted but a signature is returned for multi-turn continuity. Defaults to
+        # `summarized`.
+        module Display
+          extend Anthropic::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Anthropic::Beta::BetaThinkingConfigEnabled::Display)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SUMMARIZED =
+            T.let(
+              :summarized,
+              Anthropic::Beta::BetaThinkingConfigEnabled::Display::TaggedSymbol
+            )
+          OMITTED =
+            T.let(
+              :omitted,
+              Anthropic::Beta::BetaThinkingConfigEnabled::Display::TaggedSymbol
+            )
+          UPDATES =
+            T.let(
+              :updates,
+              Anthropic::Beta::BetaThinkingConfigEnabled::Display::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaThinkingConfigEnabled::Display::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+    end
+  end
+end

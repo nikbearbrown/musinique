@@ -1,0 +1,416 @@
+{
+  "metadata": {
+    "slug": "claude-code-monitoring-guide-typing-one-word-multiply-api",
+    "title": "Why typing one word can multiply your API bill 100×",
+    "topic": "Reasoning-budget keywords as a hidden cost parameter",
+    "purpose": "Claude Code maps a fixed phrase ladder (\"think\" < \"think hard\" < \"think harder\" < \"ultrathink\") to reasoning-budget multipliers; each level accumulates thousands of hidden inference tokens billed at full rate but never shown in the transcript.",
+    "category": "claude-code",
+    "playlist": "Claude Code",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "clock": "narration (Kokoro am_onyx) — master clock; conform each beat to measured audio",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/claude-code-monitoring-guide/claude_code_roi_full.md`",
+    "origin": "promoted",
+    "score": "8/10",
+    "length_band": "~1 min",
+    "still_lanes": "c2v, raster (token receipts)",
+    "prerequisites": "token pricing basics, prompt-engineering basics",
+    "exclusions": "extended-thinking API config; model internals/benchmark deltas; plan behavior",
+    "visual_object": "Two token receipts — visible input/output bars roughly equal between runs, a hidden reasoning bar dwarfing them under \"ultrathink,\" dollar amounts embedded.",
+    "manim_move": "accumulate",
+    "hook": "\"Ultrathink\" isn't a style choice — it silently allocates thousands of hidden reasoning tokens your dashboard never itemizes.",
+    "greeting": "Merhaba, Liam",
+    "design_version": "v2",
+    "voice": "am_onyx",
+    "verdict_stripped": "BVDT removed 2026-08-31: placeholder verdict on thin body (5 beats, 143 words). A placeholder verdict is worse than none.",
+    "build": {
+      "at": "2026-08-31T14:10:23",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "The same architectural analysis costs $0.003 with \"think\" and $0.34 with \"ultrathink\" — same codebase, same question, near-identical visible output.",
+      "estimated_duration_s": 15,
+      "visual": "",
+      "slate": false,
+      "scaffold_note": "from Key case — cold open on the concrete instance",
+      "act": "cold open",
+      "lane": "BOOKEND",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "composer.ask",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Merhaba, Liam",
+            "topic": "Reasoning-budget keywords",
+            "segment": "Why One Word Can Multiply Your API Bill 100×",
+            "command": "Why does typing one word — \"ultrathink\" — multiply my Claude Code bill 100×?",
+            "runningText": "building the answer…",
+            "output": [
+              "Same visible input and output tokens.",
+              "Hidden reasoning tokens do the damage.",
+              "$0.003 → $0.34 on the same query."
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 11.61,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "If cost is metered by visible input and output tokens, how does a single English word multiply the bill 100× without changing what the developer sees?",
+      "estimated_duration_s": 10,
+      "visual": "on-screen QUESTION",
+      "slate": false,
+      "scaffold_note": "gap-form question beat",
+      "act": "I — exec summary",
+      "lane": "BODY",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "card.formB",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "One word, three hidden shifts",
+            "items": [
+              {
+                "label": "Visible tokens",
+                "sub": "Input + output look almost identical.",
+                "icon": "frame",
+                "cueFrame": 20
+              },
+              {
+                "label": "Hidden reasoning",
+                "sub": "Thousands of tokens the transcript never shows.",
+                "icon": "layers",
+                "cueFrame": 55
+              },
+              {
+                "label": "Billed at full rate",
+                "sub": "Dashboard hides them; the invoice does not.",
+                "icon": "clipboard-list",
+                "cueFrame": 90
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 9.92,
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "\"Ultrathink\" isn't a style choice — it silently allocates thousands of hidden reasoning tokens your dashboard never itemizes.",
+      "estimated_duration_s": 8,
+      "visual": "the tension, on-screen claim",
+      "slate": false,
+      "scaffold_note": "the tension",
+      "act": "II — tension",
+      "lane": "BODY",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "card.formA",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "No warning in the transcript.",
+              "No line on the dashboard.",
+              "Full billing on the invoice."
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 7.94,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "Claude Code maps a fixed phrase ladder (\"think\" < \"think hard\" < \"think harder\" < \"ultrathink\") to reasoning-budget multipliers; each level accumulates thousands of hidden inference tokens billed at full rate but never shown in the transcript.",
+      "estimated_duration_s": 18,
+      "visual": "Ladder of four rungs; each rung labeled with its reasoning-budget multiplier.",
+      "manim_move": "accumulate",
+      "slate": false,
+      "scaffold_note": "the resolving mechanism; orbits the visual object",
+      "act": "III — mechanism",
+      "lane": "BODY",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "card.formB",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "The reasoning-budget ladder",
+            "items": [
+              {
+                "label": "think",
+                "sub": "smallest budget · ~180 hidden tokens",
+                "icon": "target",
+                "cueFrame": 20
+              },
+              {
+                "label": "think hard",
+                "sub": "more budget · a few thousand hidden",
+                "icon": "target",
+                "cueFrame": 55
+              },
+              {
+                "label": "think harder",
+                "sub": "more still · tens of thousands hidden",
+                "icon": "target",
+                "cueFrame": 90
+              },
+              {
+                "label": "ultrathink",
+                "sub": "largest budget · ~21,000+ hidden tokens",
+                "icon": "zap",
+                "cueFrame": 125
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 13.18,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "\"ultrathink about the best schema…\" → 820 in / 580 out / ~21,000 hidden reasoning → $0.34. Same query with \"think\" → ~180 reasoning → $0.003.",
+      "estimated_duration_s": 16,
+      "visual": "Two receipts, side-by-side: input/output equal, hidden reasoning wildly different.",
+      "slate": false,
+      "scaffold_note": "THE EXAMPLE act, illustrative",
+      "act": "IV — worked example",
+      "lane": "BODY",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "card.formA",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "Visible tokens: nearly identical.",
+              "Hidden reasoning: 116× larger.",
+              "Bill: 113× larger.",
+              "One word made the difference."
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 16.34,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "Claude Code maps a fixed phrase ladder (\"think\" < \"think hard\" < \"think harder\" < \"ultrathink\") to reasoning-budget multipliers; each level accumulates thousands of hidden inference tokens billed at full rate but never shown in the transcript.",
+      "estimated_duration_s": 8,
+      "visual": "recap card",
+      "slate": false,
+      "scaffold_note": "recap + handoff",
+      "act": "V — recap",
+      "lane": "BODY",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "card.formA",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "think < think hard < think harder < ultrathink",
+              "Multipliers, not styles.",
+              "Billed in full. Never itemized."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 13.18,
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "BOOKEND",
+      "narration_text": "Your turn. Paste this: open your last Claude Code session log, count each time you or an agent typed ultrathink, think harder, or think hard, estimate about twenty-one thousand hidden reasoning tokens per ultrathink and about one hundred and eighty for plain think, multiply by your Sonnet rate — that's the invisible line on your bill. Then decide which prompts still deserve the ladder.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "composer.ask",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · Reasoning-budget audit",
+            "segment": "Count the ladder words in your last session",
+            "command": "Open my last Claude Code session log. Count each time I typed \"ultrathink\", \"think harder\", or \"think hard\". Estimate ~21,000 hidden reasoning tokens per ultrathink, ~180 for plain think. Multiply by my Sonnet rate. That number does not appear on my dashboard — but I paid it. Which prompts still deserve the ladder?",
+            "runningText": "paste this into Claude and run it on your own session…",
+            "output": [
+              "Grep the transcript for the ladder words.",
+              "Tally each rung — the dashboard will not.",
+              "Convert hidden reasoning to a dollar line."
+            ],
+            "folderLabel": "@NikBearBrown"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 19.09,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "BOOKEND",
+      "narration_text": "Why typing one word can multiply your API bill 100×. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 8,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "outro.title",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Why typing one word can multiply your API bill 100×",
+            "slug": "claude-code-monitoring-guide-typing-one-word-multiply-api"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T14:10:23"
+      },
+      "actual_duration_s": 6.04,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ]
+}

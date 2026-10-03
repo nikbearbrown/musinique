@@ -1,0 +1,13 @@
+Done. **claude-liam-her2-low-bystander** shipped as a full cut (not a slate cut — every beat renders real).
+
+**Summary:**
+- Sheet: pre-rebuild snapshot saved, envelope normalized (dropped ElevenLabs `voice_id`, `voice: nbbhuman` → `am_onyx`, stale `build` block cleared).
+- B00 skin swap `NikBearBrownOpen` → `ClaudeComposerAsk` with `Namaste, Liam.` greeting.
+- B02/B05 greetings `The ask,` → `Research the mechanism.` / `Survey the field.` (3 words).
+- 5 punts converted (B01 placeholder card, B04 stub Manim, B06/B07/B08 gen-AI-clip costumes) → FormBCards authored from each beat's own narration.
+- BVDT verdict fully authored (3 lines + 22s spoken verdict) from body content (55% patient population, T-DM1/T-DXd linker mechanism, DESTINY-Breast04 NEJM 2022 PFS 9.9/5.1 mo).
+- Fresh Kokoro audio, all 13 beats rendered, compile stamped 13/13 VIDEO.
+- Gate T PASS, Gate V PASS (12 frames read directly, no defects), Gate Audio PASS at −24.6 dB, content/frame/lane checks PASS.
+- Master mp4 (17:23) newer than beat_sheet.json (17:22) — post-compile sheet untouched. Duration 211.3s.
+
+**Output**: `youtube/cancer-nanomedicine/youtube/claude-liam-her2-low-bystander/her2-low-bystander.mp4`

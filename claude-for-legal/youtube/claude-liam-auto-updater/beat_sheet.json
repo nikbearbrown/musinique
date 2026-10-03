@@ -1,0 +1,383 @@
+{
+  "metadata": {
+    "title": "Claude, Auto Updater.",
+    "slug": "claude-liam-auto-updater",
+    "topic": "AUTO-UPDATER · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-for-legal/legal-builder-hub/skills/auto-updater/SKILL.md",
+    "source_detail": {
+      "capabilities": [],
+      "constraints": [
+        "Fail-closed on regression. If the new version produces findings where",
+        "Security-surface diffs require human approval regardless of verdict.",
+        "Read-only scan context. The scan reads attacker-controlled text (the",
+        "Refuse an update whose scan now fails. If the new version hits a",
+        "argument-hint: \"[--apply to update all, otherwise notify only]\"",
+        "Community skills improve. This skill notices when, shows you what changed, and applies updates only with your explicit approval",
+        "Fetch the current commit SHA from the source registry (the exact commit, not a tag or branch head — tags are mutable and can be retroactively rewritten by the publisher…",
+        "frontmatter FORCES a human-approval prompt and cannot be bypassed by a"
+      ],
+      "referenced_files": [
+        "~/.claude/plugins/config/claude-for-legal/legal-builder-hub/CLAUDE.md",
+        "hooks/hooks.json",
+        ".mcp.json",
+        "allowed-tools",
+        "skills-qa",
+        "--rollback",
+        "last_verified",
+        "freshness_window",
+        "freshness_category",
+        "min(freshness_window, user's threshold for freshness_category)"
+      ],
+      "code_signals": [
+        "code block: diff"
+      ],
+      "sections": [
+        "Purpose",
+        "Trust posture",
+        "Load context",
+        "Workflow",
+        "Step 1: Check each installed skill",
+        "Step 2: Diff and trust review",
+        "SKILL.md changes",
+        "hooks/hooks.json changes",
+        ".mcp.json changes",
+        "Other files"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T23:57:43",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is auto-updater. >. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "AUTO-UPDATER · ANTHROPIC SKILL",
+            "segment": "Claude, Auto Updater.",
+            "command": "Run the auto-updater skill.",
+            "runningText": "reading auto-updater SKILL.md…",
+            "output": [
+              "skill: auto-updater",
+              ">",
+              "steps: 6 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 7.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is auto-updater. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at ~/.claude/plugins/config/claude-for-legal/legal-builder-hub/CLAUDE.md, hooks/hooks.json, .mcp.json, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "auto-updater",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "8k",
+                "accent": true
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "1 file total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 23.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 6 steps. Check each installed skill → Diff and trust review → 5: Re-scan the new version (GlassWorm gate), plus 3 more. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Check each installed skill",
+                "desc": "For each skill in the installed list: - Fetch the current…",
+                "accent": true
+              },
+              {
+                "label": "Diff and trust review",
+                "desc": "For each update, show the full diff: `diff # [skill-name]…",
+                "accent": false
+              },
+              {
+                "label": "5: Re-scan the new version…",
+                "desc": "Re-run the full skills-qa scan against the NEW version…",
+                "accent": false
+              },
+              {
+                "label": "6: Freshness-triggered…",
+                "desc": "Don't only check for new commits. Also check whether…",
+                "accent": false
+              }
+            ],
+            "footerNote": "6 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.76,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Fail-closed on regression. If the new version produces findings where. That is the constraint in auto-updater — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Fail-closed on regression. If the new version produces findings where",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 11.82,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In auto-updater, supporting material: ~/.claude/plugins/config/claude-for-legal/legal-builder-hub/CLAUDE.md, hooks/hooks.json, .mcp.json, allowed-tools; implementation signals: code block: diff; sections: Purpose, Trust posture, Load context, Workflow. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "~/.claude/plugins/config/claude-for-legal/legal-builder-hub/CLAUDE.md; hooks/hooks.json; .mcp.json; code block: diff",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 23.49,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "auto-updater makes Claude execute one task reliably. The SKILL.md is the spec — >. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Auto Updater.",
+            "artifactLines": [
+              "Skill: auto-updater — Claude reads SKILL.md before acting",
+              ">",
+              "6-step pipeline: Check each installed skill → Diff and trust review → 5: Re-scan the new version (GlassWorm gate)",
+              "Constraint: Fail-closed on regression. If the new version produces findings where",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 10.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to >. Read the auto-updater skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "AUTO-UPDATER · ANTHROPIC SKILL",
+            "segment": "Claude, Auto Updater.",
+            "command": "I want to >. Read the auto-updater skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 11.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Auto Updater. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Auto Updater.",
+            "handle": "@NikBearBrown",
+            "subline": "auto-updater · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T23:57:43"
+      }
+    }
+  ]
+}

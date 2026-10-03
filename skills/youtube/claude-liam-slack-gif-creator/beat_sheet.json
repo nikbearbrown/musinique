@@ -1,0 +1,399 @@
+{
+  "metadata": {
+    "title": "Claude, Slack Gif Creator.",
+    "slug": "claude-liam-slack-gif-creator",
+    "topic": "SLACK-GIF-CREATOR · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/skills/skills/slack-gif-creator/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Knowledge and utilities for creating animated GIFs optimized for Slack",
+        "Provides constraints",
+        "validation tools",
+        "and animation concepts",
+        "Use when users request animated GIFs for Slack like \"make me a GIF of X doing Y for Slack."
+      ],
+      "constraints": [
+        "Only when asked to make the file size smaller, implement a few of the following methods:"
+      ],
+      "referenced_files": [
+        "create_gradient_background",
+        "core.gif_builder",
+        "core.validators",
+        "core.easing",
+        "core.frame_composer",
+        "math.sin()",
+        "math.cos()",
+        "math.sin(t frequency 2 * math.pi)",
+        "easing='bounce_out'",
+        "easing='ease_in'"
+      ],
+      "code_signals": [
+        "code block: python",
+        "code block: bash"
+      ],
+      "sections": [
+        "Slack Requirements",
+        "Core Workflow",
+        "Drawing Graphics",
+        "Working with User-Uploaded Images",
+        "Drawing from Scratch",
+        "Making Graphics Look Good",
+        "Available Utilities",
+        "GIFBuilder (core.gif_builder)",
+        "Validators (core.validators)",
+        "Easing Functions (core.easing)"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T12:45:56",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is slack-gif-creator. Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like \"make me a GIF of X doing Y for Slack.. Its concrete surface area includes Knowledge and utilities for creating animated GIFs optimized for Slack; Provides constraints; validation tools. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "SLACK-GIF-CREATOR · ANTHROPIC SKILL",
+            "segment": "Claude, Slack Gif Creator.",
+            "command": "Run the slack-gif-creator skill.",
+            "runningText": "reading slack-gif-creator SKILL.md…",
+            "output": [
+              "skill: slack-gif-creator",
+              "Knowledge and utilities for creating animated GIFs optimized for Slack.…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 27.67,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is slack-gif-creator. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at create_gradient_background, core.gif_builder, core.validators, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "slack-gif-creator",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📝",
+                "name": "LICENSE.txt",
+                "size": "11k",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📝",
+                "name": "requirements.txt",
+                "size": "66b",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "7k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "core",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "4 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "slack-gif-creator is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Knowledge and utilities for creating animated GIFs optimized for Slack; Provides constraints; validation tools; and animation concepts. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Only when asked to make the file size smaller, implement a few of the following methods:. That is the constraint in slack-gif-creator — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Only when asked to make the file size smaller, implement a few of the following methods:",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In slack-gif-creator, supporting material: create_gradient_background, core.gif_builder, core.validators, core.easing; implementation signals: code block: python, code block: bash; sections: Slack Requirements, Core Workflow, Drawing Graphics, Working with User-Uploaded Images. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Knowledge and utilities for creating animated GIFs optimized for Slack; Provides constraints; validation tools; create_gradient_background; core.gif_builder; core.validators; code block: python; code block: bash",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 21.01,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "slack-gif-creator makes Claude execute one task reliably. The SKILL.md is the spec — Knowledge and utilities for creating animated GIFs optimized for Slack.…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Slack Gif Creator.",
+            "artifactLines": [
+              "Skill: slack-gif-creator — Claude reads SKILL.md before acting",
+              "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides…",
+              "Capabilities: Knowledge and utilities for creating animated GIFs optimized for Slack; Provides constraints; validation tools",
+              "Constraint: Only when asked to make the file size smaller, implement a few of the following methods:",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 14.46,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to knowledge and utilities for creating animated gifs optimized for slack. Read the slack-gif-creator skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "SLACK-GIF-CREATOR · ANTHROPIC SKILL",
+            "segment": "Claude, Slack Gif Creator.",
+            "command": "I want to knowledge and utilities for creating animated gifs optimized for. Read the slack-gif-creator skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 14.85,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Slack Gif Creator. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Slack Gif Creator.",
+            "handle": "@NikBearBrown",
+            "subline": "slack-gif-creator · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:45:56"
+      }
+    }
+  ]
+}

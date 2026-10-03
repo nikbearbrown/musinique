@@ -1,0 +1,18 @@
+Cut is 16 s newer than the sheet. Reel done.
+
+**Reel:** `cancer-nanomedicine/youtube/medhavy-vox-endosomal-escape` — MEDHAVY audience variant of the vox-endosomal-escape sibling.
+
+**Cut:** `vox-endosomal-escape-slate.mp4` · 194.9 s · 13/13 filled · lane-check PASS · GATE AUDIO −24.0 dB
+
+**What I did**
+- Phase 0 rebuild snapshot; dropped ElevenLabs `voice_id`/`clock`; added `channel/folderLabel=@NikBearBrown`, `engine=kokoro`, `voice=af_kore` (matches on-disk mp3s).
+- Fixed **B02 FormACard** — replaced truncated-ellipsis punt-costume line with three real narration-derived summary lines.
+- Fixed **B12 OutroSeries** props — schema wants `eyebrow`/`line`, not `seriesTitle`/`tagline`/`githubSlug` (would have rendered the "CLAUDE COWORK" fallback default).
+- Fixed **B13 OutroCTA** props — schema wants `line`/`handle`, not `authorName`/`handle`/`ctaText`.
+- Reused parent `../vox-endosomal-escape/manim/B01–B11.mp4` (10 files); compile slowed 1.07–1.52× to fit the longer af_kore audio (well within 3.0× cap).
+- Re-rendered B02/B12/B13 via `remotion_scenes.py`; compiled via `runtime/scripts/compile.py --review`.
+- Content/frame/lane/audio gates all PASS; zero slates.
+
+**Skipped / logged, not blocking**: MEDHAVY palette swap (vox teal/crimson → Okabe-Ito on eggshell) was not applied — Manim scenes reused from the parent are vox-colored. Logged in AUDIT.md as a future pass. Two minor pacing advisories on B02/B06 (~0.2 wps above ceiling); narration is locked.
+
+Files written/updated: `beat_sheet.pre-rebuild.json`, `beat_sheet.json`, `REBUILD-LOG.md`, `AUDIT.md`, `manim/B01–B11.mp4`, `media/B02.mp4`, `media/B12.mp4`, `media/B13.mp4`, `vox-endosomal-escape-slate.mp4`, `qc-sheet.png`, and one entry appended to `youtube/FILMLOOP-LOG.md`.

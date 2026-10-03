@@ -1,0 +1,11 @@
+Reel done. Deliverable: `ifp-pressure-barrier-slate.mp4` — 174.4 s, 10/10 filled, `Counter({'VIDEO': 9, 'MANIM': 1})`, master audio `mean_volume −24.0 dB`. Cut mtime is 80 s newer than `beat_sheet.json` (05:50 vs 05:48).
+
+Highlights:
+- **Backup**: `beat_sheet.pre-rebuild.json` written byte-exact before edits.
+- **Stripped Claude-washed bookends** `BVDT`/`BHTF`/`BOUT` — all empty placeholders on a NBB-channel reel; the reel's own B00/B09 NikBearBrown open/outro remain, plus B07 SUMMARY / B08 NEXT STEPS in the CLI spine.
+- **Authored 4 punts**: B01 FormBCard placeholder items → real (IFP 20–60 mmHg / Convection reversed / EPR paradox); B06 → FormBCard (normalization answer); B07 → FormACard (physics-first summary); B08 → FormBCard (viewer's move).
+- **Envelope**: dropped dead `voice_id` (ElevenLabs), normalized to Kokoro `am_onyx`, per-beat voice/engine set.
+- **§8.9 truncation fix** on B06 sub; **§8.5 pull-quote fix** on B09 outro title (14 → 7 words).
+- **Gate T** PASS; **content-check / frame-check / lane-check** PASS.
+
+Two honest warnings left in the log rather than papered over: B04 Manim runs 3.3× slow-mo (7 s scene stretched to 22.8 s narration — legacy scene, needs authoring rework, not a validator downgrade); motion histogram is 100 % fade (pantry cap warning). Neither blocks the review cut.

@@ -1,0 +1,29 @@
+Done. Here is the complete log for this invocation:
+
+---
+
+**claude-liam-creating-financial-models** — BUILT
+
+**Phase 0**
+- `beat_sheet.pre-rebuild.json` created (byte-exact backup)
+- No dead ElevenLabs fields found
+
+**Fixes applied (all before compile)**
+1. **B03 sparkLine** — "This is the part worth knowing." (6 words) → "Spec is the limit." (4 words)
+2. **B03 narration** — "sensitivity testing, Mon." → "…Monte Carlo simulations." (corrupted truncation artifact)
+3. **B03 body prop** — 22-word prose sentence → 10-word capability list (GATE T §8.5 de-wordify)
+4. **BVDT stripped** — body too thin (3 beats, ~119 words; threshold: 5+ beats, 180+ words); lines 3–4 were generic to any skill teardown
+5. **BHTF closing block rewrite** — "I want to this skill provides…dcf anal" → coherent handoff prompt: *"I want to stress-test a five-year revenue projection. Read the creating-financial-models skill and walk me through what you will build before you touch a number."*
+
+**Logged (not blocked)**
+- Lens: 3-body-beat reel can't support two full moves; B03 carries partial Descartes + Plato
+- Pacing: B02 at 3.71 wps (over 3.4); BOUT at 1.94 wps (just under 2.0)
+
+**Build results**
+- GATE T: PASS
+- Audio regenerated: B03=18.20s, BHTF=16.36s
+- All 6 Remotion scenes rendered
+- GATE AUDIO: PASS (−24.1 dB)
+- Gate V: zero BLOCKERs, zero MAJORs (four ADVISORIEs, all component-design)
+- `build.status Counter: {'VIDEO': 6}` — zero slates
+- **Deliverable**: `claude-liam-creating-financial-models-slate.mp4` — 78.5s, cut epoch 1787712258 > sheet epoch 1787712255 (+3s) ✓

@@ -1,0 +1,13 @@
+**Done. `claude-liam-reorder-policy-slate.mp4` exists, 92.0 s, audible (−23.9 dB), mp4 epoch 1787721693 > sheet epoch 1787721690.**
+
+---
+
+**Summary of what was done and why:**
+
+- **Phase 0**: Created `beat_sheet.pre-rebuild.json` (missing — required before any edit).
+- **Check 9 (brand)**: `modelLabel "Opus 4.8"` → `"Opus 4.7"` in three places — Opus 4.8 doesn't exist.
+- **Checks 4 + content-integrity**: Five truncation artifacts from a bad original build were corrected: B03 narration (`reorder reco`), BVDT narration and artifactLines[1] (`whenever a task i`/`involves re`), BHTF narration and command prop (garbled grammar + `load this wheneve`), B00 output line. All logged in `REBUILD-LOG.md`.
+- **Gate T**: B03 `body` prop was 26 words (§8.5 limit: 12). Shortened to `"Repeatable output, bounded by the spec."` — Gate T now PASS.
+- **Build**: Kokoro audio regenerated for all 7 beats (B03, BVDT, BHTF durations changed). All 7 Remotion scenes rendered. Compiled to `claude-liam-reorder-policy-slate.mp4`.
+- **Gate V**: Three template-level MAJOR canvas/terracotta issues in the SkillTeardown* components — all logged as justified downgrades, zero BLOCKERs.
+- **Logged** in `AUDIT.md`, `REBUILD-LOG.md`, `FILMLOOP-LOG.md`.

@@ -1,0 +1,7 @@
+Done. `vox-complexity-yield-slate.mp4` (182.6 s, 3.17 MB, 1280×720 p24) — mp4 mtime 17:45:15 is 6 s newer than beat_sheet.json mtime 17:45:09 (not STALE).
+
+**Build**: `Counter({'VIDEO': 9, 'SLATE': 4})` — 9 Remotion renders (B02, B04–B07, B09, B10, B12, B13) + 4 declared PIL slates (B01/B03/B08/B11 CARDs). GATE CONTENT + GATE FRAME + GATE LANE + GATE T all PASS. GATE AUDIO PASS (mean_volume −24.2 dB). Gate V clean on all 9 real beats.
+
+**Rebuild**: envelope stripped of ElevenLabs `voice_id` and `clock`, added `engine: kokoro` / `voice_kokoro: am_onyx` / `folderLabel: @NikBearBrown`. B02 gen-AI STILL punt → FormACard. Six phantom-Manim `graphic.manim` refs → FormACard/FormBCard text substitutes. B12/B13 outro phantom props → correct `eyebrow`/`line` and `line`/`handle` schemas. All 13 narrations preserved verbatim.
+
+**Honest note**: same accepted text-substitute tradeoff as sibling `hai-vox-complexity-yield`/`medhavy-vox-complexity-yield` — no `vox_graphics.py`/`scenes_std.py` module on disk for the drawn-diagram beats. `REBUILD-LOG.md` documents what each substitute names so a future Manim pass can slot the drawn figures in without touching narration.

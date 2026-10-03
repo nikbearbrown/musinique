@@ -1,0 +1,15 @@
+Freshness verified: `vox-isotope-swap-slate.mp4` (01:56) is newer than `beat_sheet.json` (01:55). No post-compile sheet edits.
+
+## Done — `claude-liam-vox-isotope-swap` REVIEW SLATE CUT
+
+**Output**: `vox-isotope-swap-slate.mp4` (223.8s, 3840×2160, 5.2 MB)  
+**Gates**: T PASS · LANE PASS · AUDIO PASS (−27.7 dB) · V PASS · content/frame checks PASS  
+**Fill**: 15/18 VIDEO, 3 SLATE (B04 CARD question, B06 DOCUMENT quote, B12 CARD endcard — all legal review slates)
+
+**Phase 1 fixes**: dropped ElevenLabs voice_id + `_variant_todo`; normalized `clock`; B00 spark line "Liam" → "Bonjour, Liam." (rotates against 5 sibling Claude reels); authored BVDT verdict (4 lines + 60-word narration from body's own Ga-68/Lu-177/PSMA + illustrative 4-lit-shrink-60% vs 2-dark-grow-40%); authored B01 FormBCard items from narration; rewrote B02/B09 FormACard fragments; appended period to 3 titles to clear §8.9 truncation on "…It".
+
+**Phase 2 fixes**: added FormACard fallbacks for the 6 Manim GRAPHIC beats (B03/B05/B07/B08/B10/B11) that would otherwise fail GATE LANE as pipeline-owned SLATE. Rendered all 15 Remotion scenes, compiled --review, extracted 447 QC frames.
+
+**Lens moves**: Descartes (B04+B07), Popper (B11), Plato (B08–B10).
+
+Log appended to `youtube/FILMLOOP-LOG.md`. Supervisor can start the next reel.

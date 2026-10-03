@@ -1,0 +1,1151 @@
+//! protoc plugin for generating Rust code with buffa.
+//!
+//! This binary follows the protoc plugin protocol:
+//! 1. Read a serialized `CodeGeneratorRequest` from stdin.
+//! 2. Pass the file descriptors to `buffa-codegen`.
+//! 3. Write a serialized `CodeGeneratorResponse` to stdout.
+//!
+//! Usage:
+//!   protoc --buffa_out=. my_service.proto
+//!
+//! Or with buf:
+//!   # buf.gen.yaml
+//!   plugins:
+//!     - local: protoc-gen-buffa
+//!       out: src/gen
+
+use std::io::{self, Read, Write};
+
+use buffa::Message;
+use buffa_codegen::generated::compiler::code_generator_response::File as CodeGeneratorResponseFile;
+use buffa_codegen::generated::compiler::CodeGeneratorResponse;
+use buffa_codegen::generated::descriptor::Edition;
+
+use buffa_codegen::{CodeGenConfig, EnumTypeOverride, FeatureOverride};
+
+const HELP: &str = "\
+protoc-gen-buffa — protoc plugin for generating Rust code with buffa.
+
+This binary speaks the protoc plugin protocol: it reads a serialized
+CodeGeneratorRequest from stdin and writes a CodeGeneratorResponse to
+stdout. It is not intended to be invoked directly. Use it via protoc
+or buf (with this binary on PATH):
+
+  protoc --buffa_out=. my_service.proto
+
+  # buf.gen.yaml
+  plugins:
+    - local: protoc-gen-buffa
+      out: src/gen
+
+To point protoc at a binary not on PATH, use
+  --plugin=protoc-gen-buffa=/abs/path/to/protoc-gen-buffa
+
+For a generated mod.rs module tree, also configure
+protoc-gen-buffa-packaging.
+
+Options are passed as a comma-separated parameter string, e.g.
+  --buffa_opt=views=true,json=true,extern_path=.my.pkg=::my_crate
+
+To skip a package pulled in by include_imports (e.g. an option-only
+import that is never referenced as a field), use exclude_package:
+  --buffa_opt=exclude_package=.buf.validate,exclude_package=.gnostic
+
+See <https://github.com/anthropics/buffa/blob/main/docs/guide.md> for
+the full option list.";
+
+fn main() {
+    if let Some(arg) = std::env::args().nth(1) {
+        match arg.as_str() {
+            "--version" | "-V" => {
+                println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
+                return;
+            }
+            "--help" | "-h" => {
+                println!("{HELP}");
+                return;
+            }
+            other => {
+                eprintln!(
+                    "{}: unrecognized argument {other:?}. This is a protoc \
+                     plugin; run with --help for usage.",
+                    env!("CARGO_PKG_NAME")
+                );
+                std::process::exit(2);
+            }
+        }
+    }
+    match run() {
+        Ok(()) => {}
+        Err(e) => {
+            // Protocol: write a response with an error string, don't just crash.
+            let response = CodeGeneratorResponse {
+                error: Some(format!("{}", e)),
+                supported_features: Some(feature_flags()),
+                ..Default::default()
+            };
+            write_response(&response).unwrap_or_else(|io_err| {
+                eprintln!(
+                    "protoc-gen-buffa: failed to write error response: {}",
+                    io_err
+                );
+                std::process::exit(1);
+            });
+        }
+    }
+}
+
+fn run() -> Result<(), Box<dyn std::error::Error>> {
+    // Read the entire request from stdin.
+    let mut input = Vec::new();
+    io::stdin().read_to_end(&mut input)?;
+
+    // Decode the CodeGeneratorRequest. protoc produced it, so the element
+    // bound is far above buffa's untrusted-input default; see
+    // `tooling_decode_options` for the override.
+    let request = buffa_codegen::decode_request(&input)?;
+
+    // Parse plugin parameters (e.g., "views=true,unknown_fields=false").
+    let config = parse_config(request.parameter.as_deref().unwrap_or(""))?;
+
+    // Run code generation, forwarding non-fatal warnings to stderr (protoc
+    // surfaces plugin stderr to the user). Excluded packages are in
+    // `config.codegen.exclude_packages`; `generate_with_diagnostics` filters
+    // them internally so the filtering logic is shared with the buffa-build path.
+    let (generated, warnings) = buffa_codegen::generate_with_diagnostics(
+        &request.proto_file,
+        &request.file_to_generate,
+        &config.codegen,
+    )?;
+    for warning in &warnings {
+        eprintln!("protoc-gen-buffa: warning: {warning}");
+    }
+
+    // Build the response. `generated` is consumed here so the names and
+    // contents move directly into the response rather than being cloned.
+    let files: Vec<CodeGeneratorResponseFile> = generated
+        .into_iter()
+        .map(|g| CodeGeneratorResponseFile {
+            name: Some(g.name),
+            content: Some(g.content),
+            ..Default::default()
+        })
+        .collect();
+
+    let response = CodeGeneratorResponse {
+        supported_features: Some(feature_flags()),
+        // Tell protoc which editions we support.
+        minimum_edition: Some(Edition::EDITION_PROTO2 as i32),
+        maximum_edition: Some(Edition::EDITION_2024 as i32),
+        file: files,
+        ..Default::default()
+    };
+
+    write_response(&response)?;
+    Ok(())
+}
+
+/// Write the serialized CodeGeneratorResponse to stdout.
+fn write_response(response: &CodeGeneratorResponse) -> io::Result<()> {
+    let mut output = Vec::new();
+    response.encode(&mut output);
+    io::stdout().write_all(&output)?;
+    io::stdout().flush()?;
+    Ok(())
+}
+
+/// Feature flags we support (bitmask).
+fn feature_flags() -> u64 {
+    const FEATURE_PROTO3_OPTIONAL: u64 = 1;
+    const FEATURE_SUPPORTS_EDITIONS: u64 = 2;
+    FEATURE_PROTO3_OPTIONAL | FEATURE_SUPPORTS_EDITIONS
+}
+
+/// Plugin configuration parsed from the parameter string.
+struct PluginConfig {
+    /// Code generation options passed to buffa-codegen.
+    ///
+    /// `exclude_packages` are stored in `codegen.exclude_packages` so the
+    /// filtering happens inside `generate_with_diagnostics` and is shared
+    /// uniformly with the `buffa-build` path.
+    codegen: CodeGenConfig,
+}
+
+/// Parse the plugin parameter string into a PluginConfig.
+///
+/// Parameters are comma-separated key=value pairs:
+///   --buffa_opt=views=true,unknown_fields=false,json=true
+///
+/// Extern paths use the format `extern_path=<proto>=<rust>`, where `<proto>`
+/// is either a package or a single type FQN:
+///   --buffa_opt=extern_path=.my.common=::common_protos
+///   --buffa_opt=extern_path=.my.common.Shared=::shared_types::Shared
+fn parse_config(params: &str) -> Result<PluginConfig, String> {
+    let mut codegen = CodeGenConfig::default();
+    let mut unbox_oneof = false;
+
+    if params.is_empty() {
+        return Ok(PluginConfig { codegen });
+    }
+
+    for param in params.split(',').map(str::trim).filter(|s| !s.is_empty()) {
+        let (key, value) = param
+            .split_once('=')
+            .ok_or_else(|| format!("plugin option '{param}' must use key=value syntax"))?;
+        match key.trim() {
+            "views" => codegen.generate_views = parse_bool("views", value)?,
+            "lazy_views" => codegen.lazy_views = parse_bool("lazy_views", value)?,
+            "unknown_fields" => {
+                codegen.preserve_unknown_fields = parse_bool("unknown_fields", value)?
+            }
+            // Repeatable. Enables preservation for matching messages (and the
+            // messages nested in them) on top of the global `unknown_fields`
+            // default, whatever the option order; last matching rule wins.
+            // Same path grammar as `unbox_oneof_in`.
+            "unknown_fields_in" => {
+                codegen.preserve_unknown_fields_in.push((
+                    normalize_proto_path(value.trim(), "unknown_fields_in")?,
+                    true,
+                ));
+            }
+            "json" => codegen.generate_json = parse_bool("json", value)?,
+            // Reject unknown JSON keys instead of ignoring them. Without
+            // `json=true` it changes nothing and codegen warns.
+            "deny_unknown_json_fields" => {
+                codegen.deny_unknown_json_fields = parse_bool("deny_unknown_json_fields", value)?
+            }
+            // Repeatable. Enables strict JSON parsing for matching messages
+            // (and the messages nested in them) on top of the global
+            // `deny_unknown_json_fields` default, whatever the option order;
+            // last matching rule wins. Same path grammar as
+            // `unknown_fields_in`.
+            "deny_unknown_json_fields_in" => {
+                codegen.deny_unknown_json_fields_in.push((
+                    normalize_proto_path(value.trim(), "deny_unknown_json_fields_in")?,
+                    true,
+                ));
+            }
+            "text" => codegen.generate_text = parse_bool("text", value)?,
+            "arbitrary" => codegen.generate_arbitrary = parse_bool("arbitrary", value)?,
+            // `gate_impls=true` wraps generated impls in `#[cfg(feature = ...)]`
+            // instead of emitting them unconditionally. For library crates whose
+            // generated code is itself a public dependency surface; most plugin
+            // invocations want the default (off).
+            "gate_impls" => codegen.gate_impls_on_crate_features = parse_bool("gate_impls", value)?,
+            // `json_feature=serde` (etc.) renames the crate feature a
+            // gated impl kind is conditioned on. Inert without
+            // `gate_impls=true`. An empty value is a hard error —
+            // `#[cfg(feature = "")]` is permanently false and would
+            // silently drop the gated impls. (A non-empty value that is
+            // not a valid Cargo feature name is rejected by `generate`
+            // when the gate is active.)
+            key @ ("json_feature" | "views_feature" | "text_feature" | "reflect_feature") => {
+                let value = value.trim();
+                if value.is_empty() {
+                    return Err(format!(
+                        "'{key}' requires a non-empty feature name \
+                             (an empty name would silently disable the gated impls)"
+                    ));
+                }
+                let names = &mut codegen.feature_gate_names;
+                let slot = match key {
+                    "json_feature" => &mut names.json,
+                    "views_feature" => &mut names.views,
+                    "text_feature" => &mut names.text,
+                    _ => &mut names.reflect,
+                };
+                *slot = value.to_string();
+            }
+            "allow_message_set" => {
+                codegen.allow_message_set = parse_bool("allow_message_set", value)?
+            }
+            "strict_utf8" | "strict_utf8_mapping" => {
+                codegen.strict_utf8_mapping = parse_bool(key.trim(), value)?
+            }
+            "register_types" => codegen.emit_register_fn = parse_bool("register_types", value)?,
+            // `with_setters=false` opts out of builder-style setter
+            // methods. Like `register_types`, the default is on, so the
+            // accepted spelling is the negation.
+            "with_setters" => codegen.generate_with_setters = parse_bool("with_setters", value)?,
+            // `reflection=true` selects the fast vtable mode (same as
+            // `reflect_mode=vtable`); `reflect_mode=bridge` opts into the
+            // smaller round-trip implementation.
+            "reflection" => {
+                let mode = if parse_bool("reflection", value)? {
+                    buffa_codegen::ReflectMode::VTable
+                } else {
+                    buffa_codegen::ReflectMode::Off
+                };
+                mode.apply(&mut codegen);
+            }
+            // `reflect_mode=off|bridge|vtable` is the fuller form of
+            // `reflection=`. `vtable` additionally emits `impl ReflectMessage`
+            // on owned + view types and makes `reflect()` borrow `self`.
+            "reflect_mode" => match value.trim() {
+                "off" => buffa_codegen::ReflectMode::Off.apply(&mut codegen),
+                "bridge" => buffa_codegen::ReflectMode::Bridge.apply(&mut codegen),
+                "vtable" => buffa_codegen::ReflectMode::VTable.apply(&mut codegen),
+                other => {
+                    return Err(format!(
+                        "invalid reflect_mode '{other}', expected off, bridge, or vtable"
+                    ));
+                }
+            },
+            // `shared_descriptor_pool=true` deduplicates the embedded
+            // reflection descriptor set: per-package `__buffa::reflect` modules
+            // delegate to one shared `__buffa_fds` root module (emitted by
+            // protoc-gen-buffa-packaging), instead of each embedding its own
+            // copy. Requires `reflection`/`reflect_mode` on, and the packaging
+            // plugin must be run with a matching `shared_descriptor_pool=true`
+            // so the root module actually gets emitted.
+            "shared_descriptor_pool" => {
+                codegen.shared_descriptor_pool = parse_bool("shared_descriptor_pool", value)?
+            }
+            "file_per_package" => codegen.file_per_package = parse_bool("file_per_package", value)?,
+            // Experimental: `use`-backed short type names at the package
+            // root. Requires file_per_package=true (rejected by codegen
+            // otherwise).
+            "idiomatic_imports" => {
+                codegen.idiomatic_imports = parse_bool("idiomatic_imports", value)?
+            }
+            // `idiomatic_field_names=true` converts camelCase proto field and
+            // oneof names to snake_case Rust identifiers (prost parity). Wire,
+            // JSON, and text-format names are unaffected. Default off.
+            "idiomatic_field_names" => {
+                codegen.idiomatic_field_names = parse_bool("idiomatic_field_names", value)?
+            }
+            // `idiomatic_enum_aliases=false` omits the `UpperCamelCase`
+            // associated-const aliases for enum values. The
+            // `SHOUTY_SNAKE_CASE` variants are unaffected. Default on.
+            "idiomatic_enum_aliases" => {
+                codegen.idiomatic_enum_aliases = parse_bool("idiomatic_enum_aliases", value)?
+            }
+            // `unbox_oneof=true` opts every non-recursive message/group
+            // variant into inline storage. Path-scoped rules use the
+            // repeatable `unbox_oneof_in=<path>` spelling, matching the
+            // builder API's `unbox_oneof()` / `unbox_oneof_in()` split.
+            "unbox_oneof" => unbox_oneof = parse_bool("unbox_oneof", value)?,
+            "unbox_oneof_in" => {
+                codegen
+                    .unboxed_oneof_fields
+                    .push(normalize_unbox_oneof_path(value.trim())?);
+            }
+            // `type_name_prefix=Rpc` prepends a prefix to every generated
+            // message/enum type name (and their view types). The value is
+            // passed through verbatim; buffa-codegen rejects anything that
+            // is not PascalCase at generation time (same rule as the
+            // builder API).
+            "type_name_prefix" => codegen.type_name_prefix = value.to_string(),
+            // Repeatable path-scoped editions feature override; value is
+            // "<path>=<feature>:<value>" (e.g. ".my.pkg.E=enum_type:OPEN").
+            // Applied by buffa-codegen as descriptor feature injection.
+            "override_feature_in" => {
+                let (path, feature_spec) = value.split_once('=').ok_or_else(|| {
+                    format!(
+                        "invalid override_feature_in format '{value}', expected \
+                         'override_feature_in=<proto_path>=<feature>:<value>' \
+                         (e.g. 'override_feature_in=.my.pkg.E=enum_type:OPEN')"
+                    )
+                })?;
+                let feature = parse_feature_override(feature_spec.trim())?;
+                codegen
+                    .feature_overrides
+                    .push((normalize_override_path(path.trim())?, feature));
+            }
+            // Shorthand for "override_feature_in=<path>=enum_type:OPEN".
+            "open_enums_in" => {
+                codegen.feature_overrides.push((
+                    normalize_override_path(value.trim())?,
+                    FeatureOverride::EnumType(EnumTypeOverride::Open),
+                ));
+            }
+            // `exclude_package=.buf.validate` drops a proto package (and its
+            // subpackages) from generation. Repeatable. Intended for
+            // option-only imports that `include_imports` pulls into
+            // file_to_generate but that are never referenced as message
+            // fields (e.g. buf.validate, gnostic). The leading dot is
+            // optional (normalized like extern_path). protoc-gen-buffa-packaging
+            // accepts the same option so the generated mod.rs stays in sync.
+            "exclude_package" => {
+                codegen
+                    .exclude_packages
+                    .push(buffa_codegen::normalize_exclude_package(value)?);
+            }
+            "extern_path" => {
+                // value is "<proto_path>=<rust_path>"
+                if let Some((proto, rust)) = value.split_once('=') {
+                    let proto = proto.trim();
+                    let rust = rust.trim();
+                    if proto.is_empty() || rust.is_empty() {
+                        return Err(format!(
+                            "invalid extern_path format '{value}', \
+                                 expected 'extern_path=.proto.pkg=::rust::path' \
+                                 (or a type FQN, 'extern_path=.proto.pkg.Type=::rust::path::Type')"
+                        ));
+                    }
+                    let mut proto = proto.to_string();
+                    // Normalize: accept both ".my.pkg" and "my.pkg".
+                    if !proto.starts_with('.') {
+                        proto.insert(0, '.');
+                    }
+                    codegen.extern_paths.push((proto, rust.to_string()));
+                } else {
+                    return Err(format!(
+                        "invalid extern_path format '{}', \
+                             expected 'extern_path=.proto.pkg=::rust::path' \
+                             (or a type FQN, 'extern_path=.proto.pkg.Type=::rust::path::Type')",
+                        value
+                    ));
+                }
+            }
+            "mod_file" => {
+                return Err("the mod_file option was removed in 0.2; use \
+                         protoc-gen-buffa-packaging instead. See CHANGELOG \
+                         for migration."
+                    .to_string());
+            }
+            // Consumed before the request was decoded (it governs that
+            // decode); see `buffa_codegen::peek_request_parameter`.
+            buffa_codegen::ELEMENT_MEMORY_LIMIT_OPT => {}
+            other => {
+                return Err(format!(
+                    "unknown plugin option '{other}'; see \
+                     <https://github.com/anthropics/buffa/blob/main/docs/guide.md#plugin-options> \
+                     for the supported options"
+                ))
+            }
+        }
+    }
+
+    if unbox_oneof {
+        codegen.unboxed_oneof_fields.push(".".to_string());
+    }
+
+    // Without reflection there is no embedded descriptor pool to share.
+    // Codegen core rejects this too, but its message names the CodeGenConfig
+    // field (`generate_reflection`), which a buf.gen.yaml user never sees —
+    // reject here with plugin-option vocabulary instead.
+    if codegen.shared_descriptor_pool && !codegen.generate_reflection {
+        return Err("shared_descriptor_pool requires reflection to be enabled \
+                    (pass reflection=true or reflect_mode=bridge|vtable)"
+            .to_string());
+    }
+
+    // file_per_package is the packaging-plugin-free workflow (its per-package
+    // files are self-contained, so no mod.rs is generated for it), which means
+    // no process ever emits the shared `__buffa_fds` root module the
+    // per-package delegations point at — the consumer crate would fail with an
+    // unresolved `__buffa_fds`. Reject the combination up front.
+    if codegen.shared_descriptor_pool && codegen.file_per_package {
+        return Err("shared_descriptor_pool is not supported together with \
+                    file_per_package (the shared __buffa_fds root module is emitted by \
+                    protoc-gen-buffa-packaging's mod.rs, which the file_per_package \
+                    workflow does not use); drop one of the two options, or use \
+                    buffa-build for a shared pool without the packaging plugin"
+            .to_string());
+    }
+
+    // The shared root module lives in protoc-gen-buffa-packaging's output,
+    // which has no access to this plugin's feature-gate config — so it can't
+    // wrap the root in the same `#[cfg(feature = "…")]` the per-package
+    // delegations would carry. That would leave the descriptor bytes compiling
+    // (and the pool decoding) even with the reflect feature off, defeating the
+    // gate. Reject the combination rather than emit a silently-broken tree.
+    // (`buffa-build` supports gate + shared because it emits the root itself.)
+    // `reflect_feature_gate()` is the value a front-end would have to gate the
+    // root with, so testing it covers every option that turns the gate on.
+    if codegen.shared_descriptor_pool && codegen.reflect_feature_gate().is_some() {
+        return Err("shared_descriptor_pool is not supported together with \
+                    gate_impls=true on the protoc plugin path (the packaging plugin \
+                    cannot gate the shared module); use buffa-build for gated shared \
+                    pools, or drop the gate"
+            .to_string());
+    }
+
+    // Feature overrides (`open_enums_in` / `override_feature_in`) mutate the
+    // descriptors before the embedded reflection set is built. The shared root
+    // module is emitted by protoc-gen-buffa-packaging, a separate process that
+    // never receives these options, so it would embed the un-overridden set and
+    // disagree with the generated code. Reject rather than emit a mismatched
+    // pool. (`buffa-build` supports overrides + shared: one process, it applies
+    // the overrides to the shared copy itself.)
+    if codegen.shared_descriptor_pool && !codegen.feature_overrides.is_empty() {
+        return Err(
+            "shared_descriptor_pool is not supported together with feature \
+                    overrides (open_enums_in / override_feature_in) on the protoc plugin \
+                    path (the packaging plugin cannot see the overrides, so the shared \
+                    descriptor pool would not match the generated code); use buffa-build \
+                    for shared pools with overrides, or drop shared_descriptor_pool"
+                .to_string(),
+        );
+    }
+
+    Ok(PluginConfig { codegen })
+}
+
+fn parse_bool(key: &str, value: &str) -> Result<bool, String> {
+    match value.trim() {
+        "true" => Ok(true),
+        "false" => Ok(false),
+        other => Err(format!(
+            "invalid boolean value for '{key}': '{other}', expected true or false"
+        )),
+    }
+}
+
+/// Parse the `<feature>:<value>` half of an `override_feature_in` option.
+/// The supported set is the [`FeatureOverride`] allowlist; anything else is
+/// a hard error naming what is supported.
+fn parse_feature_override(spec: &str) -> Result<FeatureOverride, String> {
+    let (feature, value) = spec.split_once(':').ok_or_else(|| {
+        format!(
+            "invalid feature override '{spec}', expected '<feature>:<value>' \
+             (e.g. 'enum_type:OPEN')"
+        )
+    })?;
+    // Feature names are matched exactly (they are FeatureSet field
+    // identifiers); values case-insensitively (they are enum value names,
+    // conventionally SHOUTY but commonly typed lowercase).
+    match feature.trim() {
+        "enum_type" if value.trim().eq_ignore_ascii_case("open") => {
+            Ok(FeatureOverride::EnumType(EnumTypeOverride::Open))
+        }
+        _ => Err(format!(
+            "unsupported feature override '{spec}'; supported overrides: enum_type:OPEN"
+        )),
+    }
+}
+
+fn normalize_override_path(path: &str) -> Result<String, String> {
+    normalize_proto_path(path, "feature override")
+}
+
+fn normalize_unbox_oneof_path(path: &str) -> Result<String, String> {
+    normalize_proto_path(path, "unbox_oneof_in")
+}
+
+fn normalize_proto_path(path: &str, label: &str) -> Result<String, String> {
+    if path.is_empty() {
+        return Err(format!(
+            "{label} rules require a non-empty proto path; use '.' explicitly to match everything"
+        ));
+    }
+
+    if path == "." {
+        return Ok(".".to_string());
+    }
+
+    let mut path = path.to_string();
+    if !path.starts_with('.') {
+        path.insert(0, '.');
+    }
+    while path.ends_with('.') {
+        path.pop();
+    }
+
+    if path.is_empty() {
+        return Err(format!(
+            "{label} rules require a non-empty proto path; use '.' explicitly to match everything"
+        ));
+    }
+    Ok(path)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn parse_err(params: &str) -> String {
+        match parse_config(params) {
+            Ok(_) => panic!("expected parse_config({params:?}) to fail"),
+            Err(err) => err,
+        }
+    }
+
+    #[test]
+    fn empty_params_returns_defaults() {
+        let config = parse_config("").unwrap();
+        let defaults = CodeGenConfig::default();
+        assert_eq!(config.codegen.generate_views, defaults.generate_views);
+        assert_eq!(
+            config.codegen.preserve_unknown_fields,
+            defaults.preserve_unknown_fields
+        );
+        assert_eq!(config.codegen.generate_json, defaults.generate_json);
+        assert!(config.codegen.extern_paths.is_empty());
+    }
+
+    #[test]
+    fn views_true() {
+        let config = parse_config("views=true").unwrap();
+        assert!(config.codegen.generate_views);
+    }
+
+    #[test]
+    fn views_false() {
+        let config = parse_config("views=false").unwrap();
+        assert!(!config.codegen.generate_views);
+    }
+
+    #[test]
+    fn lazy_views_true() {
+        let config = parse_config("lazy_views=true").unwrap();
+        assert!(config.codegen.lazy_views);
+        assert!(!parse_config("").unwrap().codegen.lazy_views);
+    }
+
+    #[test]
+    fn json_true() {
+        let config = parse_config("json=true").unwrap();
+        assert!(config.codegen.generate_json);
+    }
+
+    #[test]
+    fn unknown_fields_false() {
+        let config = parse_config("unknown_fields=false").unwrap();
+        assert!(!config.codegen.preserve_unknown_fields);
+    }
+
+    #[test]
+    fn unknown_fields_true() {
+        let config = parse_config("unknown_fields=true").unwrap();
+        assert!(config.codegen.preserve_unknown_fields);
+    }
+
+    #[test]
+    fn deny_unknown_json_fields_options_parse() {
+        let config = parse_config(
+            "json=true,deny_unknown_json_fields=true,deny_unknown_json_fields_in=demo.Cfg,\
+             deny_unknown_json_fields_in=.demo.Other.",
+        )
+        .unwrap();
+        assert!(config.codegen.deny_unknown_json_fields);
+        assert_eq!(
+            config.codegen.deny_unknown_json_fields_in,
+            vec![
+                (".demo.Cfg".to_string(), true),
+                (".demo.Other".to_string(), true),
+            ]
+        );
+    }
+
+    #[test]
+    fn deny_unknown_json_fields_in_rejects_empty_or_whitespace() {
+        for params in [
+            "deny_unknown_json_fields_in=",
+            "deny_unknown_json_fields_in=   ",
+            "deny_unknown_json_fields_in=...",
+        ] {
+            assert!(parse_config(params).is_err(), "{params}");
+        }
+    }
+
+    #[test]
+    fn unknown_fields_in_is_repeatable_and_normalized() {
+        let config = parse_config(
+            "unknown_fields_in=wa.Keep,unknown_fields=false,unknown_fields_in=.wa.Also.,unknown_fields_in= . ",
+        )
+        .unwrap();
+        assert!(!config.codegen.preserve_unknown_fields);
+        assert_eq!(
+            config.codegen.preserve_unknown_fields_in,
+            vec![
+                (".wa.Keep".to_string(), true),
+                (".wa.Also".to_string(), true),
+                (".".to_string(), true),
+            ]
+        );
+    }
+
+    #[test]
+    fn unknown_fields_in_rejects_empty_or_whitespace() {
+        for params in [
+            "unknown_fields_in=",
+            "unknown_fields_in=   ",
+            "unknown_fields_in=...",
+        ] {
+            let err = parse_err(params);
+            assert!(err.contains("unknown_fields_in rules"), "{params:?}: {err}");
+            assert!(err.contains("non-empty proto path"), "{params:?}: {err}");
+        }
+    }
+
+    #[test]
+    fn file_per_package_true() {
+        let config = parse_config("file_per_package=true").unwrap();
+        assert!(config.codegen.file_per_package);
+    }
+
+    #[test]
+    fn file_per_package_default_is_false() {
+        let config = parse_config("").unwrap();
+        assert!(!config.codegen.file_per_package);
+    }
+
+    #[test]
+    fn idiomatic_imports_true() {
+        let config = parse_config("file_per_package=true,idiomatic_imports=true").unwrap();
+        assert!(config.codegen.idiomatic_imports);
+    }
+
+    #[test]
+    fn idiomatic_imports_defaults_off() {
+        let config = parse_config("").unwrap();
+        assert!(!config.codegen.idiomatic_imports);
+    }
+
+    #[test]
+    fn idiomatic_field_names_true() {
+        let config = parse_config("idiomatic_field_names=true").unwrap();
+        assert!(config.codegen.idiomatic_field_names);
+    }
+
+    #[test]
+    fn idiomatic_field_names_defaults_off() {
+        let config = parse_config("").unwrap();
+        assert!(!config.codegen.idiomatic_field_names);
+    }
+
+    #[test]
+    fn idiomatic_enum_aliases_can_be_disabled_and_reenabled() {
+        let config = parse_config("").unwrap();
+        assert!(config.codegen.idiomatic_enum_aliases);
+
+        let config = parse_config("idiomatic_enum_aliases=false").unwrap();
+        assert!(!config.codegen.idiomatic_enum_aliases);
+
+        let config =
+            parse_config("idiomatic_enum_aliases=false,idiomatic_enum_aliases=true").unwrap();
+        assert!(config.codegen.idiomatic_enum_aliases);
+    }
+
+    #[test]
+    fn idiomatic_enum_aliases_rejects_non_boolean_values() {
+        let err = parse_err("idiomatic_enum_aliases=1");
+        assert!(err.contains("idiomatic_enum_aliases"));
+        assert!(err.contains("expected true or false"));
+    }
+
+    #[test]
+    fn unbox_oneof_is_a_boolean_blanket_toggle() {
+        let config = parse_config("unbox_oneof=true").unwrap();
+        assert_eq!(config.codegen.unboxed_oneof_fields, vec![".".to_string()]);
+
+        let config = parse_config("unbox_oneof=false").unwrap();
+        assert!(config.codegen.unboxed_oneof_fields.is_empty());
+
+        let config = parse_config("unbox_oneof=true,unbox_oneof=false").unwrap();
+        assert!(config.codegen.unboxed_oneof_fields.is_empty());
+
+        let config = parse_config("unbox_oneof=false,unbox_oneof=true").unwrap();
+        assert_eq!(config.codegen.unboxed_oneof_fields, vec![".".to_string()]);
+    }
+
+    #[test]
+    fn unbox_oneof_in_is_repeatable_and_normalized() {
+        let config = parse_config(
+            "unbox_oneof_in=my.pkg.Msg.body.small,unbox_oneof_in= . ,unbox_oneof_in=.my.pkg.Other. ",
+        )
+        .unwrap();
+        assert_eq!(
+            config.codegen.unboxed_oneof_fields,
+            vec![
+                ".my.pkg.Msg.body.small".to_string(),
+                ".".to_string(),
+                ".my.pkg.Other".to_string(),
+            ]
+        );
+    }
+
+    #[test]
+    fn unbox_oneof_in_rejects_empty_or_whitespace() {
+        for params in [
+            "unbox_oneof_in=",
+            "unbox_oneof_in=   ",
+            "unbox_oneof_in=...",
+        ] {
+            let err = parse_err(params);
+            assert!(err.contains("unbox_oneof_in rules"), "{params:?}: {err}");
+            assert!(err.contains("non-empty proto path"), "{params:?}: {err}");
+        }
+    }
+
+    #[test]
+    fn unbox_oneof_rejects_non_boolean_values() {
+        // A path or a near-miss boolean is an error, never a silent no-op.
+        for params in [
+            "unbox_oneof=.my.pkg.Other",
+            "unbox_oneof=TRUE",
+            "unbox_oneof=1",
+        ] {
+            let err = parse_err(params);
+            assert!(err.contains("unbox_oneof"), "{params:?}: {err}");
+        }
+    }
+
+    #[test]
+    fn unbox_oneof_defaults_empty() {
+        let config = parse_config("").unwrap();
+        assert!(config.codegen.unboxed_oneof_fields.is_empty());
+    }
+
+    #[test]
+    fn extern_path_with_leading_dot() {
+        let config = parse_config("extern_path=.my.common=::common_protos").unwrap();
+        assert_eq!(config.codegen.extern_paths.len(), 1);
+        assert_eq!(config.codegen.extern_paths[0].0, ".my.common");
+        assert_eq!(config.codegen.extern_paths[0].1, "::common_protos");
+    }
+
+    #[test]
+    fn extern_path_without_leading_dot_is_normalized() {
+        let config = parse_config("extern_path=my.common=::common_protos").unwrap();
+        assert_eq!(config.codegen.extern_paths[0].0, ".my.common");
+    }
+
+    #[test]
+    fn multiple_params() {
+        let config = parse_config("views=true,json=true").unwrap();
+        assert!(config.codegen.generate_views);
+        assert!(config.codegen.generate_json);
+    }
+
+    #[test]
+    fn multiple_extern_paths() {
+        let config =
+            parse_config("extern_path=.my.a=::crate_a,extern_path=.my.b=::crate_b").unwrap();
+        assert_eq!(config.codegen.extern_paths.len(), 2);
+        assert_eq!(config.codegen.extern_paths[0].0, ".my.a");
+        assert_eq!(config.codegen.extern_paths[1].0, ".my.b");
+    }
+
+    #[test]
+    fn open_enums_in_is_repeatable_and_normalized() {
+        let config =
+            parse_config("open_enums_in=my.pkg.Status.,open_enums_in=.my.pkg.Msg.e").unwrap();
+        assert_eq!(
+            config.codegen.feature_overrides,
+            vec![
+                (
+                    ".my.pkg.Status".to_string(),
+                    FeatureOverride::EnumType(EnumTypeOverride::Open)
+                ),
+                (
+                    ".my.pkg.Msg.e".to_string(),
+                    FeatureOverride::EnumType(EnumTypeOverride::Open)
+                ),
+            ]
+        );
+    }
+
+    #[test]
+    fn override_feature_in_parses_path_feature_and_value() {
+        let config = parse_config("override_feature_in=my.pkg.Status.=enum_type:OPEN").unwrap();
+        assert_eq!(
+            config.codegen.feature_overrides,
+            vec![(
+                ".my.pkg.Status".to_string(),
+                FeatureOverride::EnumType(EnumTypeOverride::Open)
+            )]
+        );
+    }
+
+    #[test]
+    fn override_feature_in_rejects_unsupported_features() {
+        let err = parse_err("override_feature_in=.my.pkg.Msg.f=message_encoding:DELIMITED");
+        assert!(err.contains("unsupported feature override"));
+        assert!(err.contains("enum_type:OPEN"));
+
+        let err = parse_err("override_feature_in=.my.pkg.E=enum_type:CLOSED");
+        assert!(err.contains("unsupported feature override"));
+    }
+
+    #[test]
+    fn override_feature_in_missing_value_errors() {
+        let err = parse_err("override_feature_in=.my.pkg.E");
+        assert!(err.contains("override_feature_in"));
+        assert!(err.contains("<feature>:<value>") || err.contains("expected"));
+    }
+
+    #[test]
+    fn open_enums_in_catchall() {
+        let config = parse_config("open_enums_in=.").unwrap();
+        assert_eq!(
+            config.codegen.feature_overrides,
+            vec![(
+                ".".to_string(),
+                FeatureOverride::EnumType(EnumTypeOverride::Open)
+            )]
+        );
+    }
+
+    #[test]
+    fn empty_open_enums_in_errors() {
+        let err = parse_err("open_enums_in=");
+        assert!(err.contains("non-empty"));
+        assert!(err.contains("'.'"));
+    }
+
+    #[test]
+    fn all_dots_open_enums_in_errors() {
+        let err = parse_err("open_enums_in=...");
+        assert!(err.contains("non-empty"));
+    }
+
+    #[test]
+    fn whitespace_is_trimmed() {
+        let config = parse_config(" views = true , json = true ").unwrap();
+        assert!(config.codegen.generate_views);
+        assert!(config.codegen.generate_json);
+    }
+
+    #[test]
+    fn unknown_param_errors() {
+        let err = parse_err("unknown_key=value");
+        assert!(err.contains("unknown_key"));
+    }
+
+    #[test]
+    fn missing_equals_errors() {
+        let err = parse_err("json");
+        assert!(err.contains("key=value"));
+    }
+
+    #[test]
+    fn invalid_bool_errors() {
+        let err = parse_err("json=yes");
+        assert!(err.contains("json"));
+        assert!(err.contains("true or false"));
+    }
+
+    #[test]
+    fn invalid_bool_for_default_on_option_errors() {
+        let err = parse_err("unknown_fields=yes");
+        assert!(err.contains("unknown_fields"));
+        assert!(err.contains("true or false"));
+    }
+
+    #[test]
+    fn invalid_reflect_mode_errors() {
+        let err = parse_err("reflect_mode=fast");
+        assert!(err.contains("reflect_mode"));
+        assert!(err.contains("off, bridge, or vtable"));
+    }
+
+    #[test]
+    fn invalid_extern_path_errors() {
+        let err = parse_err("extern_path=no_equals_sign");
+        assert!(err.contains("extern_path"));
+    }
+
+    #[test]
+    fn empty_extern_path_side_errors() {
+        let err = parse_err("extern_path=.my.common=");
+        assert!(err.contains("extern_path"));
+    }
+
+    #[test]
+    fn register_types_false() {
+        let config = parse_config("register_types=false").unwrap();
+        assert!(!config.codegen.emit_register_fn);
+    }
+
+    #[test]
+    fn register_types_true() {
+        let config = parse_config("register_types=true").unwrap();
+        assert!(config.codegen.emit_register_fn);
+    }
+
+    #[test]
+    fn register_types_default_is_true() {
+        let config = parse_config("").unwrap();
+        assert!(config.codegen.emit_register_fn);
+    }
+
+    #[test]
+    fn gate_impls_true() {
+        let config = parse_config("gate_impls=true").unwrap();
+        assert!(config.codegen.gate_impls_on_crate_features);
+    }
+
+    #[test]
+    fn gate_impls_default_is_false() {
+        let config = parse_config("").unwrap();
+        assert!(!config.codegen.gate_impls_on_crate_features);
+    }
+
+    #[test]
+    fn feature_name_overrides() {
+        let config =
+            parse_config("json_feature=serde,views_feature=v,text_feature=t,reflect_feature=r")
+                .unwrap();
+        assert_eq!(config.codegen.feature_gate_names.json, "serde");
+        assert_eq!(config.codegen.feature_gate_names.views, "v");
+        assert_eq!(config.codegen.feature_gate_names.text, "t");
+        assert_eq!(config.codegen.feature_gate_names.reflect, "r");
+    }
+
+    #[test]
+    fn empty_feature_name_is_rejected() {
+        let err = match parse_config("json_feature=") {
+            Err(err) => err,
+            Ok(_) => panic!("empty feature name must be a parse error"),
+        };
+        assert!(
+            err.contains("json_feature"),
+            "error names the option: {err}"
+        );
+    }
+
+    #[test]
+    fn feature_names_default() {
+        let config = parse_config("").unwrap();
+        assert_eq!(config.codegen.feature_gate_names.json, "json");
+        assert_eq!(config.codegen.feature_gate_names.views, "views");
+        assert_eq!(config.codegen.feature_gate_names.text, "text");
+        assert_eq!(config.codegen.feature_gate_names.reflect, "reflect");
+    }
+
+    #[test]
+    fn type_name_prefix_parsed() {
+        let config = parse_config("type_name_prefix=Rpc").unwrap();
+        assert_eq!(config.codegen.type_name_prefix, "Rpc");
+    }
+
+    #[test]
+    fn type_name_prefix_default_is_empty() {
+        let config = parse_config("").unwrap();
+        assert!(config.codegen.type_name_prefix.is_empty());
+    }
+
+    #[test]
+    fn type_name_prefix_not_trimmed() {
+        // The value is passed through verbatim (no per-value trim) so the
+        // plugin and the builder API accept/reject exactly the same strings —
+        // codegen later rejects this one as not PascalCase.
+        let config = parse_config("type_name_prefix= Rpc").unwrap();
+        assert_eq!(config.codegen.type_name_prefix, " Rpc");
+    }
+
+    #[test]
+    fn with_setters_false() {
+        let config = parse_config("with_setters=false").unwrap();
+        assert!(!config.codegen.generate_with_setters);
+    }
+
+    #[test]
+    fn with_setters_default_is_true() {
+        let config = parse_config("").unwrap();
+        assert!(config.codegen.generate_with_setters);
+    }
+
+    #[test]
+    fn mod_file_errors_with_migration_hint() {
+        let err = parse_config("mod_file=mod.rs").err().unwrap();
+        assert!(err.contains("protoc-gen-buffa-packaging"));
+    }
+
+    #[test]
+    fn exclude_package_with_leading_dot_is_normalized() {
+        let config = parse_config("exclude_package=.buf.validate").unwrap();
+        assert_eq!(
+            config.codegen.exclude_packages,
+            vec!["buf.validate".to_string()]
+        );
+    }
+
+    #[test]
+    fn exclude_package_without_leading_dot() {
+        let config = parse_config("exclude_package=gnostic").unwrap();
+        assert_eq!(config.codegen.exclude_packages, vec!["gnostic".to_string()]);
+    }
+
+    #[test]
+    fn exclude_package_is_repeatable() {
+        let config =
+            parse_config("exclude_package=.buf.validate,exclude_package=.gnostic").unwrap();
+        assert_eq!(
+            config.codegen.exclude_packages,
+            vec!["buf.validate".to_string(), "gnostic".to_string()]
+        );
+    }
+
+    #[test]
+    fn exclude_package_defaults_empty() {
+        let config = parse_config("").unwrap();
+        assert!(config.codegen.exclude_packages.is_empty());
+    }
+
+    #[test]
+    fn empty_exclude_package_is_rejected() {
+        let err = parse_err("exclude_package=");
+        assert!(err.contains("exclude_package"));
+        let err = parse_err("exclude_package=.");
+        assert!(err.contains("exclude_package"));
+    }
+
+    #[test]
+    fn text_true() {
+        let config = parse_config("text=true").unwrap();
+        assert!(config.codegen.generate_text);
+    }
+
+    #[test]
+    fn text_default_is_false() {
+        let config = parse_config("").unwrap();
+        assert!(!config.codegen.generate_text);
+    }
+
+    #[test]
+    fn allow_message_set_true() {
+        let config = parse_config("allow_message_set=true").unwrap();
+        assert!(config.codegen.allow_message_set);
+    }
+
+    #[test]
+    fn allow_message_set_default_is_false() {
+        let config = parse_config("").unwrap();
+        assert!(!config.codegen.allow_message_set);
+    }
+
+    #[test]
+    fn shared_descriptor_pool_rejects_feature_overrides() {
+        let err =
+            parse_config("reflection=true,shared_descriptor_pool=true,open_enums_in=.pkg.Color")
+                .err()
+                .expect("shared_descriptor_pool + overrides must be rejected");
+        assert!(err.contains("feature overrides"), "{err}");
+    }
+
+    #[test]
+    fn shared_descriptor_pool_without_overrides_is_ok() {
+        let config = parse_config("reflection=true,shared_descriptor_pool=true").unwrap();
+        assert!(config.codegen.shared_descriptor_pool);
+    }
+
+    #[test]
+    fn shared_descriptor_pool_rejects_feature_gating() {
+        // The error must name the option spelling the user actually wrote.
+        let err = parse_config("reflection=true,shared_descriptor_pool=true,gate_impls=true")
+            .err()
+            .expect("shared_descriptor_pool + gate_impls must be rejected");
+        assert!(err.contains("gate_impls=true"), "{err}");
+    }
+
+    #[test]
+    fn shared_descriptor_pool_rejects_file_per_package() {
+        let err = parse_config("reflection=true,shared_descriptor_pool=true,file_per_package=true")
+            .err()
+            .expect("shared_descriptor_pool + file_per_package must be rejected");
+        assert!(err.contains("file_per_package"), "{err}");
+    }
+
+    #[test]
+    fn shared_descriptor_pool_requires_reflection() {
+        // The error must use plugin-option vocabulary, not the CodeGenConfig field name.
+        let err = parse_config("shared_descriptor_pool=true")
+            .err()
+            .expect("shared_descriptor_pool without reflection must be rejected");
+        assert!(err.contains("reflection=true"), "{err}");
+    }
+}

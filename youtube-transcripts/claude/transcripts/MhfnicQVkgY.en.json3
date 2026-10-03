@@ -1,0 +1,1327 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 0,
+    "dDurationMs": 1584,
+    "segs": [ {
+      "utf8": "What do you do if there's\nno Claude in the channel?"
+    } ]
+  }, {
+    "tStartMs": 1584,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "I don't know, I can't remember a world\nwithout Claude in the channel."
+    } ]
+  }, {
+    "tStartMs": 15306,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "Walk me back."
+    } ]
+  }, {
+    "tStartMs": 16558,
+    "dDurationMs": 6256,
+    "segs": [ {
+      "utf8": "Three years ago, we were just starting\nto adopt AI into our day-to-day workflows."
+    } ]
+  }, {
+    "tStartMs": 22814,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "What was it like back then?"
+    } ]
+  }, {
+    "tStartMs": 24274,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "And take me all the way to where we are today."
+    } ]
+  }, {
+    "tStartMs": 26818,
+    "dDurationMs": 2753,
+    "segs": [ {
+      "utf8": "I remember two years ago,\nI was still using typeahead."
+    } ]
+  }, {
+    "tStartMs": 30530,
+    "dDurationMs": 3045,
+    "segs": [ {
+      "utf8": "That was what AI could do as an engineer."
+    } ]
+  }, {
+    "tStartMs": 34993,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "And you know, we built Claude Code, we brought agents,"
+    } ]
+  }, {
+    "tStartMs": 37162,
+    "dDurationMs": 3712,
+    "segs": [ {
+      "utf8": "and kind of the next generation\nof ways to do your coding."
+    } ]
+  }, {
+    "tStartMs": 42083,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "And it’s just changed so much since."
+    } ]
+  }, {
+    "tStartMs": 44753,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "With typeahead, I was still deciding,"
+    } ]
+  }, {
+    "tStartMs": 46796,
+    "dDurationMs": 3045,
+    "segs": [ {
+      "utf8": "I want to write this line of code,\nand the agent was helping a little bit."
+    } ]
+  }, {
+    "tStartMs": 49841,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "It was just writing the line."
+    } ]
+  }, {
+    "tStartMs": 51009,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "And then we got to the point\nwhere it was writing"
+    } ]
+  }, {
+    "tStartMs": 53762,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "whole functions, whole files,\nwhole features."
+    } ]
+  }, {
+    "tStartMs": 57015,
+    "dDurationMs": 4254,
+    "segs": [ {
+      "utf8": "And I feel like now with Tag,\nit just does the whole thing."
+    } ]
+  }, {
+    "tStartMs": 61269,
+    "dDurationMs": 4671,
+    "segs": [ {
+      "utf8": "It can write the feature,\nit can do an entire experiment end-to-end,"
+    } ]
+  }, {
+    "tStartMs": 65940,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "it does my data analyses."
+    } ]
+  }, {
+    "tStartMs": 67734,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "It's been like two leaps in 2 years."
+    } ]
+  }, {
+    "tStartMs": 69569,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "When I think back to the last\ncouple of years,"
+    } ]
+  }, {
+    "tStartMs": 71571,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "it's almost like this transition."
+    } ]
+  }, {
+    "tStartMs": 73782,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "We went from a person always in the loop,"
+    } ]
+  }, {
+    "tStartMs": 76242,
+    "dDurationMs": 3921,
+    "segs": [ {
+      "utf8": "it's one person sitting there,\nand they're just typing a line at a time."
+    } ]
+  }, {
+    "tStartMs": 80163,
+    "dDurationMs": 4046,
+    "segs": [ {
+      "utf8": "We got to one person sitting there\nwith like 10 Claudes,"
+    } ]
+  }, {
+    "tStartMs": 84209,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "you know, typing a bunch of features at a time."
+    } ]
+  }, {
+    "tStartMs": 86252,
+    "dDurationMs": 5256,
+    "segs": [ {
+      "utf8": "Now we're at the point where Claude\nis actually driving a little bit more."
+    } ]
+  }, {
+    "tStartMs": 91508,
+    "dDurationMs": 2168,
+    "segs": [ {
+      "utf8": "And it's not just one person anymore,"
+    } ]
+  }, {
+    "tStartMs": 93676,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "it's an entire team\nthat's interacting with it."
+    } ]
+  }, {
+    "tStartMs": 97347,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "So, what is Claude Tag?"
+    } ]
+  }, {
+    "tStartMs": 98640,
+    "dDurationMs": 5005,
+    "segs": [ {
+      "utf8": "In the past, you had to open Claude,\nand you had to ask it something,"
+    } ]
+  }, {
+    "tStartMs": 103645,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "and then Claude would do the work."
+    } ]
+  }, {
+    "tStartMs": 105063,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "It'll use your tools,\nit'll use your computer,"
+    } ]
+  }, {
+    "tStartMs": 107357,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "and it'll get the task done."
+    } ]
+  }, {
+    "tStartMs": 108483,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "That's the way that it used to be."
+    } ]
+  }, {
+    "tStartMs": 110318,
+    "dDurationMs": 6131,
+    "segs": [ {
+      "utf8": "With Claude Tag, Claude jumps in,\nit's proactive, it knows when to jump in."
+    } ]
+  }, {
+    "tStartMs": 116449,
+    "dDurationMs": 3754,
+    "segs": [ {
+      "utf8": "It'll do the work,\neven if it takes days or weeks,"
+    } ]
+  }, {
+    "tStartMs": 120203,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "and it'll follow up."
+    } ]
+  }, {
+    "tStartMs": 122288,
+    "dDurationMs": 2920,
+    "segs": [ {
+      "utf8": "And I think the coolest thing is,"
+    } ]
+  }, {
+    "tStartMs": 125208,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "it'll remember what I told it\nfor next time."
+    } ]
+  }, {
+    "tStartMs": 127836,
+    "dDurationMs": 4629,
+    "segs": [ {
+      "utf8": "Before,\nI would have to prompt Claude every time,"
+    } ]
+  }, {
+    "tStartMs": 132465,
+    "dDurationMs": 3712,
+    "segs": [ {
+      "utf8": "and I would have to say,\n\"Claude, now do this, or now do this.\""
+    } ]
+  }, {
+    "tStartMs": 136177,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "I would have to remember to do that."
+    } ]
+  }, {
+    "tStartMs": 138221,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "Now we just add Claude to a channel,"
+    } ]
+  }, {
+    "tStartMs": 140473,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "it will proactively jump in\nand do the work."
+    } ]
+  }, {
+    "tStartMs": 142851,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "Everyone gets to see it,\neveryone gets to participate,"
+    } ]
+  }, {
+    "tStartMs": 145478,
+    "dDurationMs": 2670,
+    "segs": [ {
+      "utf8": "because it's multi-player,\nand it'll remember for next time."
+    } ]
+  }, {
+    "tStartMs": 148731,
+    "dDurationMs": 3337,
+    "segs": [ {
+      "utf8": "Okay, so what on the research side\nactually enabled this?"
+    } ]
+  }, {
+    "tStartMs": 152068,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "How is it that Tag is so good?"
+    } ]
+  }, {
+    "tStartMs": 154362,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "For many years,\nwe've been working on making our models"
+    } ]
+  }, {
+    "tStartMs": 157657,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "more long-running and autonomous."
+    } ]
+  }, {
+    "tStartMs": 159659,
+    "dDurationMs": 2377,
+    "segs": [ {
+      "utf8": "So if you look at the latest METR evals,"
+    } ]
+  }, {
+    "tStartMs": 162036,
+    "dDurationMs": 4004,
+    "segs": [ {
+      "utf8": "our latest models can work\nfor 16 hours at a time,"
+    } ]
+  }, {
+    "tStartMs": 166040,
+    "dDurationMs": 3963,
+    "segs": [ {
+      "utf8": "and are now in the zone where\nwe can't even accurately detect"
+    } ]
+  }, {
+    "tStartMs": 170003,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "how long it's able to work for."
+    } ]
+  }, {
+    "tStartMs": 171963,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "In something like Claude Tag,"
+    } ]
+  }, {
+    "tStartMs": 174132,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "Claude is able to\nself-schedule work for itself."
+    } ]
+  }, {
+    "tStartMs": 177427,
+    "dDurationMs": 3962,
+    "segs": [ {
+      "utf8": "And so you can take this one 16-hour task,"
+    } ]
+  }, {
+    "tStartMs": 181431,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "and it actually increases over time because"
+    } ]
+  }, {
+    "tStartMs": 184559,
+    "dDurationMs": 4171,
+    "segs": [ {
+      "utf8": "Claude can schedule a follow-up\nafter days, or weeks, or months."
+    } ]
+  }, {
+    "tStartMs": 188730,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "I feel like the task that\nwe couldn't trust it to do before,"
+    } ]
+  }, {
+    "tStartMs": 191983,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "now it can get almost every single time."
+    } ]
+  }, {
+    "tStartMs": 194986,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "I have a bunch of these\nClaude Tag sessions, personally,"
+    } ]
+  }, {
+    "tStartMs": 196905,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "that are running for days, weeks."
+    } ]
+  }, {
+    "tStartMs": 199365,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "I think I might have one that's a month."
+    } ]
+  }, {
+    "tStartMs": 201367,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "It's essentially\nthis long-running experiment,"
+    } ]
+  }, {
+    "tStartMs": 203536,
+    "dDurationMs": 2670,
+    "segs": [ {
+      "utf8": "and it's just checking in every day,\nchecks the data,"
+    } ]
+  }, {
+    "tStartMs": 206206,
+    "dDurationMs": 3169,
+    "segs": [ {
+      "utf8": "once in a while, it sends a bug fix\nif there's a bug that needs to get fixed."
+    } ]
+  }, {
+    "tStartMs": 209417,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "I just see the pull requests coming in,\nand I get these data readouts every day."
+    } ]
+  }, {
+    "tStartMs": 212670,
+    "dDurationMs": 5214,
+    "segs": [ {
+      "utf8": "The other big innovation is\njust being able to have memory in the model."
+    } ]
+  }, {
+    "tStartMs": 217884,
+    "dDurationMs": 5213,
+    "segs": [ {
+      "utf8": "The model can not only set reminders\nfor itself, but it can also remember"
+    } ]
+  }, {
+    "tStartMs": 223097,
+    "dDurationMs": 3462,
+    "segs": [ {
+      "utf8": "just all the instructions that all the users\nhave given it over time."
+    } ]
+  }, {
+    "tStartMs": 226559,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "Memory took a long time to crack."
+    } ]
+  }, {
+    "tStartMs": 228186,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "I think we tried to get it right\nfor Claude Code for years,"
+    } ]
+  }, {
+    "tStartMs": 230897,
+    "dDurationMs": 3670,
+    "segs": [ {
+      "utf8": "and it feels like we finally got it right.\nIt feels really good to use."
+    } ]
+  }, {
+    "tStartMs": 236152,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "If you're working with Claude Tag\nin a channel, and you tell it,"
+    } ]
+  }, {
+    "tStartMs": 239948,
+    "dDurationMs": 4045,
+    "segs": [ {
+      "utf8": "\"Hey, I want you to monitor\nonly for this type of issue,"
+    } ]
+  }, {
+    "tStartMs": 243993,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "but not these other categories,\"\nit will do that."
+    } ]
+  }, {
+    "tStartMs": 246871,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "It will remember that\nfor that channel forever after."
+    } ]
+  }, {
+    "tStartMs": 249499,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "And then, if someone else says,"
+    } ]
+  }, {
+    "tStartMs": 251626,
+    "dDurationMs": 3962,
+    "segs": [ {
+      "utf8": "\"Hey actually, let me expand your scope\nto this new thing,\" it will adjust."
+    } ]
+  }, {
+    "tStartMs": 255588,
+    "dDurationMs": 4129,
+    "segs": [ {
+      "utf8": "Another big thing that people love\nis Claude's personality and EQ."
+    } ]
+  }, {
+    "tStartMs": 259717,
+    "dDurationMs": 4004,
+    "segs": [ {
+      "utf8": "Sometimes when I talk with people about\nadding Claude Tag into a channel,"
+    } ]
+  }, {
+    "tStartMs": 263721,
+    "dDurationMs": 6215,
+    "segs": [ {
+      "utf8": "they say, \"Oh, how do I know it won't\njump in on every thread and be annoying?\""
+    } ]
+  }, {
+    "tStartMs": 269936,
+    "dDurationMs": 4129,
+    "segs": [ {
+      "utf8": "Well, Claude is trained to have a good sense for\nwhen it's needed,"
+    } ]
+  }, {
+    "tStartMs": 274065,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "and it can take the back seat."
+    } ]
+  }, {
+    "tStartMs": 276025,
+    "dDurationMs": 3087,
+    "segs": [ {
+      "utf8": "If it ever goes too much\nin the wrong direction,"
+    } ]
+  }, {
+    "tStartMs": 279112,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "you can just tell it to do\nsomething different,"
+    } ]
+  }, {
+    "tStartMs": 281322,
+    "dDurationMs": 4171,
+    "segs": [ {
+      "utf8": "to jump in less, or jump in more,\nand it'll just remember it for the future."
+    } ]
+  }, {
+    "tStartMs": 285493,
+    "dDurationMs": 4254,
+    "segs": [ {
+      "utf8": "So when you look at the internal usage,\nand when you talk with our customers"
+    } ]
+  }, {
+    "tStartMs": 289747,
+    "dDurationMs": 3629,
+    "segs": [ {
+      "utf8": "who are getting started on Claude Tag,\nwhat are the patterns that you see?"
+    } ]
+  }, {
+    "tStartMs": 293376,
+    "dDurationMs": 4963,
+    "segs": [ {
+      "utf8": "The coolest thing to me has been\nhow customers are figuring it out."
+    } ]
+  }, {
+    "tStartMs": 298339,
+    "dDurationMs": 4046,
+    "segs": [ {
+      "utf8": "It can write your pull requests,\nit can debug production issues,"
+    } ]
+  }, {
+    "tStartMs": 302385,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "it can do data analysis."
+    } ]
+  }, {
+    "tStartMs": 303845,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "All you have to do is\nhook it up to your tools."
+    } ]
+  }, {
+    "tStartMs": 305346,
+    "dDurationMs": 4672,
+    "segs": [ {
+      "utf8": "I think that's only possible\nbecause the memory is just so good."
+    } ]
+  }, {
+    "tStartMs": 310018,
+    "dDurationMs": 3169,
+    "segs": [ {
+      "utf8": "And I've seen people do\nthis emergent stuff where,"
+    } ]
+  }, {
+    "tStartMs": 313187,
+    "dDurationMs": 2128,
+    "segs": [ {
+      "utf8": "you know, for example, this is a channel for Q\u0026A,"
+    } ]
+  }, {
+    "tStartMs": 315315,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "anytime a question is answered,\nyou must check it off."
+    } ]
+  }, {
+    "tStartMs": 317942,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "You tell Claude Tag this,\nand it'll just do that."
+    } ]
+  }, {
+    "tStartMs": 319986,
+    "dDurationMs": 3045,
+    "segs": [ {
+      "utf8": "It'll answer the questions,\nand it'll react with a check every time,"
+    } ]
+  }, {
+    "tStartMs": 323031,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "and it'll just do this for you."
+    } ]
+  }, {
+    "tStartMs": 324449,
+    "dDurationMs": 4087,
+    "segs": [ {
+      "utf8": "We have a channel for data questions,\nand now Tag just answers all the questions."
+    } ]
+  }, {
+    "tStartMs": 328536,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "Or we have the channel for\nClaude Code feedback,"
+    } ]
+  }, {
+    "tStartMs": 331122,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "and Tag just fixes everything now."
+    } ]
+  }, {
+    "tStartMs": 332915,
+    "dDurationMs": 2837,
+    "segs": [ {
+      "utf8": "The most common way that I ask\na data question is,"
+    } ]
+  }, {
+    "tStartMs": 335752,
+    "dDurationMs": 2877,
+    "segs": [ {
+      "utf8": "I post in our data channel,\nbut then I tag Claude Tag,"
+    } ]
+  }, {
+    "tStartMs": 338629,
+    "dDurationMs": 2753,
+    "segs": [ {
+      "utf8": "and then it takes the first pass,\nand normally it's pretty good."
+    } ]
+  }, {
+    "tStartMs": 341382,
+    "dDurationMs": 3212,
+    "segs": [ {
+      "utf8": "I kept doing this in a bunch of channels,\nand then I just got tired of tagging it,"
+    } ]
+  }, {
+    "tStartMs": 344594,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "so I just told it,\n\"Please respond every time.\""
+    } ]
+  }, {
+    "tStartMs": 347263,
+    "dDurationMs": 2753,
+    "segs": [ {
+      "utf8": "I think it goes to show how powerful\nthe memory is,"
+    } ]
+  }, {
+    "tStartMs": 350016,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "that you're able to do\nsomething like this."
+    } ]
+  }, {
+    "tStartMs": 352352,
+    "dDurationMs": 3378,
+    "segs": [ {
+      "utf8": "You can just tell it, \"Hey, remember to always\ndo this thing,\" and it just has your back."
+    } ]
+  }, {
+    "tStartMs": 355730,
+    "dDurationMs": 2753,
+    "segs": [ {
+      "utf8": "It's been a huge shift\nin how we all do work."
+    } ]
+  }, {
+    "tStartMs": 358483,
+    "dDurationMs": 5672,
+    "segs": [ {
+      "utf8": "I think this also is a way for more people\nto understand how to work with AI."
+    } ]
+  }, {
+    "tStartMs": 364155,
+    "dDurationMs": 3837,
+    "segs": [ {
+      "utf8": "Because Claude Tag is working\nin public channels,"
+    } ]
+  }, {
+    "tStartMs": 367992,
+    "dDurationMs": 4088,
+    "segs": [ {
+      "utf8": "everyone is able to observe\nhow the expert users leverage it."
+    } ]
+  }, {
+    "tStartMs": 372080,
+    "dDurationMs": 3712,
+    "segs": [ {
+      "utf8": "And then they take those patterns,\nand they bring it to new projects"
+    } ]
+  }, {
+    "tStartMs": 375792,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "that they're working in."
+    } ]
+  }, {
+    "tStartMs": 377502,
+    "dDurationMs": 3837,
+    "segs": [ {
+      "utf8": "And so both internally and in the customers\nthat we've been working with,"
+    } ]
+  }, {
+    "tStartMs": 381339,
+    "dDurationMs": 4212,
+    "segs": [ {
+      "utf8": "we've been seeing this diffusion\nof Claude Tag best practices"
+    } ]
+  }, {
+    "tStartMs": 385551,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "that is, I think, very novel to AI tools."
+    } ]
+  }, {
+    "tStartMs": 388179,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "It was surprising how fast it took over."
+    } ]
+  }, {
+    "tStartMs": 390264,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "I feel like now I see Tag\nin every channel that we have;"
+    } ]
+  }, {
+    "tStartMs": 393267,
+    "dDurationMs": 2128,
+    "segs": [ {
+      "utf8": "every feedback channel,\nevery data channel."
+    } ]
+  }, {
+    "tStartMs": 395395,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "It started with a few people using it,"
+    } ]
+  }, {
+    "tStartMs": 397313,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "but I think as other people\nsaw those people using it,"
+    } ]
+  }, {
+    "tStartMs": 400316,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "they quickly picked it up."
+    } ]
+  }, {
+    "tStartMs": 402235,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "It's been very empowering to be able to\nhave Claude Tag have my back."
+    } ]
+  }, {
+    "tStartMs": 406781,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "So for a lot of our existing tools,\nlike Chat, Cowork, and Claude Code,"
+    } ]
+  }, {
+    "tStartMs": 411327,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "you typically have to remember to open it."
+    } ]
+  }, {
+    "tStartMs": 413830,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "And so it’s a more reactive experience."
+    } ]
+  }, {
+    "tStartMs": 415873,
+    "dDurationMs": 4547,
+    "segs": [ {
+      "utf8": "And one thing that's great about Claude Tag is\nyou give it this higher-level objective,"
+    } ]
+  }, {
+    "tStartMs": 420420,
+    "dDurationMs": 3586,
+    "segs": [ {
+      "utf8": "like put up PRs\nfor every bug in this channel,"
+    } ]
+  }, {
+    "tStartMs": 424006,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "and it just has your back"
+    } ]
+  }, {
+    "tStartMs": 425341,
+    "dDurationMs": 4963,
+    "segs": [ {
+      "utf8": "and puts up a PR for every single one\nwithout you needing to remind it."
+    } ]
+  }, {
+    "tStartMs": 430304,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "The second thing that's really cool\nis that it's multi-player."
+    } ]
+  }, {
+    "tStartMs": 432807,
+    "dDurationMs": 3754,
+    "segs": [ {
+      "utf8": "So almost all of the AI tools\nthat people use right now"
+    } ]
+  }, {
+    "tStartMs": 436561,
+    "dDurationMs": 2752,
+    "segs": [ {
+      "utf8": "are just you and Claude working together,"
+    } ]
+  }, {
+    "tStartMs": 439313,
+    "dDurationMs": 3087,
+    "segs": [ {
+      "utf8": "and then copy and pasting this output\nto your team."
+    } ]
+  }, {
+    "tStartMs": 442400,
+    "dDurationMs": 3712,
+    "segs": [ {
+      "utf8": "And I think the big shift that Claude Tag\nallows is,"
+    } ]
+  }, {
+    "tStartMs": 446154,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "it brings Claude\nright into the middle of your work"
+    } ]
+  }, {
+    "tStartMs": 448990,
+    "dDurationMs": 4171,
+    "segs": [ {
+      "utf8": "so that multiple people\ncan guide the session to a better output."
+    } ]
+  }, {
+    "tStartMs": 453161,
+    "dDurationMs": 2794,
+    "segs": [ {
+      "utf8": "There's so many, like, dynamics here."
+    } ]
+  }, {
+    "tStartMs": 455955,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "Like one, we're all learning about\nhow to use Claude Tag better"
+    } ]
+  }, {
+    "tStartMs": 459375,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "by observing other people."
+    } ]
+  }, {
+    "tStartMs": 460877,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "Claude Tag is learning\nhow to better work with us"
+    } ]
+  }, {
+    "tStartMs": 463713,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "by hearing the guidance\nthat we're giving it."
+    } ]
+  }, {
+    "tStartMs": 466007,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "At the end of the day, the customer gets\na better result,"
+    } ]
+  }, {
+    "tStartMs": 469010,
+    "dDurationMs": 2794,
+    "segs": [ {
+      "utf8": "because it's not just my opinion\nof how we should solve it,"
+    } ]
+  }, {
+    "tStartMs": 471804,
+    "dDurationMs": 5881,
+    "segs": [ {
+      "utf8": "it's our whole team is able to jump in to\nnudge this PR to the best possible state."
+    } ]
+  }, {
+    "tStartMs": 477685,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "I mean, I love this idea."
+    } ]
+  }, {
+    "tStartMs": 479020,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "I keep telling everyone, I want everyone\nto contribute to the code base,"
+    } ]
+  }, {
+    "tStartMs": 482023,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "and so many people are afraid\nbecause they have to, like, open a terminal,"
+    } ]
+  }, {
+    "tStartMs": 485610,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "even the desktop app,\nbecause you have to deal with a Git"
+    } ]
+  }, {
+    "tStartMs": 488446,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "and code checkouts and stuff."
+    } ]
+  }, {
+    "tStartMs": 490198,
+    "dDurationMs": 3962,
+    "segs": [ {
+      "utf8": "And with Tag, they can just do it.\nIt's really cool."
+    } ]
+  }, {
+    "tStartMs": 494160,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "The other thing that I think is really important\nis making sure that"
+    } ]
+  }, {
+    "tStartMs": 497455,
+    "dDurationMs": 2753,
+    "segs": [ {
+      "utf8": "your collaboration platform\nhas public channels."
+    } ]
+  }, {
+    "tStartMs": 500208,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "That way, Claude Tag can monitor\ndifferent projects that you're tracking."
+    } ]
+  }, {
+    "tStartMs": 504754,
+    "dDurationMs": 3920,
+    "segs": [ {
+      "utf8": "So as a PM, I'm often working on\nmaybe five to 10 features,"
+    } ]
+  }, {
+    "tStartMs": 508674,
+    "dDurationMs": 3087,
+    "segs": [ {
+      "utf8": "and I have Claude Tag look at the status\nfor every single one,"
+    } ]
+  }, {
+    "tStartMs": 511761,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "and then give me a daily report."
+    } ]
+  }, {
+    "tStartMs": 513429,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "The other big unlock\nwe've been seeing is that,"
+    } ]
+  }, {
+    "tStartMs": 516307,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "people can now self-serve their questions."
+    } ]
+  }, {
+    "tStartMs": 518392,
+    "dDurationMs": 4463,
+    "segs": [ {
+      "utf8": "When people onboard to our company,\ninstead of asking Legal"
+    } ]
+  }, {
+    "tStartMs": 522855,
+    "dDurationMs": 5130,
+    "segs": [ {
+      "utf8": "about whether they can say this,\nor instead of asking our HR team"
+    } ]
+  }, {
+    "tStartMs": 527985,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "what our benefits are,\nthey can just tag Claude Tag."
+    } ]
+  }, {
+    "tStartMs": 531113,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "And because Claude Tag is connected with our\nsource-of-truth files,"
+    } ]
+  }, {
+    "tStartMs": 534700,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "it can give them a really fast answer,"
+    } ]
+  }, {
+    "tStartMs": 536577,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "no matter what time\nthey're looking for it."
+    } ]
+  }, {
+    "tStartMs": 538746,
+    "dDurationMs": 4296,
+    "segs": [ {
+      "utf8": "I think the single biggest thing is\njust how much more productive"
+    } ]
+  }, {
+    "tStartMs": 543042,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "it's made everyone."
+    } ]
+  }, {
+    "tStartMs": 544126,
+    "dDurationMs": 4171,
+    "segs": [ {
+      "utf8": "And, you know, this is driven\nby our internal version of Claude Tag."
+    } ]
+  }, {
+    "tStartMs": 548297,
+    "dDurationMs": 2962,
+    "segs": [ {
+      "utf8": "And if you look at just the product org,\nso, the part of the company"
+    } ]
+  }, {
+    "tStartMs": 551259,
+    "dDurationMs": 3920,
+    "segs": [ {
+      "utf8": "that we sit in,\nthe number of PRs that are written by Tag,"
+    } ]
+  }, {
+    "tStartMs": 555179,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "I think it's like 65% now,\nand it's just climbing like this."
+    } ]
+  }, {
+    "tStartMs": 558599,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "I thought that Claude Code was the thing\nthat makes engineers go faster."
+    } ]
+  }, {
+    "tStartMs": 562144,
+    "dDurationMs": 3087,
+    "segs": [ {
+      "utf8": "This is a product that makes\nengineers go way faster."
+    } ]
+  }, {
+    "tStartMs": 565231,
+    "dDurationMs": 4171,
+    "segs": [ {
+      "utf8": "I think actually, a lot of the reason is,\nbecause the way you're interacting with it,"
+    } ]
+  }, {
+    "tStartMs": 569402,
+    "dDurationMs": 3461,
+    "segs": [ {
+      "utf8": "you ask Tag to do something,\nand it'll respond,"
+    } ]
+  }, {
+    "tStartMs": 572863,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "and you move on to the next task."
+    } ]
+  }, {
+    "tStartMs": 575199,
+    "dDurationMs": 4588,
+    "segs": [ {
+      "utf8": "So you actually want to set it up\nin a way where Tag can do the work,"
+    } ]
+  }, {
+    "tStartMs": 579787,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "and you don't have to check in\nall the time."
+    } ]
+  }, {
+    "tStartMs": 582790,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "You have hundreds of these\nClaude Tags running,"
+    } ]
+  }, {
+    "tStartMs": 585293,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "but you're still a power user\nof Claude Code."
+    } ]
+  }, {
+    "tStartMs": 587420,
+    "dDurationMs": 2752,
+    "segs": [ {
+      "utf8": "How do you decide when to reach\nfor each of them?"
+    } ]
+  }, {
+    "tStartMs": 590172,
+    "dDurationMs": 5047,
+    "segs": [ {
+      "utf8": "Yeah, so I used to use Claude Code for everything,\nand then I started using Tag"
+    } ]
+  }, {
+    "tStartMs": 595219,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "for more and more things."
+    } ]
+  }, {
+    "tStartMs": 596804,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "First, it was really simple fixes."
+    } ]
+  }, {
+    "tStartMs": 599807,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "Someone has a bug, the button's off\nby a few pixels or something."
+    } ]
+  }, {
+    "tStartMs": 603227,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "I'll just ask Claude, \"Please fix it.\""
+    } ]
+  }, {
+    "tStartMs": 604979,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "Or someone has a simple data question,\nI'll ask them to fix it."
+    } ]
+  }, {
+    "tStartMs": 608399,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "And I think what's been happening more and more\nover the last few weeks"
+    } ]
+  }, {
+    "tStartMs": 611569,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "as I've been getting more comfortable\nwith the product,"
+    } ]
+  }, {
+    "tStartMs": 613738,
+    "dDurationMs": 3211,
+    "segs": [ {
+      "utf8": "is I've been using Tag\nfor just more and more things."
+    } ]
+  }, {
+    "tStartMs": 616949,
+    "dDurationMs": 3462,
+    "segs": [ {
+      "utf8": "And even more complicated work,\nit's actually able to do."
+    } ]
+  }, {
+    "tStartMs": 620411,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "Because it can verify its work,\nbecause it's running"
+    } ]
+  }, {
+    "tStartMs": 623372,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "in the same remote sandbox that we use"
+    } ]
+  }, {
+    "tStartMs": 626375,
+    "dDurationMs": 3629,
+    "segs": [ {
+      "utf8": "for mobile and for the desktop app,\nand it's using the same agent SDK."
+    } ]
+  }, {
+    "tStartMs": 630004,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "So it's just as intelligent."
+    } ]
+  }, {
+    "tStartMs": 631297,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "When you add memory to this,\nin different channels,"
+    } ]
+  }, {
+    "tStartMs": 634425,
+    "dDurationMs": 2920,
+    "segs": [ {
+      "utf8": "I have specific preferences\nabout how I want it to verify."
+    } ]
+  }, {
+    "tStartMs": 637345,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "It might be a little bit different\nfor every channel."
+    } ]
+  }, {
+    "tStartMs": 638971,
+    "dDurationMs": 4630,
+    "segs": [ {
+      "utf8": "Often what it does is it'll fix some bug,\nthen it'll post back a video in Slack,"
+    } ]
+  }, {
+    "tStartMs": 643601,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "and I don't even have to leave it."
+    } ]
+  }, {
+    "tStartMs": 645645,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "What's next for Claude Tag?"
+    } ]
+  }, {
+    "tStartMs": 648356,
+    "dDurationMs": 2502,
+    "segs": [ {
+      "utf8": "So we launched Claude Tag in Slack,"
+    } ]
+  }, {
+    "tStartMs": 650858,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "and we're excited to bring it to\nmore platforms where people collaborate,"
+    } ]
+  }, {
+    "tStartMs": 654403,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "like Microsoft Teams."
+    } ]
+  }, {
+    "tStartMs": 655488,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "We want to make sure that\nevery knowledge worker"
+    } ]
+  }, {
+    "tStartMs": 658908,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "is within arm's length of Claude,"
+    } ]
+  }, {
+    "tStartMs": 660868,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "no matter where\nthey're getting their work done."
+    } ]
+  }, {
+    "tStartMs": 662787,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "And I think one of the coolest parts\nof Claude Tag is,"
+    } ]
+  }, {
+    "tStartMs": 665373,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "it's not just changing\nhow individuals work,"
+    } ]
+  }, {
+    "tStartMs": 667667,
+    "dDurationMs": 4087,
+    "segs": [ {
+      "utf8": "it's putting Claude in the center of teams\nand transforming entire orgs."
+    } ]
+  }, {
+    "tStartMs": 671754,
+    "dDurationMs": 4212,
+    "segs": [ {
+      "utf8": "We've built Claude Tag to be\nincredibly customizable, just like Claude Code."
+    } ]
+  }, {
+    "tStartMs": 676759,
+    "dDurationMs": 5380,
+    "segs": [ {
+      "utf8": "And I'm so excited to see how orgs customize\nClaude Tag and make it their own."
+    } ]
+  }, {
+    "tStartMs": 682139,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "I can't wait."
+    } ]
+  } ]
+}

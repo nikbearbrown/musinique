@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slate — Five Products. One Name.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF9F5; --ink: #3D3929; --terra: #D97757;
+    --sans: system-ui, -apple-system, sans-serif;
+    --mono: 'SF Mono', 'Fira Mono', monospace;
+    --serif: 'EB Garamond', Georgia, serif;
+  }
+  html, body { width: 100%; height: 100%; background: var(--ink); display: flex; align-items: center; justify-content: center; font-family: var(--serif); color: var(--ink); }
+  #stage { width: min(177.78vh, 100vw); height: min(56.25vw, 100vh); background: var(--cream); position: relative; overflow: hidden; }
+  .slide { display: none; position: absolute; inset: 0; padding: 5% 7%; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .slide.active { display: flex; }
+  #progress-bar { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--terra); transition: width 0.2s ease; z-index: 100; }
+  #counter { position: absolute; bottom: 14px; right: 20px; font-family: var(--mono); font-size: clamp(10px,1.2vw,14px); color: var(--ink); opacity: 0.45; z-index: 100; }
+  #nav-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: clamp(8px,1vw,11px); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); opacity: 0.25; z-index: 100; pointer-events: none; }
+  .beat-id { font-family: var(--mono); font-size: clamp(9px,1.0vw,12px); color: var(--ink); opacity: 0.35; margin-bottom: 1%; }
+  .beat-type { font-family: var(--mono); font-size: clamp(9px,1.1vw,13px); letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra); margin-bottom: 2%; }
+  .motion-tag { position: absolute; bottom: 10%; right: 7%; font-family: var(--mono); font-size: clamp(8px,1vw,12px); color: var(--ink); opacity: 0.3; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* Title */
+  .slide-title .ep-label { font-family: var(--mono); font-size: clamp(10px,1.4vw,16px); letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); margin-bottom: 2%; }
+  .slide-title h1 { font-size: clamp(28px,5.5vw,72px); font-weight: 700; line-height: 1.05; color: var(--ink); max-width: 80%; }
+  .slide-title .meta { margin-top: 4%; font-family: var(--sans); font-size: clamp(11px,1.5vw,18px); color: var(--ink); opacity: 0.55; line-height: 1.6; }
+  .slide-title .dur { margin-top: 3%; display: inline-block; font-family: var(--mono); font-size: clamp(10px,1.3vw,15px); background: var(--ink); color: var(--cream); padding: 0.5em 1em; letter-spacing: 0.08em; }
+
+  /* Composer */
+  .liam-tag { position: absolute; top: 5%; right: 7%; font-family: var(--mono); font-size: clamp(9px,1.1vw,13px); letter-spacing: 0.1em; color: var(--ink); opacity: 0.45; }
+  .composer-box { width: 100%; max-width: 75%; border: 2px solid var(--ink); padding: 3.5% 5%; }
+  .composer-label { font-family: var(--mono); font-size: clamp(9px,1vw,12px); letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); margin-bottom: 1%; }
+  .composer-ask-text { font-size: clamp(14px,1.9vw,24px); font-family: var(--serif); color: var(--ink); line-height: 1.4; margin-bottom: 4%; }
+  .composer-answer { font-family: var(--sans); font-size: clamp(12px,1.5vw,18px); color: var(--ink); opacity: 0.7; line-height: 1.5; padding-top: 3%; border-top: 1px solid rgba(61,57,41,0.2); }
+
+  /* Spark */
+  .spark-accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--terra); }
+  .spark-eyebrow { font-family: var(--mono); font-size: clamp(9px,1.1vw,13px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--terra); margin-bottom: 4%; }
+  .spark-copy { font-size: clamp(32px,6vw,80px); font-weight: 700; color: var(--ink); line-height: 1.0; max-width: 75%; }
+  .spark-sub { margin-top: 5%; font-family: var(--sans); font-size: clamp(13px,1.8vw,22px); color: var(--ink); opacity: 0.65; line-height: 1.5; max-width: 65%; }
+
+  /* Product Card */
+  .product-card { width: 88%; border: 2px solid var(--ink); overflow: hidden; }
+  .product-header { background: var(--ink); color: var(--cream); padding: 2.5% 4%; font-family: var(--serif); font-size: clamp(20px,3vw,42px); font-weight: 700; letter-spacing: 0.02em; }
+  .product-row { display: flex; border-top: 1px solid rgba(61,57,41,0.2); }
+  .product-row-label { width: 22%; padding: 2% 3%; font-family: var(--mono); font-size: clamp(7px,0.85vw,10px); letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); flex-shrink: 0; border-right: 1px solid rgba(61,57,41,0.15); display: flex; align-items: flex-start; padding-top: 2.5%; }
+  .product-row-body { flex: 1; padding: 2% 3%; font-family: var(--sans); font-size: clamp(11px,1.4vw,16px); color: var(--ink); line-height: 1.45; }
+  .rebuild-label { font-family: var(--mono); font-size: clamp(9px,1.1vw,13px); letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); margin-bottom: 2%; }
+
+  /* Five-product strip */
+  .five-strip { display: flex; gap: 2%; width: 100%; margin-top: 3%; }
+  .product-tile { flex: 1; border: 1.5px solid var(--ink); padding: 3% 3%; display: flex; flex-direction: column; gap: 0.5em; }
+  .tile-name { font-family: var(--serif); font-size: clamp(14px,1.8vw,22px); font-weight: 700; color: var(--ink); }
+  .tile-use { font-family: var(--sans); font-size: clamp(9px,1.1vw,13px); color: var(--ink); opacity: 0.6; line-height: 1.3; }
+  .tile-dots { display: flex; gap: 4px; margin-top: 0.5em; }
+  .dot { width: clamp(6px,0.8vw,10px); height: clamp(6px,0.8vw,10px); border-radius: 50%; background: var(--terra); }
+  .dot.light { opacity: 0.25; }
+
+  /* Handoff */
+  .handoff-rule { position: absolute; left: 7%; right: 7%; top: 22%; height: 2px; background: var(--ink); opacity: 0.12; }
+  .handoff-eyebrow { font-family: var(--mono); font-size: clamp(9px,1.1vw,13px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); opacity: 0.45; margin-bottom: 3%; }
+  .handoff-copy { font-size: clamp(28px,5vw,64px); font-weight: 700; color: var(--ink); line-height: 1.05; max-width: 70%; }
+  .handoff-sub { margin-top: 4%; font-family: var(--sans); font-size: clamp(12px,1.7vw,20px); color: var(--ink); opacity: 0.6; line-height: 1.6; max-width: 65%; }
+
+  /* Outro */
+  .outro-bg { position: absolute; inset: 0; background: var(--ink); }
+  .outro-eyebrow { font-family: var(--mono); font-size: clamp(9px,1.2vw,14px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 3%; position: relative; z-index: 1; }
+  .outro-copy { font-size: clamp(24px,4.5vw,60px); font-weight: 700; color: var(--cream); line-height: 1.0; max-width: 78%; position: relative; z-index: 1; }
+  .outro-sub { margin-top: 4%; font-family: var(--sans); font-size: clamp(12px,1.6vw,20px); color: var(--cream); opacity: 0.5; position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="progress-bar"></div>
+  <span id="counter"></span>
+
+  <!-- SLIDE 0: Title -->
+  <div class="slide slide-title active">
+    <div class="ep-label">claude-liam · Reel 19 · Tutorial</div>
+    <h1>Five Products. One Name.</h1>
+    <div class="meta">five-claudes-explained · 10 beats · Gate-P slate · Voice: Kokoro am_onyx</div>
+    <div class="dur">~96 seconds</div>
+  </div>
+
+  <!-- SLIDE 1: B01 COMPOSER_ASK -->
+  <div class="slide">
+    <div class="liam-tag">Liam, in for Bear</div>
+    <div class="beat-id">B01 · COMPOSER_ASK · 0–9s</div>
+    <div class="beat-type">Cold Open</div>
+    <div class="composer-box">
+      <div class="composer-label">You type</div>
+      <div class="composer-ask-text">"I keep seeing Claude Chat, Code, Cowork, Projects, Skills — are these all the same thing?"</div>
+      <div class="composer-label">Claude replies</div>
+      <div class="composer-answer">No — five separate products, one name. Here is what each one actually does.</div>
+    </div>
+    <div style="margin-top:3%; font-family:var(--sans); font-size:clamp(11px,1.4vw,17px); color:var(--ink); opacity:0.5;">Greeting: <em>Tere. This is Liam, in for Bear.</em></div>
+  </div>
+
+  <!-- SLIDE 2: B02 SPARK -->
+  <div class="slide">
+    <div class="spark-accent-bar"></div>
+    <div style="padding-left:5%;">
+      <div class="beat-id">B02 · CARD spark · 9–16s</div>
+      <div class="spark-eyebrow">CLAUDE COWORK</div>
+      <div class="spark-copy">Five products. One name.</div>
+      <div class="spark-sub">Chat · Code · Projects · Skills · Cowork — each does a different job at a different cost.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: B03 REBUILD Chat -->
+  <div class="slide">
+    <div class="beat-id">B03 · ILLUSTRATION · 16–27s</div>
+    <div class="rebuild-label">Rebuild — ProductCard · Chat</div>
+    <div class="product-card">
+      <div class="product-header">Chat</div>
+      <div class="product-row">
+        <div class="product-row-label">In plain English</div>
+        <div class="product-row-body">You type a prompt, Claude replies. Like a chatbot.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">How to set up</div>
+        <div class="product-row-body">Gmail account (free) → claude.ai</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Biggest mistake</div>
+        <div class="product-row-body">Using it for everything. It forgets context between sessions.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Non-technical</div>
+        <div class="product-row-body">A back-and-forth conversation. Every new chat starts fresh.</div>
+      </div>
+    </div>
+    <div class="motion-tag">motion: drawon · component: ProductCard</div>
+  </div>
+
+  <!-- SLIDE 4: B04 REBUILD Code -->
+  <div class="slide">
+    <div class="beat-id">B04 · ILLUSTRATION · 27–38s</div>
+    <div class="rebuild-label">Rebuild — ProductCard · Code</div>
+    <div class="product-card">
+      <div class="product-header">Code</div>
+      <div class="product-row">
+        <div class="product-row-label">In plain English</div>
+        <div class="product-row-body">Describe what you want built. Claude writes all the code, creates files, runs it.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">How to set up</div>
+        <div class="product-row-body">Code tab → Chat → Cowork. $10/month (verify current pricing).</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Biggest mistake</div>
+        <div class="product-row-body">Not giving Claude the full picture — it explores files instead of builds.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Non-technical</div>
+        <div class="product-row-body">A building contractor for digital things.</div>
+      </div>
+    </div>
+    <div class="motion-tag">motion: drawon · component: ProductCard</div>
+  </div>
+
+  <!-- SLIDE 5: B05 REBUILD Projects -->
+  <div class="slide">
+    <div class="beat-id">B05 · ILLUSTRATION · 38–48s</div>
+    <div class="rebuild-label">Rebuild — ProductCard · Projects</div>
+    <div class="product-card">
+      <div class="product-header">Projects</div>
+      <div class="product-row">
+        <div class="product-row-label">In plain English</div>
+        <div class="product-row-body">A saved workspace. Claude always knows your brand, files, context — no re-explaining.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">How to set up</div>
+        <div class="product-row-body">Sidebar → Projects → New project → add files.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Biggest mistake</div>
+        <div class="product-row-body">Treating it like a folder. It's not a folder — it's a trained assistant.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Non-technical</div>
+        <div class="product-row-body">A new employee who already read the company handbook.</div>
+      </div>
+    </div>
+    <div class="motion-tag">motion: drawon · component: ProductCard</div>
+  </div>
+
+  <!-- SLIDE 6: B06 REBUILD Skills -->
+  <div class="slide">
+    <div class="beat-id">B06 · ILLUSTRATION · 48–58s</div>
+    <div class="rebuild-label">Rebuild — ProductCard · Skills</div>
+    <div class="product-card">
+      <div class="product-header">Skills</div>
+      <div class="product-row">
+        <div class="product-row-label">In plain English</div>
+        <div class="product-row-body">An instruction manual for one thing, built in plain text, triggered by /slash command.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">How to set up</div>
+        <div class="product-row-body">Write in plain text (Word, Notion, Excel). Upload to Claude. Share with your team.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Biggest mistake</div>
+        <div class="product-row-body">One skill trying to do too many things. One skill = one job.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Non-technical</div>
+        <div class="product-row-body">A recipe card. Followed the same way every time. Never pollutes other chats.</div>
+      </div>
+    </div>
+    <div class="motion-tag">motion: drawon · component: ProductCard</div>
+  </div>
+
+  <!-- SLIDE 7: B07 REBUILD Cowork -->
+  <div class="slide">
+    <div class="beat-id">B07 · ILLUSTRATION · 58–68s</div>
+    <div class="rebuild-label">Rebuild — ProductCard · Cowork</div>
+    <div class="product-card" style="border-color:var(--terra);">
+      <div class="product-header" style="background:var(--terra);">Cowork</div>
+      <div class="product-row">
+        <div class="product-row-label">In plain English</div>
+        <div class="product-row-body">Organizes your files, browses the web, runs your computer, handles research and analysis.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">How to set up</div>
+        <div class="product-row-body">Left sidebar → Projects.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Biggest mistake</div>
+        <div class="product-row-body">Dumping all your files in before starting — Claude reads everything before every task.</div>
+      </div>
+      <div class="product-row">
+        <div class="product-row-label">Non-technical</div>
+        <div class="product-row-body">A chief of staff who can also use your computer.</div>
+      </div>
+    </div>
+    <div class="motion-tag">motion: drawon · component: ProductCard (terracotta header = premium)</div>
+  </div>
+
+  <!-- SLIDE 8: B08 REBUILD Five-product strip -->
+  <div class="slide">
+    <div class="beat-id">B08 · ILLUSTRATION · 68–77s</div>
+    <div class="rebuild-label">Rebuild — FiveProductStrip</div>
+    <div style="font-family:var(--serif); font-size:clamp(18px,2.5vw,32px); font-weight:700; color:var(--ink); margin-bottom:3%;">Match the product to the job.</div>
+    <div class="five-strip">
+      <div class="product-tile">
+        <div class="tile-name">Chat</div>
+        <div class="tile-use">Quick question</div>
+        <div class="tile-dots"><div class="dot"></div><div class="dot light"></div><div class="dot light"></div></div>
+      </div>
+      <div class="product-tile">
+        <div class="tile-name">Skills</div>
+        <div class="tile-use">Repeating tasks</div>
+        <div class="tile-dots"><div class="dot"></div><div class="dot"></div><div class="dot light"></div></div>
+      </div>
+      <div class="product-tile">
+        <div class="tile-name">Projects</div>
+        <div class="tile-use">Brand context</div>
+        <div class="tile-dots"><div class="dot"></div><div class="dot"></div><div class="dot light"></div></div>
+      </div>
+      <div class="product-tile">
+        <div class="tile-name">Code</div>
+        <div class="tile-use">Building things</div>
+        <div class="tile-dots"><div class="dot"></div><div class="dot"></div><div class="dot light"></div></div>
+      </div>
+      <div class="product-tile" style="border-color:var(--terra);">
+        <div class="tile-name">Cowork</div>
+        <div class="tile-use">Deep work + web</div>
+        <div class="tile-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+    </div>
+    <div style="margin-top:3%; font-family:var(--sans); font-size:clamp(11px,1.3vw,16px); color:var(--ink); opacity:0.5;">· = lighter cost &nbsp;&nbsp; ··· = heavier</div>
+    <div class="motion-tag">motion: drawon · component: FiveProductStrip</div>
+  </div>
+
+  <!-- SLIDE 9: B09 HANDOFF -->
+  <div class="slide">
+    <div class="handoff-rule"></div>
+    <div class="beat-id">B09 · CARD handoff · 77–88s</div>
+    <div class="handoff-eyebrow">YOUR TURN</div>
+    <div class="handoff-copy">Open one product you've never used.</div>
+    <div class="handoff-sub">If you've only ever used Chat, open Projects. Add one file. See what changes. Stop paying for Cowork to run Chat-level tasks.</div>
+  </div>
+
+  <!-- SLIDE 10: B10 OUTRO -->
+  <div class="slide">
+    <div class="outro-bg"></div>
+    <div class="beat-id" style="color:var(--cream); opacity:0.3; position:relative; z-index:1;">B10 · CARD outro · 88–96s</div>
+    <div class="outro-eyebrow">CLAUDE COWORK</div>
+    <div class="outro-copy">FIVE PRODUCTS. ONE NAME.</div>
+    <div class="outro-sub">this is Liam, in for Bear</div>
+  </div>
+
+  <div id="nav-hint">click or spacebar to advance</div>
+</div>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const bar = document.getElementById('progress-bar');
+  const counter = document.getElementById('counter');
+  const hint = document.getElementById('nav-hint');
+  let current = 0;
+  const total = slides.length;
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    bar.style.width = ((current / (total - 1)) * 100) + '%';
+    counter.textContent = current + ' / ' + (total - 1);
+    hint.style.opacity = current === total - 1 ? '0' : '0.25';
+  }
+  goTo(0);
+  document.addEventListener('click', () => { if (current < total - 1) goTo(current + 1); });
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' || e.code === 'ArrowRight') { e.preventDefault(); if (current < total - 1) goTo(current + 1); }
+    if (e.code === 'ArrowLeft') { e.preventDefault(); if (current > 0) goTo(current - 1); }
+  });
+</script>
+</body>
+</html>

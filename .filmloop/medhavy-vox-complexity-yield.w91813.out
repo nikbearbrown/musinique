@@ -1,0 +1,8 @@
+**medhavy-vox-complexity-yield — DONE (review slate cut).**
+
+- `vox-complexity-yield-slate.mp4` — 190.2 s, 1280×720, mean_volume −23.9 dB, mtime +6 s newer than beat_sheet.json.
+- 13/13 beats VIDEO (0 slates). All checks: content PASS, frame PASS, lane PASS, GATE T PASS, GATE AUDIO PASS, GATE V PASS on 7 sampled frames.
+- Envelope stripped of dead ElevenLabs fields (`voice_id`, `clock`, `_variant_todo`, stale build stamp); `folderLabel: @MedhavyAI` added; kokoro af_kore audio regenerated.
+- 11 slates fixed: 5 CARD punt-costumes routed to FormACard with real lines; 6 GRAPHIC beats calling out non-existent Manim scenes routed to FormACard text summaries of the intended visual (numbers written literally). B12/B13 OutroSeries/OutroCTA props corrected from wrong schema (would have Claude-washed) to Medhavy branding.
+- **Honest note**: reel is text-heavy card-only because no `scenes_std.py` exists for the six visualization beats (B04–B07/B09/B10). Text substitutes are honest but not the intended final render — REBUILD-LOG.md lists each as a scripting gap for a future Manim pass. Present cut is a valid review slate cut per the phase-2 contract.
+- Logs written: `AUDIT.md`, `REBUILD-LOG.md`, appended to `youtube/FILMLOOP-LOG.md`. `beat_sheet.pre-rebuild.json` snapshot kept.

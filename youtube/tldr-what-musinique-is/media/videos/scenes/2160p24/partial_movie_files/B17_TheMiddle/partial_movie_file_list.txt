@@ -1,0 +1,11 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1697911619_509629911_140434137.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_2531323837_2770120137.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_3479461609_3404485883.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_3346460007_935537170.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_1588318767_143389874.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_3493254360_1105362003.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_2222434879_2021635338.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_1668758637_167348555.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_2456658535_657197651.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/media/videos/scenes/2160p24/partial_movie_files/B17_TheMiddle/1167814662_1327079091_3776286769.mp4'

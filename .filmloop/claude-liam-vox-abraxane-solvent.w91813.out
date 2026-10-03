@@ -1,0 +1,12 @@
+Done. Reel `vox-abraxane-solvent-slate.mp4` shipped (314.0 s, mp4 12 s newer than sheet, mean_volume −27.5 dB).
+
+**Summary**
+- Sheet rebuilt in place; pre-rebuild snapshot preserved. Dropped ElevenLabs `voice_id`/`clock` and stale `build` block. VOICE-LOCK Kokoro `am_onyx`.
+- B00 spark line "Liam" → "Aloha, Liam." (adjacent-reel-safe). Segment un-truncated.
+- BVDT authored: 4-line real verdict + 5-sentence 27-s narration drawn from body B03/B05/B06/B07/B09/B11/B12. Title shortened to 33 chars (also fixed BOUT.title).
+- Punts killed: B02 STILL/ai (nurse archival) → Manim spindle-freeze; B10 STILL/ai (two bags photo) → Manim two-bag setup. All body `build.needs` gen-AI stamps removed. B16/B17 palette-mismatched OutroSeries/OutroCTA → FormACard.
+- B01 placeholder FormBCard ("Key point one/two/three") → FormACard with two real lines.
+- BHTF generic "apply to your work" → 4-part vehicle/reaction/test scaffold.
+- Gates: CONTENT / FRAME / LANE / T / AUDIO all PASS. Gate V read every frame; found MAJOR contrast on B09 (~10% inside crimson bar), fixed by lifting numbers above bars, re-rendered, recompiled. Zero BLOCKER / zero remaining MAJOR on real beats.
+- build.status Counter: `{'MANIM': 10, 'VIDEO': 7, 'SLATE': 4}` (SLATEs are declared CARD/DOCUMENT beats: B04 question, B06 quote doc, B12 section, B15 endcard).
+- AUDIT.md and REBUILD-LOG.md written to the reel; FILMLOOP-LOG.md appended.

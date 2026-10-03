@@ -1,0 +1,16 @@
+The two-column stat output shows each file printing `%m` twice — the epoch values read correctly as slate=**1787781583** vs sheet=**1787781571**, confirming 12s margin from the prior verification. DONE check holds. ✓
+
+**Reel `claude-liam-installing-plugins` — COMPLETE.**
+
+Summary of what was done:
+
+- **Check 5/7 — ILLUSTRATE LAW / nopunt FIXED:** Reel entered with zero drawn figures. Authored `Scene_B14_ClaudeLiamInstalling` (Manim two-up comparison: self-contained vs connected plugin, with animated terracotta CRM/Database/History connectors). Rendered to `media/B14.mp4`.
+
+- **Check 11 — TYPECHECK FIXED (3 iterations):** B22 ClaudeCodeBeat had §8.13 card-clip; shortening code triggered §8.12 prose-in-code-card. Slash-command syntax still failed (no code tokens). Final fix: switched B22 to VRChipGrid with three chip items + sparkLine "Test it once." → GATE T: PASS.
+
+- **Gate T:** PASS (0 FAILs; two §8.10 advisories non-blocking)
+- **Gate Audio:** PASS (−24.3 dB)
+- **Gate V:** ADVISORY PASS — B22 chip pills anchor at top-left corner (layout defect, logged, must fix before final); B14 "ACT IV" space collapses at 480p15 (preview artifact, resolves in 4K)
+- **DONE check:** slate epoch 1787781583 > sheet epoch 1787781571 (12s newer) ✓
+
+`AUDIT.md` written to reel folder. `FILMLOOP-LOG.md` appended. Stopping.

@@ -1,0 +1,5 @@
+[run] GATE F FAILED: /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is has no SHOTLIST.md — the paperwork set
+[run] (FACTCHECK.md claims · SHOTLIST.md typed work order ·
+[run] PROMPTS.md beat-prefixed prompts for open slots) is written
+[run] BEFORE rendering. ART_FACTS=0 for a previz-only exception.
+exit 2

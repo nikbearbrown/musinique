@@ -1,0 +1,14 @@
+Reel done. Summary:
+
+**nbb-protein-corona-overwrites** — REVIEW CUT (242.6 s, 3840×2160, 12/12 VIDEO)
+
+- Followed the sibling `nbb-lnp-endosomal-escape` rebuild pattern.
+- Renamed NBB00→B00, NBB01→BVDT, NBB02→BHTF, NBB03→BOUT; dropped 3 empty placeholder tail bookends and the redundant source B00 title card.
+- Fixed B00 greeting (`Your turn.` → `Salaam, Liam.`), authored real BVDT `artifactLines` from body nouns, replaced the `[Research the Protein Corona…]` bracket-template BHTF command with a rubric-bearing ask, added BOUT subline, dropped `Fable 5 / High` labels.
+- Authored 4 FormBCards for B01/B06/B07/B08 (were `Key point one/two/three` placeholders or `source: null`).
+- Copied parent-reel `B01-B08` clips + mp3s (locked shot list + measured audio).
+- Regenerated 4 bookend mp3s via Kokoro `am_onyx`. Rendered 4 Remotion bookends. Compiled to 4K master.
+- Gates: content/frame/lane/audio all PASS (-23.9 dB). Gate T: 1 accepted downgrade (B04 Manim inherited font_size=13 vs 13 px floor — validator not weakened, logged in AUDIT.md).
+- Final freshness: mp4 mtime 17:08 > sheet mtime 17:06.
+
+Cut: `anthropics/youtube/cancer-nanomedicine/youtube/nbb-protein-corona-overwrites/protein-corona-overwrites.mp4` · Build status Counter: `Counter({'VIDEO': 12})`

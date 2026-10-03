@@ -1,0 +1,3 @@
+Reel done. `cancer-nanomedicine-ch06-nano-imaging.mp4` (593 s ≈ 9.9 min, mean_volume −18.4 dB) written to `.../ch06-lecture/`, mtime 07:46 vs sheet 07:45 — cut newer, sheet untouched after render.
+
+Format is HTML lecture deck (12 segments, ElevenLabs Bear voice) — same as ch01–ch05 built earlier today; PHASE 1 checks that assume a Remotion beat sheet are N/A and logged as such. Only sheet edits were measured `actual_duration_s` write-back for S01/S02 (metadata, no narration touched). Pre-rebuild snapshot, AUDIT.md, and FILMLOOP-LOG entry all in place. Gate V frame sample clean on all four spot-reads (S01, S05, S09, S12).

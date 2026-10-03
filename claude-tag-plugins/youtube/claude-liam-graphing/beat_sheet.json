@@ -1,0 +1,391 @@
+{
+  "metadata": {
+    "title": "Claude, Graphing.",
+    "slug": "claude-liam-graphing",
+    "topic": "GRAPHING · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-tag-plugins/claude-tag-data-viz/skills/graphing/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Compose polished charts (timeseries",
+        "or anything else the data calls for) from tabular data using the chartkit primitives",
+        "producing PNG",
+        "or self-contained interactive HTML",
+        "Use when the user asks to chart"
+      ],
+      "constraints": [
+        "zero_fill_days(pairs) rolling_mean(values, w) log_floor(values): Small data helpers for the gotchas listed below. Use them only when they fit",
+        "Infer colors from context. Check your conversation and memory for design indicators: a tailwind config, CSS variables, or brand guidelines, and consider the semantic…",
+        "Rotate x labels only when they would otherwise collide. Short labels stay horizontal",
+        "A title states what the chart shows. A subtitle carries the time range or scope. The source caption says where the data came from and when. Skip any of them only…",
+        "Legends only when there is more than one series. A single series is named by the title",
+        "Rolling averages: rolling_mean is trailing, early points average what exists so far. Do not center it on data that ends today"
+      ],
+      "referenced_files": [
+        "scripts/",
+        "sys.path",
+        "/path/to/graphing/scripts",
+        "font_css",
+        "stem.png",
+        "stem.svg",
+        "write_html(out, data, component_js, title, bg, font)",
+        "third_party/",
+        "window.__CHART_DATA__",
+        "zero_fill_days(pairs)"
+      ],
+      "code_signals": [
+        "code block: python",
+        "code block: bash"
+      ],
+      "sections": [
+        "The primitives",
+        "Steps",
+        "The shape of a chart script",
+        "Judgement, not flags",
+        "Gotchas the helpers exist for",
+        "Verification"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T17:16:25",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is graphing. Compose polished charts (timeseries, bar, line, area, pie, scatter, or anything else the data calls for) from tabular data using the chartkit primitives, producing PNG, SVG, or self-contained interactive HTML. Use when the user asks to chart, graph, plot, or visualize data and wants something better than raw matplotlib defaults.. Its concrete surface area includes Compose polished charts (timeseries; or anything else the data calls for) from tabular data using the chartkit primitives; producing PNG. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "GRAPHING · ANTHROPIC SKILL",
+            "segment": "Claude, Graphing.",
+            "command": "Run the graphing skill.",
+            "runningText": "reading graphing SKILL.md…",
+            "output": [
+              "skill: graphing",
+              "Compose polished charts (timeseries, bar, line, area, pie, scatter, or anything…",
+              "steps: 4 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 35.93,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is graphing. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at scripts/, sys.path, /path/to/graphing/scripts, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "graphing",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "6k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "2 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.75,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 4 steps. Look at the data and decide what it deserves. → Infer colors from context. → Write a short script, plus 1 more. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Look at the data and decide…",
+                "desc": "Shape, count, and meaning drive the choice: trends over…",
+                "accent": true
+              },
+              {
+                "label": "Infer colors from context.",
+                "desc": "Check your conversation and memory for design indicators: a…",
+                "accent": false
+              },
+              {
+                "label": "Write a short script",
+                "desc": "in your scratchpad that imports chartkit, builds the figure…",
+                "accent": false
+              },
+              {
+                "label": "Render and look at the result.",
+                "desc": "Read the PNG back and check it with your own eyes before…",
+                "accent": false
+              }
+            ],
+            "footerNote": "4 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. zero_fill_days(pairs) rolling_mean(values, w) log_floor(values): Small data helpers for the gotchas listed below. Use them only when they fit. That is the constraint in graphing — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "zero_fill_days(pairs) rolling_mean(values, w) log_floor(values): Small data helpers for the gotchas listed below. Use them only when they fit",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 15.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In graphing, supporting material: scripts/, sys.path, /path/to/graphing/scripts, font_css; implementation signals: code block: python, code block: bash; sections: The primitives, Steps, The shape of a chart script, Judgement, not flags. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Compose polished charts (timeseries; or anything else the data calls for) from tabular data using the chartkit primitives; producing PNG; scripts/; sys.path; /path/to/graphing/scripts; code block: python; code block…",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 20.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "graphing makes Claude execute one task reliably. The SKILL.md is the spec — Compose polished charts (timeseries, bar, line, area, pie, scatter, or anything…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Graphing.",
+            "artifactLines": [
+              "Skill: graphing — Claude reads SKILL.md before acting",
+              "Compose polished charts (timeseries, bar, line, area, pie, scatter, or anything else the…",
+              "4-step pipeline: Look at the data and decide what it deserves. → Infer colors from context. → Write a short script",
+              "Constraint: zero_fill_days(pairs) rolling_mean(values, w) log_floor(values): Small data helpers for…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 14.36,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to compose polished charts (timeseries, bar, line, area, pie, scatter, or anything. Read the graphing skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GRAPHING · ANTHROPIC SKILL",
+            "segment": "Claude, Graphing.",
+            "command": "I want to compose polished charts (timeseries, bar, line, area, pie, scatter. Read the graphing skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.04,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Graphing. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Graphing.",
+            "handle": "@NikBearBrown",
+            "subline": "graphing · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 2.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:16:25"
+      }
+    }
+  ]
+}

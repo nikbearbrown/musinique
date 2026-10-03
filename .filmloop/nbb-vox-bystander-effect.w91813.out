@@ -1,0 +1,16 @@
+Reel done.
+
+**nbb-vox-bystander-effect · REVIEW SLATE CUT**
+- `vox-bystander-effect-slate.mp4` · 180.2s · 3840×2160 · 11/15 filled · 4 declared review slates (B03, B05, B09, B11)
+- mp4 mtime 01:31:46 > beat_sheet.json mtime 01:31:27 (19s newer)
+- Gates: verdict_audit PASS · GATE T PASS · GATE LANE PASS · GATE AUDIO PASS (−24.0 dB) · frame QC clean on all rendered beats
+
+**Rebuild summary:**
+- Bookend duplication resolved (dropped empty B*/renamed NBB* → canonical B00/BVDT/BHTF/BOUT, mp3s renamed on disk).
+- BVDT verdict authored from body's own nouns/numbers; placeholder heading replaced with `bystander effect: the payload, not the antibody`.
+- B00 greeting = "Konnichiwa, Liam" (Japanese; distinct from siblings). BHTF greeting = "Your turn."
+- B01 FormBCard placeholder items rewritten (The patient / The paradox / The clue).
+- FormACard fallback added + rendered for pipeline-owned GRAPHIC beats (B02/B04/B06/B08/B10) to pass GATE LANE.
+- All 15 beat audios regenerated with Kokoro `am_onyx` (24 kHz).
+
+Wrote `AUDIT.md`, `REBUILD-LOG.md`, and appended a `FILMLOOP-LOG.md` entry. Kept `beat_sheet.pre-rebuild.json` byte-exact per Phase 0 contract. No post-compile sheet edits.

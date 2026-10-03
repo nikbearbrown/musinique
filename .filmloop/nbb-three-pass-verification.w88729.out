@@ -1,0 +1,10 @@
+**DONE — nbb-three-pass-verification.**
+
+- Master: `three-pass-verification.mp4` (156.8 s, 720p review cut). mtime 20:30, sheet mtime 20:26 (cut newer than sheet).
+- All 13 beats real (`{'VIDEO': 13}`). Zero slates. Zero PUNT costumes.
+- Kokoro `am_onyx` narration; master mean_volume −23.8 dB (well above the −40 dB floor).
+- Phase 0: pre-rebuild snapshot + stripped 3 duplicate empty bookend stubs; NBB00–NBB03 carry the four canonical patterns.
+- Phase 1 fixes: NBB00 greeting → world-language hello; B01 FormBCard placeholder labels rewritten; NBB02 your-turn "cancer-type" contamination rewritten to real three-pass prompt; `scenes_std.py` rewritten (B04 PASS/FAIL panel, B08 bridge card — old `narration[:20]/[:30]` label defect fixed); `segment` de-truncated; `modelLabel` de-fabricated.
+- GATE T PASS, GATE V PASS (caught + fixed the "SDD gap" / "test runner" / "NEXT STEPS" zero-width-space defect on second render), GATE AUDIO PASS.
+- Two lens moves load-bearing: Plato (SDD artifact vs running-build world) and Popper (Pass 3 states failure in advance).
+- Logged to `AUDIT.md`, `REBUILD-LOG.md`, and appended entry to `youtube/FILMLOOP-LOG.md`.

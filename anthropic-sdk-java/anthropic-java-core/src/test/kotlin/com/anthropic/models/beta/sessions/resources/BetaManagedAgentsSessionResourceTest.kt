@@ -1,0 +1,232 @@
+package com.anthropic.models.beta.sessions.resources
+
+import com.anthropic.core.JsonValue
+import com.anthropic.core.jsonMapper
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.time.OffsetDateTime
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EnumSource
+
+internal class BetaManagedAgentsSessionResourceTest {
+
+    @Test
+    fun ofGitHubRepository() {
+        val githubRepository =
+            BetaManagedAgentsGitHubRepositoryResource.builder()
+                .id("sesrsc_011CZkZCKr6eXyl0gWMOdQiu")
+                .createdAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                .mountPath("/workspace/example-repo")
+                .type(BetaManagedAgentsGitHubRepositoryResource.Type.GITHUB_REPOSITORY)
+                .updatedAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                .url("https://github.com/example-org/example-repo")
+                .branchCheckout("main")
+                .build()
+
+        val betaManagedAgentsSessionResource =
+            BetaManagedAgentsSessionResource.ofGitHubRepository(githubRepository)
+
+        assertThat(betaManagedAgentsSessionResource.githubRepository()).contains(githubRepository)
+        assertThat(betaManagedAgentsSessionResource.file()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.memoryStore()).isEmpty
+    }
+
+    @Test
+    fun ofGitHubRepositoryRoundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsSessionResource =
+            BetaManagedAgentsSessionResource.ofGitHubRepository(
+                BetaManagedAgentsGitHubRepositoryResource.builder()
+                    .id("sesrsc_011CZkZCKr6eXyl0gWMOdQiu")
+                    .createdAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                    .mountPath("/workspace/example-repo")
+                    .type(BetaManagedAgentsGitHubRepositoryResource.Type.GITHUB_REPOSITORY)
+                    .updatedAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                    .url("https://github.com/example-org/example-repo")
+                    .branchCheckout("main")
+                    .build()
+            )
+
+        val roundtrippedBetaManagedAgentsSessionResource =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsSessionResource),
+                jacksonTypeRef<BetaManagedAgentsSessionResource>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsSessionResource)
+            .isEqualTo(betaManagedAgentsSessionResource)
+    }
+
+    @Test
+    fun ofFile() {
+        val file =
+            BetaManagedAgentsFileResource.builder()
+                .id("sesrsc_011CZkZBJq5dWxk9fVLNcPht")
+                .createdAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                .fileId("file_011CNha8iCJcU1wXNR6q4V8w")
+                .mountPath("/uploads/receipt.pdf")
+                .type(BetaManagedAgentsFileResource.Type.FILE)
+                .updatedAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                .build()
+
+        val betaManagedAgentsSessionResource = BetaManagedAgentsSessionResource.ofFile(file)
+
+        assertThat(betaManagedAgentsSessionResource.githubRepository()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.file()).contains(file)
+        assertThat(betaManagedAgentsSessionResource.memoryStore()).isEmpty
+    }
+
+    @Test
+    fun ofFileRoundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsSessionResource =
+            BetaManagedAgentsSessionResource.ofFile(
+                BetaManagedAgentsFileResource.builder()
+                    .id("sesrsc_011CZkZBJq5dWxk9fVLNcPht")
+                    .createdAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                    .fileId("file_011CNha8iCJcU1wXNR6q4V8w")
+                    .mountPath("/uploads/receipt.pdf")
+                    .type(BetaManagedAgentsFileResource.Type.FILE)
+                    .updatedAt(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+                    .build()
+            )
+
+        val roundtrippedBetaManagedAgentsSessionResource =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsSessionResource),
+                jacksonTypeRef<BetaManagedAgentsSessionResource>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsSessionResource)
+            .isEqualTo(betaManagedAgentsSessionResource)
+    }
+
+    @Test
+    fun ofMemoryStore() {
+        val memoryStore =
+            BetaManagedAgentsMemoryStoreResource.builder()
+                .memoryStoreId("memory_store_id")
+                .type(BetaManagedAgentsMemoryStoreResource.Type.MEMORY_STORE)
+                .access(BetaManagedAgentsMemoryStoreResource.Access.READ_WRITE)
+                .description("description")
+                .instructions("instructions")
+                .mountPath("mount_path")
+                .name("name")
+                .build()
+
+        val betaManagedAgentsSessionResource =
+            BetaManagedAgentsSessionResource.ofMemoryStore(memoryStore)
+
+        assertThat(betaManagedAgentsSessionResource.githubRepository()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.file()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.memoryStore()).contains(memoryStore)
+    }
+
+    @Test
+    fun ofMemoryStoreRoundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsSessionResource =
+            BetaManagedAgentsSessionResource.ofMemoryStore(
+                BetaManagedAgentsMemoryStoreResource.builder()
+                    .memoryStoreId("memory_store_id")
+                    .type(BetaManagedAgentsMemoryStoreResource.Type.MEMORY_STORE)
+                    .access(BetaManagedAgentsMemoryStoreResource.Access.READ_WRITE)
+                    .description("description")
+                    .instructions("instructions")
+                    .mountPath("mount_path")
+                    .name("name")
+                    .build()
+            )
+
+        val roundtrippedBetaManagedAgentsSessionResource =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsSessionResource),
+                jacksonTypeRef<BetaManagedAgentsSessionResource>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsSessionResource)
+            .isEqualTo(betaManagedAgentsSessionResource)
+    }
+
+    @Test
+    fun unknownVariantCommonProperties() {
+        val betaManagedAgentsSessionResource =
+            jsonMapper()
+                .convertValue(
+                    JsonValue.from(
+                        mapOf(
+                            "type" to "unknown_variant",
+                            "id" to "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+                            "created_at" to "2026-03-15T10:00:00Z",
+                            "mount_path" to "/workspace/example-repo",
+                            "updated_at" to "2026-03-15T10:00:00Z",
+                        )
+                    ),
+                    jacksonTypeRef<BetaManagedAgentsSessionResource>(),
+                )
+
+        val e =
+            assertThrows<AnthropicInvalidDataException> {
+                betaManagedAgentsSessionResource.validate()
+            }
+        assertThat(e).hasMessageStartingWith("Unknown ")
+
+        assertThat(betaManagedAgentsSessionResource.id())
+            .contains("sesrsc_011CZkZCKr6eXyl0gWMOdQiu")
+        assertThat(betaManagedAgentsSessionResource.createdAt())
+            .contains(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+        assertThat(betaManagedAgentsSessionResource.mountPath()).contains("/workspace/example-repo")
+        assertThat(betaManagedAgentsSessionResource.updatedAt())
+            .contains(OffsetDateTime.parse("2026-03-15T10:00:00Z"))
+
+        val mismatchedBetaManagedAgentsSessionResource =
+            jsonMapper()
+                .convertValue(
+                    JsonValue.from(
+                        mapOf(
+                            "type" to "unknown_variant",
+                            "id" to listOf("invalid"),
+                            "created_at" to listOf("invalid"),
+                            "mount_path" to listOf("invalid"),
+                            "updated_at" to listOf("invalid"),
+                        )
+                    ),
+                    jacksonTypeRef<BetaManagedAgentsSessionResource>(),
+                )
+
+        assertThat(mismatchedBetaManagedAgentsSessionResource.id()).isEmpty
+        assertThat(mismatchedBetaManagedAgentsSessionResource.createdAt()).isEmpty
+        assertThat(mismatchedBetaManagedAgentsSessionResource.mountPath()).isEmpty
+        assertThat(mismatchedBetaManagedAgentsSessionResource.updatedAt()).isEmpty
+    }
+
+    enum class IncompatibleJsonShapeTestCase(val value: JsonValue) {
+        BOOLEAN(JsonValue.from(false)),
+        STRING(JsonValue.from("invalid")),
+        INTEGER(JsonValue.from(-1)),
+        FLOAT(JsonValue.from(3.14)),
+        ARRAY(JsonValue.from(listOf("invalid", "array"))),
+    }
+
+    @ParameterizedTest
+    @EnumSource
+    fun incompatibleJsonShapeDeserializesToUnknown(testCase: IncompatibleJsonShapeTestCase) {
+        val betaManagedAgentsSessionResource =
+            jsonMapper()
+                .convertValue(testCase.value, jacksonTypeRef<BetaManagedAgentsSessionResource>())
+
+        val e =
+            assertThrows<AnthropicInvalidDataException> {
+                betaManagedAgentsSessionResource.validate()
+            }
+        assertThat(e).hasMessageStartingWith("Unknown ")
+
+        assertThat(betaManagedAgentsSessionResource.id()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.createdAt()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.mountPath()).isEmpty
+        assertThat(betaManagedAgentsSessionResource.updatedAt()).isEmpty
+    }
+}

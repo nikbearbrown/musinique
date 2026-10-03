@@ -1,0 +1,385 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 150,
+    "dDurationMs": 3000,
+    "segs": [ {
+      "utf8": "- I started coding when I was 12"
+    } ]
+  }, {
+    "tStartMs": 3150,
+    "dDurationMs": 3330,
+    "segs": [ {
+      "utf8": "and I very rapidly got\nkind of obsessed with it"
+    } ]
+  }, {
+    "tStartMs": 6480,
+    "dDurationMs": 2760,
+    "segs": [ {
+      "utf8": "and that came from the\nfeeling of being able"
+    } ]
+  }, {
+    "tStartMs": 9240,
+    "dDurationMs": 2760,
+    "segs": [ {
+      "utf8": "to build without barriers,\nwhich I think is one"
+    } ]
+  }, {
+    "tStartMs": 12000,
+    "dDurationMs": 2310,
+    "segs": [ {
+      "utf8": "of the special things about programming."
+    } ]
+  }, {
+    "tStartMs": 14310,
+    "dDurationMs": 2130,
+    "segs": [ {
+      "utf8": "With coding, you just need a computer"
+    } ]
+  }, {
+    "tStartMs": 16440,
+    "dDurationMs": 4321,
+    "segs": [ {
+      "utf8": "and you can build things that\nyou dream up in your mind."
+    } ]
+  }, {
+    "tStartMs": 20761,
+    "dDurationMs": 2583,
+    "segs": [ {
+      "utf8": "(bright music)"
+    } ]
+  }, {
+    "tStartMs": 26160,
+    "dDurationMs": 1290,
+    "segs": [ {
+      "utf8": "Cursor is a tool"
+    } ]
+  }, {
+    "tStartMs": 27450,
+    "dDurationMs": 3063,
+    "segs": [ {
+      "utf8": "that helps professionals\nbuild software faster with AI."
+    } ]
+  }, {
+    "tStartMs": 32220,
+    "dDurationMs": 1590,
+    "segs": [ {
+      "utf8": "That means being the best place to work"
+    } ]
+  }, {
+    "tStartMs": 33810,
+    "dDurationMs": 2550,
+    "segs": [ {
+      "utf8": "with coding agents, both\nfor professional engineers"
+    } ]
+  }, {
+    "tStartMs": 37539,
+    "dDurationMs": 2721,
+    "segs": [ {
+      "utf8": "and folks with no engineering\nbackground at all."
+    } ]
+  }, {
+    "tStartMs": 40260,
+    "dDurationMs": 2010,
+    "segs": [ {
+      "utf8": "That's both giving people\na tool that's approachable"
+    } ]
+  }, {
+    "tStartMs": 42270,
+    "dDurationMs": 1650,
+    "segs": [ {
+      "utf8": "but then is also really powerful."
+    } ]
+  }, {
+    "tStartMs": 44904,
+    "dDurationMs": 3516,
+    "segs": [ {
+      "utf8": "(bright music continues)"
+    } ]
+  }, {
+    "tStartMs": 48420,
+    "dDurationMs": 2790,
+    "segs": [ {
+      "utf8": "- Anthropic and Cursor\nhave a tight relationship."
+    } ]
+  }, {
+    "tStartMs": 51210,
+    "dDurationMs": 1260,
+    "segs": [ {
+      "utf8": "How would you describe it?"
+    } ]
+  }, {
+    "tStartMs": 52470,
+    "dDurationMs": 3090,
+    "segs": [ {
+      "utf8": "- One of the things we really\nappreciated about Anthropic"
+    } ]
+  }, {
+    "tStartMs": 55560,
+    "dDurationMs": 2940,
+    "segs": [ {
+      "utf8": "is how committed the\ncompany is to principles,"
+    } ]
+  }, {
+    "tStartMs": 58500,
+    "dDurationMs": 3810,
+    "segs": [ {
+      "utf8": "which has been one of kind of\nthe core founding components"
+    } ]
+  }, {
+    "tStartMs": 62310,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "or missions of the company."
+    } ]
+  }, {
+    "tStartMs": 63510,
+    "dDurationMs": 2820,
+    "segs": [ {
+      "utf8": "But I think it extends also\nto how you all serve customers"
+    } ]
+  }, {
+    "tStartMs": 66330,
+    "dDurationMs": 2100,
+    "segs": [ {
+      "utf8": "and I think from the start"
+    } ]
+  }, {
+    "tStartMs": 68430,
+    "dDurationMs": 1170,
+    "segs": [ {
+      "utf8": "of the company there's been a commitment"
+    } ]
+  }, {
+    "tStartMs": 69600,
+    "dDurationMs": 2520,
+    "segs": [ {
+      "utf8": "to really being a platform\nand being something"
+    } ]
+  }, {
+    "tStartMs": 72120,
+    "dDurationMs": 2976,
+    "segs": [ {
+      "utf8": "that folks can build lasting\nbusinesses on top of."
+    } ]
+  }, {
+    "tStartMs": 75096,
+    "dDurationMs": 1914,
+    "segs": [ {
+      "utf8": "(upbeat music)"
+    } ]
+  }, {
+    "tStartMs": 77010,
+    "dDurationMs": 1830,
+    "segs": [ {
+      "utf8": "It's been a deep partnership and one we're"
+    } ]
+  }, {
+    "tStartMs": 78840,
+    "dDurationMs": 1320,
+    "segs": [ {
+      "utf8": "really grateful for."
+    } ]
+  }, {
+    "tStartMs": 80160,
+    "dDurationMs": 2040,
+    "segs": [ {
+      "utf8": "And I actually remember we were a very,"
+    } ]
+  }, {
+    "tStartMs": 82200,
+    "dDurationMs": 1590,
+    "segs": [ {
+      "utf8": "very scrappy team back then."
+    } ]
+  }, {
+    "tStartMs": 83790,
+    "dDurationMs": 1950,
+    "segs": [ {
+      "utf8": "Anthropic was a more scrappy organization"
+    } ]
+  }, {
+    "tStartMs": 85740,
+    "dDurationMs": 1050,
+    "segs": [ {
+      "utf8": "than it is now too,"
+    } ]
+  }, {
+    "tStartMs": 86790,
+    "dDurationMs": 2070,
+    "segs": [ {
+      "utf8": "but I think that part\nof what's enabled Cursor"
+    } ]
+  }, {
+    "tStartMs": 88860,
+    "dDurationMs": 4020,
+    "segs": [ {
+      "utf8": "to exist is just like this\nrevolution in AI models."
+    } ]
+  }, {
+    "tStartMs": 92880,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "There's been this great\nproductive tight alignment"
+    } ]
+  }, {
+    "tStartMs": 95520,
+    "dDurationMs": 1650,
+    "segs": [ {
+      "utf8": "between some of the stuff\nwe're doing on the product side"
+    } ]
+  }, {
+    "tStartMs": 97170,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "of things and some of\nthe increases in modeling"
+    } ]
+  }, {
+    "tStartMs": 99090,
+    "dDurationMs": 2040,
+    "segs": [ {
+      "utf8": "capabilities that you all are working on."
+    } ]
+  }, {
+    "tStartMs": 101130,
+    "dDurationMs": 1080,
+    "segs": [ {
+      "utf8": "- What differentiates Cursor?"
+    } ]
+  }, {
+    "tStartMs": 102210,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "- I think there's a deep\nproduct focus at the company."
+    } ]
+  }, {
+    "tStartMs": 104670,
+    "dDurationMs": 3450,
+    "segs": [ {
+      "utf8": "From the very start we want\nto give folks more autonomy"
+    } ]
+  }, {
+    "tStartMs": 108120,
+    "dDurationMs": 1740,
+    "segs": [ {
+      "utf8": "and help them be more empowered."
+    } ]
+  }, {
+    "tStartMs": 109860,
+    "dDurationMs": 1350,
+    "segs": [ {
+      "utf8": "I think that this is like a great time"
+    } ]
+  }, {
+    "tStartMs": 111210,
+    "dDurationMs": 1410,
+    "segs": [ {
+      "utf8": "to be working on a company."
+    } ]
+  }, {
+    "tStartMs": 112620,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "That's because I think in short\norder, like a whole new set"
+    } ]
+  }, {
+    "tStartMs": 115980,
+    "dDurationMs": 2190,
+    "segs": [ {
+      "utf8": "of companies have been made possible"
+    } ]
+  }, {
+    "tStartMs": 118170,
+    "dDurationMs": 2370,
+    "segs": [ {
+      "utf8": "that have like different physics,"
+    } ]
+  }, {
+    "tStartMs": 120540,
+    "dDurationMs": 1677,
+    "segs": [ {
+      "utf8": "like different business physics."
+    } ]
+  }, {
+    "tStartMs": 122217,
+    "dDurationMs": 1113,
+    "segs": [ {
+      "utf8": "(bright music)"
+    } ]
+  }, {
+    "tStartMs": 123330,
+    "dDurationMs": 1800,
+    "segs": [ {
+      "utf8": "Two years ago we were 15 people in a room"
+    } ]
+  }, {
+    "tStartMs": 125130,
+    "dDurationMs": 1770,
+    "segs": [ {
+      "utf8": "and now we're 700 people"
+    } ]
+  }, {
+    "tStartMs": 126900,
+    "dDurationMs": 2430,
+    "segs": [ {
+      "utf8": "and serve over 60% of the Fortune 500"
+    } ]
+  }, {
+    "tStartMs": 129330,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "and you know, have very\nlarge software business that,"
+    } ]
+  }, {
+    "tStartMs": 132450,
+    "dDurationMs": 2190,
+    "segs": [ {
+      "utf8": "you know, rivals many of the biggest"
+    } ]
+  }, {
+    "tStartMs": 134640,
+    "dDurationMs": 1230,
+    "segs": [ {
+      "utf8": "public software companies."
+    } ]
+  }, {
+    "tStartMs": 135870,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "It's definitely kind of crazy"
+    } ]
+  }, {
+    "tStartMs": 138030,
+    "dDurationMs": 4650,
+    "segs": [ {
+      "utf8": "and it's not lost on us\njust how special this is,"
+    } ]
+  }, {
+    "tStartMs": 142680,
+    "dDurationMs": 4740,
+    "segs": [ {
+      "utf8": "how unprecedented it is, historically,"
+    } ]
+  }, {
+    "tStartMs": 147420,
+    "dDurationMs": 3885,
+    "segs": [ {
+      "utf8": "and feel lucky to be able to\ncontribute in some way to this."
+    } ]
+  }, {
+    "tStartMs": 151305,
+    "dDurationMs": 3417,
+    "segs": [ {
+      "utf8": "(bright music continues)"
+    } ]
+  } ]
+}

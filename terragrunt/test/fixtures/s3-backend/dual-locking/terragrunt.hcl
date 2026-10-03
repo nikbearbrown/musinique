@@ -1,0 +1,37 @@
+# Configure OpenTofu/Terraform state to be stored in S3 with DUAL locking (migration scenario)
+# This uses both DynamoDB and S3 native locking simultaneously
+# Both locks must be successfully acquired before operations can proceed
+
+# Feature flag for SSE encryption on the DynamoDB lock table
+# This allows the --feature flag to control SSE during bootstrap
+feature "enable_lock_table_ssencryption" {
+  default = false
+}
+
+# Feature flag for access logging bucket
+# This allows the --feature flag to control access logging during bootstrap
+feature "access_logging_bucket" {
+  default = ""
+}
+
+remote_state {
+  backend = "s3"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite"
+  }
+  config = {
+    bucket                         = "__FILL_IN_BUCKET_NAME__"
+    key                            = "dual-locking/terraform.tfstate"
+    region                         = "__FILL_IN_REGION__"
+    encrypt                        = true
+    dynamodb_table                 = "__FILL_IN_LOCK_TABLE_NAME__" # Traditional DynamoDB locking
+    use_lockfile                   = true                          # New S3 native locking
+    enable_lock_table_ssencryption = feature.enable_lock_table_ssencryption.value
+    accesslogging_bucket_name      = feature.access_logging_bucket.value
+  }
+}
+
+terraform {
+  source = "tfr://registry.terraform.io/yorinasub17/terragrunt-registry-test/null//modules/one?version=0.0.2"
+}

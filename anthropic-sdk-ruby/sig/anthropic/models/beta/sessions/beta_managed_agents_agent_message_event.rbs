@@ -1,0 +1,84 @@
+module Anthropic
+  module Models
+    module Beta
+      module Sessions
+        type beta_managed_agents_agent_message_event =
+          {
+            id: String,
+            content: ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::content],
+            processed_at: Time,
+            type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::type_
+          }
+
+        class BetaManagedAgentsAgentMessageEvent < Anthropic::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor content: ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::content]
+
+          attr_accessor processed_at: Time
+
+          attr_accessor type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::type_
+
+          def initialize: (
+            id: String,
+            content: ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::content],
+            processed_at: Time,
+            type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::type_
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            content: ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::content],
+            processed_at: Time,
+            type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::type_
+          }
+
+          type content =
+            Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock
+            | Anthropic::Beta::Sessions::BetaManagedAgentsRedactedBlock
+
+          module Content
+            extend Anthropic::Internal::Type::Union
+
+            type type_ = :text | :redacted
+
+            module Type
+              extend Anthropic::Internal::Type::Enum
+
+              TEXT: :text
+              REDACTED: :redacted
+
+              def self?.values: -> ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::Content::type_]
+            end
+
+            def self?.variants: -> ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::content]
+
+            def self.new:
+              (
+                type: :text | "text",
+                text: String
+              ) -> Anthropic::Beta::Sessions::BetaManagedAgentsTextBlock
+              | (
+                type: :redacted | "redacted"
+              ) -> Anthropic::Beta::Sessions::BetaManagedAgentsRedactedBlock
+              | (
+                type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::Content::type_
+                | String,
+                ?text: String
+              ) -> Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::content
+          end
+
+          type type_ = :"agent.message"
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            AGENT_MESSAGE: :"agent.message"
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsAgentMessageEvent::type_]
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,33 @@
+[run] skip B10_TheWeek — B10 already filled
+[run] skip B11_ArtistAsData — B11 already filled
+[run] skip B12_CleanTheRelease — B12 already filled
+[run] skip B13_DoItAllFaster — B13 already filled
+[run] skip B14_TwoKinds — B14 already filled
+[run] skip B15_Commit — B15 already filled
+[run] skip B16_TheGateVetoes — B16 already filled
+[run] skip B17_TheMiddle — B17 already filled
+[run] skip B18_SameWeekMoneyKept — B18 already filled
+[run] nothing to render — recompiling only
+[run] GATE L — beat-mix lint
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[run] GATE SHAPE — finance chart-shape enforcement
+[gate-shape] skip — not a finance reel (beat_sheet.json)
+[remotion] B00: filled already (skip)
+[remotion] B01: filled already (skip)
+[remotion] B02: filled already (skip)
+[remotion] B03: filled already (skip)
+[remotion] BVDT: filled already (skip)
+[remotion] BHTF: filled already (skip)
+[remotion] BOUT: filled already (skip)
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] motion histogram: graphic:9  remotion:7
+[art] SKIN LINT: B00: palette=claude but the cold open is 'ClaudeTldrWhat' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (16/16 filled)
+[art] QC contact sheet → /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/qc-sheet.png
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/tldr-what-musinique-is-slate.mp4  (251.9s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 16/16 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B10:MANIM B11:MANIM B12:MANIM B13:MANIM B14:MANIM B15:MANIM B16:MANIM B17:MANIM B18:MANIM BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=32 BLOCKER=0 MAJOR=0 → /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/_qc/REPORT.md
+[run] done → /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is  (QC gates: on)
+[run] REVIEW built; no final exported. Use ./art final <reel> for a verified master.
+[run] any remaining slates are YOUR slots — see /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/SHOTLIST.md

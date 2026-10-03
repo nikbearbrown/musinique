@@ -1,0 +1,11 @@
+Done. `vox-endosomal-escape-slate.mp4` (3.2 MB, 171.18 s, mean_volume −24.2 dB, AAC audio) exists at 15:09, 2 minutes newer than the sheet at 15:07. Full breakdown:
+
+**Rebuild** — snapshot to `beat_sheet.pre-rebuild.json`; dropped ElevenLabs `voice_id`/`clock`; added `engine: kokoro` / `voice: nbbhuman` / `voice_kokoro: am_onyx` / `folderLabel: @NikBearBrown` / `short_title`; cleared lying build stamps (claimed filled 13/13 with zero mp4s on disk).
+
+**Audit** — 11 checks documented in `AUDIT.md`; no BLOCKERs. Pacing LOG-only (B07 wps 1.99, B09 wps 1.77). No verdict beat to strip. No punts.
+
+**Build** — Kokoro audio regenerated for all 13 beats (previous mp3s were ElevenLabs-era). Rendered 10 Manim scenes (B01, B03–B11) via `vox_run.sh` with `VOX_QC=0` (Gate A false-positive on isolated hold-scenes; render-time Gate B cleared). B02/B12/B13 declared slates. Master compiled by vox pipeline, renamed to `-slate.mp4`.
+
+**Gate V** — sampled frames legible, no safe-inset crossings, bar heights agree with narration. One LOG item: `vox_graphics.TEAL` renders escaped-RNA dots as near-ink brown (palette quirk in shared library) — layout semantics preserved.
+
+**One code fix** — patched `vox_scenes.py` module resolution: hardcoded `parents[3]` assumed a 3-deep books layout, but this reel sits 5 deep. Replaced with walk-up search for `books/vox/aspects/explainer/vox-explainer/manim/`.

@@ -1,0 +1,153 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Models
+    module Beta
+      # @see Anthropic::Resources::Beta::Environments#create
+      class EnvironmentCreateParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        # @!attribute name
+        #   Human-readable name for the environment
+        #
+        #   @return [String]
+        required :name, String
+
+        # @!attribute config
+        #   Environment configuration
+        #
+        #   @return [Anthropic::Models::Beta::BetaCloudConfigParams, Anthropic::Models::Beta::BetaSelfHostedConfigParams, nil]
+        optional :config, union: -> { Anthropic::Beta::EnvironmentCreateParams::Config }, nil?: true
+
+        # @!attribute description
+        #   Optional description of the environment
+        #
+        #   @return [String, nil]
+        optional :description, String, nil?: true
+
+        # @!attribute metadata
+        #   User-provided metadata key-value pairs
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        optional :metadata, Anthropic::Internal::Type::HashOf[String]
+
+        # @!attribute scope
+        #   The visibility scope for this environment. 'organization' makes the environment
+        #   visible to all accounts. 'account' restricts visibility to the owning account
+        #   only. API organizations support only 'organization'; 'account' is rejected. If
+        #   not specified, defaults based on organization type.
+        #
+        #   @return [Symbol, Anthropic::Models::Beta::EnvironmentCreateParams::Scope, nil]
+        optional :scope, enum: -> { Anthropic::Beta::EnvironmentCreateParams::Scope }, nil?: true
+
+        # @!attribute betas
+        #   Optional header to specify the beta version(s) you want to use.
+        #
+        #   @return [Array<Symbol, String, Anthropic::Models::AnthropicBeta>, nil]
+        optional :betas, -> { Anthropic::Internal::Type::ArrayOf[union: Anthropic::AnthropicBeta] }
+
+        # @!attribute workspace_id
+        #   Optional header to select the Workspace for this request. The value is a
+        #   Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+        #
+        #   Only needed for credentials that can act on more than one Workspace. A
+        #   credential that belongs to a specific Workspace may omit it; if sent, it must
+        #   match that Workspace.
+        #
+        #   @return [String, nil]
+        optional :workspace_id, String
+
+        # @!method initialize(name:, config: nil, description: nil, metadata: nil, scope: nil, betas: nil, workspace_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Anthropic::Models::Beta::EnvironmentCreateParams} for more details.
+        #
+        #   @param name [String] Human-readable name for the environment
+        #
+        #   @param config [Anthropic::Models::Beta::BetaCloudConfigParams, Anthropic::Models::Beta::BetaSelfHostedConfigParams, nil] Environment configuration
+        #
+        #   @param description [String, nil] Optional description of the environment
+        #
+        #   @param metadata [Hash{Symbol=>String}] User-provided metadata key-value pairs
+        #
+        #   @param scope [Symbol, Anthropic::Models::Beta::EnvironmentCreateParams::Scope, nil] The visibility scope for this environment. 'organization' makes the environment
+        #
+        #   @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Optional header to specify the beta version(s) you want to use.
+        #
+        #   @param workspace_id [String] Optional header to select the Workspace for this request. The value is a Workspa
+        #
+        #   @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}]
+
+        # Environment configuration
+        module Config
+          extend Anthropic::Internal::Type::Union
+
+          discriminator :type
+
+          # Request params for `cloud` environment configuration.
+          #
+          # Fields default to null; on update, omitted fields preserve the
+          # existing value.
+          variant :cloud, -> { Anthropic::Beta::BetaCloudConfigParams }
+
+          # Request params for `self_hosted` environment configuration.
+          variant :self_hosted, -> { Anthropic::Beta::BetaSelfHostedConfigParams }
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            CLOUD = :cloud
+            SELF_HOSTED = :self_hosted
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @!method self.variants
+          #   @return [Array(Anthropic::Models::Beta::BetaCloudConfigParams, Anthropic::Models::Beta::BetaSelfHostedConfigParams)]
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::EnvironmentCreateParams::Config} for more details.
+          #
+          # @param type [Symbol, Anthropic::Models::Beta::EnvironmentCreateParams::Config::Type, String]
+          #
+          # @param args [Hash{Symbol=>Object}] Attributes for the chosen variant.
+          #
+          #   @option args [Anthropic::Models::Beta::BetaUnrestrictedNetwork, Anthropic::Models::Beta::BetaLimitedNetworkParams, nil] :networking Network configuration policy. Omit on update to preserve the existing value.
+          #
+          #   @option args [Anthropic::Models::Beta::BetaPackagesParams, nil] :packages Specify packages (and optionally their versions) available in this environment.
+          #
+          # @raise [ArgumentError]
+          # @return [Anthropic::Models::Beta::BetaCloudConfigParams, Anthropic::Models::Beta::BetaSelfHostedConfigParams]
+          def self.new(type:, **args)
+            case type.to_sym
+            when :cloud
+              Anthropic::Beta::BetaCloudConfigParams.new(**args)
+            when :self_hosted
+              Anthropic::Beta::BetaSelfHostedConfigParams.new(**args)
+            else
+              raise ArgumentError, "unknown type: #{type}"
+            end
+          end
+        end
+
+        # The visibility scope for this environment. 'organization' makes the environment
+        # visible to all accounts. 'account' restricts visibility to the owning account
+        # only. API organizations support only 'organization'; 'account' is rejected. If
+        # not specified, defaults based on organization type.
+        module Scope
+          extend Anthropic::Internal::Type::Enum
+
+          ORGANIZATION = :organization
+          ACCOUNT = :account
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,10 @@
+Done. `cancer-nanomedicine-ch09-nucleic-acid-delivery` built as a lecture-deck review cut following the ch10 sibling precedent.
+
+- Format: 12 HTML slides (S01 HOOK → S12 CLOSE) · ElevenLabs Bear voice (legitimate paid @NikBearBrown default) · brutalist cream/terracotta palette.
+- Master: `cancer-nanomedicine-ch09-nucleic-acid-delivery.mp4` · 576 s / 9.6 min · 17.66 MB · Aug 31 07:29 > sheet Jul 12 17:05.
+- Audio: `mean_volume = -18.9 dB` (above the -40 dB floor). All 12 durations match the sheet's `actual_duration_s` exactly.
+- Gate V frames: 12/12 clean — titles legible, orange accent lands on point-word, chip/flow/wire/stat/grid2/balance/thesis/close components render as authored, dark S12 close card OK. Zero MAJOR/BLOCKER.
+- Sheet UNTOUCHED after render; `beat_sheet.pre-rebuild.json` written byte-exact BEFORE any action (shasum matches).
+- Non-blocking fact note logged in AUDIT.md: S07 slide's `~13B COVID-19 mRNA doses` gloss overstates the mRNA-specific number (that figure is total COVID vaccine doses across all platforms; mRNA-specific is ~5–6B). Narration only says "billions of doses" — unambiguously true. Deferred rather than exceeding the ch10 typo-fix precedent scope.
+
+Files written: `AUDIT.md`, `TYPECHECK.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json`, `render.py`, `_qc/frames/*.png`, `slides/S*.png` (re-shot), the mp4 itself, and a new entry in `anthropics/youtube/FILMLOOP-LOG.md`.

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thursday study group</title>
+<style>
+  html { font: 18px/1.55 Georgia, serif; color: #1F1E1B; background: #F2F0E9; }
+  body { max-width: 34rem; margin: 3rem auto; padding: 0 1.2rem; }
+  h1 { font-weight: 500; font-size: 1.6rem; margin: 0 0 0.4rem; }
+  p.meta { color: #6b665e; margin: 0 0 1.6rem; }
+  form { display: grid; gap: 0.9rem; }
+  label { display: block; font-size: 0.95rem; }
+  input.field {
+    display: block; width: 100%; padding: 0.55rem 0.7rem; font: inherit;
+    border: 1px solid #1F1E1B; background: transparent; box-sizing: border-box;
+  }
+  button {
+    padding: 0.55rem 1.1rem; font: inherit; color: #F2F0E9;
+    background: #D97757; border: 0; cursor: pointer; justify-self: start;
+  }
+  .ok { margin-top: 0.6rem; color: #1F6F5C; }
+</style>
+</head>
+<body>
+  <h1>Thursday study group</h1>
+  <p class="meta">Thursdays, 6 pm, second-floor lounge.
+    <span id="when"></span></p>
+  <form id="f" onsubmit="return signup(event)">
+    <label>First name
+      <input class="field" type="text" id="name" name="name"
+             autocomplete="given-name" required>
+    </label>
+    <button type="submit">Sign me up</button>
+    <p class="ok" id="ok" hidden>You are on the list, <span id="who"></span>.</p>
+  </form>
+  <script>
+    (function () {
+      var now = new Date();
+      var offset = (4 - now.getDay() + 7) % 7;
+      var t = new Date(now); t.setDate(now.getDate() + (offset || 7));
+      var opts = { weekday: "long", month: "long", day: "numeric" };
+      document.getElementById("when").textContent =
+        "Next: " + t.toLocaleDateString(undefined, opts) + ".";
+    })();
+    function signup(e) {
+      e.preventDefault();
+      document.getElementById("who").textContent =
+        document.getElementById("name").value.trim() || "friend";
+      document.getElementById("ok").hidden = false;
+      return false;
+    }
+  </script>
+</body>
+</html>

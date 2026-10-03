@@ -1,0 +1,534 @@
+{
+  "metadata": {
+    "slug": "claude-liam-software-design-document",
+    "title": "Write a Five-Section Software Design Document with Claude Code",
+    "topic": "CLAUDE CODE FOR STUDENTS",
+    "style": "cli",
+    "palette": "claude",
+    "style_preset": "nikbearbrown",
+    "source": "claude-code-for-students/chapters/07-software-design-document.md",
+    "segment": "Software Design Document",
+    "ground": "#FAF9F5",
+    "total_estimated_duration_seconds": 155.0,
+    "audience": "Claude",
+    "derived_from": "beat_sheet.json",
+    "register": "Teardown",
+    "outro_source": "AUTHOR.MD :: NikBearBrown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "build": {
+      "at": "2026-08-31T13:52:41",
+      "cut": "master",
+      "filled": 13,
+      "of": 13,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "INTRO",
+      "narration_text": "Three hours of drift because a local-only editor became a multi-user backend. One eleven-minute SDD prevents it.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Sawubona, Liam",
+            "topic": "CLAUDE CODE FOR STUDENTS",
+            "segment": "Software Design Document",
+            "command": "Why do I need a Software Design Document before I start writing code?",
+            "runningText": "one SDD, eleven minutes, three hours saved…",
+            "output": [
+              "The SDD is the decision, made once, in writing.",
+              "Five sections stop drift before the first keystroke."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 7.59,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "PROBLEM",
+      "narration_text": "The SDD is the decision that prevents you from making the same decision twice under deadline pressure. The Principle Collision Test is what separates a real principle from a tagline.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "The SDD",
+            "items": [
+              {
+                "label": "Decision, made once",
+                "sub": "Prevents you from making the same decision twice under deadline pressure.",
+                "icon": "BOX",
+                "cueFrame": 0
+              },
+              {
+                "label": "Principle Collision Test",
+                "sub": "Separates a real principle from a tagline.",
+                "icon": "BOX",
+                "cueFrame": 60
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 10.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "ASK",
+      "narration_text": "We give Claude a v0 sentence and ask it to generate a complete five-section SDD, then run the Principle Collision Test on all three architecture principles.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Generate the SDD.",
+            "topic": "CLAUDE CODE FOR STUDENTS",
+            "segment": "Software Design Document",
+            "command": "v0: Local timeline editor — one user, browser-only, no backend.\nGenerate a five-section SDD:\n  1. Problem Statement (one user, one done-condition)\n  2. Architecture Principles (run Collision Test)\n  3. User Needs (stopwatch-measurable)\n  4. Component List (explicit non-components)\n  5. Open Questions\nFlag any principle that survives no realistic conflict.",
+            "runningText": "generating SDD…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 9.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "CODE",
+      "narration_text": "Claude generates the five sections. The Collision Test flags a conflict between local-only and any future sync requirement. The non-component list explicitly names: no backend, no database, no login.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "sdd.md",
+            "sparkLine": "Five sections, one collision.",
+            "code": "# SDD - Local Timeline Editor\n\n## 1. Problem Statement\nOne user edits a personal timeline in the browser.\nDone when: user can add, reorder, and delete events\nwithout losing data across page refreshes.\n\n## 2. Architecture Principles\n- Local-only [COLLISION: conflicts with sync]\n- localStorage only [COLLISION: conflicts with multi-device]\n- No external deps [COLLISION: conflicts with rich UI libs]\n\n## 4. Component List\nIN:  EventList, EventEditor, LocalStorageAdapter\nOUT: backend, database, login, sync, sharing"
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.29,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "OUTPUT",
+      "narration_text": "Five sections: Problem Statement names one user and one done-condition. Architecture Principles survive the Collision Test. User Needs are stopwatch-measurable. Component List names no backend as an explicit non-component.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "Five sections",
+            "items": [
+              {
+                "label": "Problem Statement",
+                "sub": "One user, one done-condition.",
+                "icon": "BOX",
+                "cueFrame": 0
+              },
+              {
+                "label": "Architecture Principles",
+                "sub": "Survive the Collision Test.",
+                "icon": "BOX",
+                "cueFrame": 48
+              },
+              {
+                "label": "User Needs",
+                "sub": "Stopwatch-measurable.",
+                "icon": "BOX",
+                "cueFrame": 96
+              },
+              {
+                "label": "Component List",
+                "sub": "Names no backend as an explicit non-component.",
+                "icon": "BOX",
+                "cueFrame": 144
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 13.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "CHANGE",
+      "narration_text": "We add multi-user sync to scope and re-run. Claude flags the immediate conflict with the local-only principle rather than silently resolving it.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Add sync, re-run.",
+            "topic": "CLAUDE CODE FOR STUDENTS",
+            "segment": "Software Design Document",
+            "command": "Add 'multi-user sync' to scope in the SDD.\nRe-run Principle Collision Test.\nDoes local-only survive? Flag the conflict explicitly.",
+            "runningText": "running collision test…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 10,
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 8.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "OUTPUT",
+      "narration_text": "The Collision Test fires immediately: local-only versus sync is an irreconcilable conflict at the principle level. Claude flags it and asks for a scope decision rather than inventing a workaround. The SDD caught the drift before the first line of code.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "Collision fires",
+            "items": [
+              {
+                "label": "Irreconcilable at principle level",
+                "sub": "Local-only versus sync — a conflict Claude does not silently resolve.",
+                "icon": "BOX",
+                "cueFrame": 0
+              },
+              {
+                "label": "Claude asks first",
+                "sub": "Flags the conflict, requests a scope decision, refuses to invent a workaround.",
+                "icon": "BOX",
+                "cueFrame": 96
+              },
+              {
+                "label": "Caught before code",
+                "sub": "The SDD caught the drift before the first line was written.",
+                "icon": "BOX",
+                "cueFrame": 192
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 14,
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 14.42,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "YOURTURN",
+      "act": "your-turn",
+      "narration_text": "Your turn. Paste this: you want to write a software design document for a Claude Code project before any code is written. Ask Claude for the five-artifact structure — what each artifact covers, in what order to write them, and which artifact Claude Code will read first when the build session starts.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "command": "I want to write a software design document for a Claude Code project before any code is written. Give me the five-artifact structure: what does each artifact cover, in what order should I write them, and which artifact will Claude Code read first when the build session starts?",
+            "segment": "Software Design Document",
+            "topic": "CLAUDE CODE FOR STUDENTS",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High",
+            "runningText": "paste this into Claude and run it on your own project…"
+          },
+          "rendered": {
+            "out": "media/YOURTURN.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-YOURTURN.mp3",
+      "actual_duration_s": 15.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/YOURTURN.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "SUMMARY",
+      "narration_text": "The SDD is not documentation after the fact — it is the decision itself, made once, in writing, before any code is written. The Collision Test is what keeps principles from being taglines.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "The SDD is the decision itself,",
+              "made once, in writing,",
+              "before any code is written.",
+              "The Collision Test keeps principles from being taglines."
+            ]
+          },
+          "rendered": {
+            "out": "media/B07.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 12,
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 11.16,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "NEXT STEPS",
+      "narration_text": "Next: score a build plan using the Boondoggle Score.",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "Next",
+            "items": [
+              {
+                "label": "Score a build plan",
+                "sub": "Using the Boondoggle Score.",
+                "icon": "BOX",
+                "cueFrame": 0
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": ""
+          }
+        }
+      },
+      "estimated_duration_s": 8,
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 3.56,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict recap",
+      "lane": "BOOKEND",
+      "narration_text": "Five sections and one test. Problem Statement, Architecture Principles, User Needs, Component List, Open Questions. The Principle Collision Test flags conflicts between principles before code is written. When scope adds sync, local-only fails the test immediately. The SDD caught the drift before the first keystroke.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 20,
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Software Design Document",
+            "artifactHeading": "Key findings",
+            "artifactLines": [
+              "Five sections: Problem Statement, Architecture Principles, User Needs, Component List, Open Questions.",
+              "The Principle Collision Test flags conflicts between principles before code is written.",
+              "The non-component list names what the system will NOT do — no backend, no database, no login.",
+              "Add sync to scope and local-only fails the test immediately — Claude asks for a scope decision, not a workaround."
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 17.47,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "BOOKEND",
+      "narration_text": "Your turn. Pick your next side project. Before any code, write a five-section SDD: Problem Statement with one user and one done-condition, Architecture Principles each run through the Collision Test, User Needs measured with a stopwatch, a Component List that names its explicit non-components, and the Open Questions you have not answered yet. Then flag the principle that survives the fewest realistic conflicts — that is the one that would have drifted first.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 24,
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "YOUR TURN · CLAUDE CODE FOR STUDENTS",
+            "segment": "Software Design Document",
+            "command": "Pick your next side project. Before any code is written, produce a five-section SDD:\n  1. Problem Statement — one user, one done-condition.\n  2. Architecture Principles — run the Collision Test on each principle explicitly.\n  3. User Needs — every one stopwatch-measurable.\n  4. Component List — name at least three explicit non-components.\n  5. Open Questions.\nThen flag the ONE principle most likely to fail the Collision Test if the scope grows.",
+            "runningText": "paste this into Claude and run it on your own project…",
+            "output": [
+              "Non-components are as load-bearing as components.",
+              "The first principle to fail is the one you defended least."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 22.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "BOOKEND",
+      "narration_text": "",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 8,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Write a Five-Section Software Design Document with Claude Code",
+            "slug": "claude-liam-software-design-document"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "actual_duration_s": 8.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T13:52:41"
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+module Anthropic
+  module Models
+    class BetaFallbackCreditUsage = Beta::BetaFallbackCreditUsage
+
+    module Beta
+      type beta_fallback_credit_usage =
+        { status: Anthropic::Models::Beta::BetaFallbackCreditUsage::status }
+
+      class BetaFallbackCreditUsage < Anthropic::Internal::Type::BaseModel
+        attr_accessor status: Anthropic::Models::Beta::BetaFallbackCreditUsage::status
+
+        def initialize: (
+          status: Anthropic::Models::Beta::BetaFallbackCreditUsage::status
+        ) -> void
+
+        def to_hash: -> {
+          status: Anthropic::Models::Beta::BetaFallbackCreditUsage::status
+        }
+
+        type status =
+          Anthropic::Beta::BetaFallbackCreditRedeemed
+          | Anthropic::Beta::BetaFallbackCreditNotApplied
+
+        module Status
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :redeemed | :not_applied
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            REDEEMED: :redeemed
+            NOT_APPLIED: :not_applied
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaFallbackCreditUsage::Status::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaFallbackCreditUsage::status]
+
+          def self.new:
+            (
+              type: :redeemed | "redeemed"
+            ) -> Anthropic::Beta::BetaFallbackCreditRedeemed
+            | (
+              type: :not_applied | "not_applied",
+              reason: Anthropic::Models::Beta::BetaFallbackCreditNotApplied::reason,
+              ?remove_to_redeem: ::Array[String]?
+            ) -> Anthropic::Beta::BetaFallbackCreditNotApplied
+            | (
+              type: Anthropic::Models::Beta::BetaFallbackCreditUsage::Status::type_
+              | String,
+              ?reason: Anthropic::Models::Beta::BetaFallbackCreditNotApplied::reason,
+              ?remove_to_redeem: ::Array[String]?
+            ) -> Anthropic::Models::Beta::BetaFallbackCreditUsage::status
+        end
+      end
+    end
+  end
+end

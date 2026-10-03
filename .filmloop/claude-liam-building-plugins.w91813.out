@@ -1,0 +1,10 @@
+**DONE.**
+
+Reel `claude-liam-building-plugins` is built and clean:
+
+- `claude-liam-building-plugins-slate.mp4` — 420.3s, 4.5MB, epoch 1787827583 (+425s newer than beat_sheet) ✓
+- Audio: −25.8 dB mean_volume ✓
+- GATE T: 0 FAILs (was 8: B02/B04 kerning, B07/B09 card-clip, B11/B14/B19/B20 contrast+overlap) ✓
+- GATE V: 8 beats frame-verified, zero blockers ✓
+- `AUDIT.md`, `REBUILD-LOG.md` written; `FILMLOOP-LOG.md` appended ✓
+- beat_sheet.json not touched after compile ✓

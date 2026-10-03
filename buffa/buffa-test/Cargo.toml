@@ -1,0 +1,40 @@
+[package]
+name = "buffa-test"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[features]
+arbitrary = ["dep:arbitrary", "buffa/arbitrary", "buffa-types/arbitrary"]
+
+[dependencies]
+arbitrary = { workspace = true, optional = true }
+buffa = { workspace = true, features = ["std", "json", "text"] }
+# `reflect`+`json` so the codegen-emitted `impl Reflectable` and the
+# embedded descriptor pool resolve. `json` because `basic.proto` is also
+# generated with `generate_text(true)` and the pool decodes the WKT
+# descriptors that need it.
+buffa-descriptor = { workspace = true, features = ["reflect", "json", "std"] }
+buffa-types = { workspace = true, features = ["json", "chrono", "jiff", "reflect"] }
+# The SmolStr preset crate, used by the string_type fixtures and as the template
+# for the crate-local newtypes in `reprs`.
+buffa-smolstr = { workspace = true, features = ["serde"] }
+bytes = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+# Foreign small-string types wrapped by the crate-local `ProtoString` newtypes
+# in `reprs` (the open mechanism requires implementing ProtoString, which a
+# foreign type cannot do directly). `ecow` ships no native `Arbitrary`, which
+# exercises codegen's generic arbitrary builder.
+ecow = { workspace = true, features = ["serde"] }
+compact_str = { workspace = true, features = ["serde"] }
+
+[dev-dependencies]
+# `src/tests/json_private_key.rs` needs `serde_json::Value` to parse the string under
+# its private `RawValue` key: see `buffa/src/json_helpers/buffered.rs`.
+serde_json = { workspace = true, features = ["raw_value"] }
+
+[build-dependencies]
+buffa-build = { workspace = true }

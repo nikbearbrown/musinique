@@ -1,0 +1,10 @@
+Done. 
+
+**one-sentence-problem-statement** — rebuilt + built, 8/8 VIDEO, no slates.
+
+- `beat_sheet.json` (20:51:08) ← `one-sentence-problem-statement.mp4` (20:51:36) — cut is newer ✓
+- 100.8s clean 4K master · GATE T PASS · GATE V passed · GATE AUDIO PASS (mean_volume −27.1 dB) · `build.status = {'VIDEO': 8}` · post-build punt sweep: none
+- Phase 0: `beat_sheet.pre-rebuild.json` snapshot made; envelope normalized; dropped legacy `YOURTURN` / `OUTRO` duplicate bookends; added missing brand fields (`palette=claude`, `channel=claude-liam`, `folderLabel=@NikBearBrown`)
+- Phase 1 fixes: spark line `Namaste, Liam` (adjacent reels: Ciao / Sawadee); B01/B02/B03/B04 rerouted off broken mid-word-truncated `scenes_std.py` Manim scenes onto Remotion FormA / FormB cards driven by each beat's own on_screen lines; BVDT verdict authored (3 real lines + narration) from body nouns/numbers; BHTF Your-Turn authored (real exercise from video content, not the `[X]` template)
+- Phase 2: Kokoro `am_onyx` audio → 7 mp3s; Remotion render 8/8; compile master; Gate V flagged BHTF composer-output overflow → dropped the output list to `[]`, re-rendered BHTF only, recompiled — master regenerated so mtime stayed newest after the fix
+- Log entry appended to `books/anthropics/youtube/FILMLOOP-LOG.md`

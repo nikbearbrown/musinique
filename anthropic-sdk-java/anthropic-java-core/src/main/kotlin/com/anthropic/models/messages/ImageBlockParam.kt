@@ -1,0 +1,769 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.Enum
+import com.anthropic.core.ExcludeMissing
+import com.anthropic.core.JsonField
+import com.anthropic.core.JsonMissing
+import com.anthropic.core.JsonValue
+import com.anthropic.core.checkRequired
+import com.anthropic.core.getOrThrow
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.annotation.JsonAnyGetter
+import com.fasterxml.jackson.annotation.JsonAnySetter
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Collections
+import java.util.Objects
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
+
+class ImageBlockParam
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
+private constructor(
+    private val source: JsonField<Source>,
+    private val type: JsonValue,
+    private val cacheControl: JsonField<CacheControlEphemeral>,
+    private val transformations: JsonField<ImageTransformationsParam>,
+    private val additionalProperties: MutableMap<String, JsonValue>,
+) {
+
+    @JsonCreator
+    private constructor(
+        @JsonProperty("source") @ExcludeMissing source: JsonField<Source> = JsonMissing.of(),
+        @JsonProperty("type") @ExcludeMissing type: JsonValue = JsonMissing.of(),
+        @JsonProperty("cache_control")
+        @ExcludeMissing
+        cacheControl: JsonField<CacheControlEphemeral> = JsonMissing.of(),
+        @JsonProperty("transformations")
+        @ExcludeMissing
+        transformations: JsonField<ImageTransformationsParam> = JsonMissing.of(),
+    ) : this(source, type, cacheControl, transformations, mutableMapOf())
+
+    /**
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type or is
+     *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+     */
+    fun source(): Source = source.getRequired("source")
+
+    /**
+     * Expected to always return the following:
+     * ```java
+     * JsonValue.from("image")
+     * ```
+     *
+     * However, this method can be useful for debugging and logging (e.g. if the server responded
+     * with an unexpected value).
+     */
+    @JsonProperty("type") @ExcludeMissing fun _type(): JsonValue = type
+
+    /**
+     * Create a cache control breakpoint at this content block.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun cacheControl(): Optional<CacheControlEphemeral> = cacheControl.getOptional("cache_control")
+
+    /**
+     * Configures the transformations the server applies to this image before the model observes it.
+     * Each key names a condition the server transforms images for; its value selects the
+     * transformation applied. Omitted keys keep their default behavior, and an empty object is
+     * equivalent to omitting the field.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun transformations(): Optional<ImageTransformationsParam> =
+        transformations.getOptional("transformations")
+
+    /**
+     * Returns the raw JSON value of [source].
+     *
+     * Unlike [source], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("source") @ExcludeMissing fun _source(): JsonField<Source> = source
+
+    /**
+     * Returns the raw JSON value of [cacheControl].
+     *
+     * Unlike [cacheControl], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("cache_control")
+    @ExcludeMissing
+    fun _cacheControl(): JsonField<CacheControlEphemeral> = cacheControl
+
+    /**
+     * Returns the raw JSON value of [transformations].
+     *
+     * Unlike [transformations], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("transformations")
+    @ExcludeMissing
+    fun _transformations(): JsonField<ImageTransformationsParam> = transformations
+
+    @JsonAnySetter
+    private fun putAdditionalProperty(key: String, value: JsonValue) {
+        additionalProperties.put(key, value)
+    }
+
+    @JsonAnyGetter
+    @ExcludeMissing
+    fun _additionalProperties(): Map<String, JsonValue> =
+        Collections.unmodifiableMap(additionalProperties)
+
+    fun toBuilder() = Builder().from(this)
+
+    companion object {
+
+        /**
+         * Returns a mutable builder for constructing an instance of [ImageBlockParam].
+         *
+         * The following fields are required:
+         * ```java
+         * .source()
+         * ```
+         */
+        @JvmStatic fun builder() = Builder()
+
+        /**
+         * Returns an immutable instance of [ImageBlockParam] with the required [source] set to the
+         * given value.
+         */
+        @JvmStatic fun of(source: Source) = builder().source(source).build()
+    }
+
+    /** A builder for [ImageBlockParam]. */
+    class Builder internal constructor() {
+
+        private var source: JsonField<Source>? = null
+        private var type: JsonValue = JsonValue.from("image")
+        private var cacheControl: JsonField<CacheControlEphemeral> = JsonMissing.of()
+        private var transformations: JsonField<ImageTransformationsParam> = JsonMissing.of()
+        private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+        @JvmSynthetic
+        internal fun from(imageBlockParam: ImageBlockParam) = apply {
+            source = imageBlockParam.source
+            type = imageBlockParam.type
+            cacheControl = imageBlockParam.cacheControl
+            transformations = imageBlockParam.transformations
+            additionalProperties = imageBlockParam.additionalProperties.toMutableMap()
+        }
+
+        fun source(source: Source) = source(JsonField.of(source))
+
+        /**
+         * Sets [Builder.source] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.source] with a well-typed [Source] value instead. This
+         * method is primarily for setting the field to an undocumented or not yet supported value.
+         */
+        fun source(source: JsonField<Source>) = apply { this.source = source }
+
+        /** Alias for calling [source] with `Source.ofBase64(base64)`. */
+        fun source(base64: Base64ImageSource) = source(Source.ofBase64(base64))
+
+        /** Alias for calling [source] with `Source.ofUrl(url)`. */
+        fun source(url: UrlImageSource) = source(Source.ofUrl(url))
+
+        /**
+         * Alias for calling [source] with the following:
+         * ```java
+         * UrlImageSource.builder()
+         *     .url(url)
+         *     .build()
+         * ```
+         */
+        fun urlSource(url: String) = source(UrlImageSource.builder().url(url).build())
+
+        /** Alias for calling [source] with `Source.ofFile(file)`. */
+        fun source(file: FileImageSource) = source(Source.ofFile(file))
+
+        /**
+         * Alias for calling [source] with the following:
+         * ```java
+         * FileImageSource.builder()
+         *     .fileId(fileId)
+         *     .build()
+         * ```
+         */
+        fun fileSource(fileId: String) = source(FileImageSource.builder().fileId(fileId).build())
+
+        /**
+         * Sets the field to an arbitrary JSON value.
+         *
+         * It is usually unnecessary to call this method because the field defaults to the
+         * following:
+         * ```java
+         * JsonValue.from("image")
+         * ```
+         *
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun type(type: JsonValue) = apply { this.type = type }
+
+        /** Create a cache control breakpoint at this content block. */
+        fun cacheControl(cacheControl: CacheControlEphemeral?) =
+            cacheControl(JsonField.ofNullable(cacheControl))
+
+        /** Alias for calling [Builder.cacheControl] with `cacheControl.orElse(null)`. */
+        fun cacheControl(cacheControl: Optional<CacheControlEphemeral>) =
+            cacheControl(cacheControl.getOrNull())
+
+        /**
+         * Sets [Builder.cacheControl] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.cacheControl] with a well-typed [CacheControlEphemeral]
+         * value instead. This method is primarily for setting the field to an undocumented or not
+         * yet supported value.
+         */
+        fun cacheControl(cacheControl: JsonField<CacheControlEphemeral>) = apply {
+            this.cacheControl = cacheControl
+        }
+
+        /**
+         * Configures the transformations the server applies to this image before the model observes
+         * it. Each key names a condition the server transforms images for; its value selects the
+         * transformation applied. Omitted keys keep their default behavior, and an empty object is
+         * equivalent to omitting the field.
+         */
+        fun transformations(transformations: ImageTransformationsParam?) =
+            transformations(JsonField.ofNullable(transformations))
+
+        /** Alias for calling [Builder.transformations] with `transformations.orElse(null)`. */
+        fun transformations(transformations: Optional<ImageTransformationsParam>) =
+            transformations(transformations.getOrNull())
+
+        /**
+         * Sets [Builder.transformations] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.transformations] with a well-typed
+         * [ImageTransformationsParam] value instead. This method is primarily for setting the field
+         * to an undocumented or not yet supported value.
+         */
+        fun transformations(transformations: JsonField<ImageTransformationsParam>) = apply {
+            this.transformations = transformations
+        }
+
+        fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+            this.additionalProperties.clear()
+            putAllAdditionalProperties(additionalProperties)
+        }
+
+        fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+            additionalProperties.put(key, value)
+        }
+
+        fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+            this.additionalProperties.putAll(additionalProperties)
+        }
+
+        fun removeAdditionalProperty(key: String) = apply { additionalProperties.remove(key) }
+
+        fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+            keys.forEach(::removeAdditionalProperty)
+        }
+
+        /**
+         * Returns an immutable instance of [ImageBlockParam].
+         *
+         * Further updates to this [Builder] will not mutate the returned instance.
+         *
+         * The following fields are required:
+         * ```java
+         * .source()
+         * ```
+         *
+         * @throws IllegalStateException if any required field is unset.
+         */
+        fun build(): ImageBlockParam =
+            ImageBlockParam(
+                checkRequired("source", source),
+                type,
+                cacheControl,
+                transformations,
+                additionalProperties.toMutableMap(),
+            )
+    }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): ImageBlockParam = apply {
+        if (validated) {
+            return@apply
+        }
+
+        source().validate()
+        _type().let {
+            if (it != JsonValue.from("image")) {
+                throw AnthropicInvalidDataException("'type' is invalid, received $it")
+            }
+        }
+        cacheControl().ifPresent { it.validate() }
+        transformations().ifPresent { it.validate() }
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        (source.asKnown().getOrNull()?.validity() ?: 0) +
+            type.let { if (it == JsonValue.from("image")) 1 else 0 } +
+            (cacheControl.asKnown().getOrNull()?.validity() ?: 0) +
+            (transformations.asKnown().getOrNull()?.validity() ?: 0)
+
+    @JsonDeserialize(using = Source.Deserializer::class)
+    @JsonSerialize(using = Source.Serializer::class)
+    class Source
+    private constructor(
+        private val base64: Base64ImageSource? = null,
+        private val url: UrlImageSource? = null,
+        private val file: FileImageSource? = null,
+        private val _json: JsonValue? = null,
+    ) {
+
+        fun type(): Type =
+            accept(
+                object : Visitor<Type> {
+                    override fun visitBase64(base64: Base64ImageSource): Type = Type.BASE64
+
+                    override fun visitUrl(url: UrlImageSource): Type = Type.URL
+
+                    override fun visitFile(file: FileImageSource): Type = Type.FILE
+
+                    override fun unknown(json: JsonValue?): Type =
+                        Type.of(json?.asObject()?.getOrNull()?.get("type") ?: JsonMissing.of())
+                }
+            )
+
+        fun base64(): Optional<Base64ImageSource> = Optional.ofNullable(base64)
+
+        fun url(): Optional<UrlImageSource> = Optional.ofNullable(url)
+
+        fun file(): Optional<FileImageSource> = Optional.ofNullable(file)
+
+        fun isBase64(): Boolean = base64 != null
+
+        fun isUrl(): Boolean = url != null
+
+        fun isFile(): Boolean = file != null
+
+        fun asBase64(): Base64ImageSource = base64.getOrThrow("base64")
+
+        fun asUrl(): UrlImageSource = url.getOrThrow("url")
+
+        fun asFile(): FileImageSource = file.getOrThrow("file")
+
+        fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+        /**
+         * Maps this instance's current variant to a value of type [T] using the given [visitor].
+         *
+         * Note that this method is _not_ forwards compatible with new variants from the API, unless
+         * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of
+         * the SDK gracefully, consider overriding [Visitor.unknown]:
+         * ```java
+         * import com.anthropic.core.JsonValue;
+         * import java.util.Optional;
+         *
+         * Optional<String> result = source.accept(new Source.Visitor<Optional<String>>() {
+         *     @Override
+         *     public Optional<String> visitBase64(Base64ImageSource base64) {
+         *         return Optional.of(base64.toString());
+         *     }
+         *
+         *     // ...
+         *
+         *     @Override
+         *     public Optional<String> unknown(JsonValue json) {
+         *         // Or inspect the `json`.
+         *         return Optional.empty();
+         *     }
+         * });
+         * ```
+         *
+         * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor]
+         *   and the current variant is unknown.
+         */
+        fun <T> accept(visitor: Visitor<T>): T =
+            when {
+                base64 != null -> visitor.visitBase64(base64)
+                url != null -> visitor.visitUrl(url)
+                file != null -> visitor.visitFile(file)
+                else -> visitor.unknown(_json)
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): Source = apply {
+            if (validated) {
+                return@apply
+            }
+
+            accept(
+                object : Visitor<Unit> {
+                    override fun visitBase64(base64: Base64ImageSource) {
+                        base64.validate()
+                    }
+
+                    override fun visitUrl(url: UrlImageSource) {
+                        url.validate()
+                    }
+
+                    override fun visitFile(file: FileImageSource) {
+                        file.validate()
+                    }
+                }
+            )
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic
+        internal fun validity(): Int =
+            accept(
+                object : Visitor<Int> {
+                    override fun visitBase64(base64: Base64ImageSource) = base64.validity()
+
+                    override fun visitUrl(url: UrlImageSource) = url.validity()
+
+                    override fun visitFile(file: FileImageSource) = file.validity()
+
+                    override fun unknown(json: JsonValue?) = 0
+                }
+            )
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Source &&
+                base64 == other.base64 &&
+                url == other.url &&
+                file == other.file
+        }
+
+        override fun hashCode(): Int = Objects.hash(base64, url, file)
+
+        override fun toString(): String =
+            when {
+                base64 != null -> "Source{base64=$base64}"
+                url != null -> "Source{url=$url}"
+                file != null -> "Source{file=$file}"
+                _json != null -> "Source{_unknown=$_json}"
+                else -> throw IllegalStateException("Invalid Source")
+            }
+
+        companion object {
+
+            @JvmStatic fun ofBase64(base64: Base64ImageSource) = Source(base64 = base64)
+
+            @JvmStatic fun ofUrl(url: UrlImageSource) = Source(url = url)
+
+            /**
+             * Returns an immutable instance of [Source] whose [ofUrl] variant is built from the
+             * given required [url].
+             */
+            @JvmStatic fun ofUrl(url: String) = ofUrl(UrlImageSource.of(url))
+
+            @JvmStatic fun ofFile(file: FileImageSource) = Source(file = file)
+
+            /**
+             * Returns an immutable instance of [Source] whose [ofFile] variant is built from the
+             * given required [fileId].
+             */
+            @JvmStatic fun ofFile(fileId: String) = ofFile(FileImageSource.of(fileId))
+        }
+
+        /** An interface that defines how to map each variant of [Source] to a value of type [T]. */
+        interface Visitor<out T> {
+
+            fun visitBase64(base64: Base64ImageSource): T
+
+            fun visitUrl(url: UrlImageSource): T
+
+            fun visitFile(file: FileImageSource): T
+
+            /**
+             * Maps an unknown variant of [Source] to a value of type [T].
+             *
+             * An instance of [Source] can contain an unknown variant if it was deserialized from
+             * data that doesn't match any known variant. For example, if the SDK is on an older
+             * version than the API, then the API may respond with new variants that the SDK is
+             * unaware of.
+             *
+             * @throws AnthropicInvalidDataException in the default implementation.
+             */
+            fun unknown(json: JsonValue?): T {
+                throw AnthropicInvalidDataException("Unknown Source: $json")
+            }
+        }
+
+        internal class Deserializer : BaseDeserializer<Source>(Source::class) {
+
+            override fun ObjectCodec.deserialize(node: JsonNode): Source {
+                val json = JsonValue.fromJsonNode(node)
+                val type = json.asObject().getOrNull()?.get("type")?.asString()?.getOrNull()
+
+                when (type) {
+                    "base64" -> {
+                        return tryDeserialize(node, jacksonTypeRef<Base64ImageSource>())?.let {
+                            Source(base64 = it, _json = json)
+                        } ?: Source(_json = json)
+                    }
+                    "url" -> {
+                        return tryDeserialize(node, jacksonTypeRef<UrlImageSource>())?.let {
+                            Source(url = it, _json = json)
+                        } ?: Source(_json = json)
+                    }
+                    "file" -> {
+                        return tryDeserialize(node, jacksonTypeRef<FileImageSource>())?.let {
+                            Source(file = it, _json = json)
+                        } ?: Source(_json = json)
+                    }
+                }
+
+                return Source(_json = json)
+            }
+        }
+
+        internal class Serializer : BaseSerializer<Source>(Source::class) {
+
+            override fun serialize(
+                value: Source,
+                generator: JsonGenerator,
+                provider: SerializerProvider,
+            ) {
+                when {
+                    value.base64 != null -> generator.writeObject(value.base64)
+                    value.url != null -> generator.writeObject(value.url)
+                    value.file != null -> generator.writeObject(value.file)
+                    value._json != null -> generator.writeObject(value._json)
+                    else -> throw IllegalStateException("Invalid Source")
+                }
+            }
+        }
+
+        class Type @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
+
+            /**
+             * Returns this class instance's raw value.
+             *
+             * This is usually only useful if this instance was deserialized from data that doesn't
+             * match any known member, and you want to know that value. For example, if the SDK is
+             * on an older version than the API, then the API may respond with new members that the
+             * SDK is unaware of.
+             */
+            @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+            companion object {
+
+                @JvmField val BASE64 = of("base64")
+
+                @JvmField val URL = of("url")
+
+                @JvmField val FILE = of("file")
+
+                @JvmStatic fun of(value: String) = Type(JsonField.of(value))
+
+                @JvmSynthetic
+                internal fun of(value: JsonField<String>): Type =
+                    value.asString().getOrNull()?.let { of(it) } ?: Type(value)
+            }
+
+            /** An enum containing [Type]'s known values. */
+            enum class Known {
+                BASE64,
+                URL,
+                FILE,
+            }
+
+            /**
+             * An enum containing [Type]'s known values, as well as an [_UNKNOWN] member.
+             *
+             * An instance of [Type] can contain an unknown value in a couple of cases:
+             * - It was deserialized from data that doesn't match any known member. For example, if
+             *   the SDK is on an older version than the API, then the API may respond with new
+             *   members that the SDK is unaware of.
+             * - It was constructed with an arbitrary value using the [of] method.
+             */
+            enum class Value {
+                BASE64,
+                URL,
+                FILE,
+                /** An enum member indicating that [Type] was instantiated with an unknown value. */
+                _UNKNOWN,
+            }
+
+            /**
+             * Returns an enum member corresponding to this class instance's value, or
+             * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+             *
+             * Use the [known] method instead if you're certain the value is always known or if you
+             * want to throw for the unknown case.
+             */
+            fun value(): Value =
+                when (this) {
+                    BASE64 -> Value.BASE64
+                    URL -> Value.URL
+                    FILE -> Value.FILE
+                    else -> Value._UNKNOWN
+                }
+
+            /**
+             * Returns an enum member corresponding to this class instance's value.
+             *
+             * Use the [value] method instead if you're uncertain the value is always known and
+             * don't want to throw for the unknown case.
+             *
+             * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+             *   member.
+             */
+            fun known(): Known =
+                when (this) {
+                    BASE64 -> Known.BASE64
+                    URL -> Known.URL
+                    FILE -> Known.FILE
+                    else -> throw AnthropicInvalidDataException("Unknown Type: $value")
+                }
+
+            /**
+             * Returns this class instance's primitive wire representation.
+             *
+             * This differs from the [toString] method because that method is primarily for
+             * debugging and generally doesn't throw.
+             *
+             * @throws AnthropicInvalidDataException if this class instance's value does not have
+             *   the expected primitive type.
+             */
+            fun asString(): String =
+                _value().asString().orElseThrow {
+                    AnthropicInvalidDataException("Value is not a String")
+                }
+
+            private var validated: Boolean = false
+
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws AnthropicInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
+            fun validate(): Type = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                known()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: AnthropicInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is Type && value == other.value
+            }
+
+            override fun hashCode() = value.hashCode()
+
+            override fun toString() = value.toString()
+        }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is ImageBlockParam &&
+            source == other.source &&
+            type == other.type &&
+            cacheControl == other.cacheControl &&
+            transformations == other.transformations &&
+            additionalProperties == other.additionalProperties
+    }
+
+    private val hashCode: Int by lazy {
+        Objects.hash(source, type, cacheControl, transformations, additionalProperties)
+    }
+
+    override fun hashCode(): Int = hashCode
+
+    override fun toString() =
+        "ImageBlockParam{source=$source, type=$type, cacheControl=$cacheControl, transformations=$transformations, additionalProperties=$additionalProperties}"
+}

@@ -1,0 +1,6829 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 9843,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "I heard that you\nhad a big milestone"
+    } ]
+  }, {
+    "tStartMs": 11636,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "with Cowork\nthis week."
+    } ]
+  }, {
+    "tStartMs": 12762,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "Yes."
+    } ]
+  }, {
+    "tStartMs": 13346,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "We wanted"
+    } ]
+  }, {
+    "tStartMs": 13972,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "to kind of raise"
+    } ]
+  }, {
+    "tStartMs": 14931,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "the floor"
+    } ]
+  }, {
+    "tStartMs": 15932,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "in terms of the"
+    } ]
+  }, {
+    "tStartMs": 16683,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "AI fluency\nof our company."
+    } ]
+  }, {
+    "tStartMs": 19227,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "So there's clearly"
+    } ]
+  }, {
+    "tStartMs": 20395,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "people\neven outside"
+    } ]
+  }, {
+    "tStartMs": 21438,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "of engineering"
+    } ]
+  }, {
+    "tStartMs": 22022,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "who've really taken"
+    } ]
+  }, {
+    "tStartMs": 23148,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "off with Claude Code,"
+    } ]
+  }, {
+    "tStartMs": 24024,
+    "dDurationMs": 458,
+    "segs": [ {
+      "utf8": "they've liked"
+    } ]
+  }, {
+    "tStartMs": 24482,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "terminal,"
+    } ]
+  }, {
+    "tStartMs": 25233,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "they're coding,\nthey're"
+    } ]
+  }, {
+    "tStartMs": 27152,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "shipping\na bunch of stuff."
+    } ]
+  }, {
+    "tStartMs": 28278,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "And a lot of people,"
+    } ]
+  }, {
+    "tStartMs": 29821,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "even at the\nexecutive level,"
+    } ]
+  }, {
+    "tStartMs": 31197,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "who understand\nhow important AI is,"
+    } ]
+  }, {
+    "tStartMs": 34200,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "their setups\nin terms of how"
+    } ]
+  }, {
+    "tStartMs": 36661,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "they're using AI,"
+    } ]
+  }, {
+    "tStartMs": 37620,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "is still kind of"
+    } ]
+  }, {
+    "tStartMs": 39289,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "in the very early\nstages,"
+    } ]
+  }, {
+    "tStartMs": 40582,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "a lot of people\nstill view"
+    } ]
+  }, {
+    "tStartMs": 42751,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "AI as just a chat."
+    } ]
+  }, {
+    "tStartMs": 45211,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "I see a ton\nof people's eyes"
+    } ]
+  }, {
+    "tStartMs": 46588,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "light up\nwith, wait,"
+    } ]
+  }, {
+    "tStartMs": 47547,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "if I connect this\nto Gmail,"
+    } ]
+  }, {
+    "tStartMs": 48965,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "or I connect this\nto Google Calendar"
+    } ]
+  }, {
+    "tStartMs": 50550,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "or connect this\nto Slack, it"
+    } ]
+  }, {
+    "tStartMs": 52385,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "just makes me\nmore efficient"
+    } ]
+  }, {
+    "tStartMs": 53595,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "as a knowledge worker."
+    } ]
+  }, {
+    "tStartMs": 54554,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "And I think"
+    } ]
+  }, {
+    "tStartMs": 55305,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "even just\nraising the floor"
+    } ]
+  }, {
+    "tStartMs": 56556,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "that much, I think\nwas something"
+    } ]
+  }, {
+    "tStartMs": 57724,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "that we were trying"
+    } ]
+  }, {
+    "tStartMs": 58433,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "to do with this\nCowork rollout."
+    } ]
+  }, {
+    "tStartMs": 59893,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "Now that we have"
+    } ]
+  }, {
+    "tStartMs": 60477,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "a bunch of Claude\nadoption"
+    } ]
+  }, {
+    "tStartMs": 61770,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "across the org,\nat DoorDash"
+    } ]
+  }, {
+    "tStartMs": 63480,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "we're seeing,"
+    } ]
+  }, {
+    "tStartMs": 64105,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "you know,"
+    } ]
+  }, {
+    "tStartMs": 64397,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "massive increases\nin throughput."
+    } ]
+  }, {
+    "tStartMs": 65899,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "I want to get into\nit a little bit."
+    } ]
+  }, {
+    "tStartMs": 67484,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "But before we do,\nI want to"
+    } ]
+  }, {
+    "tStartMs": 68860,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "step back\na bit."
+    } ]
+  }, {
+    "tStartMs": 70070,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "How did you get\ninto coding?"
+    } ]
+  }, {
+    "tStartMs": 71738,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "The first exposure\nI actually"
+    } ]
+  }, {
+    "tStartMs": 73907,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "had to coding was,"
+    } ]
+  }, {
+    "tStartMs": 74699,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "when I was nine\nyears old."
+    } ]
+  }, {
+    "tStartMs": 76326,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "My mom was trying"
+    } ]
+  }, {
+    "tStartMs": 77327,
+    "dDurationMs": 2335,
+    "segs": [ {
+      "utf8": "to get my brother\nto be,"
+    } ]
+  }, {
+    "tStartMs": 79662,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "occupied\nfor the summer,"
+    } ]
+  }, {
+    "tStartMs": 81039,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "and so she\nsent to him "
+    } ]
+  }, {
+    "tStartMs": 82457,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "to this random\ncoding camp,"
+    } ]
+  }, {
+    "tStartMs": 83541,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "and then\nI had nothing to do,"
+    } ]
+  }, {
+    "tStartMs": 84542,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "so she just"
+    } ]
+  }, {
+    "tStartMs": 85376,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "had me join\nthis camp with him."
+    } ]
+  }, {
+    "tStartMs": 87253,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "It was intended\nfor him,"
+    } ]
+  }, {
+    "tStartMs": 88296,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "but I ended up being"
+    } ]
+  }, {
+    "tStartMs": 89380,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "the one\nwho picked it up."
+    } ]
+  }, {
+    "tStartMs": 91049,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "Rewinding back\na bit, in terms of"
+    } ]
+  }, {
+    "tStartMs": 93051,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "the journey\nI went on with"
+    } ]
+  }, {
+    "tStartMs": 94552,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "coding at DoorDash."
+    } ]
+  }, {
+    "tStartMs": 95386,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "So back in, rewind\nback to 2013,"
+    } ]
+  }, {
+    "tStartMs": 98681,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "I was,"
+    } ]
+  }, {
+    "tStartMs": 99766,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "writing all the code\ndirectly myself"
+    } ]
+  }, {
+    "tStartMs": 101267,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "in our dorm room\nat Stanford."
+    } ]
+  }, {
+    "tStartMs": 103728,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "And then after\na while,"
+    } ]
+  }, {
+    "tStartMs": 106439,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "as the company\nwas scaling,"
+    } ]
+  }, {
+    "tStartMs": 107482,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "I kind of stopped\ncoding."
+    } ]
+  }, {
+    "tStartMs": 109025,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "It wasn't until I\nwas using Claude Code"
+    } ]
+  }, {
+    "tStartMs": 111611,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "that I actually\nwas shipping"
+    } ]
+  }, {
+    "tStartMs": 113238,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "production code in\nour code base again."
+    } ]
+  }, {
+    "tStartMs": 115073,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "So I had\na major comeback."
+    } ]
+  }, {
+    "tStartMs": 117909,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "And then fast\nforward to today."
+    } ]
+  }, {
+    "tStartMs": 120203,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "Tell me\na little bit"
+    } ]
+  }, {
+    "tStartMs": 121412,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "about your setup."
+    } ]
+  }, {
+    "tStartMs": 122330,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "How do you use \nClaude Code?"
+    } ]
+  }, {
+    "tStartMs": 123748,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "Are you in terminal\nor desktop?"
+    } ]
+  }, {
+    "tStartMs": 127335,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "Are you on a laptop\nor on a screen?"
+    } ]
+  }, {
+    "tStartMs": 128837,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "For, coding,"
+    } ]
+  }, {
+    "tStartMs": 130213,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "I'll just use the\nterminal usually,"
+    } ]
+  }, {
+    "tStartMs": 132507,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "or I'll experiment"
+    } ]
+  }, {
+    "tStartMs": 133800,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "with using\nthe desktop app."
+    } ]
+  }, {
+    "tStartMs": 135176,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "I set a goal\nfor myself to"
+    } ]
+  }, {
+    "tStartMs": 136636,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "not write code\nmanually."
+    } ]
+  }, {
+    "tStartMs": 138805,
+    "dDurationMs": 4588,
+    "segs": [ {
+      "utf8": "So, I try to have\nthe agent Claude Code"
+    } ]
+  }, {
+    "tStartMs": 143393,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "basically\nwrite everything."
+    } ]
+  }, {
+    "tStartMs": 144352,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "Do you have one\nsession at a time?"
+    } ]
+  }, {
+    "tStartMs": 145728,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "Do you have\na bunch of sessions?"
+    } ]
+  }, {
+    "tStartMs": 146813,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "Oh, yeah."
+    } ]
+  }, {
+    "tStartMs": 148064,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "So I have multiple\nrepositories,"
+    } ]
+  }, {
+    "tStartMs": 150316,
+    "dDurationMs": 3254,
+    "segs": [ {
+      "utf8": "set up, and then\nI will basically,"
+    } ]
+  }, {
+    "tStartMs": 153570,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "if I have a"
+    } ]
+  }, {
+    "tStartMs": 155155,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "repository\nthat I want to have"
+    } ]
+  }, {
+    "tStartMs": 156823,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "multiple sessions on"
+    } ]
+  }, {
+    "tStartMs": 158199,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "I’ll use like a\nwork tree"
+    } ]
+  }, {
+    "tStartMs": 160618,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "to basically"
+    } ]
+  }, {
+    "tStartMs": 164330,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "without conflicts."
+    } ]
+  }, {
+    "tStartMs": 165498,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "And then,"
+    } ]
+  }, {
+    "tStartMs": 166040,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "I try to have\na couple of sessions"
+    } ]
+  }, {
+    "tStartMs": 168126,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "going at a time."
+    } ]
+  }, {
+    "tStartMs": 168793,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "What was that\nfirst experience"
+    } ]
+  }, {
+    "tStartMs": 170420,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "using Claude Code\nin this way?"
+    } ]
+  }, {
+    "tStartMs": 172213,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "Do you remember?"
+    } ]
+  }, {
+    "tStartMs": 172797,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "I distinctly\nremember,"
+    } ]
+  }, {
+    "tStartMs": 174716,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "okay, I'm\ngoing to try to"
+    } ]
+  }, {
+    "tStartMs": 176885,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "code"
+    } ]
+  }, {
+    "tStartMs": 177844,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "actual features\nin production."
+    } ]
+  }, {
+    "tStartMs": 179929,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "And I made it a goal\nfor myself"
+    } ]
+  }, {
+    "tStartMs": 181973,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "to not ask\nanyone for"
+    } ]
+  }, {
+    "tStartMs": 182932,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "help and\nsee how far I went."
+    } ]
+  }, {
+    "tStartMs": 185018,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "Unfortunately,\nat that point,"
+    } ]
+  }, {
+    "tStartMs": 186519,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "I did not make it"
+    } ]
+  }, {
+    "tStartMs": 187562,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "to shipping the code\nto production"
+    } ]
+  }, {
+    "tStartMs": 188688,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "without help,"
+    } ]
+  }, {
+    "tStartMs": 189105,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "because I"
+    } ]
+  }, {
+    "tStartMs": 189772,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "wasn't able"
+    } ]
+  }, {
+    "tStartMs": 190773,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "to get the agent\nto understand"
+    } ]
+  }, {
+    "tStartMs": 191691,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "how to configure"
+    } ]
+  }, {
+    "tStartMs": 192233,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "my local environment\ncorrectly."
+    } ]
+  }, {
+    "tStartMs": 193318,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "Then fast forward\nto,"
+    } ]
+  }, {
+    "tStartMs": 194485,
+    "dDurationMs": 334,
+    "segs": [ {
+      "utf8": "I think it's"
+    } ]
+  }, {
+    "tStartMs": 194819,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "probably\nthe beginning"
+    } ]
+  }, {
+    "tStartMs": 195361,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "of this year, 2026,"
+    } ]
+  }, {
+    "tStartMs": 196654,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "I did the same thing"
+    } ]
+  }, {
+    "tStartMs": 197488,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "and it just worked."
+    } ]
+  }, {
+    "tStartMs": 198781,
+    "dDurationMs": 2128,
+    "segs": [ {
+      "utf8": "And I think,\nI mean, you've"
+    } ]
+  }, {
+    "tStartMs": 200909,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "definitely\nseen this."
+    } ]
+  }, {
+    "tStartMs": 201576,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "I've heard you talk"
+    } ]
+  }, {
+    "tStartMs": 202160,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "about this\nwhere,"
+    } ]
+  }, {
+    "tStartMs": 203536,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "there's really\nbeen an inflection"
+    } ]
+  }, {
+    "tStartMs": 204621,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "point\nwith the latest"
+    } ]
+  }, {
+    "tStartMs": 205288,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "models of being able"
+    } ]
+  }, {
+    "tStartMs": 206372,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "to just figure\nthings out."
+    } ]
+  }, {
+    "tStartMs": 207832,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "And I've gotten to\na point where,"
+    } ]
+  }, {
+    "tStartMs": 209334,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "I was shipping\nin five"
+    } ]
+  }, {
+    "tStartMs": 210293,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "different languages\nto production."
+    } ]
+  }, {
+    "tStartMs": 211836,
+    "dDurationMs": 4088,
+    "segs": [ {
+      "utf8": "And I think it's\njust super powerful,"
+    } ]
+  }, {
+    "tStartMs": 216424,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "and I think\nit's very hard"
+    } ]
+  }, {
+    "tStartMs": 217800,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "to believe it\nuntil you actually"
+    } ]
+  }, {
+    "tStartMs": 219844,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "force yourself\nto play with it."
+    } ]
+  }, {
+    "tStartMs": 221262,
+    "dDurationMs": 250,
+    "segs": [ {
+      "utf8": "It’s funny,"
+    } ]
+  }, {
+    "tStartMs": 221512,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "there's this"
+    } ]
+  }, {
+    "tStartMs": 223139,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "thing that happens"
+    } ]
+  }, {
+    "tStartMs": 224349,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "where\nyou try something"
+    } ]
+  }, {
+    "tStartMs": 225892,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "and you use an old\nmodel,"
+    } ]
+  }, {
+    "tStartMs": 227101,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "and the product\ndoesn't really work."
+    } ]
+  }, {
+    "tStartMs": 228478,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "Yeah,\nthis doesn't work."
+    } ]
+  }, {
+    "tStartMs": 229979,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "And then"
+    } ]
+  }, {
+    "tStartMs": 230980,
+    "dDurationMs": 668,
+    "segs": [ {
+      "utf8": "you just try"
+    } ]
+  }, {
+    "tStartMs": 231648,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "again in\na couple of months"
+    } ]
+  }, {
+    "tStartMs": 232523,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "and it might just\nwork."
+    } ]
+  }, {
+    "tStartMs": 233816,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "And this used to be"
+    } ]
+  }, {
+    "tStartMs": 234901,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "like the worst idea\nbefore LLMs"
+    } ]
+  }, {
+    "tStartMs": 237528,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "because it's"
+    } ]
+  }, {
+    "tStartMs": 238071,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "sort of like\ndysfunctional"
+    } ]
+  }, {
+    "tStartMs": 239530,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "to take\nthe same idea"
+    } ]
+  }, {
+    "tStartMs": 240531,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "and then just"
+    } ]
+  }, {
+    "tStartMs": 241074,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "try it over\nand over again."
+    } ]
+  }, {
+    "tStartMs": 242200,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "It's like you\nshould be learning,"
+    } ]
+  }, {
+    "tStartMs": 243826,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "but actually now"
+    } ]
+  }, {
+    "tStartMs": 244827,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "trying"
+    } ]
+  }, {
+    "tStartMs": 245286,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "just that same exact"
+    } ]
+  }, {
+    "tStartMs": 246120,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "idea with\nthe newer model."
+    } ]
+  }, {
+    "tStartMs": 247622,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "Sometimes\nit just works."
+    } ]
+  }, {
+    "tStartMs": 249499,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "Something\nthat we've tried"
+    } ]
+  }, {
+    "tStartMs": 250792,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "to get the teams to"
+    } ]
+  }, {
+    "tStartMs": 251709,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "unlearn at DoorDash\nis, it's"
+    } ]
+  }, {
+    "tStartMs": 253878,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "okay to throw away\nyour idea."
+    } ]
+  }, {
+    "tStartMs": 255630,
+    "dDurationMs": 208,
+    "segs": [ {
+      "utf8": "Like,"
+    } ]
+  }, {
+    "tStartMs": 255838,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "because I think"
+    } ]
+  }, {
+    "tStartMs": 256339,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "sometimes\nwith engineers,"
+    } ]
+  }, {
+    "tStartMs": 258091,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "you have a real"
+    } ]
+  }, {
+    "tStartMs": 258758,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "strong affinity\nto something"
+    } ]
+  }, {
+    "tStartMs": 260051,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "you've built\nthat works."
+    } ]
+  }, {
+    "tStartMs": 261803,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "But I think"
+    } ]
+  }, {
+    "tStartMs": 262553,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "as the models change"
+    } ]
+  }, {
+    "tStartMs": 263554,
+    "dDurationMs": 710,
+    "segs": [ {
+      "utf8": "and the capabilities\nchange"
+    } ]
+  }, {
+    "tStartMs": 264264,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "it’s like, hey,"
+    } ]
+  }, {
+    "tStartMs": 264889,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "look like, whether\nit's your setup"
+    } ]
+  }, {
+    "tStartMs": 266391,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "or maybe\nan agent that"
+    } ]
+  }, {
+    "tStartMs": 267475,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "you're building,"
+    } ]
+  }, {
+    "tStartMs": 268017,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "it's like"
+    } ]
+  }, {
+    "tStartMs": 268893,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "you got to reimagine"
+    } ]
+  }, {
+    "tStartMs": 269852,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "how you're\nbuilding this stuff"
+    } ]
+  }, {
+    "tStartMs": 270728,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "with how\nthe capabilities"
+    } ]
+  }, {
+    "tStartMs": 271771,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "are changing\nso fast."
+    } ]
+  }, {
+    "tStartMs": 272647,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "And so I think\nas a leader,"
+    } ]
+  }, {
+    "tStartMs": 274065,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "if you can really\nlean in and play"
+    } ]
+  }, {
+    "tStartMs": 275942,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "with this stuff\nyourself."
+    } ]
+  }, {
+    "tStartMs": 277277,
+    "dDurationMs": 250,
+    "segs": [ {
+      "utf8": "Like, hey,"
+    } ]
+  }, {
+    "tStartMs": 277527,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "every\nengineering manager,"
+    } ]
+  }, {
+    "tStartMs": 278695,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "you should try\nto set a goal"
+    } ]
+  }, {
+    "tStartMs": 279737,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "to ship\nproduction code."
+    } ]
+  }, {
+    "tStartMs": 282031,
+    "dDurationMs": 2962,
+    "segs": [ {
+      "utf8": "Not like a prototype,\nbecause you can"
+    } ]
+  }, {
+    "tStartMs": 284993,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "you can ship\na prototype"
+    } ]
+  }, {
+    "tStartMs": 285952,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "on your own\nlocal set up"
+    } ]
+  }, {
+    "tStartMs": 287537,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "pretty easily,"
+    } ]
+  }, {
+    "tStartMs": 288288,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "but try to go\nthrough"
+    } ]
+  }, {
+    "tStartMs": 289789,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "all the hoops\nat DoorDash"
+    } ]
+  }, {
+    "tStartMs": 291916,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "to get something\nmerged in production"
+    } ]
+  }, {
+    "tStartMs": 294752,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "and do it yourself."
+    } ]
+  }, {
+    "tStartMs": 296087,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "It'll open your eyes"
+    } ]
+  }, {
+    "tStartMs": 297171,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "both in terms"
+    } ]
+  }, {
+    "tStartMs": 297714,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "of the capabilities\nof the models,"
+    } ]
+  }, {
+    "tStartMs": 298965,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "but also, hey,"
+    } ]
+  }, {
+    "tStartMs": 299966,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "for the engineers\non the team,"
+    } ]
+  }, {
+    "tStartMs": 301217,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "what's blocking them"
+    } ]
+  }, {
+    "tStartMs": 302302,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "or what's"
+    } ]
+  }, {
+    "tStartMs": 302677,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "causing them"
+    } ]
+  }, {
+    "tStartMs": 303761,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "to not move as fast"
+    } ]
+  }, {
+    "tStartMs": 304762,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "as they ideally\ncould."
+    } ]
+  }, {
+    "tStartMs": 306264,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "What have you learned\nwith this?"
+    } ]
+  }, {
+    "tStartMs": 307849,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "Is it working well?"
+    } ]
+  }, {
+    "tStartMs": 308516,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "Is every manager\nlike, heck yeah?"
+    } ]
+  }, {
+    "tStartMs": 310226,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "Yeah, let's go."
+    } ]
+  }, {
+    "tStartMs": 311019,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "I think"
+    } ]
+  }, {
+    "tStartMs": 311853,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "what's really landed\nwith people"
+    } ]
+  }, {
+    "tStartMs": 313479,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "at DoorDash is"
+    } ]
+  }, {
+    "tStartMs": 314605,
+    "dDurationMs": 2253,
+    "segs": [ {
+      "utf8": "we are here\nto invest in"
+    } ]
+  }, {
+    "tStartMs": 316858,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "you all,"
+    } ]
+  }, {
+    "tStartMs": 317442,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "to give you all the"
+    } ]
+  }, {
+    "tStartMs": 318651,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "token\nbudgets"
+    } ]
+  }, {
+    "tStartMs": 319777,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "and the tools"
+    } ]
+  }, {
+    "tStartMs": 320903,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "for you\nto play around,"
+    } ]
+  }, {
+    "tStartMs": 321863,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "explore\nthese coding agents"
+    } ]
+  }, {
+    "tStartMs": 324866,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "and get them to work\nwell for you."
+    } ]
+  }, {
+    "tStartMs": 326242,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "And I think that"
+    } ]
+  }, {
+    "tStartMs": 326784,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "message has\nreally stuck."
+    } ]
+  }, {
+    "tStartMs": 327702,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "And I think"
+    } ]
+  }, {
+    "tStartMs": 328202,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "for managers\nin particularly,"
+    } ]
+  }, {
+    "tStartMs": 329662,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "as they've kind of"
+    } ]
+  }, {
+    "tStartMs": 330413,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "played\naround with it,"
+    } ]
+  }, {
+    "tStartMs": 331080,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "they start to\nunderstand it too."
+    } ]
+  }, {
+    "tStartMs": 332457,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "And so I think,"
+    } ]
+  }, {
+    "tStartMs": 334000,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "I wouldn't say"
+    } ]
+  }, {
+    "tStartMs": 334834,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "we’re perfect\nby any means,"
+    } ]
+  }, {
+    "tStartMs": 336294,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "but I think we're"
+    } ]
+  }, {
+    "tStartMs": 336878,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "definitely\ngetting people"
+    } ]
+  }, {
+    "tStartMs": 338546,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "to go along\nthe curve."
+    } ]
+  }, {
+    "tStartMs": 340214,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "This is just\nthe most fun"
+    } ]
+  }, {
+    "tStartMs": 341507,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "I've ever had coding."
+    } ]
+  }, {
+    "tStartMs": 343259,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "And just building\nin general."
+    } ]
+  }, {
+    "tStartMs": 344886,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "The part that I,"
+    } ]
+  }, {
+    "tStartMs": 346929,
+    "dDurationMs": 251,
+    "segs": [ {
+      "utf8": "you know,"
+    } ]
+  }, {
+    "tStartMs": 347180,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "I enjoy the act of\nwriting code,"
+    } ]
+  }, {
+    "tStartMs": 349223,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "but also the thing\nthat I always cared"
+    } ]
+  }, {
+    "tStartMs": 350808,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "about the most\nwas the result."
+    } ]
+  }, {
+    "tStartMs": 352101,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "And now I can just\nprototype"
+    } ]
+  }, {
+    "tStartMs": 353770,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "really fast\nand build really fast"
+    } ]
+  }, {
+    "tStartMs": 355021,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "and it's\nso much fun."
+    } ]
+  }, {
+    "tStartMs": 356522,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "But then it has"
+    } ]
+  }, {
+    "tStartMs": 357440,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "this other side\nof like,"
+    } ]
+  }, {
+    "tStartMs": 358816,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "you just have all"
+    } ]
+  }, {
+    "tStartMs": 359233,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "these agents running\nand you're"
+    } ]
+  }, {
+    "tStartMs": 360318,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "constantly\ncontext switching."
+    } ]
+  }, {
+    "tStartMs": 361569,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "Absolutely.\nAnd it's hard."
+    } ]
+  }, {
+    "tStartMs": 363237,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "It's a different way\nof working."
+    } ]
+  }, {
+    "tStartMs": 364405,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "Yeah I think"
+    } ]
+  }, {
+    "tStartMs": 365573,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "it's very mentally\ntaxing at times."
+    } ]
+  }, {
+    "tStartMs": 367158,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "And then there's\nalso things that"
+    } ]
+  }, {
+    "tStartMs": 367992,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "new problems\nthat come up,"
+    } ]
+  }, {
+    "tStartMs": 369911,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "which I'm"
+    } ]
+  }, {
+    "tStartMs": 370203,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "sure you guys\nare dealing"
+    } ]
+  }, {
+    "tStartMs": 370995,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "with as well,"
+    } ]
+  }, {
+    "tStartMs": 371704,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "if there's all\nthis code"
+    } ]
+  }, {
+    "tStartMs": 372872,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "that's being shipped"
+    } ]
+  }, {
+    "tStartMs": 373664,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "now, people start\ncomplaining about,"
+    } ]
+  }, {
+    "tStartMs": 374874,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "oh my gosh,\nhow long it takes"
+    } ]
+  }, {
+    "tStartMs": 376125,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "for the code\nto get merged."
+    } ]
+  }, {
+    "tStartMs": 377710,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "And,"
+    } ]
+  }, {
+    "tStartMs": 378503,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "there's so many\nprocesses on CI/CD"
+    } ]
+  }, {
+    "tStartMs": 381339,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "that we need\nto reimagine"
+    } ]
+  }, {
+    "tStartMs": 382340,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "or overhaul as well."
+    } ]
+  }, {
+    "tStartMs": 384008,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "And,\nwe've invested in"
+    } ]
+  }, {
+    "tStartMs": 385468,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "like AI"
+    } ]
+  }, {
+    "tStartMs": 386594,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "code review agents\nto make it easier"
+    } ]
+  }, {
+    "tStartMs": 388429,
+    "dDurationMs": 1961,
+    "segs": [ {
+      "utf8": "for people\nto review the code."
+    } ]
+  }, {
+    "tStartMs": 390390,
+    "dDurationMs": 458,
+    "segs": [ {
+      "utf8": "For example,"
+    } ]
+  }, {
+    "tStartMs": 390848,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "with security\nrelated issues,"
+    } ]
+  }, {
+    "tStartMs": 392058,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "a lot more security"
+    } ]
+  }, {
+    "tStartMs": 392767,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "related issues\nare cropping up,"
+    } ]
+  }, {
+    "tStartMs": 394185,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "not just at\nDoorDash,"
+    } ]
+  }, {
+    "tStartMs": 395019,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "industry wide."
+    } ]
+  }, {
+    "tStartMs": 396020,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "Now we need to\nfigure out"
+    } ]
+  }, {
+    "tStartMs": 396854,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "how to get"
+    } ]
+  }, {
+    "tStartMs": 397271,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "AI to also help"
+    } ]
+  }, {
+    "tStartMs": 398272,
+    "dDurationMs": 1127,
+    "segs": [ {
+      "utf8": "catch these\nsecurity issues"
+    } ]
+  }, {
+    "tStartMs": 399399,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "before we ship it to"
+    } ]
+  }, {
+    "tStartMs": 400149,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "production as well."
+    } ]
+  }, {
+    "tStartMs": 401067,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "So it's"
+    } ]
+  }, {
+    "tStartMs": 401567,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "kind of like a cat and"
+    } ]
+  }, {
+    "tStartMs": 402485,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "mouse game\na little bit."
+    } ]
+  }, {
+    "tStartMs": 403444,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "As these capabilities"
+    } ]
+  }, {
+    "tStartMs": 404737,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "are increasing,\nas the throughputs"
+    } ]
+  }, {
+    "tStartMs": 406155,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "increasing,\nmaking sure"
+    } ]
+  }, {
+    "tStartMs": 407031,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "that people\nare catching up"
+    } ]
+  }, {
+    "tStartMs": 408366,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "and we're using AI\nto help"
+    } ]
+  }, {
+    "tStartMs": 410118,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "streamline\nthe automation."
+    } ]
+  }, {
+    "tStartMs": 411494,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "When did you first"
+    } ]
+  }, {
+    "tStartMs": 412245,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "introduce Claude"
+    } ]
+  }, {
+    "tStartMs": 412870,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "Code to DoorDash\nand how"
+    } ]
+  }, {
+    "tStartMs": 414789,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "did you think\nabout it?"
+    } ]
+  }, {
+    "tStartMs": 416207,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "So it was"
+    } ]
+  }, {
+    "tStartMs": 416624,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "sometime in 2025,"
+    } ]
+  }, {
+    "tStartMs": 417667,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "we introduced\nClaude Code"
+    } ]
+  }, {
+    "tStartMs": 418334,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "and then people\nstarted using it."
+    } ]
+  }, {
+    "tStartMs": 419502,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "We worked"
+    } ]
+  }, {
+    "tStartMs": 420044,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "pretty closely"
+    } ]
+  }, {
+    "tStartMs": 420795,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "with our IT"
+    } ]
+  }, {
+    "tStartMs": 421504,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "security teams\nto make sure"
+    } ]
+  }, {
+    "tStartMs": 422922,
+    "dDurationMs": 334,
+    "segs": [ {
+      "utf8": "that"
+    } ]
+  }, {
+    "tStartMs": 423256,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "hey, we're going\nto have a special"
+    } ]
+  }, {
+    "tStartMs": 424590,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "procurement\nand review process"
+    } ]
+  }, {
+    "tStartMs": 427176,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "for these AI tools"
+    } ]
+  }, {
+    "tStartMs": 428052,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "because the industry"
+    } ]
+  }, {
+    "tStartMs": 429178,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "and the landscape\nis moving so fast,"
+    } ]
+  }, {
+    "tStartMs": 430596,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "we want to make sure"
+    } ]
+  }, {
+    "tStartMs": 431097,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "people get access\nto this stuff"
+    } ]
+  }, {
+    "tStartMs": 432849,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "pretty much\nright away."
+    } ]
+  }, {
+    "tStartMs": 433724,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "I would say the true\ninflection point"
+    } ]
+  }, {
+    "tStartMs": 435309,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "was probably at the"
+    } ]
+  }, {
+    "tStartMs": 436060,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "beginning\nof this year"
+    } ]
+  }, {
+    "tStartMs": 436602,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "or late last year."
+    } ]
+  }, {
+    "tStartMs": 437478,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "Since then our,"
+    } ]
+  }, {
+    "tStartMs": 439147,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "our coding\nthroughput has,"
+    } ]
+  }, {
+    "tStartMs": 441691,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "we've seen\na correlation"
+    } ]
+  }, {
+    "tStartMs": 442525,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "with the adoption\nof Claude Code"
+    } ]
+  }, {
+    "tStartMs": 444235,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "and basically"
+    } ]
+  }, {
+    "tStartMs": 445361,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "like throughput\nfrom the teams."
+    } ]
+  }, {
+    "tStartMs": 446529,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "But I would say it"
+    } ]
+  }, {
+    "tStartMs": 447071,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "all kind of"
+    } ]
+  }, {
+    "tStartMs": 447864,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "stemmed back to,"
+    } ]
+  }, {
+    "tStartMs": 448990,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "both executive\nleadership support,"
+    } ]
+  }, {
+    "tStartMs": 450658,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "but also"
+    } ]
+  }, {
+    "tStartMs": 451242,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "partnership\nwith IT, security,"
+    } ]
+  }, {
+    "tStartMs": 452869,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "and engineering"
+    } ]
+  }, {
+    "tStartMs": 453536,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "to just make sure\nthat, hey,"
+    } ]
+  }, {
+    "tStartMs": 455163,
+    "dDurationMs": 458,
+    "segs": [ {
+      "utf8": "with the tools"
+    } ]
+  }, {
+    "tStartMs": 455621,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "that are available,"
+    } ]
+  }, {
+    "tStartMs": 456205,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "try"
+    } ]
+  }, {
+    "tStartMs": 456664,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "to get people access"
+    } ]
+  }, {
+    "tStartMs": 457415,
+    "dDurationMs": 167,
+    "segs": [ {
+      "utf8": "to it"
+    } ]
+  }, {
+    "tStartMs": 457582,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "as quickly\nas possible"
+    } ]
+  }, {
+    "tStartMs": 458875,
+    "dDurationMs": 3336,
+    "segs": [ {
+      "utf8": "and not be so\nstringent on budgets"
+    } ]
+  }, {
+    "tStartMs": 462211,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "to start with."
+    } ]
+  }, {
+    "tStartMs": 463254,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "And just"
+    } ]
+  }, {
+    "tStartMs": 464714,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "optimize\nfor letting people"
+    } ]
+  }, {
+    "tStartMs": 465756,
+    "dDurationMs": 1544,
+    "segs": [ {
+      "utf8": "explore\nwith the landscape."
+    } ]
+  }, {
+    "tStartMs": 467300,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 467717,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "So it's like,"
+    } ]
+  }, {
+    "tStartMs": 468551,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "give people"
+    } ]
+  }, {
+    "tStartMs": 469218,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "the ability\nto explore,"
+    } ]
+  }, {
+    "tStartMs": 470595,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "but then also"
+    } ]
+  }, {
+    "tStartMs": 471262,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "set the right\nguardrails."
+    } ]
+  }, {
+    "tStartMs": 472430,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "Yes. Security is"
+    } ]
+  }, {
+    "tStartMs": 474557,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "not negotiable.\nExactly."
+    } ]
+  }, {
+    "tStartMs": 476017,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "Security was very\nmuch in the loop."
+    } ]
+  }, {
+    "tStartMs": 477310,
+    "dDurationMs": 250,
+    "segs": [ {
+      "utf8": "And I think"
+    } ]
+  }, {
+    "tStartMs": 477560,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "our security team"
+    } ]
+  }, {
+    "tStartMs": 478227,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "has done\na phenomenal job of"
+    } ]
+  }, {
+    "tStartMs": 480313,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "kind of letting,\nmoving quickly"
+    } ]
+  }, {
+    "tStartMs": 482982,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "with the industry"
+    } ]
+  }, {
+    "tStartMs": 483733,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "while\npartnering closely"
+    } ]
+  }, {
+    "tStartMs": 485193,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "with us to make sure\nthat they're"
+    } ]
+  }, {
+    "tStartMs": 486694,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "they have their eyes"
+    } ]
+  }, {
+    "tStartMs": 487236,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "on the types\nof tools"
+    } ]
+  }, {
+    "tStartMs": 488154,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "that we're\ngetting access to."
+    } ]
+  }, {
+    "tStartMs": 489113,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "So with all these"
+    } ]
+  }, {
+    "tStartMs": 490907,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "all these different\ntools, with this"
+    } ]
+  }, {
+    "tStartMs": 492241,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "totally\nnew way of working,"
+    } ]
+  }, {
+    "tStartMs": 494827,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "how how do you"
+    } ]
+  }, {
+    "tStartMs": 496329,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "make people\nfeel safe"
+    } ]
+  }, {
+    "tStartMs": 498581,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "experimenting\nwith it?"
+    } ]
+  }, {
+    "tStartMs": 499832,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "Early on our mindset\nwas,"
+    } ]
+  }, {
+    "tStartMs": 502793,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "give it,"
+    } ]
+  }, {
+    "tStartMs": 503252,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "give the tools"
+    } ]
+  }, {
+    "tStartMs": 504003,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "to the people\nand see"
+    } ]
+  }, {
+    "tStartMs": 504962,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "who the early\nadopters are"
+    } ]
+  }, {
+    "tStartMs": 506797,
+    "dDurationMs": 2795,
+    "segs": [ {
+      "utf8": "and just see\nwhat they feel"
+    } ]
+  }, {
+    "tStartMs": 509592,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "like is working."
+    } ]
+  }, {
+    "tStartMs": 510927,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "What we've done"
+    } ]
+  }, {
+    "tStartMs": 511677,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "since then\nis try to plug"
+    } ]
+  }, {
+    "tStartMs": 513429,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "examples\nof success cases,"
+    } ]
+  }, {
+    "tStartMs": 515181,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "whether it's"
+    } ]
+  }, {
+    "tStartMs": 515681,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "particular projects"
+    } ]
+  }, {
+    "tStartMs": 516599,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "or people who have\ndone a good job,"
+    } ]
+  }, {
+    "tStartMs": 518309,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "and get them to be"
+    } ]
+  }, {
+    "tStartMs": 519560,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "the advocates\nwithin their team."
+    } ]
+  }, {
+    "tStartMs": 522271,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "And I think\none thing"
+    } ]
+  }, {
+    "tStartMs": 523105,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "we've tried to\nemphasize is"
+    } ]
+  }, {
+    "tStartMs": 524774,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "try to, as much\nas possible,"
+    } ]
+  }, {
+    "tStartMs": 526609,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "get people to"
+    } ]
+  }, {
+    "tStartMs": 528027,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "produce\nwritten artifacts."
+    } ]
+  }, {
+    "tStartMs": 529654,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "And stuff\nI can share with"
+    } ]
+  }, {
+    "tStartMs": 530655,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "the entire company."
+    } ]
+  }, {
+    "tStartMs": 531822,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "And so that’s,"
+    } ]
+  }, {
+    "tStartMs": 532823,
+    "dDurationMs": 2545,
+    "segs": [ {
+      "utf8": "we've seen\nsome success there."
+    } ]
+  }, {
+    "tStartMs": 535368,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "But with\nan organization"
+    } ]
+  }, {
+    "tStartMs": 536911,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "of our size, it's"
+    } ]
+  }, {
+    "tStartMs": 538204,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "kind of hard\nto uniformly"
+    } ]
+  }, {
+    "tStartMs": 539705,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "enforce that."
+    } ]
+  }, {
+    "tStartMs": 540831,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "But that's"
+    } ]
+  }, {
+    "tStartMs": 541916,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "generally\nthe mindset"
+    } ]
+  }, {
+    "tStartMs": 542875,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "I've tried\nto encourage across"
+    } ]
+  }, {
+    "tStartMs": 544669,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "the organization is\neach team"
+    } ]
+  }, {
+    "tStartMs": 546254,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "needs to have\ntheir own channels"
+    } ]
+  }, {
+    "tStartMs": 548923,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "and forums\nfor people"
+    } ]
+  }, {
+    "tStartMs": 550049,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "to feel comfortable\nsharing."
+    } ]
+  }, {
+    "tStartMs": 551425,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "Both the wins\nand,"
+    } ]
+  }, {
+    "tStartMs": 553928,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "the shortcomings,\nto be honest,"
+    } ]
+  }, {
+    "tStartMs": 555221,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "it’s just as important"
+    } ]
+  }, {
+    "tStartMs": 556472,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "to showcase,\nhey, here's"
+    } ]
+  }, {
+    "tStartMs": 557932,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "something I did\nthat was cool"
+    } ]
+  }, {
+    "tStartMs": 559684,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "it’s also important\nto show,"
+    } ]
+  }, {
+    "tStartMs": 561644,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "hey, here's\nthis workflow"
+    } ]
+  }, {
+    "tStartMs": 563104,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "that I tried\nthat didn't work,"
+    } ]
+  }, {
+    "tStartMs": 564063,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "or here's\nthis integration"
+    } ]
+  }, {
+    "tStartMs": 565439,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "that I did that"
+    } ]
+  }, {
+    "tStartMs": 565982,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "wasted\na bunch of tokens."
+    } ]
+  }, {
+    "tStartMs": 567191,
+    "dDurationMs": 334,
+    "segs": [ {
+      "utf8": "You know,"
+    } ]
+  }, {
+    "tStartMs": 567525,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "I think"
+    } ]
+  }, {
+    "tStartMs": 568150,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "we want people\nto feel comfortable"
+    } ]
+  }, {
+    "tStartMs": 569360,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "sharing that type\nof stuff as well."
+    } ]
+  }, {
+    "tStartMs": 570820,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "So you started,"
+    } ]
+  }, {
+    "tStartMs": 572488,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "you know,"
+    } ]
+  }, {
+    "tStartMs": 572863,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "using Claude Code"
+    } ]
+  }, {
+    "tStartMs": 574365,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "and people started"
+    } ]
+  }, {
+    "tStartMs": 575199,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "advocating\nfor these tools."
+    } ]
+  }, {
+    "tStartMs": 576492,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And then fast\nforward to today."
+    } ]
+  }, {
+    "tStartMs": 578202,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "How does DoorDash\nuse Claude Code?"
+    } ]
+  }, {
+    "tStartMs": 580913,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "It's pretty much"
+    } ]
+  }, {
+    "tStartMs": 582331,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "widespread\nacross the org."
+    } ]
+  }, {
+    "tStartMs": 584000,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "In terms of people\neither"
+    } ]
+  }, {
+    "tStartMs": 585668,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "using Claude Code"
+    } ]
+  }, {
+    "tStartMs": 586669,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "or using"
+    } ]
+  }, {
+    "tStartMs": 588129,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "Claude models within"
+    } ]
+  }, {
+    "tStartMs": 589547,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "like other\nharnesses."
+    } ]
+  }, {
+    "tStartMs": 590715,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "We're\ninvesting a lot"
+    } ]
+  }, {
+    "tStartMs": 591424,
+    "dDurationMs": 2335,
+    "segs": [ {
+      "utf8": "more in automation"
+    } ]
+  }, {
+    "tStartMs": 593759,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "and basically"
+    } ]
+  }, {
+    "tStartMs": 594969,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "able to tap"
+    } ]
+  }, {
+    "tStartMs": 595928,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "into the increased\nthroughput."
+    } ]
+  }, {
+    "tStartMs": 597972,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "How do you make sure"
+    } ]
+  }, {
+    "tStartMs": 598973,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "that's\nas frictionless"
+    } ]
+  }, {
+    "tStartMs": 599974,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "as possible?"
+    } ]
+  }, {
+    "tStartMs": 600558,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "So investments into"
+    } ]
+  }, {
+    "tStartMs": 602560,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "CI/CD,"
+    } ]
+  }, {
+    "tStartMs": 603144,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "using Claude\nto build"
+    } ]
+  }, {
+    "tStartMs": 605229,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "AI code review\nagents for us."
+    } ]
+  }, {
+    "tStartMs": 607273,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "We actually have"
+    } ]
+  }, {
+    "tStartMs": 607982,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "built an internal \nplatform,"
+    } ]
+  }, {
+    "tStartMs": 611027,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "that we call\nFlux, it's"
+    } ]
+  }, {
+    "tStartMs": 612194,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "an infrastructure\ninvestment"
+    } ]
+  }, {
+    "tStartMs": 613362,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "where we have"
+    } ]
+  }, {
+    "tStartMs": 613821,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "VMs that are in\nthe DoorDash cloud,"
+    } ]
+  }, {
+    "tStartMs": 617658,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "where you can"
+    } ]
+  }, {
+    "tStartMs": 618909,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "spin up\nClaude sessions"
+    } ]
+  }, {
+    "tStartMs": 620202,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "that are,"
+    } ]
+  }, {
+    "tStartMs": 621412,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "blessed\nby security,"
+    } ]
+  }, {
+    "tStartMs": 622747,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "that have access\nto the"
+    } ]
+  }, {
+    "tStartMs": 623456,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "right type of tools."
+    } ]
+  }, {
+    "tStartMs": 624707,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "And that way you can\nactually fire off"
+    } ]
+  }, {
+    "tStartMs": 626751,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "Claude sessions\nin the cloud."
+    } ]
+  }, {
+    "tStartMs": 628210,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "And that's actually"
+    } ]
+  }, {
+    "tStartMs": 629295,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "how our\nAI code review agent"
+    } ]
+  }, {
+    "tStartMs": 630588,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "is powered as well,"
+    } ]
+  }, {
+    "tStartMs": 631464,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "on top of that\nplatform."
+    } ]
+  }, {
+    "tStartMs": 632590,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "Super cool."
+    } ]
+  }, {
+    "tStartMs": 633466,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "That's like\nAgent SDK?"
+    } ]
+  }, {
+    "tStartMs": 635176,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 635468,
+    "dDurationMs": 3211,
+    "segs": [ {
+      "utf8": "Using Agent SDK\nand the Claude models."
+    } ]
+  }, {
+    "tStartMs": 638679,
+    "dDurationMs": 668,
+    "segs": [ {
+      "utf8": "So cool."
+    } ]
+  }, {
+    "tStartMs": 639347,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "And so that's been"
+    } ]
+  }, {
+    "tStartMs": 640431,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "super helpful for us"
+    } ]
+  }, {
+    "tStartMs": 641265,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "to use those\nframeworks"
+    } ]
+  }, {
+    "tStartMs": 643517,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "to basically build\nthat."
+    } ]
+  }, {
+    "tStartMs": 644518,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 645269,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "The thing\nthat you were saying"
+    } ]
+  }, {
+    "tStartMs": 646354,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "before about"
+    } ]
+  }, {
+    "tStartMs": 647355,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "how you kind of"
+    } ]
+  }, {
+    "tStartMs": 648397,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "you start\nwith the coding"
+    } ]
+  }, {
+    "tStartMs": 649482,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "and then you kind of"
+    } ]
+  }, {
+    "tStartMs": 650024,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "go like a bottleneck\nat a time and just"
+    } ]
+  }, {
+    "tStartMs": 651817,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "kind of break\ndown the next wall,"
+    } ]
+  }, {
+    "tStartMs": 653194,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "over and over\nand over again."
+    } ]
+  }, {
+    "tStartMs": 654445,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "That's just"
+    } ]
+  }, {
+    "tStartMs": 655571,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "so similar to what"
+    } ]
+  }, {
+    "tStartMs": 656781,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "we've been going\nthrough too."
+    } ]
+  }, {
+    "tStartMs": 657865,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "We set some goals\nfor our designers"
+    } ]
+  }, {
+    "tStartMs": 660117,
+    "dDurationMs": 1544,
+    "segs": [ {
+      "utf8": "to actually start"
+    } ]
+  }, {
+    "tStartMs": 661661,
+    "dDurationMs": 2919,
+    "segs": [ {
+      "utf8": "shipping\ncode to production."
+    } ]
+  }, {
+    "tStartMs": 664580,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "It didn't go"
+    } ]
+  }, {
+    "tStartMs": 666624,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "100% smoothly,"
+    } ]
+  }, {
+    "tStartMs": 667500,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "but I think"
+    } ]
+  }, {
+    "tStartMs": 667792,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "directionally\nit was very good"
+    } ]
+  }, {
+    "tStartMs": 668876,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "because it really\nforced designers"
+    } ]
+  }, {
+    "tStartMs": 670670,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "to think about"
+    } ]
+  }, {
+    "tStartMs": 671629,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "how to get\ndirectly embedded"
+    } ]
+  }, {
+    "tStartMs": 672630,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "into the software\ndevelopment process."
+    } ]
+  }, {
+    "tStartMs": 674340,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "So I think that's"
+    } ]
+  }, {
+    "tStartMs": 675174,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "been really cool\nto see."
+    } ]
+  }, {
+    "tStartMs": 676008,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "And I think we've"
+    } ]
+  }, {
+    "tStartMs": 676884,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "gotten to a point"
+    } ]
+  }, {
+    "tStartMs": 677510,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "now where\nI would say"
+    } ]
+  }, {
+    "tStartMs": 678177,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "a lot of our best\nteams"
+    } ]
+  }, {
+    "tStartMs": 679970,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "have designers\nand product"
+    } ]
+  }, {
+    "tStartMs": 681263,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "managers embedded\ndirectly"
+    } ]
+  }, {
+    "tStartMs": 682932,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "in the software\ndevelopment cycle."
+    } ]
+  }, {
+    "tStartMs": 685101,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "And they're\nall using Claude"
+    } ]
+  }, {
+    "tStartMs": 686060,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "to basically empower\nthemselves."
+    } ]
+  }, {
+    "tStartMs": 687478,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "A challenge\nI've posed to"
+    } ]
+  }, {
+    "tStartMs": 688979,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "the entire\nteam is,"
+    } ]
+  }, {
+    "tStartMs": 689855,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "try to get projects"
+    } ]
+  }, {
+    "tStartMs": 691107,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "done in 3 to 5\nx less time."
+    } ]
+  }, {
+    "tStartMs": 693734,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "Using AI to do so."
+    } ]
+  }, {
+    "tStartMs": 695611,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "And I think"
+    } ]
+  }, {
+    "tStartMs": 696028,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "when you set those"
+    } ]
+  }, {
+    "tStartMs": 696904,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "kind of constraints,"
+    } ]
+  }, {
+    "tStartMs": 697738,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "it's pretty eye"
+    } ]
+  }, {
+    "tStartMs": 699198,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "opening\nin terms of the"
+    } ]
+  }, {
+    "tStartMs": 700116,
+    "dDurationMs": 2168,
+    "segs": [ {
+      "utf8": "types of challenges\npeople run into."
+    } ]
+  }, {
+    "tStartMs": 702284,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "And so"
+    } ]
+  }, {
+    "tStartMs": 704370,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "a lot\nof it is around how"
+    } ]
+  }, {
+    "tStartMs": 705663,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "they use\ncoding agents"
+    } ]
+  }, {
+    "tStartMs": 707373,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "and how people use,"
+    } ]
+  }, {
+    "tStartMs": 709166,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "standardized skills"
+    } ]
+  }, {
+    "tStartMs": 710835,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "so that people"
+    } ]
+  }, {
+    "tStartMs": 711460,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "can all get\nthe learnings of the"
+    } ]
+  }, {
+    "tStartMs": 714088,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "most prolific\npeople."
+    } ]
+  }, {
+    "tStartMs": 715631,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "There is\nan engineer"
+    } ]
+  }, {
+    "tStartMs": 716882,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "who did a massive"
+    } ]
+  }, {
+    "tStartMs": 719176,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "code migration"
+    } ]
+  }, {
+    "tStartMs": 720511,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "that would have"
+    } ]
+  }, {
+    "tStartMs": 721053,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "historically taken\nfour engineers"
+    } ]
+  }, {
+    "tStartMs": 723097,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "over a quarter\nto do."
+    } ]
+  }, {
+    "tStartMs": 724473,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "One person did it in\nthree weeks."
+    } ]
+  }, {
+    "tStartMs": 726267,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "And I think,"
+    } ]
+  }, {
+    "tStartMs": 727518,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "there's\nother products"
+    } ]
+  }, {
+    "tStartMs": 729603,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "where we shave"
+    } ]
+  }, {
+    "tStartMs": 730354,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "the timelines"
+    } ]
+  }, {
+    "tStartMs": 731230,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "by more"
+    } ]
+  }, {
+    "tStartMs": 731605,
+    "dDurationMs": 1836,
+    "segs": [ {
+      "utf8": "than half of these\nmassive products"
+    } ]
+  }, {
+    "tStartMs": 733441,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "that we're\ntrying to launch."
+    } ]
+  }, {
+    "tStartMs": 734859,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "And we pulled\nthe launch timelines"
+    } ]
+  }, {
+    "tStartMs": 736235,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "in significantly."
+    } ]
+  }, {
+    "tStartMs": 737027,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "And so I think it's"
+    } ]
+  }, {
+    "tStartMs": 738028,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "finding pockets"
+    } ]
+  }, {
+    "tStartMs": 739238,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "where we're seeing"
+    } ]
+  }, {
+    "tStartMs": 740114,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "those\nand figuring out,"
+    } ]
+  }, {
+    "tStartMs": 740948,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "okay,\nwhat did you do"
+    } ]
+  }, {
+    "tStartMs": 742116,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "that was so successful\ngetting them to publish"
+    } ]
+  }, {
+    "tStartMs": 745077,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "written artifacts,"
+    } ]
+  }, {
+    "tStartMs": 745828,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "as I mentioned\nearlier,"
+    } ]
+  }, {
+    "tStartMs": 746620,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "so that people can,"
+    } ]
+  }, {
+    "tStartMs": 747663,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "see what's going on."
+    } ]
+  }, {
+    "tStartMs": 748789,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "Right now"
+    } ]
+  }, {
+    "tStartMs": 749206,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "what we're doing\nis we're,"
+    } ]
+  }, {
+    "tStartMs": 750166,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "handpicking\na couple of teams"
+    } ]
+  }, {
+    "tStartMs": 751459,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "to really dive\ndeep and,"
+    } ]
+  }, {
+    "tStartMs": 753252,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "and give this kind\nof charter to,"
+    } ]
+  }, {
+    "tStartMs": 755337,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "and just see what\nthey come up with"
+    } ]
+  }, {
+    "tStartMs": 757256,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "What are some of the"
+    } ]
+  }, {
+    "tStartMs": 757882,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "learnings from that?"
+    } ]
+  }, {
+    "tStartMs": 758716,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "From experimenting\nand figuring out"
+    } ]
+  }, {
+    "tStartMs": 761302,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "what are the pockets\nof adoption,"
+    } ]
+  }, {
+    "tStartMs": 763512,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "what works\nto accelerate"
+    } ]
+  }, {
+    "tStartMs": 764680,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "development,\nwhat doesn't"
+    } ]
+  }, {
+    "tStartMs": 765431,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "work,\nwhat's one"
+    } ]
+  }, {
+    "tStartMs": 766849,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "surprising thing\nthat works"
+    } ]
+  }, {
+    "tStartMs": 767933,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "and one thing\nthat doesn't?"
+    } ]
+  }, {
+    "tStartMs": 768851,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "One thing for sure"
+    } ]
+  }, {
+    "tStartMs": 769852,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "is smaller\nteams, is"
+    } ]
+  }, {
+    "tStartMs": 773898,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "a great accelerant."
+    } ]
+  }, {
+    "tStartMs": 775024,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "Each person"
+    } ]
+  }, {
+    "tStartMs": 775649,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "can kind of own"
+    } ]
+  }, {
+    "tStartMs": 776901,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "a thing or a couple\ndifferent domains,"
+    } ]
+  }, {
+    "tStartMs": 779445,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "and you don't have\nto"
+    } ]
+  }, {
+    "tStartMs": 780488,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "coordinate as much\nwith each other."
+    } ]
+  }, {
+    "tStartMs": 781947,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "Another good\nlearning"
+    } ]
+  }, {
+    "tStartMs": 782907,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "was actually,"
+    } ]
+  }, {
+    "tStartMs": 784158,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "it actually pays off"
+    } ]
+  }, {
+    "tStartMs": 785910,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "to do some upfront\ninvestment"
+    } ]
+  }, {
+    "tStartMs": 787703,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "to setting up\nyour code base"
+    } ]
+  }, {
+    "tStartMs": 789914,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "to be agent\nfriendly."
+    } ]
+  }, {
+    "tStartMs": 791165,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "So in one of our"
+    } ]
+  }, {
+    "tStartMs": 792166,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "successful examples,\nthe tech lead,"
+    } ]
+  }, {
+    "tStartMs": 795169,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "he jotted down"
+    } ]
+  }, {
+    "tStartMs": 797171,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "like a couple dozen,\nmaybe 50"
+    } ]
+  }, {
+    "tStartMs": 798339,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "plus principles"
+    } ]
+  }, {
+    "tStartMs": 800049,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "of\narchitectural"
+    } ]
+  }, {
+    "tStartMs": 801342,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "principles\nthat he cared about"
+    } ]
+  }, {
+    "tStartMs": 802968,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "for a particular\ncode base."
+    } ]
+  }, {
+    "tStartMs": 804220,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "And he jotted it"
+    } ]
+  }, {
+    "tStartMs": 804887,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "down in these\nmarkdown files"
+    } ]
+  }, {
+    "tStartMs": 807348,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "within the GitHub\nrepository"
+    } ]
+  }, {
+    "tStartMs": 808808,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "so that when the"
+    } ]
+  }, {
+    "tStartMs": 809558,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "agent was coding"
+    } ]
+  }, {
+    "tStartMs": 810434,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "that he could\nreference"
+    } ]
+  }, {
+    "tStartMs": 811393,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "these architectural\nprinciples."
+    } ]
+  }, {
+    "tStartMs": 812686,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "And it actually\nwas super helpful."
+    } ]
+  }, {
+    "tStartMs": 815105,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "Another thing\nthat was really"
+    } ]
+  }, {
+    "tStartMs": 815981,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "helpful\nwas standardizing"
+    } ]
+  }, {
+    "tStartMs": 817274,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "skills\nacross the team."
+    } ]
+  }, {
+    "tStartMs": 819026,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "So for example,"
+    } ]
+  }, {
+    "tStartMs": 819860,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "for our mobile\ndevelopment,"
+    } ]
+  }, {
+    "tStartMs": 821570,
+    "dDurationMs": 376,
+    "segs": [ {
+      "utf8": "the team"
+    } ]
+  }, {
+    "tStartMs": 821946,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "put together\nskills around"
+    } ]
+  }, {
+    "tStartMs": 823531,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "basically making\nit really easy"
+    } ]
+  }, {
+    "tStartMs": 824615,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "to spin up"
+    } ]
+  }, {
+    "tStartMs": 825115,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "the simulator\nand test particular"
+    } ]
+  }, {
+    "tStartMs": 826742,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "workflows, things"
+    } ]
+  }, {
+    "tStartMs": 827660,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "that would be super"
+    } ]
+  }, {
+    "tStartMs": 828786,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "manual and annoying\nfor an engineer"
+    } ]
+  }, {
+    "tStartMs": 830120,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "to instrument"
+    } ]
+  }, {
+    "tStartMs": 830746,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "themselves"
+    } ]
+  }, {
+    "tStartMs": 831831,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "is now\njust like a skill"
+    } ]
+  }, {
+    "tStartMs": 832957,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "that you can call"
+    } ]
+  }, {
+    "tStartMs": 833582,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "and kind of run\nin the background."
+    } ]
+  }, {
+    "tStartMs": 834708,
+    "dDurationMs": 2253,
+    "segs": [ {
+      "utf8": "So I'd say those are\nsome positive"
+    } ]
+  }, {
+    "tStartMs": 836961,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "use cases\nthat we saw in terms"
+    } ]
+  }, {
+    "tStartMs": 838128,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "of AI adoption."
+    } ]
+  }, {
+    "tStartMs": 839380,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "A challenge that\nwe ran into was,"
+    } ]
+  }, {
+    "tStartMs": 842633,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "particularly for"
+    } ]
+  }, {
+    "tStartMs": 844718,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "more user\nfacing features"
+    } ]
+  }, {
+    "tStartMs": 848138,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "where you're"
+    } ]
+  }, {
+    "tStartMs": 849098,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "not just coding\na platform"
+    } ]
+  }, {
+    "tStartMs": 850391,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "change\nor code migration."
+    } ]
+  }, {
+    "tStartMs": 852601,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "It requires"
+    } ]
+  }, {
+    "tStartMs": 853644,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "cross-functional\nbuy-In."
+    } ]
+  }, {
+    "tStartMs": 854603,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "You need,"
+    } ]
+  }, {
+    "tStartMs": 855563,
+    "dDurationMs": 2168,
+    "segs": [ {
+      "utf8": "the designs\nto be aligned."
+    } ]
+  }, {
+    "tStartMs": 857731,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "You need to make\nsure that"
+    } ]
+  }, {
+    "tStartMs": 859400,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "from a product\nperspective,"
+    } ]
+  }, {
+    "tStartMs": 860776,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "you're solving\nthe right problems."
+    } ]
+  }, {
+    "tStartMs": 862736,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "And we have a lot\nof these processes"
+    } ]
+  }, {
+    "tStartMs": 864613,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "that we've put in"
+    } ]
+  }, {
+    "tStartMs": 865030,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "place for good\nreason, like"
+    } ]
+  }, {
+    "tStartMs": 866657,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "product\nreview or ship"
+    } ]
+  }, {
+    "tStartMs": 868325,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "review or design\nreview, things"
+    } ]
+  }, {
+    "tStartMs": 870744,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "that historically"
+    } ]
+  }, {
+    "tStartMs": 871996,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "were very important\nfor us"
+    } ]
+  }, {
+    "tStartMs": 872955,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "to get alignment\nwith each other."
+    } ]
+  }, {
+    "tStartMs": 874623,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "But now,"
+    } ]
+  }, {
+    "tStartMs": 875749,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "it's a huge\nfriction point."
+    } ]
+  }, {
+    "tStartMs": 876959,
+    "dDurationMs": 1501,
+    "segs": [ {
+      "utf8": "And so we've had to"
+    } ]
+  }, {
+    "tStartMs": 878460,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "really build"
+    } ]
+  }, {
+    "tStartMs": 879628,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "alignment"
+    } ]
+  }, {
+    "tStartMs": 880212,
+    "dDurationMs": 3379,
+    "segs": [ {
+      "utf8": "with cross-functional leaders\nto make sure that"
+    } ]
+  }, {
+    "tStartMs": 883924,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "if we want"
+    } ]
+  }, {
+    "tStartMs": 884466,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "to really\ntake advantage of AI"
+    } ]
+  }, {
+    "tStartMs": 885843,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "velocity, it's"
+    } ]
+  }, {
+    "tStartMs": 886510,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "not just an\nengineering problem,"
+    } ]
+  }, {
+    "tStartMs": 888304,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "it's a whole company\nproblem."
+    } ]
+  }, {
+    "tStartMs": 889513,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "Cross-functional leaders need to be"
+    } ]
+  }, {
+    "tStartMs": 891515,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "brought in"
+    } ]
+  }, {
+    "tStartMs": 892224,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "to change the way\nthey work in order"
+    } ]
+  }, {
+    "tStartMs": 894143,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "to unlock this type\nof velocity."
+    } ]
+  }, {
+    "tStartMs": 895728,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "We need\nto be okay"
+    } ]
+  }, {
+    "tStartMs": 897146,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "with not necessarily\nhaving product"
+    } ]
+  }, {
+    "tStartMs": 899064,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "review work\nin the same way."
+    } ]
+  }, {
+    "tStartMs": 900065,
+    "dDurationMs": 835,
+    "segs": [ {
+      "utf8": "Or do we even need"
+    } ]
+  }, {
+    "tStartMs": 900900,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "to have product\nreview?"
+    } ]
+  }, {
+    "tStartMs": 901901,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "Historically,\nan engineer"
+    } ]
+  }, {
+    "tStartMs": 903110,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "would have to spend\na lot of time"
+    } ]
+  }, {
+    "tStartMs": 904194,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "getting designs\nto be pixel perfect."
+    } ]
+  }, {
+    "tStartMs": 906530,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "But if the engineers"
+    } ]
+  }, {
+    "tStartMs": 907907,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "can get it\nin a workable state,"
+    } ]
+  }, {
+    "tStartMs": 909158,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "and then we can pass"
+    } ]
+  }, {
+    "tStartMs": 909825,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "it off\nto the designer"
+    } ]
+  }, {
+    "tStartMs": 911076,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "who can get to pixel"
+    } ]
+  }, {
+    "tStartMs": 912161,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "perfect self\nsufficiently,"
+    } ]
+  }, {
+    "tStartMs": 913954,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "that's\nreally powerful."
+    } ]
+  }, {
+    "tStartMs": 915039,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "I think something"
+    } ]
+  }, {
+    "tStartMs": 915706,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "that we've"
+    } ]
+  }, {
+    "tStartMs": 916498,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "generally\nfound to be true"
+    } ]
+  }, {
+    "tStartMs": 917583,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "is the more\nself-sufficient"
+    } ]
+  }, {
+    "tStartMs": 919043,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "a team is or\nan individual is,"
+    } ]
+  }, {
+    "tStartMs": 921462,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "the faster\nthey can move."
+    } ]
+  }, {
+    "tStartMs": 922421,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "And so that's kind\nof the philosophy"
+    } ]
+  }, {
+    "tStartMs": 924048,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "that we're trying\nto really push"
+    } ]
+  }, {
+    "tStartMs": 926091,
+    "dDurationMs": 1544,
+    "segs": [ {
+      "utf8": "when we are\nencouraging people"
+    } ]
+  }, {
+    "tStartMs": 927635,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "to be more\nAI forward."
+    } ]
+  }, {
+    "tStartMs": 929720,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "So less process,"
+    } ]
+  }, {
+    "tStartMs": 930971,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "less design\ndocs, less reviews."
+    } ]
+  }, {
+    "tStartMs": 932890,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "And just"
+    } ]
+  }, {
+    "tStartMs": 933557,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "working directly\nin prototypes,"
+    } ]
+  }, {
+    "tStartMs": 934683,
+    "dDurationMs": 668,
+    "segs": [ {
+      "utf8": "if you're\na designer,"
+    } ]
+  }, {
+    "tStartMs": 935351,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "working directly\nin the code."
+    } ]
+  }, {
+    "tStartMs": 936602,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "Basically\nstreamlining"
+    } ]
+  }, {
+    "tStartMs": 937561,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "a lot of the process"
+    } ]
+  }, {
+    "tStartMs": 938395,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "or reimagining it"
+    } ]
+  }, {
+    "tStartMs": 939396,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "maybe because"
+    } ]
+  }, {
+    "tStartMs": 939939,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "some of\nthis process"
+    } ]
+  }, {
+    "tStartMs": 940773,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "is there for\nimportant reasons."
+    } ]
+  }, {
+    "tStartMs": 942691,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "Maybe\nthere's compliance"
+    } ]
+  }, {
+    "tStartMs": 943525,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "related things"
+    } ]
+  }, {
+    "tStartMs": 943984,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "that need to go on,"
+    } ]
+  }, {
+    "tStartMs": 944610,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "but then it's"
+    } ]
+  }, {
+    "tStartMs": 945694,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "just asking"
+    } ]
+  }, {
+    "tStartMs": 946153,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "the team,"
+    } ]
+  }, {
+    "tStartMs": 946779,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "hey, if we want to"
+    } ]
+  }, {
+    "tStartMs": 947321,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "shrink the timeline\nby three x,"
+    } ]
+  }, {
+    "tStartMs": 949990,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "what's a way"
+    } ]
+  }, {
+    "tStartMs": 950491,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "we can leverage\nagents to automate"
+    } ]
+  }, {
+    "tStartMs": 953118,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "a lot of it\nor make it, faster?"
+    } ]
+  }, {
+    "tStartMs": 955496,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "And I think"
+    } ]
+  }, {
+    "tStartMs": 956622,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "the mindset in terms\nof"
+    } ]
+  }, {
+    "tStartMs": 958415,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "how teams should"
+    } ]
+  }, {
+    "tStartMs": 958958,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "change is, hey,"
+    } ]
+  }, {
+    "tStartMs": 960167,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "you don't\nnecessarily need"
+    } ]
+  }, {
+    "tStartMs": 961085,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "everybody to be\na domain expert,"
+    } ]
+  }, {
+    "tStartMs": 963003,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "and in fact,"
+    } ]
+  }, {
+    "tStartMs": 963504,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "you should encourage\npeople to be"
+    } ]
+  }, {
+    "tStartMs": 964713,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "as fluid\nacross the code base"
+    } ]
+  }, {
+    "tStartMs": 966006,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "as possible,"
+    } ]
+  }, {
+    "tStartMs": 967132,
+    "dDurationMs": 376,
+    "segs": [ {
+      "utf8": "like,"
+    } ]
+  }, {
+    "tStartMs": 967508,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "a lot of our mobile\nengineers,"
+    } ]
+  }, {
+    "tStartMs": 968884,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "we actually\nencourage them now"
+    } ]
+  }, {
+    "tStartMs": 970094,
+    "dDurationMs": 2627,
+    "segs": [ {
+      "utf8": "to try to be more\nfull stack,"
+    } ]
+  }, {
+    "tStartMs": 972721,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "which is a lot\nmore accessible"
+    } ]
+  }, {
+    "tStartMs": 974348,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "now than it was\neven a year ago."
+    } ]
+  }, {
+    "tStartMs": 976600,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "We still need domain\nexperts in like"
+    } ]
+  }, {
+    "tStartMs": 979019,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "for example, iOS"
+    } ]
+  }, {
+    "tStartMs": 980604,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "to make sure that,"
+    } ]
+  }, {
+    "tStartMs": 982231,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "there's\nparticular parts"
+    } ]
+  }, {
+    "tStartMs": 983065,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "of the architecture\nor kind of"
+    } ]
+  }, {
+    "tStartMs": 984984,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "how we manage\nmanaging memory"
+    } ]
+  }, {
+    "tStartMs": 987444,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "or latency\nand performance."
+    } ]
+  }, {
+    "tStartMs": 988862,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "But you don't need"
+    } ]
+  }, {
+    "tStartMs": 990489,
+    "dDurationMs": 2377,
+    "segs": [ {
+      "utf8": "your whole team\nto be an iOS expert."
+    } ]
+  }, {
+    "tStartMs": 992866,
+    "dDurationMs": 2253,
+    "segs": [ {
+      "utf8": "You can have much\nfewer of than"
+    } ]
+  }, {
+    "tStartMs": 995119,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "be gatekeepers"
+    } ]
+  }, {
+    "tStartMs": 996412,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "and figure out\nhow to build agents"
+    } ]
+  }, {
+    "tStartMs": 997955,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "to basically check\nfor the things"
+    } ]
+  }, {
+    "tStartMs": 999707,
+    "dDurationMs": 2502,
+    "segs": [ {
+      "utf8": "or write in MD\nfiles"
+    } ]
+  }, {
+    "tStartMs": 1002209,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "their\narchitectural"
+    } ]
+  }, {
+    "tStartMs": 1002918,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "principles\nor things"
+    } ]
+  }, {
+    "tStartMs": 1003752,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "they care about."
+    } ]
+  }, {
+    "tStartMs": 1004795,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "And you have a lot"
+    } ]
+  }, {
+    "tStartMs": 1005879,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "more people\nwho can be"
+    } ]
+  }, {
+    "tStartMs": 1007131,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "generalists\nand moving across"
+    } ]
+  }, {
+    "tStartMs": 1009675,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "a fluid fluidly\nacross the codebase."
+    } ]
+  }, {
+    "tStartMs": 1011844,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "And I think\nthat's like"
+    } ]
+  }, {
+    "tStartMs": 1012469,
+    "dDurationMs": 668,
+    "segs": [ {
+      "utf8": "a mindset change"
+    } ]
+  }, {
+    "tStartMs": 1013137,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "also that we need"
+    } ]
+  }, {
+    "tStartMs": 1014888,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "to get people"
+    } ]
+  }, {
+    "tStartMs": 1015305,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "more comfortable\nwith."
+    } ]
+  }, {
+    "tStartMs": 1017474,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "How is, so okay,"
+    } ]
+  }, {
+    "tStartMs": 1018517,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "so when"
+    } ]
+  }, {
+    "tStartMs": 1019101,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "when you have one of"
+    } ]
+  }, {
+    "tStartMs": 1019935,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "these small teams\nworking on something"
+    } ]
+  }, {
+    "tStartMs": 1021979,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "but you want to"
+    } ]
+  }, {
+    "tStartMs": 1022771,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "give them the space"
+    } ]
+  }, {
+    "tStartMs": 1023313,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "to experiment\nand to kind"
+    } ]
+  }, {
+    "tStartMs": 1024481,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "of figure out\nthe process,"
+    } ]
+  }, {
+    "tStartMs": 1025357,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "how do you think"
+    } ]
+  }, {
+    "tStartMs": 1027276,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "about staffing\nthis team?"
+    } ]
+  }, {
+    "tStartMs": 1028360,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "What's"
+    } ]
+  }, {
+    "tStartMs": 1029194,
+    "dDurationMs": 2253,
+    "segs": [ {
+      "utf8": "the ideal kind\nof profile for it?"
+    } ]
+  }, {
+    "tStartMs": 1031447,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "We try to make sure"
+    } ]
+  }, {
+    "tStartMs": 1032406,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "that for these teams"
+    } ]
+  }, {
+    "tStartMs": 1033407,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "that we're giving\nthese remits to,"
+    } ]
+  }, {
+    "tStartMs": 1035325,
+    "dDurationMs": 668,
+    "segs": [ {
+      "utf8": "we want to make sure"
+    } ]
+  }, {
+    "tStartMs": 1035993,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "that they feel safe"
+    } ]
+  }, {
+    "tStartMs": 1036952,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "in experimenting\nand pushing here."
+    } ]
+  }, {
+    "tStartMs": 1038871,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "So I will actually\ndirectly lean in"
+    } ]
+  }, {
+    "tStartMs": 1041040,
+    "dDurationMs": 2377,
+    "segs": [ {
+      "utf8": "or I'll ask\nour executives"
+    } ]
+  }, {
+    "tStartMs": 1043417,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "from\nthe engineering or"
+    } ]
+  }, {
+    "tStartMs": 1045419,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "various\nadjacent functions"
+    } ]
+  }, {
+    "tStartMs": 1047713,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "to actually lean in\nwith these teams"
+    } ]
+  }, {
+    "tStartMs": 1049506,
+    "dDurationMs": 3295,
+    "segs": [ {
+      "utf8": "and basically\nhave"
+    } ]
+  }, {
+    "tStartMs": 1053260,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "executive\nVP level sponsorship"
+    } ]
+  }, {
+    "tStartMs": 1055512,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "on that particular\nworkstream"
+    } ]
+  }, {
+    "tStartMs": 1057181,
+    "dDurationMs": 1751,
+    "segs": [ {
+      "utf8": "to figure out,\nhey, what do you"
+    } ]
+  }, {
+    "tStartMs": 1058932,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "whatever you need\nto do to"
+    } ]
+  }, {
+    "tStartMs": 1059850,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "get unblocked,"
+    } ]
+  }, {
+    "tStartMs": 1061477,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "you have\nthe sponsorship"
+    } ]
+  }, {
+    "tStartMs": 1062644,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "from high up\nleadership to do so."
+    } ]
+  }, {
+    "tStartMs": 1065105,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "Because one thing"
+    } ]
+  }, {
+    "tStartMs": 1066065,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "that I've"
+    } ]
+  }, {
+    "tStartMs": 1067149,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "seen not necessarily"
+    } ]
+  }, {
+    "tStartMs": 1067983,
+    "dDurationMs": 334,
+    "segs": [ {
+      "utf8": "work as"
+    } ]
+  }, {
+    "tStartMs": 1068317,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "well in\nthe beginning"
+    } ]
+  }, {
+    "tStartMs": 1069026,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "is if you ask people\nto do this,"
+    } ]
+  }, {
+    "tStartMs": 1071111,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "but they're working"
+    } ]
+  }, {
+    "tStartMs": 1072863,
+    "dDurationMs": 1668,
+    "segs": [ {
+      "utf8": "within the same\nconfines of,"
+    } ]
+  }, {
+    "tStartMs": 1074531,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "kind of their\nnormal job,"
+    } ]
+  }, {
+    "tStartMs": 1076200,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "then they're going"
+    } ]
+  }, {
+    "tStartMs": 1077117,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "to give up\npretty quickly."
+    } ]
+  }, {
+    "tStartMs": 1078494,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "Unless you"
+    } ]
+  }, {
+    "tStartMs": 1080412,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "you empower them\nto be,"
+    } ]
+  }, {
+    "tStartMs": 1081914,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "hey, you actually,"
+    } ]
+  }, {
+    "tStartMs": 1082831,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "not only"
+    } ]
+  }, {
+    "tStartMs": 1083373,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "are you going to get"
+    } ]
+  }, {
+    "tStartMs": 1084124,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "token budget"
+    } ]
+  }, {
+    "tStartMs": 1084750,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "to kind of reimagine\nthe things of AI,"
+    } ]
+  }, {
+    "tStartMs": 1087002,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "but I want you"
+    } ]
+  }, {
+    "tStartMs": 1087669,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "to raise to us"
+    } ]
+  }, {
+    "tStartMs": 1089046,
+    "dDurationMs": 3045,
+    "segs": [ {
+      "utf8": "your cross-functional leadership\nteam, what is"
+    } ]
+  }, {
+    "tStartMs": 1092091,
+    "dDurationMs": 1876,
+    "segs": [ {
+      "utf8": "hindering\nyou outside of just"
+    } ]
+  }, {
+    "tStartMs": 1093967,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "generating code?"
+    } ]
+  }, {
+    "tStartMs": 1095219,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "And so I think\nthat's worked"
+    } ]
+  }, {
+    "tStartMs": 1096303,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "really well to make\npeople feel safer."
+    } ]
+  }, {
+    "tStartMs": 1098388,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "We're still trying"
+    } ]
+  }, {
+    "tStartMs": 1099389,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "to figure out\nhow to scale that."
+    } ]
+  }, {
+    "tStartMs": 1100182,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "But ideally\nwhat would happen"
+    } ]
+  }, {
+    "tStartMs": 1101809,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "is as we see"
+    } ]
+  }, {
+    "tStartMs": 1102935,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "these success\nexamples crop up,"
+    } ]
+  }, {
+    "tStartMs": 1104937,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "we share those\nwritten artifacts"
+    } ]
+  }, {
+    "tStartMs": 1106939,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "with various\nleaders."
+    } ]
+  }, {
+    "tStartMs": 1108273,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "So that people"
+    } ]
+  }, {
+    "tStartMs": 1109191,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "can kind of"
+    } ]
+  }, {
+    "tStartMs": 1109566,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "organically try to"
+    } ]
+  }, {
+    "tStartMs": 1111276,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "adopt\nthese practices."
+    } ]
+  }, {
+    "tStartMs": 1112986,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "The limiting\nfactor"
+    } ]
+  }, {
+    "tStartMs": 1114696,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "used to be\nthe speed of coding"
+    } ]
+  }, {
+    "tStartMs": 1116365,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "and that limited"
+    } ]
+  }, {
+    "tStartMs": 1117241,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "kind of the speed\nof delivery"
+    } ]
+  }, {
+    "tStartMs": 1118617,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "that dictated\nthe team set up,"
+    } ]
+  }, {
+    "tStartMs": 1120619,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "that dictated"
+    } ]
+  }, {
+    "tStartMs": 1121411,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "having to have"
+    } ]
+  }, {
+    "tStartMs": 1121954,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "process\nin these org reviews"
+    } ]
+  }, {
+    "tStartMs": 1123539,
+    "dDurationMs": 1876,
+    "segs": [ {
+      "utf8": "and kind of\nthe cadence of exact"
+    } ]
+  }, {
+    "tStartMs": 1125415,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "check ins\nand all this stuff."
+    } ]
+  }, {
+    "tStartMs": 1126458,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "Absolutely."
+    } ]
+  }, {
+    "tStartMs": 1126875,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "And now,"
+    } ]
+  }, {
+    "tStartMs": 1127292,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "because engineering\nis so fast,"
+    } ]
+  }, {
+    "tStartMs": 1128669,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "it kind of forces"
+    } ]
+  }, {
+    "tStartMs": 1129294,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "you to rethink\nall stuff."
+    } ]
+  }, {
+    "tStartMs": 1130462,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "There's actually\nso much more"
+    } ]
+  }, {
+    "tStartMs": 1131672,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "that like a team\nof 3 to 5 can do."
+    } ]
+  }, {
+    "tStartMs": 1132965,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "It's\nalmost"
+    } ]
+  }, {
+    "tStartMs": 1134133,
+    "dDurationMs": 333,
+    "segs": [ {
+      "utf8": "you kind of"
+    } ]
+  }, {
+    "tStartMs": 1134466,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "want to invest\nin making that unit"
+    } ]
+  }, {
+    "tStartMs": 1136885,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "move as fast\nas possible."
+    } ]
+  }, {
+    "tStartMs": 1138470,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "Because"
+    } ]
+  }, {
+    "tStartMs": 1140639,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "if you can get\nthat unit to work 3"
+    } ]
+  }, {
+    "tStartMs": 1142099,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "to 5 times faster,"
+    } ]
+  }, {
+    "tStartMs": 1143433,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "then,\nthat's totally game"
+    } ]
+  }, {
+    "tStartMs": 1145435,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "changing\nfor the org."
+    } ]
+  }, {
+    "tStartMs": 1146728,
+    "dDurationMs": 251,
+    "segs": [ {
+      "utf8": "Okay."
+    } ]
+  }, {
+    "tStartMs": 1146979,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "I wanted to touch on\nmaybe a few,"
+    } ]
+  }, {
+    "tStartMs": 1148438,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "a few final things."
+    } ]
+  }, {
+    "tStartMs": 1149189,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "So, how are you\nthinking about ROI?"
+    } ]
+  }, {
+    "tStartMs": 1152359,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "So you talked\na little bit"
+    } ]
+  }, {
+    "tStartMs": 1153819,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "before\nabout first"
+    } ]
+  }, {
+    "tStartMs": 1155696,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "when you're\nkind of early"
+    } ]
+  }, {
+    "tStartMs": 1156697,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "in the journey,"
+    } ]
+  }, {
+    "tStartMs": 1157447,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "you just want to"
+    } ]
+  }, {
+    "tStartMs": 1158031,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "give people\nas many tokens"
+    } ]
+  }, {
+    "tStartMs": 1159241,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "as possible.\nLet them experiment."
+    } ]
+  }, {
+    "tStartMs": 1161535,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "Now you're thinking"
+    } ]
+  }, {
+    "tStartMs": 1162452,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "a little bit\nmore about ROI."
+    } ]
+  }, {
+    "tStartMs": 1163829,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "How do you think\nabout it?"
+    } ]
+  }, {
+    "tStartMs": 1165455,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "I think for\nengineering it's"
+    } ]
+  }, {
+    "tStartMs": 1166498,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "a little bit\nmore straightforward"
+    } ]
+  }, {
+    "tStartMs": 1167457,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "because you can\nactually,"
+    } ]
+  }, {
+    "tStartMs": 1168834,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "I know, code\nthroughput, it's"
+    } ]
+  }, {
+    "tStartMs": 1171295,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "not a perfect metric\nand it's a gameable metric,"
+    } ]
+  }, {
+    "tStartMs": 1173255,
+    "dDurationMs": 3170,
+    "segs": [ {
+      "utf8": "but it’s directionally\nkind of correct"
+    } ]
+  }, {
+    "tStartMs": 1176425,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "in a lot of ways."
+    } ]
+  }, {
+    "tStartMs": 1177593,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "And also the fact\nthat"
+    } ]
+  }, {
+    "tStartMs": 1178927,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "you can get more,"
+    } ]
+  }, {
+    "tStartMs": 1179845,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "you can get the same"
+    } ]
+  }, {
+    "tStartMs": 1180637,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "project done faster"
+    } ]
+  }, {
+    "tStartMs": 1182014,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "with fewer\npeople means that"
+    } ]
+  }, {
+    "tStartMs": 1183265,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "the people you have\ntoday,"
+    } ]
+  }, {
+    "tStartMs": 1184850,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "you want them\nusing it"
+    } ]
+  }, {
+    "tStartMs": 1185893,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "as much as possible."
+    } ]
+  }, {
+    "tStartMs": 1186727,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "I think in knowledge\nwork,"
+    } ]
+  }, {
+    "tStartMs": 1187936,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "I think\nwe're still early"
+    } ]
+  }, {
+    "tStartMs": 1188770,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "and I think"
+    } ]
+  }, {
+    "tStartMs": 1189521,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "to a point you made,"
+    } ]
+  }, {
+    "tStartMs": 1190397,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "I think"
+    } ]
+  }, {
+    "tStartMs": 1191106,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "there's a"
+    } ]
+  }, {
+    "tStartMs": 1191523,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "lot of things\noutside of"
+    } ]
+  }, {
+    "tStartMs": 1192482,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "just\nthe triaging"
+    } ]
+  }, {
+    "tStartMs": 1193483,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "my email type\nuse cases"
+    } ]
+  }, {
+    "tStartMs": 1195277,
+    "dDurationMs": 208,
+    "segs": [ {
+      "utf8": "that"
+    } ]
+  }, {
+    "tStartMs": 1195485,
+    "dDurationMs": 251,
+    "segs": [ {
+      "utf8": "I think"
+    } ]
+  }, {
+    "tStartMs": 1195736,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "are really powerful\nwith Cowork"
+    } ]
+  }, {
+    "tStartMs": 1197112,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "that we're just\nscratching"
+    } ]
+  }, {
+    "tStartMs": 1197988,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "the surface\non,"
+    } ]
+  }, {
+    "tStartMs": 1198947,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "I think for sales\nteams,"
+    } ]
+  }, {
+    "tStartMs": 1200199,
+    "dDurationMs": 2293,
+    "segs": [ {
+      "utf8": "having to do QBRs with"
+    } ]
+  }, {
+    "tStartMs": 1202492,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "tens of thousands\nof merchants. Right?"
+    } ]
+  }, {
+    "tStartMs": 1203869,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "That's a lot\nof manual work."
+    } ]
+  }, {
+    "tStartMs": 1205954,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "And if we can really\nstreamline"
+    } ]
+  }, {
+    "tStartMs": 1207414,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "that and make it"
+    } ]
+  }, {
+    "tStartMs": 1208040,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "more accurate\nand vetted,"
+    } ]
+  }, {
+    "tStartMs": 1209374,
+    "dDurationMs": 2503,
+    "segs": [ {
+      "utf8": "with\nconsistency via AI,"
+    } ]
+  }, {
+    "tStartMs": 1211877,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "that's\nsuper powerful."
+    } ]
+  }, {
+    "tStartMs": 1212961,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "There's two ways"
+    } ]
+  }, {
+    "tStartMs": 1214129,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "that we are thinking"
+    } ]
+  }, {
+    "tStartMs": 1215214,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "about it right now."
+    } ]
+  }, {
+    "tStartMs": 1216048,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "One is just in terms"
+    } ]
+  }, {
+    "tStartMs": 1217090,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "of raising\nthe baseline,"
+    } ]
+  }, {
+    "tStartMs": 1218300,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "how much time\nare we saving"
+    } ]
+  }, {
+    "tStartMs": 1220469,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "the average person\nin terms of tasks"
+    } ]
+  }, {
+    "tStartMs": 1222304,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "that everybody\nneeds to do?"
+    } ]
+  }, {
+    "tStartMs": 1224014,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And then there's\nwhere I think"
+    } ]
+  }, {
+    "tStartMs": 1225724,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "actually might"
+    } ]
+  }, {
+    "tStartMs": 1226225,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "actually end up\nbeing more"
+    } ]
+  }, {
+    "tStartMs": 1227267,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "impactful\nis on a per"
+    } ]
+  }, {
+    "tStartMs": 1229269,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "department\nor domain basis."
+    } ]
+  }, {
+    "tStartMs": 1231313,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "Can we identify\nparticular workflows"
+    } ]
+  }, {
+    "tStartMs": 1233482,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "to automate"
+    } ]
+  }, {
+    "tStartMs": 1234191,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "that would make it"
+    } ]
+  }, {
+    "tStartMs": 1234858,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "significantly\nmore efficient"
+    } ]
+  }, {
+    "tStartMs": 1236276,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "to run\nthat department."
+    } ]
+  }, {
+    "tStartMs": 1237402,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "So that's kind of"
+    } ]
+  }, {
+    "tStartMs": 1238779,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "how we're thinking"
+    } ]
+  }, {
+    "tStartMs": 1239238,
+    "dDurationMs": 458,
+    "segs": [ {
+      "utf8": "about it right now,"
+    } ]
+  }, {
+    "tStartMs": 1239696,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "but in the knowledge"
+    } ]
+  }, {
+    "tStartMs": 1240197,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "workspace,\nto be honest,"
+    } ]
+  }, {
+    "tStartMs": 1241073,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "we're so early\nthat I think,"
+    } ]
+  }, {
+    "tStartMs": 1243325,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "we're kind of in\nan exploration phase"
+    } ]
+  }, {
+    "tStartMs": 1244576,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "right now."
+    } ]
+  }, {
+    "tStartMs": 1245077,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "Yeah. Okay."
+    } ]
+  }, {
+    "tStartMs": 1245786,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "So for coding,"
+    } ]
+  }, {
+    "tStartMs": 1246870,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "it's about\nthe volume"
+    } ]
+  }, {
+    "tStartMs": 1247955,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "of code increases."
+    } ]
+  }, {
+    "tStartMs": 1249498,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "So the code\nthroughput"
+    } ]
+  }, {
+    "tStartMs": 1250415,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "you can measure"
+    } ]
+  }, {
+    "tStartMs": 1251583,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "and then the speed\nof delivery,"
+    } ]
+  }, {
+    "tStartMs": 1253085,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "you can measure\npretty easily."
+    } ]
+  }, {
+    "tStartMs": 1254294,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "And just\nfreed up"
+    } ]
+  }, {
+    "tStartMs": 1255003,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "people to do stuff."
+    } ]
+  }, {
+    "tStartMs": 1256129,
+    "dDurationMs": 167,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 1256296,
+    "dDurationMs": 334,
+    "segs": [ {
+      "utf8": "And I think"
+    } ]
+  }, {
+    "tStartMs": 1256630,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "ultimately\nfor engineering"
+    } ]
+  }, {
+    "tStartMs": 1257798,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "well it's"
+    } ]
+  }, {
+    "tStartMs": 1258173,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "not just engineering"
+    } ]
+  }, {
+    "tStartMs": 1258924,
+    "dDurationMs": 667,
+    "segs": [ {
+      "utf8": "because it involves"
+    } ]
+  }, {
+    "tStartMs": 1259591,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "design, it involves"
+    } ]
+  }, {
+    "tStartMs": 1260592,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "cross-functional\nsupport."
+    } ]
+  }, {
+    "tStartMs": 1262010,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "But at the end\nof the day,"
+    } ]
+  }, {
+    "tStartMs": 1262886,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "we want"
+    } ]
+  }, {
+    "tStartMs": 1264012,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "customer value to be\ndelivered faster."
+    } ]
+  }, {
+    "tStartMs": 1265639,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "So if we can\nactually"
+    } ]
+  }, {
+    "tStartMs": 1266682,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "prove that out,"
+    } ]
+  }, {
+    "tStartMs": 1267766,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "not just in terms of"
+    } ]
+  }, {
+    "tStartMs": 1268684,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "code getting merged,"
+    } ]
+  }, {
+    "tStartMs": 1269935,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "but also\ncustomers"
+    } ]
+  }, {
+    "tStartMs": 1271687,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "seeing the product\nlive faster,"
+    } ]
+  }, {
+    "tStartMs": 1273939,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "I think for us\nthat's"
+    } ]
+  }, {
+    "tStartMs": 1274815,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "the ultimate success\nmetric."
+    } ]
+  }, {
+    "tStartMs": 1276233,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "Yeah, yeah."
+    } ]
+  }, {
+    "tStartMs": 1277234,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "And then"
+    } ]
+  }, {
+    "tStartMs": 1277818,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "yeah, and\nfor knowledge"
+    } ]
+  }, {
+    "tStartMs": 1278819,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "work, we're still\nfiguring it out."
+    } ]
+  }, {
+    "tStartMs": 1279945,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "It's still"
+    } ]
+  }, {
+    "tStartMs": 1280404,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "it's still domain\ndependent."
+    } ]
+  }, {
+    "tStartMs": 1281780,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "I think"
+    } ]
+  }, {
+    "tStartMs": 1282197,
+    "dDurationMs": 375,
+    "segs": [ {
+      "utf8": "there is"
+    } ]
+  }, {
+    "tStartMs": 1282572,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "a lot of value\nto be had"
+    } ]
+  }, {
+    "tStartMs": 1283824,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "if we can get\neverybody"
+    } ]
+  }, {
+    "tStartMs": 1285075,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "to be,"
+    } ]
+  }, {
+    "tStartMs": 1286034,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "even 10%\nmore productive"
+    } ]
+  }, {
+    "tStartMs": 1287536,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "with this stuff,\nthat's huge."
+    } ]
+  }, {
+    "tStartMs": 1289454,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "At a company\nof our scale,"
+    } ]
+  }, {
+    "tStartMs": 1291331,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "like,"
+    } ]
+  }, {
+    "tStartMs": 1291748,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "and so I do think\nthere is value"
+    } ]
+  }, {
+    "tStartMs": 1293166,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "in terms of\nraising the floor."
+    } ]
+  }, {
+    "tStartMs": 1294543,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "But I do think\nwith knowledge"
+    } ]
+  }, {
+    "tStartMs": 1296003,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "work,\nthere's still a lot"
+    } ]
+  }, {
+    "tStartMs": 1297045,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "of explorations\nto be had around"
+    } ]
+  }, {
+    "tStartMs": 1298755,
+    "dDurationMs": 2378,
+    "segs": [ {
+      "utf8": "domain specific,\nworkflows."
+    } ]
+  }, {
+    "tStartMs": 1301133,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "And I guess it's"
+    } ]
+  }, {
+    "tStartMs": 1301883,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "it's\njust back to the way"
+    } ]
+  }, {
+    "tStartMs": 1302926,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "that innovation\nactually happens."
+    } ]
+  }, {
+    "tStartMs": 1304344,
+    "dDurationMs": 1877,
+    "segs": [ {
+      "utf8": "If you're like top\ndown,"
+    } ]
+  }, {
+    "tStartMs": 1306221,
+    "dDurationMs": 501,
+    "segs": [ {
+      "utf8": "hey, you go"
+    } ]
+  }, {
+    "tStartMs": 1306722,
+    "dDurationMs": 1334,
+    "segs": [ {
+      "utf8": "automate\nthis workflow,"
+    } ]
+  }, {
+    "tStartMs": 1308056,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "you might actually"
+    } ]
+  }, {
+    "tStartMs": 1308598,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "just pick\nthe wrong workflow"
+    } ]
+  }, {
+    "tStartMs": 1309766,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "or the wrong person\nto automate it."
+    } ]
+  }, {
+    "tStartMs": 1310976,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "Totally."
+    } ]
+  }, {
+    "tStartMs": 1311393,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "But if you give\neveryone"
+    } ]
+  }, {
+    "tStartMs": 1312144,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "the freedom\nto experiment,"
+    } ]
+  }, {
+    "tStartMs": 1313145,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "you're going to be\nsurprised"
+    } ]
+  }, {
+    "tStartMs": 1314438,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "by,"
+    } ]
+  }, {
+    "tStartMs": 1315063,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "some person\nover here"
+    } ]
+  }, {
+    "tStartMs": 1315856,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "automates\nthis thing."
+    } ]
+  }, {
+    "tStartMs": 1316773,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "Some person\nover here"
+    } ]
+  }, {
+    "tStartMs": 1317524,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "automates\nthis thing,"
+    } ]
+  }, {
+    "tStartMs": 1318734,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "and you might not"
+    } ]
+  }, {
+    "tStartMs": 1319609,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "even have known\nit's a bottleneck."
+    } ]
+  }, {
+    "tStartMs": 1321111,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "Totally."
+    } ]
+  }, {
+    "tStartMs": 1321570,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "And that's why,"
+    } ]
+  }, {
+    "tStartMs": 1322154,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "we're trying to"
+    } ]
+  }, {
+    "tStartMs": 1322654,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "we call them\nAI champions"
+    } ]
+  }, {
+    "tStartMs": 1323947,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "internally\nright now."
+    } ]
+  }, {
+    "tStartMs": 1324489,
+    "dDurationMs": 668,
+    "segs": [ {
+      "utf8": "We're trying to"
+    } ]
+  }, {
+    "tStartMs": 1325157,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "identify champions"
+    } ]
+  }, {
+    "tStartMs": 1326241,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "within each domain,\nlike sales"
+    } ]
+  }, {
+    "tStartMs": 1328201,
+    "dDurationMs": 2128,
+    "segs": [ {
+      "utf8": "or marketing\nor, operations or,"
+    } ]
+  }, {
+    "tStartMs": 1330329,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "you know, support."
+    } ]
+  }, {
+    "tStartMs": 1331121,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "And so we're\ntrying to identify"
+    } ]
+  }, {
+    "tStartMs": 1333332,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "who organically is\ncropping up,"
+    } ]
+  }, {
+    "tStartMs": 1335250,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "who's doing this\nin their spare time."
+    } ]
+  }, {
+    "tStartMs": 1337461,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "Or just naturally\ngravitating"
+    } ]
+  }, {
+    "tStartMs": 1338712,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "and being prolific\nwith these tools"
+    } ]
+  }, {
+    "tStartMs": 1340672,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "to really help\nfigure out, okay,"
+    } ]
+  }, {
+    "tStartMs": 1341798,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "what's"
+    } ]
+  }, {
+    "tStartMs": 1342674,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "what are the big\npain points"
+    } ]
+  }, {
+    "tStartMs": 1343508,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "within your domain?"
+    } ]
+  }, {
+    "tStartMs": 1344051,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "Because I don't\nknow."
+    } ]
+  }, {
+    "tStartMs": 1344968,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "And then,"
+    } ]
+  }, {
+    "tStartMs": 1345761,
+    "dDurationMs": 2961,
+    "segs": [ {
+      "utf8": "can you figure out\na way to either"
+    } ]
+  }, {
+    "tStartMs": 1348722,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "make that workflow"
+    } ]
+  }, {
+    "tStartMs": 1349473,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "a lot\nmore streamlined"
+    } ]
+  }, {
+    "tStartMs": 1350557,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "using agents,"
+    } ]
+  }, {
+    "tStartMs": 1351433,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "or can you\nfigure out a way"
+    } ]
+  }, {
+    "tStartMs": 1352434,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "to make it much"
+    } ]
+  }, {
+    "tStartMs": 1354227,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "easier"
+    } ]
+  }, {
+    "tStartMs": 1354811,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "for your coworkers\nto be streamlined"
+    } ]
+  }, {
+    "tStartMs": 1357397,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "using a shared\nset of skills."
+    } ]
+  }, {
+    "tStartMs": 1359107,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "So famously\nyou started using AI"
+    } ]
+  }, {
+    "tStartMs": 1362235,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "in coding\ninterviews"
+    } ]
+  }, {
+    "tStartMs": 1363153,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "pretty early,"
+    } ]
+  }, {
+    "tStartMs": 1364196,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "I think, before\neven we did."
+    } ]
+  }, {
+    "tStartMs": 1365739,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "And,"
+    } ]
+  }, {
+    "tStartMs": 1367491,
+    "dDurationMs": 2502,
+    "segs": [ {
+      "utf8": "I think\nwe still don't."
+    } ]
+  }, {
+    "tStartMs": 1369993,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "How do you think\nabout it?"
+    } ]
+  }, {
+    "tStartMs": 1371203,
+    "dDurationMs": 167,
+    "segs": [ {
+      "utf8": "Like,"
+    } ]
+  }, {
+    "tStartMs": 1371370,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "how do you find"
+    } ]
+  }, {
+    "tStartMs": 1371912,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "these people"
+    } ]
+  }, {
+    "tStartMs": 1372329,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "that succeed in this"
+    } ]
+  }, {
+    "tStartMs": 1373413,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "kind of environment\nthat are happy"
+    } ]
+  }, {
+    "tStartMs": 1374790,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "experimenting"
+    } ]
+  }, {
+    "tStartMs": 1375707,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "and that enjoy\nthis kind of work?"
+    } ]
+  }, {
+    "tStartMs": 1377209,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "I think our mindset"
+    } ]
+  }, {
+    "tStartMs": 1378210,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "is give people the\ntools and just see"
+    } ]
+  }, {
+    "tStartMs": 1380295,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "who ends up\nnaturally picking it"
+    } ]
+  }, {
+    "tStartMs": 1381546,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "up, you will\nnaturally find out"
+    } ]
+  }, {
+    "tStartMs": 1382881,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "about those people,\nwhether"
+    } ]
+  }, {
+    "tStartMs": 1383757,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "it's through Slack\nchannels, or."
+    } ]
+  }, {
+    "tStartMs": 1385550,
+    "dDurationMs": 543,
+    "segs": [ {
+      "utf8": "They're going to\ntell you."
+    } ]
+  }, {
+    "tStartMs": 1386093,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "They're going\nto tell you. Yeah."
+    } ]
+  }, {
+    "tStartMs": 1387052,
+    "dDurationMs": 584,
+    "segs": [ {
+      "utf8": "Because they,"
+    } ]
+  }, {
+    "tStartMs": 1387636,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "they're having"
+    } ]
+  }, {
+    "tStartMs": 1388387,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "so much fun\nand enthusiasm"
+    } ]
+  }, {
+    "tStartMs": 1389846,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "around\nthat they can't help"
+    } ]
+  }, {
+    "tStartMs": 1390639,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "but share"
+    } ]
+  }, {
+    "tStartMs": 1391640,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "the enthusiasm\nwith their peers."
+    } ]
+  }, {
+    "tStartMs": 1394101,
+    "dDurationMs": 1376,
+    "segs": [ {
+      "utf8": "So I think it hasn't"
+    } ]
+  }, {
+    "tStartMs": 1395477,
+    "dDurationMs": 2085,
+    "segs": [ {
+      "utf8": "been that\nhard for us to find"
+    } ]
+  }, {
+    "tStartMs": 1398647,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "a champion,\nespecially"
+    } ]
+  }, {
+    "tStartMs": 1399439,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "on the\nnon-technical side."
+    } ]
+  }, {
+    "tStartMs": 1400649,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And then on\nthe technical side,"
+    } ]
+  }, {
+    "tStartMs": 1402359,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "I think we've"
+    } ]
+  }, {
+    "tStartMs": 1403110,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "we've just found\npeople"
+    } ]
+  }, {
+    "tStartMs": 1403985,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "who've naturally\nbecome power users"
+    } ]
+  }, {
+    "tStartMs": 1405487,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "and taken\noff with it."
+    } ]
+  }, {
+    "tStartMs": 1406530,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "Okay, I want to"
+    } ]
+  }, {
+    "tStartMs": 1407531,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "I want to close with\none last question."
+    } ]
+  }, {
+    "tStartMs": 1408990,
+    "dDurationMs": 418,
+    "segs": [ {
+      "utf8": "Sure."
+    } ]
+  }, {
+    "tStartMs": 1409408,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "What is your advice"
+    } ]
+  }, {
+    "tStartMs": 1411118,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "for engineering\nleaders?"
+    } ]
+  }, {
+    "tStartMs": 1413161,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "So other CTOs,"
+    } ]
+  }, {
+    "tStartMs": 1414246,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "and leaders\nat other companies?"
+    } ]
+  }, {
+    "tStartMs": 1416706,
+    "dDurationMs": 1544,
+    "segs": [ {
+      "utf8": "And then on the flip\nside,"
+    } ]
+  }, {
+    "tStartMs": 1418250,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "what's your advice\nfor new grads?"
+    } ]
+  }, {
+    "tStartMs": 1419668,
+    "dDurationMs": 333,
+    "segs": [ {
+      "utf8": "Sure."
+    } ]
+  }, {
+    "tStartMs": 1420001,
+    "dDurationMs": 626,
+    "segs": [ {
+      "utf8": "Who are in college,\nright now"
+    } ]
+  }, {
+    "tStartMs": 1420627,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "and graduating."
+    } ]
+  }, {
+    "tStartMs": 1421586,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "What would you tell\neach?"
+    } ]
+  }, {
+    "tStartMs": 1423088,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "So I would say for"
+    } ]
+  }, {
+    "tStartMs": 1423922,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "the engineering\nleaders,"
+    } ]
+  }, {
+    "tStartMs": 1425340,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "make sure\nyou use the"
+    } ]
+  }, {
+    "tStartMs": 1426091,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "AI so that\nyou can"
+    } ]
+  }, {
+    "tStartMs": 1427884,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "encourage your teams\nto use AI."
+    } ]
+  }, {
+    "tStartMs": 1429928,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "But I also"
+    } ]
+  }, {
+    "tStartMs": 1430345,
+    "dDurationMs": 292,
+    "segs": [ {
+      "utf8": "I think"
+    } ]
+  }, {
+    "tStartMs": 1430637,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "it also gives you\na sense of empathy"
+    } ]
+  }, {
+    "tStartMs": 1432264,
+    "dDurationMs": 500,
+    "segs": [ {
+      "utf8": "in terms of the"
+    } ]
+  }, {
+    "tStartMs": 1432764,
+    "dDurationMs": 918,
+    "segs": [ {
+      "utf8": "types of anxiety"
+    } ]
+  }, {
+    "tStartMs": 1433682,
+    "dDurationMs": 625,
+    "segs": [ {
+      "utf8": "or stress"
+    } ]
+  }, {
+    "tStartMs": 1434307,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "that engineers\nmight go through to"
+    } ]
+  }, {
+    "tStartMs": 1436017,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "change\nhow they work."
+    } ]
+  }, {
+    "tStartMs": 1437644,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "And it's kind\nof an identity crisis"
+    } ]
+  }, {
+    "tStartMs": 1440188,
+    "dDurationMs": 1252,
+    "segs": [ {
+      "utf8": "in some ways\nfor engineers."
+    } ]
+  }, {
+    "tStartMs": 1441440,
+    "dDurationMs": 875,
+    "segs": [ {
+      "utf8": "A lot of people\nare tied"
+    } ]
+  }, {
+    "tStartMs": 1442315,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "to\nthe craft of,"
+    } ]
+  }, {
+    "tStartMs": 1443483,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "the code that\nthey're writing."
+    } ]
+  }, {
+    "tStartMs": 1444860,
+    "dDurationMs": 542,
+    "segs": [ {
+      "utf8": "But you kind of"
+    } ]
+  }, {
+    "tStartMs": 1445402,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "gotta let go of that\na little bit."
+    } ]
+  }, {
+    "tStartMs": 1446486,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And I think\nas a leader,"
+    } ]
+  }, {
+    "tStartMs": 1448196,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "I think you really"
+    } ]
+  }, {
+    "tStartMs": 1449239,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "need to understand\nthat."
+    } ]
+  }, {
+    "tStartMs": 1450198,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "And the best way"
+    } ]
+  }, {
+    "tStartMs": 1450657,
+    "dDurationMs": 417,
+    "segs": [ {
+      "utf8": "to understand"
+    } ]
+  }, {
+    "tStartMs": 1451074,
+    "dDurationMs": 959,
+    "segs": [ {
+      "utf8": "this is play around\nwith it"
+    } ]
+  }, {
+    "tStartMs": 1452033,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "yourself\nand understand"
+    } ]
+  }, {
+    "tStartMs": 1453118,
+    "dDurationMs": 1585,
+    "segs": [ {
+      "utf8": "how powerful\nthese tools are,"
+    } ]
+  }, {
+    "tStartMs": 1454703,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "but also"
+    } ]
+  }, {
+    "tStartMs": 1455454,
+    "dDurationMs": 1292,
+    "segs": [ {
+      "utf8": "how drastically"
+    } ]
+  }, {
+    "tStartMs": 1456746,
+    "dDurationMs": 1669,
+    "segs": [ {
+      "utf8": "your workflow\nneeds to change."
+    } ]
+  }, {
+    "tStartMs": 1458415,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "And then also\nencouraging people"
+    } ]
+  }, {
+    "tStartMs": 1460125,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "to share\nwritten artifacts."
+    } ]
+  }, {
+    "tStartMs": 1461334,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "I'll say it again."
+    } ]
+  }, {
+    "tStartMs": 1462043,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "It's that's,\nin my opinion,"
+    } ]
+  }, {
+    "tStartMs": 1463420,
+    "dDurationMs": 709,
+    "segs": [ {
+      "utf8": "the most scalable"
+    } ]
+  }, {
+    "tStartMs": 1464129,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "way to distribute\nlearnings at scale."
+    } ]
+  }, {
+    "tStartMs": 1467132,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "It's also a"
+    } ]
+  }, {
+    "tStartMs": 1468383,
+    "dDurationMs": 793,
+    "segs": [ {
+      "utf8": "byproduct of it"
+    } ]
+  }, {
+    "tStartMs": 1469176,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "is you actually end"
+    } ]
+  }, {
+    "tStartMs": 1470010,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "up having artifacts"
+    } ]
+  }, {
+    "tStartMs": 1471261,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "that agents\ncan read."
+    } ]
+  }, {
+    "tStartMs": 1472262,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "So that's\nwhat I would say"
+    } ]
+  }, {
+    "tStartMs": 1474806,
+    "dDurationMs": 1126,
+    "segs": [ {
+      "utf8": "to engineering\nleaders."
+    } ]
+  }, {
+    "tStartMs": 1475932,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "New grads\nare picking this up"
+    } ]
+  }, {
+    "tStartMs": 1478393,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "so quickly\nin a lot of ways."
+    } ]
+  }, {
+    "tStartMs": 1480228,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "My encouragement is,"
+    } ]
+  }, {
+    "tStartMs": 1482439,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "stay curious,"
+    } ]
+  }, {
+    "tStartMs": 1483857,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "play around\nwith the tools."
+    } ]
+  }, {
+    "tStartMs": 1485901,
+    "dDurationMs": 917,
+    "segs": [ {
+      "utf8": "I think a lot of"
+    } ]
+  }, {
+    "tStartMs": 1486818,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "companies\nlike DoorDash,"
+    } ]
+  }, {
+    "tStartMs": 1487861,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "what we are really\nexcited about with"
+    } ]
+  }, {
+    "tStartMs": 1489988,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "the new grad talent"
+    } ]
+  }, {
+    "tStartMs": 1491406,
+    "dDurationMs": 1502,
+    "segs": [ {
+      "utf8": "is people\nwho've grown up"
+    } ]
+  }, {
+    "tStartMs": 1492908,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "with this\nparadigm of working,"
+    } ]
+  }, {
+    "tStartMs": 1494910,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "who can surprise us"
+    } ]
+  }, {
+    "tStartMs": 1496953,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "in terms of ways"
+    } ]
+  }, {
+    "tStartMs": 1497913,
+    "dDurationMs": 750,
+    "segs": [ {
+      "utf8": "that we can leverage"
+    } ]
+  }, {
+    "tStartMs": 1498663,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "technology\nthat we didn't think"
+    } ]
+  }, {
+    "tStartMs": 1500081,
+    "dDurationMs": 1335,
+    "segs": [ {
+      "utf8": "was previously\npossible."
+    } ]
+  }, {
+    "tStartMs": 1501416,
+    "dDurationMs": 1168,
+    "segs": [ {
+      "utf8": "Andy,\nthank you so much."
+    } ]
+  }, {
+    "tStartMs": 1502584,
+    "dDurationMs": 876,
+    "segs": [ {
+      "utf8": "Yeah. Boris, it's"
+    } ]
+  }, {
+    "tStartMs": 1503460,
+    "dDurationMs": 751,
+    "segs": [ {
+      "utf8": "a pleasure to be on\nhere."
+    } ]
+  }, {
+    "tStartMs": 1504211,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "Thanks\nfor having me."
+    } ]
+  } ]
+}

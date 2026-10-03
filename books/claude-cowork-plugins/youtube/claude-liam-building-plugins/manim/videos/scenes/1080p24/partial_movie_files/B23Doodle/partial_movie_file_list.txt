@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-building-plugins/manim/videos/scenes/1080p24/partial_movie_files/B23Doodle/3202278719_2214553981_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-building-plugins/manim/videos/scenes/1080p24/partial_movie_files/B23Doodle/3747917844_1606992627_2099694597.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-building-plugins/manim/videos/scenes/1080p24/partial_movie_files/B23Doodle/3747917844_912946695_2406999091.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-building-plugins/manim/videos/scenes/1080p24/partial_movie_files/B23Doodle/3747917844_3629096517_3933896565.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-building-plugins/manim/videos/scenes/1080p24/partial_movie_files/B23Doodle/3747917844_3560411301_1545202765.mp4'

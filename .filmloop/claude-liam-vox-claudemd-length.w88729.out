@@ -1,0 +1,25 @@
+Cut is 23:49 · sheet is 23:46 — cut is newer than sheet. STALE check passes.
+
+## Done — `vox-claudemd-length` (review slate cut)
+
+**Deliverable:** `vox-claudemd-length-slate.mp4` — 227.6 s, 3840×2160, mean_volume −27.1 dB (well above the −40 dB floor).
+
+**Slot Counter (verbatim):** `Counter({'VIDEO': 8, 'MANIM': 5, 'SLATE': 1})` — 13 of 14 beats rendered real; B05 remains a declared "SCRIPTING GAP" slate (labeled honestly in-frame).
+
+**Fixes applied:**
+- BVDT was `Key finding one/two/three` placeholder — authored a real 3-line verdict from the reel's body, plus spoken recap.
+- BHTF was the `[X] and apply it to your own work` template — authored the four-question CLAUDE.md audit as a real viewer task.
+- B00 greeting `Liam` → `Hola, Liam` (Spanish; not used by adjacent claude-code reels).
+- Every FormBCard (B01/B03/B09) had truncated-narration labels — rewrote each as 1–3-word category nouns with real subs.
+- `scenes_std.py` used `Text(narration[:30])` on every chart (the enterprise-search defect) — rewrote as `scenes.py` (5 Manim scenes) with short category labels and complete-sentence captions.
+- B07 shot had a leftover `ClaudeTitleOutro` mixed with Manim — cleaned to pure Manim.
+- B05's CARD `copy` was the entire 6-sentence narration — shortened to a title (still a slate because no real drawing was authored).
+- B07 x-axis label collided with the caption on first render — fixed the scene, re-rendered, recompiled.
+
+**Gates:** GATE T PASS · GATE V PASS (zero BLOCKER / MAJOR on real beats after B07 rerun) · GATE AUDIO PASS · GATE LANE PASS (only declared slate is B05).
+
+**Lens:** Popper (B05 predicts trim→95 lines restores compliance, and it does) and Hume (B04/B07 name compliance as a probabilistic property of the model, not the world). Two moves present.
+
+**Not done:** B05 is still a declared review slate — a later pass can author a real card without re-running the pipeline.
+
+Full log at `AUDIT.md`, `REBUILD-LOG.md`, and appended to `youtube/FILMLOOP-LOG.md`.

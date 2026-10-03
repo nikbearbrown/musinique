@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>On Version Control — The Saturday Review</title>
+<style>
+  :root{
+    --paper:#faf7f2;
+    --ink:#141414;
+    --muted:#5b5651;
+    --rule:#141414;
+    --accent:#7a1417;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
+  body{font:17px/1.6 "Iowan Old Style","Palatino Linotype",Georgia,serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(122,20,23,.3)}
+  a:hover{border-bottom-color:var(--accent)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+
+  /* Masthead */
+  .masthead{border-bottom:2px solid var(--rule);padding:22px 0 14px;margin-top:22px}
+  .mast-top{display:flex;justify-content:space-between;align-items:baseline;font-family:"Iowan Old Style",Georgia,serif;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .mast-title{
+    font-family:"Bodoni 72","Didot",Georgia,serif;
+    font-weight:900;font-size:82px;letter-spacing:-.02em;
+    text-align:center;line-height:.95;margin:16px 0 6px
+  }
+  .mast-sub{
+    text-align:center;font-style:italic;color:var(--muted);
+    font-size:15px;padding-bottom:14px;border-bottom:1px solid var(--rule)
+  }
+  .mast-rules{
+    display:flex;justify-content:space-between;font-size:12px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    padding:10px 0
+  }
+  .mast-rules ul{list-style:none;padding:0;margin:0;display:flex;gap:22px}
+
+  /* Lead */
+  .lead{padding:36px 0 26px;border-bottom:1px solid var(--rule)}
+  .lead .kicker{
+    font-family:"Iowan Old Style",Georgia,serif;color:var(--accent);
+    letter-spacing:.24em;text-transform:uppercase;font-size:12.5px;font-weight:600
+  }
+  .lead h1{
+    font-family:"Bodoni 72","Didot",Georgia,serif;font-weight:900;
+    font-size:64px;line-height:1.02;letter-spacing:-.015em;margin:12px 0 14px
+  }
+  .lead .deck{
+    font-family:"Iowan Old Style",Georgia,serif;font-style:italic;
+    color:var(--muted);font-size:22px;line-height:1.4;max-width:820px
+  }
+  .lead .byline{
+    margin-top:22px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)
+  }
+
+  /* Body columns */
+  .article{display:grid;grid-template-columns:2fr 1fr;gap:56px;padding:36px 0;border-bottom:1px solid var(--rule)}
+  .body{column-count:2;column-gap:36px;column-rule:1px solid #dcd6cc}
+  .body p{margin:0 0 14px;text-align:justify;hyphens:auto}
+  .body p:first-of-type::first-letter{
+    font-family:"Bodoni 72","Didot",Georgia,serif;
+    font-size:74px;line-height:.85;float:left;padding:6px 10px 0 0;font-weight:900;color:var(--accent)
+  }
+  .body h3{
+    font-family:"Bodoni 72","Didot",Georgia,serif;font-weight:900;
+    font-size:22px;letter-spacing:-.005em;margin:16px 0 8px;break-after:avoid
+  }
+
+  .sidebar{border-left:1px solid var(--rule);padding-left:28px}
+  .sidebar h4{
+    font-family:"Iowan Old Style",Georgia,serif;text-transform:uppercase;
+    letter-spacing:.16em;font-size:12px;color:var(--muted);margin:0 0 10px;font-weight:700
+  }
+  .sidebar .fact{
+    border-top:1px solid #cec7bb;padding:12px 0;display:flex;justify-content:space-between;gap:14px;font-size:15px
+  }
+  .sidebar .fact b{font-weight:700}
+  .sidebar .fact:last-child{border-bottom:1px solid #cec7bb}
+  .sidebar .pull{
+    margin:22px 0;font-family:"Bodoni 72","Didot",Georgia,serif;
+    font-style:italic;font-size:26px;line-height:1.25;color:var(--ink);
+    border-top:2px solid var(--rule);border-bottom:2px solid var(--rule);
+    padding:16px 0
+  }
+  .sidebar .pull cite{display:block;font-family:"Iowan Old Style",Georgia,serif;font-style:normal;font-size:13px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+
+  /* Programme */
+  section.programme{padding:38px 0;border-bottom:1px solid var(--rule)}
+  .sect-label{
+    text-align:center;font-family:"Iowan Old Style",Georgia,serif;
+    letter-spacing:.28em;text-transform:uppercase;font-size:12.5px;color:var(--muted);margin-bottom:8px
+  }
+  .sect-title{
+    font-family:"Bodoni 72","Didot",Georgia,serif;font-weight:900;
+    text-align:center;font-size:44px;letter-spacing:-.01em;margin:0 0 26px
+  }
+  .prog{display:grid;grid-template-columns:120px 1fr 1fr;gap:0;border-top:1px solid var(--rule)}
+  .prog .r{display:contents}
+  .prog .c{padding:16px 18px;border-bottom:1px solid #cec7bb}
+  .prog .t{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent)}
+  .prog .h{font-family:"Bodoni 72","Didot",Georgia,serif;font-weight:900;font-size:19px}
+  .prog .d{color:var(--muted);font-style:italic}
+
+  /* Dispatches */
+  .dispatches{padding:38px 0;border-bottom:1px solid var(--rule)}
+  .dispatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .dispatch{border-top:2px solid var(--rule);padding-top:14px}
+  .dispatch .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .dispatch h3{font-family:"Bodoni 72","Didot",Georgia,serif;font-weight:900;font-size:24px;line-height:1.15;margin:0 0 8px}
+  .dispatch p{margin:0;color:var(--muted)}
+
+  /* Register */
+  .register{padding:44px 0 56px;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;border-bottom:2px solid var(--rule)}
+  .register .kicker{color:var(--accent);letter-spacing:.24em;text-transform:uppercase;font-size:12.5px;font-weight:700}
+  .register h2{font-family:"Bodoni 72","Didot",Georgia,serif;font-size:42px;font-weight:900;letter-spacing:-.01em;margin:8px 0 10px}
+  .register p{color:var(--muted);font-size:17px;max-width:520px}
+  .card{border:1px solid var(--rule);padding:24px}
+  .card label{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+  .card input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--rule);padding:8px 0;font:inherit;color:var(--ink);outline:none}
+  .card input:focus{border-color:var(--accent)}
+  .card button{margin-top:22px;width:100%;background:var(--ink);color:var(--paper);border:none;padding:14px;font-family:"Iowan Old Style",Georgia,serif;letter-spacing:.2em;text-transform:uppercase;font-size:13px;cursor:pointer}
+  .card .rule{border-top:1px solid #cec7bb;margin:16px 0 0}
+  .card .fine{color:var(--muted);font-size:12.5px;margin-top:14px}
+
+  /* Colophon */
+  footer{padding:22px 0 42px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  @media (max-width:900px){
+    .wrap{padding:0 22px}
+    .mast-title{font-size:52px}
+    .lead h1{font-size:44px}
+    .article{grid-template-columns:1fr;gap:28px}
+    .body{column-count:1}
+    .sidebar{border-left:none;padding-left:0;border-top:1px solid var(--rule);padding-top:20px}
+    .dispatch-grid{grid-template-columns:1fr}
+    .register{grid-template-columns:1fr}
+    .prog{grid-template-columns:88px 1fr}
+    .prog .d{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="mast-top">
+      <span>Vol. IV · No. 12</span>
+      <span>Saturday · October 4</span>
+      <span>Two Dollars · Free at the door</span>
+    </div>
+    <h1 class="mast-title">The Saturday Review</h1>
+    <div class="mast-sub">A quarterly of tools, methods &amp; the small crafts of software — Northside Code Co-op</div>
+    <nav class="mast-rules">
+      <ul><li>The Lead</li><li>Programme</li><li>Dispatches</li><li>Register</li></ul>
+      <span>&#x2666; &#x2666; &#x2666;</span>
+    </nav>
+  </header>
+
+  <section class="lead">
+    <div class="kicker">A Workshop · Enrolment Now Open</div>
+    <h1>Learning to keep receipts:<br>an unhurried Saturday with Git.</h1>
+    <p class="deck">In a single, small-room afternoon, twenty-four newcomers will build the mental model that most self-taught programmers assemble by accident over years — and leave with a repository, a workflow, and no more folders named <i>final&nbsp;v2</i>.</p>
+    <div class="byline">Written by the Editors · Illustrated by A. Kim · Printed in Boston</div>
+  </section>
+
+  <article class="article">
+    <div class="body">
+      <p>Every programmer, at some point, has stared at a folder titled <i>project-final-FINAL-use-this-one</i> and understood, dimly, that there must be a better way. There is. It is called version control, and for thirty-odd years the working craft of software has hinged on it.</p>
+      <p>Yet Git — the version-control system that runs the world's code — is famously charmless to learn. Its documentation is terse. Its metaphors leak. Its error messages have the tone of a bureaucrat who has already decided you're wrong. Most people first meet it through panic: an interview, a new job, a class where the professor said <i>just push it to GitHub</i> as if that were a complete sentence.</p>
+
+      <h3>The premise</h3>
+      <p>Our premise on Saturday is simple. In five hours, taught in a small room with real coffee and a real lunch, we can hand a newcomer the model that survives contact with actual work. Not a list of commands to memorise. A picture of what Git believes about your code — snapshots on a graph, branches as movable labels, remotes as other people's copies — and then enough hands-on practice for that picture to become second nature.</p>
+
+      <h3>The rhythm</h3>
+      <p>We alternate short lessons with longer stretches of practice. You will make your first commit before the morning is out, break something before lunch, and recover from it — with a command called <code>reflog</code> that will feel, briefly, like a small miracle. In the afternoon, we move to GitHub, open a pull request against a real repository, and review one another's work.</p>
+
+      <p>The last ninety minutes are yours. Bring the folder you've been meaning to put under version control. A mentor will sit with you. By 3&nbsp;PM, that project has a home on the internet, a README you wrote, and a workflow you can keep using on Monday.</p>
+
+      <h3>Who this is for</h3>
+      <p>If you have opened a terminal at least once and can save a text file, you are ready. Prior programming experience is welcome but not required. If you already know Git and simply want the afternoon lab, tell us on the form — we'll seat you accordingly.</p>
+    </div>
+
+    <aside class="sidebar">
+      <h4>At a Glance</h4>
+      <div class="fact"><span>Date</span><b>Sat, Oct 4</b></div>
+      <div class="fact"><span>Time</span><b>10:00 – 15:00</b></div>
+      <div class="fact"><span>Where</span><b>512 Boylston, Rm 304</b></div>
+      <div class="fact"><span>Format</span><b>In-person + Zoom</b></div>
+      <div class="fact"><span>Cost</span><b>Free · lunch included</b></div>
+      <div class="fact"><span>Seats</span><b>24 · limited by design</b></div>
+      <div class="fact"><span>Prereqs</span><b>A laptop, a curiosity</b></div>
+
+      <div class="pull">
+        "I stopped emailing myself zip files. That's the whole review."
+        <cite>— L. Torres, Spring Cohort</cite>
+      </div>
+
+      <h4>Bring</h4>
+      <div class="fact"><span>Laptop</span><b>Mac, Windows, or Linux</b></div>
+      <div class="fact"><span>Charger</span><b>Outlets are shared</b></div>
+      <div class="fact"><span>A project</span><b>Optional; for the afternoon lab</b></div>
+    </aside>
+  </article>
+
+  <section class="programme">
+    <div class="sect-label">II · Programme of the Day</div>
+    <h2 class="sect-title">Five hours, told plainly.</h2>
+    <div class="prog">
+      <div class="r"><div class="c t">10:00</div><div class="c h">Setup &amp; the case for version control</div><div class="c d">Install check, terminal warmup, a short history of Git and its manners.</div></div>
+      <div class="r"><div class="c t">10:30</div><div class="c h">Your first commit</div><div class="c d"><code>init</code>, <code>add</code>, <code>commit</code> — and what actually happened on disk.</div></div>
+      <div class="r"><div class="c t">11:30</div><div class="c h">Branching without fear</div><div class="c d">Feature branches, clean merges, the ones that go wrong, and the ones that don't.</div></div>
+      <div class="r"><div class="c t">12:30</div><div class="c h">Luncheon</div><div class="c d">Sandwiches, fruit, coffee. An unhurried break with informal Q&amp;A.</div></div>
+      <div class="r"><div class="c t">13:15</div><div class="c h">Remotes, GitHub, pull requests</div><div class="c d">Push, pull, fork; open and review a PR against a real repository.</div></div>
+      <div class="r"><div class="c t">14:15</div><div class="c h">Bring-your-own-project lab</div><div class="c d">Ninety minutes with a mentor and the folder you've been meaning to commit.</div></div>
+      <div class="r"><div class="c t">15:00</div><div class="c h">Cheat sheet &amp; next steps</div><div class="c d">Take-home reference, office hours, community reading list.</div></div>
+    </div>
+  </section>
+
+  <section class="dispatches">
+    <div class="sect-label">III · Dispatches from Prior Cohorts</div>
+    <h2 class="sect-title">Field notes.</h2>
+    <div class="dispatch-grid">
+      <div class="dispatch">
+        <div class="k">The Recovering Hobbyist</div>
+        <h3>"I finally understood what HEAD is."</h3>
+        <p>Three years of Git-by-copy-paste, undone in one Saturday. She now teaches a session at her job.</p>
+      </div>
+      <div class="dispatch">
+        <div class="k">The Career Switcher</div>
+        <h3>"My first pull request, opened at 2:14 PM."</h3>
+        <p>He arrived without ever having pushed a repository. He left with three of them and an interview lined up.</p>
+      </div>
+      <div class="dispatch">
+        <div class="k">The Team Lead</div>
+        <h3>"I sent my whole team the next month."</h3>
+        <p>Turns out most of them had been quietly winging it. The workshop became a small internal ritual.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="register">
+    <div>
+      <div class="kicker">IV · Enrolment</div>
+      <h2>Take a seat.</h2>
+      <p>Twenty-four seats, given away at no cost thanks to our sponsors. A short form. A confirmation the same day. Cancellations release a spot to the waitlist — please tell us early if plans change.</p>
+      <p style="margin-top:14px">Questions may be addressed to the editors at <a href="mailto:hi@northsidecodecoop.org">hi@northsidecodecoop.org</a>.</p>
+    </div>
+    <form class="card" onsubmit="event.preventDefault()">
+      <label>Name in full</label>
+      <input type="text" placeholder="Alexandra Kim">
+      <label>Correspondence</label>
+      <input type="email" placeholder="you@example.com">
+      <label>What brings you to Git?</label>
+      <input type="text" placeholder="Optional — helps us pace the day">
+      <button type="submit">Reserve a seat</button>
+      <div class="rule"></div>
+      <p class="fine">Free of charge. Lunch provided. Recording available to registered attendees within one week.</p>
+    </form>
+  </section>
+
+  <footer>
+    <div>Colophon · Set in Bodoni &amp; Iowan Old Style · Printed at 512 Boylston</div>
+    <div>© MMXXVI · Northside Code Co-op</div>
+  </footer>
+</div>
+</body>
+</html>

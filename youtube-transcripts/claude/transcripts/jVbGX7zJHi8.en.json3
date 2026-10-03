@@ -1,0 +1,223 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 8842,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "“Can AI be trusted?”"
+    } ]
+  }, {
+    "tStartMs": 12262,
+    "dDurationMs": 792,
+    "segs": [ {
+      "utf8": "“Who’s gonna hit the brakes,"
+    } ]
+  }, {
+    "tStartMs": 13054,
+    "dDurationMs": 1794,
+    "segs": [ {
+      "utf8": "if we need to?”"
+    } ]
+  }, {
+    "tStartMs": 14848,
+    "dDurationMs": 1626,
+    "segs": [ {
+      "utf8": "“How do we really ensure that,"
+    } ]
+  }, {
+    "tStartMs": 16474,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "what we’re aiming to achieve,"
+    } ]
+  }, {
+    "tStartMs": 17517,
+    "dDurationMs": 1251,
+    "segs": [ {
+      "utf8": "really does,"
+    } ]
+  }, {
+    "tStartMs": 18768,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "benefit the majority of people?”"
+    } ]
+  }, {
+    "tStartMs": 23148,
+    "dDurationMs": 1167,
+    "segs": [ {
+      "utf8": "“If it ends up taking like"
+    } ]
+  }, {
+    "tStartMs": 24315,
+    "dDurationMs": 1085,
+    "segs": [ {
+      "utf8": "almost all the jobs,"
+    } ]
+  }, {
+    "tStartMs": 25400,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "then what does it mean to work?”"
+    } ]
+  }, {
+    "tStartMs": 29446,
+    "dDurationMs": 1459,
+    "segs": [ {
+      "utf8": "“But wait a minute,"
+    } ]
+  }, {
+    "tStartMs": 30905,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "why do we have to have this stuff?”"
+    } ]
+  }, {
+    "tStartMs": 34367,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "“If a machine can pretend to care,"
+    } ]
+  }, {
+    "tStartMs": 36828,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "better than I can actually care,"
+    } ]
+  }, {
+    "tStartMs": 39414,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "how do we draw the line there?”"
+    } ]
+  }, {
+    "tStartMs": 41958,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "“If we all had a voice in it,"
+    } ]
+  }, {
+    "tStartMs": 42417,
+    "dDurationMs": 1001,
+    "segs": [ {
+      "utf8": "“If we all had a voice in it,"
+    } ]
+  }, {
+    "tStartMs": 43418,
+    "dDurationMs": 459,
+    "segs": [ {
+      "utf8": "“If we all had a voice in it,"
+    } ]
+  }, {
+    "tStartMs": 43877,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "then I feel like it would be better.”"
+    } ]
+  }, {
+    "tStartMs": 46463,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "“Could AI help people"
+    } ]
+  }, {
+    "tStartMs": 48256,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "stop feeling misunderstood?”"
+    } ]
+  }, {
+    "tStartMs": 51468,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "“Could AI help me build"
+    } ]
+  }, {
+    "tStartMs": 53261,
+    "dDurationMs": 3712,
+    "segs": [ {
+      "utf8": "more connections in the community?”"
+    } ]
+  }, {
+    "tStartMs": 57307,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "“Can AI help me be a better,"
+    } ]
+  }, {
+    "tStartMs": 58850,
+    "dDurationMs": 1460,
+    "segs": [ {
+      "utf8": "teacher, better mom?”"
+    } ]
+  }, {
+    "tStartMs": 61394,
+    "dDurationMs": 2169,
+    "segs": [ {
+      "utf8": "“Maybe it’ll cure some great things,"
+    } ]
+  }, {
+    "tStartMs": 63563,
+    "dDurationMs": 1043,
+    "segs": [ {
+      "utf8": "you know?”"
+    } ]
+  }, {
+    "tStartMs": 64606,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "“Things that we're not even"
+    } ]
+  }, {
+    "tStartMs": 66524,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "at the cusp of understanding yet.”"
+    } ]
+  }, {
+    "tStartMs": 68610,
+    "dDurationMs": 2502,
+    "segs": [ {
+      "utf8": "“Will it create a group of people that,"
+    } ]
+  }, {
+    "tStartMs": 71112,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "ask more questions?”"
+    } ]
+  }, {
+    "tStartMs": 73323,
+    "dDurationMs": 834,
+    "segs": [ {
+      "utf8": "“What if we started,"
+    } ]
+  }, {
+    "tStartMs": 74157,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "to be more human again?”"
+    } ]
+  }, {
+    "tStartMs": 76076,
+    "dDurationMs": 1292,
+    "segs": [ {
+      "utf8": "“We don’t want to lose"
+    } ]
+  }, {
+    "tStartMs": 77368,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "the most beautiful parts of life.”"
+    } ]
+  } ]
+}

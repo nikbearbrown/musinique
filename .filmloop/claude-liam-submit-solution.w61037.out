@@ -1,0 +1,26 @@
+**Done.**
+
+---
+
+**claude-liam-submit-solution** — built and logged.
+
+**PHASE 1 AUDIT — all checks:**
+1. Stale renders — PASS (no mp4s existed)
+2. Bookends — PASS (B00/BVDT/BHTF/BOUT all canonical)
+3. Spark lines — PASS (B00 "Hola, Liam" ✓, BHTF "Your turn." ✓)
+4. Verdict — PASS (reel-specific, confirmed by verdict_audit.py)
+5. Card text — FIXED (two §8.9 GATE T blockers repaired; B03 body shortened from 31-word truncated blob to 10 words)
+6. Punt sweep — PASS (all 7 beats: named Remotion components, all confirmed in registry)
+7. Card-only — PASS (skill-teardown format; SkillTeardown* components are visual renders)
+8. Lens audit — PASS (Plato + Popper: artifact/world/relationship named; failure mode stated — "anything outside the spec")
+9. Brand fields — FIXED (modelLabel "Opus 4.8" → "Opus 4.7" in 3 places)
+10. Pacing — PASS (all beats 2.1–3.4 wps)
+11. type_check — FIXED → GATE T PASS
+
+**PHASE 2 BUILD:**
+- Audio: 7/7 beats Kokoro am_onyx, $0.00
+- Renders: 7/7 Remotion scenes rendered
+- Compile: 88.9s, 7/7 VIDEO, GATE AUDIO −23.9 dB PASS
+- Gate V: PASS (one advisory: SkillTeardownPipeline template dual-terracotta, not sheet-fixable)
+- build.status Counter: `{'VIDEO': 7}`
+- mp4 mtime 05:35:39 > sheet mtime 05:35:36 ✓

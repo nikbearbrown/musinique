@@ -1,0 +1,13 @@
+Done. `nbb-vox-epr-gap` rebuilt and shipped as a review slate cut.
+
+**Deliverable:** `vox-epr-gap-slate.mp4` (6.3 MB, 253.4 s, 1280×720, AAC audio at −23.9 dB mean_volume), mtime 8.2 s newer than beat_sheet.json.
+
+**What I did:**
+- Snapshotted `beat_sheet.pre-rebuild.json` byte-exact.
+- Followed the sibling `nbb-vox-abraxane-solvent` playbook: dropped the four empty scaffold bookends, renamed `NBB00/01/02/03` → `B00/BVDT/BHTF/BOUT` (mp3s renamed on disk too), fixed the B00 spark line to `Bonjour, Liam` (French, unused by adjacent nbb siblings), authored a real 3-line BVDT verdict + de-truncated the artifactHeading, dropped Fable-5 model labels (Kokoro reel, not model-branded), added BOUT handle+subline.
+- Rewrote all 14 body FormBCards from the sibling `claude-liam-vox-epr-gap` (same narration) plus B01 authored fresh. Zero unfilled slates.
+- Regenerated bookend audio (July-16 NBB00 mp3 was only 3.9 s — mismatched to the 87-word narration). Generated fresh Kokoro `am_onyx` audio for all 18 beats.
+- Rendered Remotion patterns for every beat via `remotion_scenes.py`.
+- `compile.py --review --height 720`: content-check PASS, frame-check PASS, lane-check PASS, GATE AUDIO PASS. `build.status Counter({'VIDEO': 18})`.
+- Gate V spot-read frames on B00/B08/BVDT — clean, no overflow, one terracotta per frame.
+- Wrote AUDIT.md, REBUILD-LOG.md, appended FILMLOOP-LOG entry. No post-compile sheet edit.

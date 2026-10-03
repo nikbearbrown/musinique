@@ -1,0 +1,50 @@
+package com.anthropic.models.beta.messages
+
+import com.anthropic.core.JsonValue
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaToolUseBlockTest {
+
+    @Test
+    fun create() {
+        val betaToolUseBlock =
+            BetaToolUseBlock.builder()
+                .id("id")
+                .input(JsonValue.from(mapOf<String, Any>()))
+                .name("x")
+                .caller(BetaDirectCaller.builder().build())
+                .toolsetName("toolset_name")
+                .build()
+
+        assertThat(betaToolUseBlock.id()).isEqualTo("id")
+        assertThat(betaToolUseBlock._input()).isEqualTo(JsonValue.from(mapOf<String, Any>()))
+        assertThat(betaToolUseBlock.name()).isEqualTo("x")
+        assertThat(betaToolUseBlock.caller())
+            .contains(BetaToolUseBlock.Caller.ofDirect(BetaDirectCaller.builder().build()))
+        assertThat(betaToolUseBlock.toolsetName()).contains("toolset_name")
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaToolUseBlock =
+            BetaToolUseBlock.builder()
+                .id("id")
+                .input(JsonValue.from(mapOf<String, Any>()))
+                .name("x")
+                .caller(BetaDirectCaller.builder().build())
+                .toolsetName("toolset_name")
+                .build()
+
+        val roundtrippedBetaToolUseBlock =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaToolUseBlock),
+                jacksonTypeRef<BetaToolUseBlock>(),
+            )
+
+        assertThat(roundtrippedBetaToolUseBlock).isEqualTo(betaToolUseBlock)
+    }
+}

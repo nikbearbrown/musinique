@@ -1,0 +1,10 @@
+This reel was fully rebuilt and built by the previous invocation in this session. On-disk state confirms it:
+
+- **Sheet mtime 21:12:23 · cut mtime 21:13:18** — cut newer ✓
+- **claudes-c-compiler.mp4** — 141.4 s, 3840×2160, h264 + aac
+- **Audio** — mean_volume −23.9 dB (well above −40 floor), max −2.9 dB
+- **AUDIT.md** — every Phase 1 check FIXED/PASS/N/A, zero BLOCKED
+- **REBUILD-LOG.md / TYPECHECK.md / FILMLOOP-LOG** — all present, `build.status: {'VIDEO': 8}`, zero slates
+- **Rebuild contract** — `beat_sheet.pre-rebuild.json` present (15,212 B, byte-exact original)
+
+Touching `beat_sheet.json` now would re-stale the cut and disqualify a finished reel. Nothing to do — this reel is done. Stopping.

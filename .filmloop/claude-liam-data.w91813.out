@@ -1,0 +1,18 @@
+You've hit your session limit · resets 8:50am (America/New_York)
+You've hit your session limit · resets 8:50am (America/New_York)
+You've hit your session limit · resets 8:50am (America/New_York)
+You've hit your session limit · resets 8:50am (America/New_York)
+All gates clear. The reel is done:
+
+- **GATE T: PASS** — 36 beats, 0 FAILs (TYPECHECK.md 12:05)
+- **`claude-liam-data-slate.mp4`** mtime 12:02:26 > beat_sheet.json mtime 12:02:08 ✓
+- **AUDIT.md** updated with Invocation 3 complete
+- **FILMLOOP-LOG.md** updated
+
+**What was fixed in this invocation:**
+| Beat | Was | Fix |
+|------|-----|-----|
+| B02 §8.6b | INK box stroke border blob enclosed interior text label → 100% overlap | `stroke_width=0`, light fill |
+| B10 §8.4 | Parallel table headers at same y → 140px inter-column gaps, 80% frac_over | Single-text-per-row + INK rule |
+| B17 §8.4 | Connecting `Line()` objects → 1-2px thin runs, threshold≈1px, 100% frac_over | Removed Line objects + INK rule |
+| B22 §8.4 | EB Garamond baseline serifs dominating peak_row → 70 thin 2.7px runs, 87% frac_over | INK rule `stroke_width=4.0` (1.5 anti-aliases to gray≈115, not detected) |

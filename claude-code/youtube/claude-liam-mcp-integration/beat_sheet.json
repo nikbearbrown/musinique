@@ -1,0 +1,399 @@
+{
+  "metadata": {
+    "title": "Claude, Mcp Integration.",
+    "slug": "claude-liam-mcp-integration",
+    "topic": "MCP INTEGRATION · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code/plugins/plugin-dev/skills/mcp-integration/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "File system access",
+        "Local database connections",
+        "Custom MCP servers",
+        "NPM-packaged MCP servers"
+      ],
+      "constraints": [
+        "Best practice: Document all required environment variables in plugin README",
+        "Restart required for configuration changes",
+        "Document required environment variables in README",
+        "✅ Document required env vars in README",
+        "Pre-allow only necessary MCP tools:",
+        "Check required environment variables",
+        "[ ] Required environment variables documented",
+        "✅ Document required environment variables"
+      ],
+      "referenced_files": [
+        ".mcp.json",
+        "mcp__plugin_<plugin-name>_<server-name>__<tool-name>",
+        "create_task",
+        "mcp__plugin_asana_asana__asana_create_task",
+        "mcp__plugin_...__...",
+        "/mcp",
+        ".claude-plugin/",
+        "claude --debug",
+        "references/server-types.md",
+        "references/authentication.md"
+      ],
+      "code_signals": [
+        "code block: json",
+        "code block: markdown",
+        "code block: bash"
+      ],
+      "sections": [
+        "Overview",
+        "MCP Server Configuration Methods",
+        "Method 1: Dedicated .mcp.json (Recommended)",
+        "Method 2: Inline in plugin.json",
+        "MCP Server Types",
+        "stdio (Local Process)",
+        "SSE (Server-Sent Events)",
+        "HTTP (REST API)",
+        "WebSocket (Real-time)",
+        "Environment Variable Expansion"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T13:41:43",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is MCP Integration. This skill should be used when the user asks to \"add MCP server\", \"integrate MCP\", \"configure MCP in plugin\", \"use .mcp.json\", \"set up Model Context Protocol\", \"connect external service\", mentions \"${CLAUDE_PLUGIN_ROOT} with MCP\", or discusses MCP server types (SSE, stdio, HTTP, WebSocket). Provides comprehensive guidance for integrating Model Context Protocol servers into Claude Code plugins for external tool and service integration.. Its concrete surface area includes File system access; Local database connections; Custom MCP servers. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "MCP INTEGRATION · ANTHROPIC SKILL",
+            "segment": "Claude, Mcp Integration.",
+            "command": "Run the MCP Integration skill.",
+            "runningText": "reading MCP Integration SKILL.md…",
+            "output": [
+              "skill: MCP Integration",
+              "This skill should be used when the user asks to \"add MCP server\", \"integrate…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 41.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is MCP Integration. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at .mcp.json, mcp__plugin_<plugin-name>_<server-name>__<tool-name>, create_task, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "MCP Integration",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "12k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "examples",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "3 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "MCP Integration is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: File system access; Local database connections; Custom MCP servers; NPM-packaged MCP servers. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.21,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Best practice: Document all required environment variables in plugin README. That is the constraint in MCP Integration — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Best practice: Document all required environment variables in plugin README",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.99,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In MCP Integration, supporting material: .mcp.json, mcp__plugin_<plugin-name>_<server-name>__<tool-name>, create_task, mcp__plugin_asana_asana__asana_create_task; implementation signals: code block: json, code block: markdown, code block: bash; sections: Overview, MCP Server Configuration Methods, Method 1: Dedicated .mcp.json (Recommended), Method 2: Inline in plugin.json. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "File system access; Local database connections; Custom MCP servers; .mcp.json; mcp__plugin_<plugin-name>_<server-name>__<tool-name>; create_task; code block: json; code block: markdown",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 30.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "MCP Integration makes Claude execute one task reliably. The SKILL.md is the spec — This skill should be used when the user asks to \"add MCP server\", \"integrate…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Mcp Integration.",
+            "artifactLines": [
+              "Skill: MCP Integration — Claude reads SKILL.md before acting",
+              "This skill should be used when the user asks to \"add MCP server\", \"integrate MCP\"…",
+              "Capabilities: File system access; Local database connections; Custom MCP servers",
+              "Constraint: Best practice: Document all required environment variables in plugin README",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 14.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to this skill should be used when the user asks to \"add mcp server\", \"integrate. Read the MCP Integration skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "MCP INTEGRATION · ANTHROPIC SKILL",
+            "segment": "Claude, Mcp Integration.",
+            "command": "I want to this skill should be used when the user asks to \"add mcp server\". Read the MCP Integration skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.02,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Mcp Integration. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Mcp Integration.",
+            "handle": "@NikBearBrown",
+            "subline": "MCP Integration · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T13:41:43"
+      }
+    }
+  ]
+}

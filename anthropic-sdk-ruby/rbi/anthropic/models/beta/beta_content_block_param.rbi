@@ -1,0 +1,389 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaContentBlockParam = Beta::BetaContentBlockParam
+
+    module Beta
+      module BetaContentBlockParam
+        extend Anthropic::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaTextBlockParam,
+              Anthropic::Beta::BetaImageBlockParam,
+              Anthropic::Beta::BetaRequestDocumentBlock,
+              Anthropic::Beta::BetaSearchResultBlockParam,
+              Anthropic::Beta::BetaThinkingBlockParam,
+              Anthropic::Beta::BetaRedactedThinkingBlockParam,
+              Anthropic::Beta::BetaToolUseBlockParam,
+              Anthropic::Beta::BetaToolResultBlockParam,
+              Anthropic::Beta::BetaServerToolUseBlockParam,
+              Anthropic::Beta::BetaWebSearchToolResultBlockParam,
+              Anthropic::Beta::BetaWebFetchToolResultBlockParam,
+              Anthropic::Beta::BetaAdvisorToolResultBlockParam,
+              Anthropic::Beta::BetaCodeExecutionToolResultBlockParam,
+              Anthropic::Beta::BetaBashCodeExecutionToolResultBlockParam,
+              Anthropic::Beta::BetaTextEditorCodeExecutionToolResultBlockParam,
+              Anthropic::Beta::BetaToolSearchToolResultBlockParam,
+              Anthropic::Beta::BetaMCPToolUseBlockParam,
+              Anthropic::Beta::BetaRequestMCPToolResultBlockParam,
+              Anthropic::Beta::BetaContainerUploadBlockParam,
+              Anthropic::Beta::BetaCompactionBlockParam,
+              Anthropic::Beta::BetaRequestToolAdditionBlock,
+              Anthropic::Beta::BetaRequestToolRemovalBlock,
+              Anthropic::Beta::BetaMCPToolListingBlockParam,
+              Anthropic::Beta::BetaFallbackBlockParam
+            )
+          end
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Anthropic::Beta::BetaContentBlockParam::Type)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          TEXT =
+            T.let(
+              :text,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          IMAGE =
+            T.let(
+              :image,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          DOCUMENT =
+            T.let(
+              :document,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          SEARCH_RESULT =
+            T.let(
+              :search_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          THINKING =
+            T.let(
+              :thinking,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          REDACTED_THINKING =
+            T.let(
+              :redacted_thinking,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          TOOL_USE =
+            T.let(
+              :tool_use,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          TOOL_RESULT =
+            T.let(
+              :tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          SERVER_TOOL_USE =
+            T.let(
+              :server_tool_use,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          WEB_SEARCH_TOOL_RESULT =
+            T.let(
+              :web_search_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          WEB_FETCH_TOOL_RESULT =
+            T.let(
+              :web_fetch_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          ADVISOR_TOOL_RESULT =
+            T.let(
+              :advisor_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          CODE_EXECUTION_TOOL_RESULT =
+            T.let(
+              :code_execution_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          BASH_CODE_EXECUTION_TOOL_RESULT =
+            T.let(
+              :bash_code_execution_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT =
+            T.let(
+              :text_editor_code_execution_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          TOOL_SEARCH_TOOL_RESULT =
+            T.let(
+              :tool_search_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          MCP_TOOL_USE =
+            T.let(
+              :mcp_tool_use,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          MCP_TOOL_RESULT =
+            T.let(
+              :mcp_tool_result,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          CONTAINER_UPLOAD =
+            T.let(
+              :container_upload,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          COMPACTION =
+            T.let(
+              :compaction,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          TOOL_ADDITION =
+            T.let(
+              :tool_addition,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          TOOL_REMOVAL =
+            T.let(
+              :tool_removal,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          MCP_TOOL_LISTING =
+            T.let(
+              :mcp_tool_listing,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+          FALLBACK =
+            T.let(
+              :fallback,
+              Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaContentBlockParam::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        sig do
+          override.returns(
+            T::Array[Anthropic::Beta::BetaContentBlockParam::Variants]
+          )
+        end
+        def self.variants
+        end
+
+        # Creates a new instance of the variant class whose `type` matches the given
+        # value, passing the remaining arguments to its constructor.
+        sig do
+          params(
+            type: Anthropic::Beta::BetaContentBlockParam::Type::OrSymbol,
+            text: String,
+            cache_control:
+              T.nilable(Anthropic::Beta::BetaCacheControlEphemeral::OrHash),
+            citations:
+              T.any(
+                T.nilable(
+                  T::Array[
+                    T.any(
+                      Anthropic::Beta::BetaCitationCharLocationParam::OrHash,
+                      Anthropic::Beta::BetaCitationPageLocationParam::OrHash,
+                      Anthropic::Beta::BetaCitationContentBlockLocationParam::OrHash,
+                      Anthropic::Beta::BetaCitationWebSearchResultLocationParam::OrHash,
+                      Anthropic::Beta::BetaCitationSearchResultLocationParam::OrHash
+                    )
+                  ]
+                ),
+                T.nilable(Anthropic::Beta::BetaCitationsConfigParam::OrHash),
+                Anthropic::Beta::BetaCitationsConfigParam::OrHash
+              ),
+            source:
+              T.any(
+                T.any(
+                  Anthropic::Beta::BetaBase64ImageSource::OrHash,
+                  Anthropic::Beta::BetaURLImageSource::OrHash,
+                  Anthropic::Beta::BetaFileImageSource::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaBase64PDFSource::OrHash,
+                  Anthropic::Beta::BetaPlainTextSource::OrHash,
+                  Anthropic::Beta::BetaContentBlockSource::OrHash,
+                  Anthropic::Beta::BetaURLPDFSource::OrHash,
+                  Anthropic::Beta::BetaFileDocumentSource::OrHash
+                ),
+                String
+              ),
+            transformations:
+              T.nilable(Anthropic::Beta::BetaImageTransformationsParam::OrHash),
+            context: T.nilable(String),
+            title: T.any(T.nilable(String), String),
+            content:
+              T.any(
+                T::Array[Anthropic::Beta::BetaTextBlockParam::OrHash],
+                Anthropic::Beta::BetaToolResultBlockParam::Content::Variants,
+                T.any(
+                  Anthropic::Beta::BetaWebSearchToolRequestError::OrHash,
+                  T::Array[
+                    Anthropic::Beta::BetaWebSearchResultBlockParam::OrHash
+                  ]
+                ),
+                T.any(
+                  Anthropic::Beta::BetaWebFetchToolResultErrorBlockParam::OrHash,
+                  Anthropic::Beta::BetaWebFetchBlockParam::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaAdvisorToolResultErrorParam::OrHash,
+                  Anthropic::Beta::BetaAdvisorResultBlockParam::OrHash,
+                  Anthropic::Beta::BetaAdvisorRedactedResultBlockParam::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaCodeExecutionToolResultErrorParam::OrHash,
+                  Anthropic::Beta::BetaCodeExecutionResultBlockParam::OrHash,
+                  Anthropic::Beta::BetaEncryptedCodeExecutionResultBlockParam::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaBashCodeExecutionToolResultErrorParam::OrHash,
+                  Anthropic::Beta::BetaBashCodeExecutionResultBlockParam::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaTextEditorCodeExecutionToolResultErrorParam::OrHash,
+                  Anthropic::Beta::BetaTextEditorCodeExecutionViewResultBlockParam::OrHash,
+                  Anthropic::Beta::BetaTextEditorCodeExecutionCreateResultBlockParam::OrHash,
+                  Anthropic::Beta::BetaTextEditorCodeExecutionStrReplaceResultBlockParam::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaToolSearchToolResultErrorParam::OrHash,
+                  Anthropic::Beta::BetaToolSearchToolSearchResultBlockParam::OrHash
+                ),
+                Anthropic::Beta::BetaRequestMCPToolResultBlockParam::Content::Variants,
+                T.nilable(String)
+              ),
+            signature: T.any(String, T.nilable(String)),
+            thinking: String,
+            data: String,
+            id: String,
+            input: T::Hash[Symbol, T.anything],
+            name:
+              T.any(
+                String,
+                Anthropic::Beta::BetaServerToolUseBlockParam::Name::OrSymbol
+              ),
+            caller_:
+              T.any(
+                Anthropic::Beta::BetaDirectCaller::OrHash,
+                Anthropic::Beta::BetaServerToolCaller::OrHash,
+                Anthropic::Beta::BetaServerToolCaller20260120::OrHash
+              ),
+            toolset_name: T.nilable(String),
+            tool_use_id: String,
+            is_error: T::Boolean,
+            server_name: String,
+            file_id: String,
+            encrypted_content: T.nilable(String),
+            tool_changes:
+              T.nilable(
+                T::Array[
+                  T.any(
+                    Anthropic::Beta::BetaRequestToolAdditionBlock::OrHash,
+                    Anthropic::Beta::BetaRequestToolRemovalBlock::OrHash
+                  )
+                ]
+              ),
+            tool:
+              T.any(
+                T.any(
+                  Anthropic::Beta::BetaToolChangeToolReference::OrHash,
+                  Anthropic::Beta::BetaToolChangeMCPToolReference::OrHash,
+                  Anthropic::Beta::BetaToolChangeMCPToolsetReference::OrHash,
+                  Anthropic::Beta::BetaToolChangeToolDefinitionParam::OrHash
+                ),
+                T.any(
+                  Anthropic::Beta::BetaToolChangeToolReference::OrHash,
+                  Anthropic::Beta::BetaToolChangeMCPToolReference::OrHash,
+                  Anthropic::Beta::BetaToolChangeMCPToolsetReference::OrHash
+                )
+              ),
+            mcp_server_name: String,
+            tools: T::Array[Anthropic::Beta::BetaMCPToolParam::OrHash],
+            from: Anthropic::Beta::BetaFallbackInfoParam::OrHash,
+            to: Anthropic::Beta::BetaFallbackInfoParam::OrHash,
+            trigger: T.anything
+          ).returns(Anthropic::Beta::BetaContentBlockParam::Variants)
+        end
+        def self.new(
+          type:,
+          text: nil,
+          # Create a cache control breakpoint at this content block.
+          cache_control: nil,
+          citations: nil,
+          source: nil,
+          # Configures the transformations the server applies to this image before the model
+          # observes it. Each key names a condition the server transforms images for; its
+          # value selects the transformation applied. Omitted keys keep their default
+          # behavior, and an empty object is equivalent to omitting the field.
+          transformations: nil,
+          context: nil,
+          title: nil,
+          # Summary of previously compacted content, or null if compaction failed
+          content: nil,
+          # The `signature` value of this thinking block, exactly as returned by the API in
+          # a previous response. Used to verify that the block was generated by Claude.
+          #
+          # Thinking blocks must be passed back unmodified and in their original order; a
+          # modified block results in a 400 `invalid_request_error`.
+          signature: nil,
+          # The `thinking` text of this block as returned by the API.
+          thinking: nil,
+          # The `data` value of this redacted thinking block, exactly as returned by the API
+          # in a previous response. Opaque and encrypted; pass it back unchanged.
+          data: nil,
+          id: nil,
+          input: nil,
+          name: nil,
+          caller_: nil,
+          # For a toolset member tool_use, the toolset family this member belongs to.
+          toolset_name: nil,
+          tool_use_id: nil,
+          is_error: nil,
+          # The name of the MCP server
+          server_name: nil,
+          file_id: nil,
+          # Opaque metadata from prior compaction, to be round-tripped verbatim
+          encrypted_content: nil,
+          # The tool changes of the compacted range, as the server returned them on this
+          # block: the `tool_addition` and `tool_removal` entries that take the request's
+          # `tools` to the tool set in effect at the end of the range. Send them back
+          # unchanged with the block.
+          tool_changes: nil,
+          tool: nil,
+          # The name of the MCP server this listing came from, as `mcp_servers` declares it.
+          mcp_server_name: nil,
+          # The server's tools, exactly as the response listed them.
+          tools: nil,
+          # Identifies one hop of a fallback transition.
+          from: nil,
+          # Identifies one hop of a fallback transition.
+          to: nil,
+          # The response block's `trigger`, echoed verbatim. Accepted and ignored by the
+          # server; any object or `null` is allowed.
+          trigger: nil
+        )
+        end
+      end
+    end
+  end
+end

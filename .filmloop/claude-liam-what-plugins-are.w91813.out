@@ -1,0 +1,24 @@
+mtime constraint confirmed — slate (00:26) is newer than sheet (00:25). 
+
+Gate V is complete. Here is the full close-out report for this invocation:
+
+---
+
+**FILMLOOP — claude-liam-what-plugins-are — DONE**
+
+**Build.status Counter (verbatim):** `Counter({'VIDEO': 21, 'MANIM': 9})`  
+**Beats:** 30/30 filled — 0 SLATE  
+**Duration:** 292.0s — GATE AUDIO PASS (-25.8 dB)  
+**mtime:** slate 00:26 > sheet 00:25 ✓
+
+**Checks fixed:**
+- §8.12 B06: prose-only slash commands → `target=acme.com` variable assignment
+- §8.12b B06: title "Cowork" (no extension) → "cowork-commands.sh"
+- Check 3 B17: spark_line "Two or three. Start focused." (5 words) → "Two or three."
+- Check 4 BVDT: placeholder verdict → authored 4 artifactLines + narration
+- Check 5b: all 7 scenes_std.py Manim scenes had narration fragments as labels → replaced with 1–3 word category nouns; ACT labels → double-space
+- Check 9 BHTF: folderLabel "@claude-liam" → "@NikBearBrown"
+
+**Gate V:** PASS — zero blockers, zero majors. Advisories: B12 two-flag terracotta (animation-integral), B07/B14 pipeline connectors (pattern-intrinsic), H01 pacing 3.86 wps (previously logged Check 10).
+
+**Logged:** FILMLOOP-LOG.md appended, AUDIT.md Phase 2 + Gate V sections written.

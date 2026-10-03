@@ -1,0 +1,73 @@
+module Anthropic
+  module Models
+    class BetaCloudConfig = Beta::BetaCloudConfig
+
+    module Beta
+      type beta_cloud_config =
+        {
+          networking: Anthropic::Models::Beta::BetaCloudConfig::networking,
+          packages: Anthropic::Beta::BetaPackages,
+          type: :cloud
+        }
+
+      class BetaCloudConfig < Anthropic::Internal::Type::BaseModel
+        attr_accessor networking: Anthropic::Models::Beta::BetaCloudConfig::networking
+
+        attr_accessor packages: Anthropic::Beta::BetaPackages
+
+        attr_accessor type: :cloud
+
+        def initialize: (
+          networking: Anthropic::Models::Beta::BetaCloudConfig::networking,
+          packages: Anthropic::Beta::BetaPackages,
+          ?type: :cloud
+        ) -> void
+
+        def to_hash: -> {
+          networking: Anthropic::Models::Beta::BetaCloudConfig::networking,
+          packages: Anthropic::Beta::BetaPackages,
+          type: :cloud
+        }
+
+        type networking =
+          Anthropic::Beta::BetaUnrestrictedNetwork
+          | Anthropic::Beta::BetaLimitedNetwork
+
+        module Networking
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :unrestricted | :limited
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            UNRESTRICTED: :unrestricted
+            LIMITED: :limited
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaCloudConfig::Networking::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaCloudConfig::networking]
+
+          def self.new:
+            (
+              type: :unrestricted | "unrestricted"
+            ) -> Anthropic::Beta::BetaUnrestrictedNetwork
+            | (
+              type: :limited | "limited",
+              allow_mcp_servers: bool,
+              allow_package_managers: bool,
+              allowed_hosts: ::Array[String]
+            ) -> Anthropic::Beta::BetaLimitedNetwork
+            | (
+              type: Anthropic::Models::Beta::BetaCloudConfig::Networking::type_
+              | String,
+              ?allow_mcp_servers: bool,
+              ?allow_package_managers: bool,
+              ?allowed_hosts: ::Array[String]
+            ) -> Anthropic::Models::Beta::BetaCloudConfig::networking
+        end
+      end
+    end
+  end
+end

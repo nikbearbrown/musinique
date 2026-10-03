@@ -1,0 +1,54 @@
+module Anthropic
+  module Models
+    module BetaThinkingConfigParam = Beta::BetaThinkingConfigParam
+
+    module Beta
+      type beta_thinking_config_param =
+        Anthropic::Beta::BetaThinkingConfigEnabled
+        | Anthropic::Beta::BetaThinkingConfigDisabled
+        | Anthropic::Beta::BetaThinkingConfigAdaptive
+
+      module BetaThinkingConfigParam
+        extend Anthropic::Internal::Type::Union
+
+        type type_ = :enabled | :disabled | :adaptive
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          ENABLED: :enabled
+          DISABLED: :disabled
+          ADAPTIVE: :adaptive
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaThinkingConfigParam::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_thinking_config_param]
+
+        def self.new:
+          (
+            type: :enabled | "enabled",
+            budget_tokens: Integer,
+            ?block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+            ?display_: Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_?
+          ) -> Anthropic::Beta::BetaThinkingConfigEnabled
+          | (
+            type: :disabled | "disabled"
+          ) -> Anthropic::Beta::BetaThinkingConfigDisabled
+          | (
+            type: :adaptive | "adaptive",
+            ?block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+            ?display_: Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_?
+          ) -> Anthropic::Beta::BetaThinkingConfigAdaptive
+          | (
+            type: Anthropic::Models::Beta::BetaThinkingConfigParam::type_
+            | String,
+            ?budget_tokens: Integer,
+            ?block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+            ?display_: Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_?
+            | Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_?
+          ) -> Anthropic::Models::Beta::beta_thinking_config_param
+      end
+    end
+  end
+end

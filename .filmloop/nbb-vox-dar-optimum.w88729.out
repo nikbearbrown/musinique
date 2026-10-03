@@ -1,0 +1,21 @@
+Reel done. `beat_sheet.json` mtime 21:24:18 · `vox-dar-optimum-slate.mp4` mtime 21:24:44 (mp4 is 26 s newer — passes DONE check).
+
+## Summary
+
+**Reel:** `cancer-nanomedicine/youtube/nbb-vox-dar-optimum`
+**Output:** `vox-dar-optimum-slate.mp4` — 221.6 s, 16/16 slots VIDEO, `mean_volume -24.0 dB`.
+
+**What I fixed:**
+- **Bookend duplication.** Sheet had BOTH empty `B00/BVDT/BHTF/BOUT` scaffolds AND populated `NBB00-03` with real audio. Consolidated: renamed the NBB* beats + their mp3 files to the canonical bookend IDs; deleted the empty scaffolds.
+- **B00 spark line** → `"Namaste, Liam"` (avoided sibling reel's "Szia").
+- **BVDT verdict** — was 3/3 placeholder ("Key finding one/two/three"). Authored real 3-line verdict from B06/B07/B11/B12 numbers; heading `"DAR is an optimum, not a maximum."` `verdict_audit.py` now clean.
+- **BHTF Your Turn** — replaced boilerplate "[title] apply to your studies" with a specific ADC-picking task (T-DXd / sacituzumab govitecan / T-DM1, logP lookup, predict-then-verify against clinical PK).
+- **BOUT outro** — added missing `handle`, emptied a mid-word-truncated `subline`.
+- **B01 dead FormBCard** with placeholder items stripped (beat renders from `source_clip`).
+- Dropped stale `modelLabel: "Fable 5"` datable claim.
+
+**Narration:** LOCKED. Zero `narration_text` edits.
+
+**Gates:** `bookend_check` PASS · `type_check` PASS · `verdict_audit` clean · content/frame/lane-check PASS 16/16 · GATE AUDIO PASS.
+
+**Not done:** No final `-cut.mp4` (out of scope). No TOPOST / publish touch.

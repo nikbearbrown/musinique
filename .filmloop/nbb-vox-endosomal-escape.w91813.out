@@ -1,0 +1,11 @@
+Done. `nbb-vox-endosomal-escape` shipped as a review slate cut.
+
+**Deliverable:** `vox-endosomal-escape-slate.mp4` (238.96 s, 1280×720p24, 5.0 MB, mp4 mtime 02:44 > sheet mtime 02:43 ✓)
+
+**Structural migration:** the July-16 5-beat body-lock wrap couldn't be rebuilt (source `body-locked.mp4` no longer exists — source reel was rebuilt into a 171 s review slate on 2026-08-27). Migrated to the canonical 15-beat bookend layout used by peer `nbb-vox-bystander-effect`. All four LOCKED wrapper narrations preserved verbatim (`B_LIAM→B00`, `B_VERDICT→BVDT` incl. 4 authored artifact lines, `B_YOUR_TURN→BHTF`, `B_OUTRO→BOUT`). Body B01–B11 narrations copied verbatim from source `vox-endosomal-escape/beat_sheet.json`, each rendered as a FormACard with a compressed non-recite label. Placeholder `Key finding one/two/three` scaffold dropped.
+
+**Gates:** CONTENT / FRAME / LANE / T / AUDIO all PASS. Gate V PASS on sampled frames (B00 Vanakkam composer, body FormACards, BVDT paginated verdict, BHTF Your-turn, BOUT title outro + mascot) — no overflow, no mid-word truncation, one terracotta accent per beat.
+
+**build.status Counter (verbatim):** `Counter({'VIDEO': 15})` — 15/15 filled, 0 slates, 0 punts.
+
+**Downgrade:** none. Motion histogram `drawon:11 hold:4` (73 % drawon) — expected for card-only body; not a defect. Log block appended to `youtube/FILMLOOP-LOG.md`.

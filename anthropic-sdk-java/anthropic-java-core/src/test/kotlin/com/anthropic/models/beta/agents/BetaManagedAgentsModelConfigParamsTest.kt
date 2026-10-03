@@ -1,0 +1,53 @@
+package com.anthropic.models.beta.agents
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaManagedAgentsModelConfigParamsTest {
+
+    @Test
+    fun create() {
+        val betaManagedAgentsModelConfigParams =
+            BetaManagedAgentsModelConfigParams.builder()
+                .id(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+                .effort(BetaManagedAgentsModelConfigParams.Effort.BetaManagedAgentsEffortLevel.LOW)
+                .inferenceGeo("inference_geo")
+                .speed(BetaManagedAgentsModelConfigParams.Speed.STANDARD)
+                .build()
+
+        assertThat(betaManagedAgentsModelConfigParams.id())
+            .isEqualTo(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+        assertThat(betaManagedAgentsModelConfigParams.effort())
+            .contains(
+                BetaManagedAgentsModelConfigParams.Effort.ofBetaManagedAgentsEffortLevel(
+                    BetaManagedAgentsModelConfigParams.Effort.BetaManagedAgentsEffortLevel.LOW
+                )
+            )
+        assertThat(betaManagedAgentsModelConfigParams.inferenceGeo()).contains("inference_geo")
+        assertThat(betaManagedAgentsModelConfigParams.speed())
+            .contains(BetaManagedAgentsModelConfigParams.Speed.STANDARD)
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsModelConfigParams =
+            BetaManagedAgentsModelConfigParams.builder()
+                .id(BetaManagedAgentsModel.CLAUDE_OPUS_5)
+                .effort(BetaManagedAgentsModelConfigParams.Effort.BetaManagedAgentsEffortLevel.LOW)
+                .inferenceGeo("inference_geo")
+                .speed(BetaManagedAgentsModelConfigParams.Speed.STANDARD)
+                .build()
+
+        val roundtrippedBetaManagedAgentsModelConfigParams =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsModelConfigParams),
+                jacksonTypeRef<BetaManagedAgentsModelConfigParams>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsModelConfigParams)
+            .isEqualTo(betaManagedAgentsModelConfigParams)
+    }
+}

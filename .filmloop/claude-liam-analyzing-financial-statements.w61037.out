@@ -1,0 +1,24 @@
+mp4 (mtime 1787716435) is 4 seconds newer than beat_sheet.json (mtime 1787716431). Done.
+
+---
+
+**FILMLOOP REPORT — claude-liam-analyzing-financial-statements**
+
+**Checks fixed (7):**
+1. §8.9 BVDT/artifactLines[1] truncated ("…for i") → completed phrase
+2. B03 narration truncated ("…for investment .") → "…for investment analysis."
+3. BVDT narration coherence (incoherent truncated sentence) → rewritten to discuss artifact behavior; §8.10 advisory resolved
+4. BHTF narration + command: broken sentence ("I want to this skill calculates…") → coherent pasteable prompt
+5. B00 output array line truncated ("from financial statement ") → "from financial statement data"
+6. B03 body prop: 15 words (§8.5 FAIL) → shortened to 9 words
+7. BOUT subline removed (OUTRO LAW: no subline on claude-liam/@NikBearBrown)
+
+**Punts authored:** 0 — all 7 beats were real registered Remotion components, zero slates in final cut.
+
+**Verdict:** PASS (reel-specific, verdict_audit confirmed).
+
+**Cut:** `claude-liam-analyzing-financial-statements-slate.mp4` · 89.9s · GATE AUDIO −24.0 dB · mp4 mtime > sheet mtime ✓
+
+**Gate V:** PASS — 0 blockers, 0 majors. Advisory: SkillTeardown templates cluster content in upper frame (template-level design, not actionable at props level).
+
+**build.status:** VIDEO:7 · SLATE:0

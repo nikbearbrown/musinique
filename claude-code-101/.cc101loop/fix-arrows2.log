@@ -1,0 +1,292 @@
+anthropics/claude-code-101/01-context-and-memory/cc-claude-md ['B00']
+[run] nothing to render — recompiling only
+[run] GATE F — factcheck content
+[factcheck] clean — every row resolved, every claim-bearing beat covered
+[factcheck] rows=23 beats_covered=14 claim_bearing_beats=0 uncovered=0
+[run] GATE L — beat-mix lint (GATE S: warn)
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[beat-lint] beats=15 cards=0 motion_claims=0 gate_s=warn over_runtime=0 needs_staging=0
+[run] GATE BANNED-CARD — design-vocabulary card check
+[banned-card] PASS — cc-claude-md
+[run] GATE G — diagram layout (dagre)
+[layout] no shot.diagram beats in this reel — nothing to do.
+[remotion] lock held by: run.sh pid=25910 — taking over (parent run.sh context)
+[remotion] B00: ok: CCSession -> media/B00.mp4 (extended to 17.6s)
+[remotion] BIDEA: filled already (skip)
+[remotion] BDEFS: filled already (skip)
+[remotion] B01: filled already (skip)
+[remotion] B02: filled already (skip)
+[remotion] B03: filled already (skip)
+[remotion] B04: filled already (skip)
+[remotion] B05: filled already (skip)
+[remotion] B06: filled already (skip)
+[remotion] B07: filled already (skip)
+[remotion] B08: filled already (skip)
+[remotion] B09: filled already (skip)
+[remotion] BVDT: filled already (skip)
+[remotion] BHTF: filled already (skip)
+[remotion] BOUT: filled already (skip)
+[remotion] stamped provenance in beat_sheet.json + updated consumers.json
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-claude-md  beats=15
+[content-check] PASS — 15 beats checked, no violations.
+[frame-check] cc-claude-md  canvas=3840×2160  beats=15
+[frame-check] PASS — 15 beats checked, no violations.
+[art] compiled B00  VIDEO    17.6s  ← B00.mp4
+[lane-check] cc-claude-md  cut=review  known_slates=[]
+[lane-check] PASS — 15 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (15/15 filled)
+[art] motion histogram: type:8  drawon:5  hold:2
+[art] WARNING: 'type' carries 8/15 beats (53%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] QC contact sheet → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/qc-sheet.png
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/cc-claude-md-slate.mp4  (298.9s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 15/15 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-claude-md  beats=15
+[content-check] PASS — 15 beats checked, no violations.
+[frame-check] cc-claude-md  canvas=3840×2160  beats=15
+[frame-check] PASS — 15 beats checked, no violations.
+[lane-check] cc-claude-md  cut=master  known_slates=[]
+[lane-check] PASS — 15 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (15/15 filled)
+[art] motion histogram: type:8  drawon:5  hold:2
+[art] WARNING: 'type' carries 8/15 beats (53%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/cc-claude-md.mp4  (298.9s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 15/15 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=30 BLOCKER=0 STRUCTURAL=0 COSMETIC=0 → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/_qc/REPORT.md
+[run] GATE T — type-lock (typography assertions)
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/TYPECHECK.md
+[typecheck] §8.10 [BVDT] narration recites the card (0.88) — discuss it, don't read it
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: SKIP
+[typecheck] §8.10 B06: SKIP
+[typecheck] §8.10 B07: SKIP
+[typecheck] §8.10 B08: SKIP
+[typecheck] §8.10 B09: SKIP
+[typecheck] §8.10 BVDT: 0.88  ← ADVISORY
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[run] GATE SHARPNESS — per-beat sharpness audit
+[sharpness] GATE SHARPNESS PASS — 15 beats, median LV=653.8
+[run] GATE BOOKEND — four-bookend structure check
+[bookend] PASS — four bookends correct for cc-claude-md
+[run] GATE AUDIO — checking compiled reel for silence
+[run] GATE AUDIO: PASS (mean_volume -23.7 dB)
+[run] GATE MASTER — compiled master assertions
+[master] PASS  3840×2160  24fps  yuv420p  h264  298.9s
+[run] GATE LOUDNESS — audio loudness + per-beat silence
+[loud] checking 15 beats for per-beat silence …
+[loud] PASS  -24.16 LUFS  tp=-2.58 dBTP
+[run] done → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md  (QC gates: on)
+[run] this was the FULL machine pass: motion graphics + outro done;
+[run] any remaining slates are YOUR slots — see /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/SHOTLIST.md
+
+[run] ── gate roster ─────────────────────────────────────────────────
+  GATE-F                   RAN-PASS
+  GATE-L                   RAN-PASS
+  GATE-BANNED-CARD         RAN-PASS
+  GATE-SWEEP-WARN          RAN-PASS
+  GATE-P                   NOT-RUN
+  GATE-A                   SKIPPED-no-pending-scenes
+  GATE-W                   SKIPPED-no-pending-scenes
+  GATE-B                   SKIPPED-no-pending-scenes
+  GATE-G                   RAN-PASS
+  GATE-V                   RAN-PASS
+  GATE-T                   RAN-PASS
+  GATE-SHARPNESS           RAN-PASS
+  GATE-BOOKEND             RAN-PASS
+  GATE-AUDIO               RAN-PASS
+  GATE-MASTER              RAN-PASS
+  GATE-LOUDNESS            RAN-PASS
+  GATE-RECEIPTS            RAN-PASS
+[run] ─────────────────────────────────────────────────────────────────
+=== RUN DONE cc-claude-md ===
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/TYPECHECK.md
+[typecheck] §8.10 [BVDT] narration recites the card (0.88) — discuss it, don't read it
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: SKIP
+[typecheck] §8.10 B06: SKIP
+[typecheck] §8.10 B07: SKIP
+[typecheck] §8.10 B08: SKIP
+[typecheck] §8.10 B09: SKIP
+[typecheck] §8.10 BVDT: 0.88  ← ADVISORY
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-claude-md  beats=15
+[content-check] PASS — 15 beats checked, no violations.
+[frame-check] cc-claude-md  canvas=3840×2160  beats=15
+[frame-check] PASS — 15 beats checked, no violations.
+[lane-check] cc-claude-md  cut=master  known_slates=[]
+[lane-check] PASS — 15 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (15/15 filled)
+[art] motion histogram: type:8  drawon:5  hold:2
+[art] WARNING: 'type' carries 8/15 beats (53%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md/cc-claude-md.mp4  (298.9s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 15/15 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+=== FINAL DONE cc-claude-md ===
+anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length ['B00']
+[run] nothing to render — recompiling only
+[run] GATE F — factcheck content
+[factcheck] clean — every row resolved, every claim-bearing beat covered
+[factcheck] rows=17 beats_covered=11 claim_bearing_beats=7 uncovered=0
+[run] GATE L — beat-mix lint (GATE S: warn)
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[beat-lint] beats=13 cards=0 motion_claims=0 gate_s=warn over_runtime=0 needs_staging=0
+[run] GATE BANNED-CARD — design-vocabulary card check
+  ⚠ BA-5 advisory — B01: text ends with truncation marker: "Every function that writes grades.json must call …"
+[banned-card] ADVISORY — 1 advisory(s) in cc-claude-md-length
+[run] GATE G — diagram layout (dagre)
+[layout] no shot.diagram beats in this reel — nothing to do.
+[remotion] lock held by: run.sh pid=28173 — taking over (parent run.sh context)
+[remotion] B00: ok: CCSession -> media/B00.mp4 (extended to 20.6s)
+[remotion] BIDEA: filled already (skip)
+[remotion] BDEFS: filled already (skip)
+[remotion] B01: filled already (skip)
+[remotion] B02: filled already (skip)
+[remotion] B03: filled already (skip)
+[remotion] B04: filled already (skip)
+[remotion] B05: filled already (skip)
+[remotion] B06: filled already (skip)
+[remotion] B07: filled already (skip)
+[remotion] BVDT: filled already (skip)
+[remotion] BHTF: filled already (skip)
+[remotion] BOUT: filled already (skip)
+[remotion] stamped provenance in beat_sheet.json + updated consumers.json
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-claude-md-length  beats=13
+[content-check] PASS — 13 beats checked, no violations.
+[frame-check] cc-claude-md-length  canvas=3840×2160  beats=13
+[frame-check] PASS — 13 beats checked, no violations.
+[art] compiled B00  VIDEO    20.6s  ← B00.mp4
+[lane-check] cc-claude-md-length  cut=review  known_slates=[]
+[lane-check] PASS — 13 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (13/13 filled)
+[art] motion histogram: drawon:6  type:5  hold:2
+[art] WARNING: 'drawon' carries 6/13 beats (46%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] QC contact sheet → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/qc-sheet.png
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/cc-claude-md-length-slate.mp4  (244.6s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 13/13 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-claude-md-length  beats=13
+[content-check] PASS — 13 beats checked, no violations.
+[frame-check] cc-claude-md-length  canvas=3840×2160  beats=13
+[frame-check] PASS — 13 beats checked, no violations.
+[lane-check] cc-claude-md-length  cut=master  known_slates=[]
+[lane-check] PASS — 13 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (13/13 filled)
+[art] motion histogram: drawon:6  type:5  hold:2
+[art] WARNING: 'drawon' carries 6/13 beats (46%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/cc-claude-md-length.mp4  (244.6s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 13/13 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=26 BLOCKER=0 STRUCTURAL=0 COSMETIC=0 → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/_qc/REPORT.md
+[run] GATE T — type-lock (typography assertions)
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/TYPECHECK.md
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: 0.14
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: 0.33
+[typecheck] §8.10 B06: SKIP
+[typecheck] §8.10 B07: SKIP
+[typecheck] §8.10 BVDT: 0.77
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[run] GATE SHARPNESS — per-beat sharpness audit
+[sharpness] GATE SHARPNESS PASS — 13 beats, median LV=672.3
+[run] GATE BOOKEND — four-bookend structure check
+[bookend] PASS — four bookends correct for cc-claude-md-length
+[run] GATE AUDIO — checking compiled reel for silence
+[run] GATE AUDIO: PASS (mean_volume -23.7 dB)
+[run] GATE MASTER — compiled master assertions
+[master] PASS  3840×2160  24fps  yuv420p  h264  244.6s
+[run] GATE LOUDNESS — audio loudness + per-beat silence
+[loud] checking 13 beats for per-beat silence …
+[loud] PASS  -24.18 LUFS  tp=-2.88 dBTP
+[run] done → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length  (QC gates: on)
+[run] this was the FULL machine pass: motion graphics + outro done;
+[run] any remaining slates are YOUR slots — see /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/SHOTLIST.md
+
+[run] ── gate roster ─────────────────────────────────────────────────
+  GATE-F                   RAN-PASS
+  GATE-L                   RAN-PASS
+  GATE-BANNED-CARD         RAN-PASS
+  GATE-SWEEP-WARN          RAN-PASS
+  GATE-P                   NOT-RUN
+  GATE-A                   SKIPPED-no-pending-scenes
+  GATE-W                   SKIPPED-no-pending-scenes
+  GATE-B                   SKIPPED-no-pending-scenes
+  GATE-G                   RAN-PASS
+  GATE-V                   RAN-PASS
+  GATE-T                   RAN-PASS
+  GATE-SHARPNESS           RAN-PASS
+  GATE-BOOKEND             RAN-PASS
+  GATE-AUDIO               RAN-PASS
+  GATE-MASTER              RAN-PASS
+  GATE-LOUDNESS            RAN-PASS
+  GATE-RECEIPTS            RAN-PASS
+[run] ─────────────────────────────────────────────────────────────────
+=== RUN DONE cc-claude-md-length ===
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/TYPECHECK.md
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: 0.14
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: 0.33
+[typecheck] §8.10 B06: SKIP
+[typecheck] §8.10 B07: SKIP
+[typecheck] §8.10 BVDT: 0.77
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-claude-md-length  beats=13
+[content-check] PASS — 13 beats checked, no violations.
+[frame-check] cc-claude-md-length  canvas=3840×2160  beats=13
+[frame-check] PASS — 13 beats checked, no violations.
+[lane-check] cc-claude-md-length  cut=master  known_slates=[]
+[lane-check] PASS — 13 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (13/13 filled)
+[art] motion histogram: drawon:6  type:5  hold:2
+[art] WARNING: 'drawon' carries 6/13 beats (46%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-claude-md-length/cc-claude-md-length.mp4  (244.6s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 13/13 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+=== FINAL DONE cc-claude-md-length ===
+=== ARROWS2 DONE ===

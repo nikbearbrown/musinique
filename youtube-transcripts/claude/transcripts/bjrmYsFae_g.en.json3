@@ -1,0 +1,355 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 90,
+    "dDurationMs": 3570,
+    "segs": [ {
+      "utf8": "We are all experiencing\nthis massive propulsion"
+    } ]
+  }, {
+    "tStartMs": 3660,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "for the first time in history."
+    } ]
+  }, {
+    "tStartMs": 4860,
+    "dDurationMs": 1620,
+    "segs": [ {
+      "utf8": "And I think what's really\nexciting for us is we get"
+    } ]
+  }, {
+    "tStartMs": 6480,
+    "dDurationMs": 2610,
+    "segs": [ {
+      "utf8": "to be at the heart of the legal industry."
+    } ]
+  }, {
+    "tStartMs": 9090,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "That is actually one of the oldest jobs"
+    } ]
+  }, {
+    "tStartMs": 11730,
+    "dDurationMs": 2370,
+    "segs": [ {
+      "utf8": "in the world interpreting the law,"
+    } ]
+  }, {
+    "tStartMs": 14100,
+    "dDurationMs": 2130,
+    "segs": [ {
+      "utf8": "and how we're gonna structure our society."
+    } ]
+  }, {
+    "tStartMs": 16230,
+    "dDurationMs": 5000,
+    "segs": [ {
+      "utf8": "And I think that carries with\nit a lot of responsibility."
+    } ]
+  }, {
+    "tStartMs": 21749,
+    "dDurationMs": 2750,
+    "segs": [ {
+      "utf8": "(tranquil music)"
+    } ]
+  }, {
+    "tStartMs": 26280,
+    "dDurationMs": 3090,
+    "segs": [ {
+      "utf8": "Legora is the place\nwhere legal work happens,"
+    } ]
+  }, {
+    "tStartMs": 29370,
+    "dDurationMs": 3330,
+    "segs": [ {
+      "utf8": "whether that's done by\na human or by an agent"
+    } ]
+  }, {
+    "tStartMs": 32700,
+    "dDurationMs": 1590,
+    "segs": [ {
+      "utf8": "or in collaboration."
+    } ]
+  }, {
+    "tStartMs": 34290,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "We help legal work move\nfaster with reviews,"
+    } ]
+  }, {
+    "tStartMs": 37710,
+    "dDurationMs": 1590,
+    "segs": [ {
+      "utf8": "drafting and research."
+    } ]
+  }, {
+    "tStartMs": 39300,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "And we bind all of this together"
+    } ]
+  }, {
+    "tStartMs": 41460,
+    "dDurationMs": 2415,
+    "segs": [ {
+      "utf8": "into a single cohesive workspace."
+    } ]
+  }, {
+    "tStartMs": 43875,
+    "dDurationMs": 3255,
+    "segs": [ {
+      "utf8": "(tranquil music continues)"
+    } ]
+  }, {
+    "tStartMs": 47130,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "- Why are Claude models\nspecifically good for Legora?"
+    } ]
+  }, {
+    "tStartMs": 49530,
+    "dDurationMs": 3180,
+    "segs": [ {
+      "utf8": "- A lot of the nuance in drafting"
+    } ]
+  }, {
+    "tStartMs": 52710,
+    "dDurationMs": 4260,
+    "segs": [ {
+      "utf8": "and reviewing is very context specific."
+    } ]
+  }, {
+    "tStartMs": 56970,
+    "dDurationMs": 2670,
+    "segs": [ {
+      "utf8": "You wanna match the style\nof the existing document,"
+    } ]
+  }, {
+    "tStartMs": 59640,
+    "dDurationMs": 1470,
+    "segs": [ {
+      "utf8": "you might wanna match the style"
+    } ]
+  }, {
+    "tStartMs": 61110,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "of that lawyer in particular."
+    } ]
+  }, {
+    "tStartMs": 62820,
+    "dDurationMs": 2850,
+    "segs": [ {
+      "utf8": "And there we found the Claude\nmodels, especially Opus,"
+    } ]
+  }, {
+    "tStartMs": 65670,
+    "dDurationMs": 3240,
+    "segs": [ {
+      "utf8": "extraordinarily good at\nthe sort of fine drafting."
+    } ]
+  }, {
+    "tStartMs": 68910,
+    "dDurationMs": 2550,
+    "segs": [ {
+      "utf8": "This is profoundly\nchanging the legal industry"
+    } ]
+  }, {
+    "tStartMs": 71460,
+    "dDurationMs": 2520,
+    "segs": [ {
+      "utf8": "because no technology before"
+    } ]
+  }, {
+    "tStartMs": 73980,
+    "dDurationMs": 3450,
+    "segs": [ {
+      "utf8": "has ever been able to work\nwith language and reasoning"
+    } ]
+  }, {
+    "tStartMs": 77430,
+    "dDurationMs": 1503,
+    "segs": [ {
+      "utf8": "like large language models."
+    } ]
+  }, {
+    "tStartMs": 80310,
+    "dDurationMs": 3600,
+    "segs": [ {
+      "utf8": "The very cool thing for us\nis that with each new model,"
+    } ]
+  }, {
+    "tStartMs": 83910,
+    "dDurationMs": 2191,
+    "segs": [ {
+      "utf8": "new capabilities are unlocked."
+    } ]
+  }, {
+    "tStartMs": 86101,
+    "dDurationMs": 2667,
+    "segs": [ {
+      "utf8": "(lively music)"
+    } ]
+  }, {
+    "tStartMs": 90630,
+    "dDurationMs": 2610,
+    "segs": [ {
+      "utf8": "What's happening right\nnow is every third month"
+    } ]
+  }, {
+    "tStartMs": 93240,
+    "dDurationMs": 1860,
+    "segs": [ {
+      "utf8": "you guys come up with something new,"
+    } ]
+  }, {
+    "tStartMs": 95100,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "and it's very exciting,"
+    } ]
+  }, {
+    "tStartMs": 96780,
+    "dDurationMs": 2700,
+    "segs": [ {
+      "utf8": "and it sort of raises\nthe tide, if you will."
+    } ]
+  }, {
+    "tStartMs": 99480,
+    "dDurationMs": 3180,
+    "segs": [ {
+      "utf8": "And so we're thinking a lot\nabout how do we build the boats"
+    } ]
+  }, {
+    "tStartMs": 102660,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "on top of that rising tide"
+    } ]
+  }, {
+    "tStartMs": 104580,
+    "dDurationMs": 3900,
+    "segs": [ {
+      "utf8": "so thatour system gets better\nwith every new model release."
+    } ]
+  }, {
+    "tStartMs": 108480,
+    "dDurationMs": 3060,
+    "segs": [ {
+      "utf8": "And we certainly saw this\nwhen we started embedding more"
+    } ]
+  }, {
+    "tStartMs": 111540,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "and more of the Anthropic\nmodels into Legora."
+    } ]
+  }, {
+    "tStartMs": 114180,
+    "dDurationMs": 4140,
+    "segs": [ {
+      "utf8": "This exchange of ideas, what's\nworking, what's not working,"
+    } ]
+  }, {
+    "tStartMs": 118320,
+    "dDurationMs": 3272,
+    "segs": [ {
+      "utf8": "where do we need to push further,\nthat has been incredible."
+    } ]
+  }, {
+    "tStartMs": 121592,
+    "dDurationMs": 3417,
+    "segs": [ {
+      "utf8": "(lively music continues)"
+    } ]
+  }, {
+    "tStartMs": 125850,
+    "dDurationMs": 1590,
+    "segs": [ {
+      "utf8": "I think when I look at differentiation,"
+    } ]
+  }, {
+    "tStartMs": 127440,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "it's about how do we make sure"
+    } ]
+  }, {
+    "tStartMs": 129600,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "that Legora has the highest velocity out"
+    } ]
+  }, {
+    "tStartMs": 132240,
+    "dDurationMs": 1830,
+    "segs": [ {
+      "utf8": "of any company in the industry,"
+    } ]
+  }, {
+    "tStartMs": 134070,
+    "dDurationMs": 3720,
+    "segs": [ {
+      "utf8": "so that if you place a\nbet on us and your firm"
+    } ]
+  }, {
+    "tStartMs": 137790,
+    "dDurationMs": 2310,
+    "segs": [ {
+      "utf8": "or legal team goes all in on Legora,"
+    } ]
+  }, {
+    "tStartMs": 140100,
+    "dDurationMs": 1653,
+    "segs": [ {
+      "utf8": "we're going all in on you."
+    } ]
+  }, {
+    "tStartMs": 142920,
+    "dDurationMs": 3720,
+    "segs": [ {
+      "utf8": "You're picking a software\npartner, an AI partner."
+    } ]
+  }, {
+    "tStartMs": 146640,
+    "dDurationMs": 3720,
+    "segs": [ {
+      "utf8": "The people who can harness the power"
+    } ]
+  }, {
+    "tStartMs": 150360,
+    "dDurationMs": 3690,
+    "segs": [ {
+      "utf8": "of AI will do so much more in the future."
+    } ]
+  }, {
+    "tStartMs": 154050,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "And the sort of constraints"
+    } ]
+  }, {
+    "tStartMs": 155970,
+    "dDurationMs": 2851,
+    "segs": [ {
+      "utf8": "about how much you can do\nis starting to disappear."
+    } ]
+  }, {
+    "tStartMs": 158821,
+    "dDurationMs": 2500,
+    "segs": [ {
+      "utf8": "(happy music)"
+    } ]
+  } ]
+}

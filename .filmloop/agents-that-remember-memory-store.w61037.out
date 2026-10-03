@@ -1,0 +1,20 @@
+mp4 (05:19) is newer than sheet (05:18). Supervisor DONE check passes.
+
+---
+
+**DONE — agents-that-remember-memory-store**
+
+`agents-that-remember-memory-store.mp4` — 277.2s (4:37), 4K 2160p, −24.4 dB.  
+mp4 epoch 1787735943 > sheet epoch 1787735910 ✓
+
+**Phase 1 fixes applied:**
+- **BVDT verdict authored** — template "Key finding one/two/three" replaced with 4 specific lines from body content (stateless sessions, key-value with confidence scores, Dreaming Service zero-latency, memory-as-infrastructure). narration_text written and audio generated (22.85s, Kokoro am_onyx).
+- **BHTF folderLabel** — `@claude-liam` → `@NikBearBrown`
+- **GATE T §8.9 (6 violations)** — segment/title/artifactTitle props ending in "It" (2 chars) or "A" (1 char) flagged as truncated; terminal "." added to each. ClaudeTitleOutro strips it safely before rendering terracotta period.
+
+**Phase 2 build:**
+- All 14 beats: VIDEO (0 slates, 0 punts). Build Counter: VIDEO:14.
+- Cwc* components all confirmed in Root.tsx: CwcMemoryQuestion, CwcSessionIsolation, CwcMemoryTimeline, CwcMemoryProgression, CwcMemorySchema, CwcDreamingService, CwcMemoryRetrieval.
+- GATE T: PASS · GATE V: 0 BLOCKER, 0 MAJOR · GATE AUDIO: PASS (−24.4 dB).
+
+**Logged:** B09 pacing 3.74 WPS (above 3.4 ceiling) — narration locked, not fixable.

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sorting Simulator</title>
+<style>
+  html, body, button {
+    margin: 0;
+    padding: 0;
+    background: #F6F1E6;
+    color: #111111;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 32px 0;
+    text-align: center;
+  }
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    height: 320px;
+    margin-bottom: 32px;
+  }
+  .bar {
+    width: 40px;
+    background: #8B7355;
+  }
+  .bar.sorted {
+    background: #6B8E6B;
+  }
+  .counter {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  .actions {
+    text-align: center;
+  }
+  button {
+    background: #D97757;
+    color: #F6F1E6;
+    border: 0;
+    padding: 14px 40px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sorting Simulator</h1>
+  <div class="bars" id="bars"></div>
+  <div class="counter">comparisons: <span id="count">0</span></div>
+  <div class="actions"><button id="step">STEP</button></div>
+</main>
+<script>
+  var arr = [5, 2, 8, 1, 6, 3, 7, 4];
+  var n = arr.length;
+  var i = 0;
+  var j = 0;
+  var comparisons = 0;
+  var done = false;
+
+  var barsEl = document.getElementById('bars');
+  var countEl = document.getElementById('count');
+  var stepEl = document.getElementById('step');
+
+  function draw() {
+    barsEl.innerHTML = '';
+    for (var k = 0; k < n; k++) {
+      var b = document.createElement('div');
+      b.className = 'bar';
+      if (k >= n - i) b.className = 'bar sorted';
+      if (done) b.className = 'bar sorted';
+      b.style.height = (arr[k] * 32) + 'px';
+      barsEl.appendChild(b);
+    }
+    countEl.textContent = comparisons;
+  }
+
+  function step() {
+    if (done) return;
+    if (j >= n - i - 1) {
+      i++;
+      j = 0;
+      if (i >= n - 1) { done = true; draw(); return; }
+    }
+    comparisons++;
+    if (arr[j] > arr[j + 1]) {
+      var t = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = t;
+    }
+    j++;
+    draw();
+  }
+
+  stepEl.addEventListener('click', step);
+  draw();
+</script>
+</body>
+</html>

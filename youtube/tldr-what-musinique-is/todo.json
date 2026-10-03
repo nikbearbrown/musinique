@@ -1,0 +1,246 @@
+{
+  "video": "tldr-what-musinique-is",
+  "metadata": {
+    "slug": "tldr-what-musinique-is",
+    "title": "What Musinique Is",
+    "topic": "Musinique \u00b7 Tools For Indie Musicians \u00b7 TL;DR",
+    "skill": "tldr",
+    "style_preset": "tldr",
+    "channel": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "learn_canvas": "cream",
+    "register": "Teardown",
+    "fps": 24,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "audience": "independent musicians, and anyone curious what the Musinique toolkit is for",
+    "source_doc": "musinique/SKILLS-BREAKDOWN.md (plan, 2026-09-22); riffs/musinique/README.md (the label); artist profiles (Aditi Banksy, Mama Sparrow); the Forensic Playlist Audit spec's example numbers",
+    "sections": [
+      {
+        "n": 1,
+        "title": "What Musinique Is",
+        "key_case": "one indie artist's week after a finished song: five jobs, one budget, a playlist offer a scanner calls clean"
+      }
+    ],
+    "greeting_language": "Hindi (Namaste; narration spelled Namast\u00e9 so Kokoro says the final vowel)",
+    "typography": {
+      "serif": "Tiempos/EB Garamond",
+      "ui": "system sans",
+      "mono": "SF Mono"
+    },
+    "playlist": "Claude & Agentic AI",
+    "chapter_number": 0,
+    "outro_policy": "OUTRO-LOCK \u00a7Voice: spoken title + 'At Nik Bear Brown', 1.0 s silent tail padded into the mp3, no jingle.",
+    "bookloop_policy": "Musinique is the subject (Bear's own label and toolkit plan); no book or course is named.",
+    "honesty_policy": "The toolkit is a plan (SKILLS-BREAKDOWN.md); the film says 'being built' and 'a plan today'. Playlist numbers are the audit spec's example, captioned as such.",
+    "voice_policy": "Bear 2026-09-23: Liam, Kokoro am_onyx, the default voice; no voice vendor is named anywhere.",
+    "tags": [
+      "Musinique",
+      "indie music",
+      "independent artists",
+      "playlist fraud",
+      "Spotify for Artists",
+      "DistroKid",
+      "Claude",
+      "Nik Bear Brown"
+    ],
+    "build": {
+      "at": "2026-09-23T22:20:04",
+      "cut": "review",
+      "filled": 16,
+      "of": 16,
+      "slates": [],
+      "skin_warnings": [
+        "B00: palette=claude but the cold open is 'ClaudeTldrWhat' \u2014 COLD OPEN LAW wants ClaudeComposerAsk"
+      ]
+    }
+  },
+  "source_of_truth": "beat_sheet.json \u2014 edit the sheet, not this file",
+  "beats_total": 16,
+  "beats_open": 0,
+  "beats": [
+    {
+      "beat_id": "B00",
+      "status": "filled",
+      "on_disk": "media/B00.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B00.mp4",
+      "label": "Namast\u00e9. This is Liam, in for Bear. This film is about what Musinique is. It's an independent label,"
+    },
+    {
+      "beat_id": "B01",
+      "status": "filled",
+      "on_disk": "media/B01.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B01.mp4",
+      "label": "Why should you care? For an indie artist, the scarce thing isn't songs. It's money and attention. Pa"
+    },
+    {
+      "beat_id": "B02",
+      "status": "filled",
+      "on_disk": "media/B02.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B02.mp4",
+      "label": "The real question: what will it help me decide? 'What will it write for me' is the trap. Drafts got "
+    },
+    {
+      "beat_id": "B03",
+      "status": "filled",
+      "on_disk": "media/B03.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B03.mp4",
+      "label": "Three terms. A distributor is a service, like DistroKid, that delivers your song to the streaming pl"
+    },
+    {
+      "beat_id": "B10",
+      "status": "filled",
+      "on_disk": "manim/B10.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B10.mp4",
+      "label": "Here's an artist with a finished song. Now the week begins. Lyrics to finish, a title to clean, rele"
+    },
+    {
+      "beat_id": "B11",
+      "status": "filled",
+      "on_disk": "manim/B11.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B11.mp4",
+      "label": "Start with the lyrics. Musinique keeps each artist as data: a profile with the voice, the languages,"
+    },
+    {
+      "beat_id": "B12",
+      "status": "filled",
+      "on_disk": "manim/B12.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B12.mp4",
+      "label": "Now the release. A working title like this one: a version tag, the word final, a year. The stores wa"
+    },
+    {
+      "beat_id": "B13",
+      "status": "filled",
+      "on_disk": "manim/B13.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B13.mp4",
+      "label": "So is that the whole idea? An AI that does everything, faster? Let's try it. Hand every job to the m"
+    },
+    {
+      "beat_id": "B14",
+      "status": "filled",
+      "on_disk": "manim/B14.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B14.mp4",
+      "label": "Back up. Here's the reframe. Every job is one of two kinds. Execution: clean the title, fill in the "
+    },
+    {
+      "beat_id": "B15",
+      "status": "filled",
+      "on_disk": "manim/B15.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B15.mp4",
+      "label": "So look at the playlist with your own data. The scanner says clean. Your Spotify for Artists page sa"
+    },
+    {
+      "beat_id": "B16",
+      "status": "filled",
+      "on_disk": "manim/B16.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B16.mp4",
+      "label": "Skip. Ashburn is one of the world's biggest data-center hubs, and a dozen followers rarely explain h"
+    },
+    {
+      "beat_id": "B17",
+      "status": "filled",
+      "on_disk": "manim/B17.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B17.mp4",
+      "label": "That's what Musinique is. The machine does the chores and suggests drafts. You listen, decide, and f"
+    },
+    {
+      "beat_id": "B18",
+      "status": "filled",
+      "on_disk": "manim/B18.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B18.mp4",
+      "label": "Back to our artist. Same song, same week. The chores are done by the machine, the lyrics are yours, "
+    },
+    {
+      "beat_id": "BVDT",
+      "status": "filled",
+      "on_disk": "media/BVDT.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/BVDT.mp4",
+      "label": "Let's recap with Claude. Musinique is an independent label, and a free toolkit being built for indie"
+    },
+    {
+      "beat_id": "BHTF",
+      "status": "filled",
+      "on_disk": "media/BHTF.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/BHTF.mp4",
+      "label": "Your turn. Paste this into Claude: Here is a playlist offer I received: [paste the offer]. Here is w"
+    },
+    {
+      "beat_id": "BOUT",
+      "status": "filled",
+      "on_disk": "media/BOUT.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/BOUT.mp4",
+      "label": "What Musinique Is. At Nik Bear Brown."
+    }
+  ]
+}

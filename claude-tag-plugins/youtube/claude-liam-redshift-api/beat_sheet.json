@@ -1,0 +1,398 @@
+{
+  "metadata": {
+    "title": "Claude, Redshift Api.",
+    "slug": "claude-liam-redshift-api",
+    "topic": "REDSHIFT-API · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-tag-plugins/redshift/skills/redshift-api/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Run SQL against Amazon Redshift — submit statements",
+        "page through results",
+        "and browse databases/schemas/tables",
+        "Use this whenever the user wants to query Redshift (provisioned cluster or Serverless)",
+        "ask \"what tables are in this schema\""
+      ],
+      "constraints": [
+        "provisioned clusters and Serverless; only the connection-target field differs",
+        "configured for the workspace, so there is nothing to set up. Do not try to obtain AWS keys or sign",
+        "Two pieces of configuration are real and required:",
+        "Status ∈ SUBMITTED, PICKED, STARTED, FINISHED, FAILED, ABORTED. Only FINISHED",
+        "Status filter: SUBMITTED, PICKED, STARTED, FINISHED, FAILED, ABORTED, ALL — **only",
+        "(includes statements from anyone assuming the same IAM role); set false to see only this session's",
+        "ExecuteStatement 30, GetStatementResult 20, BatchExecuteStatement 20, and only 3 TPS for",
+        "ExecuteStatement returning 200 ≠ the query succeeded. SQL errors only surface later as"
+      ],
+      "referenced_files": [
+        "redshift-data",
+        "redshift-data.{region}.amazonaws.com",
+        "https://redshift-data.<region>.amazonaws.com/",
+        "Content-Type: application/x-amz-json-1.1",
+        "X-Amz-Target: RedshiftData.<Action>",
+        "scripts/rs_query.sh",
+        "RS_TARGET",
+        "$t + {Database: $db, ...}",
+        "{\"__type\": \"<Exception>\", \"message\": \"...\"}",
+        "AWS_DEFAULT_REGION"
+      ],
+      "code_signals": [
+        "code block: bash"
+      ],
+      "sections": [
+        "Request setup",
+        "Core operations",
+        "1. Run a query (scripts/rs_query.sh)",
+        "2. Resume a statement by id (DescribeStatement → GetStatementResult)",
+        "3. Cancel a running statement (CancelStatement)",
+        "4. Run multiple statements in one call (BatchExecuteStatement)",
+        "5. List recent statements (ListStatements)",
+        "6. Browse the catalog (ListDatabases / ListSchemas / ListTables / DescribeTable)",
+        "Pagination",
+        "Rate limits"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T19:01:31",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is redshift-api. Run SQL against Amazon Redshift — submit statements, poll status, page through results, and browse databases/schemas/tables. Use this whenever the user wants to query Redshift (provisioned cluster or Serverless), ask \"what tables are in this schema\", check a query's status, or mentions redshift-data, a Redshift cluster identifier / workgroup name, or a redshift-data.{region}.amazonaws.com endpoint. Always start from this skill when interacting with this service — its bundled scripts and recipes are the fastest path.. Its concrete surface area includes Run SQL against Amazon Redshift — submit statements; page through results; and browse databases/schemas/tables. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "REDSHIFT-API · ANTHROPIC SKILL",
+            "segment": "Claude, Redshift Api.",
+            "command": "Run the redshift-api skill.",
+            "runningText": "reading redshift-api SKILL.md…",
+            "output": [
+              "skill: redshift-api",
+              "Run SQL against Amazon Redshift — submit statements, poll status, page through…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 44.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is redshift-api. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at redshift-data, redshift-data.{region}.amazonaws.com, https://redshift-data.<region>.amazonaws.com/, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "redshift-api",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "12k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "3 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 22.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "redshift-api is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Run SQL against Amazon Redshift — submit statements; page through results; and browse databases/schemas/tables; Use this whenever the user wants to query Redshift (provisioned cluster or Serverless). The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 20.25,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. provisioned clusters and Serverless; only the connection-target field differs. That is the constraint in redshift-api — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "provisioned clusters and Serverless; only the connection-target field differs",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In redshift-api, supporting material: redshift-data, redshift-data.{region}.amazonaws.com, https://redshift-data.<region>.amazonaws.com/, Content-Type: application/x-amz-json-1.1; implementation signals: code block: bash; sections: Request setup, Core operations, 1. Run a query (scripts/rs_query.sh), 2. Resume a statement by id (DescribeStatement → GetStatementResult). That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Run SQL against Amazon Redshift — submit statements; page through results; and browse databases/schemas/tables; redshift-data; redshift-data.{region}.amazonaws.com; https://redshift-data.<region>.amazonaws.com/; code…",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 33.13,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "redshift-api makes Claude execute one task reliably. The SKILL.md is the spec — Run SQL against Amazon Redshift — submit statements, poll status, page through…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Redshift Api.",
+            "artifactLines": [
+              "Skill: redshift-api — Claude reads SKILL.md before acting",
+              "Run SQL against Amazon Redshift — submit statements, poll status, page through results…",
+              "Capabilities: Run SQL against Amazon Redshift — submit statements; page through results; and browse databases/schemas/tables",
+              "Constraint: provisioned clusters and Serverless; only the connection-target field differs",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 15.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to run sql against amazon redshift — submit statements, poll status, page through. Read the redshift-api skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "REDSHIFT-API · ANTHROPIC SKILL",
+            "segment": "Claude, Redshift Api.",
+            "command": "I want to run sql against amazon redshift — submit statements, poll status. Read the redshift-api skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.51,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Redshift Api. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Redshift Api.",
+            "handle": "@NikBearBrown",
+            "subline": "redshift-api · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.52,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T19:01:31"
+      }
+    }
+  ]
+}

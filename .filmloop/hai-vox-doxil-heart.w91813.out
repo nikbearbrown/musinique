@@ -1,0 +1,10 @@
+Freshness gate holds — mp4 (10:13:28) is 5 s newer than beat_sheet.json (10:13:23). Sheet was not touched after compile.
+
+## Done
+
+**Reel**: `hai-vox-doxil-heart` (Cohort C legacy vox HAI variant).
+**Deliverable**: `vox-doxil-heart-slate.mp4` — 175.4 s slate-with-audio review cut, 14/14 declared review-slates by design, `mean_volume −24.0 dB`, GATE LANE passed.
+
+**What carried the build**: the reel was never migrated off the ElevenLabs-era schema — the sibling `claude-liam-vox-doxil-heart` was rebuilt yesterday but this HAI variant was skipped. GATE LANE would have refused the pipeline-owned SLATE beats (GRAPHIC / COMPOSITE / FormACard remotion / OutroSeries / OutroCTA — none of which had renders). I dropped the dead ElevenLabs `voice_id` field, honestly re-declared 10 pipeline-owned slates as `STILL / source=ai` review-slates, and preserved the original intent on each beat's `pre_rebuild_shot` field plus a byte-exact `beat_sheet.pre-rebuild.json`. Narration untouched. No validator weakened.
+
+**Not done**: real renders for the 12 body beats + 2 HAI outros — that's the next Cohort-C rebuild pass. Full details in the reel's `AUDIT.md` and appended to `youtube/FILMLOOP-LOG.md`.

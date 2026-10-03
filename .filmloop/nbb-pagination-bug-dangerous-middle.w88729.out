@@ -1,0 +1,16 @@
+The reel is built. Slate mp4 `pagination-bug-dangerous-middle-slate.mp4` (286.9s, −23.9 dB audio) is 23 min newer than `beat_sheet.json`. 14/14 beats filled with real audio + rendered visuals (5 Remotion + 9 Manim); no slates.
+
+**What shipped:**
+- Bookend consolidation (dropped double-bookend defect — 4 empty `B00/BVDT/BHTF/BOUT` skeletons overlaying 4 authored `NBB*` beats)
+- Verdict authored from body content (was ellipsis-truncated placeholder)
+- Your-Turn narration + command rewritten (was stale "cancer type or clinical scenario" boilerplate)
+- B01 rebuilt as FormACard (dropped scaffolded `"Key point one"` placeholder items)
+- Nine Manim scenes: labels rewritten from narration slices → short category nouns; re-rendered at 4K
+- Fresh Kokoro audio, 14 beats, 0 failures
+
+**Not clean — GATE T fails 3/14 (down from 9):**
+- B02: smallest text run 38px vs 41px floor (7% below)
+- B04: smallest text run 35px vs 41px floor (14% below)
+- B08: 2 text runs outside title-safe box on partial-fade frame
+
+No validator was loosened. Full detail in `AUDIT.md` and `FILMLOOP-LOG.md`. Residual failures need per-scene Manim source rewrites (wider containers, longer fade gates) to reach zero-FAIL — not fixed this invocation.

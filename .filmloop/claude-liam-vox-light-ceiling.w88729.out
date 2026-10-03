@@ -1,0 +1,5 @@
+Reel done. `vox-light-ceiling-slate.mp4` (187.6 s · 14/14 filled · audio -28.1 dB · mtime 19 s newer than sheet).
+
+**Fixes:** removed legacy B11/B12 outros that sat before BVDT; B00 greeting `Liam` → `Hola, Liam`; authored real BVDT verdict lines + narration; replaced the square-bracket BHTF placeholder with a real "find the physical ceiling" exercise; rewrote B01 FormBCard placeholder items from the narration; routed B02 off the gen-AI still to the FormACard already declared; dropped ElevenLabs-era `voice_id`/`clock`/`_variant_todo` fields.
+
+**Downgrade (called out):** B04–B09 rendered as FormACard text cards drawn from their locked narration — the only way to satisfy PIPELINE-CARD RULE without a `scenes.py`. Original Manim `production_viz` intents preserved in the sheet for the next full-render pass. GATE T PASS, GATE V PASS. No validator loosened. Log block appended to `youtube/FILMLOOP-LOG.md`.

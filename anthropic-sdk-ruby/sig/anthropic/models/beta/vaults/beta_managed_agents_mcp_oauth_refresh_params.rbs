@@ -1,0 +1,90 @@
+module Anthropic
+  module Models
+    module Beta
+      module Vaults
+        type beta_managed_agents_mcpo_auth_refresh_params =
+          {
+            client_id: String,
+            refresh_token: String,
+            token_endpoint: String,
+            token_endpoint_auth: Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::token_endpoint_auth,
+            resource: String?,
+            scope: String?
+          }
+
+        class BetaManagedAgentsMCPOAuthRefreshParams < Anthropic::Internal::Type::BaseModel
+          attr_accessor client_id: String
+
+          attr_accessor refresh_token: String
+
+          attr_accessor token_endpoint: String
+
+          attr_accessor token_endpoint_auth: Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::token_endpoint_auth
+
+          attr_accessor resource: String?
+
+          attr_accessor scope: String?
+
+          def initialize: (
+            client_id: String,
+            refresh_token: String,
+            token_endpoint: String,
+            token_endpoint_auth: Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::token_endpoint_auth,
+            ?resource: String?,
+            ?scope: String?
+          ) -> void
+
+          def to_hash: -> {
+            client_id: String,
+            refresh_token: String,
+            token_endpoint: String,
+            token_endpoint_auth: Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::token_endpoint_auth,
+            resource: String?,
+            scope: String?
+          }
+
+          type token_endpoint_auth =
+            Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthNoneParam
+            | Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthBasicParam
+            | Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthPostParam
+
+          module TokenEndpointAuth
+            extend Anthropic::Internal::Type::Union
+
+            type type_ = :none | :client_secret_basic | :client_secret_post
+
+            module Type
+              extend Anthropic::Internal::Type::Enum
+
+              NONE: :none
+              CLIENT_SECRET_BASIC: :client_secret_basic
+              CLIENT_SECRET_POST: :client_secret_post
+
+              def self?.values: -> ::Array[Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::type_]
+            end
+
+            def self?.variants: -> ::Array[Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::token_endpoint_auth]
+
+            def self.new:
+              (
+                type: :none | "none"
+              ) -> Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthNoneParam
+              | (
+                type: :client_secret_basic | "client_secret_basic",
+                client_secret: String
+              ) -> Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthBasicParam
+              | (
+                type: :client_secret_post | "client_secret_post",
+                client_secret: String
+              ) -> Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthPostParam
+              | (
+                type: Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::type_
+                | String,
+                ?client_secret: String
+              ) -> Anthropic::Models::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::token_endpoint_auth
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,1499 @@
+package com.anthropic.models.beta.messages
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.Enum
+import com.anthropic.core.JsonField
+import com.anthropic.core.JsonMissing
+import com.anthropic.core.JsonValue
+import com.anthropic.core.getOrThrow
+import com.anthropic.core.getProperty
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Objects
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
+
+@JsonDeserialize(using = BetaContentBlock.Deserializer::class)
+@JsonSerialize(using = BetaContentBlock.Serializer::class)
+class BetaContentBlock
+private constructor(
+    private val text: BetaTextBlock? = null,
+    private val thinking: BetaThinkingBlock? = null,
+    private val redactedThinking: BetaRedactedThinkingBlock? = null,
+    private val toolUse: BetaToolUseBlock? = null,
+    private val serverToolUse: BetaServerToolUseBlock? = null,
+    private val webSearchToolResult: BetaWebSearchToolResultBlock? = null,
+    private val webFetchToolResult: BetaWebFetchToolResultBlock? = null,
+    private val advisorToolResult: BetaAdvisorToolResultBlock? = null,
+    private val codeExecutionToolResult: BetaCodeExecutionToolResultBlock? = null,
+    private val bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock? = null,
+    private val textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock? =
+        null,
+    private val toolSearchToolResult: BetaToolSearchToolResultBlock? = null,
+    private val mcpToolUse: BetaMcpToolUseBlock? = null,
+    private val mcpToolResult: BetaMcpToolResultBlock? = null,
+    private val containerUpload: BetaContainerUploadBlock? = null,
+    private val compaction: BetaCompactionBlock? = null,
+    private val fallback: BetaFallbackBlock? = null,
+    private val mcpToolListing: BetaMcpToolListingBlock? = null,
+    private val _json: JsonValue? = null,
+) {
+
+    fun toParam(): BetaContentBlockParam =
+        accept(
+            object : Visitor<BetaContentBlockParam> {
+                override fun visitText(text: BetaTextBlock): BetaContentBlockParam =
+                    BetaContentBlockParam.ofText(text.toParam())
+
+                override fun visitThinking(thinking: BetaThinkingBlock): BetaContentBlockParam =
+                    BetaContentBlockParam.ofThinking(thinking.toParam())
+
+                override fun visitRedactedThinking(
+                    redactedThinking: BetaRedactedThinkingBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofRedactedThinking(redactedThinking.toParam())
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock): BetaContentBlockParam =
+                    BetaContentBlockParam.ofToolUse(toolUse.toParam())
+
+                override fun visitServerToolUse(
+                    serverToolUse: BetaServerToolUseBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofServerToolUse(serverToolUse.toParam())
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofWebSearchToolResult(webSearchToolResult.toParam())
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofWebFetchToolResult(webFetchToolResult.toParam())
+
+                override fun visitAdvisorToolResult(
+                    advisorToolResult: BetaAdvisorToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofAdvisorToolResult(advisorToolResult.toParam())
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofCodeExecutionToolResult(
+                        codeExecutionToolResult.toParam()
+                    )
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofBashCodeExecutionToolResult(
+                        bashCodeExecutionToolResult.toParam()
+                    )
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofTextEditorCodeExecutionToolResult(
+                        textEditorCodeExecutionToolResult.toParam()
+                    )
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofToolSearchToolResult(toolSearchToolResult.toParam())
+
+                override fun visitMcpToolUse(
+                    mcpToolUse: BetaMcpToolUseBlock
+                ): BetaContentBlockParam = BetaContentBlockParam.ofMcpToolUse(mcpToolUse.toParam())
+
+                override fun visitMcpToolResult(
+                    mcpToolResult: BetaMcpToolResultBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofMcpToolResult(mcpToolResult.toParam())
+
+                override fun visitContainerUpload(
+                    containerUpload: BetaContainerUploadBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofContainerUpload(containerUpload.toParam())
+
+                override fun visitCompaction(
+                    compaction: BetaCompactionBlock
+                ): BetaContentBlockParam = BetaContentBlockParam.ofCompaction(compaction.toParam())
+
+                override fun visitFallback(fallback: BetaFallbackBlock): BetaContentBlockParam =
+                    BetaContentBlockParam.ofFallback(fallback.toParam())
+
+                override fun visitMcpToolListing(
+                    mcpToolListing: BetaMcpToolListingBlock
+                ): BetaContentBlockParam =
+                    BetaContentBlockParam.ofMcpToolListing(mcpToolListing.toParam())
+            }
+        )
+
+    fun type(): Type =
+        accept(
+            object : Visitor<Type> {
+                override fun visitText(text: BetaTextBlock): Type = Type.TEXT
+
+                override fun visitThinking(thinking: BetaThinkingBlock): Type = Type.THINKING
+
+                override fun visitRedactedThinking(
+                    redactedThinking: BetaRedactedThinkingBlock
+                ): Type = Type.REDACTED_THINKING
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock): Type = Type.TOOL_USE
+
+                override fun visitServerToolUse(serverToolUse: BetaServerToolUseBlock): Type =
+                    Type.SERVER_TOOL_USE
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ): Type = Type.WEB_SEARCH_TOOL_RESULT
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ): Type = Type.WEB_FETCH_TOOL_RESULT
+
+                override fun visitAdvisorToolResult(
+                    advisorToolResult: BetaAdvisorToolResultBlock
+                ): Type = Type.ADVISOR_TOOL_RESULT
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ): Type = Type.CODE_EXECUTION_TOOL_RESULT
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ): Type = Type.BASH_CODE_EXECUTION_TOOL_RESULT
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ): Type = Type.TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ): Type = Type.TOOL_SEARCH_TOOL_RESULT
+
+                override fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock): Type =
+                    Type.MCP_TOOL_USE
+
+                override fun visitMcpToolResult(mcpToolResult: BetaMcpToolResultBlock): Type =
+                    Type.MCP_TOOL_RESULT
+
+                override fun visitContainerUpload(containerUpload: BetaContainerUploadBlock): Type =
+                    Type.CONTAINER_UPLOAD
+
+                override fun visitCompaction(compaction: BetaCompactionBlock): Type =
+                    Type.COMPACTION
+
+                override fun visitFallback(fallback: BetaFallbackBlock): Type = Type.FALLBACK
+
+                override fun visitMcpToolListing(mcpToolListing: BetaMcpToolListingBlock): Type =
+                    Type.MCP_TOOL_LISTING
+
+                override fun unknown(json: JsonValue?): Type =
+                    Type.of(json?.asObject()?.getOrNull()?.get("type") ?: JsonMissing.of())
+            }
+        )
+
+    fun signature(): Optional<String> =
+        accept(
+            object : Visitor<Optional<String>> {
+                override fun visitText(text: BetaTextBlock): Optional<String> = Optional.empty()
+
+                override fun visitThinking(thinking: BetaThinkingBlock): Optional<String> =
+                    Optional.of(thinking.signature())
+
+                override fun visitRedactedThinking(
+                    redactedThinking: BetaRedactedThinkingBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitServerToolUse(
+                    serverToolUse: BetaServerToolUseBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitAdvisorToolResult(
+                    advisorToolResult: BetaAdvisorToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitMcpToolResult(
+                    mcpToolResult: BetaMcpToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitContainerUpload(
+                    containerUpload: BetaContainerUploadBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitCompaction(compaction: BetaCompactionBlock): Optional<String> =
+                    compaction.signature()
+
+                override fun visitFallback(fallback: BetaFallbackBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitMcpToolListing(
+                    mcpToolListing: BetaMcpToolListingBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<String> =
+                    json.getProperty<String>("signature").asKnown()
+            }
+        )
+
+    fun id(): Optional<String> =
+        accept(
+            object : Visitor<Optional<String>> {
+                override fun visitText(text: BetaTextBlock): Optional<String> = Optional.empty()
+
+                override fun visitThinking(thinking: BetaThinkingBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitRedactedThinking(
+                    redactedThinking: BetaRedactedThinkingBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock): Optional<String> =
+                    Optional.of(toolUse.id())
+
+                override fun visitServerToolUse(
+                    serverToolUse: BetaServerToolUseBlock
+                ): Optional<String> = Optional.of(serverToolUse.id())
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitAdvisorToolResult(
+                    advisorToolResult: BetaAdvisorToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock): Optional<String> =
+                    Optional.of(mcpToolUse.id())
+
+                override fun visitMcpToolResult(
+                    mcpToolResult: BetaMcpToolResultBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitContainerUpload(
+                    containerUpload: BetaContainerUploadBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitCompaction(compaction: BetaCompactionBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitFallback(fallback: BetaFallbackBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitMcpToolListing(
+                    mcpToolListing: BetaMcpToolListingBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<String> =
+                    json.getProperty<String>("id").asKnown()
+            }
+        )
+
+    fun toolUseId(): Optional<String> =
+        accept(
+            object : Visitor<Optional<String>> {
+                override fun visitText(text: BetaTextBlock): Optional<String> = Optional.empty()
+
+                override fun visitThinking(thinking: BetaThinkingBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitRedactedThinking(
+                    redactedThinking: BetaRedactedThinkingBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitServerToolUse(
+                    serverToolUse: BetaServerToolUseBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ): Optional<String> = Optional.of(webSearchToolResult.toolUseId())
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ): Optional<String> = Optional.of(webFetchToolResult.toolUseId())
+
+                override fun visitAdvisorToolResult(
+                    advisorToolResult: BetaAdvisorToolResultBlock
+                ): Optional<String> = Optional.of(advisorToolResult.toolUseId())
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.of(codeExecutionToolResult.toolUseId())
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.of(bashCodeExecutionToolResult.toolUseId())
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ): Optional<String> = Optional.of(textEditorCodeExecutionToolResult.toolUseId())
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ): Optional<String> = Optional.of(toolSearchToolResult.toolUseId())
+
+                override fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitMcpToolResult(
+                    mcpToolResult: BetaMcpToolResultBlock
+                ): Optional<String> = Optional.of(mcpToolResult.toolUseId())
+
+                override fun visitContainerUpload(
+                    containerUpload: BetaContainerUploadBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun visitCompaction(compaction: BetaCompactionBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitFallback(fallback: BetaFallbackBlock): Optional<String> =
+                    Optional.empty()
+
+                override fun visitMcpToolListing(
+                    mcpToolListing: BetaMcpToolListingBlock
+                ): Optional<String> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<String> =
+                    json.getProperty<String>("tool_use_id").asKnown()
+            }
+        )
+
+    fun text(): Optional<BetaTextBlock> = Optional.ofNullable(text)
+
+    fun thinking(): Optional<BetaThinkingBlock> = Optional.ofNullable(thinking)
+
+    fun redactedThinking(): Optional<BetaRedactedThinkingBlock> =
+        Optional.ofNullable(redactedThinking)
+
+    fun toolUse(): Optional<BetaToolUseBlock> = Optional.ofNullable(toolUse)
+
+    fun serverToolUse(): Optional<BetaServerToolUseBlock> = Optional.ofNullable(serverToolUse)
+
+    fun webSearchToolResult(): Optional<BetaWebSearchToolResultBlock> =
+        Optional.ofNullable(webSearchToolResult)
+
+    fun webFetchToolResult(): Optional<BetaWebFetchToolResultBlock> =
+        Optional.ofNullable(webFetchToolResult)
+
+    fun advisorToolResult(): Optional<BetaAdvisorToolResultBlock> =
+        Optional.ofNullable(advisorToolResult)
+
+    fun codeExecutionToolResult(): Optional<BetaCodeExecutionToolResultBlock> =
+        Optional.ofNullable(codeExecutionToolResult)
+
+    fun bashCodeExecutionToolResult(): Optional<BetaBashCodeExecutionToolResultBlock> =
+        Optional.ofNullable(bashCodeExecutionToolResult)
+
+    fun textEditorCodeExecutionToolResult(): Optional<BetaTextEditorCodeExecutionToolResultBlock> =
+        Optional.ofNullable(textEditorCodeExecutionToolResult)
+
+    fun toolSearchToolResult(): Optional<BetaToolSearchToolResultBlock> =
+        Optional.ofNullable(toolSearchToolResult)
+
+    fun mcpToolUse(): Optional<BetaMcpToolUseBlock> = Optional.ofNullable(mcpToolUse)
+
+    fun mcpToolResult(): Optional<BetaMcpToolResultBlock> = Optional.ofNullable(mcpToolResult)
+
+    /** Response model for a file uploaded to the container. */
+    fun containerUpload(): Optional<BetaContainerUploadBlock> = Optional.ofNullable(containerUpload)
+
+    /**
+     * A compaction block returned when autocompact is triggered.
+     *
+     * When content is None, it indicates the compaction failed to produce a valid summary (e.g.,
+     * malformed output from the model). Clients may round-trip compaction blocks with null content;
+     * the server treats them as no-ops.
+     */
+    fun compaction(): Optional<BetaCompactionBlock> = Optional.ofNullable(compaction)
+
+    /**
+     * Marks the point in `content` where one model's output gives way to the next.
+     *
+     * One block appears per hop where a preceding model actually ran this turn and declined. A turn
+     * where no preceding model ran and declined has no such boundary and carries no block — the
+     * signal for whether a fallback model served the response is the presence of a
+     * `fallback_message` entry in `usage.iterations`, not this block.
+     *
+     * The block is treated like a server-tool content block for streaming: it arrives via the
+     * standard `content_block_start` / `content_block_stop` pair and carries no deltas.
+     */
+    fun fallback(): Optional<BetaFallbackBlock> = Optional.ofNullable(fallback)
+
+    /**
+     * The tool listing the server fetched from an MCP server while producing this response. Send
+     * the assistant message back unchanged, this block included, so later requests use this listing
+     * instead of asking the MCP server again.
+     */
+    fun mcpToolListing(): Optional<BetaMcpToolListingBlock> = Optional.ofNullable(mcpToolListing)
+
+    fun isText(): Boolean = text != null
+
+    fun isThinking(): Boolean = thinking != null
+
+    fun isRedactedThinking(): Boolean = redactedThinking != null
+
+    fun isToolUse(): Boolean = toolUse != null
+
+    fun isServerToolUse(): Boolean = serverToolUse != null
+
+    fun isWebSearchToolResult(): Boolean = webSearchToolResult != null
+
+    fun isWebFetchToolResult(): Boolean = webFetchToolResult != null
+
+    fun isAdvisorToolResult(): Boolean = advisorToolResult != null
+
+    fun isCodeExecutionToolResult(): Boolean = codeExecutionToolResult != null
+
+    fun isBashCodeExecutionToolResult(): Boolean = bashCodeExecutionToolResult != null
+
+    fun isTextEditorCodeExecutionToolResult(): Boolean = textEditorCodeExecutionToolResult != null
+
+    fun isToolSearchToolResult(): Boolean = toolSearchToolResult != null
+
+    fun isMcpToolUse(): Boolean = mcpToolUse != null
+
+    fun isMcpToolResult(): Boolean = mcpToolResult != null
+
+    fun isContainerUpload(): Boolean = containerUpload != null
+
+    fun isCompaction(): Boolean = compaction != null
+
+    fun isFallback(): Boolean = fallback != null
+
+    fun isMcpToolListing(): Boolean = mcpToolListing != null
+
+    fun asText(): BetaTextBlock = text.getOrThrow("text")
+
+    fun asThinking(): BetaThinkingBlock = thinking.getOrThrow("thinking")
+
+    fun asRedactedThinking(): BetaRedactedThinkingBlock =
+        redactedThinking.getOrThrow("redactedThinking")
+
+    fun asToolUse(): BetaToolUseBlock = toolUse.getOrThrow("toolUse")
+
+    fun asServerToolUse(): BetaServerToolUseBlock = serverToolUse.getOrThrow("serverToolUse")
+
+    fun asWebSearchToolResult(): BetaWebSearchToolResultBlock =
+        webSearchToolResult.getOrThrow("webSearchToolResult")
+
+    fun asWebFetchToolResult(): BetaWebFetchToolResultBlock =
+        webFetchToolResult.getOrThrow("webFetchToolResult")
+
+    fun asAdvisorToolResult(): BetaAdvisorToolResultBlock =
+        advisorToolResult.getOrThrow("advisorToolResult")
+
+    fun asCodeExecutionToolResult(): BetaCodeExecutionToolResultBlock =
+        codeExecutionToolResult.getOrThrow("codeExecutionToolResult")
+
+    fun asBashCodeExecutionToolResult(): BetaBashCodeExecutionToolResultBlock =
+        bashCodeExecutionToolResult.getOrThrow("bashCodeExecutionToolResult")
+
+    fun asTextEditorCodeExecutionToolResult(): BetaTextEditorCodeExecutionToolResultBlock =
+        textEditorCodeExecutionToolResult.getOrThrow("textEditorCodeExecutionToolResult")
+
+    fun asToolSearchToolResult(): BetaToolSearchToolResultBlock =
+        toolSearchToolResult.getOrThrow("toolSearchToolResult")
+
+    fun asMcpToolUse(): BetaMcpToolUseBlock = mcpToolUse.getOrThrow("mcpToolUse")
+
+    fun asMcpToolResult(): BetaMcpToolResultBlock = mcpToolResult.getOrThrow("mcpToolResult")
+
+    /** Response model for a file uploaded to the container. */
+    fun asContainerUpload(): BetaContainerUploadBlock =
+        containerUpload.getOrThrow("containerUpload")
+
+    /**
+     * A compaction block returned when autocompact is triggered.
+     *
+     * When content is None, it indicates the compaction failed to produce a valid summary (e.g.,
+     * malformed output from the model). Clients may round-trip compaction blocks with null content;
+     * the server treats them as no-ops.
+     */
+    fun asCompaction(): BetaCompactionBlock = compaction.getOrThrow("compaction")
+
+    /**
+     * Marks the point in `content` where one model's output gives way to the next.
+     *
+     * One block appears per hop where a preceding model actually ran this turn and declined. A turn
+     * where no preceding model ran and declined has no such boundary and carries no block — the
+     * signal for whether a fallback model served the response is the presence of a
+     * `fallback_message` entry in `usage.iterations`, not this block.
+     *
+     * The block is treated like a server-tool content block for streaming: it arrives via the
+     * standard `content_block_start` / `content_block_stop` pair and carries no deltas.
+     */
+    fun asFallback(): BetaFallbackBlock = fallback.getOrThrow("fallback")
+
+    /**
+     * The tool listing the server fetched from an MCP server while producing this response. Send
+     * the assistant message back unchanged, this block included, so later requests use this listing
+     * instead of asking the MCP server again.
+     */
+    fun asMcpToolListing(): BetaMcpToolListingBlock = mcpToolListing.getOrThrow("mcpToolListing")
+
+    fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+    /**
+     * Maps this instance's current variant to a value of type [T] using the given [visitor].
+     *
+     * Note that this method is _not_ forwards compatible with new variants from the API, unless
+     * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of the
+     * SDK gracefully, consider overriding [Visitor.unknown]:
+     * ```java
+     * import com.anthropic.core.JsonValue;
+     * import java.util.Optional;
+     *
+     * Optional<String> result = betaContentBlock.accept(new BetaContentBlock.Visitor<Optional<String>>() {
+     *     @Override
+     *     public Optional<String> visitText(BetaTextBlock text) {
+     *         return Optional.of(text.toString());
+     *     }
+     *
+     *     // ...
+     *
+     *     @Override
+     *     public Optional<String> unknown(JsonValue json) {
+     *         // Or inspect the `json`.
+     *         return Optional.empty();
+     *     }
+     * });
+     * ```
+     *
+     * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor] and
+     *   the current variant is unknown.
+     */
+    fun <T> accept(visitor: Visitor<T>): T =
+        when {
+            text != null -> visitor.visitText(text)
+            thinking != null -> visitor.visitThinking(thinking)
+            redactedThinking != null -> visitor.visitRedactedThinking(redactedThinking)
+            toolUse != null -> visitor.visitToolUse(toolUse)
+            serverToolUse != null -> visitor.visitServerToolUse(serverToolUse)
+            webSearchToolResult != null -> visitor.visitWebSearchToolResult(webSearchToolResult)
+            webFetchToolResult != null -> visitor.visitWebFetchToolResult(webFetchToolResult)
+            advisorToolResult != null -> visitor.visitAdvisorToolResult(advisorToolResult)
+            codeExecutionToolResult != null ->
+                visitor.visitCodeExecutionToolResult(codeExecutionToolResult)
+            bashCodeExecutionToolResult != null ->
+                visitor.visitBashCodeExecutionToolResult(bashCodeExecutionToolResult)
+            textEditorCodeExecutionToolResult != null ->
+                visitor.visitTextEditorCodeExecutionToolResult(textEditorCodeExecutionToolResult)
+            toolSearchToolResult != null -> visitor.visitToolSearchToolResult(toolSearchToolResult)
+            mcpToolUse != null -> visitor.visitMcpToolUse(mcpToolUse)
+            mcpToolResult != null -> visitor.visitMcpToolResult(mcpToolResult)
+            containerUpload != null -> visitor.visitContainerUpload(containerUpload)
+            compaction != null -> visitor.visitCompaction(compaction)
+            fallback != null -> visitor.visitFallback(fallback)
+            mcpToolListing != null -> visitor.visitMcpToolListing(mcpToolListing)
+            else -> visitor.unknown(_json)
+        }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): BetaContentBlock = apply {
+        if (validated) {
+            return@apply
+        }
+
+        accept(
+            object : Visitor<Unit> {
+                override fun visitText(text: BetaTextBlock) {
+                    text.validate()
+                }
+
+                override fun visitThinking(thinking: BetaThinkingBlock) {
+                    thinking.validate()
+                }
+
+                override fun visitRedactedThinking(redactedThinking: BetaRedactedThinkingBlock) {
+                    redactedThinking.validate()
+                }
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock) {
+                    toolUse.validate()
+                }
+
+                override fun visitServerToolUse(serverToolUse: BetaServerToolUseBlock) {
+                    serverToolUse.validate()
+                }
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ) {
+                    webSearchToolResult.validate()
+                }
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ) {
+                    webFetchToolResult.validate()
+                }
+
+                override fun visitAdvisorToolResult(advisorToolResult: BetaAdvisorToolResultBlock) {
+                    advisorToolResult.validate()
+                }
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ) {
+                    codeExecutionToolResult.validate()
+                }
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ) {
+                    bashCodeExecutionToolResult.validate()
+                }
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ) {
+                    textEditorCodeExecutionToolResult.validate()
+                }
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ) {
+                    toolSearchToolResult.validate()
+                }
+
+                override fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock) {
+                    mcpToolUse.validate()
+                }
+
+                override fun visitMcpToolResult(mcpToolResult: BetaMcpToolResultBlock) {
+                    mcpToolResult.validate()
+                }
+
+                override fun visitContainerUpload(containerUpload: BetaContainerUploadBlock) {
+                    containerUpload.validate()
+                }
+
+                override fun visitCompaction(compaction: BetaCompactionBlock) {
+                    compaction.validate()
+                }
+
+                override fun visitFallback(fallback: BetaFallbackBlock) {
+                    fallback.validate()
+                }
+
+                override fun visitMcpToolListing(mcpToolListing: BetaMcpToolListingBlock) {
+                    mcpToolListing.validate()
+                }
+            }
+        )
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        accept(
+            object : Visitor<Int> {
+                override fun visitText(text: BetaTextBlock) = text.validity()
+
+                override fun visitThinking(thinking: BetaThinkingBlock) = thinking.validity()
+
+                override fun visitRedactedThinking(redactedThinking: BetaRedactedThinkingBlock) =
+                    redactedThinking.validity()
+
+                override fun visitToolUse(toolUse: BetaToolUseBlock) = toolUse.validity()
+
+                override fun visitServerToolUse(serverToolUse: BetaServerToolUseBlock) =
+                    serverToolUse.validity()
+
+                override fun visitWebSearchToolResult(
+                    webSearchToolResult: BetaWebSearchToolResultBlock
+                ) = webSearchToolResult.validity()
+
+                override fun visitWebFetchToolResult(
+                    webFetchToolResult: BetaWebFetchToolResultBlock
+                ) = webFetchToolResult.validity()
+
+                override fun visitAdvisorToolResult(advisorToolResult: BetaAdvisorToolResultBlock) =
+                    advisorToolResult.validity()
+
+                override fun visitCodeExecutionToolResult(
+                    codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+                ) = codeExecutionToolResult.validity()
+
+                override fun visitBashCodeExecutionToolResult(
+                    bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+                ) = bashCodeExecutionToolResult.validity()
+
+                override fun visitTextEditorCodeExecutionToolResult(
+                    textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+                ) = textEditorCodeExecutionToolResult.validity()
+
+                override fun visitToolSearchToolResult(
+                    toolSearchToolResult: BetaToolSearchToolResultBlock
+                ) = toolSearchToolResult.validity()
+
+                override fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock) =
+                    mcpToolUse.validity()
+
+                override fun visitMcpToolResult(mcpToolResult: BetaMcpToolResultBlock) =
+                    mcpToolResult.validity()
+
+                override fun visitContainerUpload(containerUpload: BetaContainerUploadBlock) =
+                    containerUpload.validity()
+
+                override fun visitCompaction(compaction: BetaCompactionBlock) =
+                    compaction.validity()
+
+                override fun visitFallback(fallback: BetaFallbackBlock) = fallback.validity()
+
+                override fun visitMcpToolListing(mcpToolListing: BetaMcpToolListingBlock) =
+                    mcpToolListing.validity()
+
+                override fun unknown(json: JsonValue?) = 0
+            }
+        )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is BetaContentBlock &&
+            text == other.text &&
+            thinking == other.thinking &&
+            redactedThinking == other.redactedThinking &&
+            toolUse == other.toolUse &&
+            serverToolUse == other.serverToolUse &&
+            webSearchToolResult == other.webSearchToolResult &&
+            webFetchToolResult == other.webFetchToolResult &&
+            advisorToolResult == other.advisorToolResult &&
+            codeExecutionToolResult == other.codeExecutionToolResult &&
+            bashCodeExecutionToolResult == other.bashCodeExecutionToolResult &&
+            textEditorCodeExecutionToolResult == other.textEditorCodeExecutionToolResult &&
+            toolSearchToolResult == other.toolSearchToolResult &&
+            mcpToolUse == other.mcpToolUse &&
+            mcpToolResult == other.mcpToolResult &&
+            containerUpload == other.containerUpload &&
+            compaction == other.compaction &&
+            fallback == other.fallback &&
+            mcpToolListing == other.mcpToolListing
+    }
+
+    override fun hashCode(): Int =
+        Objects.hash(
+            text,
+            thinking,
+            redactedThinking,
+            toolUse,
+            serverToolUse,
+            webSearchToolResult,
+            webFetchToolResult,
+            advisorToolResult,
+            codeExecutionToolResult,
+            bashCodeExecutionToolResult,
+            textEditorCodeExecutionToolResult,
+            toolSearchToolResult,
+            mcpToolUse,
+            mcpToolResult,
+            containerUpload,
+            compaction,
+            fallback,
+            mcpToolListing,
+        )
+
+    override fun toString(): String =
+        when {
+            text != null -> "BetaContentBlock{text=$text}"
+            thinking != null -> "BetaContentBlock{thinking=$thinking}"
+            redactedThinking != null -> "BetaContentBlock{redactedThinking=$redactedThinking}"
+            toolUse != null -> "BetaContentBlock{toolUse=$toolUse}"
+            serverToolUse != null -> "BetaContentBlock{serverToolUse=$serverToolUse}"
+            webSearchToolResult != null ->
+                "BetaContentBlock{webSearchToolResult=$webSearchToolResult}"
+            webFetchToolResult != null -> "BetaContentBlock{webFetchToolResult=$webFetchToolResult}"
+            advisorToolResult != null -> "BetaContentBlock{advisorToolResult=$advisorToolResult}"
+            codeExecutionToolResult != null ->
+                "BetaContentBlock{codeExecutionToolResult=$codeExecutionToolResult}"
+            bashCodeExecutionToolResult != null ->
+                "BetaContentBlock{bashCodeExecutionToolResult=$bashCodeExecutionToolResult}"
+            textEditorCodeExecutionToolResult != null ->
+                "BetaContentBlock{textEditorCodeExecutionToolResult=$textEditorCodeExecutionToolResult}"
+            toolSearchToolResult != null ->
+                "BetaContentBlock{toolSearchToolResult=$toolSearchToolResult}"
+            mcpToolUse != null -> "BetaContentBlock{mcpToolUse=$mcpToolUse}"
+            mcpToolResult != null -> "BetaContentBlock{mcpToolResult=$mcpToolResult}"
+            containerUpload != null -> "BetaContentBlock{containerUpload=$containerUpload}"
+            compaction != null -> "BetaContentBlock{compaction=$compaction}"
+            fallback != null -> "BetaContentBlock{fallback=$fallback}"
+            mcpToolListing != null -> "BetaContentBlock{mcpToolListing=$mcpToolListing}"
+            _json != null -> "BetaContentBlock{_unknown=$_json}"
+            else -> throw IllegalStateException("Invalid BetaContentBlock")
+        }
+
+    companion object {
+
+        @JvmStatic fun ofText(text: BetaTextBlock) = BetaContentBlock(text = text)
+
+        @JvmStatic
+        fun ofThinking(thinking: BetaThinkingBlock) = BetaContentBlock(thinking = thinking)
+
+        @JvmStatic
+        fun ofRedactedThinking(redactedThinking: BetaRedactedThinkingBlock) =
+            BetaContentBlock(redactedThinking = redactedThinking)
+
+        /**
+         * Returns an immutable instance of [BetaContentBlock] whose [ofRedactedThinking] variant is
+         * built from the given required [data].
+         */
+        @JvmStatic
+        fun ofRedactedThinking(data: String) =
+            ofRedactedThinking(BetaRedactedThinkingBlock.of(data))
+
+        @JvmStatic fun ofToolUse(toolUse: BetaToolUseBlock) = BetaContentBlock(toolUse = toolUse)
+
+        @JvmStatic
+        fun ofServerToolUse(serverToolUse: BetaServerToolUseBlock) =
+            BetaContentBlock(serverToolUse = serverToolUse)
+
+        @JvmStatic
+        fun ofWebSearchToolResult(webSearchToolResult: BetaWebSearchToolResultBlock) =
+            BetaContentBlock(webSearchToolResult = webSearchToolResult)
+
+        @JvmStatic
+        fun ofWebFetchToolResult(webFetchToolResult: BetaWebFetchToolResultBlock) =
+            BetaContentBlock(webFetchToolResult = webFetchToolResult)
+
+        @JvmStatic
+        fun ofAdvisorToolResult(advisorToolResult: BetaAdvisorToolResultBlock) =
+            BetaContentBlock(advisorToolResult = advisorToolResult)
+
+        @JvmStatic
+        fun ofCodeExecutionToolResult(codeExecutionToolResult: BetaCodeExecutionToolResultBlock) =
+            BetaContentBlock(codeExecutionToolResult = codeExecutionToolResult)
+
+        @JvmStatic
+        fun ofBashCodeExecutionToolResult(
+            bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+        ) = BetaContentBlock(bashCodeExecutionToolResult = bashCodeExecutionToolResult)
+
+        @JvmStatic
+        fun ofTextEditorCodeExecutionToolResult(
+            textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+        ) = BetaContentBlock(textEditorCodeExecutionToolResult = textEditorCodeExecutionToolResult)
+
+        @JvmStatic
+        fun ofToolSearchToolResult(toolSearchToolResult: BetaToolSearchToolResultBlock) =
+            BetaContentBlock(toolSearchToolResult = toolSearchToolResult)
+
+        @JvmStatic
+        fun ofMcpToolUse(mcpToolUse: BetaMcpToolUseBlock) =
+            BetaContentBlock(mcpToolUse = mcpToolUse)
+
+        @JvmStatic
+        fun ofMcpToolResult(mcpToolResult: BetaMcpToolResultBlock) =
+            BetaContentBlock(mcpToolResult = mcpToolResult)
+
+        /** Response model for a file uploaded to the container. */
+        @JvmStatic
+        fun ofContainerUpload(containerUpload: BetaContainerUploadBlock) =
+            BetaContentBlock(containerUpload = containerUpload)
+
+        /**
+         * Returns an immutable instance of [BetaContentBlock] whose [ofContainerUpload] variant is
+         * built from the given required [fileId].
+         */
+        @JvmStatic
+        fun ofContainerUpload(fileId: String) =
+            ofContainerUpload(BetaContainerUploadBlock.of(fileId))
+
+        /**
+         * A compaction block returned when autocompact is triggered.
+         *
+         * When content is None, it indicates the compaction failed to produce a valid summary
+         * (e.g., malformed output from the model). Clients may round-trip compaction blocks with
+         * null content; the server treats them as no-ops.
+         */
+        @JvmStatic
+        fun ofCompaction(compaction: BetaCompactionBlock) =
+            BetaContentBlock(compaction = compaction)
+
+        /**
+         * Marks the point in `content` where one model's output gives way to the next.
+         *
+         * One block appears per hop where a preceding model actually ran this turn and declined. A
+         * turn where no preceding model ran and declined has no such boundary and carries no block
+         * — the signal for whether a fallback model served the response is the presence of a
+         * `fallback_message` entry in `usage.iterations`, not this block.
+         *
+         * The block is treated like a server-tool content block for streaming: it arrives via the
+         * standard `content_block_start` / `content_block_stop` pair and carries no deltas.
+         */
+        @JvmStatic
+        fun ofFallback(fallback: BetaFallbackBlock) = BetaContentBlock(fallback = fallback)
+
+        /**
+         * The tool listing the server fetched from an MCP server while producing this response.
+         * Send the assistant message back unchanged, this block included, so later requests use
+         * this listing instead of asking the MCP server again.
+         */
+        @JvmStatic
+        fun ofMcpToolListing(mcpToolListing: BetaMcpToolListingBlock) =
+            BetaContentBlock(mcpToolListing = mcpToolListing)
+    }
+
+    /**
+     * An interface that defines how to map each variant of [BetaContentBlock] to a value of type
+     * [T].
+     */
+    interface Visitor<out T> {
+
+        fun visitText(text: BetaTextBlock): T
+
+        fun visitThinking(thinking: BetaThinkingBlock): T
+
+        fun visitRedactedThinking(redactedThinking: BetaRedactedThinkingBlock): T
+
+        fun visitToolUse(toolUse: BetaToolUseBlock): T
+
+        fun visitServerToolUse(serverToolUse: BetaServerToolUseBlock): T
+
+        fun visitWebSearchToolResult(webSearchToolResult: BetaWebSearchToolResultBlock): T
+
+        fun visitWebFetchToolResult(webFetchToolResult: BetaWebFetchToolResultBlock): T
+
+        fun visitAdvisorToolResult(advisorToolResult: BetaAdvisorToolResultBlock): T
+
+        fun visitCodeExecutionToolResult(
+            codeExecutionToolResult: BetaCodeExecutionToolResultBlock
+        ): T
+
+        fun visitBashCodeExecutionToolResult(
+            bashCodeExecutionToolResult: BetaBashCodeExecutionToolResultBlock
+        ): T
+
+        fun visitTextEditorCodeExecutionToolResult(
+            textEditorCodeExecutionToolResult: BetaTextEditorCodeExecutionToolResultBlock
+        ): T
+
+        fun visitToolSearchToolResult(toolSearchToolResult: BetaToolSearchToolResultBlock): T
+
+        fun visitMcpToolUse(mcpToolUse: BetaMcpToolUseBlock): T
+
+        fun visitMcpToolResult(mcpToolResult: BetaMcpToolResultBlock): T
+
+        /** Response model for a file uploaded to the container. */
+        fun visitContainerUpload(containerUpload: BetaContainerUploadBlock): T
+
+        /**
+         * A compaction block returned when autocompact is triggered.
+         *
+         * When content is None, it indicates the compaction failed to produce a valid summary
+         * (e.g., malformed output from the model). Clients may round-trip compaction blocks with
+         * null content; the server treats them as no-ops.
+         */
+        fun visitCompaction(compaction: BetaCompactionBlock): T
+
+        /**
+         * Marks the point in `content` where one model's output gives way to the next.
+         *
+         * One block appears per hop where a preceding model actually ran this turn and declined. A
+         * turn where no preceding model ran and declined has no such boundary and carries no block
+         * — the signal for whether a fallback model served the response is the presence of a
+         * `fallback_message` entry in `usage.iterations`, not this block.
+         *
+         * The block is treated like a server-tool content block for streaming: it arrives via the
+         * standard `content_block_start` / `content_block_stop` pair and carries no deltas.
+         */
+        fun visitFallback(fallback: BetaFallbackBlock): T
+
+        /**
+         * The tool listing the server fetched from an MCP server while producing this response.
+         * Send the assistant message back unchanged, this block included, so later requests use
+         * this listing instead of asking the MCP server again.
+         */
+        fun visitMcpToolListing(mcpToolListing: BetaMcpToolListingBlock): T
+
+        /**
+         * Maps an unknown variant of [BetaContentBlock] to a value of type [T].
+         *
+         * An instance of [BetaContentBlock] can contain an unknown variant if it was deserialized
+         * from data that doesn't match any known variant. For example, if the SDK is on an older
+         * version than the API, then the API may respond with new variants that the SDK is unaware
+         * of.
+         *
+         * @throws AnthropicInvalidDataException in the default implementation.
+         */
+        fun unknown(json: JsonValue?): T {
+            throw AnthropicInvalidDataException("Unknown BetaContentBlock: $json")
+        }
+    }
+
+    internal class Deserializer : BaseDeserializer<BetaContentBlock>(BetaContentBlock::class) {
+
+        override fun ObjectCodec.deserialize(node: JsonNode): BetaContentBlock {
+            val json = JsonValue.fromJsonNode(node)
+            val type = json.asObject().getOrNull()?.get("type")?.asString()?.getOrNull()
+
+            when (type) {
+                "text" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaTextBlock>())?.let {
+                        BetaContentBlock(text = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "thinking" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaThinkingBlock>())?.let {
+                        BetaContentBlock(thinking = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "redacted_thinking" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaRedactedThinkingBlock>())?.let {
+                        BetaContentBlock(redactedThinking = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "tool_use" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaToolUseBlock>())?.let {
+                        BetaContentBlock(toolUse = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "server_tool_use" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaServerToolUseBlock>())?.let {
+                        BetaContentBlock(serverToolUse = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "web_search_tool_result" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaWebSearchToolResultBlock>())
+                        ?.let { BetaContentBlock(webSearchToolResult = it, _json = json) }
+                        ?: BetaContentBlock(_json = json)
+                }
+                "web_fetch_tool_result" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaWebFetchToolResultBlock>())
+                        ?.let { BetaContentBlock(webFetchToolResult = it, _json = json) }
+                        ?: BetaContentBlock(_json = json)
+                }
+                "advisor_tool_result" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaAdvisorToolResultBlock>())?.let {
+                        BetaContentBlock(advisorToolResult = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "code_execution_tool_result" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaCodeExecutionToolResultBlock>())
+                        ?.let { BetaContentBlock(codeExecutionToolResult = it, _json = json) }
+                        ?: BetaContentBlock(_json = json)
+                }
+                "bash_code_execution_tool_result" -> {
+                    return tryDeserialize(
+                            node,
+                            jacksonTypeRef<BetaBashCodeExecutionToolResultBlock>(),
+                        )
+                        ?.let { BetaContentBlock(bashCodeExecutionToolResult = it, _json = json) }
+                        ?: BetaContentBlock(_json = json)
+                }
+                "text_editor_code_execution_tool_result" -> {
+                    return tryDeserialize(
+                            node,
+                            jacksonTypeRef<BetaTextEditorCodeExecutionToolResultBlock>(),
+                        )
+                        ?.let {
+                            BetaContentBlock(textEditorCodeExecutionToolResult = it, _json = json)
+                        } ?: BetaContentBlock(_json = json)
+                }
+                "tool_search_tool_result" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaToolSearchToolResultBlock>())
+                        ?.let { BetaContentBlock(toolSearchToolResult = it, _json = json) }
+                        ?: BetaContentBlock(_json = json)
+                }
+                "mcp_tool_use" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaMcpToolUseBlock>())?.let {
+                        BetaContentBlock(mcpToolUse = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "mcp_tool_result" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaMcpToolResultBlock>())?.let {
+                        BetaContentBlock(mcpToolResult = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "container_upload" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaContainerUploadBlock>())?.let {
+                        BetaContentBlock(containerUpload = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "compaction" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaCompactionBlock>())?.let {
+                        BetaContentBlock(compaction = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "fallback" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaFallbackBlock>())?.let {
+                        BetaContentBlock(fallback = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+                "mcp_tool_listing" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaMcpToolListingBlock>())?.let {
+                        BetaContentBlock(mcpToolListing = it, _json = json)
+                    } ?: BetaContentBlock(_json = json)
+                }
+            }
+
+            return BetaContentBlock(_json = json)
+        }
+    }
+
+    internal class Serializer : BaseSerializer<BetaContentBlock>(BetaContentBlock::class) {
+
+        override fun serialize(
+            value: BetaContentBlock,
+            generator: JsonGenerator,
+            provider: SerializerProvider,
+        ) {
+            when {
+                value.text != null -> generator.writeObject(value.text)
+                value.thinking != null -> generator.writeObject(value.thinking)
+                value.redactedThinking != null -> generator.writeObject(value.redactedThinking)
+                value.toolUse != null -> generator.writeObject(value.toolUse)
+                value.serverToolUse != null -> generator.writeObject(value.serverToolUse)
+                value.webSearchToolResult != null ->
+                    generator.writeObject(value.webSearchToolResult)
+                value.webFetchToolResult != null -> generator.writeObject(value.webFetchToolResult)
+                value.advisorToolResult != null -> generator.writeObject(value.advisorToolResult)
+                value.codeExecutionToolResult != null ->
+                    generator.writeObject(value.codeExecutionToolResult)
+                value.bashCodeExecutionToolResult != null ->
+                    generator.writeObject(value.bashCodeExecutionToolResult)
+                value.textEditorCodeExecutionToolResult != null ->
+                    generator.writeObject(value.textEditorCodeExecutionToolResult)
+                value.toolSearchToolResult != null ->
+                    generator.writeObject(value.toolSearchToolResult)
+                value.mcpToolUse != null -> generator.writeObject(value.mcpToolUse)
+                value.mcpToolResult != null -> generator.writeObject(value.mcpToolResult)
+                value.containerUpload != null -> generator.writeObject(value.containerUpload)
+                value.compaction != null -> generator.writeObject(value.compaction)
+                value.fallback != null -> generator.writeObject(value.fallback)
+                value.mcpToolListing != null -> generator.writeObject(value.mcpToolListing)
+                value._json != null -> generator.writeObject(value._json)
+                else -> throw IllegalStateException("Invalid BetaContentBlock")
+            }
+        }
+    }
+
+    class Type @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            @JvmField val TEXT = of("text")
+
+            @JvmField val THINKING = of("thinking")
+
+            @JvmField val REDACTED_THINKING = of("redacted_thinking")
+
+            @JvmField val TOOL_USE = of("tool_use")
+
+            @JvmField val SERVER_TOOL_USE = of("server_tool_use")
+
+            @JvmField val WEB_SEARCH_TOOL_RESULT = of("web_search_tool_result")
+
+            @JvmField val WEB_FETCH_TOOL_RESULT = of("web_fetch_tool_result")
+
+            @JvmField val ADVISOR_TOOL_RESULT = of("advisor_tool_result")
+
+            @JvmField val CODE_EXECUTION_TOOL_RESULT = of("code_execution_tool_result")
+
+            @JvmField val BASH_CODE_EXECUTION_TOOL_RESULT = of("bash_code_execution_tool_result")
+
+            @JvmField
+            val TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT =
+                of("text_editor_code_execution_tool_result")
+
+            @JvmField val TOOL_SEARCH_TOOL_RESULT = of("tool_search_tool_result")
+
+            @JvmField val MCP_TOOL_USE = of("mcp_tool_use")
+
+            @JvmField val MCP_TOOL_RESULT = of("mcp_tool_result")
+
+            @JvmField val CONTAINER_UPLOAD = of("container_upload")
+
+            @JvmField val COMPACTION = of("compaction")
+
+            @JvmField val FALLBACK = of("fallback")
+
+            @JvmField val MCP_TOOL_LISTING = of("mcp_tool_listing")
+
+            @JvmStatic fun of(value: String) = Type(JsonField.of(value))
+
+            @JvmSynthetic
+            internal fun of(value: JsonField<String>): Type =
+                value.asString().getOrNull()?.let { of(it) } ?: Type(value)
+        }
+
+        /** An enum containing [Type]'s known values. */
+        enum class Known {
+            TEXT,
+            THINKING,
+            REDACTED_THINKING,
+            TOOL_USE,
+            SERVER_TOOL_USE,
+            WEB_SEARCH_TOOL_RESULT,
+            WEB_FETCH_TOOL_RESULT,
+            ADVISOR_TOOL_RESULT,
+            CODE_EXECUTION_TOOL_RESULT,
+            BASH_CODE_EXECUTION_TOOL_RESULT,
+            TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT,
+            TOOL_SEARCH_TOOL_RESULT,
+            MCP_TOOL_USE,
+            MCP_TOOL_RESULT,
+            CONTAINER_UPLOAD,
+            COMPACTION,
+            FALLBACK,
+            MCP_TOOL_LISTING,
+        }
+
+        /**
+         * An enum containing [Type]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [Type] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            TEXT,
+            THINKING,
+            REDACTED_THINKING,
+            TOOL_USE,
+            SERVER_TOOL_USE,
+            WEB_SEARCH_TOOL_RESULT,
+            WEB_FETCH_TOOL_RESULT,
+            ADVISOR_TOOL_RESULT,
+            CODE_EXECUTION_TOOL_RESULT,
+            BASH_CODE_EXECUTION_TOOL_RESULT,
+            TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT,
+            TOOL_SEARCH_TOOL_RESULT,
+            MCP_TOOL_USE,
+            MCP_TOOL_RESULT,
+            CONTAINER_UPLOAD,
+            COMPACTION,
+            FALLBACK,
+            MCP_TOOL_LISTING,
+            /** An enum member indicating that [Type] was instantiated with an unknown value. */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                TEXT -> Value.TEXT
+                THINKING -> Value.THINKING
+                REDACTED_THINKING -> Value.REDACTED_THINKING
+                TOOL_USE -> Value.TOOL_USE
+                SERVER_TOOL_USE -> Value.SERVER_TOOL_USE
+                WEB_SEARCH_TOOL_RESULT -> Value.WEB_SEARCH_TOOL_RESULT
+                WEB_FETCH_TOOL_RESULT -> Value.WEB_FETCH_TOOL_RESULT
+                ADVISOR_TOOL_RESULT -> Value.ADVISOR_TOOL_RESULT
+                CODE_EXECUTION_TOOL_RESULT -> Value.CODE_EXECUTION_TOOL_RESULT
+                BASH_CODE_EXECUTION_TOOL_RESULT -> Value.BASH_CODE_EXECUTION_TOOL_RESULT
+                TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT ->
+                    Value.TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT
+                TOOL_SEARCH_TOOL_RESULT -> Value.TOOL_SEARCH_TOOL_RESULT
+                MCP_TOOL_USE -> Value.MCP_TOOL_USE
+                MCP_TOOL_RESULT -> Value.MCP_TOOL_RESULT
+                CONTAINER_UPLOAD -> Value.CONTAINER_UPLOAD
+                COMPACTION -> Value.COMPACTION
+                FALLBACK -> Value.FALLBACK
+                MCP_TOOL_LISTING -> Value.MCP_TOOL_LISTING
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                TEXT -> Known.TEXT
+                THINKING -> Known.THINKING
+                REDACTED_THINKING -> Known.REDACTED_THINKING
+                TOOL_USE -> Known.TOOL_USE
+                SERVER_TOOL_USE -> Known.SERVER_TOOL_USE
+                WEB_SEARCH_TOOL_RESULT -> Known.WEB_SEARCH_TOOL_RESULT
+                WEB_FETCH_TOOL_RESULT -> Known.WEB_FETCH_TOOL_RESULT
+                ADVISOR_TOOL_RESULT -> Known.ADVISOR_TOOL_RESULT
+                CODE_EXECUTION_TOOL_RESULT -> Known.CODE_EXECUTION_TOOL_RESULT
+                BASH_CODE_EXECUTION_TOOL_RESULT -> Known.BASH_CODE_EXECUTION_TOOL_RESULT
+                TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT ->
+                    Known.TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT
+                TOOL_SEARCH_TOOL_RESULT -> Known.TOOL_SEARCH_TOOL_RESULT
+                MCP_TOOL_USE -> Known.MCP_TOOL_USE
+                MCP_TOOL_RESULT -> Known.MCP_TOOL_RESULT
+                CONTAINER_UPLOAD -> Known.CONTAINER_UPLOAD
+                COMPACTION -> Known.COMPACTION
+                FALLBACK -> Known.FALLBACK
+                MCP_TOOL_LISTING -> Known.MCP_TOOL_LISTING
+                else -> throw AnthropicInvalidDataException("Unknown Type: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString().orElseThrow {
+                AnthropicInvalidDataException("Value is not a String")
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): Type = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Type && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+}

@@ -1,0 +1,20 @@
+**DONE — claude-liam-contracts**
+
+`claude-liam-contracts-slate.mp4` — 91.3 s, 7/7 beats VIDEO, GATE AUDIO PASS (−23.9 dB), mp4 epoch 1787702651 > sheet epoch 1787702648.
+
+**Audit summary:**
+| Check | Result |
+|---|---|
+| 1 Stale renders | PASS — no renders existed |
+| 2 Bookends | PASS — all 4 correct |
+| 3 Spark lines | PASS — spark_line_fix.py clean |
+| 4 Verdict | PASS — reel-specific (verdict_audit.py) |
+| 5 Card text | FIXED — B03.props.body truncation, BHTF.props.command truncation, BVDT artifactLines trailing fragment (found at Gate V, re-rendered) |
+| 6 Punt sweep | PASS — remotion:7, 0 slates, 0 gen-AI |
+| 7 Card-only | PASS — file tree + pipeline diagram + design tell |
+| 8 Lens audit | PASS — ≥2 moves (Popper + Plato) |
+| 9 Brand fields | FIXED — modelLabel "Opus 4.8" → "Opus 4.7" everywhere |
+| 10 Pacing | LOG — B00 at 3.48 wps (not retimed) |
+| 11 type_check | PASS — GATE T |
+
+**Content-integrity fixes** (REBUILD-LOG.md): B00 double-period, B03 narration truncation "user a." → "user asks.", BVDT double-period. All logged old→new.

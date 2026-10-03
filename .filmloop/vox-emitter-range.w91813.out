@@ -1,0 +1,10 @@
+Done. Reel built successfully.
+
+**vox-emitter-range** (anthropics/cancer-nanomedicine) — first successful build of this Cohort C legacy vox reel.
+
+- **Deliverable**: `vox-emitter-range.mp4` (144.4 s, 4K master, 8.9 MB).
+- **Fixes**: dropped ElevenLabs `voice_id`, set VOICE-LOCK kokoro/am_onyx, rewrote B07 FormACard narration-head punt with an honest 3-line slate declaration.
+- **Missing dependency**: `vox_scenes.py` couldn't import `vox_graphics` — copied the library from a sibling cancer-biology reel to make the manim scenes reachable. Envelope-level plumbing, no shot-intent change.
+- **Renders**: 11 manim scenes rendered locally at 720p24; 3 PIL PNG stills for the no-Remotion beats (B07/B13/B14). Zero slates in final.
+- **Gates**: CONTENT / FRAME / LANE / T / AUDIO all PASS. Gate V: contact sheet clean, every beat readable, safe area respected. Mean volume −23.9 dB.
+- **Staleness**: mp4 mtime is 21 s newer than beat_sheet.json. No post-compile sheet edits.

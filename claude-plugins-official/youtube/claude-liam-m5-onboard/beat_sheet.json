@@ -1,0 +1,384 @@
+{
+  "metadata": {
+    "title": "Claude, M5 Onboard.",
+    "slug": "claude-liam-m5-onboard",
+    "topic": "M5-ONBOARD · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-plugins-official/plugins/cwc-makers/skills/m5-onboard/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer",
+        "Cardputer-Adv",
+        "Stick) — detect on USB",
+        "flash UIFlow 2.0 firmware",
+        "and install the Claude Buddy MicroPython app bundle"
+      ],
+      "constraints": [
+        "How to invoke this from Claude Code's Bash tool. Do NOT call onboard.py as a foreground Bash command. The Bash tool captures output and does not stream it back to the…",
+        "### Relaying physical steps to the user (REQUIRED)",
+        "The flash stage cannot proceed without a manual button press on native-USB boards — there is no software path. When the monitored log shows Enter download mode (or the…",
+        "If the device reboots into UIFlow instead of going dark, tell the user G0 was released too early and to try again holding it longer. Do not move on, retry the script, or…",
+        "Flash (flash.py) — esptool write_flash 0x0 <image> at 460800 baud for UART bridges, --no-stub at 115200 baud for native-USB S3 devices. 921600 fails intermittently on…",
+        "## Critical gotchas (baked into the scripts — do not second-guess)",
+        "Native-USB ESP32-S3 boards (Cardputer, Cardputer-Adv, CoreS3) require a physical BtnG0+BtnRST dance to enter download mode. There is no software path. The chip has no…",
+        "Do not unplug the device during FLASH. Especially on native USB. A mid-flash disconnect leaves the internal flash in an inconsistent state. Mask ROM is usually reachable…"
+      ],
+      "referenced_files": [
+        "/flash/",
+        "cwc-makers",
+        "buddy/",
+        "/maker-setup",
+        "scripts/*.py",
+        "onboard/",
+        "--apps buddy",
+        "buddy/device/",
+        "onboard.py --apps buddy",
+        "install_apps.py --src buddy"
+      ],
+      "code_signals": [
+        "code block: bash"
+      ],
+      "sections": [
+        "Where the scripts live",
+        "When to use",
+        "Which variant to assume",
+        "The workflow",
+        "Relaying physical steps to the user (REQUIRED)",
+        "Stages",
+        "Critical gotchas (baked into the scripts — do not second-guess)",
+        "After provisioning (what the user sees on the device)",
+        "Files",
+        "Dependencies"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T17:56:44",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is m5-onboard. End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer, Cardputer-Adv, Core, CoreS3, Stick) — detect on USB, flash UIFlow 2.0 firmware, and install the Claude Buddy MicroPython app bundle. Use whenever the user plugs in or wants to flash/provision/reset an M5Stack or ESP32 board, or says \"m5-onboard go\".. Its concrete surface area includes End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer; Cardputer-Adv; Stick) — detect on USB. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "M5-ONBOARD · ANTHROPIC SKILL",
+            "segment": "Claude, M5 Onboard.",
+            "command": "Run the m5-onboard skill.",
+            "runningText": "reading m5-onboard SKILL.md…",
+            "output": [
+              "skill: m5-onboard",
+              "End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 39.23,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is m5-onboard. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at /flash/, cwc-makers, buddy/, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "m5-onboard",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "23k",
+                "accent": true
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "1 file total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.56,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "m5-onboard is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer; Cardputer-Adv; Stick) — detect on USB; flash UIFlow 2.0 firmware. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 18.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. How to invoke this from Claude Code's Bash tool. Do NOT call onboard.py as a foreground Bash command. The Bash tool captures output and does not stream it back to the…. That is the constraint in m5-onboard — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "How to invoke this from Claude Code's Bash tool. Do NOT call onboard.py as a foreground Bash command. The Bash tool captures output and does not stream it back to the…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.87,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In m5-onboard, supporting material: /flash/, cwc-makers, buddy/, /maker-setup; implementation signals: code block: bash; sections: Where the scripts live, When to use, Which variant to assume, The workflow. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer; Cardputer-Adv; Stick) — detect on USB; /flash/; cwc-makers; buddy/; code block: bash",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 19.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "m5-onboard makes Claude execute one task reliably. The SKILL.md is the spec — End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, M5 Onboard.",
+            "artifactLines": [
+              "Skill: m5-onboard — Claude reads SKILL.md before acting",
+              "End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer…",
+              "Capabilities: End-to-end onboarding for a freshly-plugged-in M5Stack ESP32 device (Cardputer; Cardputer-Adv; Stick) — detect on USB",
+              "Constraint: How to invoke this from Claude Code's Bash tool. Do NOT call onboard.py as a foreground…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 15.49,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to end-to-end onboarding for a freshly-plugged-in m5stack esp32 device (cardputer. Read the m5-onboard skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "M5-ONBOARD · ANTHROPIC SKILL",
+            "segment": "Claude, M5 Onboard.",
+            "command": "I want to end-to-end onboarding for a freshly-plugged-in m5stack esp32 device. Read the m5-onboard skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 16.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, M5 Onboard. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, M5 Onboard.",
+            "handle": "@NikBearBrown",
+            "subline": "m5-onboard · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.37,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T17:56:44"
+      }
+    }
+  ]
+}

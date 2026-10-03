@@ -1,0 +1,24 @@
+**DONE.** `claude-liam-marketing-slate.mp4` (19:00:49) is 13 seconds newer than `beat_sheet.json` (19:00:36).
+
+---
+
+### Final state
+
+| Gate | Result |
+|---|---|
+| GATE LANE | PASS — 35/35 filled, 0 slates |
+| GATE AUDIO | PASS — −25.6 dB mean |
+| GATE T (type_check) | PASS — §8.9, §8.12, §8.12b all clear |
+| GATE V (visual QC) | PASS — all 35 beats frame-verified |
+
+35 beats: 22 VIDEO + 13 MANIM. Duration: 381.6s. No punts.
+
+### Fixes applied this session
+
+1. **BVDT verdict** — authored from B04/B13/B20/B23 (five capabilities, 80% vs 50%, four habits, judgment retained); replaced all three placeholder lines
+2. **BHTF folderLabel** — `@claude-liam` → `@NikBearBrown`
+3. **B12 §8.12b/§8.12** — title `"Cowork"` → `"configure.yaml"`; YAML-colon props → `=` assignment tokens
+4. **B05 §8.9** — caption trimmed to complete sentence
+5. **SlateCard B05+B14** — prop names corrected (`label`→`headline`, added `eyebrow`/`topic`); beats re-rendered
+6. **Doodle overflow §8.9** — `.set_width(11.5)` added to B03/B07/B21/B23 body text; re-rendered
+7. **Wrong-clip bug** — B02, B06, B13, B16, B17, B22 all had content from incorrect renders due to `find -newer` heuristic; all fixed by name-direct copy from `_manim_tmp`

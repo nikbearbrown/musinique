@@ -1,0 +1,162 @@
+module Anthropic
+  module Models
+    class BetaToolResultBlockParam = Beta::BetaToolResultBlockParam
+
+    module Beta
+      type beta_tool_result_block_param =
+        {
+          tool_use_id: String,
+          type: :tool_result,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          content: Anthropic::Models::Beta::BetaToolResultBlockParam::content,
+          is_error: bool,
+          toolset_name: String?
+        }
+
+      class BetaToolResultBlockParam < Anthropic::Internal::Type::BaseModel
+        attr_accessor tool_use_id: String
+
+        attr_accessor type: :tool_result
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        attr_reader content: Anthropic::Models::Beta::BetaToolResultBlockParam::content?
+
+        def content=: (
+          Anthropic::Models::Beta::BetaToolResultBlockParam::content
+        ) -> Anthropic::Models::Beta::BetaToolResultBlockParam::content
+
+        attr_reader is_error: bool?
+
+        def is_error=: (bool) -> bool
+
+        attr_accessor toolset_name: String?
+
+        def initialize: (
+          tool_use_id: String,
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?content: Anthropic::Models::Beta::BetaToolResultBlockParam::content,
+          ?is_error: bool,
+          ?toolset_name: String?,
+          ?type: :tool_result
+        ) -> void
+
+        def to_hash: -> {
+          tool_use_id: String,
+          type: :tool_result,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          content: Anthropic::Models::Beta::BetaToolResultBlockParam::content,
+          is_error: bool,
+          toolset_name: String?
+        }
+
+        type content =
+          String
+          | ::Array[Anthropic::Models::Beta::BetaToolResultBlockParam::Content::content]
+
+        module Content
+          extend Anthropic::Internal::Type::Union
+
+          type content =
+            Anthropic::Beta::BetaTextBlockParam
+            | Anthropic::Beta::BetaImageBlockParam
+            | Anthropic::Beta::BetaSearchResultBlockParam
+            | Anthropic::Beta::BetaRequestDocumentBlock
+            | Anthropic::Beta::BetaToolReferenceBlockParam
+            | Anthropic::Beta::BetaBrowserStateBlockParam
+
+          module Content
+            extend Anthropic::Internal::Type::Union
+
+            type type_ =
+              :text
+              | :image
+              | :search_result
+              | :document
+              | :tool_reference
+              | :browser_state
+
+            module Type
+              extend Anthropic::Internal::Type::Enum
+
+              TEXT: :text
+              IMAGE: :image
+              SEARCH_RESULT: :search_result
+              DOCUMENT: :document
+              TOOL_REFERENCE: :tool_reference
+              BROWSER_STATE: :browser_state
+
+              def self?.values: -> ::Array[Anthropic::Models::Beta::BetaToolResultBlockParam::Content::Content::type_]
+            end
+
+            def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaToolResultBlockParam::Content::content]
+
+            def self.new:
+              (
+                type: :text | "text",
+                text: String,
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+                ?citations: ::Array[Anthropic::Models::Beta::beta_text_citation_param]?
+              ) -> Anthropic::Beta::BetaTextBlockParam
+              | (
+                type: :image | "image",
+                source: Anthropic::Models::Beta::BetaImageBlockParam::source,
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+                ?transformations: Anthropic::Beta::BetaImageTransformationsParam?
+              ) -> Anthropic::Beta::BetaImageBlockParam
+              | (
+                type: :search_result | "search_result",
+                content: ::Array[Anthropic::Beta::BetaTextBlockParam],
+                source: String,
+                title: String,
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+                ?citations: Anthropic::Beta::BetaCitationsConfigParam
+              ) -> Anthropic::Beta::BetaSearchResultBlockParam
+              | (
+                type: :document | "document",
+                source: Anthropic::Models::Beta::BetaRequestDocumentBlock::source,
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+                ?citations: Anthropic::Beta::BetaCitationsConfigParam?,
+                ?context: String?,
+                ?title: String?
+              ) -> Anthropic::Beta::BetaRequestDocumentBlock
+              | (
+                type: :tool_reference | "tool_reference",
+                tool_name: String,
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+              ) -> Anthropic::Beta::BetaToolReferenceBlockParam
+              | (
+                type: :browser_state | "browser_state",
+                tabs: ::Array[Anthropic::Beta::BetaBrowserStateTabEntry],
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+                ?state_changes: ::Array[Anthropic::Models::Beta::beta_browser_state_change]?
+              ) -> Anthropic::Beta::BetaBrowserStateBlockParam
+              | (
+                type: Anthropic::Models::Beta::BetaToolResultBlockParam::Content::Content::type_
+                | String,
+                ?text: String,
+                ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+                ?citations: ::Array[Anthropic::Models::Beta::beta_text_citation_param]?
+                | Anthropic::Beta::BetaCitationsConfigParam
+                | Anthropic::Beta::BetaCitationsConfigParam?,
+                ?source: Anthropic::Models::Beta::BetaImageBlockParam::source
+                | String
+                | Anthropic::Models::Beta::BetaRequestDocumentBlock::source,
+                ?transformations: Anthropic::Beta::BetaImageTransformationsParam?,
+                ?content: ::Array[Anthropic::Beta::BetaTextBlockParam],
+                ?title: String | String?,
+                ?context: String?,
+                ?tool_name: String,
+                ?tabs: ::Array[Anthropic::Beta::BetaBrowserStateTabEntry],
+                ?state_changes: ::Array[Anthropic::Models::Beta::beta_browser_state_change]?
+              ) -> Anthropic::Models::Beta::BetaToolResultBlockParam::Content::content
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaToolResultBlockParam::content]
+
+          ContentArray: Anthropic::Internal::Type::Converter
+        end
+      end
+    end
+  end
+end

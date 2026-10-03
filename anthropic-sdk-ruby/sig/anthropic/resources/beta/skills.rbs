@@ -1,0 +1,42 @@
+module Anthropic
+  module Resources
+    class Beta
+      class Skills
+        attr_reader versions: Anthropic::Resources::Beta::Skills::Versions
+
+        def create: (
+          files: ::Array[Anthropic::Internal::file_input],
+          ?display_name: String?,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> Anthropic::Beta::BetaSkill
+
+        def retrieve: (
+          String skill_id,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> Anthropic::Beta::BetaSkill
+
+        def list: (
+          ?limit: Integer,
+          ?page: String?,
+          ?source: String?,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> Anthropic::Internal::PageCursor[Anthropic::Beta::BetaSkill]
+
+        def delete: (
+          String skill_id,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> Anthropic::Beta::BetaDeletedSkill
+
+        def initialize: (client: Anthropic::Client) -> void
+      end
+    end
+  end
+end

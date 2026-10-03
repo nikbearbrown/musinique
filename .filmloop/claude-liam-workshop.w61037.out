@@ -1,0 +1,20 @@
+Done. Here is the log.
+
+---
+
+**claude-liam-workshop** — DONE
+
+**Cut:** `claude-liam-workshop-slate.mp4` · 90.6s · mtime 00:20:49 > sheet 00:20:46 ✓  
+**Audio:** GATE AUDIO PASS (−23.7 dB)  
+**GATE T:** PASS  
+**Gate V:** PASS — zero BLOCKER, zero MAJOR on real beats  
+**Beats:** 7/7 VIDEO (remotion: 7)
+
+**Checks fixed:**
+- `Check 1` — No stale mp4s to delete (reel had never compiled).
+- `Check 4 (Verdict)` — BVDT stripped. 2 boilerplate lines (≥10 reels) + body under 5-beat/180-word threshold.
+- `Check 5 (Card text)` — B03 body un-truncated; B03 sparkLine "This is the part worth knowing." → "Spec is the limit." (4 words); BHTF command de-truncated and rewritten as a real handoff prompt.
+- `Check 8 (Lens)` — Added B04 (lens beat) running Plato: artifact = SKILL.md, world = participant understanding, relationship = skill governs Claude's words, not the learning outcome.
+- `Check 9 (Brand)` — modelLabel "Opus 4.8" (nonexistent) → "Opus 4.7"; BOUT subline removed (OUTRO-LOCK).
+- `Check 11 (GATE T)` — Initial run: 3 failures (B00 output truncation, B03/B04 body overflow). Fixed props, re-rendered, recompiled. PASS.
+- `Pacing (logged)` — BHTF ~3.5 wps; narration locked.

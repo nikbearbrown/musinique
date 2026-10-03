@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes/1080p24/partial_movie_files/B16Doodle/3202278719_3017290613_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_875743121_1608875211.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_4110393405_3525826378.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_3466476306_546823890.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_2621872134_4034045741.mp4'

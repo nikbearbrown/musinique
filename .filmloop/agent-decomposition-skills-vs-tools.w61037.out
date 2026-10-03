@@ -1,0 +1,30 @@
+**REEL: agent-decomposition-skills-vs-tools — DONE**
+
+---
+
+**Invocation summary**
+
+This invocation found the reel already processed by a prior session (2026-08-26 03:31). Independent verification:
+
+**Timestamp check:** slate 03:31 > sheet 03:30 ✓
+
+**Phase 1 re-audit (all 11 checks):** All PASS or FIXED per AUDIT.md. No new issues found.
+
+**Gate V (fresh frames from final slate):**
+The prior session's `_qc/frames/` were from 03:26 — before two post-audit re-renders (BHTF topic fix 03:30, B07 green contrast fix 03:29). Fresh frames extracted at beat midpoints from the actual compiled slate:
+- BHTF (308s): topic "YOUR TURN · AGENT DECOMPOSITION" confirmed ✓ — fix landed
+- BVDT (286s): real artifact lines, no templates ✓
+- BOUT (322s): title + @NikBearBrown + pixel mascot ✓
+- B03 (133s): CwcDecompositionTree fully rendered, canvas fills ✓
+- B07 (385s): dark green (#2E7D32) bars legible on cream ✓
+- Zero BLOCKER, zero MAJOR on real beats
+
+**Audio:** mean_volume −24.3 dB (threshold > −40 dB) ✓
+
+**Build counter:** `VIDEO: 14` — no slates, no punts
+
+**FILMLOOP-LOG:** entry already complete from prior session (lines 221–270)
+
+**AUDIT.md:** appended Gate V section with fresh-frame verification results
+
+No beat_sheet.json was touched after compile.

@@ -1,0 +1,866 @@
+package environments
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"errors"
+	"log/slog"
+	"net/http"
+	"os"
+	"strings"
+	"sync"
+	"sync/atomic"
+	"testing"
+	"time"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/option"
+	"github.com/anthropics/anthropic-sdk-go/tools/agenttoolset"
+	"github.com/stretchr/testify/require"
+)
+
+func TestEnvironmentWorker_CancelledCtxReturnsNil(t *testing.T) {
+	server := newFakeWorkServer(t)
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "envkey",
+		Logger:         silentLogger,
+	})
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	require.NoError(t, worker.Run(ctx), "a cancelled ctx is normal termination, not an error")
+}
+
+func TestEnvironmentWorker_DefaultWorkdirSnapshotsCwd(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	wd, err := os.Getwd()
+	require.NoError(t, err)
+
+	// An empty Workdir is snapshotted to the cwd at construction, not left as
+	// a lazily-resolved ".". This mirrors the TS/Python helpers and keeps the
+	// session workdir stable across a later os.Chdir.
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "envkey",
+		Logger:         silentLogger,
+	})
+	require.Equal(t, wd, worker.opts.Workdir)
+	require.NotEqual(t, ".", worker.opts.Workdir)
+
+	// An explicit Workdir is honored as-is.
+	explicit := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "envkey",
+		Workdir:        "/some/explicit/dir",
+		Logger:         silentLogger,
+	})
+	require.Equal(t, "/some/explicit/dir", explicit.opts.Workdir)
+}
+
+// The deprecated UnrestrictedPaths option fails both entry points before any
+// request is sent, with an error callers can match.
+func TestEnvironmentWorker_UnrestrictedPathsIsRejected(t *testing.T) {
+	server := newFakeWorkServer(t)
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:     "env_1",
+		EnvironmentKey:    "envkey",
+		UnrestrictedPaths: true,
+		Logger:            silentLogger,
+	})
+	require.ErrorIs(t, worker.Run(context.Background()), agenttoolset.ErrUnrestrictedPathsUnsupported)
+	require.ErrorIs(t, worker.HandleItem(context.Background(), HandleItemOptions{
+		WorkID:         "work_1",
+		EnvironmentID:  "env_1",
+		SessionID:      "sesn_1",
+		EnvironmentKey: "envkey",
+	}), agenttoolset.ErrUnrestrictedPathsUnsupported)
+	require.Empty(t, server.Calls())
+}
+
+// A MemorySyncInterval below the floor fails both entry points the same way.
+func TestEnvironmentWorker_AShortMemorySyncIntervalIsRejected(t *testing.T) {
+	server := newFakeWorkServer(t)
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:      "env_1",
+		EnvironmentKey:     "envkey",
+		MemorySyncInterval: time.Second,
+		Logger:             silentLogger,
+	})
+	require.ErrorIs(t, worker.Run(context.Background()), ErrMemorySyncIntervalTooShort)
+	require.ErrorIs(t, worker.HandleItem(context.Background(), HandleItemOptions{
+		WorkID:         "work_1",
+		EnvironmentID:  "env_1",
+		SessionID:      "sesn_1",
+		EnvironmentKey: "envkey",
+	}), ErrMemorySyncIntervalTooShort)
+	require.Empty(t, server.Calls())
+}
+
+func TestEnvironmentWorker_RequiresEnvironmentID(t *testing.T) {
+	server := newFakeWorkServer(t)
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentKey: "envkey",
+		Logger:         silentLogger,
+	})
+	// The underlying WorkPoller surfaces the missing-id error on the first poll.
+	require.Error(t, worker.Run(context.Background()))
+}
+
+// The queue hands the worker a health check instead of a session. There is
+// no session to look up or serve, but the item must still be stopped so the
+// queue gets it back.
+func TestEnvironmentWorker_SkipsNonSessionItem(t *testing.T) {
+	server := newFakeWorkServer(t)
+	scriptWorkServer(t, server, workJSON("work_1", "env_1", "healthcheck"))
+	server.HandleSessionGet = func(w http.ResponseWriter, _ *http.Request) {
+		t.Error("no session must be fetched for a health check")
+		http.Error(w, "not found", http.StatusNotFound)
+	}
+	server.HandleStream = func(w http.ResponseWriter, _ *http.Request) {
+		t.Error("no session must be served for a health check")
+		http.Error(w, "not found", http.StatusNotFound)
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	// End the run once the item was stopped.
+	var stops atomic.Int32
+	server.HandleStop = func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+		stops.Add(1)
+		cancel()
+	}
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		Workdir:        t.TempDir(),
+		Logger:         silentLogger,
+	})
+
+	require.NoError(t, worker.Run(ctx))
+
+	require.Equal(t, int32(1), stops.Load())
+}
+
+// customHeaderName/customHeaderValue stand in for a caller-supplied
+// proxy/routing header that must reach every request the self-hosted runner
+// issues when threaded through EnvironmentWorkerOptions.RequestOptions.
+const (
+	customHeaderName  = "X-Custom-Proxy"
+	customHeaderValue = "proxy-token-xyz"
+)
+
+// assertCustomHeaderEverywhere asserts that every recorded call carries the
+// caller's custom header, authenticates with the environment key, AND does
+// NOT leak the parent client's X-Api-Key. The third assertion is what closes
+// the regression window the original #854 review missed: a future change
+// that drops WithHeaderDel("X-Api-Key") from the worker side of the auth
+// recipe (heartbeat, force-stop, runner stream/list/send, skill-setup
+// session lookup) flips this assertion immediately, just as the poller-side
+// assertion at poller_test.go:307-315 does for poll/ack/stop.
+func assertCustomHeaderEverywhere(t *testing.T, calls []recordedCall) {
+	t.Helper()
+	require.NotEmpty(t, calls, "expected the worker to issue at least one request")
+	for _, c := range calls {
+		t.Run(c.method+" "+c.path, func(t *testing.T) {
+			require.Equal(t, customHeaderValue, c.header.Get(customHeaderName),
+				"caller-supplied custom header must reach %s %s", c.method, c.path)
+			require.Equal(t, "Bearer env_key", c.auth,
+				"environment-key auth must still win on %s %s", c.method, c.path)
+			require.Empty(t, c.apiKey,
+				"%s %s must not leak the parent client's X-Api-Key alongside the bearer", c.method, c.path)
+		})
+	}
+}
+
+// TestWorkPoller_ThreadsCustomRequestOptions covers the poller leg: a custom
+// header supplied via WorkPollerOptions.RequestOptions must appear on
+// Poll/Ack/Stop.
+func TestWorkPoller_ThreadsCustomRequestOptions(t *testing.T) {
+	server := newFakeWorkServer(t)
+	work := workJSON("work_1", "env_1", "session")
+
+	pollCount := 0
+	server.HandlePoll = func(w http.ResponseWriter, _ *http.Request) {
+		pollCount++
+		w.Header().Set("Content-Type", "application/json")
+		if pollCount == 1 {
+			_, _ = w.Write([]byte(work))
+		} else {
+			w.WriteHeader(http.StatusNoContent)
+		}
+	}
+	server.HandleAck = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(work))
+	}
+	server.HandleStop = func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	p := NewWorkPoller(ctx, server.Client(), WorkPollerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		WorkerID:       "test-worker",
+		RequestOptions: []option.RequestOption{option.WithHeader(customHeaderName, customHeaderValue)},
+		Logger:         silentLogger,
+	})
+
+	require.True(t, p.Next(), "first Next() must yield the scripted work")
+	require.NoError(t, p.Close())
+
+	calls := server.Calls()
+	require.Len(t, calls, 3, "expected poll + ack + stop")
+	assertCustomHeaderEverywhere(t, calls)
+}
+
+// TestEnvironmentWorker_ThreadsCustomRequestOptions covers the per-session
+// leg: a custom header supplied via EnvironmentWorkerOptions.RequestOptions
+// must reach the session lookup, the lease heartbeat, the SessionToolRunner's
+// stream/list, and the force-stop on exit.
+func TestEnvironmentWorker_ThreadsCustomRequestOptions(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	// Gate the stream's terminate event on the heartbeat having fired, so the
+	// heartbeat is deterministically observed before the session ends and the
+	// per-session context is cancelled — no timing-based flakiness.
+	heartbeatSeen := make(chan struct{})
+	var heartbeatOnce sync.Once
+
+	server.HandleSessionGet = func(w http.ResponseWriter, _ *http.Request) {
+		// No skills -> SetupSkills issues no requests of its own.
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"agent":{"skills":[]}}`))
+	}
+	server.HandleHeartbeat = func(w http.ResponseWriter, _ *http.Request) {
+		heartbeatOnce.Do(func() { close(heartbeatSeen) })
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"last_heartbeat":"2026-05-11T12:00:00Z","lease_extended":true,"state":"active","ttl_seconds":30,"type":"work_heartbeat"}`))
+	}
+	server.HandleList = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"data":[],"first_id":null,"has_more":false,"last_id":null}`))
+	}
+	server.HandleStream = func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/event-stream")
+		flusher, ok := w.(http.Flusher)
+		require.True(t, ok, "stream response writer must support flushing")
+		w.WriteHeader(http.StatusOK)
+		flusher.Flush()
+		// Wait for at least one heartbeat before terminating the session.
+		select {
+		case <-heartbeatSeen:
+		case <-r.Context().Done():
+			return
+		case <-time.After(5 * time.Second):
+			t.Error("heartbeat was never observed before stream terminate")
+		}
+		_, _ = w.Write([]byte("event: session.status_terminated\n" +
+			`data: {"type":"session.status_terminated","id":"evt_term","processed_at":"2026-05-11T12:00:00Z"}` +
+			"\n\n"))
+		flusher.Flush()
+	}
+	server.HandleSend = func(w http.ResponseWriter, _ *http.Request) {
+		// No tool_use fires, so Send should never be called.
+		t.Error("Send must not be called when no tool_use event arrives")
+		w.WriteHeader(http.StatusOK)
+	}
+	server.HandleStop = func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	}
+
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		Workdir:        t.TempDir(),
+		RequestOptions: []option.RequestOption{option.WithHeader(customHeaderName, customHeaderValue)},
+		Logger:         silentLogger,
+	})
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	require.NoError(t, worker.HandleItem(ctx, HandleItemOptions{
+		WorkID:        "work_1",
+		EnvironmentID: "env_1",
+		SessionID:     "sesn_test",
+	}), "a terminated session is benign and HandleItem should return nil")
+
+	calls := server.Calls()
+	assertCustomHeaderEverywhere(t, calls)
+
+	// Sanity-check that the calls we expect to carry the header actually
+	// happened — otherwise the assertion above could pass vacuously.
+	want := map[string]bool{
+		"sessions/sesn_test":               false, // skill-setup session lookup
+		"work/work_1/heartbeat":            false, // lease heartbeat
+		"sessions/sesn_test/events/stream": false, // runner stream
+		"work/work_1/stop":                 false, // force-stop on exit
+	}
+	for _, c := range calls {
+		for suffix := range want {
+			if strings.HasSuffix(c.path, suffix) {
+				want[suffix] = true
+			}
+		}
+	}
+	for suffix, seen := range want {
+		require.True(t, seen, "expected a request to %q but none was recorded", suffix)
+	}
+}
+
+// TestEnvironmentWorker_LeaseTTLBoundsSendRetryWindow pins the wiring from
+// the lease heartbeat to the runner (internal/sendwindow on the session ctx):
+// the server-reported ttl_seconds becomes the runner's tool-result send retry
+// window, so a send that keeps failing
+// transiently is abandoned once the lease TTL has passed rather than after
+// the runner's standalone 5m default.
+func TestEnvironmentWorker_LeaseTTLBoundsSendRetryWindow(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	server.HandleSessionGet = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"agent":{"skills":[]}}`))
+	}
+	server.HandleHeartbeat = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"last_heartbeat":"2026-05-11T12:00:00Z","lease_extended":true,"state":"active","ttl_seconds":1,"type":"work_heartbeat"}`))
+	}
+	server.HandleList = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"data":[],"first_id":null,"has_more":false,"last_id":null}`))
+	}
+	var firstSend, lastSend atomic.Int64 // unix nanos
+	server.HandleSend = func(w http.ResponseWriter, _ *http.Request) {
+		now := time.Now().UnixNano()
+		firstSend.CompareAndSwap(0, now)
+		lastSend.Store(now)
+		http.Error(w, "unavailable", http.StatusServiceUnavailable)
+	}
+	server.HandleStream = func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/event-stream")
+		flusher, ok := w.(http.Flusher)
+		require.True(t, ok, "stream response writer must support flushing")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte("event: agent.tool_use\n" +
+			`data: {"type":"agent.tool_use","id":"evt_1","name":"echo","input":{},"processed_at":"2026-05-11T12:00:00Z"}` +
+			"\n\n"))
+		flusher.Flush()
+		// Keep the session open well past the 1s lease TTL so only the send
+		// retry window — not session termination — can end the retries.
+		select {
+		case <-time.After(3 * time.Second):
+		case <-r.Context().Done():
+			return
+		}
+		_, _ = w.Write([]byte("event: session.status_terminated\n" +
+			`data: {"type":"session.status_terminated","id":"evt_term","processed_at":"2026-05-11T12:00:00Z"}` +
+			"\n\n"))
+		flusher.Flush()
+	}
+	server.HandleStop = func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	}
+
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		Workdir:        t.TempDir(),
+		Tools:          []anthropic.BetaTool{echoTool{}},
+		Logger:         silentLogger,
+	})
+
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	require.NoError(t, worker.HandleItem(ctx, HandleItemOptions{
+		WorkID:        "work_1",
+		EnvironmentID: "env_1",
+		SessionID:     "sesn_test",
+	}))
+
+	first, last := firstSend.Load(), lastSend.Load()
+	require.NotZero(t, first, "the send should have been attempted")
+	require.Greater(t, last, first, "the send should have been retried")
+	require.Less(t, time.Duration(last-first), 1500*time.Millisecond,
+		"retries must stop once the 1s lease TTL has passed; under the 5m default they would continue until the session terminated ~3s later")
+}
+
+// echoTool is a minimal anthropic.BetaTool for driving the runner inside the
+// worker composition.
+type echoTool struct{}
+
+func (echoTool) Name() string        { return "echo" }
+func (echoTool) Description() string { return "echo" }
+func (echoTool) InputSchema() anthropic.BetaToolInputSchemaParam {
+	return anthropic.BetaToolInputSchemaParam{Properties: map[string]any{}}
+}
+func (echoTool) Execute(context.Context, json.RawMessage) ([]anthropic.BetaToolResultBlockParamContentUnion, error) {
+	return []anthropic.BetaToolResultBlockParamContentUnion{{OfText: &anthropic.BetaTextBlockParam{Text: "ok"}}}, nil
+}
+
+// TestEnvironmentWorker_HeartbeatStartsBeforeSkillSetup pins the invariant
+// that the lease heartbeat is running before the session lookup that feeds
+// skill setup completes. The poller acks the item when it
+// yields, so any gap between ack and the first heartbeat is a window where
+// the control plane can reclaim the lease — and the lookup plus a per-skill
+// download/extract can take longer than the lease
+// TTL on a slow network or a large bundle.
+//
+// The test enforces this by making HandleSessionGet block until at least
+// one heartbeat has fired. If the heartbeat goroutine is started AFTER
+// skill setup returns (the pre-fix shape), no heartbeat ever fires and
+// HandleSessionGet blocks until the outer ctx times out — HandleItem then
+// returns the wrapped ctx error rather than nil. With the fix, the
+// heartbeat goroutine is started before the lookup, the channel closes
+// while the session lookup is in flight, and the session
+// completes normally.
+func TestEnvironmentWorker_HeartbeatStartsBeforeSkillSetup(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	heartbeatSeen := make(chan struct{})
+	var heartbeatOnce sync.Once
+
+	server.HandleHeartbeat = func(w http.ResponseWriter, _ *http.Request) {
+		heartbeatOnce.Do(func() { close(heartbeatSeen) })
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"last_heartbeat":"2026-05-11T12:00:00Z","lease_extended":true,"state":"active","ttl_seconds":30,"type":"work_heartbeat"}`))
+	}
+	server.HandleSessionGet = func(w http.ResponseWriter, r *http.Request) {
+		// Block the session-get until a heartbeat has been observed. This is
+		// what proves the heartbeat starts BEFORE skill setup finishes — if
+		// it didn't, this handler would block forever (the heartbeat
+		// goroutine never starts) and the outer context would time out.
+		select {
+		case <-heartbeatSeen:
+		case <-r.Context().Done():
+			return
+		case <-time.After(5 * time.Second):
+			t.Error("heartbeat did not fire while the session lookup was in flight")
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"agent":{"skills":[]}}`))
+	}
+	server.HandleList = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"data":[],"first_id":null,"has_more":false,"last_id":null}`))
+	}
+	server.HandleStream = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "text/event-stream")
+		flusher, ok := w.(http.Flusher)
+		require.True(t, ok, "stream response writer must support flushing")
+		w.WriteHeader(http.StatusOK)
+		flusher.Flush()
+		_, _ = w.Write([]byte("event: session.status_terminated\n" +
+			`data: {"type":"session.status_terminated","id":"evt_term","processed_at":"2026-05-11T12:00:00Z"}` +
+			"\n\n"))
+		flusher.Flush()
+	}
+	server.HandleStop = func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	}
+
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		Workdir:        t.TempDir(),
+		Logger:         silentLogger,
+	})
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	require.NoError(t, worker.HandleItem(ctx, HandleItemOptions{
+		WorkID:        "work_1",
+		EnvironmentID: "env_1",
+		SessionID:     "sesn_test",
+	}), "HandleItem must complete normally; if the heartbeat never starts, HandleSessionGet blocks until ctx timeout and HandleItem returns a wrapped ctx error")
+}
+
+// TestEnvironmentWorker_HeartbeatPerRequestTimeoutAndStalenessCeiling pins
+// two related guarantees about runHeartbeat:
+//
+//  1. No per-request timeout — Heartbeat inherits the SDK's ~10-minute
+//     default, so one slow/hung call outlives the entire lease window.
+//  2. No staleness ceiling — a run of transient errors retries forever while
+//     the lease silently expires server-side; the worker keeps executing
+//     tools against a session another worker may also have claimed.
+//
+// The fixes interact: each Heartbeat is sent with WithRequestTimeout(interval)
+// (so hung calls fail fast), and the transient-error branch bails when
+// time.Since(lastSuccess) > ttl (so a run of fast-failing or fast-cancelled
+// beats also terminates the heartbeat goroutine within a bounded window).
+//
+// This test scripts a server that returns one successful beat with a short
+// TTL (2 s — shrinks interval to 1 s and ttl to 2 s) and then hangs every
+// subsequent heartbeat. With the fixes, each hung beat is cancelled at the
+// 1 s request timeout, and the staleness check fires once we're past the
+// 2 s TTL since the last success — so the heartbeat goroutine cancels
+// sessCtx, the runner exits with ctx.Canceled, and HandleItem returns the
+// wrapped ctx error well within the 15 s outer ctx.
+//
+// Without the per-request-timeout fix, beat 2 would block on the hung
+// handler for the full SDK default (10 min) — only one heartbeat call would
+// land, and HandleItem would only return when the outer ctx times out.
+// Without the staleness-ceiling fix (even with the request timeout) the
+// goroutine would log transient failures forever; sessCtx would never be
+// cancelled by the heartbeat.
+func TestEnvironmentWorker_HeartbeatPerRequestTimeoutAndStalenessCeiling(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	var heartbeatCalls atomic.Int32
+	server.HandleHeartbeat = func(w http.ResponseWriter, r *http.Request) {
+		n := heartbeatCalls.Add(1)
+		if n == 1 {
+			// First beat succeeds with a tight TTL so the test runs fast:
+			// ttl becomes 2 s and interval shrinks to 1 s.
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(shortTTLHeartbeat))
+			return
+		}
+		// Every subsequent beat hangs. With the per-request-timeout fix the
+		// client cancels at interval (1 s); the handler's request context
+		// fires and the handler returns. Without the fix, this would block
+		// for the SDK default (~10 min).
+		select {
+		case <-r.Context().Done():
+			return
+		case <-time.After(20 * time.Second):
+			t.Error("hung heartbeat was never cancelled — per-request timeout did not fire")
+		}
+	}
+
+	scriptOpenSession(t, server)
+	elapsed := timeHandleItem(t, server, silentLogger)
+
+	// With the fix, the staleness ceiling fires once the 2 s ttl has
+	// elapsed since the first (and only) successful beat, terminating
+	// HandleItem in roughly that window. 8 s is comfortably below the 15 s
+	// outer ctx, so a regression where only the outer ctx terminates the
+	// run fails this check.
+	require.Less(t, elapsed, 8*time.Second, "HandleItem ran too long — staleness ceiling didn't terminate the heartbeat (got %s)", elapsed)
+
+	// At least 2 heartbeat calls must have landed: the first success and at
+	// least one timeout-cancelled retry. Without the per-request-timeout
+	// fix, the second call would still be blocked on the SDK's ~10 min
+	// default when HandleItem returns (via the outer ctx), so the count
+	// would be 1.
+	require.GreaterOrEqual(t, heartbeatCalls.Load(), int32(2), "expected at least 2 heartbeats; got %d — per-request timeout likely missing", heartbeatCalls.Load())
+}
+
+// A 409 on heartbeat is transient: the session survives the first one, the
+// beat is retried at the current interval, and only the staleness ceiling —
+// no successful heartbeat within ttl — cancels the session.
+func TestEnvironmentWorker_Heartbeat409IsRetriedUntilStalenessCeiling(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	var heartbeatCalls atomic.Int32
+	server.HandleHeartbeat = func(w http.ResponseWriter, _ *http.Request) {
+		if heartbeatCalls.Add(1) == 1 {
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(shortTTLHeartbeat))
+			return
+		}
+		writeAPIError(w, http.StatusConflict)
+	}
+	scriptOpenSession(t, server)
+
+	var logs lockedBuffer
+	elapsed := timeHandleItem(t, server, slog.New(slog.NewTextHandler(&logs, nil)))
+
+	require.Less(t, elapsed, 8*time.Second, "the staleness ceiling must end the session once ttl passes without a successful heartbeat (got %s)", elapsed)
+	require.GreaterOrEqual(t, heartbeatCalls.Load(), int32(3), "a 409 must be retried at the beat interval, not end heartbeating")
+	out := logs.String()
+	require.Contains(t, out, "transient heartbeat failure")
+	require.Contains(t, out, "heartbeat staleness ceiling exceeded")
+	require.NotContains(t, out, "permanent heartbeat failure", "a 409 must never take the permanent-failure path")
+}
+
+func TestEnvironmentWorker_Heartbeat401CancelsImmediately(t *testing.T) {
+	server := newFakeWorkServer(t)
+
+	var heartbeatCalls atomic.Int32
+	server.HandleHeartbeat = func(w http.ResponseWriter, _ *http.Request) {
+		heartbeatCalls.Add(1)
+		writeAPIError(w, http.StatusUnauthorized)
+	}
+	scriptOpenSession(t, server)
+
+	var logs lockedBuffer
+	elapsed := timeHandleItem(t, server, slog.New(slog.NewTextHandler(&logs, nil)))
+
+	require.Less(t, elapsed, 5*time.Second, "a permanent heartbeat failure must cancel the session at once (got %s)", elapsed)
+	require.Equal(t, int32(1), heartbeatCalls.Load(), "a 401 must not be retried")
+	require.Contains(t, logs.String(), "permanent heartbeat failure")
+}
+
+// shortTTLHeartbeat is a successful heartbeat body whose 2 s TTL shrinks the
+// worker's beat interval to 1 s and its staleness ceiling to 2 s.
+const shortTTLHeartbeat = `{"last_heartbeat":"2026-05-11T12:00:00Z","lease_extended":true,"state":"active","ttl_seconds":2,"type":"work_heartbeat"}`
+
+// scriptOpenSession scripts a skill-less session whose event stream stays
+// open until the per-session context is cancelled, so only the heartbeat
+// loop (or the outer deadline) can end HandleItem.
+func scriptOpenSession(t *testing.T, server *fakeWorkServer) {
+	t.Helper()
+	server.HandleSessionGet = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"agent":{"skills":[]}}`))
+	}
+	server.HandleList = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"data":[],"first_id":null,"has_more":false,"last_id":null}`))
+	}
+	server.HandleStream = func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/event-stream")
+		flusher, ok := w.(http.Flusher)
+		require.True(t, ok)
+		w.WriteHeader(http.StatusOK)
+		flusher.Flush()
+		<-r.Context().Done()
+	}
+	server.HandleStop = func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	}
+}
+
+// timeHandleItem serves one work item against server and returns how long
+// HandleItem took. The 15 s outer deadline is deliberately generous so a run
+// that only the deadline ended is distinguishable from one the heartbeat loop
+// ended; callers assert an upper bound well below it. HandleItem's return
+// value is ignored: a heartbeat-driven cancel is normal termination (nil).
+func timeHandleItem(t *testing.T, server *fakeWorkServer, logger *slog.Logger) time.Duration {
+	t.Helper()
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		Workdir:        t.TempDir(),
+		Logger:         logger,
+	})
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+
+	start := time.Now()
+	_ = worker.HandleItem(ctx, HandleItemOptions{
+		WorkID:        "work_1",
+		EnvironmentID: "env_1",
+		SessionID:     "sesn_test",
+	})
+	return time.Since(start)
+}
+
+// lockedBuffer is an io.Writer safe for the concurrent writes slog issues
+// from the worker's goroutines.
+type lockedBuffer struct {
+	mu  sync.Mutex
+	buf bytes.Buffer
+}
+
+func (b *lockedBuffer) Write(p []byte) (int, error) {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	return b.buf.Write(p)
+}
+
+func (b *lockedBuffer) String() string {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	return b.buf.String()
+}
+
+// leaseLostBody is the 412 the control plane answers a heartbeat with once the
+// item's lease was cleared (re-queued) or is held by another worker.
+const leaseLostBody = `{"type":"error","error":{"type":"invalid_request_error","message":"Heartbeat precondition failed: expected hb-1, actual was NULL","details":{"error_code":"heartbeat_precondition_failed","error_visibility":"user_facing","current_state":{"state":"queued","last_heartbeat":null,"lease_updated_at":null,"lease_extended":false,"ttl_seconds":120}}}}`
+
+// callsEndingIn returns the recorded calls whose path ends in suffix, in order.
+func callsEndingIn(calls []recordedCall, suffix string) []recordedCall {
+	var out []recordedCall
+	for _, c := range calls {
+		if strings.HasSuffix(c.path, suffix) {
+			out = append(out, c)
+		}
+	}
+	return out
+}
+
+// runItemEndedByHeartbeat runs one worker pass over work_1 whose session never
+// completes on its own: every heartbeat is held until the event stream is open
+// and then answered by answerHeartbeat (beat counts from 1), so the heartbeat
+// alone decides how the item ends; the second poll ends the run.
+func runItemEndedByHeartbeat(t *testing.T, answerHeartbeat func(w http.ResponseWriter, beat int)) (*fakeWorkServer, string) {
+	t.Helper()
+	server := newFakeWorkServer(t)
+	work := workJSON("work_1", "env_1", "session")
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	var polls atomic.Int32
+	server.HandlePoll = func(w http.ResponseWriter, r *http.Request) {
+		if polls.Add(1) == 1 {
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(work))
+			return
+		}
+		cancel()
+		<-r.Context().Done()
+	}
+	server.HandleAck = func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(work))
+	}
+	holdHeartbeatsUntilServing(t, server, answerHeartbeat)
+
+	var logs lockedBuffer
+	worker := NewEnvironmentWorker(server.Client(), EnvironmentWorkerOptions{
+		EnvironmentID:  "env_1",
+		EnvironmentKey: "env_key",
+		WorkerID:       "test-worker",
+		Workdir:        t.TempDir(),
+		Logger:         slog.New(slog.NewTextHandler(&logs, nil)),
+	})
+	require.NoError(t, worker.Run(ctx))
+
+	require.NotEmpty(t, callsEndingIn(server.Calls(), "/sessions/sesn_test/events/stream"), "the runner must have served the session")
+	require.EqualValues(t, 2, polls.Load(), "Run must go back to polling after the item ends")
+	return server, logs.String()
+}
+
+// holdHeartbeatsUntilServing scripts a skill-less session that never completes
+// on its own and holds every heartbeat until the event stream is open, then
+// answers it with answerHeartbeat (beat counts from 1), so the heartbeat alone
+// decides how the item ends.
+func holdHeartbeatsUntilServing(t *testing.T, server *fakeWorkServer, answerHeartbeat func(w http.ResponseWriter, beat int)) {
+	t.Helper()
+	scriptOpenSession(t, server)
+	serving := make(chan struct{})
+	var servingOnce sync.Once
+	server.HandleStream = func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/event-stream")
+		flusher, ok := w.(http.Flusher)
+		require.True(t, ok, "stream response writer must support flushing")
+		w.WriteHeader(http.StatusOK)
+		flusher.Flush()
+		servingOnce.Do(func() { close(serving) })
+		<-r.Context().Done()
+	}
+	var beats atomic.Int32
+	server.HandleHeartbeat = func(w http.ResponseWriter, r *http.Request) {
+		n := beats.Add(1)
+		select {
+		case <-serving:
+		case <-r.Context().Done():
+			return
+		case <-time.After(5 * time.Second):
+			t.Error("the event stream never opened while a heartbeat was waiting")
+			return
+		}
+		answerHeartbeat(w, int(n))
+	}
+}
+
+// A 412 on the heartbeat means the server cleared this worker's lease
+// (re-queued the item, or another worker holds it). The run ends, no stop of
+// any kind is posted — that would take the item from its new holder — and the
+// worker goes back to polling.
+func TestEnvironmentWorker_Heartbeat412ReleasesItemWithoutStoppingIt(t *testing.T) {
+	server, logs := runItemEndedByHeartbeat(t, func(w http.ResponseWriter, _ int) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusPreconditionFailed)
+		_, _ = w.Write([]byte(leaseLostBody))
+	})
+
+	calls := server.Calls()
+	require.Len(t, callsEndingIn(calls, "/heartbeat"), 1)
+	require.Empty(t, callsEndingIn(calls, "/stop"), "a lost item must not be stopped by the worker or its poller")
+	require.Contains(t, logs, `level=ERROR msg="lease lost: heartbeat precondition failed" work_id=work_1 session_id=sesn_test server_state=queued server_ttl_seconds=120 server_last_heartbeat=<nil>`)
+	require.Contains(t, logs, `level=INFO msg="lease lost; released without stopping it" work_id=work_1 session_id=sesn_test`)
+	require.Equal(t, 1, strings.Count(logs, "lease lost; released without stopping it"))
+	for _, stem := range []string{"force-stop on exit failed", "session lookup failed", "session tool runner exited with error"} {
+		require.NotContains(t, logs, stem)
+	}
+}
+
+// A heartbeat reporting state "stopped" ends the run and the item is still
+// force-stopped on the way out — only a lost lease skips that — and that
+// force-stop is the item's only stop in a full Run.
+func TestEnvironmentWorker_ControlPlaneStopStillForceStops(t *testing.T) {
+	server, logs := runItemEndedByHeartbeat(t, func(w http.ResponseWriter, _ int) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"last_heartbeat":"2026-05-11T12:00:00Z","lease_extended":true,"state":"stopped","ttl_seconds":30,"type":"work_heartbeat"}`))
+	})
+
+	require.Contains(t, logs, `msg="heartbeat reports shutdown" work_id=work_1 session_id=sesn_test state=stopped`)
+	stops := callsEndingIn(server.Calls(), "/stop")
+	require.Len(t, stops, 1, "the exit-path force-stop must be the item's only stop")
+	require.Contains(t, stops[0].path, "work/work_1/stop")
+	require.Contains(t, stops[0].body, `"force":true`)
+	require.Equal(t, "Bearer env_key", stops[0].auth)
+	require.NotContains(t, logs, "without stopping it")
+}
+
+// Transient heartbeat failures lasting past the lease TTL mean another worker
+// may hold the item by now, so it is released without a force-stop.
+func TestEnvironmentWorker_LeaseAssumedLostReleasesItemWithoutStoppingIt(t *testing.T) {
+	start := time.Now()
+	server, logs := runItemEndedByHeartbeat(t, func(w http.ResponseWriter, beat int) {
+		if beat == 1 {
+			w.Header().Set("Content-Type", "application/json")
+			_, _ = w.Write([]byte(shortTTLHeartbeat))
+			return
+		}
+		writeAPIError(w, http.StatusServiceUnavailable)
+	})
+
+	require.Less(t, time.Since(start), 8*time.Second)
+	require.GreaterOrEqual(t, len(callsEndingIn(server.Calls(), "/heartbeat")), 2)
+	require.Contains(t, logs, "heartbeat staleness ceiling exceeded; lease presumed expired")
+	require.Empty(t, callsEndingIn(server.Calls(), "/stop"))
+	require.Equal(t, 1, strings.Count(logs, `msg="lease lost; released without stopping it" work_id=work_1 session_id=sesn_test`))
+}
+
+// Only the two reasons where the item now belongs to someone else read as
+// lost; every other reason, and no reason at all, keeps the force-stop.
+func TestLeaseLostClassification(t *testing.T) {
+	tests := []struct {
+		description string
+		reason      leaseEndReason
+		lost        bool
+	}{
+		{"a 412 hands the item to the queue or another worker", leaseLost, true},
+		{"a full TTL without a successful heartbeat is treated the same way", leaseAssumedLost, true},
+		{"a control-plane stop still force-stops", leaseControlPlaneStop, false},
+		{"a rejected heartbeat still force-stops", leaseHeartbeatRejected, false},
+		{"the run finishing first still force-stops", leaseRunnerDone, false},
+		{"a lease that never ended still force-stops", leaseHeld, false},
+	}
+	for _, tc := range tests {
+		t.Run(tc.description, func(t *testing.T) {
+			require.Equal(t, tc.lost, tc.reason.lost())
+		})
+	}
+}
+
+// The 412 log line reads the server's view of the lease from the error body; a
+// body without one, or an error that never reached the API, yields nil so the
+// fields log as <nil> rather than breaking the heartbeat path.
+func TestServerLeaseState(t *testing.T) {
+	apiError := func(body string) error {
+		apiErr := &anthropic.Error{StatusCode: http.StatusPreconditionFailed}
+		require.NoError(t, apiErr.UnmarshalJSON([]byte(body)))
+		return apiErr
+	}
+	require.Equal(t, map[string]any{
+		"state":            "queued",
+		"last_heartbeat":   nil,
+		"lease_updated_at": nil,
+		"lease_extended":   false,
+		"ttl_seconds":      float64(120),
+	}, serverLeaseState(apiError(leaseLostBody)))
+	require.Nil(t, serverLeaseState(apiError(`{"type":"error","error":{"type":"api_error","message":"unavailable"}}`)))
+	require.Nil(t, serverLeaseState(errors.New("connection reset")))
+	require.Nil(t, serverLeaseState(nil))
+}

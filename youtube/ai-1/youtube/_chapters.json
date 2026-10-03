@@ -1,0 +1,287 @@
+{
+  "book": "ai-1",
+  "book_title": "AI+1 — \"",
+  "chapter_count": 40,
+  "chapters": [
+    {
+      "file": "chapters/00-introduction.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/00-introduction.md",
+      "title": "Introduction",
+      "words": 1170,
+      "images": 0
+    },
+    {
+      "file": "chapters/01-what-ai-plus-one-is.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/01-what-ai-plus-one-is.md",
+      "title": "Chapter 1 — What AI+1 Is and Why It Works",
+      "words": 5031,
+      "images": 4
+    },
+    {
+      "file": "chapters/02-what-tic-toc-does.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/02-what-tic-toc-does.md",
+      "title": "Chapter 2 — What Tic TOC Does and Why You Spend Two Hours Here First",
+      "words": 6236,
+      "images": 4
+    },
+    {
+      "file": "chapters/03-domain-research.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/03-domain-research.md",
+      "title": "Chapter 3 — Domain Research: The Chapter Before the Chapter",
+      "words": 5816,
+      "images": 4
+    },
+    {
+      "file": "chapters/04-generating-your-tiktoc.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/04-generating-your-tiktoc.md",
+      "title": "Chapter 4 — Tic TOC: Generating Your TIKTOC.md",
+      "words": 6532,
+      "images": 4
+    },
+    {
+      "file": "chapters/05-book-scaffold.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/05-book-scaffold.md",
+      "title": "Chapter 5 — Book Scaffold: `new_book.py`",
+      "words": 4188,
+      "images": 3
+    },
+    {
+      "file": "chapters/06-research-pass.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/06-research-pass.md",
+      "title": "Chapter 6 — Research Pass: Pantry Population",
+      "words": 5977,
+      "images": 4
+    },
+    {
+      "file": "chapters/07-chapter-writing.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/07-chapter-writing.md",
+      "title": "Chapter 7 — Chapter Writing: The Cowork Draft Run",
+      "words": 4694,
+      "images": 3
+    },
+    {
+      "file": "chapters/08-the-human-rewrite.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/08-the-human-rewrite.md",
+      "title": "Chapter 8 — The Human Rewrite: The Seam",
+      "words": 5916,
+      "images": 3
+    },
+    {
+      "file": "chapters/09-finishing-pass-and-figures.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/09-finishing-pass-and-figures.md",
+      "title": "Chapter 9 — Finishing Pass and Figures",
+      "words": 4501,
+      "images": 4
+    },
+    {
+      "file": "chapters/10-enrichment-for-ai.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/10-enrichment-for-ai.md",
+      "title": "Chapter 10 — Enrichment for AI",
+      "words": 5702,
+      "images": 4
+    },
+    {
+      "file": "chapters/11-creating-figures.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/11-creating-figures.md",
+      "title": "Chapter 11 — Creating Figures",
+      "words": 4422,
+      "images": 4
+    },
+    {
+      "file": "chapters/12-final-check-and-build.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/12-final-check-and-build.md",
+      "title": "Chapter 12 — Final Check and Build: EPUB + PDF",
+      "words": 5019,
+      "images": 4
+    },
+    {
+      "file": "chapters/13-enriched-layer.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/13-enriched-layer.md",
+      "title": "Chapter 13 — The Enriched Layer: Beyond the Book",
+      "words": 3636,
+      "images": 0
+    },
+    {
+      "file": "chapters/14-case-studies.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/14-case-studies.md",
+      "title": "Chapter 14 — Case Studies",
+      "words": 3925,
+      "images": 0
+    },
+    {
+      "file": "chapters/15-glimmers.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/15-glimmers.md",
+      "title": "Chapter 15 — Glimmers: AI-Interrogated Prompts",
+      "words": 4163,
+      "images": 0
+    },
+    {
+      "file": "chapters/16-spaced-repetition.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/16-spaced-repetition.md",
+      "title": "Chapter 16 — Spaced Repetition: Anki and the Forgetting Curve",
+      "words": 3870,
+      "images": 0
+    },
+    {
+      "file": "chapters/17-canvas-course-export.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/17-canvas-course-export.md",
+      "title": "Chapter 17 — Canvas Course Export: .imscc",
+      "words": 4393,
+      "images": 0
+    },
+    {
+      "file": "chapters/18-react-site.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/18-react-site.md",
+      "title": "Chapter 18 — The React Site: .mdx + .tsx",
+      "words": 3482,
+      "images": 0
+    },
+    {
+      "file": "chapters/19-medhavy-lti.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/19-medhavy-lti.md",
+      "title": "Chapter 19 — Medhavy: the AI-Tutor Layer via LTI",
+      "words": 3500,
+      "images": 0
+    },
+    {
+      "file": "chapters/20-ask-ai-everywhere.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/20-ask-ai-everywhere.md",
+      "title": "Chapter 20 — Ask AI Everywhere",
+      "words": 5083,
+      "images": 0
+    },
+    {
+      "file": "chapters/80-appendix-tiktoc.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/80-appendix-tiktoc.md",
+      "title": "Appendix A — The Tic TOC Prompt",
+      "words": 15183,
+      "images": 0
+    },
+    {
+      "file": "chapters/81-appendix-domain-research.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/81-appendix-domain-research.md",
+      "title": "Appendix B — The Domain Research Prompt",
+      "words": 1114,
+      "images": 0
+    },
+    {
+      "file": "chapters/82-appendix-scaffold.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/82-appendix-scaffold.md",
+      "title": "Appendix C — The Book Scaffold Script (`new_book.py`)",
+      "words": 433,
+      "images": 0
+    },
+    {
+      "file": "chapters/83-appendix-research-pass.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/83-appendix-research-pass.md",
+      "title": "Appendix D — The Research Pass Prompts",
+      "words": 3894,
+      "images": 0
+    },
+    {
+      "file": "chapters/84-appendix-chapter-writer.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/84-appendix-chapter-writer.md",
+      "title": "Appendix E — The Chapter Writer Prompt",
+      "words": 2189,
+      "images": 0
+    },
+    {
+      "file": "chapters/85-appendix-combined-test.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/85-appendix-combined-test.md",
+      "title": "Appendix F — The Combined Test",
+      "words": 663,
+      "images": 0
+    },
+    {
+      "file": "chapters/86-appendix-finishing-figures.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/86-appendix-finishing-figures.md",
+      "title": "Appendix G — The Finishing Pass and Image Suggest Prompts",
+      "words": 853,
+      "images": 0
+    },
+    {
+      "file": "chapters/87-appendix-enrichment.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/87-appendix-enrichment.md",
+      "title": "Appendix H — The LLM Enrichment Prompts",
+      "words": 7463,
+      "images": 7
+    },
+    {
+      "file": "chapters/88-appendix-cajal.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/88-appendix-cajal.md",
+      "title": "Appendix I — The CAJAL Figure Command Set and SVG Style Guide",
+      "words": 7513,
+      "images": 1
+    },
+    {
+      "file": "chapters/89-appendix-factcheck.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/89-appendix-factcheck.md",
+      "title": "Appendix J — The Fact-Checking Prompt",
+      "words": 2517,
+      "images": 0
+    },
+    {
+      "file": "chapters/90-appendix-imscc-standard.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/90-appendix-imscc-standard.md",
+      "title": "Appendix — The Canvas Export Script (`build-imscc-standard.py`)",
+      "words": 527,
+      "images": 0
+    },
+    {
+      "file": "chapters/91-appendix-case-generator.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/91-appendix-case-generator.md",
+      "title": "Appendix 91 — Case Study Generator (prompt)",
+      "words": 1396,
+      "images": 0
+    },
+    {
+      "file": "chapters/92-appendix-glimmer-generator.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/92-appendix-glimmer-generator.md",
+      "title": "Appendix 92 — Glimmer Generator (prompt)",
+      "words": 1423,
+      "images": 0
+    },
+    {
+      "file": "chapters/93-appendix-spaced-repetition-generator.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/93-appendix-spaced-repetition-generator.md",
+      "title": "Appendix D — The Spaced-Repetition Card Generator",
+      "words": 605,
+      "images": 0
+    },
+    {
+      "file": "chapters/94-appendix-anki-build.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/94-appendix-anki-build.md",
+      "title": "Appendix — The Anki Deck Script (`build-anki.py`)",
+      "words": 481,
+      "images": 0
+    },
+    {
+      "file": "chapters/95-appendix-react-site.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/95-appendix-react-site.md",
+      "title": "Appendix — The React Site Script (`build-react-site.py`)",
+      "words": 449,
+      "images": 0
+    },
+    {
+      "file": "chapters/96-appendix-medhavy-lti.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/96-appendix-medhavy-lti.md",
+      "title": "Appendix 96 — Medhavy LTI 1.3 Setup Guide",
+      "words": 2365,
+      "images": 0
+    },
+    {
+      "file": "chapters/97-appendix-ask-ai.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/97-appendix-ask-ai.md",
+      "title": "Appendix 97 — Ask AI: Per-Surface Configuration and the Parallel-LLM Companion Prompt",
+      "words": 2093,
+      "images": 0
+    },
+    {
+      "file": "chapters/97-fundamental-themes.md",
+      "path": "/Users/bear/Documents/CoWork/bear-textbooks/books/ai-1/chapters/97-fundamental-themes.md",
+      "title": "The Fundamental Themes",
+      "words": 7449,
+      "images": 0
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Done. Reel `vox-batch-distribution` shipped as a full-render master:
+
+- **Deliverable**: `vox-batch-distribution.mp4` (9.33 MB, 179.2 s, 3840×2160, 24 fps, mtime 22 s newer than sheet).
+- **Envelope rebuild**: dropped ElevenLabs `voice_id`, added `engine=kokoro` / `voice=am_onyx`, rewrote `clock` prose. Byte-exact `beat_sheet.pre-rebuild.json` written first.
+- **Audio**: regenerated all 14 beats via Kokoro `am_onyx` (old Jul 8 mp3s were ElevenLabs — confirmed by ffprobe 44100/128k vs Kokoro 24000/72k). Master mean_volume −23.9 dB.
+- **Punt fixed**: B02 FormACard.props.lines was a truncated narration head — replaced with an honest three-line slate; PIL cards fill B02/B13/B14 where no Remotion pipeline exists.
+- **Gate V caught + fixed**: B08 sub-labels overlapped on one horizontal band; shortened to single-noun tags and staggered the mid group lower, re-rendered, re-compiled.
+- **Slots**: 11 MANIM + 3 STILL, zero SLATE. Gate LANE PASS, Gate AUDIO PASS, type_check PASS.
+- **Logs**: `AUDIT.md`, `REBUILD-LOG.md`, `FILMLOOP-LOG.md` entry all written; no post-compile sheet edits.

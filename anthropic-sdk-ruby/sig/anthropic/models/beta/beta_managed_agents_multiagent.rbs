@@ -1,0 +1,78 @@
+module Anthropic
+  module Models
+    class BetaManagedAgentsMultiagent = Beta::BetaManagedAgentsMultiagent
+
+    module Beta
+      type beta_managed_agents_multiagent =
+        {
+          agents: ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::agent],
+          type: Anthropic::Models::Beta::BetaManagedAgentsMultiagent::type_
+        }
+
+      class BetaManagedAgentsMultiagent < Anthropic::Internal::Type::BaseModel
+        attr_accessor agents: ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::agent]
+
+        attr_accessor type: Anthropic::Models::Beta::BetaManagedAgentsMultiagent::type_
+
+        def initialize: (
+          agents: ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::agent],
+          type: Anthropic::Models::Beta::BetaManagedAgentsMultiagent::type_
+        ) -> void
+
+        def to_hash: -> {
+          agents: ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::agent],
+          type: Anthropic::Models::Beta::BetaManagedAgentsMultiagent::type_
+        }
+
+        type agent =
+          Anthropic::Beta::BetaManagedAgentsAgentReference
+          | Anthropic::Beta::BetaManagedAgentsAdvisor
+
+        module Agent
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :agent | :advisor
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            AGENT: :agent
+            ADVISOR: :advisor
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::Agent::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::agent]
+
+          def self.new:
+            (
+              type: :agent | "agent",
+              id: String,
+              version: Integer
+            ) -> Anthropic::Beta::BetaManagedAgentsAgentReference
+            | (
+              type: :advisor | "advisor",
+              model: String
+            ) -> Anthropic::Beta::BetaManagedAgentsAdvisor
+            | (
+              type: Anthropic::Models::Beta::BetaManagedAgentsMultiagent::Agent::type_
+              | String,
+              ?id: String,
+              ?version: Integer,
+              ?model: String
+            ) -> Anthropic::Models::Beta::BetaManagedAgentsMultiagent::agent
+        end
+
+        type type_ = :coordinator
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          COORDINATOR: :coordinator
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsMultiagent::type_]
+        end
+      end
+    end
+  end
+end

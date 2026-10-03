@@ -1,0 +1,378 @@
+{
+  "metadata": {
+    "title": "Claude, Board Minutes.",
+    "slug": "claude-liam-board-minutes",
+    "topic": "BOARD-MINUTES · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-for-legal/corporate-legal/skills/board-minutes/SKILL.md",
+    "source_detail": {
+      "capabilities": [],
+      "constraints": [
+        "Matter context. Check ## Matter workspaces in the practice-level CLAUDE.md. If Enabled is ✗ (the default for in-house users), skip the rest of this paragraph — skills…",
+        "If ~/.claude/plugins/config/claude-for-legal/corporate-legal/CLAUDE.md has no minutes format: run cold-start first. Do not proceed with a generic format",
+        "Any guests who attended for specific agenda items only (note their attendance as limited to that item)",
+        "Confirm quorum was present. If not: stop and flag before drafting. Do not produce minutes that imply a valid meeting occurred. Surface the question to outside counsel…",
+        "Use the house format from ~/.claude/plugins/config/claude-for-legal/corporate-legal/CLAUDE.md. Do not default to a generic format. The seed minutes are the template…",
+        "Long-form narrative: Summarise the substance of the discussion — what questions were raised, what information was presented, what factors the board considered. Do not…",
+        "Action minutes: Note only what was presented and what action was taken. No discussion content beyond \"the board discussed the matter.\"",
+        "Hybrid: Full narrative for major items (acquisitions, financials, significant approvals), action-only for routine items"
+      ],
+      "referenced_files": [
+        "/corporate-legal:matter-workspace switch <slug>",
+        "practice-level",
+        "matter.md",
+        "~/.claude/plugins/config/claude-for-legal/corporate-legal/matters/<matter-slug>/",
+        "Cross-matter context",
+        "~/.claude/plugins/config/claude-for-legal/corporate-legal/CLAUDE.md",
+        "/corporate-legal:written-consent"
+      ],
+      "code_signals": [],
+      "sections": [
+        "Matter context",
+        "Purpose",
+        "Load context",
+        "Step 1: Identify the meeting",
+        "Calendar detection",
+        "Meeting metadata to confirm",
+        "Step 2: Attendance",
+        "Step 3: Materials",
+        "Step 4: Draft the minutes",
+        "Standard structure (adapt to house format)"
+      ]
+    },
+    "build": {
+      "at": "2026-09-06T00:10:08",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is board-minutes. >. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "BOARD-MINUTES · ANTHROPIC SKILL",
+            "segment": "Claude, Board Minutes.",
+            "command": "Run the board-minutes skill.",
+            "runningText": "reading board-minutes SKILL.md…",
+            "output": [
+              "skill: board-minutes",
+              ">",
+              "steps: 6 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 7.64,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is board-minutes. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at /corporate-legal:matter-workspace switch <slug>, practice-level, matter.md, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "board-minutes",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "12k",
+                "accent": true
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "1 file total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 6 steps. Identify the meeting → Attendance → Materials, plus 3 more. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Identify the meeting",
+                "desc": "",
+                "accent": true
+              },
+              {
+                "label": "Attendance",
+                "desc": "Ask for the attendee list, or offer to pull from the…",
+                "accent": false
+              },
+              {
+                "label": "Materials",
+                "desc": "Ask for the meeting materials. These are the source for the…",
+                "accent": false
+              },
+              {
+                "label": "Draft the minutes",
+                "desc": "Use the house format from ~/.claude/plugins/config/claude-fo…",
+                "accent": false
+              }
+            ],
+            "footerNote": "6 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 12.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Matter context. Check ## Matter workspaces in the practice-level CLAUDE.md. If Enabled is ✗ (the default for in-house users), skip the rest of this paragraph — skills…. That is the constraint in board-minutes — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Matter context. Check ## Matter workspaces in the practice-level CLAUDE.md. If Enabled is ✗ (the default for in-house users), skip the rest of this paragraph — skills…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.96,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In board-minutes, supporting material: /corporate-legal:matter-workspace switch <slug>, practice-level, matter.md, ~/.claude/plugins/config/claude-for-legal/corporate-legal/matters/<matter-slug>/; sections: Matter context, Purpose, Load context, Step 1: Identify the meeting. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "/corporate-legal:matter-workspace switch <slug>; practice-level; matter.md",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 23.06,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "board-minutes makes Claude execute one task reliably. The SKILL.md is the spec — >. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Board Minutes.",
+            "artifactLines": [
+              "Skill: board-minutes — Claude reads SKILL.md before acting",
+              ">",
+              "6-step pipeline: Identify the meeting → Attendance → Materials",
+              "Constraint: Matter context. Check ## Matter workspaces in the practice-level CLAUDE.md. If Enabled is…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 9.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to >. Read the board-minutes skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "BOARD-MINUTES · ANTHROPIC SKILL",
+            "segment": "Claude, Board Minutes.",
+            "command": "I want to >. Read the board-minutes skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 10.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Board Minutes. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Board Minutes.",
+            "handle": "@NikBearBrown",
+            "subline": "board-minutes · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.05,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T00:10:08"
+      }
+    }
+  ]
+}

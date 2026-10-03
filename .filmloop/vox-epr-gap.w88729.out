@@ -1,0 +1,10 @@
+Done. `vox-epr-gap-slate.mp4` (187.3 s, 3.9 MB) written 17 s newer than `beat_sheet.json` — DONE-check satisfied.
+
+**Summary of this invocation**
+- Cohort C legacy vox rebuild: `vox-editorial` skin preserved (no Claude-wash).
+- Envelope: dropped ElevenLabs `voice_id` + stale clock prose; added `engine: kokoro`, `voice: am_onyx`, `channel`/`folderLabel`. Backup at `beat_sheet.pre-rebuild.json`; audit in `AUDIT.md`; edits in `REBUILD-LOG.md`.
+- Kokoro `am_onyx` audio regenerated for all 16 beats (~187 s total), `actual_duration_s` written back.
+- Rendered 10 Manim scenes + 4 Remotion scenes; 2nd pass authored Remotion `FormACard` for B04/B09 (previously slated CARDs) and fixed OutroSeries/OutroCTA prop-schema mismatches on B15/B16 (was rendering "Claude Cowork" defaults; now shows "Cancer Nanomedicine").
+- Compile: 16/16 filled, 0 slates, lane-check PASS, GATE T PASS, mean_volume −24.0 dB.
+- Gate V: sampled 94 frames + spot-read 3; clean cream/teal/crimson vox-editorial, no overflow, no clipping, legible.
+- `FILMLOOP-LOG.md` entry appended.

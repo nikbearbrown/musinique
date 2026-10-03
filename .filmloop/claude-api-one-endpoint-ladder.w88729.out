@@ -1,0 +1,9 @@
+**Status: DONE** — `claude-api-one-endpoint-ladder.mp4` (197.4 s, 3840×2160, 16/16 real beats, mean_volume −23.9 dB). Master mtime 22:59 is 1 minute newer than sheet mtime 22:58; sheet untouched since final compile. GATE T / GATE LANE / GATE V / GATE AUDIO all PASS. No downgrades, no `--allow-slates`, `type_check.py` untouched.
+
+Fixed by this pass:
+- **Bookend dedup** — merged real close (VERDICT/YOURTURN/OUTRO) into BVDT/BHTF/BOUT slots; deleted the scaffolder placeholder duplicates (bracket-template ask, `@claude-liam` brand-key mistake, "Key finding one" verdict).
+- **B01 + A31** — authored real card items from the LOCKED narration (were placeholder "Key point one" and text-dump respectively).
+- **Manim → Remotion swap** on A11 / A41 / EX (declared scenes had no `manim/scenes.py`; re-mapped to ClaudeWindow with artifactLines authored from each beat's own narration; narration byte-exact).
+- **Gate V overflow rounds** on A21 / A41 / A51 / BVDT / EX — trimmed list items to fit the artifact panel; summary lines moved into sparkLine.
+
+Backup at `beat_sheet.pre-rebuild.json`. Full record in `AUDIT.md` and `REBUILD-LOG.md`; run entry appended to `youtube/FILMLOOP-LOG.md`.

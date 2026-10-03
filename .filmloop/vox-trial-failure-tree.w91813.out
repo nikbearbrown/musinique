@@ -1,0 +1,19 @@
+DONE. `vox-trial-failure-tree` rebuilt and shipped:
+
+**Deliverable:** `vox-trial-failure-tree-slate.mp4` (+ `-review.mp4`), 175.98 s, mean_volume −23.8 dB. Cut mtime **19:02**, sheet mtime **18:51** — cut newer than sheet.
+
+**Slot status:** 11/15 MANIM · 4/15 SLATE
+- Real: B01, B03–B10, B12, B13 (nine drawn diagrams + title + endcard)
+- Honest slates: B02/B11 (STILL·ai, not generated) + B14/B15 (Remotion outros — vox pipeline doesn't build Remotion)
+
+**Phase 0** — snapshot + Kokoro envelope normalized (dropped ElevenLabs `voice_id` + `clock`; added `folderLabel`, `voice: nbbhuman`, `voice_kokoro: am_onyx`). Non-Claude channel skin retained (a `claude-liam-vox-trial-failure-tree/` sibling carries the Claude variant).
+
+**Phase 1** — 11 checks in AUDIT.md; body has all four lens moves (Descartes/Popper/Plato).
+
+**Phase 2 blockers caught & fixed pre-final-compile:**
+1. Gate W W7 CHAPTER-ON-SLIDE: B05 attribution `"— Cancer Nanomedicine, Chapter 12"` → `"— Cancer Nanomedicine"`.
+2. Gate B curve-under-label: local `_quote_scene` override adds `opacity=0` to the gold highlighter's `width=0` stroke.
+3. Toolkit path resolution: `parents[3]` was off-by-one; walk-up with silent no-op in tmp.
+4. **Gate V blocker on B12_TwoPrograms**: liver/tumor bars were only x-aligned (landed at ORIGIN), and the caption was overlapping the DELIVERY FAILURE DIAGNOSED chip. Fixed by y-anchoring bars to `bar_bg.get_center()`, shrinking bar heights 0.41→0.18, shifting chips DOWN 0.45, caption 16→14pt. Re-rendered clean.
+
+**Zero validators loosened.** Motion histogram warning (drawon 46% > 40% cap) logged, not fixed — inherent to a 7-GRAPHIC failure-tree reveal.

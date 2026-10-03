@@ -1,0 +1,6 @@
+Done. `cancer-nanomedicine/lectures/ch07-lecture` — HTML lecture-deck reel (12 segments, ElevenLabs Bear voice, ~9 min).
+
+- **PHASE 0**: `beat_sheet.pre-rebuild.json` byte-exact backup (sha1 `8a661ba7…`), sheet untouched.
+- **PHASE 1**: 3/11 checks apply to this format (stale renders PASS, punt sweep PASS, brand fields PASS); 7 are N/A for HTML lecture decks (bookends/spark/verdict/Your-Turn/chart/card/type_check); pacing LOG — S03/S04/S10/S11 sit 1.77–2.01 wps (mechanism-dense, intentional, matches sibling ch06). No BLOCKED items.
+- **PHASE 2**: `render.py` re-screenshot 12/12 slides via Playwright + concatenated with the Jul 11 audio → `cancer-nanomedicine-ch07-radioligand-theranostics.mp4` (16.7 MB, 542.14 s, h264+aac, mean_volume −18.5 dB). Gate V spot-frames (S01/S04/S08/S12) render clean — palette correct, type legible, no overflow, one terracotta moment per frame.
+- mp4 mtime `Aug 31 07:51` is newer than `beat_sheet.json` (`Jul 12 17:05`); sheet was NOT touched after compile.

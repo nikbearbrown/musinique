@@ -1,0 +1,53 @@
+module Anthropic
+  module Models
+    module BetaToolChoice = Beta::BetaToolChoice
+
+    module Beta
+      type beta_tool_choice =
+        Anthropic::Beta::BetaToolChoiceAuto
+        | Anthropic::Beta::BetaToolChoiceAny
+        | Anthropic::Beta::BetaToolChoiceTool
+        | Anthropic::Beta::BetaToolChoiceNone
+
+      module BetaToolChoice
+        extend Anthropic::Internal::Type::Union
+
+        type type_ = :auto | :any | :tool | :none
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          AUTO: :auto
+          ANY: :any
+          TOOL: :tool
+          NONE: :none
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaToolChoice::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_tool_choice]
+
+        def self.new:
+          (
+            type: :auto | "auto",
+            ?disable_parallel_tool_use: bool
+          ) -> Anthropic::Beta::BetaToolChoiceAuto
+          | (
+            type: :any | "any",
+            ?disable_parallel_tool_use: bool
+          ) -> Anthropic::Beta::BetaToolChoiceAny
+          | (
+            type: :tool | "tool",
+            name: String,
+            ?disable_parallel_tool_use: bool
+          ) -> Anthropic::Beta::BetaToolChoiceTool
+          | (type: :none | "none") -> Anthropic::Beta::BetaToolChoiceNone
+          | (
+            type: Anthropic::Models::Beta::BetaToolChoice::type_ | String,
+            ?disable_parallel_tool_use: bool,
+            ?name: String
+          ) -> Anthropic::Models::Beta::beta_tool_choice
+      end
+    end
+  end
+end

@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3202278719_1518094475_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_2722826917_1390458929.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_2032837931_104246735.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_3185176410_330767586.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_293967665_300752442.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_1720378154_1848146282.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_2130693115_639391850.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_4172088836_349338387.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes/1080p24/partial_movie_files/B16Doodle/3747917844_3224883667_2367211511.mp4'

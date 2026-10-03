@@ -1,0 +1,10 @@
+**BUILT · `claude-liam-post-build-document`**
+
+- Cut: `post-build-document.mp4` — 145.2s, 4K, all 12 beats VIDEO (no slates). mtime 18:14 > sheet 18:12 (DONE check passes).
+- Audio: Kokoro am_onyx (free), mean_volume −24.1 dB. GATE AUDIO PASS.
+- Phase 0: `beat_sheet.pre-rebuild.json` snapshotted before any edit. REBUILD-LOG.md written.
+- Phase 1 fixes: B00 promoted from FormBCard-slate to `ClaudeComposerAsk` (greeting `Namaste, Liam`); every inner composer got a ≤4-word spark ("Draft the doc." / "Score the log." / "Your turn."); every FormBCard rewritten with short category labels (old labels overflowed mid-word); BVDT authored (body qualified, 12 beats/412 words); BHTF `[title]` template replaced with a real 5-section drafting exercise; B03 swapped to `ClaudeCodeBeat`; duplicate mid-body YOURTURN removed; B07 reclassified from conflicting outro to body-summary FormBCard.
+- Lens audit: Descartes + Popper + Plato all active (the four-way score IS the pre-stated falsification criterion; the doc-vs-build distinction IS the artifact-vs-world move).
+- GATE T: PASS (0 FAILs, 4 §8.10 recitation advisories — non-blocking).
+- GATE V: PASS (sampled frames — bookends, cards, code beat, verdict artifact, outro all clean; type inside SAFE; one terracotta accent per beat; @NikBearBrown footer chip everywhere).
+- AUDIT.md and REBUILD-LOG.md written in the reel folder; FILMLOOP-LOG.md prepended.

@@ -1,0 +1,9 @@
+DONE. `epr-delivery-funnel.mp4` — 198.3s, 3840×2160, mp4 mtime 27s newer than sheet → supervisor's DONE check will pass.
+
+**Summary**
+- **Reel**: `claude-liam-epr-delivery-funnel` (cancer-nanomedicine)
+- **Cohort B rebuild**: sheet had 5 unfilled slates + lying VIDEO stamps to a non-existent `media/`. All 13 beats now render VIDEO.
+- **PHASE 1 fixes**: dead ElevenLabs `voice_id` dropped; placeholder BVDT ("Key finding one/two/three" + empty narration) authored to a real 3-line verdict + 26s spoken verdict; empty BHTF narration authored; placeholder B01 FormBCard rewritten; B04 (Manim, no scene) rerouted to a 5-up funnel FormBCard; B06/B07/B08 slates authored as FormBCards; B05 datable claim `"in 2025?"` → `"today?"`.
+- **PHASE 2**: Kokoro am_onyx audio for all 12 narrated beats (`GATE AUDIO` PASS at −24.0 dB). `GATE T` PASS. Gate V caught one content defect (`ClaudeVerdictArtifact` auto-numbering ate the leading "0." from "0.7%"); rewrote to "Median human dose ≈ 0.7% — …", re-rendered BVDT, re-compiled.
+- **build.status Counter**: `Counter({'VIDEO': 13})`. Zero slates.
+- **Downgrades**: none. Skin-lint warning about `NikBearBrownOpen` under `palette: claude` accepted per rebuild-contract (non-claude channels keep their own skins).

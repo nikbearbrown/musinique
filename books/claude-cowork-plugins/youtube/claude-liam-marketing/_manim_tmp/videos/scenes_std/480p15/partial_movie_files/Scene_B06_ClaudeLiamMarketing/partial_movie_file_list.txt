@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes_std/480p15/partial_movie_files/Scene_B06_ClaudeLiamMarketing/2989120623_2635322534_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes_std/480p15/partial_movie_files/Scene_B06_ClaudeLiamMarketing/3510651973_3889609650_3650537842.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes_std/480p15/partial_movie_files/Scene_B06_ClaudeLiamMarketing/3510651973_2339026477_919001507.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes_std/480p15/partial_movie_files/Scene_B06_ClaudeLiamMarketing/3510651973_462186829_1631794166.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-marketing/_manim_tmp/videos/scenes_std/480p15/partial_movie_files/Scene_B06_ClaudeLiamMarketing/3510651973_2129097888_1068550005.mp4'

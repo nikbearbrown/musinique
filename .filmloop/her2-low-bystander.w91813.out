@@ -1,0 +1,12 @@
+Reel done. `her2-low-bystander.mp4` — 209.9 s, 4K master, 11.7 MB — mp4 27 s newer than sheet, no post-compile sheet edits.
+
+**What shipped**
+- Envelope: dropped dead ElevenLabs `voice_id`, renormalized `voice` to `am_onyx`, added `engine/voice_kokoro`. Non-Claude skin retained (NikBearBrownOpen/Outro/TerminalAsk/CodeBlock kept per non-claude channel rule; BVDT/BHTF/BOUT your-turn triple kept).
+- Punts converted: B01 placeholder items, B06/B07/B08 `shot.source: null` → real `FormBCard` items authored from each beat's own narration.
+- Verdict authored: BVDT was placeholder → real 3-line verdict + 55-word spoken narration (55%, T-DM1 vs T-DXd, DESTINY-Breast04 PFS 9.9 vs 5.1 mo).
+- Spark lines: B02/B05 `"The ask,"` → `"Research the mechanism."` / `"Survey the field."` (3 words each, from beat narration).
+- Manim import repaired (`from manim import *`); scene background fixed from default black to cream `#FFFFFF`; T-DXd label swapped from invisible `#F6D8DC` to legible `#B8860B`; clip freeze-extended to 26.5 s to kill the 3.8× slow-mo.
+
+**Gates** — CONTENT PASS · FRAME PASS · LANE PASS (0 slates) · AUDIO PASS (mean −24.7 dB, max −2.7 dB) · GATE T PASS · Gate V PASS (28-tile contact sheet + 14 sampled frames read directly). `Counter({'VIDEO': 12, 'MANIM': 1})`.
+
+**Artifacts** — `beat_sheet.json`, `beat_sheet.pre-rebuild.json`, `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, `media/*.mp4`, `manim/B04.mp4`, `mp3/beat-*.mp3`, `_qc/contact.png` + `_qc/frames/`, `her2-low-bystander.mp4`. FILMLOOP-LOG.md updated.

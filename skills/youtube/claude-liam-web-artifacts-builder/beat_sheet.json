@@ -1,0 +1,393 @@
+{
+  "metadata": {
+    "title": "Claude, Web Artifacts Builder.",
+    "slug": "claude-liam-web-artifacts-builder",
+    "topic": "WEB-ARTIFACTS-BUILDER · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/skills/skills/web-artifacts-builder/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Suite of tools for creating elaborate",
+        "multi-component claude.ai HTML artifacts using modern frontend web technologies (React",
+        "Tailwind CSS",
+        "Use for complex artifacts requiring state management",
+        "or shadcn/ui components - not for simple single-file HTML/JSX artifacts."
+      ],
+      "constraints": [
+        "Requirements: Your project must have an index.html in the root directory",
+        "Note: This is a completely optional step. Only perform if necessary or requested"
+      ],
+      "referenced_files": [
+        "scripts/init-artifact.sh",
+        "scripts/bundle-artifact.sh",
+        "@/",
+        "bundle.html",
+        "index.html",
+        ".parcelrc",
+        "LICENSE.txt",
+        "scripts/"
+      ],
+      "code_signals": [
+        "code block: bash"
+      ],
+      "sections": [
+        "Design & Style Guidelines",
+        "Quick Start",
+        "Step 1: Initialize Project",
+        "Step 2: Develop Your Artifact",
+        "Step 3: Bundle to Single HTML File",
+        "Step 4: Share Artifact with User",
+        "Step 5: Testing/Visualizing the Artifact (Optional)",
+        "Reference"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T12:57:31",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is web-artifacts-builder. Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.. Its concrete surface area includes Suite of tools for creating elaborate; multi-component claude.ai HTML artifacts using modern frontend web technologies (React; Tailwind CSS. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "WEB-ARTIFACTS-BUILDER · ANTHROPIC SKILL",
+            "segment": "Claude, Web Artifacts Builder.",
+            "command": "Run the web-artifacts-builder skill.",
+            "runningText": "reading web-artifacts-builder SKILL.md…",
+            "output": [
+              "skill: web-artifacts-builder",
+              "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts…",
+              "steps: 5 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 38.55,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is web-artifacts-builder. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at scripts/init-artifact.sh, scripts/bundle-artifact.sh, @/, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "web-artifacts-builder",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📝",
+                "name": "LICENSE.txt",
+                "size": "11k",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "3k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "3 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.52,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 5 steps. Initialize Project → Develop Your Artifact → Bundle to Single HTML File, plus 2 more. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Initialize Project",
+                "desc": "Run the initialization script to create a new React…",
+                "accent": true
+              },
+              {
+                "label": "Develop Your Artifact",
+                "desc": "To build the artifact, edit the generated files. See Common…",
+                "accent": false
+              },
+              {
+                "label": "Bundle to Single HTML File",
+                "desc": "To bundle the React app into a single HTML artifact: This…",
+                "accent": false
+              },
+              {
+                "label": "Share Artifact with User",
+                "desc": "Finally, share the bundled HTML file in conversation with…",
+                "accent": false
+              }
+            ],
+            "footerNote": "5 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 14.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Requirements: Your project must have an index.html in the root directory. That is the constraint in web-artifacts-builder — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Requirements: Your project must have an index.html in the root directory",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 13.12,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In web-artifacts-builder, supporting material: scripts/init-artifact.sh, scripts/bundle-artifact.sh, @/, bundle.html; implementation signals: code block: bash; sections: Design & Style Guidelines, Quick Start, Step 1: Initialize Project, Step 2: Develop Your Artifact. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Suite of tools for creating elaborate; multi-component claude.ai HTML artifacts using modern frontend web technologies (React; Tailwind CSS; scripts/init-artifact.sh; scripts/bundle-artifact.sh; @/; code block: bash",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 22.31,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "web-artifacts-builder makes Claude execute one task reliably. The SKILL.md is the spec — Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Web Artifacts Builder.",
+            "artifactLines": [
+              "Skill: web-artifacts-builder — Claude reads SKILL.md before acting",
+              "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using…",
+              "5-step pipeline: Initialize Project → Develop Your Artifact → Bundle to Single HTML File",
+              "Constraint: Requirements: Your project must have an index.html in the root directory",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 15.51,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to suite of tools for creating elaborate, multi-component claude.ai html artifacts. Read the web-artifacts-builder skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "WEB-ARTIFACTS-BUILDER · ANTHROPIC SKILL",
+            "segment": "Claude, Web Artifacts Builder.",
+            "command": "I want to suite of tools for creating elaborate, multi-component claude.ai html. Read the web-artifacts-builder skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 16.11,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Web Artifacts Builder. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Web Artifacts Builder.",
+            "handle": "@NikBearBrown",
+            "subline": "web-artifacts-builder · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.73,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:57:31"
+      }
+    }
+  ]
+}

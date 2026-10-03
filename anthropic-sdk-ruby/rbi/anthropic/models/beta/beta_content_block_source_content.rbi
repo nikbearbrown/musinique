@@ -1,0 +1,109 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaContentBlockSourceContent = Beta::BetaContentBlockSourceContent
+
+    module Beta
+      module BetaContentBlockSourceContent
+        extend Anthropic::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaTextBlockParam,
+              Anthropic::Beta::BetaImageBlockParam
+            )
+          end
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Anthropic::Beta::BetaContentBlockSourceContent::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          TEXT =
+            T.let(
+              :text,
+              Anthropic::Beta::BetaContentBlockSourceContent::Type::TaggedSymbol
+            )
+          IMAGE =
+            T.let(
+              :image,
+              Anthropic::Beta::BetaContentBlockSourceContent::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaContentBlockSourceContent::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        sig do
+          override.returns(
+            T::Array[Anthropic::Beta::BetaContentBlockSourceContent::Variants]
+          )
+        end
+        def self.variants
+        end
+
+        # Creates a new instance of the variant class whose `type` matches the given
+        # value, passing the remaining arguments to its constructor.
+        sig do
+          params(
+            type:
+              Anthropic::Beta::BetaContentBlockSourceContent::Type::OrSymbol,
+            text: String,
+            cache_control:
+              T.nilable(Anthropic::Beta::BetaCacheControlEphemeral::OrHash),
+            citations:
+              T.nilable(
+                T::Array[
+                  T.any(
+                    Anthropic::Beta::BetaCitationCharLocationParam::OrHash,
+                    Anthropic::Beta::BetaCitationPageLocationParam::OrHash,
+                    Anthropic::Beta::BetaCitationContentBlockLocationParam::OrHash,
+                    Anthropic::Beta::BetaCitationWebSearchResultLocationParam::OrHash,
+                    Anthropic::Beta::BetaCitationSearchResultLocationParam::OrHash
+                  )
+                ]
+              ),
+            source:
+              T.any(
+                Anthropic::Beta::BetaBase64ImageSource::OrHash,
+                Anthropic::Beta::BetaURLImageSource::OrHash,
+                Anthropic::Beta::BetaFileImageSource::OrHash
+              ),
+            transformations:
+              T.nilable(Anthropic::Beta::BetaImageTransformationsParam::OrHash)
+          ).returns(Anthropic::Beta::BetaContentBlockSourceContent::Variants)
+        end
+        def self.new(
+          type:,
+          text: nil,
+          # Create a cache control breakpoint at this content block.
+          cache_control: nil,
+          citations: nil,
+          source: nil,
+          # Configures the transformations the server applies to this image before the model
+          # observes it. Each key names a condition the server transforms images for; its
+          # value selects the transformation applied. Omitted keys keep their default
+          # behavior, and an empty object is equivalent to omitting the field.
+          transformations: nil
+        )
+        end
+      end
+    end
+  end
+end

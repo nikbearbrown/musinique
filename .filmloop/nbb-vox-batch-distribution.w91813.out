@@ -1,0 +1,15 @@
+Done. Sheet mtime `14:23:01` < mp4 mtime `14:24:35` — no post-compile edit; freshness gate met.
+
+**Reel: `nbb-vox-batch-distribution` — DELIVERED as review slate cut.**
+
+- **Deliverable:** `vox-batch-distribution-slate.mp4` — 4.2 MB, 264.6 s, audio present (mean −24.1 dB, well above −40 dB floor).
+- **Sheet consolidation:** dropped 4 empty duplicate stubs (B00/BVDT/BHTF/BOUT); promoted the filled NBB00–NBB03 payload into the canonical slots; renamed matching mp3s.
+- **Verdict authored** from body B02/B07/B08/B10 numbers (45 min vs 6 h, PDI 0.2, three populations, match-the-distribution). Old NBB01 template-recycled lines dropped. `verdict_audit.py` no longer flags this reel.
+- **Spark line fixed:** B00 `"Liam"` → `"Namaste, Liam"` (Hindi; distinct from all 9 adjacent nbb-vox-* B00 greetings surveyed).
+- **B00 audio regenerated:** pre-rebuild 5.03 s for 90 words (16.9 wps — a truncated Kokoro take) → 33.34 s / 2.70 wps.
+- **B01/B02 shot props** reshaped from placeholder FormB/FormA to the CARD/STILL shapes matching the locked source-clip renders (unblocked GATE T).
+- **Body B01–B12** left locked; staged as `media/BXX.mp4` symlinks pointing at `../vox-batch-distribution/clips/`.
+- **Gates:** GATE T PASS, Gate V PASS (8 frames sampled), audio PASS.
+- **build.status Counter:** `Counter({'VIDEO': 12, 'SLATE': 4})`.
+
+Written: `AUDIT.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json`, `TYPECHECK.md`, `_qc/frames/*`, and appended a full block to `youtube/FILMLOOP-LOG.md`.

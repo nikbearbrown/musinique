@@ -1,0 +1,11 @@
+Done. `vox-bystander-effect.mp4` — 8.8 MB, 116.2 s, 4K master, mp4 mtime 15 s newer than sheet.
+
+**Reel: vox-bystander-effect (cancer-nanomedicine)** — Cohort C legacy vox rebuild + full build.
+
+- Pre-rebuild snapshot written. Dropped ElevenLabs `voice_id`; added `engine=kokoro / voice=am_onyx`. Copied `vox_graphics.py` from sister reel to fix a dead import path. Fixed B07's placeholder FormACard slate (was an ellipsis-terminated narration head).
+- Kokoro audio regenerated for all 13 beats (am_onyx, $0.00, measured durations written to sheet).
+- Manim rendered 10/10 body beats at 1080p24; PIL PNG cards authored for B07/B12/B13 (B12/B13 outros reused from sister — narration identical).
+- Compiled at 4K. Slot fill: MANIM×10 + STILL×3, zero slates. Gate CONTENT / FRAME / LANE / AUDIO all PASS. Gate V read (contact sheet + 12 sampled frames).
+- `build.status Counter({'MANIM': 10, 'STILL': 3})`. Master mean_volume −23.9 dB.
+- No post-compile sheet edits; mp4 mtime 15 s newer than sheet.
+- Full audit in `AUDIT.md`; rebuild details in `REBUILD-LOG.md`; run appended to `youtube/FILMLOOP-LOG.md`.

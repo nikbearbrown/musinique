@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-legal-finance/manim_tmp/videos/scenes/1080p24/partial_movie_files/B11Doodle/3202278719_771027157_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-legal-finance/manim_tmp/videos/scenes/1080p24/partial_movie_files/B11Doodle/3747917844_1606992627_3658859052.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-legal-finance/manim_tmp/videos/scenes/1080p24/partial_movie_files/B11Doodle/3747917844_1413600772_2215768561.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-legal-finance/manim_tmp/videos/scenes/1080p24/partial_movie_files/B11Doodle/3747917844_2050804625_579357353.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-legal-finance/manim_tmp/videos/scenes/1080p24/partial_movie_files/B11Doodle/3747917844_3390139927_1359194581.mp4'

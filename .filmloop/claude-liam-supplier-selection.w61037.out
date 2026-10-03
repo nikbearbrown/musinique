@@ -1,0 +1,30 @@
+Done. Here is the log.
+
+---
+
+## FILMLOOP RESULT — claude-liam-supplier-selection
+
+**Cut:** `claude-liam-supplier-selection.mp4` · 86.6s · 4 MB  
+**Sheet 05:56:36 / mp4 05:56:46 — mp4 is 10 s newer ✓**
+
+### Audit: all 11 checks
+
+| # | Check | Result |
+|---|---|---|
+| 1 | Stale renders | PASS — no mp4s existed |
+| 2 | Bookends (B00/BVDT/BHTF/BOUT) | PASS |
+| 3 | Spark lines | FIXED — B01 5→4w, B03 7→3w |
+| 4 | Verdict | PASS — content specific, truncated line cleaned |
+| 5 | Card text | FIXED — 6 truncation artifacts cleared |
+| 6 | Punt sweep | PASS — no gen-AI asks, no slates, all SkillTeardown templates verified in source |
+| 7 | Card-only reel | PASS — SkillTeardown templates are animated, not static cards |
+| 8 | Lens audit | PASS — B03 design-tell carries Descartes + Hume moves (terse but present) |
+| 9 | Brand fields | FIXED — "Opus 4.8" → "Opus 4.7" in metadata + B00 + BHTF props |
+| 10 | Pacing | LOG only — estimated_s values stale; actual_duration_s authoritative |
+| 11 | GATE T | FIXED — B03 body 26w → 8w; re-run: PASS |
+
+### Build
+
+- 7/7 beats VIDEO — `Counter({'VIDEO': 7})`, slates: 0
+- GATE AUDIO: PASS — mean_volume −24.0 dB
+- GATE V: PASS with 2 downgraded MAJORs (SkillTeardownAnatomy + SkillTeardownMechanism canvas fill sparse for minimal-content skills — template infrastructure fix needed before final publish; no BLOCKERs)

@@ -1,0 +1,51 @@
+module Anthropic
+  module Models
+    class BetaThinkingConfigEnabled = Beta::BetaThinkingConfigEnabled
+
+    module Beta
+      type beta_thinking_config_enabled =
+        {
+          budget_tokens: Integer,
+          type: :enabled,
+          block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+          display_: Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_?
+        }
+
+      class BetaThinkingConfigEnabled < Anthropic::Internal::Type::BaseModel
+        attr_accessor budget_tokens: Integer
+
+        attr_accessor type: :enabled
+
+        attr_accessor block_binding: Anthropic::Beta::BetaThinkingBlockBinding?
+
+        attr_accessor display_: Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_?
+
+        def initialize: (
+          budget_tokens: Integer,
+          ?block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+          ?display_: Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_?,
+          ?type: :enabled
+        ) -> void
+
+        def to_hash: -> {
+          budget_tokens: Integer,
+          type: :enabled,
+          block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+          display_: Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_?
+        }
+
+        type display_ = :summarized | :omitted | :updates
+
+        module Display
+          extend Anthropic::Internal::Type::Enum
+
+          SUMMARIZED: :summarized
+          OMITTED: :omitted
+          UPDATES: :updates
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaThinkingConfigEnabled::display_]
+        end
+      end
+    end
+  end
+end

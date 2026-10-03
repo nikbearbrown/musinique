@@ -1,0 +1,343 @@
+### context-cost finished: 0
+##### cc-clear-vs-compact Wed Sep  9 01:56:05 EDT 2026
+[run] nothing to render — recompiling only
+[run] GATE F — factcheck content
+[factcheck] clean — every row resolved, every claim-bearing beat covered
+[factcheck] rows=15 beats_covered=10 claim_bearing_beats=6 uncovered=0
+[run] GATE L — beat-mix lint (GATE S: warn)
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[beat-lint] beats=11 cards=0 motion_claims=0 gate_s=warn over_runtime=0 needs_staging=0
+[run] GATE BANNED-CARD — design-vocabulary card check
+[banned-card] PASS — cc-clear-vs-compact
+[run] GATE G — diagram layout (dagre)
+[layout] no shot.diagram beats in this reel — nothing to do.
+[remotion] lock held by: run.sh pid=60262 — taking over (parent run.sh context)
+[remotion] B00: ok: CCSession -> media/B00.mp4 (extended to 20.6s)
+[remotion] BIDEA: ok: BrutalistHesitantWriter -> media/BIDEA.mp4 (extended to 19.0s)
+[remotion] BDEFS: ok: CCDefinitions -> media/BDEFS.mp4 (extended to 23.2s)
+[remotion] B01: ok: CCSession -> media/B01.mp4 (extended to 20.3s)
+[remotion] B02: ok: CCSession -> media/B02.mp4 (extended to 19.0s)
+[remotion] B03: ok: CCPlainShell -> media/B03.mp4 (extended to 20.0s)
+[remotion] B04: ok: CCBoondoggleScore -> media/B04.mp4 (extended to 31.0s)
+[remotion] B05: ok: CCHumanLedger -> media/B05.mp4 (extended to 24.5s)
+[remotion] BVDT: ok: ClaudeVerdictArtifact -> media/BVDT.mp4 (extended to 26.9s)
+[remotion] BHTF: ok: ClaudeComposerAsk -> media/BHTF.mp4 (extended to 16.9s)
+[remotion] BOUT: ok: ClaudeTitleOutro -> media/BOUT.mp4 (extended to 5.5s)
+[remotion] stamped provenance in beat_sheet.json + updated consumers.json
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-clear-vs-compact  beats=11
+[content-check] PASS — 11 beats checked, no violations.
+[frame-check] cc-clear-vs-compact  canvas=3840×2160  beats=11
+[frame-check] PASS — 11 beats checked, no violations.
+[art] compiled B00  VIDEO    20.6s  ← B00.mp4
+[art] compiled BIDEA  VIDEO    19.0s  ← BIDEA.mp4
+[art] compiled BDEFS  VIDEO    23.2s  ← BDEFS.mp4
+[art] compiled B01  VIDEO    20.3s  ← B01.mp4
+[art] compiled B02  VIDEO    19.0s  ← B02.mp4
+[art] compiled B03  VIDEO    20.0s  ← B03.mp4
+[art] compiled B04  VIDEO    31.0s  ← B04.mp4
+[art] compiled B05  VIDEO    24.5s  ← B05.mp4
+[art] compiled BVDT  VIDEO    26.9s  ← BVDT.mp4
+[art] compiled BHTF  VIDEO    16.9s  ← BHTF.mp4
+[art] compiled BOUT  VIDEO     6.5s  [+1.0s tail]  ← BOUT.mp4
+[lane-check] cc-clear-vs-compact  cut=review  known_slates=[]
+[lane-check] PASS — 11 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (11/11 filled)
+[art] motion histogram: type:6  drawon:3  hold:2
+[art] WARNING: 'type' carries 6/11 beats (54%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] QC contact sheet → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/qc-sheet.png
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/cc-clear-vs-compact-slate.mp4  (227.8s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 11/11 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-clear-vs-compact  beats=11
+[content-check] PASS — 11 beats checked, no violations.
+[frame-check] cc-clear-vs-compact  canvas=3840×2160  beats=11
+[frame-check] PASS — 11 beats checked, no violations.
+[lane-check] cc-clear-vs-compact  cut=master  known_slates=[]
+[lane-check] PASS — 11 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (11/11 filled)
+[art] motion histogram: type:6  drawon:3  hold:2
+[art] WARNING: 'type' carries 6/11 beats (54%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/cc-clear-vs-compact.mp4  (227.8s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 11/11 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=22 BLOCKER=0 STRUCTURAL=0 COSMETIC=0 → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/_qc/REPORT.md
+[run] GATE T — type-lock (typography assertions)
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/TYPECHECK.md
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: 0.17
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: SKIP
+[typecheck] §8.10 BVDT: 0.72
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[run] GATE SHARPNESS — per-beat sharpness audit
+[sharpness] GATE SHARPNESS PASS — 11 beats, median LV=666.4
+[run] GATE BOOKEND — four-bookend structure check
+[bookend] PASS — four bookends correct for cc-clear-vs-compact
+[run] GATE AUDIO — checking compiled reel for silence
+[run] GATE AUDIO: PASS (mean_volume -23.7 dB)
+[run] GATE MASTER — compiled master assertions
+[master] PASS  3840×2160  24fps  yuv420p  h264  227.8s
+[run] GATE LOUDNESS — audio loudness + per-beat silence
+[loud] checking 11 beats for per-beat silence …
+[loud] PASS  -24.15 LUFS  tp=-2.89 dBTP
+[run] done → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact  (QC gates: on)
+[run] this was the FULL machine pass: motion graphics + outro done;
+[run] any remaining slates are YOUR slots — see /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/SHOTLIST.md
+
+[run] ── gate roster ─────────────────────────────────────────────────
+  GATE-F                   RAN-PASS
+  GATE-L                   RAN-PASS
+  GATE-BANNED-CARD         RAN-PASS
+  GATE-SWEEP-WARN          RAN-PASS
+  GATE-P                   NOT-RUN
+  GATE-A                   SKIPPED-no-pending-scenes
+  GATE-W                   SKIPPED-no-pending-scenes
+  GATE-B                   SKIPPED-no-pending-scenes
+  GATE-G                   RAN-PASS
+  GATE-V                   RAN-PASS
+  GATE-T                   RAN-PASS
+  GATE-SHARPNESS           RAN-PASS
+  GATE-BOOKEND             RAN-PASS
+  GATE-AUDIO               RAN-PASS
+  GATE-MASTER              RAN-PASS
+  GATE-LOUDNESS            RAN-PASS
+  GATE-RECEIPTS            RAN-PASS
+[run] ─────────────────────────────────────────────────────────────────
+=== RUN DONE cc-clear-vs-compact ===
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/TYPECHECK.md
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: 0.17
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: SKIP
+[typecheck] §8.10 BVDT: 0.72
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-clear-vs-compact  beats=11
+[content-check] PASS — 11 beats checked, no violations.
+[frame-check] cc-clear-vs-compact  canvas=3840×2160  beats=11
+[frame-check] PASS — 11 beats checked, no violations.
+[lane-check] cc-clear-vs-compact  cut=master  known_slates=[]
+[lane-check] PASS — 11 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (11/11 filled)
+[art] motion histogram: type:6  drawon:3  hold:2
+[art] WARNING: 'type' carries 6/11 beats (54%) — over the ~40% pantry cap; convert the excess to another language (MOTION.md)
+[art] GATE AUDIO: PASS  mean_volume -23.7 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-clear-vs-compact/cc-clear-vs-compact.mp4  (227.8s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 11/11 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+=== FINAL DONE cc-clear-vs-compact ===
+##### cc-context-check Wed Sep  9 02:07:53 EDT 2026
+[run] nothing to render — recompiling only
+[run] GATE F — factcheck content
+[factcheck] clean — every row resolved, every claim-bearing beat covered
+[factcheck] rows=12 beats_covered=9 claim_bearing_beats=5 uncovered=0
+[run] GATE L — beat-mix lint (GATE S: warn)
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[beat-lint] beats=10 cards=0 motion_claims=0 gate_s=warn over_runtime=0 needs_staging=0
+[run] GATE BANNED-CARD — design-vocabulary card check
+[banned-card] PASS — cc-context-check
+[run] GATE G — diagram layout (dagre)
+[layout] no shot.diagram beats in this reel — nothing to do.
+[remotion] lock held by: run.sh pid=62201 — taking over (parent run.sh context)
+[remotion] B00: ok: CCSession -> media/B00.mp4 (extended to 18.5s)
+[remotion] BIDEA: ok: BrutalistHesitantWriter -> media/BIDEA.mp4 (extended to 19.3s)
+[remotion] BDEFS: ok: CCDefinitions -> media/BDEFS.mp4 (extended to 23.2s)
+[remotion] B01: ok: CCSession -> media/B01.mp4 (extended to 25.8s)
+[remotion] B02: ok: CCPlainShell -> media/B02.mp4 (extended to 18.4s)
+[remotion] B03: ok: CCBoondoggleScore -> media/B03.mp4 (extended to 26.8s)
+[remotion] B04: ok: CCHumanLedger -> media/B04.mp4 (extended to 25.8s)
+[remotion] BVDT: ok: ClaudeVerdictArtifact -> media/BVDT.mp4 (extended to 23.2s)
+[remotion] BHTF: ok: ClaudeComposerAsk -> media/BHTF.mp4 (extended to 15.2s)
+[remotion] BOUT: ok: ClaudeTitleOutro -> media/BOUT.mp4 (extended to 4.8s)
+[remotion] stamped provenance in beat_sheet.json + updated consumers.json
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-context-check  beats=10
+[content-check] PASS — 10 beats checked, no violations.
+[frame-check] cc-context-check  canvas=3840×2160  beats=10
+[frame-check] PASS — 10 beats checked, no violations.
+[art] compiled B00  VIDEO    18.5s  ← B00.mp4
+[art] compiled BIDEA  VIDEO    19.3s  ← BIDEA.mp4
+[art] compiled BDEFS  VIDEO    23.2s  ← BDEFS.mp4
+[art] compiled B01  VIDEO    25.8s  ← B01.mp4
+[art] compiled B02  VIDEO    18.4s  ← B02.mp4
+[art] compiled B03  VIDEO    26.8s  ← B03.mp4
+[art] compiled B04  VIDEO    25.8s  ← B04.mp4
+[art] compiled BVDT  VIDEO    23.2s  ← BVDT.mp4
+[art] compiled BHTF  VIDEO    15.2s  ← BHTF.mp4
+[art] compiled BOUT  VIDEO     5.8s  [+1.0s tail]  ← BOUT.mp4
+[lane-check] cc-context-check  cut=review  known_slates=[]
+[lane-check] PASS — 10 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (10/10 filled)
+[art] motion histogram: type:4  drawon:4  hold:2
+[art] GATE AUDIO: PASS  mean_volume -23.8 dB
+[art] QC contact sheet → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/qc-sheet.png
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/cc-context-check-slate.mp4  (201.9s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 10/10 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-context-check  beats=10
+[content-check] PASS — 10 beats checked, no violations.
+[frame-check] cc-context-check  canvas=3840×2160  beats=10
+[frame-check] PASS — 10 beats checked, no violations.
+[lane-check] cc-context-check  cut=master  known_slates=[]
+[lane-check] PASS — 10 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (10/10 filled)
+[art] motion histogram: type:4  drawon:4  hold:2
+[art] GATE AUDIO: PASS  mean_volume -23.8 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/cc-context-check.mp4  (201.9s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 10/10 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=20 BLOCKER=0 STRUCTURAL=0 COSMETIC=0 → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/_qc/REPORT.md
+[run] GATE T — type-lock (typography assertions)
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/TYPECHECK.md
+[typecheck] §8.10 [BVDT] narration recites the card (0.83) — discuss it, don't read it
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: 0.30
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 BVDT: 0.83  ← ADVISORY
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[run] GATE SHARPNESS — per-beat sharpness audit
+[sharpness] GATE SHARPNESS PASS — 10 beats, median LV=665.1
+[run] GATE BOOKEND — four-bookend structure check
+[bookend] PASS — four bookends correct for cc-context-check
+[run] GATE AUDIO — checking compiled reel for silence
+[run] GATE AUDIO: PASS (mean_volume -23.8 dB)
+[run] GATE MASTER — compiled master assertions
+[master] PASS  3840×2160  24fps  yuv420p  h264  202.0s
+[run] GATE LOUDNESS — audio loudness + per-beat silence
+[loud] checking 10 beats for per-beat silence …
+[loud] PASS  -24.25 LUFS  tp=-2.79 dBTP
+[run] done → /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check  (QC gates: on)
+[run] this was the FULL machine pass: motion graphics + outro done;
+[run] any remaining slates are YOUR slots — see /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/SHOTLIST.md
+
+[run] ── gate roster ─────────────────────────────────────────────────
+  GATE-F                   RAN-PASS
+  GATE-L                   RAN-PASS
+  GATE-BANNED-CARD         RAN-PASS
+  GATE-SWEEP-WARN          RAN-PASS
+  GATE-P                   NOT-RUN
+  GATE-A                   SKIPPED-no-pending-scenes
+  GATE-W                   SKIPPED-no-pending-scenes
+  GATE-B                   SKIPPED-no-pending-scenes
+  GATE-G                   RAN-PASS
+  GATE-V                   RAN-PASS
+  GATE-T                   RAN-PASS
+  GATE-SHARPNESS           RAN-PASS
+  GATE-BOOKEND             RAN-PASS
+  GATE-AUDIO               RAN-PASS
+  GATE-MASTER              RAN-PASS
+  GATE-LOUDNESS            RAN-PASS
+  GATE-RECEIPTS            RAN-PASS
+[run] ─────────────────────────────────────────────────────────────────
+=== RUN DONE cc-context-check ===
+[typecheck] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/TYPECHECK.md
+[typecheck] §8.10 [BVDT] narration recites the card (0.83) — discuss it, don't read it
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 BIDEA: SKIP
+[typecheck] §8.10 BDEFS: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: 0.30
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 BVDT: 0.83  ← ADVISORY
+[typecheck] §8.10 BHTF: SKIP
+[typecheck] §8.10 BOUT: SKIP
+[typecheck] GATE T: PASS
+[art] tail_silence_s BOUT: +1.0s (default last-beat)
+[content-check] cc-context-check  beats=10
+[content-check] PASS — 10 beats checked, no violations.
+[frame-check] cc-context-check  canvas=3840×2160  beats=10
+[frame-check] PASS — 10 beats checked, no violations.
+[lane-check] cc-context-check  cut=master  known_slates=[]
+[lane-check] PASS — 10 beats checked, no lane violations.
+[art] SKIN LINT: B00: palette=claude but the cold open is 'CCSession' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (10/10 filled)
+[art] motion histogram: type:4  drawon:4  hold:2
+[art] GATE AUDIO: PASS  mean_volume -23.8 dB
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-context-check/cc-context-check.mp4  (201.9s, audio: per-beat narration, drawtext: no — PIL overlays)
+[art] slots: 10/10 filled — B00:VIDEO BIDEA:VIDEO BDEFS:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+=== FINAL DONE cc-context-check ===
+##### starting cc101loop Wed Sep  9 02:18:32 EDT 2026
+2026-09-09 02:18:32  root: /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101   exemplar: /Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-code-101/01-context-and-memory/cc-three-files   timeout: 7200s
+2026-09-09 02:18:33  queue: done=8 pending=95
+2026-09-09 02:18:33  PAUSED: 18GB free
+2026-09-09 02:28:33  PAUSED: 18GB free
+2026-09-09 02:38:33  PAUSED: 18GB free
+2026-09-09 02:48:33  PAUSED: 18GB free
+2026-09-09 02:58:33  PAUSED: 18GB free
+2026-09-09 03:08:33  PAUSED: 16GB free
+2026-09-09 03:18:33  PAUSED: 16GB free
+2026-09-09 03:28:33  PAUSED: 16GB free
+2026-09-09 03:38:33  PAUSED: 16GB free
+2026-09-09 03:48:33  PAUSED: 16GB free
+2026-09-09 03:58:33  PAUSED: 16GB free
+2026-09-09 04:08:33  PAUSED: 16GB free
+2026-09-09 04:18:33  PAUSED: 16GB free
+2026-09-09 04:28:33  PAUSED: 16GB free
+2026-09-09 04:38:33  PAUSED: 16GB free
+2026-09-09 04:48:33  PAUSED: 16GB free
+2026-09-09 04:58:34  PAUSED: 16GB free
+2026-09-09 05:08:34  PAUSED: 16GB free
+2026-09-09 05:18:34  PAUSED: 16GB free
+2026-09-09 05:28:34  PAUSED: 15GB free
+2026-09-09 05:38:34  PAUSED: 15GB free
+2026-09-09 05:48:34  PAUSED: 15GB free
+2026-09-09 05:58:34  PAUSED: 15GB free
+2026-09-09 06:08:34  PAUSED: 15GB free
+2026-09-09 06:18:34  PAUSED: 15GB free
+2026-09-09 06:28:34  PAUSED: 15GB free
+2026-09-09 06:38:34  PAUSED: 14GB free
+2026-09-09 06:48:34  PAUSED: 14GB free
+2026-09-09 06:58:34  PAUSED: 14GB free
+2026-09-09 07:08:34  PAUSED: 14GB free
+2026-09-09 07:18:35  PAUSED: 14GB free
+2026-09-09 07:28:35  PAUSED: 14GB free
+2026-09-09 07:38:35  PAUSED: 14GB free
+2026-09-09 07:48:35  PAUSED: 14GB free
+2026-09-09 07:58:35  PAUSED: 18GB free
+2026-09-09 08:08:35  PAUSED: 18GB free
+2026-09-09 08:18:35  PAUSED: 18GB free
+2026-09-09 08:28:35  PAUSED: 18GB free
+2026-09-09 08:38:35  PAUSED: 18GB free
+2026-09-09 08:48:35  PAUSED: 18GB free
+2026-09-09 08:58:35  PAUSED: 18GB free
+2026-09-09 09:08:35  PAUSED: 18GB free
+2026-09-09 09:18:35  PAUSED: 17GB free
+2026-09-09 09:28:35  PAUSED: 17GB free
+2026-09-09 09:38:35  PAUSED: 17GB free
+2026-09-09 09:48:35  PAUSED: 17GB free
+2026-09-09 09:58:35  PAUSED: 17GB free
+2026-09-09 10:08:35  PAUSED: 17GB free
+2026-09-09 10:18:36  PAUSED: 17GB free
+2026-09-09 10:28:36  PAUSED: 17GB free
+2026-09-09 10:38:36  PAUSED: 17GB free
+2026-09-09 10:48:36  PAUSED: 17GB free
+2026-09-09 10:58:36  PAUSED: 17GB free
+2026-09-09 11:08:36  PAUSED: 17GB free

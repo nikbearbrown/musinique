@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-combining-plugins/media/videos/scenes_std/1080p24/partial_movie_files/B08Doodle/3432045423_3324400489_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-combining-plugins/media/videos/scenes_std/1080p24/partial_movie_files/B08Doodle/1528800015_3328206700_1538702754.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-combining-plugins/media/videos/scenes_std/1080p24/partial_movie_files/B08Doodle/1528800015_3670315942_2383568777.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-combining-plugins/media/videos/scenes_std/1080p24/partial_movie_files/B08Doodle/1528800015_1356185749_2365307025.mp4'

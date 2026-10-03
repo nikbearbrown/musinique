@@ -1,0 +1,14 @@
+mp4 06:35 > beat_sheet.json 06:34. Supervisor DONE check passes.
+
+**REEL DONE — eval-driven-six-agent-variants**
+
+| Gate | Result |
+|---|---|
+| Phase 0 — rebuild contract | PASS |
+| Phase 1 — 11 audit checks | PASS / FIXED |
+| Gate T — type_check.py | PASS (14/14, 0 FAILs after 3 rounds) |
+| Phase 2 — build | PASS (14/14 VIDEO, −24.3 dB) |
+| Gate V — visual QC | PASS |
+| mp4 newer than beat_sheet | PASS (06:35 > 06:34) |
+
+Fixes applied: BVDT verdict authored (placeholder → 4 real lines + narration), BHTF brand field corrected, B06 spark line shortened, 5 §8.9 title truncations resolved, 2 §8.3 contrast failures resolved in CwcSixVariants and CwcVariantImprovementWaterfall (text → CLAUDE.INK; bar fills exempted as diegetic). Punt sweep: VIDEO: 14, zero slates.

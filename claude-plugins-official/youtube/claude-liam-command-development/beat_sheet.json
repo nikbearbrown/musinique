@@ -1,0 +1,409 @@
+{
+  "metadata": {
+    "title": "Claude, Command Development.",
+    "slug": "claude-liam-command-development",
+    "topic": "COMMAND-DEVELOPMENT · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-plugins-official/plugins/plugin-dev/skills/command-development/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Markdown file format for commands",
+        "YAML frontmatter for configuration",
+        "Dynamic arguments and file references",
+        "Bash execution for context",
+        "Command organization and namespacing",
+        "haiku - Fast, simple commands",
+        "sonnet - Standard workflows",
+        "opus - Complex analysis"
+      ],
+      "constraints": [
+        "> Note: The .claude/commands/ directory is a legacy format. For new skills, use the .claude/skills/<name>/SKILL.md directory format. Both are loaded identically — the…",
+        "Bash(git:*) - Bash with git commands only",
+        "Use when: Command should only be manually invoked",
+        "Validate arguments: Check for required arguments in prompt",
+        "Files changed: !git diff --name-only",
+        "Check for required permissions",
+        "Agent must exist in plugin/agents/ directory",
+        "Skill must exist in plugin/skills/ directory"
+      ],
+      "referenced_files": [
+        ".claude/commands/",
+        ".claude/skills/<name>/SKILL.md",
+        "skill-development",
+        "/command-name",
+        "/help",
+        "~/.claude/commands/",
+        "plugin-name/commands/",
+        ".md",
+        "$1",
+        "$2"
+      ],
+      "code_signals": [
+        "code block: markdown",
+        "code block: yaml"
+      ],
+      "sections": [
+        "Overview",
+        "Command Basics",
+        "What is a Slash Command?",
+        "Critical: Commands are Instructions FOR Claude",
+        "Command Locations",
+        "File Format",
+        "Basic Structure",
+        "With YAML Frontmatter",
+        "YAML Frontmatter Fields",
+        "description"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T15:40:42",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is command-development. This skill should be used when the user asks to \"create a slash command\", \"add a command\", \"write a custom command\", \"define command arguments\", \"use command frontmatter\", \"organize commands\", \"create command with file references\", \"interactive command\", \"use AskUserQuestion in command\", or needs guidance on slash command structure, YAML frontmatter fields, dynamic arguments, bash execution in commands, user interaction patterns, or command development best practices for Claude Code.. Its concrete surface area includes Markdown file format for commands; YAML frontmatter for configuration; Dynamic arguments and file references. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "COMMAND-DEVELOPMENT · ANTHROPIC SKILL",
+            "segment": "Claude, Command Development.",
+            "command": "Run the command-development skill.",
+            "runningText": "reading command-development SKILL.md…",
+            "output": [
+              "skill: command-development",
+              "This skill should be used when the user asks to \"create a slash command\", \"add…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 40.04,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is command-development. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at .claude/commands/, .claude/skills/<name>/SKILL.md, skill-development, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "command-development",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "README.md",
+                "size": "7k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "18k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "examples",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "4 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "command-development is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Markdown file format for commands; YAML frontmatter for configuration; Dynamic arguments and file references; Bash execution for context. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. > Note: The .claude/commands/ directory is a legacy format. For new skills, use the .claude/skills/<name>/SKILL.md directory format. Both are loaded identically — the…. That is the constraint in command-development — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "> Note: The .claude/commands/ directory is a legacy format. For new skills, use the .claude/skills/<name>/SKILL.md directory format. Both are loaded identically — the…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.07,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In command-development, supporting material: .claude/commands/, .claude/skills/<name>/SKILL.md, skill-development, /command-name; implementation signals: code block: markdown, code block: yaml; sections: Overview, Command Basics, What is a Slash Command?, Critical: Commands are Instructions FOR Claude. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Markdown file format for commands; YAML frontmatter for configuration; Dynamic arguments and file references; .claude/commands/; .claude/skills/<name>/SKILL.md; skill-development; code block: markdown; code block: yaml",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 23.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "command-development makes Claude execute one task reliably. The SKILL.md is the spec — This skill should be used when the user asks to \"create a slash command\", \"add…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Command Development.",
+            "artifactLines": [
+              "Skill: command-development — Claude reads SKILL.md before acting",
+              "This skill should be used when the user asks to \"create a slash command\", \"add a…",
+              "Capabilities: Markdown file format for commands; YAML frontmatter for configuration; Dynamic arguments and file references",
+              "Constraint: > Note: The .claude/commands/ directory is a legacy format. For new skills, use the…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 13.97,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to this skill should be used when the user asks to \"create a slash command\", \"add. Read the command-development skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "COMMAND-DEVELOPMENT · ANTHROPIC SKILL",
+            "segment": "Claude, Command Development.",
+            "command": "I want to this skill should be used when the user asks to \"create a slash. Read the command-development skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 14.53,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Command Development. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Command Development.",
+            "handle": "@NikBearBrown",
+            "subline": "command-development · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.33,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T15:40:42"
+      }
+    }
+  ]
+}

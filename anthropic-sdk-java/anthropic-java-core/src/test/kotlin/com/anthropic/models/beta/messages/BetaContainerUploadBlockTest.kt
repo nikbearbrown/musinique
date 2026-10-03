@@ -1,0 +1,30 @@
+package com.anthropic.models.beta.messages
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaContainerUploadBlockTest {
+
+    @Test
+    fun create() {
+        val betaContainerUploadBlock = BetaContainerUploadBlock.of("file_id")
+
+        assertThat(betaContainerUploadBlock.fileId()).isEqualTo("file_id")
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaContainerUploadBlock = BetaContainerUploadBlock.of("file_id")
+
+        val roundtrippedBetaContainerUploadBlock =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaContainerUploadBlock),
+                jacksonTypeRef<BetaContainerUploadBlock>(),
+            )
+
+        assertThat(roundtrippedBetaContainerUploadBlock).isEqualTo(betaContainerUploadBlock)
+    }
+}

@@ -1,0 +1,166 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaRequestToolRemovalBlock = Beta::BetaRequestToolRemovalBlock
+
+    module Beta
+      class BetaRequestToolRemovalBlock < Anthropic::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaRequestToolRemovalBlock,
+              Anthropic::Internal::AnyHash
+            )
+          end
+
+        sig do
+          returns(
+            T.any(
+              Anthropic::Beta::BetaToolChangeToolReference,
+              Anthropic::Beta::BetaToolChangeMCPToolReference,
+              Anthropic::Beta::BetaToolChangeMCPToolsetReference
+            )
+          )
+        end
+        attr_accessor :tool
+
+        sig { returns(Symbol) }
+        attr_accessor :type
+
+        # Create a cache control breakpoint at this content block.
+        sig { returns(T.nilable(Anthropic::Beta::BetaCacheControlEphemeral)) }
+        attr_reader :cache_control
+
+        sig do
+          params(
+            cache_control:
+              T.nilable(Anthropic::Beta::BetaCacheControlEphemeral::OrHash)
+          ).void
+        end
+        attr_writer :cache_control
+
+        # Mid-conversation directive to withdraw a tool.
+        #
+        # `tool` references a tool (or MCP toolset) by name: one declared in the request's
+        # `tools` or defined earlier in `messages`. It is no longer offered to the model
+        # from this point in the conversation onward.
+        sig do
+          params(
+            tool:
+              T.any(
+                Anthropic::Beta::BetaToolChangeToolReference::OrHash,
+                Anthropic::Beta::BetaToolChangeMCPToolReference::OrHash,
+                Anthropic::Beta::BetaToolChangeMCPToolsetReference::OrHash
+              ),
+            cache_control:
+              T.nilable(Anthropic::Beta::BetaCacheControlEphemeral::OrHash),
+            type: Symbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          tool:,
+          # Create a cache control breakpoint at this content block.
+          cache_control: nil,
+          type: :tool_removal
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              tool:
+                T.any(
+                  Anthropic::Beta::BetaToolChangeToolReference,
+                  Anthropic::Beta::BetaToolChangeMCPToolReference,
+                  Anthropic::Beta::BetaToolChangeMCPToolsetReference
+                ),
+              type: Symbol,
+              cache_control:
+                T.nilable(Anthropic::Beta::BetaCacheControlEphemeral)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Tool
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaToolChangeToolReference,
+                Anthropic::Beta::BetaToolChangeMCPToolReference,
+                Anthropic::Beta::BetaToolChangeMCPToolsetReference
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            TOOL_REFERENCE =
+              T.let(
+                :tool_reference,
+                Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Type::TaggedSymbol
+              )
+            MCP_TOOL_REFERENCE =
+              T.let(
+                :mcp_tool_reference,
+                Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Type::TaggedSymbol
+              )
+            MCP_TOOLSET_REFERENCE =
+              T.let(
+                :mcp_toolset_reference,
+                Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type:
+                Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Type::OrSymbol,
+              name: String,
+              server_name: String
+            ).returns(
+              Anthropic::Beta::BetaRequestToolRemovalBlock::Tool::Variants
+            )
+          end
+          def self.new(type:, name: nil, server_name: nil)
+          end
+        end
+      end
+    end
+  end
+end

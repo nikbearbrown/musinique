@@ -1,0 +1,7 @@
+`vox-epr-gap-slate.mp4` shipped — 243.9 s, all 18 beats VIDEO, mp4 mtime 9 s newer than beat_sheet.
+
+**build.status Counter**: `Counter({'VIDEO': 18})`
+
+**Gates**: CONTENT PASS · FRAME PASS · LANE PASS · T PASS · AUDIO PASS (mean_volume −27.3 dB) · V (contact sheet inspected — all 18 tiles clean).
+
+Wrote AUDIT.md, REBUILD-LOG.md, TYPECHECK.md; appended entry to `youtube/FILMLOOP-LOG.md`. Legacy B15/B16 outros dropped (their mp3s left on disk); dead ElevenLabs `voice_id` + clock prose stripped; every body beat authored as a real FormBCard from its own narration; verdict authored and voiced (Kokoro `am_onyx`, 25.83 s); B00 spark line = `"Konnichiwa, Liam"`.

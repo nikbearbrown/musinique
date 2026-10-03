@@ -1,0 +1,5 @@
+Reel done. `hai-vox-targeting-uptake-slate.mp4` (128.4 s, 2.60 MB) — mtime 4 s newer than the sheet, freshness gate met.
+
+**Build counter**: `Counter({'VIDEO': 9, 'SLATE': 3})` — B01/B03/B10 are CARD slates by design; B02, B04–B09 rendered as FormBCard/FormACard; B11/B12 rendered as HAI OutroSeries/OutroCTA (Claude-wash prevented).
+
+Gates: GATE T PASS (one advisory on B09, the illustrative-numbers card — expected), GATE LANE PASS, GATE AUDIO PASS (mean_volume −23.8 dB), Gate V PASS across 8 sampled frames. Log appended to `youtube/FILMLOOP-LOG.md`; `AUDIT.md` and `REBUILD-LOG.md` written in the reel folder.

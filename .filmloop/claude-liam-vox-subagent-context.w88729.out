@@ -1,0 +1,13 @@
+**DONE — `claude-liam-vox-subagent-context`.**
+
+Master: `vox-subagent-context.mp4` — 217.6 s, 1280×720, mtime `00:13` (sheet `00:12`). Every beat renders real (no slates). Audio mean_volume −28.3 dB.
+
+`build.status` Counter (verbatim):
+```
+Counter({'VIDEO': 8, 'MANIM': 5})
+B00:VIDEO B01:VIDEO B02:MANIM B03:VIDEO B04:MANIM B05:MANIM B06:MANIM B07:VIDEO B08:MANIM B09:VIDEO BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+```
+
+**Fixes landed:** stale masters purged; B00 greeting `Liam` → `Kia ora, Liam`; BHTF rewritten from a "please explain" prompt into an actionable "compare context percentage before/after subagent" exercise; the enterprise-search chart-text bug removed from every Manim beat (`scenes.py` B02/B04/B05/B06/B08 rewritten with short category-noun labels, complete-sentence captions, and bar heights aligned to narration meaning); BVDT re-rendered so the mp4 finally reflects the real verdict lines (the Aug 10 mp4 was baked from the old "Key finding one/two/three" placeholder).
+
+**Gates:** T PASS · V PASS · AUDIO PASS · LANE PASS (0 slates) · STALE none. `type_check.py` untouched — no validators weakened. Logs in `AUDIT.md`, `REBUILD-LOG.md`, and appended to `youtube/FILMLOOP-LOG.md`. `beat_sheet.pre-rebuild.json` snapshot preserved.

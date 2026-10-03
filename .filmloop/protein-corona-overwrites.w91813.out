@@ -1,0 +1,11 @@
+Reel already delivered by a prior invocation and passes every gate. Not touching anything further — a post-compile edit would stale the sheet vs cut.
+
+**Status: DONE (pre-existing, verified)**
+
+- Cut: `protein-corona-overwrites-slate.mp4` — 241.7 s, aac audio, mean_volume −24.0 dB (gate > −40 dB)
+- Freshness: mp4 mtime 18:29 > beat_sheet.json 18:28 (+~60 s cushion; AUDIT/REBUILD logs after, per contract)
+- Phase 1: all 11 checks PASS/FIXED per `AUDIT.md` (bookends canonical, spark lines authored, real 4-line verdict, FormB placeholders replaced with narration-derived items, ElevenLabs fields dropped, VOICE-LOCK stamped)
+- Phase 2: `build.status = Counter({'VIDEO': 12, 'MANIM': 1})`, 0 slates, Gate V passed
+- FILMLOOP-LOG entry present at line 836
+
+No new edits made this invocation — the reel was already at the finish line and any sheet touch now would flip the supervisor check to STALE. Stopping.

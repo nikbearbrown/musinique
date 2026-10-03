@@ -1,0 +1,24 @@
+**Done.**
+
+---
+
+## `claude-liam-fraud-detection` — log
+
+**Deliverable**: `claude-liam-fraud-detection-slate.mp4` — 98.2s, 2.1MB, 7/7 VIDEO, mean volume −23.9 dB, mp4 mtime +4s newer than beat_sheet.json.
+
+**Checks fixed** (11 checks, all PASS):
+1. Stale renders — PASS (none existed)
+2. Bookends — PASS (all 4 canonical patterns present)
+3. Spark lines — FIXED: B03 `sparkLine` "This is the part worth knowing." → "Spec-locked. Bounded." (was generic, 7 words)
+4. Verdict — FIXED: `artifactLines[1]` truncation repaired; BVDT narration truncation repaired ("…and produce." → "…and produce ranked investigation referrals.")
+5. Card text — PASS (no FormA/B cards)
+6. Punt sweep — PASS (all 7 beats are real Remotion scenes, no slates)
+7. Card-only reel — PASS (file-tree, pipeline, mechanism scenes are visual)
+8. Lens — PASS (Popper + Plato, carried from existing LENS-AUDIT.md)
+9. Brand fields — FIXED: `modelLabel` "Opus 4.8" → "Opus 4.7" (datable claim; Opus 4.8 doesn't exist)
+10. Pacing — PASS (all beats 2.0–3.4 wps)
+11. type_check.py — PASS (GATE T, 0 FAILs)
+
+**Additional fixes**: B03/BHTF narration truncation artifacts repaired; BHTF command stray "a" removed; `shot.form` added to all beats; SkillTeardownMechanism heading/body font sizes enlarged (52→72px, 26→38px) for better canvas fill.
+
+**Gate V**: PASS — 0 BLOCKER, 0 MAJOR on real beats. Two MINORs accepted (B03 single-line body inherently sparse by component design; BOUT deliberate outro card spacing).

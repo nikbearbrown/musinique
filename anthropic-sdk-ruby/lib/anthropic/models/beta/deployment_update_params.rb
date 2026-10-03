@@ -1,0 +1,229 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Models
+    module Beta
+      # @see Anthropic::Resources::Beta::Deployments#update
+      class DeploymentUpdateParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        # @!attribute deployment_id
+        #   Unique identifier of the deployment to update.
+        #
+        #   @return [String]
+        required :deployment_id, String
+
+        # @!attribute agent
+        #   Agent to deploy. Accepts the `agent` ID string, which re-pins to the latest
+        #   version, or an `agent` object with both id and version specified. Omit to
+        #   preserve. Cannot be cleared.
+        #
+        #   @return [Anthropic::Models::Beta::BetaManagedAgentsAgentParams, String, nil]
+        optional :agent, union: -> { Anthropic::Beta::DeploymentUpdateParams::Agent }
+
+        # @!attribute budget
+        #   A hard spend ceiling. The session stops issuing new model requests once the
+        #   tracked list cost reaches `max_list_cost`.
+        #
+        #   @return [Anthropic::Models::Beta::BetaManagedAgentsBudgetLimit, nil]
+        optional :budget, -> { Anthropic::Beta::BetaManagedAgentsBudgetLimit }, nil?: true
+
+        # @!attribute description
+        #   Description. Omit to preserve; send empty string or null to clear.
+        #
+        #   @return [String, nil]
+        optional :description, String, nil?: true
+
+        # @!attribute environment_id
+        #   ID of the `environment` where sessions run. Omit to preserve. Cannot be cleared.
+        #
+        #   @return [String, nil]
+        optional :environment_id, String
+
+        # @!attribute initial_events
+        #   Initial events. Full replacement. Omit to preserve. Cannot be cleared. At least
+        #   1, maximum 50.
+        #
+        #   @return [Array<Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserMessageEventParams, Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams, Anthropic::Models::Beta::Sessions::BetaManagedAgentsSystemMessageEventParams>, nil]
+        optional :initial_events,
+                 -> { Anthropic::Internal::Type::ArrayOf[union: Anthropic::Beta::BetaManagedAgentsDeploymentInitialEventParams] }
+
+        # @!attribute metadata
+        #   Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+        #   Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars
+        #   each) with values up to 512 chars.
+        #
+        #   @return [Hash{Symbol=>String, nil}, nil]
+        optional :metadata, Anthropic::Internal::Type::HashOf[String, nil?: true], nil?: true
+
+        # @!attribute name
+        #   Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!attribute resources
+        #   Session resources. Full replacement. Omit to preserve; send empty array or null
+        #   to clear. Maximum 500.
+        #
+        #   @return [Array<Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams, Anthropic::Models::Beta::BetaManagedAgentsFileResourceParams, Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam>, nil]
+        optional :resources,
+                 -> {
+                   Anthropic::Internal::Type::ArrayOf[union: Anthropic::Beta::DeploymentUpdateParams::Resource]
+                 },
+                 nil?: true
+
+        # @!attribute schedule
+        #   5-field POSIX cron schedule. Literal wall-clock matching in the configured
+        #   timezone.
+        #
+        #   @return [Anthropic::Models::Beta::BetaManagedAgentsScheduleParams, nil]
+        optional :schedule, -> { Anthropic::Beta::BetaManagedAgentsScheduleParams }, nil?: true
+
+        # @!attribute vault_ids
+        #   Vault IDs. Full replacement. Omit to preserve; send empty array or null to
+        #   clear. Maximum 50.
+        #
+        #   @return [Array<String>, nil]
+        optional :vault_ids, Anthropic::Internal::Type::ArrayOf[String], nil?: true
+
+        # @!attribute betas
+        #   Optional header to specify the beta version(s) you want to use.
+        #
+        #   @return [Array<Symbol, String, Anthropic::Models::AnthropicBeta>, nil]
+        optional :betas, -> { Anthropic::Internal::Type::ArrayOf[union: Anthropic::AnthropicBeta] }
+
+        # @!attribute workspace_id
+        #   Optional header to select the Workspace for this request. The value is a
+        #   Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+        #
+        #   Only needed for credentials that can act on more than one Workspace. A
+        #   credential that belongs to a specific Workspace may omit it; if sent, it must
+        #   match that Workspace.
+        #
+        #   @return [String, nil]
+        optional :workspace_id, String
+
+        # @!method initialize(deployment_id:, agent: nil, budget: nil, description: nil, environment_id: nil, initial_events: nil, metadata: nil, name: nil, resources: nil, schedule: nil, vault_ids: nil, betas: nil, workspace_id: nil, request_options: {})
+        #   Some parameter documentations has been truncated, see
+        #   {Anthropic::Models::Beta::DeploymentUpdateParams} for more details.
+        #
+        #   @param deployment_id [String] Unique identifier of the deployment to update.
+        #
+        #   @param agent [Anthropic::Models::Beta::BetaManagedAgentsAgentParams, String] Agent to deploy. Accepts the `agent` ID string, which re-pins to the latest vers
+        #
+        #   @param budget [Anthropic::Models::Beta::BetaManagedAgentsBudgetLimit, nil] A hard spend ceiling. The session stops issuing new model requests once the trac
+        #
+        #   @param description [String, nil] Description. Omit to preserve; send empty string or null to clear.
+        #
+        #   @param environment_id [String] ID of the `environment` where sessions run. Omit to preserve. Cannot be cleared.
+        #
+        #   @param initial_events [Array<Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserMessageEventParams, Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams, Anthropic::Models::Beta::Sessions::BetaManagedAgentsSystemMessageEventParams>] Initial events. Full replacement. Omit to preserve. Cannot be cleared. At least
+        #
+        #   @param metadata [Hash{Symbol=>String, nil}, nil] Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omi
+        #
+        #   @param name [String] Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+        #
+        #   @param resources [Array<Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams, Anthropic::Models::Beta::BetaManagedAgentsFileResourceParams, Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam>, nil] Session resources. Full replacement. Omit to preserve; send empty array or null
+        #
+        #   @param schedule [Anthropic::Models::Beta::BetaManagedAgentsScheduleParams, nil] 5-field POSIX cron schedule. Literal wall-clock matching in the configured timez
+        #
+        #   @param vault_ids [Array<String>, nil] Vault IDs. Full replacement. Omit to preserve; send empty array or null to clear
+        #
+        #   @param betas [Array<Symbol, String, Anthropic::Models::AnthropicBeta>] Optional header to specify the beta version(s) you want to use.
+        #
+        #   @param workspace_id [String] Optional header to select the Workspace for this request. The value is a Workspa
+        #
+        #   @param request_options [Anthropic::RequestOptions, Hash{Symbol=>Object}]
+
+        # Agent to deploy. Accepts the `agent` ID string, which re-pins to the latest
+        # version, or an `agent` object with both id and version specified. Omit to
+        # preserve. Cannot be cleared.
+        module Agent
+          extend Anthropic::Internal::Type::Union
+
+          # Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
+          variant -> { Anthropic::Beta::BetaManagedAgentsAgentParams }
+
+          variant String
+
+          # @!method self.variants
+          #   @return [Array(Anthropic::Models::Beta::BetaManagedAgentsAgentParams, String)]
+        end
+
+        # Union of resources that can be mounted into a session.
+        module Resource
+          extend Anthropic::Internal::Type::Union
+
+          discriminator :type
+
+          # Mount a GitHub repository into the session's container.
+          variant :github_repository, -> { Anthropic::Beta::BetaManagedAgentsGitHubRepositoryResourceParams }
+
+          # Mount a file uploaded via the Files API into the session.
+          variant :file, -> { Anthropic::Beta::BetaManagedAgentsFileResourceParams }
+
+          # Parameters for attaching a memory store to an agent session.
+          variant :memory_store, -> { Anthropic::Beta::BetaManagedAgentsMemoryStoreResourceParam }
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            GITHUB_REPOSITORY = :github_repository
+            FILE = :file
+            MEMORY_STORE = :memory_store
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @!method self.variants
+          #   @return [Array(Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams, Anthropic::Models::Beta::BetaManagedAgentsFileResourceParams, Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam)]
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          #
+          # Some parameter documentations has been truncated, see
+          # {Anthropic::Models::Beta::DeploymentUpdateParams::Resource} for more details.
+          #
+          # @param type [Symbol, Anthropic::Models::Beta::DeploymentUpdateParams::Resource::Type, String]
+          #
+          # @param args [Hash{Symbol=>Object}] Attributes for the chosen variant.
+          #
+          #   @option args [String] :url Github URL of the repository
+          #
+          #   @option args [String] :authorization_token GitHub authorization token used to clone the repository. Required for private re
+          #
+          #   @option args [Anthropic::Models::Beta::BetaManagedAgentsBranchCheckout, Anthropic::Models::Beta::BetaManagedAgentsCommitCheckout, nil] :checkout Branch or commit to check out. Defaults to the repository's default branch.
+          #
+          #   @option args [String, nil] :mount_path Mount path in the container. Defaults to `/workspace/<repo-name>`.
+          #
+          #   @option args [String] :file_id ID of a previously uploaded file.
+          #
+          #   @option args [String] :memory_store_id The memory store ID (memstore\_...). Must belong to the caller's organization
+          #   and
+          #
+          #   @option args [Symbol, Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam::Access, nil] :access Access mode for an attached memory store.
+          #
+          #   @option args [String, nil] :instructions Per-attachment guidance for the agent on how to use this store. Rendered into th
+          #
+          # @raise [ArgumentError]
+          # @return [Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams, Anthropic::Models::Beta::BetaManagedAgentsFileResourceParams, Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam]
+          def self.new(type:, **args)
+            case type.to_sym
+            when :github_repository
+              Anthropic::Beta::BetaManagedAgentsGitHubRepositoryResourceParams.new(**args)
+            when :file
+              Anthropic::Beta::BetaManagedAgentsFileResourceParams.new(**args)
+            when :memory_store
+              Anthropic::Beta::BetaManagedAgentsMemoryStoreResourceParam.new(**args)
+            else
+              raise ArgumentError, "unknown type: #{type}"
+            end
+          end
+        end
+      end
+    end
+  end
+end

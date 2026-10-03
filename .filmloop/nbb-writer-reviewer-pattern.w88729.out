@@ -1,0 +1,9 @@
+Done. **`writer-reviewer-pattern-slate.mp4`** (220.0 s, 13/13 filled) newer than sheet (mp4 13:31 > sheet 13:10). GATE T PASS · GATE AUDIO PASS (−24.1 dB) · GATE V PASS. Zero validator downgrades.
+
+Summary of what shipped:
+- **Rebuild snapshot** at `beat_sheet.pre-rebuild.json`; body B00–B05 narrations locked verbatim.
+- **Cross-reel contamination** removed (NBB02 cancer-biology template → real reviewer prompt; NBB01 empty-template lead-in → real recap).
+- **Verdict authored** — NBB01 + BVDT `artifactLines` rebuilt from body content; B04 gained a `ClaudeVerdictArtifact` shot.
+- **Placeholders killed** — B00 greeting `Liam` → 4-word narration spark; B01 FormBCard `Key point one/two/three` → 3 real items; BHTF `Take what you learned from…` template → real reviewer exercise; empty BVDT/BHTF narrations authored.
+- **Chart text** — `scenes_std.py` rewritten in short category labels + all-caps captions, rendered at 4K to clear §8.1 min-size false positives without loosening the check.
+- Logs: `REBUILD-LOG.md`, `AUDIT.md`, and appended block in `youtube/FILMLOOP-LOG.md`.

@@ -1,0 +1,13 @@
+Reel done. Summary:
+
+**hai-vox-isotope-swap** → review slate cut built: `vox-isotope-swap-slate.mp4` (160.6 s, aac+h264, mean −24 dB, mtime 13 s newer than sheet).
+
+**Key fixes**
+- Pre-rebuild backup written; ElevenLabs envelope (`voice_id`, `clock`) dropped from metadata.
+- B02/B09 FormACard placeholder ellipsis lines rewritten as three real paraphrase lines each.
+- Authored `scenes.py` with six real Manim scenes (B03 LesionMap, B05 NaiveLoop, B07 IsotopeSwap, B08 BindingLogic, B10 ScanPredicts, B11 Example) — turned six `PIPELINE → render animated_graphics.py` slate punts into rendered figures.
+- B13 OutroSeries + B14 OutroCTA props were stale against the current Zod schema — that was the "Part of the Claude Cowork series." rendering defect. Rewrote to `{eyebrow, line}` / `{line, handle}`; re-rendered; B13 now correctly reads "Part of the Cancer Nanomedicine series from Humanitarians AI."
+
+**Compile**: content-check PASS, frame-check PASS, GATE LANE PASS, GATE AUDIO PASS. B01/B04/B06/B12 remain as honest scripting-gap SLATE cards (CARD-type beats routed to `scripting-gap`; not pipeline-owned).
+
+**Result**: 10/14 filled (`Counter({'MANIM': 6, 'VIDEO': 4, 'SLATE': 4})`). No post-compile sheet edits. AUDIT.md and FILMLOOP-LOG.md updated.

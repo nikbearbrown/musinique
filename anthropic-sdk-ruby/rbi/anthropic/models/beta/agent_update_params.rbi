@@ -1,0 +1,467 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    module Beta
+      class AgentUpdateParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        OrHash =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::AgentUpdateParams,
+              Anthropic::Internal::AnyHash
+            )
+          end
+
+        # Unique identifier of the agent to update.
+        sig { returns(String) }
+        attr_accessor :agent_id
+
+        # Description. Omit to preserve; send empty string or null to clear.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :description
+
+        # MCP servers. Full replacement. Omit to preserve; send empty array or `null` to
+        # clear. Names must be unique. Maximum 20. Every server must be referenced by an
+        # `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are
+        # rejected. See the
+        # [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams]
+            )
+          )
+        end
+        attr_accessor :mcp_servers
+
+        # Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+        # Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars
+        # each) with values up to 512 chars.
+        sig { returns(T.nilable(T::Hash[Symbol, T.nilable(String)])) }
+        attr_accessor :metadata
+
+        # Model identifier. Accepts the
+        # [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison),
+        # e.g. `claude-opus-5`, or a `model_config` object for additional configuration
+        # control. Omit to preserve. Cannot be cleared.
+        sig do
+          returns(
+            T.nilable(
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams,
+                Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                String
+              )
+            )
+          )
+        end
+        attr_reader :model
+
+        sig do
+          params(
+            model:
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams::OrHash,
+                Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                String
+              )
+          ).void
+        end
+        attr_writer :model
+
+        # A coordinator topology: the session's primary thread orchestrates work by
+        # spawning session threads, each running an agent drawn from the `agents` roster.
+        sig do
+          returns(T.nilable(Anthropic::Beta::BetaManagedAgentsMultiagentParams))
+        end
+        attr_reader :multiagent
+
+        sig do
+          params(
+            multiagent:
+              T.nilable(
+                Anthropic::Beta::BetaManagedAgentsMultiagentParams::OrHash
+              )
+          ).void
+        end
+        attr_writer :multiagent
+
+        # Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        # Skills. Full replacement. Omit to preserve; send empty array or null to clear.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams,
+                  Anthropic::Beta::BetaManagedAgentsCustomSkillParams
+                )
+              ]
+            )
+          )
+        end
+        attr_accessor :skills
+
+        # System prompt. Omit to preserve; send empty string or null to clear.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :system_
+
+        # Tool configurations available to the agent. Full replacement. Omit to preserve;
+        # send empty array or null to clear. Maximum of 128 tools across all toolsets
+        # allowed.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params,
+                  Anthropic::Beta::BetaManagedAgentsMCPToolsetParams,
+                  Anthropic::Beta::BetaManagedAgentsCustomToolParams
+                )
+              ]
+            )
+          )
+        end
+        attr_accessor :tools
+
+        # The agent's current version, used to prevent concurrent overwrites. Obtain this
+        # value from a create or retrieve response. Must be at least 1 if specified. When
+        # supplied, the request fails if it does not match the server's current version;
+        # omit to apply the update unconditionally.
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :version
+
+        sig { params(version: Integer).void }
+        attr_writer :version
+
+        # Optional header to specify the beta version(s) you want to use.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)]
+            )
+          )
+        end
+        attr_reader :betas
+
+        sig do
+          params(
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)]
+          ).void
+        end
+        attr_writer :betas
+
+        # Optional header to select the Workspace for this request. The value is a
+        # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+        #
+        # Only needed for credentials that can act on more than one Workspace. A
+        # credential that belongs to a specific Workspace may omit it; if sent, it must
+        # match that Workspace.
+        sig { returns(T.nilable(String)) }
+        attr_reader :workspace_id
+
+        sig { params(workspace_id: String).void }
+        attr_writer :workspace_id
+
+        sig do
+          params(
+            agent_id: String,
+            description: T.nilable(String),
+            mcp_servers:
+              T.nilable(
+                T::Array[
+                  Anthropic::Beta::BetaManagedAgentsURLMCPServerParams::OrHash
+                ]
+              ),
+            metadata: T.nilable(T::Hash[Symbol, T.nilable(String)]),
+            model:
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams::OrHash,
+                Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                String
+              ),
+            multiagent:
+              T.nilable(
+                Anthropic::Beta::BetaManagedAgentsMultiagentParams::OrHash
+              ),
+            name: String,
+            skills:
+              T.nilable(
+                T::Array[
+                  T.any(
+                    Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams::OrHash,
+                    Anthropic::Beta::BetaManagedAgentsCustomSkillParams::OrHash
+                  )
+                ]
+              ),
+            system_: T.nilable(String),
+            tools:
+              T.nilable(
+                T::Array[
+                  T.any(
+                    Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params::OrHash,
+                    Anthropic::Beta::BetaManagedAgentsMCPToolsetParams::OrHash,
+                    Anthropic::Beta::BetaManagedAgentsCustomToolParams::OrHash
+                  )
+                ]
+              ),
+            version: Integer,
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Unique identifier of the agent to update.
+          agent_id:,
+          # Description. Omit to preserve; send empty string or null to clear.
+          description: nil,
+          # MCP servers. Full replacement. Omit to preserve; send empty array or `null` to
+          # clear. Names must be unique. Maximum 20. Every server must be referenced by an
+          # `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are
+          # rejected. See the
+          # [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
+          mcp_servers: nil,
+          # Metadata patch. Set a key to a string to upsert it, or to null to delete it.
+          # Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars
+          # each) with values up to 512 chars.
+          metadata: nil,
+          # Model identifier. Accepts the
+          # [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison),
+          # e.g. `claude-opus-5`, or a `model_config` object for additional configuration
+          # control. Omit to preserve. Cannot be cleared.
+          model: nil,
+          # A coordinator topology: the session's primary thread orchestrates work by
+          # spawning session threads, each running an agent drawn from the `agents` roster.
+          multiagent: nil,
+          # Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+          name: nil,
+          # Skills. Full replacement. Omit to preserve; send empty array or null to clear.
+          skills: nil,
+          # System prompt. Omit to preserve; send empty string or null to clear.
+          system_: nil,
+          # Tool configurations available to the agent. Full replacement. Omit to preserve;
+          # send empty array or null to clear. Maximum of 128 tools across all toolsets
+          # allowed.
+          tools: nil,
+          # The agent's current version, used to prevent concurrent overwrites. Obtain this
+          # value from a create or retrieve response. Must be at least 1 if specified. When
+          # supplied, the request fails if it does not match the server's current version;
+          # omit to apply the update unconditionally.
+          version: nil,
+          # Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Optional header to select the Workspace for this request. The value is a
+          # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              agent_id: String,
+              description: T.nilable(String),
+              mcp_servers:
+                T.nilable(
+                  T::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams]
+                ),
+              metadata: T.nilable(T::Hash[Symbol, T.nilable(String)]),
+              model:
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsModelConfigParams,
+                  Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                  String
+                ),
+              multiagent:
+                T.nilable(Anthropic::Beta::BetaManagedAgentsMultiagentParams),
+              name: String,
+              skills:
+                T.nilable(
+                  T::Array[
+                    T.any(
+                      Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams,
+                      Anthropic::Beta::BetaManagedAgentsCustomSkillParams
+                    )
+                  ]
+                ),
+              system_: T.nilable(String),
+              tools:
+                T.nilable(
+                  T::Array[
+                    T.any(
+                      Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params,
+                      Anthropic::Beta::BetaManagedAgentsMCPToolsetParams,
+                      Anthropic::Beta::BetaManagedAgentsCustomToolParams
+                    )
+                  ]
+                ),
+              version: Integer,
+              betas:
+                T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+              workspace_id: String,
+              request_options: Anthropic::RequestOptions
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Model identifier. Accepts the
+        # [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison),
+        # e.g. `claude-opus-5`, or a `model_config` object for additional configuration
+        # control. Omit to preserve. Cannot be cleared.
+        module Model
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams,
+                Anthropic::Beta::BetaManagedAgentsModel::Variants
+              )
+            end
+
+          sig do
+            override.returns(
+              T::Array[Anthropic::Beta::AgentUpdateParams::Model::Variants]
+            )
+          end
+          def self.variants
+          end
+        end
+
+        # Union type for tool configurations in the tools array.
+        module Tool
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params,
+                Anthropic::Beta::BetaManagedAgentsMCPToolsetParams,
+                Anthropic::Beta::BetaManagedAgentsCustomToolParams
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, Anthropic::Beta::AgentUpdateParams::Tool::Type)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            AGENT_TOOLSET_20260401 =
+              T.let(
+                :agent_toolset_20260401,
+                Anthropic::Beta::AgentUpdateParams::Tool::Type::TaggedSymbol
+              )
+            MCP_TOOLSET =
+              T.let(
+                :mcp_toolset,
+                Anthropic::Beta::AgentUpdateParams::Tool::Type::TaggedSymbol
+              )
+            CUSTOM =
+              T.let(
+                :custom,
+                Anthropic::Beta::AgentUpdateParams::Tool::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::AgentUpdateParams::Tool::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[Anthropic::Beta::AgentUpdateParams::Tool::Variants]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type: Anthropic::Beta::AgentUpdateParams::Tool::Type::OrSymbol,
+              configs:
+                T.any(
+                  T::Array[
+                    T.any(
+                      Anthropic::Beta::BetaManagedAgentsBashToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsEditToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsReadToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsWriteToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsGlobToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsGrepToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsWebFetchToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsWebSearchToolConfigParams::OrHash
+                    )
+                  ],
+                  T::Array[
+                    Anthropic::Beta::BetaManagedAgentsMCPToolConfigParams::OrHash
+                  ]
+                ),
+              default_config:
+                T.any(
+                  T.nilable(
+                    Anthropic::Beta::BetaManagedAgentsAgentToolsetDefaultConfigParams::OrHash
+                  ),
+                  T.nilable(
+                    Anthropic::Beta::BetaManagedAgentsMCPToolsetDefaultConfigParams::OrHash
+                  )
+                ),
+              mcp_server_name: String,
+              description: String,
+              input_schema:
+                Anthropic::Beta::BetaManagedAgentsCustomToolInputSchema::OrHash,
+              name: String
+            ).returns(Anthropic::Beta::AgentUpdateParams::Tool::Variants)
+          end
+          def self.new(
+            type:,
+            # Per-tool configuration overrides.
+            configs: nil,
+            # Default configuration for all tools in a toolset.
+            default_config: nil,
+            # Name of the MCP server. Must match a server name from the mcp_servers array.
+            # 1-255 characters.
+            mcp_server_name: nil,
+            # Description of what the tool does, shown to the agent to help it decide when to
+            # use the tool.
+            description: nil,
+            # JSON Schema for custom tool input parameters.
+            input_schema: nil,
+            # Unique name for the tool. 1-128 characters; letters, digits, underscores, and
+            # hyphens.
+            name: nil
+          )
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,6 @@
+Reel `claude-liam-icd10-cm-skill` is complete. FILMLOOP-LOG.md written. Final state:
+
+- **98.1 s slate**, all 7 beats VIDEO, no slates
+- **Gate Audio PASS** (−23.9 dB), **Gate T PASS** (0 FAILs), **Gate V PASS** (BOUT underfill justified downgrade — locked component)
+- **Cut mtime newer than sheet** ✓
+- 13 prop fixes applied (modelLabel datable claims, truncations, schema corrections, §8.5 body length); locked narration artifacts documented and untouched

@@ -1,0 +1,100 @@
+package cmd
+
+import (
+	"testing"
+
+	"github.com/anthropics/anthropic-cli/internal/mocktest"
+)
+
+func TestBetaDreamsCreate(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:dreams", "create",
+			"--input", "{memory_store_id: x, type: memory_store}",
+			"--model", "string",
+			"--instructions", "x",
+			"--output-behavior", "{type: create_new}",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+
+	t.Run("piping data", func(t *testing.T) {
+		// Test piping YAML data over stdin
+		pipeData := []byte("" +
+			"inputs:\n" +
+			"  - memory_store_id: x\n" +
+			"    type: memory_store\n" +
+			"model: string\n" +
+			"instructions: x\n" +
+			"output_behavior:\n" +
+			"  type: create_new\n")
+		mocktest.TestRunMockTestWithPipeAndFlags(
+			t, pipeData,
+			"--api-key", "string",
+			"beta:dreams", "create",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaDreamsRetrieve(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:dreams", "retrieve",
+			"--dream-id", "dream_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaDreamsList(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:dreams", "list",
+			"--max-items", "10",
+			"--created-at-gt", "'2019-12-27T18:11:19.117Z'",
+			"--created-at-lt", "'2019-12-27T18:11:19.117Z'",
+			"--include-archived=true",
+			"--limit", "0",
+			"--page", "page",
+			"--status", "pending",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaDreamsArchive(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:dreams", "archive",
+			"--dream-id", "dream_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}
+
+func TestBetaDreamsCancel(t *testing.T) {
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t,
+			"--api-key", "string",
+			"beta:dreams", "cancel",
+			"--dream-id", "dream_id",
+			"--beta", "message-batches-2024-09-24",
+			"--workspace-id", "wrkspc_011CZkZaBF1tNoB5wlCeusgy",
+		)
+	})
+}

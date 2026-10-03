@@ -1,0 +1,10 @@
+Reel done.
+
+- **Deliverable:** `cancer-nanomedicine/youtube/vox-light-ceiling/vox-light-ceiling-slate.mp4` — 2.21 MB, 147.84 s, 1920×1080 @ 24 fps, h264+aac.
+- **Freshness gate:** mp4 mtime 12:54 > sheet mtime 12:52. No post-compile sheet touch.
+- **Build counter:** `Counter({'SLATE': 12})` — every beat slated (declared slate cut).
+- **Gate AUDIO:** PASS — mean_volume −19.1 dB (well above −40 dB floor), per-beat Kokoro narration from `mp3/beat-B*.mp3`.
+- **Gate V:** PASS on declared slates (exempt per contract); spot-read B01 + B06 frames render clean text with no overflow.
+- **PHASE 1 fixes:** VOICE-LOCK cleanup (dropped ElevenLabs `voice_id` and stale `clock`; added `engine=kokoro`, `voice=am_onyx`, `folderLabel=@NikBearBrown`); cleaned B02 contradictory FormACard remotion scaffold on an AI-still beat. Pre-rebuild backup saved byte-exact.
+- **Logs:** `AUDIT.md`, `REBUILD-LOG.md`, and appended entry in `youtube/FILMLOOP-LOG.md`.
+- **Advisory (non-blocking):** drawon motion at 41% (over ~40% cap); B01 pacing 1.86 wps (cold-open with dramatic mono-word punctuation, left as-is).

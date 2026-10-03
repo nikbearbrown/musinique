@@ -1,0 +1,235 @@
+package com.anthropic.services.async.beta
+
+import com.anthropic.core.ClientOptions
+import com.anthropic.core.RequestOptions
+import com.anthropic.core.checkRequired
+import com.anthropic.core.handlers.errorBodyHandler
+import com.anthropic.core.handlers.errorHandler
+import com.anthropic.core.handlers.jsonHandler
+import com.anthropic.core.http.HttpMethod
+import com.anthropic.core.http.HttpRequest
+import com.anthropic.core.http.HttpResponse
+import com.anthropic.core.http.HttpResponse.Handler
+import com.anthropic.core.http.HttpResponseFor
+import com.anthropic.core.http.json
+import com.anthropic.core.http.multipartFormData
+import com.anthropic.core.http.parseable
+import com.anthropic.core.prepareAsync
+import com.anthropic.models.beta.skills.BetaDeletedSkill
+import com.anthropic.models.beta.skills.BetaSkill
+import com.anthropic.models.beta.skills.SkillCreateParams
+import com.anthropic.models.beta.skills.SkillDeleteParams
+import com.anthropic.models.beta.skills.SkillListPageAsync
+import com.anthropic.models.beta.skills.SkillListPageResponse
+import com.anthropic.models.beta.skills.SkillListParams
+import com.anthropic.models.beta.skills.SkillRetrieveParams
+import com.anthropic.services.async.beta.skills.VersionServiceAsync
+import com.anthropic.services.async.beta.skills.VersionServiceAsyncImpl
+import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
+import kotlin.jvm.optionals.getOrNull
+
+class SkillServiceAsyncImpl internal constructor(private val clientOptions: ClientOptions) :
+    SkillServiceAsync {
+
+    private val withRawResponse: SkillServiceAsync.WithRawResponse by lazy {
+        WithRawResponseImpl(clientOptions)
+    }
+
+    private val versions: VersionServiceAsync by lazy { VersionServiceAsyncImpl(clientOptions) }
+
+    override fun withRawResponse(): SkillServiceAsync.WithRawResponse = withRawResponse
+
+    override fun withOptions(modifier: Consumer<ClientOptions.Builder>): SkillServiceAsync =
+        SkillServiceAsyncImpl(clientOptions.toBuilder().apply(modifier::accept).build())
+
+    override fun versions(): VersionServiceAsync = versions
+
+    override fun create(
+        params: SkillCreateParams,
+        requestOptions: RequestOptions,
+    ): CompletableFuture<BetaSkill> =
+        // post /v1/skills?beta=true
+        withRawResponse().create(params, requestOptions).thenApply { it.parse() }
+
+    override fun retrieve(
+        params: SkillRetrieveParams,
+        requestOptions: RequestOptions,
+    ): CompletableFuture<BetaSkill> =
+        // get /v1/skills/{skill_id}?beta=true
+        withRawResponse().retrieve(params, requestOptions).thenApply { it.parse() }
+
+    override fun list(
+        params: SkillListParams,
+        requestOptions: RequestOptions,
+    ): CompletableFuture<SkillListPageAsync> =
+        // get /v1/skills?beta=true
+        withRawResponse().list(params, requestOptions).thenApply { it.parse() }
+
+    override fun delete(
+        params: SkillDeleteParams,
+        requestOptions: RequestOptions,
+    ): CompletableFuture<BetaDeletedSkill> =
+        // delete /v1/skills/{skill_id}?beta=true
+        withRawResponse().delete(params, requestOptions).thenApply { it.parse() }
+
+    class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
+        SkillServiceAsync.WithRawResponse {
+
+        private val errorHandler: Handler<HttpResponse> =
+            errorHandler(errorBodyHandler(clientOptions.jsonMapper))
+
+        private val versions: VersionServiceAsync.WithRawResponse by lazy {
+            VersionServiceAsyncImpl.WithRawResponseImpl(clientOptions)
+        }
+
+        override fun withOptions(
+            modifier: Consumer<ClientOptions.Builder>
+        ): SkillServiceAsync.WithRawResponse =
+            SkillServiceAsyncImpl.WithRawResponseImpl(
+                clientOptions.toBuilder().apply(modifier::accept).build()
+            )
+
+        override fun versions(): VersionServiceAsync.WithRawResponse = versions
+
+        private val createHandler: Handler<BetaSkill> =
+            jsonHandler<BetaSkill>(clientOptions.jsonMapper)
+
+        override fun create(
+            params: SkillCreateParams,
+            requestOptions: RequestOptions,
+        ): CompletableFuture<HttpResponseFor<BetaSkill>> {
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.POST)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("v1", "skills")
+                    .putQueryParam("beta", "true")
+                    .body(multipartFormData(clientOptions.jsonMapper, params._body()))
+                    .build()
+                    .prepareAsync(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            return request
+                .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
+                .thenApply { response ->
+                    errorHandler.handle(response).parseable {
+                        response
+                            .use { createHandler.handle(it) }
+                            .also {
+                                if (requestOptions.responseValidation!!) {
+                                    it.validate()
+                                }
+                            }
+                    }
+                }
+        }
+
+        private val retrieveHandler: Handler<BetaSkill> =
+            jsonHandler<BetaSkill>(clientOptions.jsonMapper)
+
+        override fun retrieve(
+            params: SkillRetrieveParams,
+            requestOptions: RequestOptions,
+        ): CompletableFuture<HttpResponseFor<BetaSkill>> {
+            // We check here instead of in the params builder because this can be specified
+            // positionally or in the params class.
+            checkRequired("skillId", params.skillId().getOrNull())
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.GET)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("v1", "skills", params._pathParam(0))
+                    .putQueryParam("beta", "true")
+                    .build()
+                    .prepareAsync(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            return request
+                .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
+                .thenApply { response ->
+                    errorHandler.handle(response).parseable {
+                        response
+                            .use { retrieveHandler.handle(it) }
+                            .also {
+                                if (requestOptions.responseValidation!!) {
+                                    it.validate()
+                                }
+                            }
+                    }
+                }
+        }
+
+        private val listHandler: Handler<SkillListPageResponse> =
+            jsonHandler<SkillListPageResponse>(clientOptions.jsonMapper)
+
+        override fun list(
+            params: SkillListParams,
+            requestOptions: RequestOptions,
+        ): CompletableFuture<HttpResponseFor<SkillListPageAsync>> {
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.GET)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("v1", "skills")
+                    .putQueryParam("beta", "true")
+                    .build()
+                    .prepareAsync(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            return request
+                .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
+                .thenApply { response ->
+                    errorHandler.handle(response).parseable {
+                        response
+                            .use { listHandler.handle(it) }
+                            .also {
+                                if (requestOptions.responseValidation!!) {
+                                    it.validate()
+                                }
+                            }
+                            .let {
+                                SkillListPageAsync.builder()
+                                    .service(SkillServiceAsyncImpl(clientOptions))
+                                    .streamHandlerExecutor(clientOptions.streamHandlerExecutor)
+                                    .params(params)
+                                    .response(it)
+                                    .build()
+                            }
+                    }
+                }
+        }
+
+        private val deleteHandler: Handler<BetaDeletedSkill> =
+            jsonHandler<BetaDeletedSkill>(clientOptions.jsonMapper)
+
+        override fun delete(
+            params: SkillDeleteParams,
+            requestOptions: RequestOptions,
+        ): CompletableFuture<HttpResponseFor<BetaDeletedSkill>> {
+            // We check here instead of in the params builder because this can be specified
+            // positionally or in the params class.
+            checkRequired("skillId", params.skillId().getOrNull())
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.DELETE)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("v1", "skills", params._pathParam(0))
+                    .putQueryParam("beta", "true")
+                    .apply { params._body().ifPresent { body(json(clientOptions.jsonMapper, it)) } }
+                    .build()
+                    .prepareAsync(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            return request
+                .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
+                .thenApply { response ->
+                    errorHandler.handle(response).parseable {
+                        response
+                            .use { deleteHandler.handle(it) }
+                            .also {
+                                if (requestOptions.responseValidation!!) {
+                                    it.validate()
+                                }
+                            }
+                    }
+                }
+        }
+    }
+}

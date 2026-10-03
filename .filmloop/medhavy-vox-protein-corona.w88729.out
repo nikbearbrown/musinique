@@ -1,0 +1,9 @@
+DONE. Reel `medhavy-vox-protein-corona` built as review slate cut.
+
+**Cut**: `vox-protein-corona-slate.mp4` — 195.9s, 3.47 MB, mtime `13:39` (6 min newer than sheet `13:33`).
+
+**Build stamp**: 8/13 filled (6 MANIM + 2 VIDEO), 5 SLATE (all human/scripting-gap owned — zero pipeline-owned slates so GATE LANE passes).
+
+**What the invocation actually did**: authored six real vox-editorial Manim scenes (B04 CoronaForms, B05 LigandMasked, B06 OpsominClearance, B07 TwoEnvironments, B09 FolateExample, B10 CoronaSummary) in a local `scenes_std.py` — the sheet named them but they never existed in `animated_graphics.py`. Also dropped Claude-brand `FormACard` from B03 (would have Claude-washed the middle of a vox reel) and migrated B12/B13 outro props to the current zod schemas. Narration LOCKED — zero edits.
+
+**Gates**: content-check, frame-check, lane-check, GATE T, GATE AUDIO (mean_volume −24.0 dB) all PASS. Sample frames sighted (B04/B07/B09) — vox palette clean, no overflow, no color drift. No validator loosened. Ledger in `books/anthropics/youtube/FILMLOOP-LOG.md`.

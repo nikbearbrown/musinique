@@ -1,0 +1,18 @@
+Done. `psma-theranostic-loop.mp4` (3:24.70, 3840×2160 4K, -24.0 dB mean audio) is NEWER than `beat_sheet.json` (12:31 > 12:30), so the freshness gate holds and no post-compile sheet edits were made.
+
+**Build counter**: `Counter({'VIDEO': 12, 'MANIM': 1})` — B00 B01 B02 B03 B05 B06 B07 B08 B09 BVDT BHTF BOUT all VIDEO, B04 MANIM. Zero SLATE. So the file is the full-render name (`psma-theranostic-loop.mp4`), not the `-slate` variant.
+
+Summary of what changed on this reel:
+- Envelope VOICE-LOCK: dropped dead `voice_id` (ElevenLabs), set `engine=kokoro`, `voice=am_onyx`, `voice_kokoro=am_onyx`, added `folderLabel=@NikBearBrown` + persona.
+- B01 FormBCard: placeholder items → real Ga-68 / Lu-177 / VISION items.
+- B06/B07/B08 (three body-slate punts with `source: null`): authored to real FormBCard / FormACard / FormBCard patterns from the narration's own content.
+- BVDT: placeholder "Key finding one/two/three" → four real verdict lines from body nouns/numbers; BVDT narration written so Kokoro voices the recap.
+- BHTF: kept "Your turn." spark; generic template command replaced with the reel's actual three-step prompt.
+- BOUT: title-restate + `@NikBearBrown` handle + subline "image it · treat it · image it again".
+- Spark lines: B02 `"The ask,"` → `"PSMA pair, please."`; B05 `"The ask,"` → `"Compare the pairs."`
+- Icons: swapped six references (`scan-search`, `chart-line`, `activity`, `repeat`, `circle-dot`, `link`) to library-available equivalents so Remotion renders didn't 404.
+- `vox_scenes.py`: fixed broken `parents[3]/vox/aspects/...` import path to a local `sys.path.insert(parent)` so B04 Manim compiled.
+
+One recorded advisory (in `GATE-V.md`): B04 Manim clip is 7.0 s and got stretched 4× to fill the 27.7 s audio bed — acceptable for a review cut, but the scene needs `run_time=` beat-matching before a real final render.
+
+Deliverables written: `beat_sheet.pre-rebuild.json`, `beat_sheet.json` (updated), `AUDIT.md`, `REBUILD-LOG.md`, `GATE-V.md`, per-beat mp3/mp4 assets, `manim/B04.mp4`, `_qc/frames/*.png`, master `psma-theranostic-loop.mp4`, and an entry appended to `youtube/FILMLOOP-LOG.md`.

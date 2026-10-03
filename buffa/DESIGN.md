@@ -1,0 +1,709 @@
+# Buffa: Design Document
+
+A pure Rust Protocol Buffers implementation with first-class editions support.
+
+## Motivation
+
+The Rust protobuf ecosystem has a gap:
+
+| Library | Pure Rust | Editions | Maintained | Unknown Fields | Reflection |
+|---------|-----------|----------|------------|----------------|------------|
+| prost v0.13 | Yes | No | Passive | No | No |
+| Google protobuf v4 | No (upb/C++) | Yes | Active | Yes | Yes |
+| rust-protobuf v3 | Yes | No | Maintenance only | Yes | Yes |
+| quick-protobuf | Yes | No | Low | No | No |
+| micropb | Yes | No | Active (niche) | No | No |
+
+**No actively maintained, pure-Rust protobuf library supports protobuf editions.**
+
+Buffa fills this gap: a pure Rust implementation designed from the ground up with editions as the core abstraction.
+
+## Design Principles
+
+1. **Pure Rust, zero C dependencies.** Builds with `cargo build`, nothing else.
+2. **Editions-first.** Proto2 and proto3 are understood as feature presets within the editions model, not as separate code paths. The internal model is always editions-based.
+3. **Correct by default.** Unknown fields are preserved. UTF-8 is validated. Conformance tests pass.
+4. **Idiomatic Rust API.** Generated code uses plain structs, proper Rust enums, `MessageField<T>` for singular message fields, and derive the traits you'd expect (Clone, Debug, PartialEq, Default).
+5. **Zero-copy read path.** Two-tier owned/borrowed model: `MyMessage` for building and storage, `MyMessageView<'a>` for zero-copy deserialization.
+6. **Linear-time serialization.** Cached encoded sizes prevent the exponential blowup that affects prost with deeply nested messages.
+7. **`no_std` capable.** The core runtime works without `std` (requires `alloc`).
+8. **Descriptor-centric.** The code generator operates on `google.protobuf.FileDescriptorProto` — the standard descriptor format that `protoc` and `buf` both produce. Buffa does not need its own `.proto` parser; `protoc` is the de-facto standard and `buf` is an ergonomic alternative.
+
+## Crate Descriptions
+
+### `buffa` — Core Runtime
+
+The runtime library that generated code depends on. Contains:
+
+- **`Message` trait**: The central trait for owned message types, with two-pass `compute_size()` / `write_to()` serialization.
+- **`MessageView` trait**: The trait for borrowed/zero-copy message views.
+- **`OwnedView<V>`**: Self-referential container that pairs a `Bytes` buffer with a decoded view, producing a `'static + Send + Sync` type suitable for async and RPC frameworks.
+- **`MessageField<T>`**: Ergonomic wrapper for optional message fields that dereferences to a default instance when unset.
+- **`SizeCache`**: External pre-order size cache threaded through `compute_size` / `write_to` for linear-time serialization.
+- **`EnumValue<T>`**: Type-safe wrapper for open enum fields that preserves unknown values.
+- **Wire format codec**: Varint, fixed-width, length-delimited, and group encoding/decoding; decoding reads any `bytes::Buf`, encoding writes to any `EncodeSink` (every `bytes::BufMut` qualifies via a blanket impl, and `Rope` provides segmented zero-copy output).
+- **Unknown field storage**: Preserves unknown fields for round-trip fidelity.
+- **Edition feature types**: Rust types representing edition features (`FieldPresence`, `EnumType`, `RepeatedFieldEncoding`, etc.) used by generated code and runtime logic.
+
+The runtime is `no_std + alloc` by default, with an optional `std` feature for `std::io` integration.
+
+### `buffa-types` — Well-Known Types
+
+Pre-generated Rust types for Google's well-known `.proto` files:
+
+- `google.protobuf.Timestamp` / `Duration` (with `std::time` conversions)
+- `google.protobuf.Any` (with pack/unpack helpers)
+- `google.protobuf.Struct` / `Value` / `ListValue`
+- `google.protobuf.FieldMask`
+- `google.protobuf.Empty`
+- `google.protobuf.Api` / `Type` / `Enum` / `SourceContext` (googleapis descriptor WKTs)
+- Wrapper types (`Int32Value`, `StringValue`, etc.)
+
+**No build-time code generation.** The WKT `Message` impls are checked in at `src/generated/` (regenerated via `task gen-wkt-types` when `buffa-codegen` output format changes). This means consumers depend only on the `buffa` runtime — not `protoc`, not `buffa-build`, not `buffa-codegen`. It also means `buffa-types` cross-compiles to bare-metal targets.
+
+The WKT wire format is completely vanilla — two varints for `Timestamp`, etc. What's *special* about WKTs is:
+
+1. Their proto3-JSON representations (RFC3339 string for `Timestamp`, `"3.000001s"` for `Duration`, type-URL dispatch for `Any`) — hand-written in `*_ext.rs`.
+2. Their stdlib affinity (`SystemTime`, `std::time::Duration`) — hand-written `From`/`TryFrom` impls, also in `*_ext.rs`.
+
+Both layer on top of the generated `Message` impl via `include!()` + sibling modules; the checked-in code and the hand-written extensions coexist cleanly.
+
+### `buffa-descriptor` — Protobuf Descriptor Types
+
+Self-hosted Rust types for `google/protobuf/descriptor.proto` and `google/protobuf/compiler/plugin.proto`, generated by `buffa-codegen` itself. These are the types that `buffa-codegen` uses to parse protoc's `CodeGeneratorRequest`. Under the `reflect` feature this crate is also the home of the runtime reflection layer — `DescriptorPool`, `DynamicMessage`, and the `ReflectMessage` trait surface (see [Core Design Decision 11](#11-reflection--bridge-and-vtable-modes)).
+
+The generated code is checked in (regenerate via `task gen-bootstrap-types`). The only runtime dependency is `buffa` — no quote/syn/prettyplease — so the crate is `no_std`-capable and dependency-light enough to depend on from the runtime without pulling in the codegen toolchain.
+
+### `buffa-codegen` — Shared Code Generation Logic
+
+The code generation library, shared between `protoc-gen-buffa` and `buffa-build`. Takes protobuf descriptors (from protoc's `FileDescriptorProto`) and emits Rust source code.
+
+This is a library crate with no binary — it doesn't know *how* descriptors were produced (protoc or buf). It just takes descriptors in and produces Rust out.
+
+**Input:** `google.protobuf.FileDescriptorProto` (decoded via buffa's own generated descriptor types).
+
+**Output:** Rust source strings for each `.proto` file, containing:
+
+- Owned message structs implementing `buffa::Message`
+- Borrowed view structs implementing `buffa::MessageView`
+- Enum types with `EnumValue<T>` wrappers for open enums
+- Oneof Rust enums
+- Service traits (stub, for future RPC integration)
+
+The code generator always works with resolved edition features — it never branches on "is this proto2 or proto3?" because protoc resolves edition features in the `FileDescriptorProto` itself.
+
+### `protoc-gen-buffa` — Protoc Plugin (Primary Entry Point)
+
+The primary code generation entry point. This is a protoc plugin binary that integrates with `protoc` and `buf`:
+
+```sh
+# Direct protoc usage
+protoc --buffa_out=. --plugin=protoc-gen-buffa my_service.proto
+
+# Buf usage (configure in buf.gen.yaml)
+# plugins:
+#   - local: protoc-gen-buffa
+#     out: src/gen
+```
+
+Reads a `CodeGeneratorRequest` from stdin, passes the file descriptors to `buffa-codegen`, writes a `CodeGeneratorResponse` to stdout.
+
+**Bootstrapping:** The `CodeGeneratorRequest` and `CodeGeneratorResponse` messages are themselves protobuf — we decode/encode them using buffa's own generated descriptor and compiler types (checked into `buffa-descriptor/src/generated/`), eliminating any external protobuf library dependency from the build graph.
+
+### `buffa-build` — Build Script Integration
+
+A convenience crate for use in `build.rs`. Invokes a descriptor-producing tool to parse `.proto` files, then uses `buffa-codegen` to emit Rust source:
+
+```rust,ignore
+// build.rs
+fn main() {
+    buffa_build::Config::new()
+        .files(&["proto/my_service.proto"])
+        .includes(&["proto/"])
+        .compile()
+        .unwrap();
+}
+```
+
+**Descriptor back-ends:**
+
+- **`protoc`** (default): the de-facto standard. Requires `protoc` on the system PATH (or `PROTOC` env var). Full support for proto2, proto3, and editions.
+
+- **`buf`**: an ergonomic alternative to `protoc` that adds dependency management via the Buf Schema Registry (BSR), with built-in linting and breaking-change detection. `buf build --as-file-descriptor-set` produces a `FileDescriptorSet` from a `buf.yaml`-managed workspace, and `buf generate` can drive protoc-style plugins (including `protoc-gen-buffa`) directly. Use `buffa_build::Config::new().use_buf()` to use `buf` as the descriptor backend.
+
+**Escape hatch — `.descriptor_set(path)`:** The `Config::descriptor_set` method accepts a pre-built `FileDescriptorSet` file, so users can obtain descriptors through any means (including `buf build`, a BSR fetch, or a pre-built descriptor binary) and pass them directly, bypassing the protoc invocation layer entirely.
+
+### Custom Type Implementations
+
+For types that need a custom Rust representation while remaining wire-compatible with a `.proto` definition, implement the `Message` trait by hand and use `extern_path` to map the proto type to your custom implementation. **This is rare** — in most cases, using the generated types and adding inherent methods or trait implementations alongside them is the right approach (this is how `buffa-types` handles well-known types: generated structs, hand-written `*_ext.rs` for `std::time` conversions, `Any::pack`/`unpack`, and custom JSON serde).
+
+## Core Design Decisions
+
+### 1. Editions as the Internal Model
+
+All `.proto` files—regardless of declared syntax—are normalized to the editions model during compilation:
+
+```text
+proto2 file → proto2 feature defaults
+proto3 file → proto3 feature defaults
+edition N file → edition N defaults + file-level feature overrides
+```
+
+This means:
+
+- The code generator has **one code path**, parameterized by resolved features.
+- Adding support for future editions (2024, 2025, ...) is a matter of adding new default feature values and interpreting the relevant ones during code generation, not new edition-specific code paths.
+- Proto2 and proto3 files can be imported into edition files and vice versa seamlessly.
+
+### 2. Generated Code Shape — Two-Tier Owned/Borrowed Model
+
+For each protobuf message, buffa generates **two** Rust types:
+
+**Owned type** (`MyMessage`) — heap-allocated fields, used for building, storing, and mutating messages:
+
+```rust,ignore
+// Generated from:
+//   edition = "2023"
+//   message Person {
+//     string name = 1;
+//     int32 id = 2;
+//     bytes avatar = 3;
+//     repeated string tags = 4;
+//     Address address = 5;
+//   }
+
+pub struct Person {
+    pub name: String,
+    pub id: i32,
+    pub avatar: Vec<u8>,
+    pub tags: Vec<String>,
+    pub address: buffa::MessageField<Address>,
+    // internal field (excluded from Debug output):
+    //   __buffa_unknown_fields: buffa::UnknownFields,
+}
+
+// Generated impls: Clone, PartialEq, Debug, Default, Message
+```
+
+**Borrowed view type** (`PersonView<'a>`) — zero-copy from the input buffer, used for read-path deserialization:
+
+```rust,ignore
+pub struct PersonView<'a> {
+    pub name: &'a str,
+    pub id: i32,
+    pub avatar: &'a [u8],
+    pub tags: buffa::RepeatedView<'a, &'a str>,
+    pub address: buffa::MessageFieldView<AddressView<'a>>,
+    // internal: __buffa_unknown_fields: buffa::UnknownFieldsView<'a>,
+}
+```
+
+The view type borrows directly from the input buffer. String fields become `&'a str`, bytes fields become `&'a [u8]`, and sub-messages become their own view types. Scalar fields (integers, floats, bools) are decoded by value since they require varint/fixed-width decoding regardless.
+
+This is analogous to Cap'n Proto's Rust implementation and how Go achieves zero-copy string deserialization. In a typical RPC handler, the request is parsed and consumed without needing to outlive the input buffer — the view type makes this allocation-free.
+
+**Lazy views (`lazy_views(true)`)** — an additive decode-on-access family:
+
+Eager views materialize the whole sub-message tree during `decode_view`: every present nested message is boxed and decoded recursively, every repeated message field pre-decodes into a `Vec`. For workloads that read a few fields out of many large sub-messages, that work dominates. `Config::lazy_views(true)` additionally generates a `FooLazyView<'a>` per message — the eager family is unchanged (output is byte-identical with or without the flag) — implementing the separate `buffa::LazyMessageView` trait:
+
+```rust,ignore
+let person = PersonLazyView::decode_lazy(&wire_bytes)?;   // one non-recursive scan
+if let Some(addr) = person.address.get()? {               // decoded here, by value
+    println!("city: {}", addr.city);
+}
+```
+
+`decode_lazy` records each singular/repeated message field's byte range (`LazyMessageFieldView` / `LazyRepeatedView`) and decodes a fresh sub-view only on access, so untouched sub-trees cost nothing. Design points:
+
+- **The type system owns the weaker contract.** `MessageView` keeps "decode succeeded ⇒ whole tree validated"; deferred validation is visible in the `LazyMessageView` bound, so generic view consumers never silently inherit it, and a crate's public API doesn't change meaning under a codegen flag.
+- **Merge semantics preserved.** A singular message field split across wire occurrences is recorded as fragments and merged on access (`merge_lazy`), matching the eager and owned decoders.
+- **Decode budgets flow through.** The recursion depth, unknown-field allowance, and element-memory budget remaining at each deferred field are recorded and replayed per access, so deep adversarial input fails with `RecursionLimitExceeded` at the same boundary as the eager decoder, and `DecodeOptions` limits extend navigation correspondingly. The replay is per-subtree: each deferred access independently gets the full recorded allowance rather than sharing one pool with its siblings (the original decode call's shared allowance is gone by access time). This makes the unknown-field and element-memory limits per-subtree bounds on the lazy path, not the global decode-time cap the eager decoder enforces — a full lazy traversal can materialize unknown-field records proportional to input size, where eager decoding rejects such input up front. Callers handling untrusted input who rely on the global bound should use the eager `decode_view` path.
+- **Deferred validation surfaces fallibly.** Malformed deferred bytes error from `.get()`/iteration, from the fallible `to_owned_message`, and as a serde error from the lazy `Serialize` impl.
+- **Eager carve-outs.** Groups / editions `DELIMITED` fields (no length prefix to defer), oneof message variants, map message values, and fields resolving to extern types (WKTs via `buffa-types`, `extern_path` crates — their crates may not ship a lazy family) use the eager view types inside the lazy struct.
+- **Re-encoding replays fragments** byte-for-byte **without validating them** — wire-equivalent to the merged value and cheaper than re-encoding a decoded tree, but a never-accessed malformed field round-trips its bytes silently. Encode methods are inherent on the lazy struct (not `ViewEncode`, whose `MessageView` supertrait carries the eager contract).
+- **No reflection / `OwnedView` / text surface** on the lazy family — use the eager views for those.
+- The lazy decoder runs against the protobuf conformance corpus in a dedicated `BUFFA_VIA_LAZY` runner mode (`decode_lazy → to_owned_message → encode`).
+
+**Conversions:**
+
+```rust,ignore
+// Decode a view (zero-copy)
+let request = PersonView::decode_view(&wire_bytes)?;
+println!("name: {}", request.name);  // &str, no allocation
+
+// Convert to owned if needed for storage
+let owned: Person = request.to_owned_message()?;
+```
+
+**`OwnedView<V>` — views across async boundaries:**
+
+The scoped `'a` lifetime on `MyMessageView<'a>` prevents it from satisfying `'static` bounds, which tower services, `BoxFuture<'static, _>`, and `tokio::spawn` all require. `OwnedView<V>` solves this by storing the `bytes::Bytes` buffer alongside the decoded view in a self-referential struct. Internally it extends the view's lifetime to `'static` via `transmute`, which is sound because `Bytes` is reference-counted (its heap data pointer is stable across moves), immutable, and the view is declared before the buffer so that drop glue releases it first. The synthetic `'static` is never exposed: there is no `Deref<Target = V>` impl (that would let field borrows escape the handle's scope), and access goes through `reborrow()`, which returns the view with its lifetime tied to the `OwnedView`. The view type itself does see the synthetic `'static` (its `decode_view` receives the forged slice), so every `OwnedView` constructor requires `V: ViewLifetimeParametric` — an `unsafe` marker trait asserting that no impl on `V` can retain a borrow of that buffer past the view. Codegen emits the impl for every generated view, whose impls are all parametric in `'a` and so cannot observe the lie; a hand-written view must opt in with an explicit `unsafe impl`. As defence in depth, `OwnedView`'s own `Debug`, `PartialEq`, `Serialize` and `to_owned_message` call the view's impls on a `reborrow()`ed `V::Reborrowed<'_>` rather than on the `'static`-typed value. For ergonomics, codegen also emits a per-message `FooOwnedView` wrapper with one `&self`-tied accessor method per field.
+
+```rust,ignore
+// In an RPC handler — bytes arrives as Bytes from hyper
+let view = PersonOwnedView::decode(bytes)?;
+println!("name: {}", view.name());  // accessor, zero-copy, 'static + Send
+
+// Or, with the generic handle:
+let view = OwnedView::<PersonView>::decode(bytes)?;
+println!("name: {}", view.reborrow().name);
+```
+
+**Generated code layout — the `__buffa::` sentinel tree:**
+
+Ancillary generated items (views, oneof enums, file-level extensions, the per-package `register_types` fn) live under a single reserved module per package — `__buffa::` — instead of being interleaved with owned types. The sentinel is the **only** name buffa reserves in user namespace; codegen errors with `ReservedModuleName` if a proto package segment, message name, or file-level enum name would emit a `__buffa` item at package root.
+
+```text
+<pkg>::Foo                                # owned struct (unchanged)
+<pkg>::foo::Bar                           # nested owned (unchanged)
+<pkg>::__buffa::view::FooView<'a>          # view struct
+<pkg>::__buffa::view::FooOwnedView         # 'static owned-view wrapper (accessor methods)
+<pkg>::__buffa::view::foo::BarView<'a>     # nested view (mirrors owned tree)
+<pkg>::__buffa::view::oneof::foo::Kind<'a> # view oneof enum (no suffix)
+<pkg>::__buffa::oneof::foo::Kind           # owned oneof enum (no suffix)
+<pkg>::__buffa::ext::MY_EXT                # file-level extension const
+<pkg>::__buffa::register_types(…)          # one fn per package
+```
+
+Oneof and view-oneof enums drop the `Oneof`/`View` suffix — the tree position disambiguates. View structs keep the `View` suffix because owned and view types are routinely co-imported (`use pkg::{Foo, __buffa::view::FooView}`).
+
+Moving ancillary items under `__buffa::` removes almost every collision: a oneof `kind` and a nested message `Kind` coexist because they land in different trees.
+
+One owned-tree collision remains, because protobuf is case-sensitive while Rust module names are not: a message's nested-types module is `snake_case(MessageName)`, so `message Oof` and a sibling sub-package `pkg.oof` both want `pkg::oof`. When this happens, codegen deconflicts the **nested-types module** by appending `_` (and repeating until the name is unique against the sub-package segments, sibling message modules, and the `__buffa` sentinel in that scope). The message struct (`pkg::Oof`) and the sub-package module (`pkg::oof`) keep their natural names; only the nested-types module moves:
+
+```text
+<pkg>::Oof                                # owned struct (unchanged)
+<pkg>::oof_::Inner                        # nested owned — module deconflicted from sub-package `oof`
+<pkg>::oof::Thing                         # sub-package `pkg.oof` (unchanged)
+```
+
+This activates only on a real collision (one that previously failed to compile), so output for every other schema is unchanged. The deconfliction is computed per scope from the full descriptor set, so the colliding message and sub-package must be generated in the same `buffa_build::Config::compile()` invocation — codegen cannot deconflict against a package it does not see. The per-message suffix length depends only on which names collide in the scope, not on file or message declaration order.
+
+**File layout — up to five content files + one stitcher:**
+
+Each `.proto` emits up to five sibling content files into `OUT_DIR`:
+
+| File                      | Contents                                  |
+|---------------------------|-------------------------------------------|
+| `<stem>.rs`               | Owned structs, enums, nested extensions   |
+| `<stem>.__view.rs`        | View structs                              |
+| `<stem>.__oneof.rs`       | Owned oneof enums                         |
+| `<stem>.__view_oneof.rs`  | View oneof enums                          |
+| `<stem>.__ext.rs`         | File-level extension consts               |
+
+A content file is emitted only when its kind has real content for that input — a proto with no oneofs emits no `__oneof.rs` / `__view_oneof.rs`, a proto with no `extend` blocks emits no `__ext.rs`, and so on. The stitcher's `include!` set is filtered to match.
+
+Each proto **package** additionally emits one `<dotted.pkg>.mod.rs` stitcher that `include!`s the content files and authors the `pub mod __buffa { … }` wrapper. The wrapper — and each `view` / `oneof` / `ext` submodule inside it — is omitted when it would have no items, so packages that contain only owned messages don't carry an empty `__buffa` block. Consumers wire up only the stitcher:
+
+```rust,ignore
+pub mod my_pkg {
+    buffa::include_proto!("my.pkg");  // → include!(OUT_DIR/my.pkg.mod.rs)
+}
+```
+
+`buffa::include_proto_relative!("dir", "my.pkg")` does the same for checked-in generated code (no `OUT_DIR`). `buffa-build`'s `_include.rs` and `protoc-gen-buffa-packaging` both emit module trees that reference only the stitchers.
+
+The per-proto content files mean editing one `.proto` regenerates only its siblings (incremental friendly); the per-package stitcher means `register_types` is naturally one fn per package, so multi-file packages (e.g. the WKT files in `google.protobuf`) no longer collide.
+
+**Natural-path re-exports.** The canonical `__buffa::` path is unconditional — generated method signatures, field types, and downstream codegen always use it. As an ergonomic convenience codegen *also* emits a `pub use` for each ancillary item at the path a Rust user would reach for first, mirroring the pre-`__buffa` (and prost) layout:
+
+```text
+<pkg>::FooView<'a>           ← __buffa::view::FooView
+<pkg>::foo::BarView<'a>      ← __buffa::view::foo::BarView
+<pkg>::foo::Kind             ← __buffa::oneof::foo::Kind
+<pkg>::foo::KindView<'a>     ← __buffa::view::oneof::foo::Kind  (renamed via `as`)
+<pkg>::MY_EXT                ← __buffa::ext::MY_EXT
+<pkg>::register_types        ← __buffa::register_types
+```
+
+The `View` suffix on a oneof's view re-export (`KindView`) only exists at the natural path — at the canonical path, owned and view oneof enums share the unsuffixed name (`__buffa::oneof::foo::Kind`, `__buffa::view::oneof::foo::Kind`) and the parallel module tree disambiguates them. The natural form needs the suffix because both must co-inhabit `pkg::foo::*`. The same also means messages with only a oneof now produce a `pub mod {msg_snake} { … }` block in the owned tree (to host the re-export); pre-#80 they did not.
+
+A re-export is **silently skipped** when the natural name is already occupied by a real proto item (message, enum, extension const) or by another candidate re-export. When two candidates collide with each other, *both* are dropped — never "first one wins" — so the result is order-independent. Conflicts are rare in practice; when one fires, the canonical `__buffa::` path is still available and downstream codegen is unaffected. See `examples/conflicts` for a proto that deliberately shadows every kind of re-export and one alias convention for keeping `__buffa::` imports readable.
+
+Because re-exports are skipped on collision, **adding a proto type can rebind or remove an existing natural path** for a downstream consumer: declaring `message FooView` in a package that already has `message Foo` makes `pkg::FooView` resolve to the new message struct instead of `Foo`'s view re-export. The canonical `__buffa::` path never changes, so generated code and downstream codegen are stable; only hand-written imports of the natural path need adjusting. This is the agreed trade-off in [#80](https://github.com/anthropics/buffa/issues/80) — predictability of behavior over stability of every spelling.
+
+### 3. MessageField\<T\> — Ergonomic Optional Messages
+
+Prost uses `Option<Box<M>>` for optional message fields, which creates unwrapping ceremony everywhere:
+
+```rust,ignore
+let name = msg.address.as_ref().unwrap().street.as_ref().unwrap();
+```
+
+Buffa uses a wrapper type `MessageField<T>`, which dereferences to a default instance when unset:
+
+```rust,ignore
+// Buffa: just works
+let name = &msg.address.street;
+
+// Check if actually set
+if msg.address.is_set() { ... }
+
+// Mutate (initializes to default if unset)
+msg.address.get_or_insert_default().street = "123 Main St".into();
+```
+
+`MessageField<T, P>` stores the message inline by default (`Option<Inline<T>>` ≡ `Option<T>` — no per-field heap allocation), with recursive fields and explicit `box_type_in(PointerRepr::Box, …)` opt-outs falling back to `Option<Box<T>>`. The Deref impl provides transparent read access through a lazily-initialized `&'static T` default singleton.
+
+### 4. EnumValue\<T\> — Type-Safe Open Enums
+
+Prost represents all enum fields as `i32`, losing type safety. Buffa generates Rust enums and wraps open-enum fields in `EnumValue<T>`:
+
+```rust,ignore
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+#[repr(i32)]
+pub enum PhoneType {
+    MOBILE = 0,   // variant names are verbatim from the .proto — no case transform
+    HOME = 1,
+    WORK = 2,
+}
+
+pub enum EnumValue<T: Enumeration> {
+    Known(T),
+    Unknown(i32),
+}
+```
+
+For **open enums** (default in editions), the field type is `EnumValue<PhoneType>` — preserving unknown values for round-tripping while giving `match` ergonomics for known variants.
+
+For **closed enums**, the field type is `PhoneType` directly, and unknown values are routed to unknown fields during decoding.
+
+### 5. External Size Cache — Linear-Time Serialization
+
+Prost recomputes message sizes at every nesting level during serialization, leading to potentially exponential time for deeply nested messages. Buffa fixes this with `SizeCache`:
+
+```rust,ignore
+pub struct SizeCache {
+    sizes: Vec<u32>,   // pre-order DFS slot per nested message
+    cursor: usize,
+}
+```
+
+The cache is **external** to message structs — generated types contain only their proto fields (plus `__buffa_unknown_fields`), with no serialization plumbing and no interior mutability. `Message::encode*` constructs and discards a `SizeCache` internally; `compute_size` / `write_to` thread it explicitly so manual `Message` implementations can recurse into nested fields.
+
+Serialization is a two-pass process over the same `SizeCache`:
+
+1. **`compute_size(&self, cache)`** — walks the message tree, reserving a slot before recursing into each length-delimited sub-message and filling it with the computed size on return (pre-order reservation, post-order fill).
+2. **`write_to(&self, cache, buf)`** — walks the tree in the same order, consuming cached sizes for length-prefixed sub-message headers.
+
+Both passes are O(n) in the total message size. The C++ protobuf implementation has used a per-message cached-size field for the same purpose; buffa's external cache achieves the same linearity while keeping generated structs free of hidden state, so `Send + Sync` is structural and concurrent encodes of the same `&Message` from multiple threads are sound (each thread uses its own `SizeCache`).
+
+The `Message` trait reflects this two-pass model:
+
+```rust,ignore
+pub trait Message: DefaultInstance + Clone + PartialEq + Send + Sync {
+    // Required methods (implemented by codegen per message type):
+    fn compute_size(&self, cache: &mut SizeCache) -> u32;  // Pass 1
+    fn write_to(&self, cache: &mut SizeCache, buf: &mut impl EncodeSink);  // Pass 2
+    fn merge_field(&mut self, tag: Tag, buf: &mut impl Buf, ctx: DecodeContext<'_>)
+        -> Result<(), DecodeError>;     // Per-field decode dispatch
+    fn clear(&mut self);
+
+    // Provided methods (default impls):
+    fn encode(&self, buf: &mut impl EncodeSink);
+    fn encode_to_vec(&self) -> Vec<u8>;
+    fn encode_to_bytes(&self) -> Bytes;
+    fn decode_from_slice(data: &[u8]) -> Result<Self, DecodeError>;
+    fn merge(&mut self, buf: &mut impl Buf, ctx: DecodeContext<'_>) -> Result<(), DecodeError>;
+    fn merge_from_slice(&mut self, data: &[u8]) -> Result<(), DecodeError>;
+    // ... + length-delimited and io::Read variants
+}
+```
+
+### 6. Unknown Field Preservation
+
+Buffa preserves unknown fields by default:
+
+```rust,ignore
+pub struct UnknownFields {
+    fields: Vec<UnknownField>,
+}
+
+pub struct UnknownField {
+    number: u32,
+    data: UnknownFieldData,
+}
+
+pub enum UnknownFieldData {
+    Varint(u64),
+    Fixed64(u64),
+    Fixed32(u32),
+    LengthDelimited(Vec<u8>),
+    Group(UnknownFields),
+}
+```
+
+This ensures round-trip fidelity: decoding a message with a newer schema and re-encoding it preserves fields the current schema doesn't know about. This is especially important for middleware/proxy use cases.
+
+Default: **on**. The trade-off is mostly **memory**: the 24-byte `Vec` header per owned message, plus one pointer per view. When no unknown fields appear on the wire (the common case for schema-aligned services) the decode-loop fallthrough arm never fires, so there is no per-field penalty — but that is not the same as free. Every generated view embeds the unknown-field handle by value, and carrying it changes how the compiler moves the view, which is measurable on view-decode throughput for message-dense shapes. Opting out via `.preserve_unknown_fields(false)` is worth considering for memory-constrained targets, large in-memory collections of small messages, or a hot view-decode path that does not need round-trip fidelity. Builds that need the memory savings globally but still round-trip a handful of types can re-enable those messages with `.preserve_unknown_fields_in` (plugin `unknown_fields_in=`). A rule is a proto-segment prefix, so it covers the message it names and the messages nested inside it, but not the enclosing message; preservation is a property of each message type, so a preserved message's sub-messages keep their own unknown fields only if their types are covered too.
+
+### 7. Feature Resolution Pipeline
+
+Edition features are resolved by `protoc` (or `buf`) and encoded directly in the `FileDescriptorProto` that buffa-codegen receives. The runtime never needs to interpret edition features — the generated code already embodies the correct behaviour, and `buffa-codegen` reads the resolved features straight from the descriptor.
+
+```text
+.proto file(s)
+    │
+    ▼
+┌──────────────────────────────────────────┐
+│  protoc / buf                            │
+│  (parse, resolve, edition feature        │
+│   resolution baked into descriptors)     │
+└───────────┬──────────────────────────────┘
+            │ FileDescriptorSet (binary proto)
+            ▼
+┌─────────────────────────┐
+│  buffa-build /          │
+│  protoc-gen-buffa       │
+│  (decode + dispatch)    │
+└───────────┬─────────────┘
+            │ FileDescriptorProto (per file)
+            ▼
+┌─────────────────────────┐
+│  buffa-codegen          │
+│  (Rust code generation) │
+│  (owned + view types)   │
+└─────────────────────────┘
+```
+
+### 8. Configurable Recursion Limits
+
+Buffa allows configuring the recursion limit at decode time:
+
+```rust,ignore
+let msg = buffa::DecodeOptions::new()
+    .with_recursion_limit(50)
+    .decode::<MyMessage>(buf)?;
+```
+
+Default remains 100 for compatibility.
+
+### 9. `no_std` Support
+
+The `buffa` runtime crate is `no_std` compatible with `alloc`:
+
+- **`default` features**: `std` (for `std::io` readers/writers, `std::error::Error` impls)
+- **`no_std` + `alloc`**: Core encoding/decoding with `Vec`/`String`/`Box`
+
+### 10. Serde Integration
+
+Optional serde support (behind a `json` feature flag) for protobuf-canonical JSON serialization:
+
+```rust,ignore
+let json = serde_json::to_string(&msg)?;  // Uses protobuf JSON mapping rules
+let msg: MyMessage = serde_json::from_str(&json)?;
+```
+
+The canonical protobuf JSON mapping is non-trivial and cannot be satisfied by plain `derive(Serialize, Deserialize)` alone. Key requirements handled by buffa's codegen and serde helpers:
+
+- **Field names**: proto snake_case names map to camelCase in JSON (`my_field` → `"myField"`).
+- **`int64`/`uint64`/`sint64`**: encoded as JSON strings to avoid precision loss in JavaScript clients.
+- **`bytes`**: encoded as standard base64.
+- **Enums**: serialize as their name string (`"ACTIVE"`), not as an integer. `EnumValue::Unknown(n)` serializes as the integer `n` (no name available).
+- **Well-known types**: each has a bespoke JSON representation defined by the protobuf spec — `Timestamp` as RFC 3339, `Duration` as `"1.5s"`, `FieldMask` as `"a.b,c.d"`, `Value`/`Struct`/`ListValue` as native JSON, wrapper types as their wrapped scalar, `Any` as `{"@type": "...", ...fields}`. These require hand-written `Serialize`/`Deserialize` impls in `buffa-types`.
+- **Default value omission**: proto3 fields at their default value are omitted from JSON output.
+
+### 11. Reflection — Bridge and Vtable Modes
+
+Reflection lets code process messages by descriptor rather than by static type — the path a CEL evaluator, a transcoding gateway, a field-mask filter, or a gRPC server-reflection endpoint takes. Buffa exposes one trait surface, `ReflectMessage`, with two sources behind it: a fully dynamic runtime engine, and reflection over generated types.
+
+**The common surface.** `ReflectMessage` (in `buffa-descriptor`) reads a message through its `MessageDescriptor`: `get(&FieldDescriptor) -> ValueRef`, `has(&FieldDescriptor) -> bool`, `for_each_set(...)`, `to_dynamic()`, and `unknown_fields()`. `ValueRef<'a>` is a *borrowed* field value — scalars by copy, `String(&'a str)` / `Bytes(&'a [u8])` by reference, `Message(ReflectCow<'a>)` for nested messages, and `List`/`Map` as `&dyn ReflectList` / `&dyn ReflectMap` trait objects. Because every value borrows from the message, reading a field allocates nothing.
+
+**The runtime engine — `DynamicMessage`.** A schema-agnostic message: a `BTreeMap<u32, Value>` keyed by field number, plus an `Arc<DescriptorPool>` and the message's `MessageIndex`. It encodes, decodes, and JSON-serializes entirely from descriptor data, with no generated type involved. Generated packages embed their own `FileDescriptorSet` bytes and expose a lazily-built (`OnceLock`) pool as `your_crate::your_pkg::descriptor_pool()`, which all reflection in that package resolves against.
+
+**Reflection over generated types — two modes.** Generated types implement `Reflectable`, whose `reflect()` returns a `ReflectCow<'a>` (a `#[non_exhaustive]` enum; generated code produces `Owned(Box<DynamicMessage>)` or `Borrowed(&'a dyn ReflectMessage)`). Codegen emits one of two bodies, selected by `ReflectMode` (`Off` / `Bridge` / `VTable`); the call site (`foo.reflect().get(fd)`) is identical either way, so switching modes is a zero-diff change for consumers.
+
+| | **Bridge** | **Vtable** (default) |
+|---|---|---|
+| `reflect()` body | re-encode `self`, decode into a `DynamicMessage`, box it | `ReflectCow::Borrowed(self)` |
+| `ReflectMessage` impl | only on `DynamicMessage` | emitted on every owned struct **and** view type |
+| Per-call cost | one encode + decode + allocation | a borrow; reads fields in place |
+| Generated code size | smaller | one `impl ReflectMessage` per type |
+| Requires views | no | no (view impls are added when views exist; the owned impl is self-contained) |
+
+Vtable mode is what makes reflection cheap enough to put on a hot path: reflecting a decoded view runs several times faster than the bridge round-trip (see [Reflection](README.md#reflection)), because it reuses the zero-copy `decode_view` and never materializes a `DynamicMessage`.
+
+**Container elements and coherence.** `List`/`Map` values dispatch through `ReflectElement` (element → `ValueRef`) and `ReflectMapKey` (key → `MapKeyRef`), with generic `ReflectList for Vec<T>` / `RepeatedView<T>` and `ReflectMap` impls on top. `ReflectElement` is a *closed set of concrete impls* — scalars, `&str`/`&[u8]`, `String`/`Vec<u8>`/`Bytes`, codegen-emitted impls for each message and closed enum, and a codegen-emitted impl for each local custom `string_type`/`bytes_type` element used in a repeated field — rather than a blanket `impl<T: SomeTrait> ReflectElement for T`, which would collide with the concrete scalar impls under Rust's coherence rules. This coherence wall is why a foreign custom element type cannot be reflected in a repeated field; see §12.
+
+**Placement and validation.** The trait surface, `DynamicMessage`, the pool, and the container impls live in `buffa-descriptor` (feature `reflect`, which requires `std` for the `OnceLock`-backed pool). Codegen lives in `buffa-codegen` — `reflect.rs` (the `Reflectable` body and embedded pool), `reflect_view.rs`, and `reflect_owned.rs`. Both the dynamic codec and the vtable surface are exercised by the conformance suite: the `via-reflect` run drives all I/O through `DynamicMessage`, and the `via-vtable` run decodes a view, walks its `ReflectMessage` surface to rebuild a `DynamicMessage`, and serializes that to JSON — isolating any bug to the generated vtable `get`/`has`/`for_each_set`.
+
+### 12. Pluggable Owned Types — `ProtoString` and `ProtoBytes`
+
+By default a `string` field generates as `String` and a `bytes` field as `Vec<u8>`, but both are pluggable: `buffa_build`'s `string_type` / `bytes_type` knobs select a different in-memory representation per field-path prefix, with no change to the wire format. The built-in alternative for `bytes` is `bytes::Bytes` (decoded zero-copy from a `Bytes`-backed buffer); beyond that, either knob accepts any type named by its Rust path — for example `smol_str::SmolStr` or `ecow::EcoString` for read-mostly string fields, or a small-buffer-optimized byte container. Views are unaffected: a `MyMessageView<'a>` always borrows `&'a str` / `&'a [u8]` regardless of the owned representation, and `map<_, string>` keys and values always stay `String`.
+
+**The contract is a `from_wire` constructor, not a blanket impl.** `ProtoString` and `ProtoBytes` (in `buffa`) each require `fn from_wire(WirePayload<'_>) -> Result<Self, DecodeError>`, atop the supertraits `Clone + PartialEq + Default + Debug + Send + Sync`, plus `Deref<Target = str>` + `AsRef<str>` + `From<String>` for strings, and `Deref<Target = [u8]>` + `AsRef<[u8]>` + `From<Vec<u8>>` for bytes. The `Deref` bound is load-bearing rather than cosmetic: generated code borrows a field as `&str` / `&[u8]` by plain reference coercion (`&self.field`), so a representation must `Deref` to the slice type, not merely offer `AsRef`. (`ProtoBytes` deliberately omits `From<&[u8]>`, because `bytes::Bytes` implements that only for `&'static [u8]`; requiring it would exclude `Bytes` itself.) There is deliberately **no blanket impl**: a representation implements the trait (a foreign type via a local newtype), and buffa ships the built-in impls for `String`, `Vec<u8>`, and `bytes::Bytes`. The earlier design *was* a blanket impl over `From<String>` / `From<Vec<u8>>`; it was tightened to `from_wire` because the blanket path always pays an allocate-and-copy and a transient heap allocation — even for a short string an inline type could keep on the stack — so it disadvantaged every custom type.
+
+**`from_wire` owns validation and borrow-vs-own; the defaults keep their specialized paths.** `WirePayload` is the decoder's gift to the representation: an opaque struct holding the field's bytes either borrowed from the input chunk (the common case for slice- and `Bytes`-backed sources) or owned as `Bytes` otherwise, exposing `as_slice()` (zero-copy borrow), `to_str()` (UTF-8-validated borrow, slack-aware on the borrowed path), `into_bytes()` (zero-copy when owned), and `is_owned()` to branch on which is free. So an inline string type validates via `to_str()` and stores it without a heap allocation, and a refcounted bytes type takes ownership with `into_bytes()`. `decode_string_to::<S>()` / `decode_bytes_to::<B>()` read one length-delimited field, build the payload, and call `S::from_wire` / `B::from_wire`. The default representations keep their hand-tuned fast paths: `String` reuses its buffer in place via `merge_string`, `Vec<u8>` via `merge_bytes` (`bytes::Bytes` and every other type go through `from_wire`). Clearing a field resets it to `Default::default()` rather than `.clear()`, because a substituted type may be immutable. Owned JSON strings and text-format parsing still use `From<String>`. Borrowed JSON strings in non-optional singular fields and view→owned conversions use `ProtoString::copy_from_str(&str)`, so a string library can retain a separate borrowing `From<&str>` conversion. The copying method defaults to allocating a `String` and converting it; inline/shared-string implementations should override it to avoid this intermediate allocation. The remote derive and the `buffa-smolstr` example provide that override. The `arbitrary` support is type-agnostic: codegen attaches a generic builder (`arbitrary_proto_string::<S>` / `arbitrary_proto_bytes::<B>`) that materializes the canonical `String` / `Vec<u8>` and converts via `From`, so a substituted type needs no native `Arbitrary` impl.
+
+A note on what is *not* yet optimal: a borrowed payload (single-chunk source — the common case) copies into an owned `Bytes` only when a representation calls `into_bytes()`, and an owned payload is currently produced only for multi-chunk sources. So a refcounted bytes representation does not yet zero-copy *share* a single `Bytes` input buffer — it is no worse than `Vec<u8>` today, and a per-type `PREFERS_OWNED_BYTES` preference is a future, additive (non-breaking) enhancement. Inline string representations already get their full win (zero heap for short strings) regardless.
+
+**Foreign types reach the seam by newtype.** A foreign type cannot implement `ProtoString` / `ProtoBytes` directly (orphan rule), so it wraps in a local newtype that implements the trait — a thin `from_wire` plus the supertrait forwards. The [`examples/custom-types/`](examples/custom-types/) crate is the end-to-end reference (one newtype per knob, round-tripped through binary and JSON); the **`buffa-smolstr`** crate is the minimal single-type template: `pub struct SmolStr(smol_str::SmolStr)` with an inline, allocation-free `from_wire` (validate `as_slice()`, build via `SmolStr::from(&str)`), and an optional `serde` feature so it works in `optional` / `repeated` JSON fields. The preset crates and downstream fixtures follow the same shape. There is one caveat, specific to a custom type used as the element of a **`repeated`** field or as a **`map<K, bytes>`** value: codegen must emit per-element trait impls that buffa cannot blanket-provide for a foreign type. Vtable reflection needs `impl ReflectElement` (so the field's reflective `get` can return `ValueRef::List` / `ValueRef::Map`), and the JSON `bytes` element path needs `impl ProtoElemJson` (base64); both have no blanket impl (they would collide with the concrete scalar impls under coherence, see §11), so codegen emits them — and an emitted `impl ForeignTrait for ForeignType` only compiles when the element type is **local** to the generating crate. (A custom `string` element also serializes its JSON through the element's own `Serialize`/`Deserialize`, which a local newtype derives.) So a custom `repeated` element or `map<K, bytes>` value must be a crate-local type; every other use — singular / optional / oneof fields, bridge-mode reflection, non-reflective use — works with a foreign type directly. (A custom `bytes` map value is honored just like the built-in `bytes::Bytes`; only the `map<bytes, bytes>` carve-out keeps `Vec<u8>` values.)
+
+#### Interop across crate boundaries
+
+The representation is a property of a **type definition, fixed once by whichever crate generates that message** — never a property of the reference site. When one crate references another's message through `extern_path`, it emits the opaque Rust path and uses that concrete type as-is; it does not re-generate the message's fields, and its own `string_type` / `bytes_type` rules never reach inside an extern type. The two knobs also operate on disjoint field kinds: `string_type` / `bytes_type` govern scalar `string` / `bytes` fields, while `extern_path` governs message- and enum-typed fields, so a single field is never subject to both. Two crates that pick different representations therefore compose without any reconciliation:
+
+- **Wire format is representation-independent** — `SmolStr`, `Bytes`, and `Vec<u8>` all encode to the same bytes — so encoding in one crate and decoding in another is always compatible.
+- **The trait bounds are crate-local obligations.** A crate that uses `SmolStr` monomorphizes `decode_string_to::<SmolStr>` within its own generated code; a crate referencing that message calls its `decode` / `merge` impls and never instantiates the helper itself, so the bound is discharged independently on each side. The `ProtoString` / `ProtoBytes` definitions live in the shared `buffa` crate, so there is no bound divergence.
+- **Reflection resolves within the generating crate.** A custom-string `ReflectElement` impl is emitted (and must be local) where the message is generated; a downstream crate that descends into that message reuses the impl through the upstream `ReflectMessage` surface. No cross-crate duplication or orphan collision is possible, because the foreign-type case that could collide never compiles in any crate to begin with.
+
+The one ergonomic consequence is that buffa does **not** re-export the alternative-representation crates, so a library that exposes a non-default representation in its public API (`pub name: SmolStr`) propagates that dependency to any consumer that wants to *name* or *construct* the type. Reading it through `AsRef<str>` needs no dependency; naming `SmolStr` does. This mirrors how `serde` is already handled, and it makes "what representation do I expose at my crate boundary?" an explicit API decision rather than a local optimization.
+
+#### Converting between divergent representations
+
+Generating the *same* `.proto` in two crates without `extern_path`, and choosing different representations, produces two unrelated Rust types (`a::Foo`, `b::Foo`) that do not substitute for each other. This is the existing "don't generate one proto twice" anti-pattern, and `extern_path` — one definition, zero conversions — is the real fix. When a two-representation boundary is genuinely unavoidable, the conversion options are bounded by one fact: **every path must allocate the destination's string and bytes fields**, because two representations own separate buffers and ownership cannot transfer across them. That caps the achievable saving over a wire round-trip at the varint coding plus the intermediate buffer plus the reparse — real, but linear and modest.
+
+Within that bound, the shortcuts do not pay off. `merge` does not help: it consumes wire bytes, so a `Foo` must still be encoded first, and merging only reuses the target allocation rather than avoiding the round-trip. Reflection does not help today either — `a::Foo` can be read reflectively into a `DynamicMessage` (which erases the representation, since `ValueRef::String` is `&str`), but `ReflectMessageMut` is implemented only on `DynamicMessage`, not on generated types, so the return leg falls back to encode/decode. The theoretically cheapest conversion is a static field-by-field `impl From<a::Foo> for b::Foo` — no varint, no buffer, no dynamic dispatch, only the unavoidable destination allocations — but it must name both types, because Rust has no structural typing on which to hang a generic conversion. The recommendation is therefore to avoid the divergence with `extern_path`, and where a genuine two-representation boundary exists, to hand-write the `From` rather than reach for a wire round-trip or new machinery.
+
+### Owned decode: intentional throughput trade-offs
+
+Owned decode (`Message::decode_from_slice`) benchmarks within roughly ±10% of prost in most cases. The costs are intentional and attributable to specific features:
+
+| Feature | Decode cost | Why |
+|---|---|---|
+| Unknown-field preservation (default-on) | Fallthrough arm does `decode_unknown_field` + `Vec::push` per unknown tag; 24 B/message for the `Vec` header, one pointer per view, and a view-decode cost for carrying the handle even when no unknown field arrives | Round-trip fidelity for proxies and schema-skewed services. Disable with `.preserve_unknown_fields(false)` when not needed; re-enable selected types with `.preserve_unknown_fields_in`. |
+| `EnumValue<E>` wrapper | `EnumValue::from(i32)` branches on known-variant lookup per enum field | Typed open-enum semantics instead of raw `i32` (prost's approach). |
+| Arithmetic-limit decode (`merge_to_limit`) | One extra `buf.remaining() > limit` comparison per decode-loop iteration vs `buf.take(len)` | Supports recursive message types (`google.protobuf.Struct` ↔ `Value`) without `Take<Take<Take<…>>>` type explosion (E0275). prost cannot compile these without manual `Box` indirection. |
+| `Box<T>` per nested message | Heap allocation per sub-message vs upb's arena bump-allocator | Standard Rust ownership model. protobuf-v4's decode lead on deeply-nested messages (+90% on AnalyticsEvent) comes from upb batching all sub-message allocations into one arena. |
+
+The **view decode path** (`MessageView::decode_view`) sidesteps the allocation cost entirely — no `Box`, borrows strings/bytes from the input buffer — and is the recommended fast path for read-only request handling.
+
+### Rejected: Pre-scan capacity reservation for view Vecs
+
+During connect-rust integration, pprof profiling showed allocation overhead from `Vec` growth in `RepeatedView` and `MapView` during view decoding. We investigated pre-scanning the wire bytes before the main decode loop to count repeated field occurrences and `reserve()` exact capacity.
+
+Two approaches were benchmarked:
+
+- **Per-field scanning** (`count_field_occurrences` called once per repeated/map field): O(N × buf.len()) where N is the number of repeated fields. Resulted in 20-97% regressions across all message sizes.
+- **Single-pass multi-field counting** (`count_fields` scanning all field numbers in one pass): O(buf.len()) regardless of field count. Still showed 5-40% regressions.
+
+Even the single-pass approach was slower than Vec's amortized doubling because: (1) the scan touches every byte of the buffer doing varint decode + skip, which is comparable in cost to the actual decode pass, and (2) Vec's doubling strategy produces at most log2(n) allocations, and for typical protobuf maps/repeated fields (2-20 entries), that's only 2-5 allocations of small arrays — cheaper than a full buffer scan.
+
+`Vec` already grows by powers of 2 (capacity doubles on realloc), which is the optimal amortized strategy. A fixed initial capacity (e.g., `with_capacity(4)`) was considered but rejected because it would allocate for every `RepeatedView`/`MapView` in every message, including fields that are usually empty.
+
+### Profile-guided decode optimizations
+
+Three optimizations were applied based on pprof data from connect-rust's
+LogRecord view-decode benchmark (~350 string fields, ~450 varints per request).
+Each is a small, commented change that preserves readability.
+
+**`encode_varint` unbounded loop** (encoding.rs). An earlier refactor had
+changed `loop { ... return }` to `for _ in 0..10 { ... return }` for explicit
+bounds. LLVM cannot prove the inner `return` always fires before the counter
+bound, so it keeps loop-counter machinery alive. Since `value >>= 7`
+monotonically decreases, termination is already guaranteed; the unbounded
+`loop` lets LLVM see that. **Impact:** ~40% encode throughput recovery.
+
+**`Tag::decode` one-byte fast path** (encoding.rs). Field numbers 1–15 with
+any wire type encode as a single byte. `decode_varint` already has a one-byte
+fast path, but with plain `#[inline]` LLVM often declines to inline it into
+the per-field decode loop (three code paths: single-byte, unrolled-slice,
+slow fallback). Hoisting the `chunk[0] < 0x80` check into `Tag::decode` means
+the common case is a few instructions inline; only field numbers ≥ 16 call
+`decode_varint` out-of-line. **Impact:** +12–29% view decode, +9–16% owned.
+
+**`strict_utf8_mapping` opt-in** (codegen). `core::str::from_utf8` was 11% of
+decode CPU. Rust's `&str` has a type-level UTF-8 invariant, so skipping
+validation while keeping `&str` is UB. The codegen flag maps `utf8_validation
+= NONE` string fields to `Vec<u8>` / `&[u8]`; the caller explicitly chooses
+`from_utf8` (checked) or `from_utf8_unchecked` (trusted-input) at the use
+site. Default-off because proto2's default is `NONE` — automatic mapping
+would break all proto2 string fields. **Impact:** ~2× RPS in connect-rust's
+trusted-input server (second-order effects — icache, branch predictor,
+reduced `?` unwinding — exceed the direct validation cost).
+
+**Verified via asm dump:** the generated per-field `match` compiles to an
+O(1) jump table (8 μops: shift, normalize, bounds-check, indexed load,
+indirect jump). LLVM also hoists wire-type classification before field
+dispatch and pre-computes shared flags, so per-arm wire-type checks collapse
+to a single `test`. The codegen output needs no reordering or hinting.
+
+**Readability line we hold:** fast-path/slow-path splits with a "why" comment
+are fine. Manual unrolling, `#[inline(always)]` sprinkled defensively, SIMD
+intrinsics, or `likely()`/`unlikely()` workarounds are not. The test: can a
+new contributor read the code, understand the fast path, and safely modify
+the slow path?
+
+## Proto Syntax Supported
+
+### Edition 2023 / 2024
+
+Runtime types for all edition features exist in `editions.rs`. Editions 2023 and 2024 are fully supported with feature-driven codegen — the code generator reads resolved features directly from the descriptor and emits the correct behaviour for each field, enum, and message. Supported features:
+
+- `field_presence`: `EXPLICIT`, `IMPLICIT`, `LEGACY_REQUIRED`
+- `enum_type`: `OPEN`, `CLOSED`
+- `repeated_field_encoding`: `PACKED`, `EXPANDED`
+- `utf8_validation`: `VERIFY`, `NONE`
+- `message_encoding`: `LENGTH_PREFIXED`, `DELIMITED`
+- `json_format`: `ALLOW`, `LEGACY_BEST_EFFORT`
+
+### Proto2
+
+Full proto2 support:
+
+- `optional`, `required`, `repeated`
+- Closed enums with bare `E` type; unknown wire values routed to `unknown_fields` (singular, optional, repeated unpacked, oneof, and map values — per proto spec). Remaining gap: view packed-repeated (no per-element span to borrow).
+- Custom default values via `[default = ...]` annotations on **required** fields: messages with such defaults get a hand-written `impl Default` instead of derive. Escape sequences (`\n`, `\t`, `\"`, `\xNN`) are handled by protoc pre-unescaping the descriptor string. Custom defaults on **optional** fields are ignored — `Default::default()` returns `None`, and buffa doesn't generate proto2-style getter methods (`fn field_name(&self) -> T` that unwraps to the custom default).
+- Groups (both generated types and wire format)
+- Custom `Serialize`/`Deserialize` on generated enums using proto names for JSON, with closed-enum serde helpers (`closed_enum`, `opt_closed_enum`, `repeated_closed_enum`, `map_closed_enum`)
+- Extensions: fully supported. See **Extensions** below.
+
+### Extensions
+
+Typed extension access is layered on top of unknown-field storage — extension
+values are decoded lazily on each `extension()` call rather than stored in
+dedicated fields. This matches protobuf-es and avoids the registration-timing
+footgun in protobuf-go's eager model, where an extension registered *after*
+decode is silently ignored by both `Get` and JSON encode. With lazy decode,
+registration timing is irrelevant — the unknown-field record is always there.
+
+Design points:
+
+- **`Extension<C>` is parameterized by codec type, not value type.** `Int32Codec`
+  and `Sint32Codec` both have `Value = i32` but distinct wire encodings; a
+  `T`-parameterized design would collide on coherence. The codec is a ZST
+  carrying only type-level information — users never name it (it flows through
+  inference from the codegen-emitted `pub const`).
+- **Extendee identity check.** `extension()`, `set_extension()`, and
+  `clear_extension()` panic on mismatch; `has_extension()` returns `false`
+  gracefully. Matches protobuf-go (panics) and protobuf-es (throws) — catches
+  `field_options.extension(&MESSAGE_OPTION)` bugs at first call.
+- **JSON:** a `#[serde(flatten)]` newtype wrapper around `__buffa_unknown_fields`
+  emits `"[pkg.ext]"` keys for registered extensions on serialize; a `[...]`-key
+  arm in the generated `Deserialize` impl resolves against the registry on parse.
+  Gated on `has_extension_ranges` so messages without `extensions` declarations
+  pay zero overhead — no wrapper is emitted, and the serde impls are unchanged.
+- **MessageSet** (`option message_set_wire_format = true`) is supported behind
+  `CodeGenConfig::allow_message_set`. Neither protobuf-go nor protobuf-es
+  supports it by default (go has code behind `-tags protolegacy`, es has none);
+  the explicit opt-in makes the legacy format a conscious choice.
+
+### Proto3
+
+Full proto3 support including:
+
+- Implicit field presence for scalars
+- `optional` keyword (explicit presence)
+- `map<K, V>` fields
+- `oneof`
+- `Any` packing
+
+## Versioning and Compatibility
+
+### Crate Versioning
+
+All workspace crates share a version and are released together. This avoids the compatibility matrix problems that plague split-version ecosystems.
+
+### Wire Compatibility
+
+Buffa targets **full wire format compatibility** with the canonical protobuf implementations. The conformance test suite is the arbiter of correctness.
+
+### API Stability
+
+The `Message` trait and core types are designed for stability. The generated code shape is part of the public API contract—changing it requires a major version bump.
+
+## What Buffa is Not
+
+- **Not a gRPC framework.** RPC support is provided by separate crates (e.g., [connect-rust](https://github.com/anthropics/connect-rust) for ConnectRPC) that integrate with existing Rust HTTP libraries. The core library focuses on serialization.
+- **Not a protoc replacement.** Buffa does not ship its own `.proto` parser. `protoc` or `buf` provides the descriptor input; buffa handles Rust code generation from that point.
+- **Not backwards-compatible with prost.** The generated code and trait system are different. Migration from prost will require updating generated code and call sites. A migration guide is provided in the user guide.

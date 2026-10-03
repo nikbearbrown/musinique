@@ -1,0 +1,11 @@
+DONE — `claude-liam-solve-verify-asymmetry.mp4` compiled, 116.3s, 3840×2160, 12/12 beats VIDEO (no slates), mean audio −24.1 dB. mp4 mtime 15:45:10 > sheet mtime 15:44:16 (Δ = 54s).
+
+Summary:
+- **Rebuild**: pre-rebuild backup made; body narration locked byte-exact.
+- **Bookends**: B00 flipped to `ClaudeComposerAsk` with `Ciao, Liam`; BVDT/BHTF/BOUT canonical.
+- **Verdict**: authored 4 real lines + spoken narration (was `Key finding one/two/three`).
+- **Your-Turn**: BHTF `[bracket]` placeholder replaced with the specific ask; body `YOURTURN` folded in, no locked narration lost.
+- **Punts**: 5 slates re-routed to live Remotion components (B04/B06 Manim scenes that didn't exist, plus 3 FormB/FormA replacements). No PIPELINE slates remain.
+- **Type-check** GATE T: PASS. Two §8.10 advisory notes on B04/B08 (narration↔card similarity 0.83/0.80) — under FAIL threshold, left as advisory.
+- **Gate V**: sampled 15 frames + spot reads — no BLOCKER, no MAJOR.
+- **Post-compile**: sheet UNTOUCHED after final render. Reel entry appended to `FILMLOOP-LOG.md`.

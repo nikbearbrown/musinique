@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes_std/720p30/partial_movie_files/Scene_B09_ClaudeLiamWhat/2102453049_2743622331_223132457.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes_std/720p30/partial_movie_files/Scene_B09_ClaudeLiamWhat/2525395355_4019131139_3758295366.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes_std/720p30/partial_movie_files/Scene_B09_ClaudeLiamWhat/2525395355_3517297864_2637323003.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes_std/720p30/partial_movie_files/Scene_B09_ClaudeLiamWhat/2525395355_3461432901_2728935741.mp4'
+file 'file:/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/books/claude-cowork-plugins/youtube/claude-liam-what-plugins-are/media/videos/scenes_std/720p30/partial_movie_files/Scene_B09_ClaudeLiamWhat/2525395355_2005599198_755419004.mp4'

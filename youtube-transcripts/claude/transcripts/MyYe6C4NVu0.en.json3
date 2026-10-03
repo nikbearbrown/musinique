@@ -1,0 +1,301 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 690,
+    "dDurationMs": 3450,
+    "segs": [ {
+      "utf8": "I have a son who is turning 18."
+    } ]
+  }, {
+    "tStartMs": 4140,
+    "dDurationMs": 2490,
+    "segs": [ {
+      "utf8": "And three years ago, if you asked me,"
+    } ]
+  }, {
+    "tStartMs": 6630,
+    "dDurationMs": 3000,
+    "segs": [ {
+      "utf8": "I may force him to major\nin computer science."
+    } ]
+  }, {
+    "tStartMs": 9630,
+    "dDurationMs": 1950,
+    "segs": [ {
+      "utf8": "He is actually going to the college"
+    } ]
+  }, {
+    "tStartMs": 11580,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "to study commercial dance"
+    } ]
+  }, {
+    "tStartMs": 14220,
+    "dDurationMs": 3540,
+    "segs": [ {
+      "utf8": "because AI can help people\nto do so much of things."
+    } ]
+  }, {
+    "tStartMs": 17760,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "You basically should pursue your heart."
+    } ]
+  }, {
+    "tStartMs": 20220,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "You know, just follow your heart."
+    } ]
+  }, {
+    "tStartMs": 22806,
+    "dDurationMs": 2750,
+    "segs": [ {
+      "utf8": "(cheerful music)"
+    } ]
+  }, {
+    "tStartMs": 27750,
+    "dDurationMs": 2250,
+    "segs": [ {
+      "utf8": "Genspark is the all in one workspace."
+    } ]
+  }, {
+    "tStartMs": 30000,
+    "dDurationMs": 3723,
+    "segs": [ {
+      "utf8": "We do AI spreadsheets,\nAI slides, AI documents,"
+    } ]
+  }, {
+    "tStartMs": 34560,
+    "dDurationMs": 3123,
+    "segs": [ {
+      "utf8": "all kind of work for normal\nwhite collar workers."
+    } ]
+  }, {
+    "tStartMs": 40890,
+    "dDurationMs": 2550,
+    "segs": [ {
+      "utf8": "When you think about\nhow we work together,"
+    } ]
+  }, {
+    "tStartMs": 43440,
+    "dDurationMs": 2040,
+    "segs": [ {
+      "utf8": "the applied AI team and Genspark,"
+    } ]
+  }, {
+    "tStartMs": 45480,
+    "dDurationMs": 1530,
+    "segs": [ {
+      "utf8": "what's it like on your side"
+    } ]
+  }, {
+    "tStartMs": 47010,
+    "dDurationMs": 2070,
+    "segs": [ {
+      "utf8": "when you get something new from us?"
+    } ]
+  }, {
+    "tStartMs": 49080,
+    "dDurationMs": 2520,
+    "segs": [ {
+      "utf8": "All our engineers are very curious about"
+    } ]
+  }, {
+    "tStartMs": 51600,
+    "dDurationMs": 2790,
+    "segs": [ {
+      "utf8": "the latest advancement\nfor the latest models,"
+    } ]
+  }, {
+    "tStartMs": 54390,
+    "dDurationMs": 1530,
+    "segs": [ {
+      "utf8": "so every time we got this request,"
+    } ]
+  }, {
+    "tStartMs": 55920,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "it's kind of like a\ninvitation to the party,"
+    } ]
+  }, {
+    "tStartMs": 58320,
+    "dDurationMs": 1650,
+    "segs": [ {
+      "utf8": "so we enjoyed it a lot."
+    } ]
+  }, {
+    "tStartMs": 59970,
+    "dDurationMs": 1410,
+    "segs": [ {
+      "utf8": "We are a very small startup,"
+    } ]
+  }, {
+    "tStartMs": 61380,
+    "dDurationMs": 2100,
+    "segs": [ {
+      "utf8": "so we cannot do everything by ourself,"
+    } ]
+  }, {
+    "tStartMs": 63480,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "and working with kind of trusted partner"
+    } ]
+  }, {
+    "tStartMs": 65640,
+    "dDurationMs": 1380,
+    "segs": [ {
+      "utf8": "is really, really important."
+    } ]
+  }, {
+    "tStartMs": 67020,
+    "dDurationMs": 2070,
+    "segs": [ {
+      "utf8": "What do you think are\nthe things that you do"
+    } ]
+  }, {
+    "tStartMs": 69090,
+    "dDurationMs": 2370,
+    "segs": [ {
+      "utf8": "that make you unique and help you succeed?"
+    } ]
+  }, {
+    "tStartMs": 71460,
+    "dDurationMs": 2220,
+    "segs": [ {
+      "utf8": "Everybody is talking\nabout mode these days."
+    } ]
+  }, {
+    "tStartMs": 73680,
+    "dDurationMs": 4560,
+    "segs": [ {
+      "utf8": "I don't really think nowadays\nanybody have any mode"
+    } ]
+  }, {
+    "tStartMs": 78240,
+    "dDurationMs": 2130,
+    "segs": [ {
+      "utf8": "because everything is happening so fast."
+    } ]
+  }, {
+    "tStartMs": 80370,
+    "dDurationMs": 2010,
+    "segs": [ {
+      "utf8": "The only mode is the team's culture."
+    } ]
+  }, {
+    "tStartMs": 82380,
+    "dDurationMs": 1560,
+    "segs": [ {
+      "utf8": "We always exploring"
+    } ]
+  }, {
+    "tStartMs": 83940,
+    "dDurationMs": 1860,
+    "segs": [ {
+      "utf8": "and trying the newest technology"
+    } ]
+  }, {
+    "tStartMs": 85800,
+    "dDurationMs": 1831,
+    "segs": [ {
+      "utf8": "to execute faster."
+    } ]
+  }, {
+    "tStartMs": 87631,
+    "dDurationMs": 3269,
+    "segs": [ {
+      "utf8": "(cheerful music)"
+    } ]
+  }, {
+    "tStartMs": 90900,
+    "dDurationMs": 2040,
+    "segs": [ {
+      "utf8": "In the collaboration,\nthe openness is the key."
+    } ]
+  }, {
+    "tStartMs": 92940,
+    "dDurationMs": 3450,
+    "segs": [ {
+      "utf8": "The sum of the secret you\nkept today will be worthless,"
+    } ]
+  }, {
+    "tStartMs": 96390,
+    "dDurationMs": 1383,
+    "segs": [ {
+      "utf8": "you know, tomorrow."
+    } ]
+  }, {
+    "tStartMs": 98850,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "The success of the partnership,"
+    } ]
+  }, {
+    "tStartMs": 100290,
+    "dDurationMs": 3600,
+    "segs": [ {
+      "utf8": "it comes to deep neutral trust."
+    } ]
+  }, {
+    "tStartMs": 103890,
+    "dDurationMs": 4080,
+    "segs": [ {
+      "utf8": "When it's really working,\nit's very tight feedback loop."
+    } ]
+  }, {
+    "tStartMs": 107970,
+    "dDurationMs": 2370,
+    "segs": [ {
+      "utf8": "I just did an interview yesterday"
+    } ]
+  }, {
+    "tStartMs": 110340,
+    "dDurationMs": 1207,
+    "segs": [ {
+      "utf8": "and the candidate asked me"
+    } ]
+  }, {
+    "tStartMs": 111547,
+    "dDurationMs": 2423,
+    "segs": [ {
+      "utf8": "\"What will Genspark be in two years?\""
+    } ]
+  }, {
+    "tStartMs": 113970,
+    "dDurationMs": 1860,
+    "segs": [ {
+      "utf8": "My answer is, I don't know."
+    } ]
+  }, {
+    "tStartMs": 115830,
+    "dDurationMs": 3000,
+    "segs": [ {
+      "utf8": "A lot of new things will happen"
+    } ]
+  }, {
+    "tStartMs": 118830,
+    "dDurationMs": 2994,
+    "segs": [ {
+      "utf8": "and it will even seem like magic."
+    } ]
+  }, {
+    "tStartMs": 121824,
+    "dDurationMs": 2750,
+    "segs": [ {
+      "utf8": "(cheerful music)"
+    } ]
+  } ]
+}

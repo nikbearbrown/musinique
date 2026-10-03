@@ -1,0 +1,73 @@
+module Anthropic
+  module Models
+    class BetaMessageParam = Beta::BetaMessageParam
+
+    module Beta
+      type beta_message_param =
+        {
+          content: Anthropic::Models::Beta::BetaMessageParam::content,
+          role: Anthropic::Models::Beta::BetaMessageParam::role,
+          clear_at: Anthropic::Models::Beta::BetaMessageParam::clear_at?,
+          output_config: Anthropic::Beta::BetaSystemMessageOutputConfig?
+        }
+
+      class BetaMessageParam < Anthropic::Internal::Type::BaseModel
+        attr_accessor content: Anthropic::Models::Beta::BetaMessageParam::content
+
+        attr_accessor role: Anthropic::Models::Beta::BetaMessageParam::role
+
+        attr_accessor clear_at: Anthropic::Models::Beta::BetaMessageParam::clear_at?
+
+        attr_accessor output_config: Anthropic::Beta::BetaSystemMessageOutputConfig?
+
+        def initialize: (
+          content: Anthropic::Models::Beta::BetaMessageParam::content,
+          role: Anthropic::Models::Beta::BetaMessageParam::role,
+          ?clear_at: Anthropic::Models::Beta::BetaMessageParam::clear_at?,
+          ?output_config: Anthropic::Beta::BetaSystemMessageOutputConfig?
+        ) -> void
+
+        def to_hash: -> {
+          content: Anthropic::Models::Beta::BetaMessageParam::content,
+          role: Anthropic::Models::Beta::BetaMessageParam::role,
+          clear_at: Anthropic::Models::Beta::BetaMessageParam::clear_at?,
+          output_config: Anthropic::Beta::BetaSystemMessageOutputConfig?
+        }
+
+        type content =
+          String | ::Array[Anthropic::Models::Beta::beta_content_block_param]
+
+        module Content
+          extend Anthropic::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaMessageParam::content]
+
+          BetaContentBlockParamArray: Anthropic::Internal::Type::Converter
+        end
+
+        type role = :user | :assistant | :system
+
+        module Role
+          extend Anthropic::Internal::Type::Enum
+
+          USER: :user
+          ASSISTANT: :assistant
+          SYSTEM: :system
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaMessageParam::role]
+        end
+
+        type clear_at = :next_user_message | :never
+
+        module ClearAt
+          extend Anthropic::Internal::Type::Enum
+
+          NEXT_USER_MESSAGE: :next_user_message
+          NEVER: :never
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaMessageParam::clear_at]
+        end
+      end
+    end
+  end
+end

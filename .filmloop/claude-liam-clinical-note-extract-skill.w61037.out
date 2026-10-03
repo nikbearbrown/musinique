@@ -1,0 +1,24 @@
+**Done.** `claude-liam-clinical-note-extract-skill.mp4` (5.4 MB, 109.8s, 19:45) is 1 minute newer than `beat_sheet.json` (19:44). DONE check passes.
+
+---
+
+**Filmloop summary — claude-liam-clinical-note-extract-skill**
+
+| Item | Result |
+|---|---|
+| Pre-rebuild backup | Created |
+| Check 1 — Stale renders | PASS (no mp4s existed) |
+| Check 2 — Bookends | PASS (all 4 canonical) |
+| Check 3 — Spark lines | PASS |
+| Check 4 — Verdict | FIXED (truncated "null-" in narration + 2 truncated artifactLines) |
+| Check 5 — Card text | FIXED (B02 phase labels truncated mid-word → authored labels) |
+| Check 6 — Punt sweep | PASS (no gen-AI, no DoodleScene, no unfilled slates) |
+| Check 7 — Card-only | PASS (SkillTeardown* are ILLUSTRATE-LAW concept illustrations, not text cards) |
+| Check 8 — Lens audit | PASS (Popper + Plato, ≥2 moves) |
+| Check 9 — Brand fields | FIXED ("Opus 4.8" → "Opus 4.7" in B00 + BHTF; B00 steps 2→4) |
+| Check 10 — Pacing | LOGGED (BHTF 3.95 WPS, BOUT 1.67 WPS; narration locked) |
+| GATE T | PASS (after B03 body de-wordified to 9 words) |
+| GATE V | PASS (B03 MAJOR underfill resolved with SKILL.md quote prop) |
+| GATE AUDIO | PASS (−23.9 dB) |
+| build.status Counter | `{'VIDEO': 7}` |
+| mp4 newer than sheet | YES (14 seconds) |

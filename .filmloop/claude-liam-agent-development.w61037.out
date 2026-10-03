@@ -1,0 +1,24 @@
+**DONE.**
+
+---
+
+`claude-liam-agent-development` — complete.
+
+**Checks fixed (7 items):**
+- B01 spark line: 7w → "Two parts. Body speaks." (4w)
+- B02 spark line: 7w → "No examples, no trigger." (4w)
+- B05 spark line: 6w → "No decision tree." (3w)
+- BHTF greeting: "Your Turn" → "Your turn."
+- B00 modelLabel: "Opus 4.8" → "Opus 4.7"
+- BHTF modelLabel: "Opus 4.8" → "Opus 4.7"
+- beat_sheet.pre-rebuild.json created (byte-exact, before any edit)
+
+**Punts authored:** 0 — all 7 beats were real registered Remotion scenes (AgentDevAnatomy, AgentDevDescription, AgentDevTell confirmed in Root.tsx + scenes.json).
+
+**Verdict:** real and reel-specific, not stripped.
+
+**build.status Counter:** `{'VIDEO': 7}`
+
+**Duration:** 295.2s · mean_volume −23.7 dB · GATE AUDIO PASS · GATE T PASS · Gate V BLOCKER 0 / MAJOR 0
+
+**Timestamps:** mp4 13:22:52 > beat_sheet.json 13:22:15 ✓

@@ -1,0 +1,5 @@
+Done. `cancer-nanomedicine-ch10-photodynamic-photothermal.mp4` (15.9 MB · 520.5 s · 8.7 min · 12 slides · real EL-Bear audio, mean −18.8 dB) built at 07:23; `beat_sheet.json` at 07:22 — cut is newer than sheet, supervisor DONE check will pass.
+
+Format is HTML lecture deck (matches ch01/ch02/ch03/ch08/ch11/ch12 from earlier in this run), so most PHASE 1 checks (bookends, ClaudeComposerAsk, verdict card, Your-Turn, Manim chart, punt sweep, lens audit) are N/A. Recorded PHASE 0 rebuild contract in `beat_sheet.pre-rebuild.json` (sha1 `eebf2f3…`).
+
+One authorized fact-fix logged in `REBUILD-LOG.md`: S07 slide title `AUROLAASE` → `AUROLASE` in both `deck.html` and `beat_sheet.json.title` — Nanospectra's product is spelled *AuroLase*; narration and deck body already spelled it correctly, only the title carried the double-A typo. Fix applied BEFORE final render; audio not regenerated. All 11 sampled QC frames pass (S07 now reads AUROLASE, confirmed). Artifacts: `AUDIT.md`, `TYPECHECK.md`, `REBUILD-LOG.md`, `_qc/frames/`, `render.py`. Log block appended to `youtube/FILMLOOP-LOG.md`.

@@ -1,0 +1,99 @@
+module Anthropic
+  module Models
+    module Beta
+      type user_profile_list_params =
+        {
+          limit: Integer,
+          order: Anthropic::Models::Beta::UserProfileListParams::order,
+          order_by: Anthropic::Models::Beta::UserProfileListParams::order_by,
+          page: String,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String
+        }
+        & Anthropic::Internal::Type::request_parameters
+
+      class UserProfileListParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader order: Anthropic::Models::Beta::UserProfileListParams::order?
+
+        def order=: (
+          Anthropic::Models::Beta::UserProfileListParams::order
+        ) -> Anthropic::Models::Beta::UserProfileListParams::order
+
+        attr_reader order_by: Anthropic::Models::Beta::UserProfileListParams::order_by?
+
+        def order_by=: (
+          Anthropic::Models::Beta::UserProfileListParams::order_by
+        ) -> Anthropic::Models::Beta::UserProfileListParams::order_by
+
+        attr_reader page: String?
+
+        def page=: (String) -> String
+
+        attr_reader betas: ::Array[Anthropic::Models::anthropic_beta]?
+
+        def betas=: (
+          ::Array[Anthropic::Models::anthropic_beta]
+        ) -> ::Array[Anthropic::Models::anthropic_beta]
+
+        attr_reader workspace_id: String?
+
+        def workspace_id=: (String) -> String
+
+        def initialize: (
+          ?limit: Integer,
+          ?order: Anthropic::Models::Beta::UserProfileListParams::order,
+          ?order_by: Anthropic::Models::Beta::UserProfileListParams::order_by,
+          ?page: String,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          limit: Integer,
+          order: Anthropic::Models::Beta::UserProfileListParams::order,
+          order_by: Anthropic::Models::Beta::UserProfileListParams::order_by,
+          page: String,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String,
+          request_options: Anthropic::RequestOptions
+        }
+
+        type order = :asc | :desc
+
+        module Order
+          extend Anthropic::Internal::Type::Enum
+
+          # Oldest first when `order_by` is `created_at`, or names in ascending order when `order_by` is `name`.
+          ASC: :asc
+
+          # Newest first when `order_by` is `created_at`, or names in descending order when `order_by` is `name`. This is the default.
+          DESC: :desc
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::UserProfileListParams::order]
+        end
+
+        type order_by = :created_at | :name
+
+        module OrderBy
+          extend Anthropic::Internal::Type::Enum
+
+          # Sort by when each user profile was created. This is the default.
+          CREATED_AT: :created_at
+
+          # Sort by `name`, ignoring the case of ASCII letters. Profiles without a name come last in either direction.
+          NAME: :name
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::UserProfileListParams::order_by]
+        end
+      end
+    end
+  end
+end

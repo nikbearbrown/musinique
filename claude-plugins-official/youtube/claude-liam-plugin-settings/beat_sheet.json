@@ -1,0 +1,402 @@
+{
+  "metadata": {
+    "title": "Claude, Plugin Settings.",
+    "slug": "claude-liam-plugin-settings",
+    "topic": "PLUGIN-SETTINGS · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-plugins-official/plugins/plugin-dev/skills/plugin-settings/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "This skill should be used when the user asks about \"plugin settings\"",
+        "\"store plugin configuration\"",
+        "\"user-configurable plugin\"",
+        "\".local.md files\"",
+        "\"plugin state files\""
+      ],
+      "constraints": [
+        "echo \"⚠️ Invalid max_value in settings (must be 1-100)\" >&",
+        "Hooks cannot be hot-swapped within a session",
+        "Readable by user only (chmod 600)"
+      ],
+      "referenced_files": [
+        ".claude/plugin-name.local.md",
+        ".gitignore",
+        "examples/read-settings-hook.sh",
+        ".claude/my-plugin.local.md",
+        "---",
+        ".local.md",
+        ".claude/",
+        ".md",
+        ".local",
+        "enabled: true/false"
+      ],
+      "code_signals": [
+        "code block: markdown",
+        "code block: bash",
+        "code block: gitignore"
+      ],
+      "sections": [
+        "Overview",
+        "File Structure",
+        "Basic Template",
+        "Example: Plugin State File",
+        "Reading Settings Files",
+        "From Hooks (Bash Scripts)",
+        "From Commands",
+        "From Agents",
+        "Parsing Techniques",
+        "Extract Frontmatter"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T18:41:47",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is plugin-settings. This skill should be used when the user asks about \"plugin settings\", \"store plugin configuration\", \"user-configurable plugin\", \".local.md files\", \"plugin state files\", \"read YAML frontmatter\", \"per-project plugin settings\", or wants to make plugin behavior configurable. Documents the .claude/plugin-name.local.md pattern for storing plugin-specific configuration with YAML frontmatter and markdown content.. Its concrete surface area includes This skill should be used when the user asks about \"plugin settings\"; \"store plugin configuration\"; \"user-configurable plugin\". A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "PLUGIN-SETTINGS · ANTHROPIC SKILL",
+            "segment": "Claude, Plugin Settings.",
+            "command": "Run the plugin-settings skill.",
+            "runningText": "reading plugin-settings SKILL.md…",
+            "output": [
+              "skill: plugin-settings",
+              "This skill should be used when the user asks about \"plugin settings\", \"store…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 38.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is plugin-settings. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at .claude/plugin-name.local.md, .gitignore, examples/read-settings-hook.sh, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "plugin-settings",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "11k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "examples",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "4 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "plugin-settings is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: This skill should be used when the user asks about \"plugin settings\"; \"store plugin configuration\"; \"user-configurable plugin\"; \".local.md files\". The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.79,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. echo \"⚠️ Invalid max_value in settings (must be 1-100)\" >&. That is the constraint in plugin-settings — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "echo \"⚠️ Invalid max_value in settings (must be 1-100)\" >&",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 12.69,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In plugin-settings, supporting material: .claude/plugin-name.local.md, .gitignore, examples/read-settings-hook.sh, .claude/my-plugin.local.md; implementation signals: code block: markdown, code block: bash, code block: gitignore; sections: Overview, File Structure, Basic Template, Example: Plugin State File. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "This skill should be used when the user asks about \"plugin settings\"; \"store plugin configuration\"; \"user-configurable plugin\"; .claude/plugin-name.local.md; .gitignore; examples/read-settings-hook.sh; code block…",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 24.09,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "plugin-settings makes Claude execute one task reliably. The SKILL.md is the spec — This skill should be used when the user asks about \"plugin settings\", \"store…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Plugin Settings.",
+            "artifactLines": [
+              "Skill: plugin-settings — Claude reads SKILL.md before acting",
+              "This skill should be used when the user asks about \"plugin settings\", \"store plugin…",
+              "Capabilities: This skill should be used when the user asks about \"plugin settings\"; \"store plugin configuration\"; \"user-configurable plugin\"",
+              "Constraint: echo \"⚠️ Invalid max_value in settings (must be 1-100)\" >&",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 13.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to this skill should be used when the user asks about \"plugin settings\", \"store. Read the plugin-settings skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "PLUGIN-SETTINGS · ANTHROPIC SKILL",
+            "segment": "Claude, Plugin Settings.",
+            "command": "I want to this skill should be used when the user asks about \"plugin settings\". Read the plugin-settings skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 14.17,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Plugin Settings. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Plugin Settings.",
+            "handle": "@NikBearBrown",
+            "subline": "plugin-settings · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T18:41:47"
+      }
+    }
+  ]
+}

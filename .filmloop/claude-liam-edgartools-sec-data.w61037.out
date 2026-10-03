@@ -1,0 +1,24 @@
+MP4 epoch 1787720419 > beat_sheet.json epoch 1787720416. Cut is 3 seconds newer than the sheet. Done.
+
+---
+
+**FILMLOOP REPORT — claude-liam-edgartools-sec-data**
+
+**Status:** BUILT — `claude-liam-edgartools-sec-data-slate.mp4` (95.3s, -23.9 dB, 7/7 VIDEO)
+
+**Checks fixed:**
+1. Stale renders — PASS (no prior MP4s)
+2. Bookends — PASS (all four canonical patterns present)
+3. Spark lines — PASS; B03 sparkLine genericized → "Limit: the spec."
+4. Verdict — FIXED — BVDT narration and artifactLines[1] both had trailing truncations at "…company lookup, " and "…filings, X"; restored from source SKILL.md
+5. Card text — FIXED — B03 narration "XBRL financ." → "XBRL financial statements"; BHTF narration/command "I want to **how** to pull" → "I want to **know** how to pull" (grammar) + truncation restored throughout
+6. Punt sweep — PASS (no gen-AI, no DoodleScene, no archive stills)
+7. Card-only reel — PASS (SkillTeardown* are structural diagram components)
+8. Lens — PASS (Descartes + Popper; two moves present in B03/BVDT)
+9. Brand fields — FIXED — `modelLabel: "Opus 4.8"` (non-existent model) → `"Opus 4.7"` in metadata, B00, BHTF
+10. Pacing — PASS
+11. type_check.py — PASS after B03 body de-wordified (38 words → 9 words; verbatim source text moved to `quote`/`cite` props)
+
+**Gate V:** Zero BLOCKER, zero MAJOR. Two MINOR (B01 top-clustering, B03 multiple terracotta accents) — both component-level design, not fixable at sheet level.
+
+**build.status Counter:** `VIDEO:7 SLATE:0`

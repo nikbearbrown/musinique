@@ -1,0 +1,397 @@
+{
+  "metadata": {
+    "title": "Claude, Mcp Builder.",
+    "slug": "claude-liam-mcp-builder",
+    "topic": "MCP-BUILDER · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/skills/skills/mcp-builder/SKILL.md",
+    "source_detail": {
+      "capabilities": [
+        "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through…",
+        "Use when building MCP servers to integrate external APIs or services",
+        "whether in Python (FastMCP) or Node/TypeScript (MCP SDK)."
+      ],
+      "constraints": [
+        "Content Exploration: Use READ-ONLY operations to explore available data",
+        "Read-only: Only non-destructive operations required"
+      ],
+      "referenced_files": [
+        "github_create_issue",
+        "github_list_repos",
+        "https://modelcontextprotocol.io/sitemap.xml",
+        ".md",
+        "https://modelcontextprotocol.io/specification/draft.md",
+        "https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md",
+        "npx @modelcontextprotocol/inspector",
+        "python -m py_compile your_server.py",
+        "@mcp.tool",
+        "server.registerTool"
+      ],
+      "code_signals": [
+        "code block: xml"
+      ],
+      "sections": [
+        "Overview",
+        "🚀 High-Level Workflow",
+        "Phase 1: Deep Research and Planning",
+        "Phase 2: Implementation",
+        "Phase 3: Review and Test",
+        "Phase 4: Create Evaluations",
+        "📚 Documentation Library",
+        "Core MCP Documentation (Load First)",
+        "SDK Documentation (Load During Phase 1/2)",
+        "Language-Specific Implementation Guides (Load During Phase 2)"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T12:29:13",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is mcp-builder. Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).. Its concrete surface area includes Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through…; Use when building MCP servers to integrate…. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "MCP-BUILDER · ANTHROPIC SKILL",
+            "segment": "Claude, Mcp Builder.",
+            "command": "Run the mcp-builder skill.",
+            "runningText": "reading mcp-builder SKILL.md…",
+            "output": [
+              "skill: mcp-builder",
+              "Guide for creating high-quality MCP (Model Context Protocol) servers that…",
+              "steps: 0 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 38.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is mcp-builder. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at github_create_issue, github_list_repos, https://modelcontextprotocol.io/sitemap.xml, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "mcp-builder",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📝",
+                "name": "LICENSE.txt",
+                "size": "11k",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "8k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "reference",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "4 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 21.27,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "mcp-builder is not a simple numbered pipeline. It is a reference Claude reads and applies. The concrete pieces are: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through…; Use when building MCP servers to integrate external APIs or services; whether in Python (FastMCP) or Node/TypeScript (MCP SDK).. The instruction set IS the behaviour.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Read SKILL.md",
+                "desc": "load the instruction set",
+                "accent": true
+              },
+              {
+                "label": "Execute",
+                "desc": "run each step in order",
+                "accent": false
+              },
+              {
+                "label": "Return output",
+                "desc": "deliver the result",
+                "accent": false
+              }
+            ],
+            "footerNote": "Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 24.84,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Content Exploration: Use READ-ONLY operations to explore available data. That is the constraint in mcp-builder — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Content Exploration: Use READ-ONLY operations to explore available data",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 13.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In mcp-builder, supporting material: github_create_issue, github_list_repos, https://modelcontextprotocol.io/sitemap.xml, .md; implementation signals: code block: xml; sections: Overview, 🚀 High-Level Workflow, Phase 1: Deep Research and Planning, Phase 2: Implementation. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through…; Use when building MCP servers to integrate external APIs or services; whether in Python…",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 23.72,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "mcp-builder makes Claude execute one task reliably. The SKILL.md is the spec — Guide for creating high-quality MCP (Model Context Protocol) servers that…. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Mcp Builder.",
+            "artifactLines": [
+              "Skill: mcp-builder — Claude reads SKILL.md before acting",
+              "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to…",
+              "Capabilities: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through…; Use when building MCP servers to integrate external APIs or services; whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+              "Constraint: Content Exploration: Use READ-ONLY operations to explore available data",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 14.68,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to guide for creating high-quality mcp (model context protocol) servers that. Read the mcp-builder skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "MCP-BUILDER · ANTHROPIC SKILL",
+            "segment": "Claude, Mcp Builder.",
+            "command": "I want to guide for creating high-quality mcp (model context protocol) servers. Read the mcp-builder skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 15.27,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Mcp Builder. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Mcp Builder.",
+            "handle": "@NikBearBrown",
+            "subline": "mcp-builder · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T12:29:13"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+Master mp4 is 179 s newer than the sheet — DONE.
+
+## Summary
+
+**Reel:** `vox-delivery-funnel` (legacy vox — Cohort C, `@NikBearBrown`, Kokoro `am_onyx`)
+**Cut:** `vox-delivery-funnel-review.mp4` — 118.18 s, 1920×1080, 10 Manim + 3 declared slates (`{'MANIM': 10, 'SLATE': 3}`)
+
+**Fixes shipped**
+- Envelope VOICE-LOCK: dropped `voice_id`, `clock`, `style_bible{}`, `accents{}`; added `engine/voice_kokoro/folderLabel/short_title/source/derived_from`.
+- B02: dropped dead nested `shot.remotion.FormACard` with truncated `"…that…"` line (vox pipeline has no Remotion renderer here — B02 is a declared STILL slate).
+- `vox_scenes.py` path resolution: hard-coded `parents[3]` → walk-up search (same fix `vox-endosomal-escape` used).
+- B08 chart text: two overlapping serif labels rebuilt as stacked `VGroup` under all five step boxes (real-beat BLOCKER caught on Gate V first pass).
+- B10 chart text: broken `arrange(RIGHT, aligned_edge=LEFT)` overlay rebuilt with fixed 1.7-unit MONO number column (real-beat BLOCKER caught on Gate V first pass).
+- Audio regenerated fresh via Kokoro `am_onyx`; ElevenLabs Jul-8 mp3s purged; durations measured back into sheet.
+
+**Gates:** Audio mean −23.6 dB / max −0.5 dB ✓. Gate V PASS after B08+B10 re-render, zero BLOCKER on real beats. Lens (four moves) present. Pacing: B08 3.45 wps (0.05 over ceiling) LOG-only.
+
+**Non-blocking:** `vox_graphics.TEAL`→near-INK brown, `GOLD`→pale pink — shared-library palette quirk sibling `vox-endosomal-escape` logged 2026-08-27. Layout semantics preserved throughout. Palette fix out of scope for a single-reel invocation.
+
+**Freshness:** sheet mtime `03:46:16`, master mp4 mtime `03:49:15` — mp4 179 s newer, no post-compile sheet edit.

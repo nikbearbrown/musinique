@@ -1,0 +1,13 @@
+DONE. Cut is newer than sheet (23:44 > 23:43) and audible (−24.1 dB).
+
+**nanoparticle-characterization** (cancer-nanomedicine · Cohort A rebuild)
+
+- **Cut:** `nanoparticle-characterization-slate.mp4` · 234.5s · 13/13 VIDEO (zero slate)
+- **Gates:** GATE T PASS · GATE LANE PASS · GATE AUDIO PASS (−24.1 dB) · content-check + frame-check PASS · GATE V (qc-sheet) clean
+- **Rebuilt (PHASE 0):** pre-rebuild backup made; dead ElevenLabs metadata dropped; shot.form derived; narration LOCKED for B00–B09 (BVDT + BHTF authored — were empty).
+- **Fixed:** B00 → ClaudeComposerAsk (was NikBearBrownOpen); B09 → FormACard colophon (was duplicate NikBearBrownOutro); 4 spark lines authored (Sawubona / Ask Claude / Now iterate / Your turn); B01 FormB placeholder items → real labels+subs; template Your-Turn → real corona-delta bench exercise.
+- **Punts authored:** B04/B06/B07/B08 (four gen-AI-clip SLATE beats) → FormBCard with items from locked narration; BVDT `Key finding one/two/three` → three real findings.
+- **Icons swapped** for library availability: `atom`→`layers`/`shield-alert`; `chart-bar`→`frame` (semantic-close, not a downgrade).
+- **build.status Counter:** `Counter({'VIDEO': 13})`
+
+`AUDIT.md`, `REBUILD-LOG.md`, and `FILMLOOP-LOG.md` entry all written. No post-compile sheet edits.

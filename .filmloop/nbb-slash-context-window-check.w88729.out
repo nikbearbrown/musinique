@@ -1,0 +1,8 @@
+Reel done. `nbb-slash-context-window-check-slate.mp4` (133s, 7/7 beats rendered real, mean_volume −24.2 dB, GATE T PASS, mp4 mtime 17s newer than beat_sheet.json).
+
+Summary of the invocation:
+- **Rebuild**: consolidated a 12-beat scaffolder mess (duplicate cold opens, duplicate verdicts, off-topic cancer/clinical YOUR-TURN template pollution) into 7 canonical beats (B00 · B01 · B02 · B03 · BVDT · BHTF · BOUT).
+- **Punts authored**: pre-BVDT "Key finding one/two/three" → real 3-line verdict; pre-BHTF template + NBB02 cancer prompt → real subagent-invocation your-turn; pre-B01 empty-sub FormB → 4 real items; broken narration-truncation Manim scenes B02/B03 → clean FormBCard renders (honest medium swap, not a punt).
+- **Gate V**: read 6 sample frames — all inside SAFE, one terracotta per beat, palette-correct, no defects.
+- **No validator loosened.** B01 title-safe overflow fixed by shortening a sub, not by silencing §8.2.
+- Wrote `AUDIT.md`, `REBUILD-LOG.md`, appended `youtube/FILMLOOP-LOG.md`.

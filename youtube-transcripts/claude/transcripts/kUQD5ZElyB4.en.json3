@@ -1,0 +1,349 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 90,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "When I was 16, I was\nfocusing on becoming"
+    } ]
+  }, {
+    "tStartMs": 3510,
+    "dDurationMs": 1830,
+    "segs": [ {
+      "utf8": "a good open source developer."
+    } ]
+  }, {
+    "tStartMs": 5340,
+    "dDurationMs": 2250,
+    "segs": [ {
+      "utf8": "I love the fact that I'm\nstill working on something"
+    } ]
+  }, {
+    "tStartMs": 7590,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "I was passionate about as a teenager,"
+    } ]
+  }, {
+    "tStartMs": 9750,
+    "dDurationMs": 2274,
+    "segs": [ {
+      "utf8": "and I think this is\ngonna be my life mission."
+    } ]
+  }, {
+    "tStartMs": 12024,
+    "dDurationMs": 2500,
+    "segs": [ {
+      "utf8": "(calm music)"
+    } ]
+  }, {
+    "tStartMs": 15720,
+    "dDurationMs": 3090,
+    "segs": [ {
+      "utf8": "Replit is the place where\nyou go with an idea in mind,"
+    } ]
+  }, {
+    "tStartMs": 18810,
+    "dDurationMs": 1890,
+    "segs": [ {
+      "utf8": "no coding skills whatsoever,"
+    } ]
+  }, {
+    "tStartMs": 20700,
+    "dDurationMs": 2670,
+    "segs": [ {
+      "utf8": "expressing in natural language\nwhat you want to build,"
+    } ]
+  }, {
+    "tStartMs": 23370,
+    "dDurationMs": 2700,
+    "segs": [ {
+      "utf8": "and then they see the\nmagic for the first time."
+    } ]
+  }, {
+    "tStartMs": 26070,
+    "dDurationMs": 3390,
+    "segs": [ {
+      "utf8": "We made coding so accessible to everyone."
+    } ]
+  }, {
+    "tStartMs": 29460,
+    "dDurationMs": 2130,
+    "segs": [ {
+      "utf8": "They don't even feel that\nthey're writing code anymore."
+    } ]
+  }, {
+    "tStartMs": 31590,
+    "dDurationMs": 2460,
+    "segs": [ {
+      "utf8": "They're just creating an\nidea they have in their mind"
+    } ]
+  }, {
+    "tStartMs": 34050,
+    "dDurationMs": 1830,
+    "segs": [ {
+      "utf8": "and turning it into one application,"
+    } ]
+  }, {
+    "tStartMs": 35880,
+    "dDurationMs": 1470,
+    "segs": [ {
+      "utf8": "turning it into a website."
+    } ]
+  }, {
+    "tStartMs": 37350,
+    "dDurationMs": 2610,
+    "segs": [ {
+      "utf8": "- So when you started\nbuilding the Replit agent"
+    } ]
+  }, {
+    "tStartMs": 39960,
+    "dDurationMs": 2190,
+    "segs": [ {
+      "utf8": "and you were experimenting\nwith different models,"
+    } ]
+  }, {
+    "tStartMs": 42150,
+    "dDurationMs": 2340,
+    "segs": [ {
+      "utf8": "why did you land on using Claude?"
+    } ]
+  }, {
+    "tStartMs": 44490,
+    "dDurationMs": 3690,
+    "segs": [ {
+      "utf8": "- We need high IQ level in our agent."
+    } ]
+  }, {
+    "tStartMs": 48180,
+    "dDurationMs": 1260,
+    "segs": [ {
+      "utf8": "I love to use this analogy"
+    } ]
+  }, {
+    "tStartMs": 49440,
+    "dDurationMs": 1980,
+    "segs": [ {
+      "utf8": "where models are like the car engine"
+    } ]
+  }, {
+    "tStartMs": 51420,
+    "dDurationMs": 3450,
+    "segs": [ {
+      "utf8": "and we're building the entire\ncar around it ourselves."
+    } ]
+  }, {
+    "tStartMs": 54870,
+    "dDurationMs": 3450,
+    "segs": [ {
+      "utf8": "In order for us to remove the\nbarrier of entry of coding,"
+    } ]
+  }, {
+    "tStartMs": 58320,
+    "dDurationMs": 3030,
+    "segs": [ {
+      "utf8": "the power of the model is\nwhat makes the difference."
+    } ]
+  }, {
+    "tStartMs": 61350,
+    "dDurationMs": 2940,
+    "segs": [ {
+      "utf8": "We made a choice back in early 2024,"
+    } ]
+  }, {
+    "tStartMs": 64290,
+    "dDurationMs": 2670,
+    "segs": [ {
+      "utf8": "where Sonnet 3.5 came out,"
+    } ]
+  }, {
+    "tStartMs": 66960,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "and since then, Anthropic\nkept the lead in having"
+    } ]
+  }, {
+    "tStartMs": 69840,
+    "dDurationMs": 2250,
+    "segs": [ {
+      "utf8": "the best coding models on the market."
+    } ]
+  }, {
+    "tStartMs": 72090,
+    "dDurationMs": 2250,
+    "segs": [ {
+      "utf8": "- So one of my favorite parts of my job"
+    } ]
+  }, {
+    "tStartMs": 74340,
+    "dDurationMs": 2520,
+    "segs": [ {
+      "utf8": "in applied AI is when we work with you"
+    } ]
+  }, {
+    "tStartMs": 76860,
+    "dDurationMs": 3030,
+    "segs": [ {
+      "utf8": "on early research previews\nof our newest models."
+    } ]
+  }, {
+    "tStartMs": 79890,
+    "dDurationMs": 3829,
+    "segs": [ {
+      "utf8": "- It feels like receiving\na shiny toy at Christmas."
+    } ]
+  }, {
+    "tStartMs": 83719,
+    "dDurationMs": 971,
+    "segs": [ {
+      "utf8": "(both laughing)"
+    } ]
+  }, {
+    "tStartMs": 84690,
+    "dDurationMs": 2130,
+    "segs": [ {
+      "utf8": "The discovery process of finding out"
+    } ]
+  }, {
+    "tStartMs": 86820,
+    "dDurationMs": 3483,
+    "segs": [ {
+      "utf8": "what it's capable to do is the\nmost exciting window of time."
+    } ]
+  }, {
+    "tStartMs": 91470,
+    "dDurationMs": 4050,
+    "segs": [ {
+      "utf8": "Early 2025, you gave us\naccess to Sonnet 3.7."
+    } ]
+  }, {
+    "tStartMs": 95520,
+    "dDurationMs": 2790,
+    "segs": [ {
+      "utf8": "We rushed to create Replit Agent V2,"
+    } ]
+  }, {
+    "tStartMs": 98310,
+    "dDurationMs": 2730,
+    "segs": [ {
+      "utf8": "and the moment Anthropic\nlaunched the new model"
+    } ]
+  }, {
+    "tStartMs": 101040,
+    "dDurationMs": 1650,
+    "segs": [ {
+      "utf8": "and we launched it in the same day,"
+    } ]
+  }, {
+    "tStartMs": 102690,
+    "dDurationMs": 4020,
+    "segs": [ {
+      "utf8": "our new agent, there was a\nincredible marketing pop."
+    } ]
+  }, {
+    "tStartMs": 106710,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "- And this is something that's used"
+    } ]
+  }, {
+    "tStartMs": 107910,
+    "dDurationMs": 1860,
+    "segs": [ {
+      "utf8": "by relatively few people at the moment?"
+    } ]
+  }, {
+    "tStartMs": 109770,
+    "dDurationMs": 2730,
+    "segs": [ {
+      "utf8": "It's kind of a hidden secret or?"
+    } ]
+  }, {
+    "tStartMs": 112500,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "- I think we recently crossed\n40 million registered users."
+    } ]
+  }, {
+    "tStartMs": 115380,
+    "dDurationMs": 2970,
+    "segs": [ {
+      "utf8": "We got a lot of attention\nbecause users experienced"
+    } ]
+  }, {
+    "tStartMs": 118350,
+    "dDurationMs": 3570,
+    "segs": [ {
+      "utf8": "something that they've never\nseen before in our product."
+    } ]
+  }, {
+    "tStartMs": 121920,
+    "dDurationMs": 2190,
+    "segs": [ {
+      "utf8": "- [Hannah] So what makes Replit unique?"
+    } ]
+  }, {
+    "tStartMs": 124110,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "- We remove all the complexity"
+    } ]
+  }, {
+    "tStartMs": 126030,
+    "dDurationMs": 3060,
+    "segs": [ {
+      "utf8": "that makes the job of a\nsoftware engineer really hard."
+    } ]
+  }, {
+    "tStartMs": 129090,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "That barrier has been\ncompletely crushed by Replit."
+    } ]
+  }, {
+    "tStartMs": 131730,
+    "dDurationMs": 3000,
+    "segs": [ {
+      "utf8": "I'm approached by people\nthat didn't even feel"
+    } ]
+  }, {
+    "tStartMs": 134730,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "the permission to create\nsoftware in their life."
+    } ]
+  }, {
+    "tStartMs": 137130,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "They always had like an\namazing business idea."
+    } ]
+  }, {
+    "tStartMs": 139290,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "Now, they're doing the zero\nto one complete in Replit."
+    } ]
+  }, {
+    "tStartMs": 143503,
+    "dDurationMs": 2199,
+    "segs": [ {
+      "utf8": "This is changing people's lives."
+    } ]
+  }, {
+    "tStartMs": 145702,
+    "dDurationMs": 2667,
+    "segs": [ {
+      "utf8": "(upbeat music)"
+    } ]
+  } ]
+}

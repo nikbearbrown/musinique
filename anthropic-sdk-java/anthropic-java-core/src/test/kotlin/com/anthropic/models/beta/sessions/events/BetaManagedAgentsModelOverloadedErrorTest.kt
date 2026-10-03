@@ -1,0 +1,57 @@
+package com.anthropic.models.beta.sessions.events
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaManagedAgentsModelOverloadedErrorTest {
+
+    @Test
+    fun create() {
+        val betaManagedAgentsModelOverloadedError =
+            BetaManagedAgentsModelOverloadedError.builder()
+                .message("message")
+                .retryStatus(
+                    BetaManagedAgentsRetryStatusRetrying.of(
+                        BetaManagedAgentsRetryStatusRetrying.Type.RETRYING
+                    )
+                )
+                .type(BetaManagedAgentsModelOverloadedError.Type.MODEL_OVERLOADED_ERROR)
+                .build()
+
+        assertThat(betaManagedAgentsModelOverloadedError.message()).isEqualTo("message")
+        assertThat(betaManagedAgentsModelOverloadedError.retryStatus())
+            .isEqualTo(
+                BetaManagedAgentsModelOverloadedError.RetryStatus.ofRetrying(
+                    BetaManagedAgentsRetryStatusRetrying.Type.RETRYING
+                )
+            )
+        assertThat(betaManagedAgentsModelOverloadedError.type())
+            .isEqualTo(BetaManagedAgentsModelOverloadedError.Type.MODEL_OVERLOADED_ERROR)
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsModelOverloadedError =
+            BetaManagedAgentsModelOverloadedError.builder()
+                .message("message")
+                .retryStatus(
+                    BetaManagedAgentsRetryStatusRetrying.of(
+                        BetaManagedAgentsRetryStatusRetrying.Type.RETRYING
+                    )
+                )
+                .type(BetaManagedAgentsModelOverloadedError.Type.MODEL_OVERLOADED_ERROR)
+                .build()
+
+        val roundtrippedBetaManagedAgentsModelOverloadedError =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsModelOverloadedError),
+                jacksonTypeRef<BetaManagedAgentsModelOverloadedError>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsModelOverloadedError)
+            .isEqualTo(betaManagedAgentsModelOverloadedError)
+    }
+}

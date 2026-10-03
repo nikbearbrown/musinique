@@ -1,0 +1,19 @@
+Done — `boondoggle-score-anatomy.mp4` (127.0 s, 3840×2160, mean_volume −23.9 dB) is newer than `beat_sheet.json`. Sheet is UNTOUCHED after final compile.
+
+**What shipped**
+- 7 beats, all VIDEO (0 slates). B00 ClaudeComposerAsk `Sawadee, Liam` / B01 FormBCard `Who does what` × 3 / B02 FormBCard Brooks 1986 × 2 / B03 FormBCard handoff-condition × 2 / B04 ClaudeVerdictArtifact × 3 lines / B05 ClaudeComposerAsk Your Turn / B06 ClaudeTitleOutro.
+- Locked narration (all 7 beats verbatim) + measured Kokoro audio as clock; sheet backed up byte-exact to `beat_sheet.pre-rebuild.json`.
+
+**Key fixes**
+- Reconciled duplicated tail (dropped placeholder BVDT/BHTF/BOUT — had `Key finding one/two/three` verdict + bracketed `[Take what you learned from …]` Your-Turn; body B04–B06 promoted to canonical patterns instead).
+- B00 `shot.remotion.props.greeting` was the lone `"Liam"` — restored `"Sawadee, Liam"` (Thai rotation).
+- Authored the verdict from B04's own claims; three tight lines, single-page card.
+- Punted B01/B02/B03 to clean FormBCards (they had prose-fragment labels or no `shot.remotion` at all; `scenes_std.py` used `Text(narration[:60])` slices — routed away from, not patched).
+- Mid-build fix: first compile paginated the 4-line verdict (`1/2` indicator, page 2 clipped by tail trim); recompressed to 3 lines + re-rendered B04 `--force` + recompiled.
+
+**Gates**
+- GATE T PASS (one advisory §8.10 on B04, intrinsic verdict overlap).
+- GATE AUDIO PASS (−23.9 dB mean, well above −40 dB floor).
+- Gate V: read every 10 s of the master plus 15/50/85 % per beat — no BLOCKER, no MAJOR, no pagination indicator on the second pass.
+
+Artifacts: `beat_sheet.json`, `beat_sheet.pre-rebuild.json`, `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, `boondoggle-score-anatomy.mp4`, per-beat `media/B00–B06.mp4`, and one block appended to `youtube/FILMLOOP-LOG.md`.

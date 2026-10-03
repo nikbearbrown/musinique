@@ -1,0 +1,7 @@
+Reel `claude-liam-protein-corona-overwrites` is done.
+
+- **Output**: `protein-corona-overwrites-slate.mp4` (1280×720, 207.5 s, aac 48 kHz, mean_volume −24.1 dB)
+- **build.status Counter**: `Counter({'VIDEO': 13})`
+- **Staleness check**: mp4 (22:14:27) newer than sheet (22:14:16), +11 s ✓
+- **Key fixes**: B01 placeholder subs → real items; B04 Manim SLATE + B06/B07/B08 pure slates → FormBCards; BVDT placeholder verdict → 3 authored lines + spoken verdict; BHTF bracketed-title placeholder command → real DLS+zeta protocol prompt; ElevenLabs `voice_id` cruft dropped; artifact line 1 rewritten mid-Gate-V after `stripLeadNum` chopped a leading `30-`, then recompiled so the cut is newest.
+- **Written**: `AUDIT.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json`, appended block to `youtube/FILMLOOP-LOG.md`.

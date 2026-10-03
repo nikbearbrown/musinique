@@ -1,0 +1,98 @@
+module Anthropic
+  module Models
+    class BetaWebFetchToolResultBlockParam = Beta::BetaWebFetchToolResultBlockParam
+
+    module Beta
+      type beta_web_fetch_tool_result_block_param =
+        {
+          content: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content,
+          tool_use_id: String,
+          type: :web_fetch_tool_result,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          caller_: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_
+        }
+
+      class BetaWebFetchToolResultBlockParam < Anthropic::Internal::Type::BaseModel
+        attr_accessor content: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content
+
+        attr_accessor tool_use_id: String
+
+        attr_accessor type: :web_fetch_tool_result
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        attr_reader caller_: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_?
+
+        def caller_=: (
+          Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_
+        ) -> Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_
+
+        def initialize: (
+          content: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content,
+          tool_use_id: String,
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?caller_: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_,
+          ?type: :web_fetch_tool_result
+        ) -> void
+
+        def to_hash: -> {
+          content: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content,
+          tool_use_id: String,
+          type: :web_fetch_tool_result,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          caller_: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_
+        }
+
+        type content =
+          Anthropic::Beta::BetaWebFetchToolResultErrorBlockParam
+          | Anthropic::Beta::BetaWebFetchBlockParam
+
+        module Content
+          extend Anthropic::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::content]
+        end
+
+        type caller_ =
+          Anthropic::Beta::BetaDirectCaller
+          | Anthropic::Beta::BetaServerToolCaller
+          | Anthropic::Beta::BetaServerToolCaller20260120
+
+        module Caller
+          extend Anthropic::Internal::Type::Union
+
+          type type_ =
+            :direct | :code_execution_20250825 | :code_execution_20260120
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            DIRECT: :direct
+            CODE_EXECUTION_20250825: :code_execution_20250825
+            CODE_EXECUTION_20260120: :code_execution_20260120
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::Caller::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_]
+
+          def self.new:
+            (type: :direct | "direct") -> Anthropic::Beta::BetaDirectCaller
+            | (
+              type: :code_execution_20250825 | "code_execution_20250825",
+              tool_id: String
+            ) -> Anthropic::Beta::BetaServerToolCaller
+            | (
+              type: :code_execution_20260120 | "code_execution_20260120",
+              tool_id: String
+            ) -> Anthropic::Beta::BetaServerToolCaller20260120
+            | (
+              type: Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::Caller::type_
+              | String,
+              ?tool_id: String
+            ) -> Anthropic::Models::Beta::BetaWebFetchToolResultBlockParam::caller_
+        end
+      end
+    end
+  end
+end

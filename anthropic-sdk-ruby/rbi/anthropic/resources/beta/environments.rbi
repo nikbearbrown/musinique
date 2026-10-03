@@ -1,0 +1,226 @@
+# typed: strong
+
+module Anthropic
+  module Resources
+    class Beta
+      class Environments
+        sig { returns(Anthropic::Resources::Beta::Environments::Work) }
+        attr_reader :work
+
+        # Create a new environment with the specified configuration.
+        sig do
+          params(
+            name: String,
+            config:
+              T.nilable(
+                T.any(
+                  Anthropic::Beta::BetaCloudConfigParams::OrHash,
+                  Anthropic::Beta::BetaSelfHostedConfigParams::OrHash
+                )
+              ),
+            description: T.nilable(String),
+            metadata: T::Hash[Symbol, String],
+            scope:
+              T.nilable(
+                Anthropic::Beta::EnvironmentCreateParams::Scope::OrSymbol
+              ),
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(Anthropic::Beta::BetaEnvironment)
+        end
+        def create(
+          # Body param: Human-readable name for the environment
+          name:,
+          # Body param: Environment configuration
+          config: nil,
+          # Body param: Optional description of the environment
+          description: nil,
+          # Body param: User-provided metadata key-value pairs
+          metadata: nil,
+          # Body param: The visibility scope for this environment. 'organization' makes the
+          # environment visible to all accounts. 'account' restricts visibility to the
+          # owning account only. API organizations support only 'organization'; 'account' is
+          # rejected. If not specified, defaults based on organization type.
+          scope: nil,
+          # Header param: Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Header param: Optional header to select the Workspace for this request. The
+          # value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        # Retrieve a specific environment by ID.
+        sig do
+          params(
+            environment_id: String,
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(Anthropic::Beta::BetaEnvironment)
+        end
+        def retrieve(
+          environment_id,
+          # Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Optional header to select the Workspace for this request. The value is a
+          # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        # Update an existing environment's configuration.
+        sig do
+          params(
+            environment_id: String,
+            config:
+              T.nilable(
+                T.any(
+                  Anthropic::Beta::BetaCloudConfigParams::OrHash,
+                  Anthropic::Beta::BetaSelfHostedConfigParams::OrHash
+                )
+              ),
+            description: T.nilable(String),
+            metadata: T::Hash[Symbol, T.nilable(String)],
+            name: T.nilable(String),
+            scope:
+              T.nilable(
+                Anthropic::Beta::EnvironmentUpdateParams::Scope::OrSymbol
+              ),
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(Anthropic::Beta::BetaEnvironment)
+        end
+        def update(
+          # Path param
+          environment_id,
+          # Body param: Updated environment configuration
+          config: nil,
+          # Body param: Updated description of the environment. Omit to preserve; null
+          # clears to null; an empty string is stored as an empty string.
+          description: nil,
+          # Body param: User-provided metadata key-value pairs. Set a value to null or empty
+          # string to delete the key.
+          metadata: nil,
+          # Body param: Updated name for the environment
+          name: nil,
+          # Body param: The visibility scope for this environment. 'organization' makes the
+          # environment visible to all accounts. 'account' restricts visibility to the
+          # owning account only.
+          scope: nil,
+          # Header param: Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Header param: Optional header to select the Workspace for this request. The
+          # value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        # List environments with pagination support.
+        sig do
+          params(
+            include_archived: T::Boolean,
+            limit: Integer,
+            page: T.nilable(String),
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(
+            Anthropic::Internal::PageCursor[Anthropic::Beta::BetaEnvironment]
+          )
+        end
+        def list(
+          # Query param: Include archived environments in the response
+          include_archived: nil,
+          # Query param: Maximum number of environments to return
+          limit: nil,
+          # Query param: Opaque cursor from previous response for pagination. Pass the
+          # `next_page` value from the previous response.
+          page: nil,
+          # Header param: Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Header param: Optional header to select the Workspace for this request. The
+          # value is a Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        # Delete an environment by ID. Returns a confirmation of the deletion.
+        sig do
+          params(
+            environment_id: String,
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(Anthropic::Beta::BetaEnvironmentDeleteResponse)
+        end
+        def delete(
+          environment_id,
+          # Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Optional header to select the Workspace for this request. The value is a
+          # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        # Archive an environment by ID. Archived environments cannot be used to create new
+        # sessions.
+        sig do
+          params(
+            environment_id: String,
+            betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+            workspace_id: String,
+            request_options: Anthropic::RequestOptions::OrHash
+          ).returns(Anthropic::Beta::BetaEnvironment)
+        end
+        def archive(
+          environment_id,
+          # Optional header to specify the beta version(s) you want to use.
+          betas: nil,
+          # Optional header to select the Workspace for this request. The value is a
+          # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          workspace_id: nil,
+          request_options: {}
+        )
+        end
+
+        # @api private
+        sig { params(client: Anthropic::Client).returns(T.attached_class) }
+        def self.new(client:)
+        end
+      end
+    end
+  end
+end

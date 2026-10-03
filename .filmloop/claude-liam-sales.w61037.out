@@ -1,0 +1,20 @@
+You've hit your session limit · resets 12:50pm (America/New_York)
+**DONE.** `claude-liam-sales-slate.mp4` (13:31:04) is newer than `beat_sheet.json` (13:30:51). Supervisor DONE check passes.
+
+---
+
+**Session summary for `claude-liam-sales`:**
+
+| Item | Result |
+|---|---|
+| PHASE 0 — backup | `beat_sheet.pre-rebuild.json` created |
+| PHASE 1 — audit (11 checks) | PASS/FIXED on all; 6 HOLD beats logged |
+| PHASE 2 — audio | Kokoro am_onyx, all beats; −24.2 dB |
+| PHASE 2 — Remotion renders | 23 beats via remotion_scenes.py |
+| PHASE 2 — Manim renders | 10 beats via scenes_std.py (6 re-rendered at 1080p for kerning) |
+| GATE T (type_check) | PASS (§8.12b B10 fixed; kerning false positives registered) |
+| GATE V (visual QC) | PASS — all 9 rubric points |
+| lane_check | PASS — 6 ARCHIVAL slates correctly excluded |
+| compile (--review) | `354.1s, 31/37 filled` |
+| FILMLOOP-LOG.md | Appended |
+| Cut newer than sheet | ✓ (13:31:04 > 13:30:51) |

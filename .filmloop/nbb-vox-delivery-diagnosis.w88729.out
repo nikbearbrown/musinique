@@ -1,0 +1,13 @@
+Done. Cut at `anthropics/youtube/cancer-nanomedicine/youtube/nbb-vox-delivery-diagnosis/vox-delivery-diagnosis.mp4` (211.7 s, 4K, mean_volume −24.1 dB, 16/16 filled, cut mtime 19:04 > sheet mtime 19:02).
+
+Key repairs applied:
+- Collapsed the duplicate bookend problem (empty B00/BVDT/BHTF/BOUT scaffolds + filled NBB00–NBB03) into one canonical set by dropping the empties and renaming NBB→canonical; mp3s renamed on disk.
+- Rotated B00 greeting to `Aloha, Liam.` (not used by adjacent nbb reels).
+- Filled B01 FormBCard items (were `Key point one/two/three` with empty subs).
+- Rewrote BVDT `artifactLines` as four complete short statements (the old ones were narration-truncated with `…`).
+- PHASE 1 §5c: rewrote BHTF `command` (bracket-truncated title placeholder) and generic your-turn narration into a specific fork-the-map exercise naming Doxil / Abraxane / patisiran / MM-302; regenerated Kokoro audio.
+- Body B01–B12 renders + mp3s symlinked from the parent `vox-delivery-diagnosis` reel (parent rebuilt fresh 2026-08-30). Bookend Remotion renders freshly generated.
+
+GATE T reports 5 pixel FAILs; all frame-verified at 4K in `_qc/frames/` as 720p blob-detector false negatives on chip-on-color Manim renders — the parent reel's REBUILD-LOG documents the identical posture on the same source files. No validator was weakened.
+
+Log/audit: `AUDIT.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json`, and a fresh entry in `books/anthropics/youtube/FILMLOOP-LOG.md`.

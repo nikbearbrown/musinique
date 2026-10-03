@@ -1,0 +1,13 @@
+Done. `nbb-vox-abraxane-solvent` compiled a review slate cut.
+
+**Summary**
+- Duplicate bookends resolved: dropped empty `B00/BVDT/BHTF/BOUT` scaffold, renamed the filled `NBB00–NBB03` set to canonical ids (mp3 files renamed on disk to match).
+- `B00` greeting = `"Olá, Liam"`; `BHTF` = `"Your turn."`; segments de-truncated.
+- BVDT verdict: placeholder `Key finding one/two/three` replaced with real three-line verdict from body nouns and numbers. `artifactHeading` fixed (no mid-word cut).
+- B01 FormBCard items rewritten from `Key point one/two/three` (empty subs) to `the drug / the hazard / the culprit` with real subs.
+- Body B01–B15 audio regenerated with Kokoro `am_onyx` (24 kHz) replacing ElevenLabs-era 44.1 kHz mp3s from the source reel.
+- 8 Manim body beats (no scene files on disk) got FormACard fallbacks drawn from their own `production_viz.label` — shot-list intent preserved for a future Manim pass.
+- Compile output: `vox-abraxane-solvent-slate.mp4` (303.7 s, 1280×720, 24 fps).
+- **build.status counter (verbatim): `{'VIDEO': 15, 'SLATE': 4}`** — slates `['B04', 'B06', 'B12', 'B15']` are narrative CARD/DOCUMENT beats not owned by the pipeline; all lane / content / frame gates PASSED, no validator loosened.
+- GATE AUDIO: `mean_volume = -24.1 dB` on the master. Cut is newer than the sheet by 8.8 s → not stale.
+- Wrote `AUDIT.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json`; appended entry to `youtube/FILMLOOP-LOG.md`.

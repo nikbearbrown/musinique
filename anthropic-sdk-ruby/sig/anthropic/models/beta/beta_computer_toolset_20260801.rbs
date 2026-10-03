@@ -1,0 +1,34 @@
+module Anthropic
+  module Models
+    class BetaComputerToolset20260801 = Beta::BetaComputerToolset20260801
+
+    module Beta
+      type beta_computer_toolset20260801 =
+        {
+          type: :computer_toolset_20260801,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          configs: Anthropic::Beta::BetaComputerToolsetConfigs?
+        }
+
+      class BetaComputerToolset20260801 < Anthropic::Internal::Type::BaseModel
+        attr_accessor type: :computer_toolset_20260801
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        attr_accessor configs: Anthropic::Beta::BetaComputerToolsetConfigs?
+
+        def initialize: (
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?configs: Anthropic::Beta::BetaComputerToolsetConfigs?,
+          ?type: :computer_toolset_20260801
+        ) -> void
+
+        def to_hash: -> {
+          type: :computer_toolset_20260801,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          configs: Anthropic::Beta::BetaComputerToolsetConfigs?
+        }
+      end
+    end
+  end
+end

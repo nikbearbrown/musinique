@@ -1,0 +1,7 @@
+---
+
+**claude-liam-cookbook-audit** — done.
+
+Review slate: `claude-liam-cookbook-audit-slate.mp4` (70.3s, 6/6 VIDEO).
+
+Fixes applied: 3 narration truncations repaired, 2 spark lines shortened to ≤4 words, BVDT verdict stripped (thin-body rule), B01 one-terracotta corrected, B03 canvas fill anchored via `verdictLabel`, B03 GATE T de-wordified (18w→9w). Audio regenerated for B03 and BHTF. Gate V PASS with one logged MINOR (B01 right-half canvas fill, component constraint, not blocking). mtime PASS (slate +2s over sheet).

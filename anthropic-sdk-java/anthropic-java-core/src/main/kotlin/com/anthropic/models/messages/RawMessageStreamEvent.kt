@@ -1,0 +1,603 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.Enum
+import com.anthropic.core.JsonField
+import com.anthropic.core.JsonMissing
+import com.anthropic.core.JsonValue
+import com.anthropic.core.getOrThrow
+import com.anthropic.core.getProperty
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Objects
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
+
+@JsonDeserialize(using = RawMessageStreamEvent.Deserializer::class)
+@JsonSerialize(using = RawMessageStreamEvent.Serializer::class)
+class RawMessageStreamEvent
+private constructor(
+    private val messageStart: RawMessageStartEvent? = null,
+    private val messageDelta: RawMessageDeltaEvent? = null,
+    private val messageStop: RawMessageStopEvent? = null,
+    private val contentBlockStart: RawContentBlockStartEvent? = null,
+    private val contentBlockDelta: RawContentBlockDeltaEvent? = null,
+    private val contentBlockStop: RawContentBlockStopEvent? = null,
+    private val _json: JsonValue? = null,
+) {
+
+    fun type(): Type =
+        accept(
+            object : Visitor<Type> {
+                override fun visitMessageStart(messageStart: RawMessageStartEvent): Type =
+                    Type.MESSAGE_START
+
+                override fun visitMessageDelta(messageDelta: RawMessageDeltaEvent): Type =
+                    Type.MESSAGE_DELTA
+
+                override fun visitMessageStop(messageStop: RawMessageStopEvent): Type =
+                    Type.MESSAGE_STOP
+
+                override fun visitContentBlockStart(
+                    contentBlockStart: RawContentBlockStartEvent
+                ): Type = Type.CONTENT_BLOCK_START
+
+                override fun visitContentBlockDelta(
+                    contentBlockDelta: RawContentBlockDeltaEvent
+                ): Type = Type.CONTENT_BLOCK_DELTA
+
+                override fun visitContentBlockStop(
+                    contentBlockStop: RawContentBlockStopEvent
+                ): Type = Type.CONTENT_BLOCK_STOP
+
+                override fun unknown(json: JsonValue?): Type =
+                    Type.of(json?.asObject()?.getOrNull()?.get("type") ?: JsonMissing.of())
+            }
+        )
+
+    fun index(): Optional<Long> =
+        accept(
+            object : Visitor<Optional<Long>> {
+                override fun visitMessageStart(messageStart: RawMessageStartEvent): Optional<Long> =
+                    Optional.empty()
+
+                override fun visitMessageDelta(messageDelta: RawMessageDeltaEvent): Optional<Long> =
+                    Optional.empty()
+
+                override fun visitMessageStop(messageStop: RawMessageStopEvent): Optional<Long> =
+                    Optional.empty()
+
+                override fun visitContentBlockStart(
+                    contentBlockStart: RawContentBlockStartEvent
+                ): Optional<Long> = Optional.of(contentBlockStart.index())
+
+                override fun visitContentBlockDelta(
+                    contentBlockDelta: RawContentBlockDeltaEvent
+                ): Optional<Long> = Optional.of(contentBlockDelta.index())
+
+                override fun visitContentBlockStop(
+                    contentBlockStop: RawContentBlockStopEvent
+                ): Optional<Long> = Optional.of(contentBlockStop.index())
+
+                override fun unknown(json: JsonValue?): Optional<Long> =
+                    json.getProperty<Long>("index").asKnown()
+            }
+        )
+
+    fun messageStart(): Optional<RawMessageStartEvent> = Optional.ofNullable(messageStart)
+
+    fun messageDelta(): Optional<RawMessageDeltaEvent> = Optional.ofNullable(messageDelta)
+
+    fun messageStop(): Optional<RawMessageStopEvent> = Optional.ofNullable(messageStop)
+
+    fun contentBlockStart(): Optional<RawContentBlockStartEvent> =
+        Optional.ofNullable(contentBlockStart)
+
+    fun contentBlockDelta(): Optional<RawContentBlockDeltaEvent> =
+        Optional.ofNullable(contentBlockDelta)
+
+    fun contentBlockStop(): Optional<RawContentBlockStopEvent> =
+        Optional.ofNullable(contentBlockStop)
+
+    fun isMessageStart(): Boolean = messageStart != null
+
+    fun isMessageDelta(): Boolean = messageDelta != null
+
+    fun isMessageStop(): Boolean = messageStop != null
+
+    fun isContentBlockStart(): Boolean = contentBlockStart != null
+
+    fun isContentBlockDelta(): Boolean = contentBlockDelta != null
+
+    fun isContentBlockStop(): Boolean = contentBlockStop != null
+
+    fun asMessageStart(): RawMessageStartEvent = messageStart.getOrThrow("messageStart")
+
+    fun asMessageDelta(): RawMessageDeltaEvent = messageDelta.getOrThrow("messageDelta")
+
+    fun asMessageStop(): RawMessageStopEvent = messageStop.getOrThrow("messageStop")
+
+    fun asContentBlockStart(): RawContentBlockStartEvent =
+        contentBlockStart.getOrThrow("contentBlockStart")
+
+    fun asContentBlockDelta(): RawContentBlockDeltaEvent =
+        contentBlockDelta.getOrThrow("contentBlockDelta")
+
+    fun asContentBlockStop(): RawContentBlockStopEvent =
+        contentBlockStop.getOrThrow("contentBlockStop")
+
+    fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+    /**
+     * Maps this instance's current variant to a value of type [T] using the given [visitor].
+     *
+     * Note that this method is _not_ forwards compatible with new variants from the API, unless
+     * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of the
+     * SDK gracefully, consider overriding [Visitor.unknown]:
+     * ```java
+     * import com.anthropic.core.JsonValue;
+     * import java.util.Optional;
+     *
+     * Optional<String> result = rawMessageStreamEvent.accept(new RawMessageStreamEvent.Visitor<Optional<String>>() {
+     *     @Override
+     *     public Optional<String> visitMessageStart(RawMessageStartEvent messageStart) {
+     *         return Optional.of(messageStart.toString());
+     *     }
+     *
+     *     // ...
+     *
+     *     @Override
+     *     public Optional<String> unknown(JsonValue json) {
+     *         // Or inspect the `json`.
+     *         return Optional.empty();
+     *     }
+     * });
+     * ```
+     *
+     * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor] and
+     *   the current variant is unknown.
+     */
+    fun <T> accept(visitor: Visitor<T>): T =
+        when {
+            messageStart != null -> visitor.visitMessageStart(messageStart)
+            messageDelta != null -> visitor.visitMessageDelta(messageDelta)
+            messageStop != null -> visitor.visitMessageStop(messageStop)
+            contentBlockStart != null -> visitor.visitContentBlockStart(contentBlockStart)
+            contentBlockDelta != null -> visitor.visitContentBlockDelta(contentBlockDelta)
+            contentBlockStop != null -> visitor.visitContentBlockStop(contentBlockStop)
+            else -> visitor.unknown(_json)
+        }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): RawMessageStreamEvent = apply {
+        if (validated) {
+            return@apply
+        }
+
+        accept(
+            object : Visitor<Unit> {
+                override fun visitMessageStart(messageStart: RawMessageStartEvent) {
+                    messageStart.validate()
+                }
+
+                override fun visitMessageDelta(messageDelta: RawMessageDeltaEvent) {
+                    messageDelta.validate()
+                }
+
+                override fun visitMessageStop(messageStop: RawMessageStopEvent) {
+                    messageStop.validate()
+                }
+
+                override fun visitContentBlockStart(contentBlockStart: RawContentBlockStartEvent) {
+                    contentBlockStart.validate()
+                }
+
+                override fun visitContentBlockDelta(contentBlockDelta: RawContentBlockDeltaEvent) {
+                    contentBlockDelta.validate()
+                }
+
+                override fun visitContentBlockStop(contentBlockStop: RawContentBlockStopEvent) {
+                    contentBlockStop.validate()
+                }
+            }
+        )
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        accept(
+            object : Visitor<Int> {
+                override fun visitMessageStart(messageStart: RawMessageStartEvent) =
+                    messageStart.validity()
+
+                override fun visitMessageDelta(messageDelta: RawMessageDeltaEvent) =
+                    messageDelta.validity()
+
+                override fun visitMessageStop(messageStop: RawMessageStopEvent) =
+                    messageStop.validity()
+
+                override fun visitContentBlockStart(contentBlockStart: RawContentBlockStartEvent) =
+                    contentBlockStart.validity()
+
+                override fun visitContentBlockDelta(contentBlockDelta: RawContentBlockDeltaEvent) =
+                    contentBlockDelta.validity()
+
+                override fun visitContentBlockStop(contentBlockStop: RawContentBlockStopEvent) =
+                    contentBlockStop.validity()
+
+                override fun unknown(json: JsonValue?) = 0
+            }
+        )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is RawMessageStreamEvent &&
+            messageStart == other.messageStart &&
+            messageDelta == other.messageDelta &&
+            messageStop == other.messageStop &&
+            contentBlockStart == other.contentBlockStart &&
+            contentBlockDelta == other.contentBlockDelta &&
+            contentBlockStop == other.contentBlockStop
+    }
+
+    override fun hashCode(): Int =
+        Objects.hash(
+            messageStart,
+            messageDelta,
+            messageStop,
+            contentBlockStart,
+            contentBlockDelta,
+            contentBlockStop,
+        )
+
+    override fun toString(): String =
+        when {
+            messageStart != null -> "RawMessageStreamEvent{messageStart=$messageStart}"
+            messageDelta != null -> "RawMessageStreamEvent{messageDelta=$messageDelta}"
+            messageStop != null -> "RawMessageStreamEvent{messageStop=$messageStop}"
+            contentBlockStart != null ->
+                "RawMessageStreamEvent{contentBlockStart=$contentBlockStart}"
+            contentBlockDelta != null ->
+                "RawMessageStreamEvent{contentBlockDelta=$contentBlockDelta}"
+            contentBlockStop != null -> "RawMessageStreamEvent{contentBlockStop=$contentBlockStop}"
+            _json != null -> "RawMessageStreamEvent{_unknown=$_json}"
+            else -> throw IllegalStateException("Invalid RawMessageStreamEvent")
+        }
+
+    companion object {
+
+        @JvmStatic
+        fun ofMessageStart(messageStart: RawMessageStartEvent) =
+            RawMessageStreamEvent(messageStart = messageStart)
+
+        /**
+         * Returns an immutable instance of [RawMessageStreamEvent] whose [ofMessageStart] variant
+         * is built from the given required [message].
+         */
+        @JvmStatic
+        fun ofMessageStart(message: Message) = ofMessageStart(RawMessageStartEvent.of(message))
+
+        @JvmStatic
+        fun ofMessageDelta(messageDelta: RawMessageDeltaEvent) =
+            RawMessageStreamEvent(messageDelta = messageDelta)
+
+        @JvmStatic
+        fun ofMessageStop(messageStop: RawMessageStopEvent) =
+            RawMessageStreamEvent(messageStop = messageStop)
+
+        @JvmStatic
+        fun ofContentBlockStart(contentBlockStart: RawContentBlockStartEvent) =
+            RawMessageStreamEvent(contentBlockStart = contentBlockStart)
+
+        @JvmStatic
+        fun ofContentBlockDelta(contentBlockDelta: RawContentBlockDeltaEvent) =
+            RawMessageStreamEvent(contentBlockDelta = contentBlockDelta)
+
+        @JvmStatic
+        fun ofContentBlockStop(contentBlockStop: RawContentBlockStopEvent) =
+            RawMessageStreamEvent(contentBlockStop = contentBlockStop)
+
+        /**
+         * Returns an immutable instance of [RawMessageStreamEvent] whose [ofContentBlockStop]
+         * variant is built from the given required [index].
+         */
+        @JvmStatic
+        fun ofContentBlockStop(index: Long) = ofContentBlockStop(RawContentBlockStopEvent.of(index))
+    }
+
+    /**
+     * An interface that defines how to map each variant of [RawMessageStreamEvent] to a value of
+     * type [T].
+     */
+    interface Visitor<out T> {
+
+        fun visitMessageStart(messageStart: RawMessageStartEvent): T
+
+        fun visitMessageDelta(messageDelta: RawMessageDeltaEvent): T
+
+        fun visitMessageStop(messageStop: RawMessageStopEvent): T
+
+        fun visitContentBlockStart(contentBlockStart: RawContentBlockStartEvent): T
+
+        fun visitContentBlockDelta(contentBlockDelta: RawContentBlockDeltaEvent): T
+
+        fun visitContentBlockStop(contentBlockStop: RawContentBlockStopEvent): T
+
+        /**
+         * Maps an unknown variant of [RawMessageStreamEvent] to a value of type [T].
+         *
+         * An instance of [RawMessageStreamEvent] can contain an unknown variant if it was
+         * deserialized from data that doesn't match any known variant. For example, if the SDK is
+         * on an older version than the API, then the API may respond with new variants that the SDK
+         * is unaware of.
+         *
+         * @throws AnthropicInvalidDataException in the default implementation.
+         */
+        fun unknown(json: JsonValue?): T {
+            throw AnthropicInvalidDataException("Unknown RawMessageStreamEvent: $json")
+        }
+    }
+
+    internal class Deserializer :
+        BaseDeserializer<RawMessageStreamEvent>(RawMessageStreamEvent::class) {
+
+        override fun ObjectCodec.deserialize(node: JsonNode): RawMessageStreamEvent {
+            val json = JsonValue.fromJsonNode(node)
+            val type = json.asObject().getOrNull()?.get("type")?.asString()?.getOrNull()
+
+            when (type) {
+                "message_start" -> {
+                    return tryDeserialize(node, jacksonTypeRef<RawMessageStartEvent>())?.let {
+                        RawMessageStreamEvent(messageStart = it, _json = json)
+                    } ?: RawMessageStreamEvent(_json = json)
+                }
+                "message_delta" -> {
+                    return tryDeserialize(node, jacksonTypeRef<RawMessageDeltaEvent>())?.let {
+                        RawMessageStreamEvent(messageDelta = it, _json = json)
+                    } ?: RawMessageStreamEvent(_json = json)
+                }
+                "message_stop" -> {
+                    return tryDeserialize(node, jacksonTypeRef<RawMessageStopEvent>())?.let {
+                        RawMessageStreamEvent(messageStop = it, _json = json)
+                    } ?: RawMessageStreamEvent(_json = json)
+                }
+                "content_block_start" -> {
+                    return tryDeserialize(node, jacksonTypeRef<RawContentBlockStartEvent>())?.let {
+                        RawMessageStreamEvent(contentBlockStart = it, _json = json)
+                    } ?: RawMessageStreamEvent(_json = json)
+                }
+                "content_block_delta" -> {
+                    return tryDeserialize(node, jacksonTypeRef<RawContentBlockDeltaEvent>())?.let {
+                        RawMessageStreamEvent(contentBlockDelta = it, _json = json)
+                    } ?: RawMessageStreamEvent(_json = json)
+                }
+                "content_block_stop" -> {
+                    return tryDeserialize(node, jacksonTypeRef<RawContentBlockStopEvent>())?.let {
+                        RawMessageStreamEvent(contentBlockStop = it, _json = json)
+                    } ?: RawMessageStreamEvent(_json = json)
+                }
+            }
+
+            return RawMessageStreamEvent(_json = json)
+        }
+    }
+
+    internal class Serializer :
+        BaseSerializer<RawMessageStreamEvent>(RawMessageStreamEvent::class) {
+
+        override fun serialize(
+            value: RawMessageStreamEvent,
+            generator: JsonGenerator,
+            provider: SerializerProvider,
+        ) {
+            when {
+                value.messageStart != null -> generator.writeObject(value.messageStart)
+                value.messageDelta != null -> generator.writeObject(value.messageDelta)
+                value.messageStop != null -> generator.writeObject(value.messageStop)
+                value.contentBlockStart != null -> generator.writeObject(value.contentBlockStart)
+                value.contentBlockDelta != null -> generator.writeObject(value.contentBlockDelta)
+                value.contentBlockStop != null -> generator.writeObject(value.contentBlockStop)
+                value._json != null -> generator.writeObject(value._json)
+                else -> throw IllegalStateException("Invalid RawMessageStreamEvent")
+            }
+        }
+    }
+
+    class Type @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            @JvmField val MESSAGE_START = of("message_start")
+
+            @JvmField val MESSAGE_DELTA = of("message_delta")
+
+            @JvmField val MESSAGE_STOP = of("message_stop")
+
+            @JvmField val CONTENT_BLOCK_START = of("content_block_start")
+
+            @JvmField val CONTENT_BLOCK_DELTA = of("content_block_delta")
+
+            @JvmField val CONTENT_BLOCK_STOP = of("content_block_stop")
+
+            @JvmStatic fun of(value: String) = Type(JsonField.of(value))
+
+            @JvmSynthetic
+            internal fun of(value: JsonField<String>): Type =
+                value.asString().getOrNull()?.let { of(it) } ?: Type(value)
+        }
+
+        /** An enum containing [Type]'s known values. */
+        enum class Known {
+            MESSAGE_START,
+            MESSAGE_DELTA,
+            MESSAGE_STOP,
+            CONTENT_BLOCK_START,
+            CONTENT_BLOCK_DELTA,
+            CONTENT_BLOCK_STOP,
+        }
+
+        /**
+         * An enum containing [Type]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [Type] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            MESSAGE_START,
+            MESSAGE_DELTA,
+            MESSAGE_STOP,
+            CONTENT_BLOCK_START,
+            CONTENT_BLOCK_DELTA,
+            CONTENT_BLOCK_STOP,
+            /** An enum member indicating that [Type] was instantiated with an unknown value. */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                MESSAGE_START -> Value.MESSAGE_START
+                MESSAGE_DELTA -> Value.MESSAGE_DELTA
+                MESSAGE_STOP -> Value.MESSAGE_STOP
+                CONTENT_BLOCK_START -> Value.CONTENT_BLOCK_START
+                CONTENT_BLOCK_DELTA -> Value.CONTENT_BLOCK_DELTA
+                CONTENT_BLOCK_STOP -> Value.CONTENT_BLOCK_STOP
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                MESSAGE_START -> Known.MESSAGE_START
+                MESSAGE_DELTA -> Known.MESSAGE_DELTA
+                MESSAGE_STOP -> Known.MESSAGE_STOP
+                CONTENT_BLOCK_START -> Known.CONTENT_BLOCK_START
+                CONTENT_BLOCK_DELTA -> Known.CONTENT_BLOCK_DELTA
+                CONTENT_BLOCK_STOP -> Known.CONTENT_BLOCK_STOP
+                else -> throw AnthropicInvalidDataException("Unknown Type: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString().orElseThrow {
+                AnthropicInvalidDataException("Value is not a String")
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): Type = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Type && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+}

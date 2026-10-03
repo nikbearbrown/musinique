@@ -1,0 +1,10 @@
+Reel done. `vox-abraxane-solvent-slate.mp4` (4.87 MB, 281.2 s) is 58 s newer than `beat_sheet.json`.
+
+**Summary**
+- **Result:** review-slate cut delivered — `anthropics/youtube/cancer-nanomedicine/youtube/medhavy-vox-abraxane-solvent/vox-abraxane-solvent-slate.mp4`.
+- **PHASE 0:** `beat_sheet.pre-rebuild.json` snapshotted byte-exact; dead ElevenLabs `voice_id` dropped; `clock` string normalized (VOICE-LOCK is post-gate). Narration LOCKED — zero text edits.
+- **PHASE 1:** 11 checks PASS or N/A for Medhavy skin. Two chart-props bugs caught & fixed at Gate V (B16 `OutroSeries` prop keys `seriesTitle/tagline/githubSlug` → schema-correct `eyebrow/line`; B17 `OutroCTA` `authorName/ctaText` → schema-correct `line/handle`) — pre-fix outros were showing generic "Claude Cowork" / "Like and subscribe" defaults. GATE T PASS.
+- **PHASE 2:** 8 GRAPHIC-scaffold body beats routed to real Remotion FormB/FormA patterns (transplanted from sister `hai-vox-abraxane-solvent` rebuild). 12 Remotion beats rendered; final compile PASS. GATE AUDIO PASS (−23.9 dB). GATE LANE PASS. 5 declared slate CARDs (B01/B04/B06/B12/B15) are the review-cut format.
+- **build.status Counter:** `Counter({'VIDEO': 12, 'SLATE': 5})`
+- **Post-compile sheet edits:** NONE. Cut mtime 02:46:12 > sheet mtime 02:45:14.
+- Logged to `youtube/FILMLOOP-LOG.md`; reel `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md` written.

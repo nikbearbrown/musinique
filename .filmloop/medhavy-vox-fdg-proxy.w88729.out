@@ -1,0 +1,13 @@
+**DONE** · `medhavy-vox-fdg-proxy` — Cohort C legacy vox rebuild
+
+- **Cut:** `vox-fdg-proxy-slate.mp4` — 213.0 s, 4K, `Counter({'VIDEO': 14})`, mp4 mtime > beat_sheet.json mtime (Δ+~60s), no post-compile sheet edits.
+- **Envelope:** dropped `voice_id` (ElevenLabs), `clock`, `_variant_todo`, stale `build{}`. Added `folderLabel: @MedhavyAI`, promoted `source`. Kept `engine: kokoro / voice_kokoro: af_kore`.
+- **Bookends:** non-claude channel → kept OutroSeries/OutroCTA, fixed both from wrong-schema (would Claude-wash via defaults) to `{eyebrow, line}` / `{line, handle}` with Medhavy content.
+- **12 punts authored:** 3 CARD punts → real FormACards; 2 STILL-src=ai punts → FormACard substitutes (photos logged as scripting gaps); 4 GRAPHIC beats naming non-existent Manim scenes → FormACard summaries (all Manim upgrades logged); 2 DOCUMENT quote punts → FormACard (document.quote blocks retained for future editorial-quote scene); B06's truncated-narration `lines` placeholder replaced with 3 authored lines.
+- **Verdict:** N/A by Medhavy channel design; B12 closing card carries the compressed claim.
+- **Narration:** LOCKED; one TTS-phonetic edit (`medhavy.com` → `medhavy dot com`, matches sibling reel). Zero datable-claim edits.
+- **Gate T:** PASS (9 §8.10 advisories — structural, "narration recites the card" — expected for text-substitute FormACards; no validators loosened).
+- **Gate audio:** PASS (mean −23.9 dB / max −6.6 dB).
+- **Gate V:** 8 frames read across timeline — legible EB Garamond on cream, safe area clean, one crimson accent per outro underline, no overlaps/overflows; zero BLOCKER, zero MAJOR.
+- **Lens:** all four moves present (Plato spine · Descartes checklist · Popper biopsy · Hume "illustrative").
+- **Written:** `AUDIT.md`, `REBUILD-LOG.md`, `beat_sheet.pre-rebuild.json`, `youtube/FILMLOOP-LOG.md` append.

@@ -1,0 +1,11 @@
+Done. `claude-liam-troubleshooting.mp4` (5:07, 4K, aac, mean_volume −25.3 dB, mtime 12:51:41 > sheet 12:46:24).
+
+Phase-1 fixes this pass:
+- **§5c BHTF placeholder** — authored a real DIY exercise (open `/plugins`, toggle a plugin off/on = the "toggle move"), 3 real output lines, spoken narration. Distinct from H01's paste-into-Claude ask.
+- **§11 GATE T** — three FAILs that surfaced now that Manim beats have real video:
+  - B02 min-size 8px → bumped Scene_B02 label sizes, swapped ` · ` → ` — ` (mid-dot was a sub-floor blob).
+  - B10 kerning 89px → grew boxes, digit 34→44, label 20→32, shortened labels to single-word (`Simpler?`, `Restart?`).
+  - B08 min-size 37px → dropped `→` arrow lines that rendered as sub-glyph strokes.
+- After fixes: **GATE T PASS** (0 pixel, 0 sweep, 0 shape); frame/lane/content checks PASS; 27/27 filled; no slates.
+
+Written to `AUDIT.md`, `REBUILD-LOG.md` (§6–§9 + verification), and appended to the book's `FILMLOOP-LOG.md`. Beat sheet untouched after final compile.

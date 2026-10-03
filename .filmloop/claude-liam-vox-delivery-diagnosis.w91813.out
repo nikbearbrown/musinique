@@ -1,0 +1,8 @@
+Reel done. Master mp4 is newer than the sheet (13:43 vs 13:42), so the DONE gate is met.
+
+- **Deliverable:** `cancer-nanomedicine/youtube/claude-liam-vox-delivery-diagnosis/vox-delivery-diagnosis.mp4` — 237.2 s, 3840×2160, 16/16 beats VIDEO (no slates), mean_volume −27.8 dB.
+- **Rebuild:** PHASE 0 snapshot taken; ElevenLabs envelope stripped; every body beat re-routed from unwired Manim/D3/gen-AI slates to Remotion FormA/FormB in the vox skin; dead legacy outros B13/B14 dropped.
+- **Content fixes:** B00 greeting → "Kia ora, Liam."; B01 placeholder items replaced with narration-derived labels/subs; BVDT — placeholder + empty narration replaced with a 4-line verdict + 88-word narration (Kokoro `am_onyx`, regenerated).
+- **Gates:** compile PASS, LANE PASS, AUDIO PASS. First type_check pass flagged two §8.9 heuristic false-positives (strings ending "…it"); reworded B07 title and B09 sub, re-rendered those two beats, recompiled, second type_check PASS.
+- **Gate V:** 16 sampled frames spot-read (B00/B03/B07/B09/B11/BVDT/BHTF/BOUT) — legible, in-safe, no overlap, one terracotta accent per frame.
+- **AUDIT.md**, **REBUILD-LOG.md**, and a full `youtube/FILMLOOP-LOG.md` entry written.

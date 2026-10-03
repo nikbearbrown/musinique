@@ -1,0 +1,13 @@
+Cut `01:01` > sheet `00:55`. Reel DONE.
+
+**nbb-handoff-condition-protocol — DONE (review slate cut, 127.7 s @ 720p, 13/13 real beats).**
+
+Fixed:
+- Dropped duplicate empty BVDT/BHTF/BOUT (NBB channel already carries NBB01/NBB02/NBB03 with the required Claude bookend patterns).
+- Restored NBB00 cold open from the sibling `beat_sheet.nbb.json` (later automation had swapped in a 110-word ask that mismatched the measured 9.6 s duration); greeting `"Your turn."` → `"Merhaba, Liam"`.
+- Rewrote NBB02 your-turn (removed cancer-scenario template + `[title]` bracket placeholder → real handoff-condition exercise).
+- B01 FormBCard: `"Key point one/two/three"` empty subs → `Test file / Case count / Passing inputs` with real subs.
+- Fixed scenes_std.py 60-char truncations on B04, B07, B08 chart captions; re-rendered before final compile.
+- Cleared stale `source_*`/`audio_file` pointers on B00-B08 that pointed at non-existent paths under the source reel.
+
+Gates all PASS: content, frame, LANE (0 slates), GATE AUDIO (−24.2 dB), GATE V (frames read clean). Kokoro generated all 13 mp3s free @ $0.00. Master `handoff-condition-protocol-slate.mp4` mtime `01:01` > beat_sheet.json mtime `00:55`.

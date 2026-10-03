@@ -1,0 +1,87 @@
+module Anthropic
+  module Models
+    class BetaContextManagementConfig = Beta::BetaContextManagementConfig
+
+    module Beta
+      type beta_context_management_config =
+        {
+          edits: ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]
+        }
+
+      class BetaContextManagementConfig < Anthropic::Internal::Type::BaseModel
+        attr_reader edits: ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]?
+
+        def edits=: (
+          ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]
+        ) -> ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]
+
+        def initialize: (
+          ?edits: ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]
+        ) -> void
+
+        def to_hash: -> {
+          edits: ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]
+        }
+
+        type edit =
+          Anthropic::Beta::BetaClearToolUses20250919Edit
+          | Anthropic::Beta::BetaClearThinking20251015Edit
+          | Anthropic::Beta::BetaCompact20260112Edit
+
+        module Edit
+          extend Anthropic::Internal::Type::Union
+
+          type type_ =
+            :clear_tool_uses_20250919
+            | :clear_thinking_20251015
+            | :compact_20260112
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            CLEAR_TOOL_USES_20250919: :clear_tool_uses_20250919
+            CLEAR_THINKING_20251015: :clear_thinking_20251015
+            COMPACT_20260112: :compact_20260112
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::Edit::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaContextManagementConfig::edit]
+
+          def self.new:
+            (
+              type: :clear_tool_uses_20250919 | "clear_tool_uses_20250919",
+              ?clear_at_least: Anthropic::Beta::BetaInputTokensClearAtLeast?,
+              ?clear_tool_inputs: Anthropic::Models::Beta::BetaClearToolUses20250919Edit::clear_tool_inputs?,
+              ?exclude_tools: ::Array[String]?,
+              ?keep: Anthropic::Beta::BetaToolUsesKeep,
+              ?trigger: Anthropic::Models::Beta::BetaClearToolUses20250919Edit::trigger
+            ) -> Anthropic::Beta::BetaClearToolUses20250919Edit
+            | (
+              type: :clear_thinking_20251015 | "clear_thinking_20251015",
+              ?keep: Anthropic::Models::Beta::BetaClearThinking20251015Edit::keep
+            ) -> Anthropic::Beta::BetaClearThinking20251015Edit
+            | (
+              type: :compact_20260112 | "compact_20260112",
+              ?instructions: String?,
+              ?pause_after_compaction: bool,
+              ?trigger: Anthropic::Beta::BetaInputTokensTrigger?
+            ) -> Anthropic::Beta::BetaCompact20260112Edit
+            | (
+              type: Anthropic::Models::Beta::BetaContextManagementConfig::Edit::type_
+              | String,
+              ?clear_at_least: Anthropic::Beta::BetaInputTokensClearAtLeast?,
+              ?clear_tool_inputs: Anthropic::Models::Beta::BetaClearToolUses20250919Edit::clear_tool_inputs?,
+              ?exclude_tools: ::Array[String]?,
+              ?keep: Anthropic::Beta::BetaToolUsesKeep
+              | Anthropic::Models::Beta::BetaClearThinking20251015Edit::keep,
+              ?trigger: Anthropic::Models::Beta::BetaClearToolUses20250919Edit::trigger
+              | Anthropic::Beta::BetaInputTokensTrigger?,
+              ?instructions: String?,
+              ?pause_after_compaction: bool
+            ) -> Anthropic::Models::Beta::BetaContextManagementConfig::edit
+        end
+      end
+    end
+  end
+end

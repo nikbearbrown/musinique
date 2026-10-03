@@ -1,0 +1,5 @@
+Done. Reel `vox-targeting-uptake` is DONE.
+
+**Cut**: `/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/youtube/cancer-nanomedicine/youtube/vox-targeting-uptake/vox-targeting-uptake-slate.mp4` (119.2 s, 12/12 filled: 9 MANIM + 3 STILL, zero SLATE, mean_volume −24.3 dB, mp4 mtime 4 s newer than beat_sheet.json).
+
+**What ran**: Phase 0 envelope normalize (dropped `voice_id`, added `engine`/`voice`, rewrote `clock`, `beat_sheet.pre-rebuild.json` snapshot); Phase 1 audit (§5 card fix on B02 truncated-narration-head placeholder, GATE T PASS); Phase 2 render 9 manim scenes + 3 PIL slates → compile → Gate V. First-pass Gate V found B05 off-frame annotation (BLOCKER) and B07 chip/label overlap (MAJOR); fixed both in `vox_scenes.py`, re-rendered, re-compiled, re-QC'd — zero BLOCKER / zero MAJOR on real beats.

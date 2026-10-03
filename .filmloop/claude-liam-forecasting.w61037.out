@@ -1,0 +1,15 @@
+Mp4 (02:13:09 epoch 1787724792) is 3 seconds newer than beat_sheet (02:13:06 epoch 1787724789). Ordering confirmed.
+
+---
+
+**`claude-liam-forecasting` — DONE**
+
+`claude-liam-forecasting-slate.mp4`, 92.0s, mean_volume −23.9 dB. All 7 beats VIDEO. GATE T PASS. GATE V PASS (0 blockers, 0 majors).
+
+**Fixes applied (Phase 1):**
+- **Spark line** B03: "This is the part worth knowing." (6 words, generic) → "Spec limits scope." (3 words)
+- **Verdict** BVDT: Template lines replaced with reel-specific findings from body (Path A/B flags, confidence < 0.6, rolling mean). Two lens moves authored: Popper (failure threshold named in advance) + Hume (forecast_qty is a model property, not a world fact)
+- **Card text** B03: truncation corruption "compute it y" / "subag" → "compute it yourself" / "subagent"; props.body de-wordified 32 → 8 words to clear §8.5 no-wordy-card
+- **Brand fields**: modelLabel "Opus 4.8" → "Opus 4.7" throughout (non-existent model); BOUT subline removed (OUTRO-LOCK)
+- **Closing block** (BHTF): Grammatically broken prompt replaced with specific, scaffolded forecasting prompt ("I have a SKU with a promotion next month…")
+- **GATE T**: Failed first run on B03 body (32 words); fixed and re-rendered; passed second run

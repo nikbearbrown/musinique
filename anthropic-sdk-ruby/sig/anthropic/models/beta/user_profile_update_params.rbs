@@ -1,0 +1,96 @@
+module Anthropic
+  module Models
+    module Beta
+      type user_profile_update_params =
+        {
+          user_profile_id: String,
+          access_type: Anthropic::Models::Beta::UserProfileUpdateParams::access_type?,
+          external_id: String?,
+          external_user_details: Anthropic::Beta::BetaUserProfileExternalUserDetailsParams,
+          external_user_onboarded_at: Time,
+          metadata: ::Hash[Symbol, String],
+          name: String?,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String
+        }
+        & Anthropic::Internal::Type::request_parameters
+
+      class UserProfileUpdateParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        attr_accessor user_profile_id: String
+
+        attr_accessor access_type: Anthropic::Models::Beta::UserProfileUpdateParams::access_type?
+
+        attr_accessor external_id: String?
+
+        attr_reader external_user_details: Anthropic::Beta::BetaUserProfileExternalUserDetailsParams?
+
+        def external_user_details=: (
+          Anthropic::Beta::BetaUserProfileExternalUserDetailsParams
+        ) -> Anthropic::Beta::BetaUserProfileExternalUserDetailsParams
+
+        attr_reader external_user_onboarded_at: Time?
+
+        def external_user_onboarded_at=: (Time) -> Time
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_accessor name: String?
+
+        attr_reader betas: ::Array[Anthropic::Models::anthropic_beta]?
+
+        def betas=: (
+          ::Array[Anthropic::Models::anthropic_beta]
+        ) -> ::Array[Anthropic::Models::anthropic_beta]
+
+        attr_reader workspace_id: String?
+
+        def workspace_id=: (String) -> String
+
+        def initialize: (
+          user_profile_id: String,
+          ?access_type: Anthropic::Models::Beta::UserProfileUpdateParams::access_type?,
+          ?external_id: String?,
+          ?external_user_details: Anthropic::Beta::BetaUserProfileExternalUserDetailsParams,
+          ?external_user_onboarded_at: Time,
+          ?metadata: ::Hash[Symbol, String],
+          ?name: String?,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          user_profile_id: String,
+          access_type: Anthropic::Models::Beta::UserProfileUpdateParams::access_type?,
+          external_id: String?,
+          external_user_details: Anthropic::Beta::BetaUserProfileExternalUserDetailsParams,
+          external_user_onboarded_at: Time,
+          metadata: ::Hash[Symbol, String],
+          name: String?,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String,
+          request_options: Anthropic::RequestOptions
+        }
+
+        type access_type = :application | :passthrough
+
+        module AccessType
+          extend Anthropic::Internal::Type::Enum
+
+          # The user profile represents an individual end-user of a product that the platform builds on the API. New profiles get this value by default.
+          APPLICATION: :application
+
+          # The user profile represents a company that the platform resells Claude access to.
+          PASSTHROUGH: :passthrough
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::UserProfileUpdateParams::access_type]
+        end
+      end
+    end
+  end
+end

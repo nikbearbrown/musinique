@@ -1,0 +1,125 @@
+module Anthropic
+  module Models
+    class BetaCitationsDelta = Beta::BetaCitationsDelta
+
+    module Beta
+      type beta_citations_delta =
+        {
+          citation: Anthropic::Models::Beta::BetaCitationsDelta::citation,
+          type: :citations_delta
+        }
+
+      class BetaCitationsDelta < Anthropic::Internal::Type::BaseModel
+        attr_accessor citation: Anthropic::Models::Beta::BetaCitationsDelta::citation
+
+        attr_accessor type: :citations_delta
+
+        def initialize: (
+          citation: Anthropic::Models::Beta::BetaCitationsDelta::citation,
+          ?type: :citations_delta
+        ) -> void
+
+        def to_hash: -> {
+          citation: Anthropic::Models::Beta::BetaCitationsDelta::citation,
+          type: :citations_delta
+        }
+
+        type citation =
+          Anthropic::Beta::BetaCitationCharLocation
+          | Anthropic::Beta::BetaCitationPageLocation
+          | Anthropic::Beta::BetaCitationContentBlockLocation
+          | Anthropic::Beta::BetaCitationsWebSearchResultLocation
+          | Anthropic::Beta::BetaCitationSearchResultLocation
+
+        module Citation
+          extend Anthropic::Internal::Type::Union
+
+          type type_ =
+            :char_location
+            | :page_location
+            | :content_block_location
+            | :web_search_result_location
+            | :search_result_location
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            CHAR_LOCATION: :char_location
+            PAGE_LOCATION: :page_location
+            CONTENT_BLOCK_LOCATION: :content_block_location
+            WEB_SEARCH_RESULT_LOCATION: :web_search_result_location
+            SEARCH_RESULT_LOCATION: :search_result_location
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaCitationsDelta::Citation::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaCitationsDelta::citation]
+
+          def self.new:
+            (
+              type: :char_location | "char_location",
+              cited_text: String,
+              document_index: Integer,
+              document_title: String?,
+              end_char_index: Integer,
+              file_id: String?,
+              start_char_index: Integer
+            ) -> Anthropic::Beta::BetaCitationCharLocation
+            | (
+              type: :page_location | "page_location",
+              cited_text: String,
+              document_index: Integer,
+              document_title: String?,
+              end_page_number: Integer,
+              file_id: String?,
+              start_page_number: Integer
+            ) -> Anthropic::Beta::BetaCitationPageLocation
+            | (
+              type: :content_block_location | "content_block_location",
+              cited_text: String,
+              document_index: Integer,
+              document_title: String?,
+              end_block_index: Integer,
+              file_id: String?,
+              start_block_index: Integer
+            ) -> Anthropic::Beta::BetaCitationContentBlockLocation
+            | (
+              type: :web_search_result_location | "web_search_result_location",
+              cited_text: String,
+              encrypted_index: String,
+              title: String?,
+              url: String
+            ) -> Anthropic::Beta::BetaCitationsWebSearchResultLocation
+            | (
+              type: :search_result_location | "search_result_location",
+              cited_text: String,
+              end_block_index: Integer,
+              search_result_index: Integer,
+              source: String,
+              start_block_index: Integer,
+              title: String?
+            ) -> Anthropic::Beta::BetaCitationSearchResultLocation
+            | (
+              type: Anthropic::Models::Beta::BetaCitationsDelta::Citation::type_
+              | String,
+              cited_text: String,
+              ?document_index: Integer,
+              ?document_title: String?,
+              ?end_char_index: Integer,
+              ?file_id: String?,
+              ?start_char_index: Integer,
+              ?end_page_number: Integer,
+              ?start_page_number: Integer,
+              ?end_block_index: Integer,
+              ?start_block_index: Integer,
+              ?encrypted_index: String,
+              ?title: String?,
+              ?url: String,
+              ?search_result_index: Integer,
+              ?source: String
+            ) -> Anthropic::Models::Beta::BetaCitationsDelta::citation
+        end
+      end
+    end
+  end
+end

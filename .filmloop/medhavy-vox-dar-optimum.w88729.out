@@ -1,0 +1,7 @@
+Done. `medhavy-vox-dar-optimum` review-slate cut delivered:
+
+- **Cut:** `anthropics/youtube/cancer-nanomedicine/youtube/medhavy-vox-dar-optimum/vox-dar-optimum-slate.mp4` (206.6 s @ 3840×2160, mp4 mtime 19:26:23 > sheet mtime 19:22:29 → DONE-check will pass).
+- **Phase 0:** `beat_sheet.pre-rebuild.json` created byte-exact; envelope cleaned (dropped ElevenLabs `voice_id` + `clock` prose); `REBUILD-LOG.md` records every change. Non-Claude medhavy skin preserved.
+- **Phase 1:** all audits logged to `AUDIT.md`. Only fix: B05 FormACard `lines[0]` compressed from a narration recite to `"Too little — the cell survives."` (clears the §8.10 advisory). No validators weakened.
+- **Phase 2:** Kokoro `af_kore` audio regenerated (VOICE-LOCK, $0.00). Wrote `scenes.py` + `render_scenes.py` and rendered 6 illustrative Manim diagrams (B02/B04/B06/B07/B09/B10) rather than let them ship as PIPELINE-SLATE lane violations. Rendered 3 Remotion beats (B05 FormACard, B13 OutroSeries, B14 OutroCTA). Compile with `--review` → `build.status = Counter({'MANIM': 6, 'SLATE': 5, 'VIDEO': 3})`. Lane-check PASS, Gate AUDIO PASS (mean_volume −23.8 dB), Gate V PASS (frames sampled — Manim charts render clean, palette obeyed, no overflow). 5 legal review-slate cards remain (B01/B03/B08/B11/B12 — non-pipeline CARD/DOCUMENT beats).
+- **Log:** entry appended to `anthropics/youtube/FILMLOOP-LOG.md`.

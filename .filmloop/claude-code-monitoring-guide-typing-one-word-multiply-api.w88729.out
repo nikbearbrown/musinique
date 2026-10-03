@@ -1,0 +1,5 @@
+DONE. Master `claude-code-monitoring-guide-typing-one-word-multiply-api.mp4` (98.3 s, 4K, mean_volume −24.1 dB) is 31 s newer than `beat_sheet.json`.
+
+**build.status Counter**: `Counter({'VIDEO': 8})` — all 8 beats real, zero slates.
+
+Rebuild pass: dropped legacy YOURTURN + OUTRO duplicates, stripped placeholder BVDT (thin body — 5 body beats, 143 words), rebuilt B00 greeting from `"Liam"` (empty spark) to `"Merhaba, Liam"` (unique in monitoring cohort where three neighbors use Konnichiwa), authored real FormA/FormB shot blocks for B01–B05 (previously bare narration), rewrote BHTF from bracketed template `[Why typing one word can multiply your API bill 100×]` to a real audit exercise (grep the session log for the ladder words, tally each rung, convert hidden reasoning to dollars). Two FormBCard icons failed first render pass (invalid slugs); reshaped to valid ones (`frame`/`layers`/`clipboard-list`/`target`/`zap`) and re-rendered only those two beats. GATE T PASS, GATE LANE PASS, GATE AUDIO PASS, GATE V PASS across all eight beat mid-frames.

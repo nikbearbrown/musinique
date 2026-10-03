@@ -1,0 +1,202 @@
+module Anthropic
+  module Models
+    module Beta
+      type session_create_params =
+        {
+          agent: Anthropic::Models::Beta::SessionCreateParams::agent,
+          environment_id: String,
+          budget: Anthropic::Beta::BetaManagedAgentsBudgetLimit,
+          initial_events: ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event],
+          metadata: ::Hash[Symbol, String],
+          resources: ::Array[Anthropic::Models::Beta::SessionCreateParams::resource],
+          title: String?,
+          vault_ids: ::Array[String],
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String
+        }
+        & Anthropic::Internal::Type::request_parameters
+
+      class SessionCreateParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        attr_accessor agent: Anthropic::Models::Beta::SessionCreateParams::agent
+
+        attr_accessor environment_id: String
+
+        attr_reader budget: Anthropic::Beta::BetaManagedAgentsBudgetLimit?
+
+        def budget=: (
+          Anthropic::Beta::BetaManagedAgentsBudgetLimit
+        ) -> Anthropic::Beta::BetaManagedAgentsBudgetLimit
+
+        attr_reader initial_events: ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event]?
+
+        def initial_events=: (
+          ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event]
+        ) -> ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event]
+
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+        attr_reader resources: ::Array[Anthropic::Models::Beta::SessionCreateParams::resource]?
+
+        def resources=: (
+          ::Array[Anthropic::Models::Beta::SessionCreateParams::resource]
+        ) -> ::Array[Anthropic::Models::Beta::SessionCreateParams::resource]
+
+        attr_accessor title: String?
+
+        attr_reader vault_ids: ::Array[String]?
+
+        def vault_ids=: (::Array[String]) -> ::Array[String]
+
+        attr_reader betas: ::Array[Anthropic::Models::anthropic_beta]?
+
+        def betas=: (
+          ::Array[Anthropic::Models::anthropic_beta]
+        ) -> ::Array[Anthropic::Models::anthropic_beta]
+
+        attr_reader workspace_id: String?
+
+        def workspace_id=: (String) -> String
+
+        def initialize: (
+          agent: Anthropic::Models::Beta::SessionCreateParams::agent,
+          environment_id: String,
+          ?budget: Anthropic::Beta::BetaManagedAgentsBudgetLimit,
+          ?initial_events: ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event],
+          ?metadata: ::Hash[Symbol, String],
+          ?resources: ::Array[Anthropic::Models::Beta::SessionCreateParams::resource],
+          ?title: String?,
+          ?vault_ids: ::Array[String],
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          agent: Anthropic::Models::Beta::SessionCreateParams::agent,
+          environment_id: String,
+          budget: Anthropic::Beta::BetaManagedAgentsBudgetLimit,
+          initial_events: ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event],
+          metadata: ::Hash[Symbol, String],
+          resources: ::Array[Anthropic::Models::Beta::SessionCreateParams::resource],
+          title: String?,
+          vault_ids: ::Array[String],
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String,
+          request_options: Anthropic::RequestOptions
+        }
+
+        type agent =
+          Anthropic::Beta::BetaManagedAgentsAgentParams
+          | Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams
+          | String
+
+        module Agent
+          extend Anthropic::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::SessionCreateParams::agent]
+        end
+
+        type initial_event =
+          Anthropic::Beta::Sessions::BetaManagedAgentsUserMessageEventParams
+          | Anthropic::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams
+
+        module InitialEvent
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :"user.message" | :"user.define_outcome"
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            USER_MESSAGE: :"user.message"
+            USER_DEFINE_OUTCOME: :"user.define_outcome"
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::SessionCreateParams::InitialEvent::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::SessionCreateParams::initial_event]
+
+          def self.new:
+            (
+              type: :"user.message" | "user.message",
+              content: ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserMessageEventParams::content]
+            ) -> Anthropic::Beta::Sessions::BetaManagedAgentsUserMessageEventParams
+            | (
+              type: :"user.define_outcome" | "user.define_outcome",
+              description: String,
+              rubric: Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams::rubric,
+              ?max_iterations: Integer?
+            ) -> Anthropic::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams
+            | (
+              type: Anthropic::Models::Beta::SessionCreateParams::InitialEvent::type_
+              | String,
+              ?content: ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserMessageEventParams::content],
+              ?description: String,
+              ?rubric: Anthropic::Models::Beta::Sessions::BetaManagedAgentsUserDefineOutcomeEventParams::rubric,
+              ?max_iterations: Integer?
+            ) -> Anthropic::Models::Beta::SessionCreateParams::initial_event
+        end
+
+        type resource =
+          Anthropic::Beta::BetaManagedAgentsGitHubRepositoryResourceParams
+          | Anthropic::Beta::BetaManagedAgentsFileResourceParams
+          | Anthropic::Beta::BetaManagedAgentsMemoryStoreResourceParam
+
+        module Resource
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :github_repository | :file | :memory_store
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            GITHUB_REPOSITORY: :github_repository
+            FILE: :file
+            MEMORY_STORE: :memory_store
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::SessionCreateParams::Resource::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::SessionCreateParams::resource]
+
+          def self.new:
+            (
+              type: :github_repository | "github_repository",
+              url: String,
+              ?authorization_token: String,
+              ?checkout: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout?,
+              ?mount_path: String?
+            ) -> Anthropic::Beta::BetaManagedAgentsGitHubRepositoryResourceParams
+            | (
+              type: :file | "file",
+              file_id: String,
+              ?mount_path: String?
+            ) -> Anthropic::Beta::BetaManagedAgentsFileResourceParams
+            | (
+              type: :memory_store | "memory_store",
+              memory_store_id: String,
+              ?access: Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam::access?,
+              ?instructions: String?
+            ) -> Anthropic::Beta::BetaManagedAgentsMemoryStoreResourceParam
+            | (
+              type: Anthropic::Models::Beta::SessionCreateParams::Resource::type_
+              | String,
+              ?url: String,
+              ?authorization_token: String,
+              ?checkout: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout?,
+              ?mount_path: String?,
+              ?file_id: String,
+              ?memory_store_id: String,
+              ?access: Anthropic::Models::Beta::BetaManagedAgentsMemoryStoreResourceParam::access?,
+              ?instructions: String?
+            ) -> Anthropic::Models::Beta::SessionCreateParams::resource
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,9 @@
+Reel done. `lnp-endosomal-escape-slate.mp4` (218.2s, 12/12 VIDEO, GATE T PASS, GATE AUDIO -23.9 dB, GATE V frames read) is 25 s newer than `beat_sheet.json`.
+
+**Summary of the invocation:**
+
+- **PHASE 0 rebuild contract:** `beat_sheet.pre-rebuild.json` created byte-exact. Dropped dead `voice_id` (ElevenLabs banned), normalized to Kokoro `am_onyx`. Non-Claude channel: kept `NikBearBrownOpen` (B00) + `NikBearBrownOutro` (B09); Claude bookends `BVDT` + `BHTF` inserted BEFORE the outro (sibling pattern); deleted a duplicate `BOUT ClaudeTitleOutro` bolted on by a prior pass.
+- **PHASE 1 audit:** All 12 checks fixed or PASS. Verdict authored from body nouns/numbers (four artifact lines). BHTF placeholder replaced with real pKa 6.2–6.5 + PEG-shedding exercise. Punts fixed on B01 (placeholder FormBCard subs) and on B06/B07/B08 (bare `shot.source: null` holds → real FormBCards). B04 Manim scene (legacy `vox_graphics` dep) fell back to FormB — TEMPLATE-MISS logged. `type_check.py` GATE T: PASS.
+- **PHASE 2 build:** Kokoro audio → Remotion 12/12 → compile `--review`. Caught a ClaudeVerdictArtifact ordinal-list bug that stripped the leading `1–` from line 1 of BVDT; reworded to `Only 1–2%…` / `pKa between 6.2 and 6.5`, re-rendered BVDT, recompiled. GATE V frames spot-read (B01, B04, BVDT both pages, BHTF) — all clean.
+
+Files: `beat_sheet.json`, `beat_sheet.pre-rebuild.json`, `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, `qc-sheet.png`, `_qc/frames/`, `mp3/`, `media/`, `lnp-endosomal-escape-slate.mp4`. FILMLOOP-LOG entry appended.

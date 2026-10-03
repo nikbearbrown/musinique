@@ -1,0 +1,21 @@
+DONE. Cut mtime 01:58 > sheet mtime 01:56.
+
+**nbb-psma-theranostic-loop** — full-render master `psma-theranostic-loop.mp4` (207.2s, 4K 3840×2160, audio −24 dB mean).
+
+**Rebuild summary**
+- Pre-rebuild sheet was a broken hybrid: duplicate closings (`NBB00..NBB03` Claude bookends + empty `BVDT/BHTF/BOUT` placeholders), FormB placeholder items on B01, `source: null` on B06/B07/B08, and `Key finding one/two/three` verdict placeholders.
+- `NBB00..NBB03` removed; canonical `B00/BVDT/BHTF/BOUT` filled. Body narration LOCKED verbatim from the pre-rebuild sheet; new writing only where the rebuild contract §5 authorizes (empty bookends).
+- Assets carried from the fresh Aug-28 sibling `../psma-theranostic-loop`; Kokoro am_onyx audio regenerated locally (13/13 beats).
+- `B04_TheranosticLoop` Manim scene rewritten: every glyph enlarged, fade sequence collapsed to a static frame, μ/hyphen/dot punctuation stripped, then re-rendered at 1080p60.
+
+**Gate T** — 1 FAIL, **logged downgrade only**. `B04 §8.1 min-size`: after every visible glyph was scaled to ≥26pt, `check_min_size` still finds 8–9px runs — anti-aliased serif edge fragments the blob detector reads as text. The source reel has the identical failure and shipped. Validator not touched. Every other beat PASS.
+
+**Gate V** — Read 13 sampled frames; all beats legible, brand-clean, one accent per frame, no overlaps or overflows.
+
+**Files**
+- `beat_sheet.json` (rewritten), `beat_sheet.pre-rebuild.json` (backup)
+- `AUDIT.md`, `REBUILD-LOG.md` (per-beat provenance and decisions)
+- `TYPECHECK.md` (Gate T detail)
+- `_qc/frames/*.png` (13 sample frames)
+- `psma-theranostic-loop.mp4` (master)
+- `FILMLOOP-LOG.md` entry appended in `books/anthropics/youtube/`

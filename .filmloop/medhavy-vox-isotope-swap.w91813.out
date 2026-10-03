@@ -1,0 +1,11 @@
+Reel done.
+
+**medhavy-vox-isotope-swap** — review slate cut shipped as `vox-isotope-swap-slate.mp4` (197.2 s · 1280×720 · aac 48 kHz mono · mean_volume −24.0 dB).
+
+- **build.status Counter**: `Counter({'VIDEO': 14})` — 14/14 rendered, zero slates
+- **Gates**: CONTENT PASS · FRAME PASS · LANE PASS · T PASS (no §8.10 advisories ≥ 0.80) · AUDIO PASS · V clean qc-sheet
+- **Staleness**: mp4 mtime 20:59:50 > sheet mtime 20:59:45 (+5 s) ✓ — no post-compile sheet edits
+- **Rebuild**: pre-rebuild snapshot saved; dropped ElevenLabs `voice_id` + `clock` prose + `_variant_todo`; added `folderLabel: @MedhavyAI`. Narration byte-locked.
+- **Fix pattern (matches sibling `medhavy-vox-size-paradox` shipped earlier today)**: six GRAPHIC beats named Manim scenes that don't exist on disk. Converted all 12 body beats to Remotion FormACard pull-quotes, keeping original `production_viz` blocks as the shot list. Outros re-schemed to current `{eyebrow,line}` / `{line,handle}` so MEDHAVY branding renders instead of silent Claude-default.
+- **Pacing flag (logged, not silently retimed)**: B11 = 4.02 wps.
+- **Honest note**: text-substitute review slate, not the intended final render — Manim body renderers still owed. AUDIT.md and FILMLOOP-LOG.md name every skipped visual.

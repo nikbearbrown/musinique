@@ -1,0 +1,10 @@
+Reel done. `one-sentence-problem-statement.mp4` (94.7s, 3840×2160, mean_volume −24.2 dB) newer than `beat_sheet.json` by 4 minutes.
+
+**Summary**
+- Snapshot: `beat_sheet.pre-rebuild.json` created byte-exact.
+- Audit fixes: dropped 4 duplicate NBB0X wrapper beats; stripped placeholder BVDT (body <5 beats); rewrote BHTF from cancer-nonsense template to a real ands-audit exercise; replaced B01 FormB `Key point one/two/three` with the four projects Seth's ands-laden sentence hid; authored B00/BHTF/BOUT narration with IN-FOR-BEAR LAW; kept B01–B04 narration LOCKED.
+- Kokoro audio: 7 mp3s generated at am_onyx, durations became the clock.
+- Rendered all 7 beats real (no slates): 4 Remotion + 3 Manim. Re-rendered Manim after first pass showed extreme slow-mo + a truncated "one don" text — rewrote `scenes_std.py` with full on_screen sentences, Claude palette, per-beat wait times.
+- Gates: GATE T PASS · Content/Frame/Lane PASS · GATE AUDIO PASS · Gate V frames read (all beats legible, one terracotta per beat, no overflow).
+- `build.status = Counter({'VIDEO': 7})` · `slots: 7/7 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO BHTF:VIDEO BOUT:VIDEO`.
+- No validator weakened, no downgrade.

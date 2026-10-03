@@ -1,0 +1,9 @@
+DONE. `hai-vox-light-ceiling` shipped:
+
+- **Master:** `vox-light-ceiling.mp4` · 138.5 s · 3840×2160 · 12/12 filled, 0 slates
+- **DONE-check:** mp4 mtime 14:08 > sheet mtime 14:07 ✓
+- **GATE LANE / AUDIO / TYPECHECK:** all PASS · mean_volume −24 dB
+- **Gate V:** all 12 beats legible, zero BLOCKER, zero MAJOR
+- **Narration:** locked byte-for-byte across all beats
+
+**Downgrade logged:** six Manim beats (B04–B09) converted to Remotion FormA/FormB cards because the declared scene names (`B04_PDTMechanism` etc.) don't exist in `animated_graphics.py` and GATE LANE PIPELINE-SLATE-IN-CUT is un-bypassable. Also uncovered a BarChart 4K bug (bars render at height zero, labels overflow top edge at 3840×2160) — three affected beats reshaped to text cards; defect recorded in FILMLOOP-LOG for a future one-place fix.

@@ -1,0 +1,7 @@
+module Anthropic
+  module Models
+    module Beta
+      class UnwrapWebhookEvent = Anthropic::Models::Beta::BetaWebhookEvent
+    end
+  end
+end

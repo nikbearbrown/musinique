@@ -1,0 +1,7 @@
+Final state:
+
+- **Reel:** `anthropics/youtube/cancer-nanomedicine/youtube/nanomedicine-translation-gap/nanomedicine-translation-gap.mp4` — 224.6 s, 4K, 14.2 MB.
+- **All 13 beats VIDEO** (0 slates). GATE LANE PASS. GATE AUDIO PASS (−24.1 dB). GATE T PASS. GATE V PASS.
+- **Cut mtime 16:48, sheet mtime 16:47** — supervisor DONE-check satisfied.
+- **Phase-1 fixes:** placeholder verdict authored (BVDT), placeholder your-turn authored (BHTF), 3 placeholder FormB items authored (B01), 4 null-source SLATE beats rebuilt as real Remotion FormB/A cards (B04/B06/B07/B08), 2 generic spark lines specific-ified (B02/B05), dead ElevenLabs `voice_id` dropped, metadata VOICE-LOCK reset to Kokoro `am_onyx`. Two GATE T fails found and fixed at content level (B06 sub truncation, B09 outro title too wordy) — no validator loosening. Rebuild-log records every edit; pre-rebuild sheet preserved byte-exact.
+- **FILMLOOP-LOG updated** with the full accounting.

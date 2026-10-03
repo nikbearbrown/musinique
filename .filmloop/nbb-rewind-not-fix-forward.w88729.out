@@ -1,0 +1,11 @@
+Cut mtime 17:46 is still newer than sheet mtime 17:45. Reel done.
+
+**Summary**
+
+- **Reel:** `anthropics/youtube/claude-code/nbb-rewind-not-fix-forward` → `rewind-not-fix-forward.mp4` (10 beats, 189.2 s, 4K).
+- **Phase 0:** created `beat_sheet.pre-rebuild.json` byte-exact snapshot; every edit logged in `REBUILD-LOG.md`.
+- **Phase 1 fixes:** NBB00 greeting `"Your turn."` → `"Guten Tag, Liam"`; B00 greeting `"Liam"` → `"Guten Tag, Liam"`; NBB01 truncated verdict line rewritten whole; B01 `Key point one/two/three` template → three authored items; NBB02 cancer/proteins template → real Esc-Esc + one-sentence-respec exercise; B04 got a real FormBCard pattern; B05 pattern moved into `shot.remotion`; B02/B03 rerouted from defective `Nbb…` scenes to source reel's clean `RewindNotFix` manim renders (copied locally); stripped empty-narration BVDT/BHTF/BOUT (redundant with NBB01–NBB03; per amendment, absent is legal).
+- **Phase 2 build:** Kokoro `am_onyx` audio for all 10 beats (free/local); Remotion rendered 8 beats; compile GATE LANE PASS, GATE AUDIO PASS (mean_volume −24.0 dB).
+- **Gate V:** 9-frame audit, zero BLOCKER / MAJOR — bookends legible, one terracotta moment per frame, no overlap or overflow.
+- **Punts:** `Counter({'VIDEO': 10})` — zero slates.
+- **Lens:** Popper (in-advance failure signal named) + Plato (artifact/world/relationship held apart in the `deleteApplication` walkthrough).

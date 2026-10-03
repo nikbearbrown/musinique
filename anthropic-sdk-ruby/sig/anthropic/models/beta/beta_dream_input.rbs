@@ -1,0 +1,43 @@
+module Anthropic
+  module Models
+    module BetaDreamInput = Beta::BetaDreamInput
+
+    module Beta
+      type beta_dream_input =
+        Anthropic::Beta::BetaDreamMemoryStoreInput
+        | Anthropic::Beta::BetaDreamSessionsInput
+
+      module BetaDreamInput
+        extend Anthropic::Internal::Type::Union
+
+        type type_ = :memory_store | :sessions
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          MEMORY_STORE: :memory_store
+          SESSIONS: :sessions
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaDreamInput::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_dream_input]
+
+        def self.new:
+          (
+            type: :memory_store | "memory_store",
+            memory_store_id: String
+          ) -> Anthropic::Beta::BetaDreamMemoryStoreInput
+          | (
+            type: :sessions | "sessions",
+            session_ids: ::Array[String]
+          ) -> Anthropic::Beta::BetaDreamSessionsInput
+          | (
+            type: Anthropic::Models::Beta::BetaDreamInput::type_ | String,
+            ?memory_store_id: String,
+            ?session_ids: ::Array[String]
+          ) -> Anthropic::Models::Beta::beta_dream_input
+      end
+    end
+  end
+end

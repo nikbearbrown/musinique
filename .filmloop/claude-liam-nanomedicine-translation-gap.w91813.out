@@ -1,0 +1,17 @@
+Reel done.
+
+**claude-liam-nanomedicine-translation-gap · MASTER cut, 13/13 filled**
+
+- `nanomedicine-translation-gap.mp4` — 219.6 s, 2160p, no slates, audio −24.5 dB (well above −40 dB floor)
+- MP4 mtime is 27.5 s newer than `beat_sheet.json` → passes supervisor's DONE check.
+
+Fixes applied before final compile:
+- **B00** swapped `NikBearBrownOpen` → canonical `ClaudeComposerAsk` with fresh Swahili spark line `Jambo, Liam.`
+- **B01** three empty FormBCard `sub` fields authored from narration
+- **B02/B05** generic `The ask,` sparks → beat-specific `Compile the ledger.` / `Iterate the loop.`
+- **B04/B06/B07/B08** upgraded from unfilled `GRAPHIC` slates (which failed lane check) to real `FormBCard` beats with content drawn from each beat's narration
+- **BVDT** placeholder verdict lines + empty narration replaced with a real 3-line verdict + spoken recap grounded in the body's own facts
+- **B01 / B09** titles shortened from 94-char reel title to `The Nanomedicine Translation Gap` after type_check §8.5 flagged them
+- **Metadata** dropped dead ElevenLabs `voice_id`; normalized `voice` to `am_onyx`
+
+Gates: CONTENT PASS · FRAME PASS · LANE PASS · GATE T PASS · GATE V (6 sample frames, all clean) · GATE AUDIO PASS. Logged to `youtube/FILMLOOP-LOG.md`. Supervisor can start the next reel.

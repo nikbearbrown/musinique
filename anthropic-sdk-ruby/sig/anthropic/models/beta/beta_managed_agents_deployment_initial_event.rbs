@@ -1,0 +1,56 @@
+module Anthropic
+  module Models
+    module BetaManagedAgentsDeploymentInitialEvent = Beta::BetaManagedAgentsDeploymentInitialEvent
+
+    module Beta
+      type beta_managed_agents_deployment_initial_event =
+        Anthropic::Beta::BetaManagedAgentsDeploymentUserMessageEvent
+        | Anthropic::Beta::BetaManagedAgentsDeploymentUserDefineOutcomeEvent
+        | Anthropic::Beta::BetaManagedAgentsDeploymentSystemMessageEvent
+
+      module BetaManagedAgentsDeploymentInitialEvent
+        extend Anthropic::Internal::Type::Union
+
+        type type_ =
+          :"user.message" | :"user.define_outcome" | :"system.message"
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          USER_MESSAGE: :"user.message"
+          USER_DEFINE_OUTCOME: :"user.define_outcome"
+          SYSTEM_MESSAGE: :"system.message"
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsDeploymentInitialEvent::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::Beta::beta_managed_agents_deployment_initial_event]
+
+        def self.new:
+          (
+            type: :"user.message" | "user.message",
+            content: ::Array[Anthropic::Models::Beta::BetaManagedAgentsDeploymentUserMessageEvent::content]
+          ) -> Anthropic::Beta::BetaManagedAgentsDeploymentUserMessageEvent
+          | (
+            type: :"user.define_outcome" | "user.define_outcome",
+            description: String,
+            rubric: Anthropic::Models::Beta::BetaManagedAgentsDeploymentUserDefineOutcomeEvent::rubric,
+            ?max_iterations: Integer?
+          ) -> Anthropic::Beta::BetaManagedAgentsDeploymentUserDefineOutcomeEvent
+          | (
+            type: :"system.message" | "system.message",
+            content: ::Array[Anthropic::Beta::BetaManagedAgentsSystemContentBlock]
+          ) -> Anthropic::Beta::BetaManagedAgentsDeploymentSystemMessageEvent
+          | (
+            type: Anthropic::Models::Beta::BetaManagedAgentsDeploymentInitialEvent::type_
+            | String,
+            ?content: ::Array[Anthropic::Models::Beta::BetaManagedAgentsDeploymentUserMessageEvent::content]
+            | ::Array[Anthropic::Beta::BetaManagedAgentsSystemContentBlock],
+            ?description: String,
+            ?rubric: Anthropic::Models::Beta::BetaManagedAgentsDeploymentUserDefineOutcomeEvent::rubric,
+            ?max_iterations: Integer?
+          ) -> Anthropic::Models::Beta::beta_managed_agents_deployment_initial_event
+      end
+    end
+  end
+end

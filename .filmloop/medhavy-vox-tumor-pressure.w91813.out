@@ -1,0 +1,21 @@
+Confirmed: `beat_sheet.json` mtime (Aug 26 20:56) is unchanged; AUDIT.md and BLOCKED.md written.
+
+**medhavy-vox-tumor-pressure — BLOCKED, nothing built.**
+
+This reel is a Vox-style medhavy audience variant, not a Claude/Liam Brutalist bookend reel. The factory prompt's scripts (`type_check.py`, `compile.py`, `verdict_audit.py`, bookends B00/BVDT/BHTF/BOUT) do not apply. Under its own Vox pipeline it fails three hard gates: 11 of 13 beats are the §6 "gen-AI clip → pantry" punt costume; there is no `vox_scenes.py` in the variant dir (Vox `vox_run.sh` exits 2); no `FACTCHECK.md`/`SHOTLIST.md`/`PROMPTS.md` (GATE F fails). Even the parent `vox-tumor-pressure/` has never been compiled to a cut.
+
+Fixing this requires authoring 11 medhavy-palette Manim scenes plus the paperwork set and running the Vox pipeline — outside a single unattended pass, especially under the wrong SKILL contract. `beat_sheet.json` was NOT touched (no rebuild attempted, no post-compile freshness hazard). Full detail in `AUDIT.md`; one-line entry in `youtube/BLOCKED.md`; block logged to `FILMLOOP-LOG.md` with `2/13 filled` Counter.
+This reel is already fully processed and logged as BLOCKED from an earlier pass today (2026-08-27). State has not changed:
+
+- `AUDIT.md` — comprehensive, dated today
+- `youtube/BLOCKED.md` line 9 — entry present
+- `youtube/FILMLOOP-LOG.md` line 5 — `BLOCKED (nothing built)` entry present
+
+Reason (unchanged): This is a **Vox medhavy variant**, not a Claude/Liam Brutalist reel. The factory-prompt scripts (`stale_check.py`, `verdict_audit.py`, `type_check.py`, `compile.py`) do not apply. 11 of 13 beats carry the `"YOU → 5–10s gen-AI clip → pantry"` punt costume (§6 blocker). Building it requires:
+1. Authoring `medhavy-vox-tumor-pressure/vox_scenes.py` in the medhavy palette (11 Scene classes)
+2. `FACTCHECK.md` / `SHOTLIST.md` / `PROMPTS.md` (GATE F prereq)
+3. `vox_run.sh` — which exits 2 without step 1
+
+That is a multi-hour authored + factchecked job under a different SKILL, not an unattended pass. Attempting it under the Brutalist contract would either downgrade to a §7-violating card-only slate or invent Manim scenes without a factcheck — both worse than the log.
+
+Nothing to fix, nothing to build, nothing to re-log. Reel stays BLOCKED; handoff to the Vox pipeline. Stopping — supervisor starts the next one.

@@ -1,0 +1,9 @@
+Reel done.
+
+- **Reel**: `nbb-vox-trial-failure-tree` (nbb variant, teardown palette)
+- **Output**: `vox-trial-failure-tree-slate.mp4`, 240.5 s, mp4 mtime 9 s > sheet mtime (not stale)
+- **Slots**: 11 / 17 filled (4 Remotion bookends + 7 Manim body graphics + 6 honest slates for CARD/STILL/DOCUMENT beats)
+- **Lane gate**: PASS (zero pipeline-slate violations). **Audio gate**: PASS (`mean_volume = -23.7 dB`). **Type gate**: PASS.
+- **Fixes**: deduped double bookend set (renamed NBB00/01/02/03 → B00/BVDT/BHTF/BOUT, deleted empty placeholders), spark line `Your turn.` → `Konnichiwa, Liam`, dropped stale `Fable 5 / High` fields, simplified B01 FormBCard placeholder items → CARD/title, removed truncated FormACards on B02/B11, authored four real verdict lines from body content, rendered Manim scenes from source `vox_scenes.py` at 1080p24 with `ART_PALETTE=teardown`.
+- **Downgrades**: none.
+- **Logs**: `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, `beat_sheet.pre-rebuild.json`, and appended entry to `youtube/FILMLOOP-LOG.md`.

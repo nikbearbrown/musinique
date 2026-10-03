@@ -1,0 +1,46 @@
+module Anthropic
+  module Models
+    class BetaThinkingConfigAdaptive = Beta::BetaThinkingConfigAdaptive
+
+    module Beta
+      type beta_thinking_config_adaptive =
+        {
+          type: :adaptive,
+          block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+          display_: Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_?
+        }
+
+      class BetaThinkingConfigAdaptive < Anthropic::Internal::Type::BaseModel
+        attr_accessor type: :adaptive
+
+        attr_accessor block_binding: Anthropic::Beta::BetaThinkingBlockBinding?
+
+        attr_accessor display_: Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_?
+
+        def initialize: (
+          ?block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+          ?display_: Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_?,
+          ?type: :adaptive
+        ) -> void
+
+        def to_hash: -> {
+          type: :adaptive,
+          block_binding: Anthropic::Beta::BetaThinkingBlockBinding?,
+          display_: Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_?
+        }
+
+        type display_ = :summarized | :omitted | :updates
+
+        module Display
+          extend Anthropic::Internal::Type::Enum
+
+          SUMMARIZED: :summarized
+          OMITTED: :omitted
+          UPDATES: :updates
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaThinkingConfigAdaptive::display_]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slate — Message 30 Costs 31 Times More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF9F5;
+    --ink: #3D3929;
+    --terra: #D97757;
+    --sans: system-ui, -apple-system, sans-serif;
+    --mono: 'SF Mono', 'Fira Mono', monospace;
+    --serif: 'EB Garamond', Georgia, serif;
+  }
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    color: var(--ink);
+  }
+  #stage {
+    width: min(177.78vh, 100vw);
+    height: min(56.25vw, 100vh);
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .slide {
+    display: none;
+    position: absolute; inset: 0;
+    padding: 6% 8%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .slide.active { display: flex; }
+
+  /* progress bar */
+  #progress-bar {
+    position: absolute; bottom: 0; left: 0;
+    height: 4px; background: var(--terra);
+    transition: width 0.2s ease;
+    z-index: 100;
+  }
+
+  /* slide counter */
+  #counter {
+    position: absolute; bottom: 14px; right: 20px;
+    font-family: var(--mono); font-size: clamp(10px, 1.2vw, 14px);
+    color: var(--ink); opacity: 0.45; z-index: 100;
+  }
+
+  /* Title slide */
+  .slide-title .episode-label {
+    font-family: var(--mono); font-size: clamp(10px, 1.4vw, 16px);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 2%;
+  }
+  .slide-title h1 {
+    font-size: clamp(28px, 5.5vw, 72px);
+    font-weight: 700; line-height: 1.05;
+    color: var(--ink); max-width: 80%;
+  }
+  .slide-title .meta {
+    margin-top: 4%;
+    font-family: var(--sans); font-size: clamp(11px, 1.5vw, 18px);
+    color: var(--ink); opacity: 0.55; line-height: 1.6;
+  }
+  .slide-title .duration-badge {
+    margin-top: 3%;
+    display: inline-block;
+    font-family: var(--mono); font-size: clamp(10px, 1.3vw, 15px);
+    background: var(--ink); color: var(--cream);
+    padding: 0.5em 1em; letter-spacing: 0.08em;
+  }
+
+  /* Beat type labels */
+  .beat-type {
+    font-family: var(--mono); font-size: clamp(9px, 1.1vw, 13px);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 3%;
+  }
+  .beat-id {
+    font-family: var(--mono); font-size: clamp(9px, 1.0vw, 12px);
+    color: var(--ink); opacity: 0.35; margin-bottom: 1%;
+  }
+
+  /* Composer slide */
+  .composer-box {
+    width: 100%; max-width: 72%;
+    border: 2px solid var(--ink);
+    padding: 4% 5%;
+    background: var(--cream);
+  }
+  .composer-ask {
+    font-family: var(--sans); font-size: clamp(14px, 2vw, 24px);
+    color: var(--ink); opacity: 0.6; font-style: italic;
+    margin-bottom: 4%;
+    padding-bottom: 4%;
+    border-bottom: 1px solid var(--ink);
+    opacity: 0.3;
+  }
+  .composer-ask-text {
+    font-size: clamp(16px, 2.2vw, 28px);
+    font-family: var(--serif); color: var(--ink);
+    line-height: 1.4; margin-bottom: 4%;
+  }
+  .composer-answer {
+    font-family: var(--sans); font-size: clamp(12px, 1.5vw, 18px);
+    color: var(--ink); opacity: 0.7; line-height: 1.5;
+    padding-top: 3%; border-top: 1px solid rgba(61,57,41,0.2);
+  }
+  .composer-label {
+    font-family: var(--mono); font-size: clamp(9px, 1vw, 12px);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 1%;
+  }
+  .liam-tag {
+    position: absolute; top: 6%; right: 8%;
+    font-family: var(--mono); font-size: clamp(9px, 1.1vw, 13px);
+    letter-spacing: 0.1em; color: var(--ink); opacity: 0.45;
+  }
+
+  /* Illustration slide */
+  .illus-concept {
+    font-size: clamp(13px, 1.8vw, 22px);
+    font-family: var(--sans); color: var(--ink); opacity: 0.7;
+    line-height: 1.55; max-width: 68%; margin-top: 3%;
+  }
+  .illus-title {
+    font-size: clamp(22px, 3.5vw, 48px);
+    font-weight: 700; color: var(--ink); line-height: 1.1;
+    max-width: 72%;
+  }
+  .illus-layout-note {
+    margin-top: 3%;
+    font-family: var(--mono); font-size: clamp(9px, 1.1vw, 13px);
+    color: var(--terra); letter-spacing: 0.06em;
+  }
+  .motion-tag {
+    position: absolute; bottom: 10%; right: 8%;
+    font-family: var(--mono); font-size: clamp(8px, 1vw, 12px);
+    color: var(--ink); opacity: 0.3; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Spark card */
+  .spark-accent-bar {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 8px; background: var(--terra);
+  }
+  .spark-eyebrow {
+    font-family: var(--mono); font-size: clamp(9px, 1.1vw, 13px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 4%;
+  }
+  .spark-copy {
+    font-size: clamp(32px, 6vw, 80px);
+    font-weight: 700; color: var(--ink);
+    line-height: 1.0; max-width: 75%;
+  }
+  .spark-sub {
+    margin-top: 5%;
+    font-family: var(--sans); font-size: clamp(13px, 1.8vw, 22px);
+    color: var(--ink); opacity: 0.65; line-height: 1.5;
+    max-width: 60%;
+  }
+
+  /* Handoff card */
+  .handoff-eyebrow {
+    font-family: var(--mono); font-size: clamp(9px, 1.1vw, 13px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); opacity: 0.45; margin-bottom: 3%;
+  }
+  .handoff-copy {
+    font-size: clamp(28px, 5vw, 64px);
+    font-weight: 700; color: var(--ink);
+    line-height: 1.05; max-width: 70%;
+  }
+  .handoff-sub {
+    margin-top: 4%;
+    font-family: var(--sans); font-size: clamp(12px, 1.7vw, 20px);
+    color: var(--ink); opacity: 0.6; line-height: 1.6;
+    max-width: 65%;
+  }
+  .handoff-rule {
+    position: absolute; left: 8%; right: 8%; top: 22%;
+    height: 2px; background: var(--ink); opacity: 0.12;
+  }
+
+  /* Outro card */
+  .outro-bg {
+    position: absolute; inset: 0;
+    background: var(--ink);
+  }
+  .outro-eyebrow {
+    font-family: var(--mono); font-size: clamp(9px, 1.2vw, 14px);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 3%; position: relative; z-index: 1;
+  }
+  .outro-copy {
+    font-size: clamp(24px, 4.5vw, 60px);
+    font-weight: 700; color: var(--cream);
+    line-height: 1.0; max-width: 78%;
+    position: relative; z-index: 1;
+  }
+  .outro-sub {
+    margin-top: 4%;
+    font-family: var(--sans); font-size: clamp(12px, 1.6vw, 20px);
+    color: var(--cream); opacity: 0.5;
+    position: relative; z-index: 1;
+  }
+
+  /* nav hint */
+  #nav-hint {
+    position: absolute; bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono); font-size: clamp(8px, 1vw, 11px);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); opacity: 0.25; z-index: 100;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="progress-bar"></div>
+  <span id="counter"></span>
+
+  <!-- SLIDE 0: Title -->
+  <div class="slide slide-title active">
+    <div class="episode-label">claude-liam · Reel 16 · Teardown</div>
+    <h1>Message 30 Costs 31 Times More</h1>
+    <div class="meta">
+      stop-hitting-claude-limits<br>
+      9 beats · Gate-P slate · Voice: Kokoro am_onyx
+    </div>
+    <div class="duration-badge">~94 seconds</div>
+  </div>
+
+  <!-- SLIDE 1: B01 COMPOSER_ASK -->
+  <div class="slide">
+    <div class="liam-tag">Liam, in for Bear</div>
+    <div class="beat-id">B01 · COMPOSER_ASK · 0–9s</div>
+    <div class="beat-type">Cold Open</div>
+    <div class="composer-box">
+      <div class="composer-label">You type</div>
+      <div class="composer-ask-text">"Why do I keep hitting my usage limit by 2pm?"</div>
+      <div class="composer-label">Claude replies</div>
+      <div class="composer-answer">Because message 30 re-reads 29 full exchanges before it even starts on your question.</div>
+    </div>
+    <div style="margin-top:3%; font-family:var(--sans); font-size:clamp(11px,1.4vw,17px); color:var(--ink); opacity:0.5;">
+      Greeting: <em>Annyeong. This is Liam, in for Bear.</em>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: B02 ILLUSTRATION token curve -->
+  <div class="slide">
+    <div class="beat-id">B02 · ILLUSTRATION · 9–18s</div>
+    <div class="beat-type">Token Accumulation Curve</div>
+    <div class="illus-title">The cost curve.</div>
+    <div class="illus-concept">
+      Animated line chart: X-axis = message 1–30, Y-axis = cumulative tokens consumed.
+      Curve bends sharply upward. Terracotta callout at message 30: <strong>"31× message 1"</strong>.
+    </div>
+    <div class="illus-layout-note">layout · full-bleed chart · warm ink on cream · terracotta annotation line at msg 30</div>
+    <div class="motion-tag">motion: drawon</div>
+  </div>
+
+  <!-- SLIDE 3: B03 SPARK convert files -->
+  <div class="slide">
+    <div class="spark-accent-bar"></div>
+    <div style="padding-left: 5%;">
+      <div class="beat-id">B03 · CARD spark · 18–26s</div>
+      <div class="spark-eyebrow">CLAUDE COWORK</div>
+      <div class="spark-copy">Convert first, upload second.</div>
+      <div class="spark-sub">PDF page = 1,500–3,000 tokens (author's claim). Clean text = a fraction. Export to .md before uploading.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: B04 ILLUSTRATION plan+batch -->
+  <div class="slide">
+    <div class="beat-id">B04 · ILLUSTRATION · 26–36s</div>
+    <div class="beat-type">Plan in Chat / Build in Cowork + Batch Tasks</div>
+    <div class="illus-title">Cheap thinking.<br>Precise building.</div>
+    <div class="illus-concept">
+      Two-lane diagram: CHAT (sticky-note planning) → bridge arrow → COWORK (final file).
+      Below: 3 separate message bubbles (3× reloads) vs. 1 combined bubble (1 reload).
+    </div>
+    <div class="illus-layout-note">layout · two-column · lane headers in terracotta · arrow in warm ink</div>
+    <div class="motion-tag">motion: drawon</div>
+  </div>
+
+  <!-- SLIDE 5: B05 SPARK AskUserQuestion -->
+  <div class="slide">
+    <div class="spark-accent-bar"></div>
+    <div style="padding-left: 5%;">
+      <div class="beat-id">B05 · CARD spark · 36–44s</div>
+      <div class="spark-eyebrow">CLAUDE COWORK</div>
+      <div class="spark-copy">Ask me questions first.</div>
+      <div class="spark-sub">"I want [task]. Ask me questions with AskUserQuestion before you start." Clicks cost almost nothing. Paragraphs cost a lot.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: B06 SPARK edit don't follow up -->
+  <div class="slide">
+    <div class="spark-accent-bar"></div>
+    <div style="padding-left: 5%;">
+      <div class="beat-id">B06 · CARD spark · 44–54s</div>
+      <div class="spark-eyebrow">CLAUDE COWORK</div>
+      <div class="spark-copy">Edit. Don't follow up.</div>
+      <div class="spark-sub">Click Edit on your Chat prompt. Surgical: "only redo section 3." Every follow-up stacks history Claude re-reads forever.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: B07 ILLUSTRATION tool-match -->
+  <div class="slide">
+    <div class="beat-id">B07 · ILLUSTRATION · 54–64s</div>
+    <div class="beat-type">Match Tool to Task + Context Caps</div>
+    <div class="illus-title">Right tool.<br>Right size.</div>
+    <div class="illus-concept">
+      Three-row table: Quick question → Chat + Haiku | Deep report → Cowork + Opus | Build a chart → Code + Sonnet.
+      Sidebar callout: "About Me &lt; 2,000 words" · "Restart @ 15–20 msgs" · "Projects = upload once, cached."
+    </div>
+    <div class="illus-layout-note">layout · table on cream · row labels in terracotta · SF Mono for tool names</div>
+    <div class="motion-tag">motion: drawon</div>
+  </div>
+
+  <!-- SLIDE 8: B08 HANDOFF -->
+  <div class="slide">
+    <div class="handoff-rule"></div>
+    <div class="beat-id">B08 · CARD handoff · 64–75s</div>
+    <div class="handoff-eyebrow">YOUR TURN</div>
+    <div class="handoff-copy">Pick three habits this week.</div>
+    <div class="handoff-sub">
+      Cowork daily → habits 1, 2, 5<br>
+      Chat user → 8, 15, 17<br>
+      On $20 plan → 6, 13, 22
+    </div>
+  </div>
+
+  <!-- SLIDE 9: B09 OUTRO -->
+  <div class="slide">
+    <div class="outro-bg"></div>
+    <div class="beat-id" style="color:var(--cream); opacity:0.3; position:relative; z-index:1;">B09 · CARD outro · 75–81s</div>
+    <div class="outro-eyebrow">CLAUDE COWORK</div>
+    <div class="outro-copy">MESSAGE 30 COSTS 31 TIMES MORE</div>
+    <div class="outro-sub">this is Liam, in for Bear</div>
+  </div>
+
+  <div id="nav-hint">click or spacebar to advance</div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const bar = document.getElementById('progress-bar');
+  const counter = document.getElementById('counter');
+  const hint = document.getElementById('nav-hint');
+  let current = 0;
+  const total = slides.length;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    bar.style.width = ((current / (total - 1)) * 100) + '%';
+    counter.textContent = current + ' / ' + (total - 1);
+    hint.style.opacity = current === total - 1 ? '0' : '0.25';
+  }
+
+  goTo(0);
+
+  document.addEventListener('click', () => { if (current < total - 1) goTo(current + 1); });
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' || e.code === 'ArrowRight') { e.preventDefault(); if (current < total - 1) goTo(current + 1); }
+    if (e.code === 'ArrowLeft') { e.preventDefault(); if (current > 0) goTo(current - 1); }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+package com.anthropic.models.beta.webhooks
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaWebhookSessionThreadTerminatedEventDataTest {
+
+    @Test
+    fun create() {
+        val betaWebhookSessionThreadTerminatedEventData =
+            BetaWebhookSessionThreadTerminatedEventData.builder()
+                .id("id")
+                .organizationId("organization_id")
+                .sessionThreadId("session_thread_id")
+                .workspaceId("workspace_id")
+                .build()
+
+        assertThat(betaWebhookSessionThreadTerminatedEventData.id()).isEqualTo("id")
+        assertThat(betaWebhookSessionThreadTerminatedEventData.organizationId())
+            .isEqualTo("organization_id")
+        assertThat(betaWebhookSessionThreadTerminatedEventData.sessionThreadId())
+            .isEqualTo("session_thread_id")
+        assertThat(betaWebhookSessionThreadTerminatedEventData.workspaceId())
+            .isEqualTo("workspace_id")
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaWebhookSessionThreadTerminatedEventData =
+            BetaWebhookSessionThreadTerminatedEventData.builder()
+                .id("id")
+                .organizationId("organization_id")
+                .sessionThreadId("session_thread_id")
+                .workspaceId("workspace_id")
+                .build()
+
+        val roundtrippedBetaWebhookSessionThreadTerminatedEventData =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaWebhookSessionThreadTerminatedEventData),
+                jacksonTypeRef<BetaWebhookSessionThreadTerminatedEventData>(),
+            )
+
+        assertThat(roundtrippedBetaWebhookSessionThreadTerminatedEventData)
+            .isEqualTo(betaWebhookSessionThreadTerminatedEventData)
+    }
+}

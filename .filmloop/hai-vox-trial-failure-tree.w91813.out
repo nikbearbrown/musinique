@@ -1,0 +1,8 @@
+Done. `vox-trial-failure-tree-slate.mp4` shipped (185.9 s, 1080p review-slate cut), master mp4 is 9 s newer than beat_sheet.json.
+
+**What ran**:
+- Envelope: dropped dead `voice_id` + `clock` ElevenLabs fields; re-shaped B14 OutroSeries + B15 OutroCTA props to current zod schemas; re-shaped B02/B11 FormACard `lines` from the current narration (they were truncations from an older draft). Narration untouched on every beat.
+- Authored 7 new Manim scenes (B04/B06/B07/B08/B09/B10/B12) in a reel-local `scenes.py` + `render_scenes.py` so GATE LANE would clear — otherwise every graphic beat was a PIPELINE-SLATE-IN-CUT.
+- Gate T PASS · Gate LANE PASS · Gate AUDIO PASS (−24 dB) · Gate V read the contact sheet + a 1 fps frame set; one MAJOR (B12 TRACER-COHORT box collided with LIVER bar) fixed by reflowing the B12 column, re-rendered B12 only, recompiled.
+
+**build.status Counter**: `Counter({'MANIM': 7, 'VIDEO': 4, 'SLATE': 4})` — 11/15 real, 4 declared slates (B01/B03/B05/B13). Logged in `youtube/FILMLOOP-LOG.md`, `AUDIT.md`, `REBUILD-LOG.md`.

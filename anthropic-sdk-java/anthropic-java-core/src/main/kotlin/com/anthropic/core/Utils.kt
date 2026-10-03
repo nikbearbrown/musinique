@@ -1,0 +1,140 @@
+@file:JvmName("Utils")
+
+package com.anthropic.core
+
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Collections
+import java.util.SortedMap
+import java.util.SortedSet
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.locks.Lock
+import kotlin.jvm.optionals.getOrNull
+
+@JvmSynthetic
+internal fun <T : Any> T?.getOrThrow(name: String): T =
+    this ?: throw AnthropicInvalidDataException("`${name}` is not present")
+
+/**
+ * Returns this JSON object's property with the given [name] as a [JsonField] of type [T],
+ * deserialized the way an SDK class's `JsonField` property is: a "known" value if the raw property
+ * deserializes to [T], the raw [JsonValue] if it doesn't, or [JsonMissing] if this isn't a JSON
+ * object with that property.
+ */
+@JvmSynthetic
+internal inline fun <reified T : Any> JsonValue?.getProperty(name: String): JsonField<T> {
+    val value = this?.asObject()?.getOrNull()?.get(name) ?: return JsonMissing.of()
+    return try {
+        value.convert(jacksonTypeRef<T>())?.let { JsonField.of(it) } ?: value
+    } catch (e: Exception) {
+        value
+    }
+}
+
+@JvmSynthetic
+internal fun <T> List<T>.toImmutable(): List<T> =
+    if (isEmpty()) Collections.emptyList() else Collections.unmodifiableList(toList())
+
+@JvmSynthetic
+internal fun <V : Comparable<V>> SortedSet<V>.toImmutable(): SortedSet<V> =
+    if (isEmpty()) Collections.emptySortedSet()
+    else Collections.unmodifiableSortedSet(toSortedSet(comparator() ?: Comparator.naturalOrder()))
+
+@JvmSynthetic
+internal fun <K, V> Map<K, V>.toImmutable(): Map<K, V> =
+    if (isEmpty()) immutableEmptyMap() else Collections.unmodifiableMap(toMap())
+
+@JvmSynthetic internal fun <K, V> immutableEmptyMap(): Map<K, V> = Collections.emptyMap()
+
+@JvmSynthetic
+internal fun <K : Comparable<K>, V> SortedMap<K, V>.toImmutable(): SortedMap<K, V> =
+    if (isEmpty()) Collections.emptySortedMap()
+    else Collections.unmodifiableSortedMap(toSortedMap(comparator()))
+
+/**
+ * Returns all elements that yield the largest value for the given function, or an empty list if
+ * there are zero elements.
+ *
+ * This is similar to [Sequence.maxByOrNull] except it returns _all_ elements that yield the largest
+ * value; not just the first one.
+ */
+@JvmSynthetic
+internal fun <T, R : Comparable<R>> Sequence<T>.allMaxBy(selector: (T) -> R): List<T> {
+    var maxValue: R? = null
+    val maxElements = mutableListOf<T>()
+
+    val iterator = iterator()
+    while (iterator.hasNext()) {
+        val element = iterator.next()
+        val value = selector(element)
+        if (maxValue == null || value > maxValue) {
+            maxValue = value
+            maxElements.clear()
+            maxElements.add(element)
+        } else if (value == maxValue) {
+            maxElements.add(element)
+        }
+    }
+
+    return maxElements
+}
+
+/**
+ * Returns whether [this] is equal to [other].
+ *
+ * This differs from [Object.equals] because it also deeply equates arrays based on their contents,
+ * even when there are arrays directly nested within other arrays.
+ */
+@JvmSynthetic
+internal infix fun Any?.contentEquals(other: Any?): Boolean =
+    arrayOf(this).contentDeepEquals(arrayOf(other))
+
+/**
+ * Returns a hash of the given sequence of [values].
+ *
+ * This differs from [java.util.Objects.hash] because it also deeply hashes arrays based on their
+ * contents, even when there are arrays directly nested within other arrays.
+ */
+@JvmSynthetic internal fun contentHash(vararg values: Any?): Int = values.contentDeepHashCode()
+
+/**
+ * Returns a [String] representation of [this].
+ *
+ * This differs from [Object.toString] because it also deeply stringifies arrays based on their
+ * contents, even when there are arrays directly nested within other arrays.
+ */
+@JvmSynthetic
+internal fun Any?.contentToString(): String {
+    var string = arrayOf(this).contentDeepToString()
+    if (string.startsWith('[')) {
+        string = string.substring(1)
+    }
+    if (string.endsWith(']')) {
+        string = string.substring(0, string.length - 1)
+    }
+    return string
+}
+
+internal interface Enum
+
+/**
+ * Executes the given [action] while holding the lock, returning a [CompletableFuture] with the
+ * result.
+ *
+ * @param action The asynchronous action to execute while holding the lock
+ * @return A [CompletableFuture] that completes with the result of the action
+ */
+@JvmSynthetic
+internal fun <T> Lock.withLockAsync(action: () -> CompletableFuture<T>): CompletableFuture<T> {
+    lock()
+    val future =
+        try {
+            action()
+        } catch (e: Throwable) {
+            unlock()
+            throw e
+        }
+    // Not a user callback; the lock must be released as soon as the action settles.
+    @Suppress("ForbiddenMethodCall") future.whenComplete { _, _ -> unlock() }
+    return future
+}

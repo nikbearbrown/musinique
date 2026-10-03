@@ -1,0 +1,12 @@
+**medhavy-vox-doxil-heart · CLEAN MASTER · 212.76 s**
+
+- **Path**: `vox-doxil-heart.mp4` (3840×2160, 14/14 slots filled, no slates)
+- **Sheet older than master**: `beat_sheet.json` mtime 1787907807 < mp4 mtime 1787907834 (27 s newer) — no post-compile sheet edits
+- **Voice**: Kokoro `af_kore` (Medhavy skin, 14 beats regenerated)
+- **Gates**: content PASS · frame PASS · lane PASS · type_check PASS · audio PASS (mean −24.0 dB, max −6.8 dB)
+- **Structure**: 12 FormACard body beats + Medhavy OutroSeries + OutroCTA (matches sibling `medhavy-vox-complexity-yield`)
+- **Punts closed**: all 12 body punt costumes (gen-AI stills, unfilled Manim slates, DOCUMENT/COMPOSITE placeholders) → real Remotion cards. Manim `production_viz` mechanics preserved on six beats for later Manim promotion.
+- **Outro shape fixed**: OutroSeries/OutroCTA props switched from phantom schema (`seriesTitle`/`tagline`/`githubSlug`, `authorName`/`ctaText`) to the real Remotion component contracts (`{eyebrow, line}` and `{line, handle}`).
+- **Narration lock**: bodies B01–B12 verbatim from pre-rebuild sheet; only B14 got the standard `medhavy.com` → `medhavy dot com` TTS-spoken-form fix.
+- **Lens**: two moves earned — Plato (B09 explicit) and Descartes (B10 checklist).
+- **Logs**: `AUDIT.md`, `REBUILD-LOG.md`, `FILMLOOP-LOG.md` entry all written.

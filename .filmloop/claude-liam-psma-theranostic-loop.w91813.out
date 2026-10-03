@@ -1,0 +1,6 @@
+DONE. `psma-theranostic-loop.mp4` (206.3s, mtime 29 s newer than beat_sheet.json, aac audio -24.6 dB).
+
+**Summary:**
+- **Phase 0:** Byte-exact `beat_sheet.pre-rebuild.json` snapshot. Dropped ElevenLabs `voice_id`; normalized `voice: nbbhuman → am_onyx`.
+- **Phase 1 audit:** All 11 checks PASS/FIXED. B00 skin swapped (NikBearBrownOpen → ClaudeComposerAsk, "Zdravo, Liam." greeting). B01 placeholder FormB items authored with real Ga-68/Lu-177/VISION content. B02/B05 generic "The ask," greetings → "Research the pair." / "Compare the pairs." Four punts converted to FormBCards with real content: B04 phantom Manim → 4-item loop; B06 → DOTATATE mirror; B07 → theranostic rule; B08 → candidate criteria. BVDT authored 4-line verdict + 21.10 s spoken narration. All display titles shortened to 36 chars to clear golden-strings LONGEST overflow. GATE T: PASS.
+- **Phase 2 build:** BVDT audio generated (Kokoro am_onyx). All 13 beats rendered via `remotion_scenes.py`. Compiled without `--review` (13/13 real, no slates → `.mp4` name). `build.status` Counter: `{'VIDEO': 13}`. Gate V: zero BLOCKER, zero MAJOR across all beats, zero strict-mode downgrades. Audio -24.6 dB.

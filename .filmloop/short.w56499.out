@@ -1,0 +1,38 @@
+**Reel complete.**
+
+---
+
+**`claude-liam-plugin-structure-short` — done.**
+
+**What was fixed:**
+- `beat_sheet.pre-rebuild.json` created (was absent — PHASE 0 requirement)
+- All stale beat mp4s deleted (media/ and clips/ — 1–94s older than beat_sheet from original pipeline write-back)
+- BHTF spark line: `"Your Turn"` → `"Your turn."` in props, re-rendered; Gate V confirms correct text on screen
+- All 4 Remotion beats re-rendered fresh via `remotion_scenes.py --force`
+- Master recompiled: 149.4s, GATE AUDIO PASS (−24.0 dB), newer than sheet
+
+**What was logged (not blocked):**
+- Lens audit: Popper present (BHTF's explicit failure gates), Plato weak; Descartes/Hume absent — source material (plugin-structure SKILL.md) cannot support them; SHORT format has no body beats
+- END.png upscale (1080×1920 → 1216×2160): tail card only, accepted as MINOR
+
+**build.status Counter: `VIDEO:4  STILL:1  slates:0`**
+Done. Here is the honest summary:
+
+---
+
+**FILMLOOP — claude-liam-plugin-structure/short**
+
+**Status: DONE** (prior invocation built; this invocation independently verified).
+
+**What was already fixed (by prior session):**
+1. Stale beat renders deleted and re-rendered; master `claude-liam-plugin-structure-short.mp4` at 09:29 is newer than the sheet at 09:28 ✓
+2. BHTF spark line: `"Your Turn"` → `"Your turn."` — confirmed on screen in QC frame 00215
+
+**All 11 checks independently verified:**
+- Rebuild contract, bookends, spark lines, verdict (6 real authored lines), card text, punt sweep (VIDEO:4, STILL:1, slates:0), lens (LOGGED — 2 moves: Popper strong + Plato weak; source limitation on a no-body SHORT), brand fields, pacing (all beats 2.53–3.15 wps), TYPECHECK PASS
+- Gate V: 6 frames read across all beats — zero BLOCKERs, zero MAJORs; one accepted MINOR (END still upscale from 1080×1920 to 1216×2160)
+- Audio: −24.0 dB, 149.4s, 1 audio stream (aac) ✓
+
+**Punts authored:** 0  
+**Verdicts stripped:** 0  
+**FILMLOOP-LOG.md:** appended

@@ -1,0 +1,427 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaManagedAgentsAgentWithOverridesParams =
+      Beta::BetaManagedAgentsAgentWithOverridesParams
+
+    module Beta
+      class BetaManagedAgentsAgentWithOverridesParams < Anthropic::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams,
+              Anthropic::Internal::AnyHash
+            )
+          end
+
+        # The `agent` ID.
+        sig { returns(String) }
+        attr_accessor :id
+
+        sig do
+          returns(
+            Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Type::OrSymbol
+          )
+        end
+        attr_accessor :type
+
+        # Replacement MCP server list. Full replacement: the provided array becomes the
+        # MCP servers. Send an empty array to clear; omit to preserve the agent's servers.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams]
+            )
+          )
+        end
+        attr_reader :mcp_servers
+
+        sig do
+          params(
+            mcp_servers:
+              T::Array[
+                Anthropic::Beta::BetaManagedAgentsURLMCPServerParams::OrHash
+              ]
+          ).void
+        end
+        attr_writer :mcp_servers
+
+        # Replacement model. Accepts the model string, e.g. `claude-opus-5`, or a
+        # `model_config` object. Omit to use the agent's model.
+        sig do
+          returns(
+            T.nilable(
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams,
+                Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                String
+              )
+            )
+          )
+        end
+        attr_reader :model
+
+        sig do
+          params(
+            model:
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams::OrHash,
+                Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                String
+              )
+          ).void
+        end
+        attr_writer :model
+
+        # Replacement skill list. Full replacement: the provided array becomes the skills.
+        # Send an empty array to clear; omit to preserve the agent's skills.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams,
+                  Anthropic::Beta::BetaManagedAgentsCustomSkillParams
+                )
+              ]
+            )
+          )
+        end
+        attr_reader :skills
+
+        sig do
+          params(
+            skills:
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams::OrHash,
+                  Anthropic::Beta::BetaManagedAgentsCustomSkillParams::OrHash
+                )
+              ]
+          ).void
+        end
+        attr_writer :skills
+
+        # Replacement system prompt. Up to 100,000 characters. Set to null to clear the
+        # agent's system prompt; omit to preserve it.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :system_
+
+        # Replacement tool list. Full replacement: the provided array becomes the tool
+        # configuration. Send an empty array to clear; omit to preserve the agent's tools.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params,
+                  Anthropic::Beta::BetaManagedAgentsMCPToolsetParams,
+                  Anthropic::Beta::BetaManagedAgentsCustomToolParams
+                )
+              ]
+            )
+          )
+        end
+        attr_reader :tools
+
+        sig do
+          params(
+            tools:
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params::OrHash,
+                  Anthropic::Beta::BetaManagedAgentsMCPToolsetParams::OrHash,
+                  Anthropic::Beta::BetaManagedAgentsCustomToolParams::OrHash
+                )
+              ]
+          ).void
+        end
+        attr_writer :tools
+
+        # The specific `agent` version to use. Omit to use the latest version.
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :version
+
+        sig { params(version: Integer).void }
+        attr_writer :version
+
+        # Reference to an `agent` plus optional configuration overrides. Each provided
+        # field replaces the agent's value for the caller's use; the agent resource is
+        # unchanged.
+        sig do
+          params(
+            id: String,
+            type:
+              Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Type::OrSymbol,
+            mcp_servers:
+              T::Array[
+                Anthropic::Beta::BetaManagedAgentsURLMCPServerParams::OrHash
+              ],
+            model:
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams::OrHash,
+                Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                String
+              ),
+            skills:
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams::OrHash,
+                  Anthropic::Beta::BetaManagedAgentsCustomSkillParams::OrHash
+                )
+              ],
+            system_: T.nilable(String),
+            tools:
+              T::Array[
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params::OrHash,
+                  Anthropic::Beta::BetaManagedAgentsMCPToolsetParams::OrHash,
+                  Anthropic::Beta::BetaManagedAgentsCustomToolParams::OrHash
+                )
+              ],
+            version: Integer
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The `agent` ID.
+          id:,
+          type:,
+          # Replacement MCP server list. Full replacement: the provided array becomes the
+          # MCP servers. Send an empty array to clear; omit to preserve the agent's servers.
+          mcp_servers: nil,
+          # Replacement model. Accepts the model string, e.g. `claude-opus-5`, or a
+          # `model_config` object. Omit to use the agent's model.
+          model: nil,
+          # Replacement skill list. Full replacement: the provided array becomes the skills.
+          # Send an empty array to clear; omit to preserve the agent's skills.
+          skills: nil,
+          # Replacement system prompt. Up to 100,000 characters. Set to null to clear the
+          # agent's system prompt; omit to preserve it.
+          system_: nil,
+          # Replacement tool list. Full replacement: the provided array becomes the tool
+          # configuration. Send an empty array to clear; omit to preserve the agent's tools.
+          tools: nil,
+          # The specific `agent` version to use. Omit to use the latest version.
+          version: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              type:
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Type::OrSymbol,
+              mcp_servers:
+                T::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams],
+              model:
+                T.any(
+                  Anthropic::Beta::BetaManagedAgentsModelConfigParams,
+                  Anthropic::Beta::BetaManagedAgentsModel::OrSymbol,
+                  String
+                ),
+              skills:
+                T::Array[
+                  T.any(
+                    Anthropic::Beta::BetaManagedAgentsAnthropicSkillParams,
+                    Anthropic::Beta::BetaManagedAgentsCustomSkillParams
+                  )
+                ],
+              system_: T.nilable(String),
+              tools:
+                T::Array[
+                  T.any(
+                    Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params,
+                    Anthropic::Beta::BetaManagedAgentsMCPToolsetParams,
+                    Anthropic::Beta::BetaManagedAgentsCustomToolParams
+                  )
+                ],
+              version: Integer
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          AGENT_WITH_OVERRIDES =
+            T.let(
+              :agent_with_overrides,
+              Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        # Replacement model. Accepts the model string, e.g. `claude-opus-5`, or a
+        # `model_config` object. Omit to use the agent's model.
+        module Model
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsModelConfigParams,
+                Anthropic::Beta::BetaManagedAgentsModel::Variants
+              )
+            end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Model::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+        end
+
+        # Union type for tool configurations in the tools array.
+        module Tool
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params,
+                Anthropic::Beta::BetaManagedAgentsMCPToolsetParams,
+                Anthropic::Beta::BetaManagedAgentsCustomToolParams
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            AGENT_TOOLSET_20260401 =
+              T.let(
+                :agent_toolset_20260401,
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Type::TaggedSymbol
+              )
+            MCP_TOOLSET =
+              T.let(
+                :mcp_toolset,
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Type::TaggedSymbol
+              )
+            CUSTOM =
+              T.let(
+                :custom,
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type:
+                Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Type::OrSymbol,
+              configs:
+                T.any(
+                  T::Array[
+                    T.any(
+                      Anthropic::Beta::BetaManagedAgentsBashToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsEditToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsReadToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsWriteToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsGlobToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsGrepToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsWebFetchToolConfigParams::OrHash,
+                      Anthropic::Beta::BetaManagedAgentsWebSearchToolConfigParams::OrHash
+                    )
+                  ],
+                  T::Array[
+                    Anthropic::Beta::BetaManagedAgentsMCPToolConfigParams::OrHash
+                  ]
+                ),
+              default_config:
+                T.any(
+                  T.nilable(
+                    Anthropic::Beta::BetaManagedAgentsAgentToolsetDefaultConfigParams::OrHash
+                  ),
+                  T.nilable(
+                    Anthropic::Beta::BetaManagedAgentsMCPToolsetDefaultConfigParams::OrHash
+                  )
+                ),
+              mcp_server_name: String,
+              description: String,
+              input_schema:
+                Anthropic::Beta::BetaManagedAgentsCustomToolInputSchema::OrHash,
+              name: String
+            ).returns(
+              Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::Variants
+            )
+          end
+          def self.new(
+            type:,
+            # Per-tool configuration overrides.
+            configs: nil,
+            # Default configuration for all tools in a toolset.
+            default_config: nil,
+            # Name of the MCP server. Must match a server name from the mcp_servers array.
+            # 1-255 characters.
+            mcp_server_name: nil,
+            # Description of what the tool does, shown to the agent to help it decide when to
+            # use the tool.
+            description: nil,
+            # JSON Schema for custom tool input parameters.
+            input_schema: nil,
+            # Unique name for the tool. 1-128 characters; letters, digits, underscores, and
+            # hyphens.
+            name: nil
+          )
+          end
+        end
+      end
+    end
+  end
+end

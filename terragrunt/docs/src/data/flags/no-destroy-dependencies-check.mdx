@@ -1,0 +1,16 @@
+---
+name: no-destroy-dependencies-check
+description: |
+  **Deprecated**: This flag is ignored and no longer affects behavior. Use `--destroy-dependencies-check` to explicitly enable dependency checks during destroy operations.
+type: bool
+env:
+  - TG_NO_DESTROY_DEPENDENCIES_CHECK
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="warning">
+This flag is deprecated and ignored. Dependency checks are disabled by default during destroy operations. Use `--destroy-dependencies-check` to enable them.
+
+To enable dependency checks during destroy operations, use the `--destroy-dependencies-check` flag instead.
+</Aside>

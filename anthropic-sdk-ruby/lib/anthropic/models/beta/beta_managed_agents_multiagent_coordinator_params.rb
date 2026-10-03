@@ -1,0 +1,50 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Models
+    module Beta
+      class BetaManagedAgentsMultiagentCoordinatorParams < Anthropic::Internal::Type::BaseModel
+        # @!attribute agents
+        #   Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is
+        #   an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or
+        #   `{"type":"self"}` to allow recursive self-invocation. Entries must reference
+        #   distinct agents (after resolving `self` and string forms); at most one `self`.
+        #   Referenced agents must exist, must not be archived, and must not themselves have
+        #   `multiagent` set (depth limit 1).
+        #
+        #   @return [Array<Anthropic::Models::Beta::BetaManagedAgentsAgentParams, Anthropic::Models::Beta::BetaManagedAgentsMultiagentSelfParams, Anthropic::Models::Beta::BetaManagedAgentsAdvisorParams, String>]
+        required :agents,
+                 -> { Anthropic::Internal::Type::ArrayOf[union: Anthropic::Beta::BetaManagedAgentsMultiagentRosterEntryParams] }
+
+        # @!attribute type
+        #
+        #   @return [Symbol, Anthropic::Models::Beta::BetaManagedAgentsMultiagentCoordinatorParams::Type]
+        required :type, enum: -> { Anthropic::Beta::BetaManagedAgentsMultiagentCoordinatorParams::Type }
+
+        # @!method initialize(agents:, type:)
+        #   A coordinator topology: the session's primary thread orchestrates work by
+        #   spawning session threads, each running an agent drawn from the `agents` roster.
+        #
+        #   Some parameter documentations has been truncated, see
+        #   {Anthropic::Models::Beta::BetaManagedAgentsMultiagentCoordinatorParams} for more
+        #   details.
+        #
+        #   @param agents [Array<Anthropic::Models::Beta::BetaManagedAgentsAgentParams, Anthropic::Models::Beta::BetaManagedAgentsMultiagentSelfParams, Anthropic::Models::Beta::BetaManagedAgentsAdvisorParams, String>] Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is
+        #
+        #   @param type [Symbol, Anthropic::Models::Beta::BetaManagedAgentsMultiagentCoordinatorParams::Type]
+
+        # @see Anthropic::Models::Beta::BetaManagedAgentsMultiagentCoordinatorParams#type
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          COORDINATOR = :coordinator
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+    end
+
+    BetaManagedAgentsMultiagentCoordinatorParams = Beta::BetaManagedAgentsMultiagentCoordinatorParams
+  end
+end

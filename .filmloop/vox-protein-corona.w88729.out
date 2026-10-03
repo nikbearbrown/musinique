@@ -1,0 +1,9 @@
+Done. `vox-protein-corona.mp4` (14:49) is newer than `beat_sheet.json` (14:47). 
+
+**Result — vox-protein-corona (Cohort C rebuild, DONE):**
+
+- **Phase 0** — pre-rebuild snapshot saved; dropped dead ElevenLabs envelope (`voice_id`, `clock` prose); added `channel=@NikBearBrown`, `folderLabel=@NikBearBrown`, `engine=kokoro`, `voice=am_onyx` (matches on-disk Kokoro mp3s). Narration LOCKED.
+- **Phase 1** — one punt authored: B03 was a `STILL/AI + FormACard`-with-truncated-narration costume; rerouted to `GRAPHIC/own` with a new `B03_ProteinsSwarm` Manim scene showing the four narration-named plasma proteins arriving in order. Also fixed a second latent defect: B12/B13 Remotion outros carried stale prop names (`seriesTitle` etc.) that silently fell back to Remotion defaults, so B12 was rendering "Part of the Claude Cowork series" — fixed to correct `eyebrow`/`line` schema. GATE T PASS. Lens: two moves (Plato + Popper).
+- **Phase 2** — rendered 11 Manim scenes (B01–B11), 2 Remotion outros (B12/B13); compiled at 4K master; lane-check PASS (no slates); GATE AUDIO PASS at −24.1 dB; 13/13 filled. 165.9s cut. Sampled 12 mid-frames — no BLOCKER/MAJOR on real beats.
+
+Two minor advisory notes carried in AUDIT.md / FILMLOOP-LOG (not blocking): B03 caption "within seconds" has an EB Garamond `sc`-ligature substitution artifact at small italic size, and B01 pacing is 3.48 wps vs the 3.4 soft ceiling — narration is locked so not retimed.

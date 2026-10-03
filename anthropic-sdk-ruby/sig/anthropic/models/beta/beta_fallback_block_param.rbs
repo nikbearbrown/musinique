@@ -1,0 +1,41 @@
+module Anthropic
+  module Models
+    class BetaFallbackBlockParam = Beta::BetaFallbackBlockParam
+
+    module Beta
+      type beta_fallback_block_param =
+        {
+          from: Anthropic::Beta::BetaFallbackInfoParam,
+          to: Anthropic::Beta::BetaFallbackInfoParam,
+          type: :fallback,
+          trigger: top
+        }
+
+      class BetaFallbackBlockParam < Anthropic::Internal::Type::BaseModel
+        attr_accessor from: Anthropic::Beta::BetaFallbackInfoParam
+
+        attr_accessor to: Anthropic::Beta::BetaFallbackInfoParam
+
+        attr_accessor type: :fallback
+
+        attr_reader trigger: top?
+
+        def trigger=: (top) -> top
+
+        def initialize: (
+          from: Anthropic::Beta::BetaFallbackInfoParam,
+          to: Anthropic::Beta::BetaFallbackInfoParam,
+          ?trigger: top,
+          ?type: :fallback
+        ) -> void
+
+        def to_hash: -> {
+          from: Anthropic::Beta::BetaFallbackInfoParam,
+          to: Anthropic::Beta::BetaFallbackInfoParam,
+          type: :fallback,
+          trigger: top
+        }
+      end
+    end
+  end
+end

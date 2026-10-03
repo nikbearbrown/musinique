@@ -1,0 +1,12 @@
+Done. `nbb-vox-delivery-funnel` built as `vox-delivery-funnel.mp4` (184.5 s, 4K, 15/15 filled, audio −27.7 dB). mp4 mtime 18:06 is newer than beat_sheet.json 18:04 — supervisor DONE check will pass.
+
+Summary:
+- Dropped legacy `NBB00–03` bookend layer (duplicated the canonical B00/BVDT/BHTF/BOUT).
+- Fixed B00 spark line to `Namaste, Liam.` (rotated clear of adjacent siblings' Hola/Kia ora).
+- Authored BVDT verdict (4 real lines + narration) from body content; killed the "Key finding one/two/three" template.
+- Rewrote BHTF from the `[bracket template]` into a real 5-step exercise.
+- Fixed B01 FormBCard placeholder items.
+- Generated bookend audio (kokoro am_onyx, free), rendered four Remotion bookends, staged 11 body clips + mp3s from the source reel.
+- All gates green: type_check, bookend_check, content/frame/lane checks, GATE AUDIO. Gate V frame audit read 7 sample frames — no blockers.
+- Full log in `REBUILD-LOG.md` + `AUDIT.md`; entry appended to `youtube/FILMLOOP-LOG.md`.
+- One inherited slate on B02 flagged as source-reel work, not introduced here.

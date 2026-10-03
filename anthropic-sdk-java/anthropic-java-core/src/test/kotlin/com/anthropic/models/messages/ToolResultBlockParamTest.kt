@@ -1,0 +1,54 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class ToolResultBlockParamTest {
+
+    @Test
+    fun create() {
+        val toolResultBlockParam =
+            ToolResultBlockParam.builder()
+                .toolUseId("tool_use_id")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .content("string")
+                .isError(true)
+                .toolsetName("toolset_name")
+                .build()
+
+        assertThat(toolResultBlockParam.toolUseId()).isEqualTo("tool_use_id")
+        assertThat(toolResultBlockParam.cacheControl())
+            .contains(CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build())
+        assertThat(toolResultBlockParam.content())
+            .contains(ToolResultBlockParam.Content.ofString("string"))
+        assertThat(toolResultBlockParam.isError()).contains(true)
+        assertThat(toolResultBlockParam.toolsetName()).contains("toolset_name")
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolResultBlockParam =
+            ToolResultBlockParam.builder()
+                .toolUseId("tool_use_id")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .content("string")
+                .isError(true)
+                .toolsetName("toolset_name")
+                .build()
+
+        val roundtrippedToolResultBlockParam =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolResultBlockParam),
+                jacksonTypeRef<ToolResultBlockParam>(),
+            )
+
+        assertThat(roundtrippedToolResultBlockParam).isEqualTo(toolResultBlockParam)
+    }
+}

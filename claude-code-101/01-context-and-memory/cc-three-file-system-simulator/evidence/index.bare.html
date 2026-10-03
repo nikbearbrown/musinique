@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sorting Simulator — Bubble Sort & Merge Sort</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --ink: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --bar: #64748b;
+    --compare: #facc15;
+    --swap: #f97316;
+    --sorted: #22c55e;
+    --pivot: #a78bfa;
+    --outline: #334155;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    padding: 18px 24px 8px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 0.2px;
+  }
+  .sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  main {
+    padding: 12px 24px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .controls {
+    background: var(--panel);
+    border: 1px solid var(--outline);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .controls .group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .controls .group + .group {
+    border-left: 1px solid var(--outline);
+    padding-left: 14px;
+  }
+  label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  button, select, input[type="range"], input[type="number"] {
+    font: inherit;
+    color: var(--ink);
+    background: #0b1220;
+    border: 1px solid var(--outline);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.primary {
+    background: var(--accent);
+    color: #0b1220;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  button.primary:hover:not(:disabled) { filter: brightness(1.08); }
+  input[type="range"] { padding: 0; width: 140px; }
+  input[type="number"] { width: 68px; padding: 6px 8px; }
+
+  .stage {
+    background: var(--panel);
+    border: 1px solid var(--outline);
+    border-radius: 10px;
+    padding: 16px 16px 8px;
+    min-height: 340px;
+  }
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 300px;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--outline);
+  }
+  .bar {
+    flex: 1 1 0;
+    background: var(--bar);
+    border-radius: 6px 6px 2px 2px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    color: #0b1220;
+    font-weight: 700;
+    font-size: 13px;
+    padding-top: 4px;
+    min-height: 24px;
+    transition: background 120ms ease, transform 200ms ease, height 200ms ease;
+    position: relative;
+  }
+  .bar.compare { background: var(--compare); }
+  .bar.swap    { background: var(--swap); }
+  .bar.sorted  { background: var(--sorted); }
+  .bar.pivot   { background: var(--pivot); color: #fff; }
+
+  .status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 4px 4px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .algo-line {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .counters {
+    display: flex;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .counters b { color: var(--ink); }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .explainer {
+    background: var(--panel);
+    border: 1px solid var(--outline);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .explainer h2 {
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--accent);
+  }
+  .explainer p { margin: 0 0 8px; }
+  .explainer p:last-child { margin-bottom: 0; }
+  code {
+    background: #0b1220;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sorting Simulator</h1>
+  <div class="sub">Watch bubble sort and merge sort actually move numbers around.</div>
+</header>
+
+<main>
+  <div class="controls" role="toolbar" aria-label="Sorting controls">
+    <div class="group">
+      <label for="algo">Algorithm</label>
+      <select id="algo">
+        <option value="bubble">Bubble Sort</option>
+        <option value="merge">Merge Sort</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label for="size">Size</label>
+      <input id="size" type="number" min="4" max="40" value="15">
+      <button id="shuffle">Shuffle</button>
+    </div>
+
+    <div class="group">
+      <label for="speed">Speed</label>
+      <input id="speed" type="range" min="1" max="100" value="55">
+    </div>
+
+    <div class="group">
+      <button id="play" class="primary">▶ Play</button>
+      <button id="step">Step</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <section class="stage" aria-label="Visualization">
+    <div id="bars" class="bars" aria-live="polite"></div>
+    <div class="status">
+      <div id="algoLine" class="algo-line">Press <b>Play</b> or <b>Step</b> to begin.</div>
+      <div class="counters">
+        <span>Comparisons: <b id="cmp">0</b></span>
+        <span>Swaps / Writes: <b id="mov">0</b></span>
+      </div>
+    </div>
+    <div class="legend" aria-label="Legend">
+      <span><span class="swatch" style="background:var(--bar)"></span>Unsorted</span>
+      <span><span class="swatch" style="background:var(--compare)"></span>Comparing</span>
+      <span><span class="swatch" style="background:var(--swap)"></span>Swapping / Writing</span>
+      <span><span class="swatch" style="background:var(--pivot)"></span>Merge window</span>
+      <span><span class="swatch" style="background:var(--sorted)"></span>Sorted</span>
+    </div>
+  </section>
+
+  <section class="explainer" id="explainer" aria-live="polite">
+    <h2>Bubble Sort</h2>
+    <p>Walk through the list from left to right. Compare each pair of neighbors. If they're out of order, swap them. Do that whole pass again and again until you make it all the way across without swapping anything.</p>
+    <p>The biggest number "bubbles" to the right end on each pass, which is why the right side turns green first.</p>
+  </section>
+</main>
+
+<script>
+  // ---------- state ----------
+  const el = {
+    bars: document.getElementById('bars'),
+    algo: document.getElementById('algo'),
+    size: document.getElementById('size'),
+    shuffle: document.getElementById('shuffle'),
+    speed: document.getElementById('speed'),
+    play: document.getElementById('play'),
+    step: document.getElementById('step'),
+    reset: document.getElementById('reset'),
+    line: document.getElementById('algoLine'),
+    cmp: document.getElementById('cmp'),
+    mov: document.getElementById('mov'),
+    explainer: document.getElementById('explainer'),
+  };
+
+  let arr = [];        // current values
+  let bars = [];       // DOM nodes
+  let ops = [];        // op stream produced by the algorithm
+  let opIdx = 0;
+  let playing = false;
+  let timer = null;
+  let comparisons = 0;
+  let moves = 0;
+  let sortedIdx = new Set();
+
+  // ---------- explainers ----------
+  const EXPLAINERS = {
+    bubble: `
+      <h2>Bubble Sort</h2>
+      <p>Walk through the list from left to right. Compare each pair of neighbors. If they're out of order, <b>swap</b> them. Do that whole pass again and again until you make it all the way across without swapping anything.</p>
+      <p>The biggest number "bubbles" to the right end on each pass, which is why the right side turns green first.</p>
+      <p>Simple to code, slow on big lists — roughly <code>n × n</code> comparisons.</p>
+    `,
+    merge: `
+      <h2>Merge Sort</h2>
+      <p>Split the list in half. Split those halves in half. Keep splitting until every piece is one number long — a single number is already sorted.</p>
+      <p>Then <b>merge</b> pairs back together in order: look at the front of the left piece and the front of the right piece, and take whichever is smaller. Repeat. You get bigger sorted pieces until the whole list is one sorted piece.</p>
+      <p>Much faster on big lists — about <code>n × log(n)</code> comparisons.</p>
+    `,
+  };
+
+  function setExplainer() {
+    el.explainer.innerHTML = EXPLAINERS[el.algo.value];
+  }
+
+  // ---------- rendering ----------
+  function makeArray(n) {
+    arr = Array.from({length: n}, () => 5 + Math.floor(Math.random() * 95));
+    renderBars();
+  }
+
+  function renderBars() {
+    el.bars.innerHTML = '';
+    bars = arr.map(v => {
+      const b = document.createElement('div');
+      b.className = 'bar';
+      const pct = 20 + (v / 100) * 80; // 20%..100% of height
+      b.style.height = pct + '%';
+      b.textContent = v;
+      el.bars.appendChild(b);
+      return b;
+    });
+    sortedIdx = new Set();
+  }
+
+  function clearHighlights() {
+    for (const b of bars) {
+      b.classList.remove('compare', 'swap', 'pivot');
+    }
+  }
+
+  function paintSorted() {
+    for (const i of sortedIdx) {
+      if (bars[i]) bars[i].classList.add('sorted');
+    }
+  }
+
+  function setBar(i, value) {
+    arr[i] = value;
+    bars[i].textContent = value;
+    const pct = 20 + (value / 100) * 80;
+    bars[i].style.height = pct + '%';
+  }
+
+  function swap(i, j) {
+    const tmp = arr[i];
+    setBar(i, arr[j]);
+    setBar(j, tmp);
+  }
+
+  // ---------- algorithms produce an op stream ----------
+  // op shapes:
+  //   { kind:'compare', i, j, msg }
+  //   { kind:'swap',    i, j, msg }
+  //   { kind:'markSorted', i, msg }
+  //   { kind:'window',  lo, hi, msg }         // for merge sort: highlight range
+  //   { kind:'write',   i, value, msg }       // merge sort writes back
+  //   { kind:'done',    msg }
+
+  function bubbleSortOps(a) {
+    const ops = [];
+    const n = a.length;
+    const arr = a.slice();
+    for (let end = n - 1; end > 0; end--) {
+      let swapped = false;
+      for (let i = 0; i < end; i++) {
+        ops.push({ kind: 'compare', i, j: i + 1,
+          msg: `Compare positions ${i} and ${i + 1}: ${arr[i]} vs ${arr[i + 1]}` });
+        if (arr[i] > arr[i + 1]) {
+          ops.push({ kind: 'swap', i, j: i + 1,
+            msg: `${arr[i]} > ${arr[i + 1]} — swap them` });
+          [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+          swapped = true;
+        }
+      }
+      ops.push({ kind: 'markSorted', i: end,
+        msg: `Position ${end} is locked in — biggest of this pass bubbled to the right` });
+      if (!swapped) {
+        for (let k = end - 1; k >= 0; k--) {
+          ops.push({ kind: 'markSorted', i: k, msg: `Nothing swapped — everything left is already in order` });
+        }
+        break;
+      }
+    }
+    if (n > 0) ops.push({ kind: 'markSorted', i: 0, msg: 'Position 0 is locked in' });
+    ops.push({ kind: 'done', msg: 'Bubble sort complete!' });
+    return ops;
+  }
+
+  function mergeSortOps(a) {
+    const ops = [];
+    const arr = a.slice();
+
+    function sort(lo, hi) {
+      if (hi - lo <= 1) return;
+      const mid = (lo + hi) >> 1;
+      ops.push({ kind: 'window', lo, hi,
+        msg: `Split range [${lo}..${hi - 1}] into [${lo}..${mid - 1}] and [${mid}..${hi - 1}]` });
+      sort(lo, mid);
+      sort(mid, hi);
+      merge(lo, mid, hi);
+    }
+
+    function merge(lo, mid, hi) {
+      const left = arr.slice(lo, mid);
+      const right = arr.slice(mid, hi);
+      ops.push({ kind: 'window', lo, hi,
+        msg: `Merge [${lo}..${mid - 1}] and [${mid}..${hi - 1}]` });
+      let i = 0, j = 0, k = lo;
+      while (i < left.length && j < right.length) {
+        ops.push({ kind: 'compare', i: lo + i, j: mid + j,
+          msg: `Compare front of left (${left[i]}) with front of right (${right[j]})` });
+        if (left[i] <= right[j]) {
+          ops.push({ kind: 'write', i: k, value: left[i],
+            msg: `${left[i]} is smaller — write it at position ${k}` });
+          arr[k++] = left[i++];
+        } else {
+          ops.push({ kind: 'write', i: k, value: right[j],
+            msg: `${right[j]} is smaller — write it at position ${k}` });
+          arr[k++] = right[j++];
+        }
+      }
+      while (i < left.length) {
+        ops.push({ kind: 'write', i: k, value: left[i],
+          msg: `Left side leftover — write ${left[i]} at position ${k}` });
+        arr[k++] = left[i++];
+      }
+      while (j < right.length) {
+        ops.push({ kind: 'write', i: k, value: right[j],
+          msg: `Right side leftover — write ${right[j]} at position ${k}` });
+        arr[k++] = right[j++];
+      }
+      // whole merged range is now internally sorted (but not necessarily globally)
+    }
+
+    sort(0, arr.length);
+    for (let i = 0; i < arr.length; i++) {
+      ops.push({ kind: 'markSorted', i, msg: '' });
+    }
+    ops.push({ kind: 'done', msg: 'Merge sort complete!' });
+    return ops;
+  }
+
+  function buildOps() {
+    return el.algo.value === 'bubble' ? bubbleSortOps(arr) : mergeSortOps(arr);
+  }
+
+  // ---------- op runner ----------
+  function delayMs() {
+    // speed 1..100 -> delay 700..30 ms
+    const s = parseInt(el.speed.value, 10);
+    return Math.round(700 - (s - 1) * (670 / 99));
+  }
+
+  function applyOp(op) {
+    clearHighlights();
+    paintSorted();
+
+    switch (op.kind) {
+      case 'compare':
+        comparisons++;
+        bars[op.i]?.classList.add('compare');
+        bars[op.j]?.classList.add('compare');
+        break;
+      case 'swap':
+        moves++;
+        swap(op.i, op.j);
+        bars[op.i]?.classList.add('swap');
+        bars[op.j]?.classList.add('swap');
+        break;
+      case 'write':
+        moves++;
+        setBar(op.i, op.value);
+        bars[op.i]?.classList.add('swap');
+        break;
+      case 'window':
+        for (let k = op.lo; k < op.hi; k++) bars[k]?.classList.add('pivot');
+        break;
+      case 'markSorted':
+        sortedIdx.add(op.i);
+        paintSorted();
+        break;
+      case 'done':
+        for (let i = 0; i < bars.length; i++) sortedIdx.add(i);
+        paintSorted();
+        stopPlayback();
+        el.play.disabled = true;
+        el.step.disabled = true;
+        break;
+    }
+
+    el.cmp.textContent = comparisons;
+    el.mov.textContent = moves;
+    el.line.textContent = op.msg || '';
+  }
+
+  function stepOnce() {
+    if (ops.length === 0) {
+      ops = buildOps();
+      opIdx = 0;
+      comparisons = 0;
+      moves = 0;
+    }
+    if (opIdx >= ops.length) {
+      stopPlayback();
+      return false;
+    }
+    applyOp(ops[opIdx++]);
+    return opIdx < ops.length;
+  }
+
+  function startPlayback() {
+    if (playing) return;
+    playing = true;
+    el.play.textContent = '⏸ Pause';
+    const tick = () => {
+      const more = stepOnce();
+      if (!more) return;
+      timer = setTimeout(tick, delayMs());
+    };
+    tick();
+  }
+
+  function stopPlayback() {
+    playing = false;
+    el.play.textContent = '▶ Play';
+    if (timer) { clearTimeout(timer); timer = null; }
+  }
+
+  // ---------- wiring ----------
+  el.play.addEventListener('click', () => {
+    if (playing) stopPlayback();
+    else startPlayback();
+  });
+
+  el.step.addEventListener('click', () => {
+    stopPlayback();
+    stepOnce();
+  });
+
+  el.reset.addEventListener('click', () => {
+    stopPlayback();
+    ops = [];
+    opIdx = 0;
+    comparisons = 0;
+    moves = 0;
+    el.cmp.textContent = 0;
+    el.mov.textContent = 0;
+    el.play.disabled = false;
+    el.step.disabled = false;
+    renderBars();
+    el.line.textContent = 'Press Play or Step to begin.';
+  });
+
+  el.shuffle.addEventListener('click', () => {
+    stopPlayback();
+    let n = parseInt(el.size.value, 10);
+    if (!Number.isFinite(n)) n = 15;
+    n = Math.max(4, Math.min(40, n));
+    el.size.value = n;
+    ops = [];
+    opIdx = 0;
+    comparisons = 0;
+    moves = 0;
+    el.cmp.textContent = 0;
+    el.mov.textContent = 0;
+    el.play.disabled = false;
+    el.step.disabled = false;
+    makeArray(n);
+    el.line.textContent = 'Fresh list. Press Play or Step to begin.';
+  });
+
+  el.algo.addEventListener('change', () => {
+    stopPlayback();
+    ops = [];
+    opIdx = 0;
+    comparisons = 0;
+    moves = 0;
+    el.cmp.textContent = 0;
+    el.mov.textContent = 0;
+    el.play.disabled = false;
+    el.step.disabled = false;
+    setExplainer();
+    renderBars();
+    el.line.textContent = 'Algorithm switched. Press Play or Step to begin.';
+  });
+
+  // Live update delay while playing
+  el.speed.addEventListener('input', () => {
+    if (playing && timer) {
+      clearTimeout(timer);
+      timer = setTimeout(function tick() {
+        const more = stepOnce();
+        if (!more) return;
+        timer = setTimeout(tick, delayMs());
+      }, delayMs());
+    }
+  });
+
+  // ---------- init ----------
+  setExplainer();
+  makeArray(parseInt(el.size.value, 10));
+</script>
+</body>
+</html>

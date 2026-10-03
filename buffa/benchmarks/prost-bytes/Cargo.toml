@@ -1,0 +1,35 @@
+[package]
+name = "bench-prost-bytes"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Disable lib benchmarks so `cargo bench` only hits the criterion binary.
+[lib]
+bench = false
+
+[dependencies]
+prost = "0.13"
+bytes = "1"
+
+[build-dependencies]
+prost-build = "0.13"
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "protobuf"
+harness = false
+
+# Build at the release profile (lto, single codegen unit) for a fair cross-impl
+# comparison — the same profile a consumer building in release gets, and the one
+# the per-release benchmark history pins. These crates are excluded from the root
+# workspace, so [profile.*] in a parent manifest is ignored; the empty [workspace]
+# table makes each crate its own workspace root, which is what lets [profile.bench]
+# take effect here. Without it cargo silently builds at cgu=16/lto=off.
+[workspace]
+
+[profile.bench]
+lto = true
+codegen-units = 1

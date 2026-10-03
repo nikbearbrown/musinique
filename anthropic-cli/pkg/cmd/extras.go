@@ -1,0 +1,116 @@
+package cmd
+
+// Hand-written additions to the codegen-owned Command tree. Anything that
+// must survive a regen lives here rather than in the generated files.
+
+import (
+	"fmt"
+
+	"github.com/anthropics/anthropic-cli/internal/requestflag"
+	"github.com/anthropics/anthropic-sdk-go/option"
+	"github.com/urfave/cli/v3"
+)
+
+// extraClientFlags are the global flags that map onto SDK request options,
+// shared by every client construction site (getDefaultRequestOptions,
+// newWorkerClient).
+type extraClientFlags struct {
+	BaseURL string
+	// Sent as the anthropic-workspace-id header. Picks the workspace for API keys
+	// that have access to multiple workspaces; required on Claude Platform on AWS.
+	WorkspaceID string
+}
+
+// extraClientFlagsFromCmd reads the client-level flags. urfave/cli resolves a
+// flag name leaf-first, so a subcommand that redeclares a name shadows the
+// root flag of the same name.
+func extraClientFlagsFromCmd(cmd *cli.Command) extraClientFlags {
+	return extraClientFlags{
+		// A subcommand's --base-url (e.g. beta:worker) means the same thing as the
+		// root's and is meant to override it, so the leaf-first lookup is right.
+		BaseURL: cmd.String("base-url"),
+		// A subcommand's --workspace-id is a different parameter: on the admin
+		// commands it is the workspace being operated on (`/workspaces/{workspace_id}`
+		// or a body field), not the `anthropic-workspace-id` header that scopes the
+		// credential. Only the root flag / ANTHROPIC_WORKSPACE_ID feeds the header.
+		WorkspaceID: cmd.Root().String("workspace-id"),
+	}
+}
+
+func (o extraClientFlags) requestOptions() []option.RequestOption {
+	var opts []option.RequestOption
+	if o.WorkspaceID != "" {
+		opts = append(opts, option.WithHeader("anthropic-workspace-id", o.WorkspaceID))
+	}
+	if o.BaseURL != "" {
+		opts = append(opts, option.WithBaseURL(o.BaseURL))
+	}
+	return opts
+}
+
+// init runs after cmd.go's, which builds Command — package-level init
+// functions run in filename order, and "extras.go" sorts after "cmd.go".
+// Hand-written commands are registered here for that reason.
+func init() {
+	Command.Commands = append(Command.Commands, &applyCommand)
+
+	// cmd.go declares --base-url without an env source and the SDK's own
+	// env handling is disabled (WithoutEnvironmentDefaults), so attach
+	// ANTHROPIC_BASE_URL here. TestBaseURLEnvRealTree fails if a regen
+	// reshapes the flag and this patch stops applying.
+	for _, f := range Command.Flags {
+		if sf, ok := f.(*cli.StringFlag); ok && sf.Name == "base-url" {
+			sf.Sources = cli.EnvVars("ANTHROPIC_BASE_URL")
+		}
+		if rf, ok := f.(*requestflag.Flag[string]); ok {
+			if alt, deprecated := argvCredentialFlags[rf.Name]; deprecated {
+				rf.Usage = fmt.Sprintf(argvCredentialDeprecation, alt)
+			}
+		}
+	}
+	Command.Flags = append(Command.Flags,
+		&cli.BoolFlag{
+			Name:  "api-key-stdin",
+			Usage: "Read the API key from standard input (e.g. op read op://vault/anthropic/key | ant --api-key-stdin models list). Consumes stdin, so the request body must come from flags.",
+		},
+		&cli.BoolFlag{
+			Name:  "auth-token-stdin",
+			Usage: "Read the bearer auth token from standard input. Consumes stdin, so the request body must come from flags.",
+		},
+		&cli.StringFlag{
+			Name:    "profile",
+			Usage:   "Named auth profile to use (default: active profile from active_config)",
+			Sources: cli.EnvVars("ANTHROPIC_PROFILE"),
+		},
+		&cli.StringFlag{
+			Name:    "identity-token",
+			Usage:   "Signed OIDC JWT for federation (jwt-bearer grant). Mutually exclusive with --identity-token-file.",
+			Sources: cli.EnvVars("ANTHROPIC_IDENTITY_TOKEN"),
+		},
+		&cli.StringFlag{
+			Name:    "identity-token-file",
+			Usage:   "Path to a file containing a signed OIDC JWT for federation. Re-read on every request, supporting rotating tokens (K8s projected SA, GitHub Actions OIDC).",
+			Sources: cli.EnvVars("ANTHROPIC_IDENTITY_TOKEN_FILE"),
+		},
+		&cli.StringFlag{
+			Name:    "federation-rule",
+			Usage:   "Tagged ID of the OIDC federation rule (fdrl_...).",
+			Sources: cli.EnvVars("ANTHROPIC_FEDERATION_RULE_ID"),
+		},
+		&cli.StringFlag{
+			Name:    "organization-id",
+			Usage:   "Anthropic organization UUID for federation token minting.",
+			Sources: cli.EnvVars("ANTHROPIC_ORGANIZATION_ID"),
+		},
+		&cli.StringFlag{
+			Name:    "service-account-id",
+			Usage:   "Optional service-account tagged ID (svac_...) for target_type=SERVICE_ACCOUNT federation rules.",
+			Sources: cli.EnvVars("ANTHROPIC_SERVICE_ACCOUNT_ID"),
+		},
+		&cli.StringFlag{
+			Name:    "workspace-id",
+			Usage:   "Workspace ID (wrkspc_...) to send as the anthropic-workspace-id header. Only needed for API keys that aren't scoped to a single workspace or on Claude Platform on AWS.",
+			Sources: cli.EnvVars("ANTHROPIC_WORKSPACE_ID"),
+		},
+	)
+}

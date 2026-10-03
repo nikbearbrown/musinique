@@ -1,0 +1,151 @@
+module Anthropic
+  module Models
+    class BetaManagedAgentsAgentWithOverridesParams = Beta::BetaManagedAgentsAgentWithOverridesParams
+
+    module Beta
+      type beta_managed_agents_agent_with_overrides_params =
+        {
+          id: String,
+          type: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::type_,
+          mcp_servers: ::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams],
+          model: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model,
+          skills: ::Array[Anthropic::Models::Beta::beta_managed_agents_skill_params],
+          system_: String?,
+          tools: ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool],
+          version: Integer
+        }
+
+      class BetaManagedAgentsAgentWithOverridesParams < Anthropic::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor type: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::type_
+
+        attr_reader mcp_servers: ::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams]?
+
+        def mcp_servers=: (
+          ::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams]
+        ) -> ::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams]
+
+        attr_reader model: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model?
+
+        def model=: (
+          Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model
+        ) -> Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model
+
+        attr_reader skills: ::Array[Anthropic::Models::Beta::beta_managed_agents_skill_params]?
+
+        def skills=: (
+          ::Array[Anthropic::Models::Beta::beta_managed_agents_skill_params]
+        ) -> ::Array[Anthropic::Models::Beta::beta_managed_agents_skill_params]
+
+        attr_accessor system_: String?
+
+        attr_reader tools: ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool]?
+
+        def tools=: (
+          ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool]
+        ) -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool]
+
+        attr_reader version: Integer?
+
+        def version=: (Integer) -> Integer
+
+        def initialize: (
+          id: String,
+          type: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::type_,
+          ?mcp_servers: ::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams],
+          ?model: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model,
+          ?skills: ::Array[Anthropic::Models::Beta::beta_managed_agents_skill_params],
+          ?system_: String?,
+          ?tools: ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool],
+          ?version: Integer
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          type: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::type_,
+          mcp_servers: ::Array[Anthropic::Beta::BetaManagedAgentsURLMCPServerParams],
+          model: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model,
+          skills: ::Array[Anthropic::Models::Beta::beta_managed_agents_skill_params],
+          system_: String?,
+          tools: ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool],
+          version: Integer
+        }
+
+        type type_ = :agent_with_overrides
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          AGENT_WITH_OVERRIDES: :agent_with_overrides
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::type_]
+        end
+
+        type model =
+          Anthropic::Beta::BetaManagedAgentsModelConfigParams
+          | Anthropic::Models::Beta::beta_managed_agents_model
+
+        module Model
+          extend Anthropic::Internal::Type::Union
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::model]
+        end
+
+        type tool =
+          Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params
+          | Anthropic::Beta::BetaManagedAgentsMCPToolsetParams
+          | Anthropic::Beta::BetaManagedAgentsCustomToolParams
+
+        module Tool
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :agent_toolset_20260401 | :mcp_toolset | :custom
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            AGENT_TOOLSET_20260401: :agent_toolset_20260401
+            MCP_TOOLSET: :mcp_toolset
+            CUSTOM: :custom
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool]
+
+          def self.new:
+            (
+              type: :agent_toolset_20260401 | "agent_toolset_20260401",
+              ?configs: ::Array[Anthropic::Models::Beta::beta_managed_agents_agent_tool_config_params],
+              ?default_config: Anthropic::Beta::BetaManagedAgentsAgentToolsetDefaultConfigParams?
+            ) -> Anthropic::Beta::BetaManagedAgentsAgentToolset20260401Params
+            | (
+              type: :mcp_toolset | "mcp_toolset",
+              mcp_server_name: String,
+              ?configs: ::Array[Anthropic::Beta::BetaManagedAgentsMCPToolConfigParams],
+              ?default_config: Anthropic::Beta::BetaManagedAgentsMCPToolsetDefaultConfigParams?
+            ) -> Anthropic::Beta::BetaManagedAgentsMCPToolsetParams
+            | (
+              type: :custom | "custom",
+              description: String,
+              input_schema: Anthropic::Beta::BetaManagedAgentsCustomToolInputSchema,
+              name: String
+            ) -> Anthropic::Beta::BetaManagedAgentsCustomToolParams
+            | (
+              type: Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::Tool::type_
+              | String,
+              ?configs: ::Array[Anthropic::Models::Beta::beta_managed_agents_agent_tool_config_params]
+              | ::Array[Anthropic::Beta::BetaManagedAgentsMCPToolConfigParams],
+              ?default_config: Anthropic::Beta::BetaManagedAgentsAgentToolsetDefaultConfigParams?
+              | Anthropic::Beta::BetaManagedAgentsMCPToolsetDefaultConfigParams?,
+              ?mcp_server_name: String,
+              ?description: String,
+              ?input_schema: Anthropic::Beta::BetaManagedAgentsCustomToolInputSchema,
+              ?name: String
+            ) -> Anthropic::Models::Beta::BetaManagedAgentsAgentWithOverridesParams::tool
+        end
+      end
+    end
+  end
+end

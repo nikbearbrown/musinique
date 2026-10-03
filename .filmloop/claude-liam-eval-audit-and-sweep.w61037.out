@@ -1,0 +1,22 @@
+**Done.** `claude-liam-eval-audit-and-sweep` compiled and passed all gates.
+
+---
+
+**FILMLOOP REPORT — claude-liam-eval-audit-and-sweep**
+
+| Item | Result |
+|---|---|
+| Cut | `claude-liam-eval-audit-and-sweep-slate.mp4` (77.0s) |
+| Sheet vs mp4 | mp4 epoch 1787733852 > sheet epoch 1787733850 ✓ |
+| Audio | −24.0 dB · GATE AUDIO PASS |
+| Beats | 7/7 VIDEO · remotion:7 · slates:0 |
+| GATE T | PASS (B03 body 31→11 words to clear §8.5) |
+| Gate V | PASS — 0 BLOCKER, 0 MAJOR; 2 ADVISORY (SkillTeardown* component top-heaviness, inherent to template) |
+
+**Checks fixed:**
+1. **Spark lines** (B01: 5→4 words; B03: 6→3 words)
+2. **Card text** (B01 calloutSub "2 files" → "4 files"; B03 empty body filled; B03 broken sentence "Claude's job: ." completed from SKILL.md source text)
+3. **Lens audit** (B03 now runs Popper: audit for failure + Plato: sweep grid ≠ production world)
+4. **GATE T §8.5** (body shortened from 31 to 11 words)
+
+**No punts authored** — all beats used verified SkillTeardown*/ClaudeComposer*/ClaudeVerdictArtifact patterns. Verdict kept (verdict_audit.py: no violation).

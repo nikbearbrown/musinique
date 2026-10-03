@@ -1,0 +1,13 @@
+`vox-emitter-range-slate.mp4` is newer than `beat_sheet.json` (by 9 seconds, confirmed by Unix timestamps). Done.
+
+---
+
+**Summary for the log:**
+
+`claude-liam-vox-emitter-range` — built and gated.
+
+**What changed (Phase 0 + Phase 1):** Dropped dead ElevenLabs fields (`voice_id`, `clock`). Fixed B00 spark line to "Ciao, Liam". Changed B01 FormBCard placeholder items → FormACard. Authored real 4-line BVDT verdict from body narration. Shortened display titles to pass type_check truncation gate. Changed B13/B14 from OutroSeries/OutroCTA to FormACard (claude-channel palette fix). Removed gen-AI punt tags from B04/B10/B12. Converted B07 from STILL/ai to GRAPHIC (new `B07_TumorGeometry` Manim scene). Scaffolded BHTF with real rubric.
+
+**Build:** 8 Manim scenes rendered (newsprint palette, `scenes_std.py`). 7 Remotion bookend/card beats rendered. Gate T PASS. Gate V: one MAJOR fixed (B09 "core irradiated" TEAL-on-TEAL → WHITE). Gate AUDIO PASS −27.8 dB.
+
+**Output:** `vox-emitter-range-slate.mp4` · 209.1 s · 15/18 beats filled · 3 legitimate CARD slates (B04/B10/B12) · mp4 newer than sheet ✓.

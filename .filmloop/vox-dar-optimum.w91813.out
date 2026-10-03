@@ -1,0 +1,13 @@
+Master mp4 mtime 05:50, beat_sheet mtime 05:40 — **cut 10 minutes newer than sheet**, STALE gate passes.
+
+## Summary
+
+`vox-dar-optimum` → **REVIEW CUT** at `vox-dar-optimum-review.mp4` (161.82 s, 1920×1080 p24, mean_volume −23.9 dB).
+
+Structural: dropped ElevenLabs envelope (`voice_id`, `clock`, `style_bible{}`, `accents{}`, `manim_move`, `total_estimated_duration_seconds`); added Kokoro envelope (`engine`, `voice_kokoro: am_onyx`, `folderLabel: @NikBearBrown`, `short_title`, `source`, `derived_from`); dropped B05 dead FormACard sub-object; fixed `vox_scenes.py` `parents[3]` walk-up. All 14 narrations locked verbatim.
+
+Slate profile: **11 Manim body beats + 3 declared slates** (B05 STILL ai, B13 OutroSeries, B14 OutroCTA — peer standard for legacy vox).
+
+Gate V required three mid-pass content fixes: **B09 BLOCKER** (OptimumCurve rendered blank against shared `vox_graphics` import — rebuilt without manim's `Axes` class, using raw Line/VMobject/Polygon), plus B06/B07 layout re-renders (text-on-graphic overlaps: `hydrophobic/sticking together` label crossed the second antibody stem; DAR-8 dot landed on the "immune system" label). All clean after rerender. Palette quirk (`TEAL` renders grey) is the same shared-library quirk siblings logged — layout semantics preserved. `VOX_QC=0` downgrade is the peer static-scene false-positive skip.
+
+Freshness: mp4 mtime is 597 s newer than sheet; no post-compile sheet edit. Logged to `AUDIT.md`, `REBUILD-LOG.md`, and `youtube/FILMLOOP-LOG.md`.

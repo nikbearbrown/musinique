@@ -1,0 +1,93 @@
+module Anthropic
+  module Models
+    class BetaManagedAgentsGitHubRepositoryResourceParams = Beta::BetaManagedAgentsGitHubRepositoryResourceParams
+
+    module Beta
+      type beta_managed_agents_github_repository_resource_params =
+        {
+          type: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::type_,
+          url: String,
+          authorization_token: String,
+          checkout: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout?,
+          mount_path: String?
+        }
+
+      class BetaManagedAgentsGitHubRepositoryResourceParams < Anthropic::Internal::Type::BaseModel
+        attr_accessor type: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::type_
+
+        attr_accessor url: String
+
+        attr_reader authorization_token: String?
+
+        def authorization_token=: (String) -> String
+
+        attr_accessor checkout: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout?
+
+        attr_accessor mount_path: String?
+
+        def initialize: (
+          type: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::type_,
+          url: String,
+          ?authorization_token: String,
+          ?checkout: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout?,
+          ?mount_path: String?
+        ) -> void
+
+        def to_hash: -> {
+          type: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::type_,
+          url: String,
+          authorization_token: String,
+          checkout: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout?,
+          mount_path: String?
+        }
+
+        type type_ = :github_repository
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          GITHUB_REPOSITORY: :github_repository
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::type_]
+        end
+
+        type checkout =
+          Anthropic::Beta::BetaManagedAgentsBranchCheckout
+          | Anthropic::Beta::BetaManagedAgentsCommitCheckout
+
+        module Checkout
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :branch | :commit
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            BRANCH: :branch
+            COMMIT: :commit
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::Checkout::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout]
+
+          def self.new:
+            (
+              type: :branch | "branch",
+              name: String
+            ) -> Anthropic::Beta::BetaManagedAgentsBranchCheckout
+            | (
+              type: :commit | "commit",
+              sha: String
+            ) -> Anthropic::Beta::BetaManagedAgentsCommitCheckout
+            | (
+              type: Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::Checkout::type_
+              | String,
+              ?name: String,
+              ?sha: String
+            ) -> Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceParams::checkout
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,44 @@
+module Anthropic
+  module Models
+    module Beta
+      type agent_archive_params =
+        {
+          agent_id: String,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String
+        }
+        & Anthropic::Internal::Type::request_parameters
+
+      class AgentArchiveParams < Anthropic::Internal::Type::BaseModel
+        extend Anthropic::Internal::Type::RequestParameters::Converter
+        include Anthropic::Internal::Type::RequestParameters
+
+        attr_accessor agent_id: String
+
+        attr_reader betas: ::Array[Anthropic::Models::anthropic_beta]?
+
+        def betas=: (
+          ::Array[Anthropic::Models::anthropic_beta]
+        ) -> ::Array[Anthropic::Models::anthropic_beta]
+
+        attr_reader workspace_id: String?
+
+        def workspace_id=: (String) -> String
+
+        def initialize: (
+          agent_id: String,
+          ?betas: ::Array[Anthropic::Models::anthropic_beta],
+          ?workspace_id: String,
+          ?request_options: Anthropic::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          agent_id: String,
+          betas: ::Array[Anthropic::Models::anthropic_beta],
+          workspace_id: String,
+          request_options: Anthropic::RequestOptions
+        }
+      end
+    end
+  end
+end

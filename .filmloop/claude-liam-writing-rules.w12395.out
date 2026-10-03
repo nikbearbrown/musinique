@@ -1,0 +1,31 @@
+Done. Here is the exact log of what happened:
+
+---
+
+**claude-liam-writing-rules — BUILT**
+
+**Phase 0**: `beat_sheet.pre-rebuild.json` created (byte-exact backup before any edit).
+
+**Phase 1 — Audit:**
+| Check | Result |
+|---|---|
+| 1. Stale renders | PASS — no media/ directory, nothing to delete |
+| 2. Bookends | PASS — all four present, correct patterns |
+| 3. Spark lines | FIXED — BHTF `"Your Turn"` → `"Your turn."` |
+| 4. Verdict | PASS — 6 real, specific lines, not stripped |
+| 5. Card text | PASS — no placeholders or overflow |
+| 6. Punt sweep | PASS — all Hookify patterns are registered components |
+| 7. Card-only | PASS — custom teaching components, not generic cards |
+| 8. Lens | PASS — Descartes (B05 gap critique) + Popper (BHTF failure gate) |
+| 9. Brand fields | FIXED — `modelLabel: "Opus 4.8"` → `"Opus 4.7"` in B00 and BHTF (datable claim) |
+| 10. Pacing | PASS — all beats 2.0–3.4 wps |
+| 11. type_check | FIXED → PASS — B01 sparkLine 13 words → 4 words ("File. Fields. Pattern. Message.") |
+
+**Phase 2 — Build:**
+- All 7 Remotion beats rendered successfully
+- `compile.py`: 7/7 VIDEO, GATE AUDIO PASS (−23.7 dB), 313.1s
+- Gate V frames reviewed: all beats legible, no overflow, no safe-zone violations
+- One justified downgrade: B02 multi-terracotta (structural HookifyEventTypes component design, previously approved)
+- Post-build punt sweep: `Counter({'remotion': 7})` — zero slates
+
+**Deliverable**: `claude-liam-writing-rules.mp4` — 313.1s, audible, newer than sheet.

@@ -1,0 +1,47 @@
+{
+  "repository": "claude-code-security-review",
+  "title": "Claude Code Security Reviewer",
+  "source_count": 8,
+  "sources": [
+    {
+      "file": "README.md",
+      "words": 1058,
+      "excerpt_chars": 8551
+    },
+    {
+      "file": "claudecode/evals/README.md",
+      "words": 241,
+      "excerpt_chars": 1686
+    },
+    {
+      "file": "docs/custom-filtering-instructions.md",
+      "words": 312,
+      "excerpt_chars": 2469
+    },
+    {
+      "file": "docs/custom-security-scan-instructions.md",
+      "words": 478,
+      "excerpt_chars": 3758
+    },
+    {
+      "file": "examples/custom-false-positive-filtering.txt",
+      "words": 308,
+      "excerpt_chars": 1971
+    },
+    {
+      "file": "examples/custom-security-scan-instructions.txt",
+      "words": 105,
+      "excerpt_chars": 797
+    },
+    {
+      "file": "claudecode/requirements.txt",
+      "words": 83,
+      "excerpt_chars": 553
+    },
+    {
+      "file": ".claude/commands/security-review.md",
+      "words": 1630,
+      "excerpt_chars": 10000
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+**DONE** — `nbb-brutalist-three-file.mp4` (4K, 146.7s, −24.0 dB), mp4 mtime 19:29 > sheet mtime 19:28. 
+
+Structural rebuild: removed 4 duplicate `NBB*` wrappers and restored canonical `B00/BVDT/BHTF/BOUT` bookends. Fixed 3 authored placeholders (BVDT verdict, BHTF your-turn, B01 FormBCard), 2 empty body shots (B04, B05), 1 cold-open greeting, and rewrote the Manim scenes to kill mid-word `Text(narration[:30])` truncation. 9/9 slots real (7 Remotion + 2 Manim, zero slates). GATE T, GATE V, GATE AUDIO all PASS. Log entry appended to `youtube/FILMLOOP-LOG.md`.

@@ -1,0 +1,8 @@
+Reel complete: `nbb-boondoggle-score` — 140 s master, 13/13 filled, no slates.
+
+**Fixes made this pass:**
+- **§8.9 truncations** — NBB00/NBB02 `segment` prop `"Score a Build Plan Using the"` → `"BOONDOGGLE SCORE"`, both composer beats re-rendered.
+- **B07 / B08 "[...]" markers** — rewrote `scenes_std.py` scenes with clean short EB Garamond copy, no auto-scaling, re-rendered.
+- **B04 table blockers** — HIGH-RISK pill overflowing row 3 → `!` marker at row-left + pink/crimson row + narration carries the semantics. Handoff strings shortened, columns rebalanced, animations batched, font Prism→EB Garamond at sizes 28/23, critical-path caption moved to y=−2.75. Re-rendered at 4K so §8.1's scale=2 fragment filter discards counter/serif strokes correctly.
+
+**Gates:** GATE T PASS · GATE AUDIO PASS (mean_volume −23.9 dB) · master mp4 (12:41:47) newer than beat_sheet.json (12:07:35). AUDIT.md + REBUILD-LOG.md written in the reel folder; log block appended to `books/anthropics/youtube/FILMLOOP-LOG.md`. Not published.

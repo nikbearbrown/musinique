@@ -1,0 +1,108 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Models
+    module Beta
+      class BetaManagedAgentsGitHubRepositoryResourceConfig < Anthropic::Internal::Type::BaseModel
+        # @!attribute type
+        #
+        #   @return [Symbol, Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig::Type]
+        required :type, enum: -> { Anthropic::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig::Type }
+
+        # @!attribute url
+        #   Github URL of the repository
+        #
+        #   @return [String]
+        required :url, String
+
+        # @!attribute checkout
+        #   Branch or commit to check out. Defaults to the repository's default branch.
+        #
+        #   @return [Anthropic::Models::Beta::BetaManagedAgentsBranchCheckout, Anthropic::Models::Beta::BetaManagedAgentsCommitCheckout, nil]
+        optional :checkout,
+                 union: -> { Anthropic::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig::Checkout },
+                 nil?: true
+
+        # @!attribute mount_path
+        #   Mount path in the container. Defaults to `/workspace/<repo-name>`.
+        #
+        #   @return [String, nil]
+        optional :mount_path, String, nil?: true
+
+        # @!method initialize(type:, url:, checkout: nil, mount_path: nil)
+        #   A GitHub repository mounted into each session's container. The authorization
+        #   token is write-only and never returned.
+        #
+        #   @param type [Symbol, Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig::Type]
+        #
+        #   @param url [String] Github URL of the repository
+        #
+        #   @param checkout [Anthropic::Models::Beta::BetaManagedAgentsBranchCheckout, Anthropic::Models::Beta::BetaManagedAgentsCommitCheckout, nil] Branch or commit to check out. Defaults to the repository's default branch.
+        #
+        #   @param mount_path [String, nil] Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+        # @see Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig#type
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          GITHUB_REPOSITORY = :github_repository
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # Branch or commit to check out. Defaults to the repository's default branch.
+        #
+        # @see Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig#checkout
+        module Checkout
+          extend Anthropic::Internal::Type::Union
+
+          discriminator :type
+
+          variant :branch, -> { Anthropic::Beta::BetaManagedAgentsBranchCheckout }
+
+          variant :commit, -> { Anthropic::Beta::BetaManagedAgentsCommitCheckout }
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            BRANCH = :branch
+            COMMIT = :commit
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @!method self.variants
+          #   @return [Array(Anthropic::Models::Beta::BetaManagedAgentsBranchCheckout, Anthropic::Models::Beta::BetaManagedAgentsCommitCheckout)]
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          #
+          # @param type [Symbol, Anthropic::Models::Beta::BetaManagedAgentsGitHubRepositoryResourceConfig::Checkout::Type, String]
+          #
+          # @param args [Hash{Symbol=>Object}] Attributes for the chosen variant.
+          #
+          #   @option args [String] :name Branch name to check out.
+          #
+          #   @option args [String] :sha Full commit SHA to check out.
+          #
+          # @raise [ArgumentError]
+          # @return [Anthropic::Models::Beta::BetaManagedAgentsBranchCheckout, Anthropic::Models::Beta::BetaManagedAgentsCommitCheckout]
+          def self.new(type:, **args)
+            case type.to_sym
+            when :branch
+              Anthropic::Beta::BetaManagedAgentsBranchCheckout.new(**args)
+            when :commit
+              Anthropic::Beta::BetaManagedAgentsCommitCheckout.new(**args)
+            else
+              raise ArgumentError, "unknown type: #{type}"
+            end
+          end
+        end
+      end
+    end
+
+    BetaManagedAgentsGitHubRepositoryResourceConfig = Beta::BetaManagedAgentsGitHubRepositoryResourceConfig
+  end
+end

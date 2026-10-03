@@ -1,0 +1,43 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class DocumentBlockTest {
+
+    @Test
+    fun create() {
+        val documentBlock =
+            DocumentBlock.builder()
+                .citations(CitationsConfig.of(true))
+                .base64Source("U3RhaW5sZXNzIHJvY2tz")
+                .title("title")
+                .build()
+
+        assertThat(documentBlock.citations()).contains(CitationsConfig.of(true))
+        assertThat(documentBlock.source())
+            .isEqualTo(DocumentBlock.Source.ofBase64("U3RhaW5sZXNzIHJvY2tz"))
+        assertThat(documentBlock.title()).contains("title")
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val documentBlock =
+            DocumentBlock.builder()
+                .citations(CitationsConfig.of(true))
+                .base64Source("U3RhaW5sZXNzIHJvY2tz")
+                .title("title")
+                .build()
+
+        val roundtrippedDocumentBlock =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(documentBlock),
+                jacksonTypeRef<DocumentBlock>(),
+            )
+
+        assertThat(roundtrippedDocumentBlock).isEqualTo(documentBlock)
+    }
+}

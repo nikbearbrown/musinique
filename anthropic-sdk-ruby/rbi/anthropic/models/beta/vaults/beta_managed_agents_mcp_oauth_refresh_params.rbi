@@ -1,0 +1,181 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    module Beta
+      module Vaults
+        class BetaManagedAgentsMCPOAuthRefreshParams < Anthropic::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams,
+                Anthropic::Internal::AnyHash
+              )
+            end
+
+          # OAuth client ID.
+          sig { returns(String) }
+          attr_accessor :client_id
+
+          # OAuth refresh token.
+          sig { returns(String) }
+          attr_accessor :refresh_token
+
+          # Token endpoint URL used to refresh the access token.
+          sig { returns(String) }
+          attr_accessor :token_endpoint
+
+          sig do
+            returns(
+              T.any(
+                Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthNoneParam,
+                Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthBasicParam,
+                Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthPostParam
+              )
+            )
+          end
+          attr_accessor :token_endpoint_auth
+
+          # OAuth resource indicator.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :resource
+
+          # OAuth scope for the refresh request.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :scope
+
+          # OAuth refresh token parameters for creating a credential with refresh support.
+          sig do
+            params(
+              client_id: String,
+              refresh_token: String,
+              token_endpoint: String,
+              token_endpoint_auth:
+                T.any(
+                  Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthNoneParam::OrHash,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthBasicParam::OrHash,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthPostParam::OrHash
+                ),
+              resource: T.nilable(String),
+              scope: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # OAuth client ID.
+            client_id:,
+            # OAuth refresh token.
+            refresh_token:,
+            # Token endpoint URL used to refresh the access token.
+            token_endpoint:,
+            token_endpoint_auth:,
+            # OAuth resource indicator.
+            resource: nil,
+            # OAuth scope for the refresh request.
+            scope: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                client_id: String,
+                refresh_token: String,
+                token_endpoint: String,
+                token_endpoint_auth:
+                  T.any(
+                    Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthNoneParam,
+                    Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthBasicParam,
+                    Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthPostParam
+                  ),
+                resource: T.nilable(String),
+                scope: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+
+          module TokenEndpointAuth
+            extend Anthropic::Internal::Type::Union
+
+            Variants =
+              T.type_alias do
+                T.any(
+                  Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthNoneParam,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthBasicParam,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsTokenEndpointAuthPostParam
+                )
+              end
+
+            module Type
+              extend Anthropic::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Type
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              NONE =
+                T.let(
+                  :none,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Type::TaggedSymbol
+                )
+              CLIENT_SECRET_BASIC =
+                T.let(
+                  :client_secret_basic,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Type::TaggedSymbol
+                )
+              CLIENT_SECRET_POST =
+                T.let(
+                  :client_secret_post,
+                  Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Type::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Type::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Variants
+                ]
+              )
+            end
+            def self.variants
+            end
+
+            # Creates a new instance of the variant class whose `type` matches the given
+            # value, passing the remaining arguments to its constructor.
+            sig do
+              params(
+                type:
+                  Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Type::OrSymbol,
+                client_secret: String
+              ).returns(
+                Anthropic::Beta::Vaults::BetaManagedAgentsMCPOAuthRefreshParams::TokenEndpointAuth::Variants
+              )
+            end
+            def self.new(
+              type:,
+              # OAuth client secret.
+              client_secret: nil
+            )
+            end
+          end
+        end
+      end
+    end
+  end
+end

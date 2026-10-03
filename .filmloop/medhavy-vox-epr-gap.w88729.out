@@ -1,0 +1,12 @@
+Done. Reel: `cancer-nanomedicine/youtube/medhavy-vox-epr-gap`.
+
+**Deliverable:** `vox-epr-gap-slate.mp4` — 240.3s, 16/16 filled (no SLATE frames), sheet mtime 05:29 < cut mtime 05:31 (84s newer, not stale).
+
+**What happened**
+- Phase 0: backup + envelope normalize (dropped ElevenLabs `voice_id`, rewrote stale `clock` prose). Narration LOCKED — no rewrites.
+- Phase 1 audit → `AUDIT.md` + `REBUILD-LOG.md`. Claude-specific bookend/spark/verdict/your-turn checks N/A (this is a MEDHAVY vox reel with OutroSeries+OutroCTA). GATE T pass. LENS audit pass (Hume via B10, Plato via B14).
+- Phase 2: 12 pipeline-owned SLATE beats (8 GRAPHIC/manim + 4 CARD) authored onto `shot.remotion.pattern: "FormACard"` with summary lines drawn from each beat's own `production_viz.mechanic`/`card.copy`. Original `graphic.production_viz` specs kept in sheet for a future Manim-authoring pass.
+- **Real defect caught:** B15/B16 sheet props used wrong-schema fields (`{seriesTitle, tagline, githubSlug}` / `{authorName, handle, ctaText}`); zod schemas are `{eyebrow, line}` / `{line, handle}`. First render silently defaulted to "CLAUDE COWORK / Part of the Claude Cowork series." — would have shipped a Claude-branded outro on a MedhavyAI reel. Fixed props, deleted stale renders, re-rendered, recompiled.
+- Gate V: 16 mid-frames extracted + read; all legible, no overflow/clipping; B15/B16 now correctly show `CANCER NANOMEDICINE / Part of the Cancer Nanomedicine series on Medhavy AI.` and `Explore the full course at medhavy.com. / @MedhavyAI`.
+
+**Post-compile sheet edits: NONE.** No validator loosened.

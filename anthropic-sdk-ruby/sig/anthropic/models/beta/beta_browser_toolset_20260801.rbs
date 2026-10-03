@@ -1,0 +1,34 @@
+module Anthropic
+  module Models
+    class BetaBrowserToolset20260801 = Beta::BetaBrowserToolset20260801
+
+    module Beta
+      type beta_browser_toolset20260801 =
+        {
+          type: :browser_toolset_20260801,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          configs: Anthropic::Beta::BetaBrowserToolsetConfigs?
+        }
+
+      class BetaBrowserToolset20260801 < Anthropic::Internal::Type::BaseModel
+        attr_accessor type: :browser_toolset_20260801
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        attr_accessor configs: Anthropic::Beta::BetaBrowserToolsetConfigs?
+
+        def initialize: (
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?configs: Anthropic::Beta::BetaBrowserToolsetConfigs?,
+          ?type: :browser_toolset_20260801
+        ) -> void
+
+        def to_hash: -> {
+          type: :browser_toolset_20260801,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          configs: Anthropic::Beta::BetaBrowserToolsetConfigs?
+        }
+      end
+    end
+  end
+end

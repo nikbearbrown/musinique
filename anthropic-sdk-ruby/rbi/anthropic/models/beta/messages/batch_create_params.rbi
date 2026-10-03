@@ -1,0 +1,1497 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    module Beta
+      module Messages
+        class BatchCreateParams < Anthropic::Internal::Type::BaseModel
+          extend Anthropic::Internal::Type::RequestParameters::Converter
+          include Anthropic::Internal::Type::RequestParameters
+
+          OrHash =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::Messages::BatchCreateParams,
+                Anthropic::Internal::AnyHash
+              )
+            end
+
+          # List of requests for prompt completion. Each is an individual request to create
+          # a Message.
+          sig do
+            returns(
+              T::Array[Anthropic::Beta::Messages::BatchCreateParams::Request]
+            )
+          end
+          attr_accessor :requests
+
+          # Optional header to specify the beta version(s) you want to use.
+          sig do
+            returns(
+              T.nilable(
+                T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)]
+              )
+            )
+          end
+          attr_reader :betas
+
+          sig do
+            params(
+              betas: T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)]
+            ).void
+          end
+          attr_writer :betas
+
+          # The user profile ID to attribute the requests in this batch to. Use when acting
+          # on behalf of a party other than your organization. Requires the `user-profiles`
+          # beta header. Applies to every request in the batch; an individual request whose
+          # `user_profile_id` body field conflicts with this header is errored.
+          sig { returns(T.nilable(String)) }
+          attr_reader :user_profile_id
+
+          sig { params(user_profile_id: String).void }
+          attr_writer :user_profile_id
+
+          # Optional header to select the Workspace for this request. The value is a
+          # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+          #
+          # Only needed for credentials that can act on more than one Workspace. A
+          # credential that belongs to a specific Workspace may omit it; if sent, it must
+          # match that Workspace.
+          sig { returns(T.nilable(String)) }
+          attr_reader :workspace_id
+
+          sig { params(workspace_id: String).void }
+          attr_writer :workspace_id
+
+          sig do
+            params(
+              requests:
+                T::Array[
+                  Anthropic::Beta::Messages::BatchCreateParams::Request::OrHash
+                ],
+              betas:
+                T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+              user_profile_id: String,
+              workspace_id: String,
+              request_options: Anthropic::RequestOptions::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # List of requests for prompt completion. Each is an individual request to create
+            # a Message.
+            requests:,
+            # Optional header to specify the beta version(s) you want to use.
+            betas: nil,
+            # The user profile ID to attribute the requests in this batch to. Use when acting
+            # on behalf of a party other than your organization. Requires the `user-profiles`
+            # beta header. Applies to every request in the batch; an individual request whose
+            # `user_profile_id` body field conflicts with this header is errored.
+            user_profile_id: nil,
+            # Optional header to select the Workspace for this request. The value is a
+            # Workspace ID (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+            #
+            # Only needed for credentials that can act on more than one Workspace. A
+            # credential that belongs to a specific Workspace may omit it; if sent, it must
+            # match that Workspace.
+            workspace_id: nil,
+            request_options: {}
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                requests:
+                  T::Array[
+                    Anthropic::Beta::Messages::BatchCreateParams::Request
+                  ],
+                betas:
+                  T::Array[T.any(Anthropic::AnthropicBeta::OrSymbol, String)],
+                user_profile_id: String,
+                workspace_id: String,
+                request_options: Anthropic::RequestOptions
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Request < Anthropic::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Anthropic::Beta::Messages::BatchCreateParams::Request,
+                  Anthropic::Internal::AnyHash
+                )
+              end
+
+            # Developer-provided ID created for each request in a Message Batch. Useful for
+            # matching results to requests, as results may be given out of request order.
+            #
+            # Must be unique for each request within the Message Batch.
+            sig { returns(String) }
+            attr_accessor :custom_id
+
+            # Messages API creation parameters for the individual request.
+            #
+            # See the
+            # [Messages API reference](https://platform.claude.com/docs/en/api/messages) for
+            # full documentation on available parameters.
+            sig do
+              returns(
+                Anthropic::Beta::Messages::BatchCreateParams::Request::Params
+              )
+            end
+            attr_reader :params
+
+            sig do
+              params(
+                params:
+                  Anthropic::Beta::Messages::BatchCreateParams::Request::Params::OrHash
+              ).void
+            end
+            attr_writer :params
+
+            sig do
+              params(
+                custom_id: String,
+                params:
+                  Anthropic::Beta::Messages::BatchCreateParams::Request::Params::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # Developer-provided ID created for each request in a Message Batch. Useful for
+              # matching results to requests, as results may be given out of request order.
+              #
+              # Must be unique for each request within the Message Batch.
+              custom_id:,
+              # Messages API creation parameters for the individual request.
+              #
+              # See the
+              # [Messages API reference](https://platform.claude.com/docs/en/api/messages) for
+              # full documentation on available parameters.
+              params:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  custom_id: String,
+                  params:
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params
+                }
+              )
+            end
+            def to_hash
+            end
+
+            class Params < Anthropic::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params,
+                    Anthropic::Internal::AnyHash
+                  )
+                end
+
+              # The maximum number of tokens to generate before stopping.
+              #
+              # Note that our models may stop _before_ reaching this maximum. This parameter
+              # only specifies the absolute maximum number of tokens to generate.
+              #
+              # Set to `0` to populate the
+              # [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pre-warming-the-cache)
+              # without generating a response.
+              #
+              # Different models have different maximum values for this parameter. See
+              # [models](https://platform.claude.com/docs/en/about-claude/models/overview) for
+              # details.
+              sig { returns(Integer) }
+              attr_accessor :max_tokens
+
+              # Input messages.
+              #
+              # Our models are trained to operate on alternating `user` and `assistant`
+              # conversational turns. When creating a new `Message`, you specify the prior
+              # conversational turns with the `messages` parameter, and the model then generates
+              # the next `Message` in the conversation. Consecutive `user` or `assistant` turns
+              # in your request will be combined into a single turn.
+              #
+              # Each input message must be an object with a `role` and `content`. You can
+              # specify a single `user`-role message, or you can include multiple `user` and
+              # `assistant` messages.
+              #
+              # If the final message uses the `assistant` role, the response content will
+              # continue immediately from the content in that message. This can be used to
+              # constrain part of the model's response.
+              #
+              # Example with a single `user` message:
+              #
+              # ```json
+              # [{ "role": "user", "content": "Hello, Claude" }]
+              # ```
+              #
+              # Example with multiple conversational turns:
+              #
+              # ```json
+              # [
+              #   { "role": "user", "content": "Hello there." },
+              #   { "role": "assistant", "content": "Hi, I'm Claude. How can I help you?" },
+              #   { "role": "user", "content": "Can you explain LLMs in plain English?" }
+              # ]
+              # ```
+              #
+              # Example with a partially-filled response from Claude:
+              #
+              # ```json
+              # [
+              #   {
+              #     "role": "user",
+              #     "content": "What's the Greek name for Sun? (A) Sol (B) Helios (C) Sun"
+              #   },
+              #   { "role": "assistant", "content": "The best answer is (" }
+              # ]
+              # ```
+              #
+              # Each input message `content` may be either a single `string` or an array of
+              # content blocks, where each block has a specific `type`. Using a `string` for
+              # `content` is shorthand for an array of one content block of type `"text"`. The
+              # following input messages are equivalent:
+              #
+              # ```json
+              # { "role": "user", "content": "Hello, Claude" }
+              # ```
+              #
+              # ```json
+              # { "role": "user", "content": [{ "type": "text", "text": "Hello, Claude" }] }
+              # ```
+              #
+              # See
+              # [input examples](https://platform.claude.com/docs/en/build-with-claude/working-with-messages).
+              #
+              # Note that if you want to include a
+              # [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role),
+              # you can use the top-level `system` parameter — there is no `"system"` role for
+              # input messages in the Messages API.
+              #
+              # There is a limit of 100,000 messages in a single request.
+              sig { returns(T::Array[Anthropic::Beta::BetaMessageParam]) }
+              attr_accessor :messages
+
+              # The model that will complete your prompt.
+              #
+              # See [models](https://docs.anthropic.com/en/docs/models-overview) for additional
+              # details and options.
+              sig { returns(T.any(Anthropic::Model::OrSymbol, String)) }
+              attr_accessor :model
+
+              # Top-level cache control automatically applies a cache_control marker to the last
+              # cacheable block in the request.
+              sig do
+                returns(T.nilable(Anthropic::Beta::BetaCacheControlEphemeral))
+              end
+              attr_reader :cache_control
+
+              sig do
+                params(
+                  cache_control:
+                    T.nilable(
+                      Anthropic::Beta::BetaCacheControlEphemeral::OrHash
+                    )
+                ).void
+              end
+              attr_writer :cache_control
+
+              # Compact the whole conversation and return a signed `compaction` block, alone,
+              # that a later request sends back first in `messages`, in place of the messages it
+              # summarizes. There is no trigger and no pause flag: sending the parameter
+              # compacts, and nothing is sampled after the block.
+              #
+              # The summarization prompt is the server's own unless `instructions` are given,
+              # which then replace it for this request; a value that is empty or only whitespace
+              # counts as absent.
+              sig { returns(T.nilable(Anthropic::Beta::BetaCompactionConfig)) }
+              attr_reader :compaction
+
+              sig do
+                params(
+                  compaction:
+                    T.nilable(Anthropic::Beta::BetaCompactionConfig::OrHash)
+                ).void
+              end
+              attr_writer :compaction
+
+              # Container identifier for reuse across requests.
+              sig do
+                returns(
+                  T.nilable(T.any(Anthropic::Beta::BetaContainerParams, String))
+                )
+              end
+              attr_accessor :container
+
+              # Context management configuration.
+              #
+              # This allows you to control how Claude manages context across multiple requests,
+              # such as whether to clear function results or not.
+              sig do
+                returns(T.nilable(Anthropic::Beta::BetaContextManagementConfig))
+              end
+              attr_reader :context_management
+
+              sig do
+                params(
+                  context_management:
+                    T.nilable(
+                      Anthropic::Beta::BetaContextManagementConfig::OrHash
+                    )
+                ).void
+              end
+              attr_writer :context_management
+
+              # Request-level diagnostics. Currently carries the previous response id for
+              # prompt-cache divergence reporting.
+              sig { returns(T.nilable(Anthropic::Beta::BetaDiagnosticsParam)) }
+              attr_reader :diagnostics
+
+              sig do
+                params(
+                  diagnostics:
+                    T.nilable(Anthropic::Beta::BetaDiagnosticsParam::OrHash)
+                ).void
+              end
+              attr_writer :diagnostics
+
+              # The `fallback_credit_token` from a prior refusal's `stop_details`.
+              #
+              # When a preceding request was refused and returned a `fallback_credit_token`,
+              # pass that code here on the retry to have the retry's cache-creation tokens for
+              # the prefix that was warm on the refused model billed at the cache-read rate.
+              # Must be redeemed by the same organization and workspace, with the same request
+              # body (optionally extended by one appended `assistant` message whose content is
+              # the partial text — with any trailing whitespace stripped from the final text
+              # block — and paired server-tool blocks streamed before the refusal; the
+              # appended-assistant form is not available for requests with `output_format` set
+              # or forced `tool_choice`), on an eligible fallback model, on the same platform,
+              # and within 5 minutes of the refusal; a mismatch is a 400. A token minted
+              # mid-server-tool-loop whose partial content was continuable may only be redeemed
+              # with the appended-assistant form — if an exact-body retry is rejected with a 400
+              # saying the token must be redeemed by continuing the partial response, retry with
+              # the appended-assistant form instead.
+              #
+              # When the appended-assistant form is used on a model that otherwise disallows
+              # assistant-turn prefill, this token also authorizes that one prefill.
+              sig do
+                returns(
+                  T.nilable(
+                    T.any(Anthropic::Beta::BetaFallbackCreditTokenParam, String)
+                  )
+                )
+              end
+              attr_accessor :fallback_credit_token
+
+              # Opt-in server-side retry on one or more substitute models when the requested
+              # model declines for policy reasons. Tried in order: if the first entry also
+              # declines, the second is tried, and so on. The string "default" requests the
+              # requested model's server-defined default fallback configuration.
+              sig do
+                returns(
+                  T.nilable(
+                    T.any(Symbol, T::Array[Anthropic::Beta::BetaFallbackParam])
+                  )
+                )
+              end
+              attr_accessor :fallbacks
+
+              # Specifies the geographic region for inference processing. If not specified, the
+              # workspace's `default_inference_geo` is used.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :inference_geo
+
+              # MCP servers to be utilized in this request
+              sig do
+                returns(
+                  T.nilable(
+                    T::Array[Anthropic::Beta::BetaRequestMCPServerURLDefinition]
+                  )
+                )
+              end
+              attr_reader :mcp_servers
+
+              sig do
+                params(
+                  mcp_servers:
+                    T::Array[
+                      Anthropic::Beta::BetaRequestMCPServerURLDefinition::OrHash
+                    ]
+                ).void
+              end
+              attr_writer :mcp_servers
+
+              # An object describing metadata about the request.
+              sig { returns(T.nilable(Anthropic::Beta::BetaMetadata)) }
+              attr_reader :metadata
+
+              sig do
+                params(metadata: Anthropic::Beta::BetaMetadata::OrHash).void
+              end
+              attr_writer :metadata
+
+              # Configuration options for the model's output, such as the output format.
+              sig { returns(T.nilable(Anthropic::Beta::BetaOutputConfig)) }
+              attr_reader :output_config
+
+              sig do
+                params(
+                  output_config: Anthropic::Beta::BetaOutputConfig::OrHash
+                ).void
+              end
+              attr_writer :output_config
+
+              # Deprecated: Use `output_config.format` instead. See
+              # [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+              #
+              # A schema to specify Claude's output format in responses. This parameter will be
+              # removed in a future release.
+              sig { returns(T.nilable(Anthropic::Beta::BetaJSONOutputFormat)) }
+              attr_reader :output_format
+
+              sig do
+                params(
+                  output_format:
+                    T.nilable(Anthropic::Beta::BetaJSONOutputFormat::OrHash)
+                ).void
+              end
+              attr_writer :output_format
+
+              # Determines whether to use priority capacity (if available) or standard capacity
+              # for this request.
+              #
+              # Anthropic offers different levels of service for your API requests. See
+              # [service-tiers](https://platform.claude.com/docs/en/api/service-tiers) for
+              # details.
+              sig do
+                returns(
+                  T.nilable(
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::OrSymbol
+                  )
+                )
+              end
+              attr_reader :service_tier
+
+              sig do
+                params(
+                  service_tier:
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::OrSymbol
+                ).void
+              end
+              attr_writer :service_tier
+
+              # Inference speed mode. `fast` provides significantly faster output token
+              # generation at premium pricing. Not all models support `fast`; invalid
+              # combinations are rejected at create time.
+              sig do
+                returns(
+                  T.nilable(
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed::OrSymbol
+                  )
+                )
+              end
+              attr_accessor :speed
+
+              # Custom text sequences that will cause the model to stop generating.
+              #
+              # Our models will normally stop when they have naturally completed their turn,
+              # which will result in a response `stop_reason` of `"end_turn"`.
+              #
+              # If you want the model to stop generating when it encounters custom strings of
+              # text, you can use the `stop_sequences` parameter. If the model encounters one of
+              # the custom sequences, the response `stop_reason` value will be `"stop_sequence"`
+              # and the response `stop_sequence` value will contain the matched stop sequence.
+              sig { returns(T.nilable(T::Array[String])) }
+              attr_reader :stop_sequences
+
+              sig { params(stop_sequences: T::Array[String]).void }
+              attr_writer :stop_sequences
+
+              # Whether to incrementally stream the response using server-sent events.
+              #
+              # See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)
+              # for details.
+              sig { returns(T.nilable(T::Boolean)) }
+              attr_reader :stream
+
+              sig { params(stream: T::Boolean).void }
+              attr_writer :stream
+
+              # System prompt.
+              #
+              # A system prompt is a way of providing context and instructions to Claude, such
+              # as specifying a particular goal or role. See our
+              # [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
+              sig do
+                returns(
+                  T.nilable(
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::System::Variants
+                  )
+                )
+              end
+              attr_reader :system_
+
+              sig do
+                params(
+                  system_:
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::System::Variants
+                ).void
+              end
+              attr_writer :system_
+
+              # Amount of randomness injected into the response.
+              #
+              # Defaults to `1.0`. Ranges from `0.0` to `1.0`. Use `temperature` closer to `0.0`
+              # for analytical / multiple choice, and closer to `1.0` for creative and
+              # generative tasks.
+              #
+              # Note that even with `temperature` of `0.0`, the results will not be fully
+              # deterministic.
+              sig { returns(T.nilable(Float)) }
+              attr_reader :temperature
+
+              sig { params(temperature: Float).void }
+              attr_writer :temperature
+
+              # Configuration for enabling Claude's extended thinking.
+              #
+              # When enabled, responses include `thinking` content blocks showing Claude's
+              # thinking process before the final answer. Requires a minimum budget of 1,024
+              # tokens and counts towards your `max_tokens` limit.
+              #
+              # See
+              # [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking)
+              # for details.
+              sig do
+                returns(
+                  T.nilable(
+                    T.any(
+                      Anthropic::Beta::BetaThinkingConfigEnabled,
+                      Anthropic::Beta::BetaThinkingConfigDisabled,
+                      Anthropic::Beta::BetaThinkingConfigAdaptive
+                    )
+                  )
+                )
+              end
+              attr_reader :thinking
+
+              sig do
+                params(
+                  thinking:
+                    T.any(
+                      Anthropic::Beta::BetaThinkingConfigEnabled::OrHash,
+                      Anthropic::Beta::BetaThinkingConfigDisabled::OrHash,
+                      Anthropic::Beta::BetaThinkingConfigAdaptive::OrHash
+                    )
+                ).void
+              end
+              attr_writer :thinking
+
+              # How the model should use the provided tools. The model can use a specific tool,
+              # any available tool, decide by itself, or not use tools at all.
+              sig do
+                returns(
+                  T.nilable(
+                    T.any(
+                      Anthropic::Beta::BetaToolChoiceAuto,
+                      Anthropic::Beta::BetaToolChoiceAny,
+                      Anthropic::Beta::BetaToolChoiceTool,
+                      Anthropic::Beta::BetaToolChoiceNone
+                    )
+                  )
+                )
+              end
+              attr_reader :tool_choice
+
+              sig do
+                params(
+                  tool_choice:
+                    T.any(
+                      Anthropic::Beta::BetaToolChoiceAuto::OrHash,
+                      Anthropic::Beta::BetaToolChoiceAny::OrHash,
+                      Anthropic::Beta::BetaToolChoiceTool::OrHash,
+                      Anthropic::Beta::BetaToolChoiceNone::OrHash
+                    )
+                ).void
+              end
+              attr_writer :tool_choice
+
+              # Definitions of tools that the model may use.
+              #
+              # If you include `tools` in your API request, the model may return `tool_use`
+              # content blocks that represent the model's use of those tools. You can then run
+              # those tools using the tool input generated by the model and then optionally
+              # return results back to the model using `tool_result` content blocks.
+              #
+              # There are two types of tools: **client tools** and **server tools**. The
+              # behavior described below applies to client tools. For
+              # [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools),
+              # see their individual documentation as each has its own behavior (e.g., the
+              # [web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)).
+              #
+              # Each tool definition includes:
+              #
+              # - `name`: Name of the tool.
+              # - `description`: Optional, but strongly-recommended description of the tool.
+              # - `input_schema`: [JSON schema](https://json-schema.org/draft/2020-12) for the
+              #   tool `input` shape that the model will produce in `tool_use` output content
+              #   blocks.
+              #
+              # For example, if you defined `tools` as:
+              #
+              # ```json
+              # [
+              #   {
+              #     "name": "get_stock_price",
+              #     "description": "Get the current stock price for a given ticker symbol.",
+              #     "input_schema": {
+              #       "type": "object",
+              #       "properties": {
+              #         "ticker": {
+              #           "type": "string",
+              #           "description": "The stock ticker symbol, e.g. AAPL for Apple Inc."
+              #         }
+              #       },
+              #       "required": ["ticker"]
+              #     }
+              #   }
+              # ]
+              # ```
+              #
+              # And then asked the model "What's the S&P 500 at today?", the model might produce
+              # `tool_use` content blocks in the response like this:
+              #
+              # ```json
+              # [
+              #   {
+              #     "type": "tool_use",
+              #     "id": "toolu_01D7FLrfh4GYq7yT1ULFeyMV",
+              #     "name": "get_stock_price",
+              #     "input": { "ticker": "^GSPC" }
+              #   }
+              # ]
+              # ```
+              #
+              # You might then run your `get_stock_price` tool with `{"ticker": "^GSPC"}` as an
+              # input, and return the following back to the model in a subsequent `user`
+              # message:
+              #
+              # ```json
+              # [
+              #   {
+              #     "type": "tool_result",
+              #     "tool_use_id": "toolu_01D7FLrfh4GYq7yT1ULFeyMV",
+              #     "content": "259.75 USD"
+              #   }
+              # ]
+              # ```
+              #
+              # Tools can be used for workflows that include running client-side tools and
+              # functions, or more generally whenever you want the model to produce a particular
+              # JSON structure of output.
+              #
+              # See our
+              # [guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)
+              # for more details.
+              sig do
+                returns(
+                  T.nilable(
+                    T::Array[
+                      T.any(
+                        Anthropic::Beta::BetaTool,
+                        Anthropic::Beta::BetaToolBash20241022,
+                        Anthropic::Beta::BetaToolBash20250124,
+                        Anthropic::Beta::BetaCodeExecutionTool20250522,
+                        Anthropic::Beta::BetaCodeExecutionTool20250825,
+                        Anthropic::Beta::BetaCodeExecutionTool20260120,
+                        Anthropic::Beta::BetaCodeExecutionTool20260521,
+                        Anthropic::Beta::BetaBrowserToolset20260801,
+                        Anthropic::Beta::BetaToolComputerUse20241022,
+                        Anthropic::Beta::BetaMemoryTool20250818,
+                        Anthropic::Beta::BetaToolComputerUse20250124,
+                        Anthropic::Beta::BetaToolTextEditor20241022,
+                        Anthropic::Beta::BetaToolComputerUse20251124,
+                        Anthropic::Beta::BetaComputerToolset20260801,
+                        Anthropic::Beta::BetaToolTextEditor20250124,
+                        Anthropic::Beta::BetaToolTextEditor20250429,
+                        Anthropic::Beta::BetaToolTextEditor20250728,
+                        Anthropic::Beta::BetaWebSearchTool20250305,
+                        Anthropic::Beta::BetaWebFetchTool20250910,
+                        Anthropic::Beta::BetaWebSearchTool20260209,
+                        Anthropic::Beta::BetaWebFetchTool20260209,
+                        Anthropic::Beta::BetaWebFetchTool20260309,
+                        Anthropic::Beta::BetaWebSearchTool20260318,
+                        Anthropic::Beta::BetaWebFetchTool20260318,
+                        Anthropic::Beta::BetaAdvisorTool20260301,
+                        Anthropic::Beta::BetaToolSearchToolBm25_20251119,
+                        Anthropic::Beta::BetaToolSearchToolRegex20251119,
+                        Anthropic::Beta::BetaMCPToolset
+                      )
+                    ]
+                  )
+                )
+              end
+              attr_reader :tools
+
+              sig do
+                params(
+                  tools:
+                    T::Array[
+                      T.any(
+                        Anthropic::Beta::BetaTool::OrHash,
+                        Anthropic::Beta::BetaToolBash20241022::OrHash,
+                        Anthropic::Beta::BetaToolBash20250124::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20250522::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20250825::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20260120::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20260521::OrHash,
+                        Anthropic::Beta::BetaBrowserToolset20260801::OrHash,
+                        Anthropic::Beta::BetaToolComputerUse20241022::OrHash,
+                        Anthropic::Beta::BetaMemoryTool20250818::OrHash,
+                        Anthropic::Beta::BetaToolComputerUse20250124::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20241022::OrHash,
+                        Anthropic::Beta::BetaToolComputerUse20251124::OrHash,
+                        Anthropic::Beta::BetaComputerToolset20260801::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20250124::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20250429::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20250728::OrHash,
+                        Anthropic::Beta::BetaWebSearchTool20250305::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20250910::OrHash,
+                        Anthropic::Beta::BetaWebSearchTool20260209::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20260209::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20260309::OrHash,
+                        Anthropic::Beta::BetaWebSearchTool20260318::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20260318::OrHash,
+                        Anthropic::Beta::BetaAdvisorTool20260301::OrHash,
+                        Anthropic::Beta::BetaToolSearchToolBm25_20251119::OrHash,
+                        Anthropic::Beta::BetaToolSearchToolRegex20251119::OrHash,
+                        Anthropic::Beta::BetaMCPToolset::OrHash
+                      )
+                    ]
+                ).void
+              end
+              attr_writer :tools
+
+              # Only sample from the top K options for each subsequent token.
+              #
+              # Used to remove "long tail" low probability responses.
+              # [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
+              #
+              # Recommended for advanced use cases only.
+              sig { returns(T.nilable(Integer)) }
+              attr_reader :top_k
+
+              sig { params(top_k: Integer).void }
+              attr_writer :top_k
+
+              # Use nucleus sampling.
+              #
+              # In nucleus sampling, we compute the cumulative distribution over all the options
+              # for each subsequent token in decreasing probability order and cut it off once it
+              # reaches a particular probability specified by `top_p`.
+              #
+              # Recommended for advanced use cases only.
+              sig { returns(T.nilable(Float)) }
+              attr_reader :top_p
+
+              sig { params(top_p: Float).void }
+              attr_writer :top_p
+
+              # Messages API creation parameters for the individual request.
+              #
+              # See the
+              # [Messages API reference](https://platform.claude.com/docs/en/api/messages) for
+              # full documentation on available parameters.
+              sig do
+                params(
+                  max_tokens: Integer,
+                  messages: T::Array[Anthropic::Beta::BetaMessageParam::OrHash],
+                  model: T.any(Anthropic::Model::OrSymbol, String),
+                  cache_control:
+                    T.nilable(
+                      Anthropic::Beta::BetaCacheControlEphemeral::OrHash
+                    ),
+                  compaction:
+                    T.nilable(Anthropic::Beta::BetaCompactionConfig::OrHash),
+                  container:
+                    T.nilable(
+                      T.any(
+                        Anthropic::Beta::BetaContainerParams::OrHash,
+                        String
+                      )
+                    ),
+                  context_management:
+                    T.nilable(
+                      Anthropic::Beta::BetaContextManagementConfig::OrHash
+                    ),
+                  diagnostics:
+                    T.nilable(Anthropic::Beta::BetaDiagnosticsParam::OrHash),
+                  fallback_credit_token:
+                    T.nilable(
+                      T.any(
+                        Anthropic::Beta::BetaFallbackCreditTokenParam::OrHash,
+                        String
+                      )
+                    ),
+                  fallbacks:
+                    T.nilable(
+                      T.any(
+                        Symbol,
+                        T::Array[Anthropic::Beta::BetaFallbackParam::OrHash]
+                      )
+                    ),
+                  inference_geo: T.nilable(String),
+                  mcp_servers:
+                    T::Array[
+                      Anthropic::Beta::BetaRequestMCPServerURLDefinition::OrHash
+                    ],
+                  metadata: Anthropic::Beta::BetaMetadata::OrHash,
+                  output_config: Anthropic::Beta::BetaOutputConfig::OrHash,
+                  output_format:
+                    T.nilable(Anthropic::Beta::BetaJSONOutputFormat::OrHash),
+                  service_tier:
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::OrSymbol,
+                  speed:
+                    T.nilable(
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed::OrSymbol
+                    ),
+                  stop_sequences: T::Array[String],
+                  stream: T::Boolean,
+                  system_:
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::System::Variants,
+                  temperature: Float,
+                  thinking:
+                    T.any(
+                      Anthropic::Beta::BetaThinkingConfigEnabled::OrHash,
+                      Anthropic::Beta::BetaThinkingConfigDisabled::OrHash,
+                      Anthropic::Beta::BetaThinkingConfigAdaptive::OrHash
+                    ),
+                  tool_choice:
+                    T.any(
+                      Anthropic::Beta::BetaToolChoiceAuto::OrHash,
+                      Anthropic::Beta::BetaToolChoiceAny::OrHash,
+                      Anthropic::Beta::BetaToolChoiceTool::OrHash,
+                      Anthropic::Beta::BetaToolChoiceNone::OrHash
+                    ),
+                  tools:
+                    T::Array[
+                      T.any(
+                        Anthropic::Beta::BetaTool::OrHash,
+                        Anthropic::Beta::BetaToolBash20241022::OrHash,
+                        Anthropic::Beta::BetaToolBash20250124::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20250522::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20250825::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20260120::OrHash,
+                        Anthropic::Beta::BetaCodeExecutionTool20260521::OrHash,
+                        Anthropic::Beta::BetaBrowserToolset20260801::OrHash,
+                        Anthropic::Beta::BetaToolComputerUse20241022::OrHash,
+                        Anthropic::Beta::BetaMemoryTool20250818::OrHash,
+                        Anthropic::Beta::BetaToolComputerUse20250124::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20241022::OrHash,
+                        Anthropic::Beta::BetaToolComputerUse20251124::OrHash,
+                        Anthropic::Beta::BetaComputerToolset20260801::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20250124::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20250429::OrHash,
+                        Anthropic::Beta::BetaToolTextEditor20250728::OrHash,
+                        Anthropic::Beta::BetaWebSearchTool20250305::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20250910::OrHash,
+                        Anthropic::Beta::BetaWebSearchTool20260209::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20260209::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20260309::OrHash,
+                        Anthropic::Beta::BetaWebSearchTool20260318::OrHash,
+                        Anthropic::Beta::BetaWebFetchTool20260318::OrHash,
+                        Anthropic::Beta::BetaAdvisorTool20260301::OrHash,
+                        Anthropic::Beta::BetaToolSearchToolBm25_20251119::OrHash,
+                        Anthropic::Beta::BetaToolSearchToolRegex20251119::OrHash,
+                        Anthropic::Beta::BetaMCPToolset::OrHash
+                      )
+                    ],
+                  top_k: Integer,
+                  top_p: Float
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The maximum number of tokens to generate before stopping.
+                #
+                # Note that our models may stop _before_ reaching this maximum. This parameter
+                # only specifies the absolute maximum number of tokens to generate.
+                #
+                # Set to `0` to populate the
+                # [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pre-warming-the-cache)
+                # without generating a response.
+                #
+                # Different models have different maximum values for this parameter. See
+                # [models](https://platform.claude.com/docs/en/about-claude/models/overview) for
+                # details.
+                max_tokens:,
+                # Input messages.
+                #
+                # Our models are trained to operate on alternating `user` and `assistant`
+                # conversational turns. When creating a new `Message`, you specify the prior
+                # conversational turns with the `messages` parameter, and the model then generates
+                # the next `Message` in the conversation. Consecutive `user` or `assistant` turns
+                # in your request will be combined into a single turn.
+                #
+                # Each input message must be an object with a `role` and `content`. You can
+                # specify a single `user`-role message, or you can include multiple `user` and
+                # `assistant` messages.
+                #
+                # If the final message uses the `assistant` role, the response content will
+                # continue immediately from the content in that message. This can be used to
+                # constrain part of the model's response.
+                #
+                # Example with a single `user` message:
+                #
+                # ```json
+                # [{ "role": "user", "content": "Hello, Claude" }]
+                # ```
+                #
+                # Example with multiple conversational turns:
+                #
+                # ```json
+                # [
+                #   { "role": "user", "content": "Hello there." },
+                #   { "role": "assistant", "content": "Hi, I'm Claude. How can I help you?" },
+                #   { "role": "user", "content": "Can you explain LLMs in plain English?" }
+                # ]
+                # ```
+                #
+                # Example with a partially-filled response from Claude:
+                #
+                # ```json
+                # [
+                #   {
+                #     "role": "user",
+                #     "content": "What's the Greek name for Sun? (A) Sol (B) Helios (C) Sun"
+                #   },
+                #   { "role": "assistant", "content": "The best answer is (" }
+                # ]
+                # ```
+                #
+                # Each input message `content` may be either a single `string` or an array of
+                # content blocks, where each block has a specific `type`. Using a `string` for
+                # `content` is shorthand for an array of one content block of type `"text"`. The
+                # following input messages are equivalent:
+                #
+                # ```json
+                # { "role": "user", "content": "Hello, Claude" }
+                # ```
+                #
+                # ```json
+                # { "role": "user", "content": [{ "type": "text", "text": "Hello, Claude" }] }
+                # ```
+                #
+                # See
+                # [input examples](https://platform.claude.com/docs/en/build-with-claude/working-with-messages).
+                #
+                # Note that if you want to include a
+                # [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role),
+                # you can use the top-level `system` parameter — there is no `"system"` role for
+                # input messages in the Messages API.
+                #
+                # There is a limit of 100,000 messages in a single request.
+                messages:,
+                # The model that will complete your prompt.
+                #
+                # See [models](https://docs.anthropic.com/en/docs/models-overview) for additional
+                # details and options.
+                model:,
+                # Top-level cache control automatically applies a cache_control marker to the last
+                # cacheable block in the request.
+                cache_control: nil,
+                # Compact the whole conversation and return a signed `compaction` block, alone,
+                # that a later request sends back first in `messages`, in place of the messages it
+                # summarizes. There is no trigger and no pause flag: sending the parameter
+                # compacts, and nothing is sampled after the block.
+                #
+                # The summarization prompt is the server's own unless `instructions` are given,
+                # which then replace it for this request; a value that is empty or only whitespace
+                # counts as absent.
+                compaction: nil,
+                # Container identifier for reuse across requests.
+                container: nil,
+                # Context management configuration.
+                #
+                # This allows you to control how Claude manages context across multiple requests,
+                # such as whether to clear function results or not.
+                context_management: nil,
+                # Request-level diagnostics. Currently carries the previous response id for
+                # prompt-cache divergence reporting.
+                diagnostics: nil,
+                # The `fallback_credit_token` from a prior refusal's `stop_details`.
+                #
+                # When a preceding request was refused and returned a `fallback_credit_token`,
+                # pass that code here on the retry to have the retry's cache-creation tokens for
+                # the prefix that was warm on the refused model billed at the cache-read rate.
+                # Must be redeemed by the same organization and workspace, with the same request
+                # body (optionally extended by one appended `assistant` message whose content is
+                # the partial text — with any trailing whitespace stripped from the final text
+                # block — and paired server-tool blocks streamed before the refusal; the
+                # appended-assistant form is not available for requests with `output_format` set
+                # or forced `tool_choice`), on an eligible fallback model, on the same platform,
+                # and within 5 minutes of the refusal; a mismatch is a 400. A token minted
+                # mid-server-tool-loop whose partial content was continuable may only be redeemed
+                # with the appended-assistant form — if an exact-body retry is rejected with a 400
+                # saying the token must be redeemed by continuing the partial response, retry with
+                # the appended-assistant form instead.
+                #
+                # When the appended-assistant form is used on a model that otherwise disallows
+                # assistant-turn prefill, this token also authorizes that one prefill.
+                fallback_credit_token: nil,
+                # Opt-in server-side retry on one or more substitute models when the requested
+                # model declines for policy reasons. Tried in order: if the first entry also
+                # declines, the second is tried, and so on. The string "default" requests the
+                # requested model's server-defined default fallback configuration.
+                fallbacks: nil,
+                # Specifies the geographic region for inference processing. If not specified, the
+                # workspace's `default_inference_geo` is used.
+                inference_geo: nil,
+                # MCP servers to be utilized in this request
+                mcp_servers: nil,
+                # An object describing metadata about the request.
+                metadata: nil,
+                # Configuration options for the model's output, such as the output format.
+                output_config: nil,
+                # Deprecated: Use `output_config.format` instead. See
+                # [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+                #
+                # A schema to specify Claude's output format in responses. This parameter will be
+                # removed in a future release.
+                output_format: nil,
+                # Determines whether to use priority capacity (if available) or standard capacity
+                # for this request.
+                #
+                # Anthropic offers different levels of service for your API requests. See
+                # [service-tiers](https://platform.claude.com/docs/en/api/service-tiers) for
+                # details.
+                service_tier: nil,
+                # Inference speed mode. `fast` provides significantly faster output token
+                # generation at premium pricing. Not all models support `fast`; invalid
+                # combinations are rejected at create time.
+                speed: nil,
+                # Custom text sequences that will cause the model to stop generating.
+                #
+                # Our models will normally stop when they have naturally completed their turn,
+                # which will result in a response `stop_reason` of `"end_turn"`.
+                #
+                # If you want the model to stop generating when it encounters custom strings of
+                # text, you can use the `stop_sequences` parameter. If the model encounters one of
+                # the custom sequences, the response `stop_reason` value will be `"stop_sequence"`
+                # and the response `stop_sequence` value will contain the matched stop sequence.
+                stop_sequences: nil,
+                # Whether to incrementally stream the response using server-sent events.
+                #
+                # See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming)
+                # for details.
+                stream: nil,
+                # System prompt.
+                #
+                # A system prompt is a way of providing context and instructions to Claude, such
+                # as specifying a particular goal or role. See our
+                # [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
+                system_: nil,
+                # Amount of randomness injected into the response.
+                #
+                # Defaults to `1.0`. Ranges from `0.0` to `1.0`. Use `temperature` closer to `0.0`
+                # for analytical / multiple choice, and closer to `1.0` for creative and
+                # generative tasks.
+                #
+                # Note that even with `temperature` of `0.0`, the results will not be fully
+                # deterministic.
+                temperature: nil,
+                # Configuration for enabling Claude's extended thinking.
+                #
+                # When enabled, responses include `thinking` content blocks showing Claude's
+                # thinking process before the final answer. Requires a minimum budget of 1,024
+                # tokens and counts towards your `max_tokens` limit.
+                #
+                # See
+                # [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking)
+                # for details.
+                thinking: nil,
+                # How the model should use the provided tools. The model can use a specific tool,
+                # any available tool, decide by itself, or not use tools at all.
+                tool_choice: nil,
+                # Definitions of tools that the model may use.
+                #
+                # If you include `tools` in your API request, the model may return `tool_use`
+                # content blocks that represent the model's use of those tools. You can then run
+                # those tools using the tool input generated by the model and then optionally
+                # return results back to the model using `tool_result` content blocks.
+                #
+                # There are two types of tools: **client tools** and **server tools**. The
+                # behavior described below applies to client tools. For
+                # [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools),
+                # see their individual documentation as each has its own behavior (e.g., the
+                # [web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)).
+                #
+                # Each tool definition includes:
+                #
+                # - `name`: Name of the tool.
+                # - `description`: Optional, but strongly-recommended description of the tool.
+                # - `input_schema`: [JSON schema](https://json-schema.org/draft/2020-12) for the
+                #   tool `input` shape that the model will produce in `tool_use` output content
+                #   blocks.
+                #
+                # For example, if you defined `tools` as:
+                #
+                # ```json
+                # [
+                #   {
+                #     "name": "get_stock_price",
+                #     "description": "Get the current stock price for a given ticker symbol.",
+                #     "input_schema": {
+                #       "type": "object",
+                #       "properties": {
+                #         "ticker": {
+                #           "type": "string",
+                #           "description": "The stock ticker symbol, e.g. AAPL for Apple Inc."
+                #         }
+                #       },
+                #       "required": ["ticker"]
+                #     }
+                #   }
+                # ]
+                # ```
+                #
+                # And then asked the model "What's the S&P 500 at today?", the model might produce
+                # `tool_use` content blocks in the response like this:
+                #
+                # ```json
+                # [
+                #   {
+                #     "type": "tool_use",
+                #     "id": "toolu_01D7FLrfh4GYq7yT1ULFeyMV",
+                #     "name": "get_stock_price",
+                #     "input": { "ticker": "^GSPC" }
+                #   }
+                # ]
+                # ```
+                #
+                # You might then run your `get_stock_price` tool with `{"ticker": "^GSPC"}` as an
+                # input, and return the following back to the model in a subsequent `user`
+                # message:
+                #
+                # ```json
+                # [
+                #   {
+                #     "type": "tool_result",
+                #     "tool_use_id": "toolu_01D7FLrfh4GYq7yT1ULFeyMV",
+                #     "content": "259.75 USD"
+                #   }
+                # ]
+                # ```
+                #
+                # Tools can be used for workflows that include running client-side tools and
+                # functions, or more generally whenever you want the model to produce a particular
+                # JSON structure of output.
+                #
+                # See our
+                # [guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)
+                # for more details.
+                tools: nil,
+                # Only sample from the top K options for each subsequent token.
+                #
+                # Used to remove "long tail" low probability responses.
+                # [Learn more technical details here](https://towardsdatascience.com/how-to-sample-from-language-models-682bceb97277).
+                #
+                # Recommended for advanced use cases only.
+                top_k: nil,
+                # Use nucleus sampling.
+                #
+                # In nucleus sampling, we compute the cumulative distribution over all the options
+                # for each subsequent token in decreasing probability order and cut it off once it
+                # reaches a particular probability specified by `top_p`.
+                #
+                # Recommended for advanced use cases only.
+                top_p: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    max_tokens: Integer,
+                    messages: T::Array[Anthropic::Beta::BetaMessageParam],
+                    model: T.any(Anthropic::Model::OrSymbol, String),
+                    cache_control:
+                      T.nilable(Anthropic::Beta::BetaCacheControlEphemeral),
+                    compaction:
+                      T.nilable(Anthropic::Beta::BetaCompactionConfig),
+                    container:
+                      T.nilable(
+                        T.any(Anthropic::Beta::BetaContainerParams, String)
+                      ),
+                    context_management:
+                      T.nilable(Anthropic::Beta::BetaContextManagementConfig),
+                    diagnostics:
+                      T.nilable(Anthropic::Beta::BetaDiagnosticsParam),
+                    fallback_credit_token:
+                      T.nilable(
+                        T.any(
+                          Anthropic::Beta::BetaFallbackCreditTokenParam,
+                          String
+                        )
+                      ),
+                    fallbacks:
+                      T.nilable(
+                        T.any(
+                          Symbol,
+                          T::Array[Anthropic::Beta::BetaFallbackParam]
+                        )
+                      ),
+                    inference_geo: T.nilable(String),
+                    mcp_servers:
+                      T::Array[
+                        Anthropic::Beta::BetaRequestMCPServerURLDefinition
+                      ],
+                    metadata: Anthropic::Beta::BetaMetadata,
+                    output_config: Anthropic::Beta::BetaOutputConfig,
+                    output_format:
+                      T.nilable(Anthropic::Beta::BetaJSONOutputFormat),
+                    service_tier:
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::OrSymbol,
+                    speed:
+                      T.nilable(
+                        Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed::OrSymbol
+                      ),
+                    stop_sequences: T::Array[String],
+                    stream: T::Boolean,
+                    system_:
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::System::Variants,
+                    temperature: Float,
+                    thinking:
+                      T.any(
+                        Anthropic::Beta::BetaThinkingConfigEnabled,
+                        Anthropic::Beta::BetaThinkingConfigDisabled,
+                        Anthropic::Beta::BetaThinkingConfigAdaptive
+                      ),
+                    tool_choice:
+                      T.any(
+                        Anthropic::Beta::BetaToolChoiceAuto,
+                        Anthropic::Beta::BetaToolChoiceAny,
+                        Anthropic::Beta::BetaToolChoiceTool,
+                        Anthropic::Beta::BetaToolChoiceNone
+                      ),
+                    tools:
+                      T::Array[
+                        T.any(
+                          Anthropic::Beta::BetaTool,
+                          Anthropic::Beta::BetaToolBash20241022,
+                          Anthropic::Beta::BetaToolBash20250124,
+                          Anthropic::Beta::BetaCodeExecutionTool20250522,
+                          Anthropic::Beta::BetaCodeExecutionTool20250825,
+                          Anthropic::Beta::BetaCodeExecutionTool20260120,
+                          Anthropic::Beta::BetaCodeExecutionTool20260521,
+                          Anthropic::Beta::BetaBrowserToolset20260801,
+                          Anthropic::Beta::BetaToolComputerUse20241022,
+                          Anthropic::Beta::BetaMemoryTool20250818,
+                          Anthropic::Beta::BetaToolComputerUse20250124,
+                          Anthropic::Beta::BetaToolTextEditor20241022,
+                          Anthropic::Beta::BetaToolComputerUse20251124,
+                          Anthropic::Beta::BetaComputerToolset20260801,
+                          Anthropic::Beta::BetaToolTextEditor20250124,
+                          Anthropic::Beta::BetaToolTextEditor20250429,
+                          Anthropic::Beta::BetaToolTextEditor20250728,
+                          Anthropic::Beta::BetaWebSearchTool20250305,
+                          Anthropic::Beta::BetaWebFetchTool20250910,
+                          Anthropic::Beta::BetaWebSearchTool20260209,
+                          Anthropic::Beta::BetaWebFetchTool20260209,
+                          Anthropic::Beta::BetaWebFetchTool20260309,
+                          Anthropic::Beta::BetaWebSearchTool20260318,
+                          Anthropic::Beta::BetaWebFetchTool20260318,
+                          Anthropic::Beta::BetaAdvisorTool20260301,
+                          Anthropic::Beta::BetaToolSearchToolBm25_20251119,
+                          Anthropic::Beta::BetaToolSearchToolRegex20251119,
+                          Anthropic::Beta::BetaMCPToolset
+                        )
+                      ],
+                    top_k: Integer,
+                    top_p: Float
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # Container identifier for reuse across requests.
+              module Container
+                extend Anthropic::Internal::Type::Union
+
+                Variants =
+                  T.type_alias do
+                    T.any(Anthropic::Beta::BetaContainerParams, String)
+                  end
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Container::Variants
+                    ]
+                  )
+                end
+                def self.variants
+                end
+              end
+
+              # The `fallback_credit_token` from a prior refusal's `stop_details`.
+              #
+              # When a preceding request was refused and returned a `fallback_credit_token`,
+              # pass that code here on the retry to have the retry's cache-creation tokens for
+              # the prefix that was warm on the refused model billed at the cache-read rate.
+              # Must be redeemed by the same organization and workspace, with the same request
+              # body (optionally extended by one appended `assistant` message whose content is
+              # the partial text — with any trailing whitespace stripped from the final text
+              # block — and paired server-tool blocks streamed before the refusal; the
+              # appended-assistant form is not available for requests with `output_format` set
+              # or forced `tool_choice`), on an eligible fallback model, on the same platform,
+              # and within 5 minutes of the refusal; a mismatch is a 400. A token minted
+              # mid-server-tool-loop whose partial content was continuable may only be redeemed
+              # with the appended-assistant form — if an exact-body retry is rejected with a 400
+              # saying the token must be redeemed by continuing the partial response, retry with
+              # the appended-assistant form instead.
+              #
+              # When the appended-assistant form is used on a model that otherwise disallows
+              # assistant-turn prefill, this token also authorizes that one prefill.
+              module FallbackCreditToken
+                extend Anthropic::Internal::Type::Union
+
+                Variants =
+                  T.type_alias do
+                    T.any(Anthropic::Beta::BetaFallbackCreditTokenParam, String)
+                  end
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::FallbackCreditToken::Variants
+                    ]
+                  )
+                end
+                def self.variants
+                end
+              end
+
+              # Determines whether to use priority capacity (if available) or standard capacity
+              # for this request.
+              #
+              # Anthropic offers different levels of service for your API requests. See
+              # [service-tiers](https://platform.claude.com/docs/en/api/service-tiers) for
+              # details.
+              module ServiceTier
+                extend Anthropic::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                AUTO =
+                  T.let(
+                    :auto,
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::TaggedSymbol
+                  )
+                STANDARD_ONLY =
+                  T.let(
+                    :standard_only,
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::ServiceTier::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # Inference speed mode. `fast` provides significantly faster output token
+              # generation at premium pricing. Not all models support `fast`; invalid
+              # combinations are rejected at create time.
+              module Speed
+                extend Anthropic::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                STANDARD =
+                  T.let(
+                    :standard,
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed::TaggedSymbol
+                  )
+                FAST =
+                  T.let(
+                    :fast,
+                    Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::Speed::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # System prompt.
+              #
+              # A system prompt is a way of providing context and instructions to Claude, such
+              # as specifying a particular goal or role. See our
+              # [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
+              module System
+                extend Anthropic::Internal::Type::Union
+
+                Variants =
+                  T.type_alias do
+                    T.any(String, T::Array[Anthropic::Beta::BetaTextBlockParam])
+                  end
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Anthropic::Beta::Messages::BatchCreateParams::Request::Params::System::Variants
+                    ]
+                  )
+                end
+                def self.variants
+                end
+
+                BetaTextBlockParamArray =
+                  T.let(
+                    Anthropic::Internal::Type::ArrayOf[
+                      Anthropic::Beta::BetaTextBlockParam
+                    ],
+                    Anthropic::Internal::Type::Converter
+                  )
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,108 @@
+module Anthropic
+  module Models
+    module Beta
+      module Sessions
+        type beta_managed_agents_session_thread_status_idle_event =
+          {
+            id: String,
+            agent_name: String,
+            processed_at: Time,
+            session_thread_id: String,
+            stop_reason: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::stop_reason,
+            type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::type_
+          }
+
+        class BetaManagedAgentsSessionThreadStatusIdleEvent < Anthropic::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor agent_name: String
+
+          attr_accessor processed_at: Time
+
+          attr_accessor session_thread_id: String
+
+          attr_accessor stop_reason: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::stop_reason
+
+          attr_accessor type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::type_
+
+          def initialize: (
+            id: String,
+            agent_name: String,
+            processed_at: Time,
+            session_thread_id: String,
+            stop_reason: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::stop_reason,
+            type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::type_
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            agent_name: String,
+            processed_at: Time,
+            session_thread_id: String,
+            stop_reason: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::stop_reason,
+            type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::type_
+          }
+
+          type stop_reason =
+            Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn
+            | Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
+            | Anthropic::Beta::Sessions::BetaManagedAgentsSessionRetriesExhausted
+            | Anthropic::Beta::Sessions::BetaManagedAgentsSessionBudgetReached
+
+          module StopReason
+            extend Anthropic::Internal::Type::Union
+
+            type type_ =
+              :end_turn
+              | :requires_action
+              | :retries_exhausted
+              | :budget_reached
+
+            module Type
+              extend Anthropic::Internal::Type::Enum
+
+              END_TURN: :end_turn
+              REQUIRES_ACTION: :requires_action
+              RETRIES_EXHAUSTED: :retries_exhausted
+              BUDGET_REACHED: :budget_reached
+
+              def self?.values: -> ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::StopReason::type_]
+            end
+
+            def self?.variants: -> ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::stop_reason]
+
+            def self.new:
+              (
+                type: :end_turn | "end_turn"
+              ) -> Anthropic::Beta::Sessions::BetaManagedAgentsSessionEndTurn
+              | (
+                type: :requires_action | "requires_action",
+                event_ids: ::Array[String]
+              ) -> Anthropic::Beta::Sessions::BetaManagedAgentsSessionRequiresAction
+              | (
+                type: :retries_exhausted | "retries_exhausted"
+              ) -> Anthropic::Beta::Sessions::BetaManagedAgentsSessionRetriesExhausted
+              | (
+                type: :budget_reached | "budget_reached"
+              ) -> Anthropic::Beta::Sessions::BetaManagedAgentsSessionBudgetReached
+              | (
+                type: Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::StopReason::type_
+                | String,
+                ?event_ids: ::Array[String]
+              ) -> Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::stop_reason
+          end
+
+          type type_ = :"session.thread_status_idle"
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            SESSION_THREAD_STATUS_IDLE: :"session.thread_status_idle"
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::Sessions::BetaManagedAgentsSessionThreadStatusIdleEvent::type_]
+          end
+        end
+      end
+    end
+  end
+end

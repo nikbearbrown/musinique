@@ -1,0 +1,30 @@
+package com.anthropic.models.beta.messages
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaToolUsesTriggerTest {
+
+    @Test
+    fun create() {
+        val betaToolUsesTrigger = BetaToolUsesTrigger.of(1L)
+
+        assertThat(betaToolUsesTrigger.value()).isEqualTo(1L)
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaToolUsesTrigger = BetaToolUsesTrigger.of(1L)
+
+        val roundtrippedBetaToolUsesTrigger =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaToolUsesTrigger),
+                jacksonTypeRef<BetaToolUsesTrigger>(),
+            )
+
+        assertThat(roundtrippedBetaToolUsesTrigger).isEqualTo(betaToolUsesTrigger)
+    }
+}

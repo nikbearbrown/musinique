@@ -1,0 +1,273 @@
+# frozen_string_literal: true
+
+module Anthropic
+  module Helpers
+    module Messages
+      class << self
+        # @api private
+        #
+        # Extract tool models from the request and convert them to JSON Schema
+        # Returns a hash mapping tool name to Ruby model.
+        #
+        # @param data [Hash{Symbol=>Object}]
+        #
+        # @param strict [Boolean, nil]
+        #
+        # @param is_beta [Boolean]
+        #
+        # @return [Hash{String=>Class}, Hash{String=>Class}]
+        def distill_input_schema_models!(data, strict:, is_beta: false)
+          tools = {}
+          models = {}
+
+          # Check for invalid output_config type before pattern matching
+          if data.key?(:output_config) && !data[:output_config].is_a?(Hash)
+            raise ArgumentError,
+                  "output_config must be a Hash, got #{data[:output_config].class}"
+          end
+
+          # Check for conflicting output_format and output_config[:format] before pattern matching
+          if data.key?(:output_format) && data.dig(:output_config, :format)
+            raise ArgumentError,
+                  "Both output_format and output_config[:format] were provided. " \
+                  "Please use only output_config[:format] (output_format is deprecated)."
+          end
+
+          case data
+          in {tools: Array => tool_array}
+            tool_array.replace(tool_array.map { tool_to_param(_1, tools:, strict:) })
+          else
+          end
+
+          # A `tool_addition` block defines a tool by value, in the shape of a `tools` entry.
+          case data
+          in {messages: Array => messages}
+            messages.each do |message|
+              case message
+              in {role: :system | "system", content: Array => blocks}
+                blocks.each do |block|
+                  case block
+                  in {
+                    type: :tool_addition | "tool_addition",
+                    tool: {type: :tool_definition | "tool_definition", definition:} => tool
+                  }
+                    tool.store(:definition, tool_to_param(definition, tools:, strict:))
+                  else
+                  end
+                end
+              else
+              end
+            end
+          else
+          end
+
+          # Matched separately from `tools:` so a request can carry both tools and a structured output format.
+          case data
+          # GA: output_config with BaseModel class as format
+          in {output_config: {format: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model} => output_config}
+            name = model_name(model.name)
+            models.store(name, model)
+            schema = model.to_json_schema
+            Anthropic::Helpers::InputSchema::SupportedSchemas.transform_schema!(schema)
+            output_config.update(format: {type: :json_schema, schema:})
+            inject_structured_output_beta_header!(data) if is_beta
+          # GA: output_config.format.schema as BaseModel class
+          in {output_config: {format: {schema: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model} => format_} => _output_config}
+            name = model_name(model.name)
+            models.store(name, model)
+            schema = model.to_json_schema
+            Anthropic::Helpers::InputSchema::SupportedSchemas.transform_schema!(schema)
+            format_.update(type: :json_schema, schema:)
+            inject_structured_output_beta_header!(data) if is_beta
+          # Beta: output_format as BaseModel class (deprecated)
+          in {output_format: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model}
+            transform_output_format_to_output_config!(data, model:, models:, is_beta:)
+          # rubocop:disable Lint/DuplicateBranch
+          in {output_format: {schema: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model}}
+            # This branch handles output_format: {schema: Model} vs output_format: Model above
+            transform_output_format_to_output_config!(data, model:, models:, is_beta:)
+          # rubocop:enable Lint/DuplicateBranch
+          in {output_config: {format: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model}}
+            # New API: output_config.format with model class
+            name = model_name(model.name)
+            models.store(name, model)
+            schema = model.to_json_schema
+            Anthropic::Helpers::InputSchema::SupportedSchemas.transform_schema!(schema)
+            data.update(output_format: {type: :json_schema, schema: schema})
+          # Beta: output_format.schema as BaseModel class (deprecated)
+          in {output_format: {schema: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model} => output_format}
+            name = model_name(model.name)
+            models.store(name, model)
+            schema = model.to_json_schema
+            Anthropic::Helpers::InputSchema::SupportedSchemas.transform_schema!(schema)
+            output_format.update(type: :json_schema, schema:)
+          else
+          end
+
+          [tools, models]
+        end
+
+        # @api private
+        #
+        # @param raw [Hash{Symbol=>Object}]
+        #
+        # @param tools [Hash{String=>Class}]
+        #
+        # @param models [Hash{String=>Class}]
+        #
+        # @return [Hash{Symbol=>Object}]
+        def parse_input_schemas!(raw, tools:, models:)
+          raw[:content]&.each do |content|
+            case content
+            in {type: "tool_use", name:, input:} if (tool = tools[name])
+              begin
+                coerced = Anthropic::Internal::Type::Converter.coerce(tool, input)
+
+                content.store(:parsed, coerced)
+              rescue StandardError => e
+                content.store(:parsed, {error: e.message})
+              end
+            in {type: "text", text:} if (model = models.first&.last)
+              begin
+                json = JSON.parse(text, symbolize_names: true)
+                coerced = Anthropic::Internal::Type::Converter.coerce(model, json)
+
+                content.store(:parsed, coerced)
+              rescue StandardError => e
+                content.store(:parsed, {error: e.message})
+              end
+            else
+            end
+          end
+
+          raw
+        end
+
+        # @api private
+        #
+        # Transform deprecated output_format to output_config.format
+        #
+        # @param data [Hash{Symbol=>Object}]
+        # @param model [Class]
+        # @param models [Hash{String=>Class}]
+        # @param is_beta [Boolean]
+        private def transform_output_format_to_output_config!(data, model:, models:, is_beta:)
+          warn(
+            "[DEPRECATION] output_format is deprecated. Use output_config[:format] instead.",
+            category: :deprecated
+          )
+          # Error if output_config exists but is not a hash
+          if data.key?(:output_config) && !data[:output_config].is_a?(Hash)
+            raise ArgumentError,
+                  "output_config must be a Hash, got #{data[:output_config].class}"
+          end
+          # Error if both params are provided
+          if data&.dig(:output_config, :format)
+            raise ArgumentError,
+                  "Both output_format and output_config[:format] were provided. " \
+                  "Please use only output_config[:format] (output_format is deprecated)."
+          end
+          name = model_name(model.name)
+          models.store(name, model)
+          schema = model.to_json_schema
+          Anthropic::Helpers::InputSchema::SupportedSchemas.transform_schema!(schema)
+          output_config = data[:output_config].to_h
+          output_config.store(:format, type: :json_schema, schema: schema)
+          data.delete(:output_format)
+          data[:output_config] = output_config
+          inject_structured_output_beta_header!(data) if is_beta
+        end
+
+        # @api private
+        #
+        # Inject the structured outputs beta header into the request data
+        #
+        # @param data [Hash{Symbol=>Object}]
+        private def inject_structured_output_beta_header!(data)
+          data[:betas] = data[:betas].to_a.dup.push("structured-outputs-2025-12-15").uniq
+        end
+
+        # @api private
+        #
+        # Convert one tool in any of the forms the helpers accept into a plain tool definition,
+        # recording under its name what `tool_use.input` is parsed back into.
+        #
+        # @param tool [Object]
+        #
+        # @param tools [Hash{String=>Class}]
+        #
+        # @param strict [Boolean, nil]
+        #
+        # @return [Object]
+        private def tool_to_param(tool, tools:, strict:)
+          case tool
+          # Runnable tool instance (an `Anthropic::BaseTool` subclass, hand-written or helper-built):
+          in Anthropic::Helpers::Tools::BaseTool
+            name = tool_api_name(tool)
+            # Helper-built tools (e.g. MCP) declare an explicit `tool_name` and only send the
+            # description they were given; hand-written tools fall back to their name.
+            description = tool.class.doc_string
+            description ||= name unless tool.class.tool_name
+            tools.store(name, tool)
+            input_schema = Anthropic::Helpers::InputSchema::JsonSchemaConverter.to_json_schema(tool)
+            # On a clash the derived keys win, so nothing in `tool_options` can shadow them.
+            definition =
+              {name:, description:, input_schema:}
+              .merge(tool.class.tool_options) { |_key, derived, _option| derived }
+              .compact
+            definition.tap { _1.update(strict:) if strict }
+          # Input schema class used directly as a tool:
+          in Anthropic::Helpers::InputSchema::JsonSchemaConverter
+            name = model_name(tool.name)
+
+            description =
+              case tool
+              in Class if tool <= Anthropic::Helpers::InputSchema::BaseModel
+                tool.doc_string || name
+              else
+                name
+              end
+
+            tools.store(name, tool)
+            input_schema = Anthropic::Helpers::InputSchema::JsonSchemaConverter.to_json_schema(tool)
+            {name:, description:, input_schema:}.tap { _1.update(strict:) if strict }
+          # Tool with explicit name/description and BaseModel as input_schema:
+          in {name: String => name,
+              input_schema: Anthropic::Helpers::InputSchema::JsonSchemaConverter => model,
+              **rest}
+            tools.store(name, model)
+            input_schema = Anthropic::Helpers::InputSchema::JsonSchemaConverter.to_json_schema(model)
+            rest.merge(name:, input_schema:).tap { _1.update(strict:) if strict }
+          else
+            # Any other format (pass through unchanged)
+            # This includes raw JSON schemas and any other tool definitions.
+            tool
+          end
+        end
+
+        # @api private
+        #
+        # The `name` a runnable tool is serialized under in `tools[]`.
+        #
+        # @param tool [Anthropic::Helpers::Tools::BaseTool]
+        #
+        # @return [String]
+        def tool_api_name(tool) = tool.class.tool_name || model_name(tool.class.name)
+
+        # @api private
+        #
+        # @param classname [String]
+        #
+        # @return [String]
+        private def model_name(classname)
+          classname
+            .split("::")
+            .last
+            .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+            .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+            .downcase
+        end
+      end
+    end
+  end
+end

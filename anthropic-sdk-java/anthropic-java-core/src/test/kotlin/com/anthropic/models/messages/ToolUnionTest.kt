@@ -1,0 +1,2116 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.JsonValue
+import com.anthropic.core.jsonMapper
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EnumSource
+
+internal class ToolUnionTest {
+
+    @Test
+    fun ofTool() {
+        val tool =
+            Tool.builder()
+                .inputSchema(
+                    Tool.InputSchema.builder()
+                        .properties(
+                            Tool.InputSchema.Properties.builder()
+                                .putAdditionalProperty("location", JsonValue.from("bar"))
+                                .putAdditionalProperty("unit", JsonValue.from("bar"))
+                                .build()
+                        )
+                        .addRequired("location")
+                        .build()
+                )
+                .name("name")
+                .addAllowedCaller(Tool.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .description("Get the current weather in a given location")
+                .eagerInputStreaming(true)
+                .addInputExample(
+                    Tool.InputExample.builder()
+                        .putAdditionalProperty("foo", JsonValue.from("bar"))
+                        .build()
+                )
+                .strict(true)
+                .type(Tool.Type.CUSTOM)
+                .build()
+
+        val toolUnion = ToolUnion.ofTool(tool)
+
+        assertThat(toolUnion.tool()).contains(tool)
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofToolRoundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofTool(
+                Tool.builder()
+                    .inputSchema(
+                        Tool.InputSchema.builder()
+                            .properties(
+                                Tool.InputSchema.Properties.builder()
+                                    .putAdditionalProperty("location", JsonValue.from("bar"))
+                                    .putAdditionalProperty("unit", JsonValue.from("bar"))
+                                    .build()
+                            )
+                            .addRequired("location")
+                            .build()
+                    )
+                    .name("name")
+                    .addAllowedCaller(Tool.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .description("Get the current weather in a given location")
+                    .eagerInputStreaming(true)
+                    .addInputExample(
+                        Tool.InputExample.builder()
+                            .putAdditionalProperty("foo", JsonValue.from("bar"))
+                            .build()
+                    )
+                    .strict(true)
+                    .type(Tool.Type.CUSTOM)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofBash20250124() {
+        val bash20250124 =
+            ToolBash20250124.builder()
+                .addAllowedCaller(ToolBash20250124.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .addInputExample(
+                    ToolBash20250124.InputExample.builder()
+                        .putAdditionalProperty("foo", JsonValue.from("bar"))
+                        .build()
+                )
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofBash20250124(bash20250124)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).contains(bash20250124)
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofBash20250124Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofBash20250124(
+                ToolBash20250124.builder()
+                    .addAllowedCaller(ToolBash20250124.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .addInputExample(
+                        ToolBash20250124.InputExample.builder()
+                            .putAdditionalProperty("foo", JsonValue.from("bar"))
+                            .build()
+                    )
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofCodeExecutionTool20250522() {
+        val codeExecutionTool20250522 =
+            CodeExecutionTool20250522.builder()
+                .addAllowedCaller(CodeExecutionTool20250522.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofCodeExecutionTool20250522(codeExecutionTool20250522)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).contains(codeExecutionTool20250522)
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofCodeExecutionTool20250522Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofCodeExecutionTool20250522(
+                CodeExecutionTool20250522.builder()
+                    .addAllowedCaller(CodeExecutionTool20250522.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofCodeExecutionTool20250825() {
+        val codeExecutionTool20250825 =
+            CodeExecutionTool20250825.builder()
+                .addAllowedCaller(CodeExecutionTool20250825.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofCodeExecutionTool20250825(codeExecutionTool20250825)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).contains(codeExecutionTool20250825)
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofCodeExecutionTool20250825Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofCodeExecutionTool20250825(
+                CodeExecutionTool20250825.builder()
+                    .addAllowedCaller(CodeExecutionTool20250825.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofCodeExecutionTool20260120() {
+        val codeExecutionTool20260120 =
+            CodeExecutionTool20260120.builder()
+                .addAllowedCaller(CodeExecutionTool20260120.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofCodeExecutionTool20260120(codeExecutionTool20260120)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).contains(codeExecutionTool20260120)
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofCodeExecutionTool20260120Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofCodeExecutionTool20260120(
+                CodeExecutionTool20260120.builder()
+                    .addAllowedCaller(CodeExecutionTool20260120.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofCodeExecutionTool20260521() {
+        val codeExecutionTool20260521 =
+            CodeExecutionTool20260521.builder()
+                .addAllowedCaller(CodeExecutionTool20260521.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofCodeExecutionTool20260521(codeExecutionTool20260521)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).contains(codeExecutionTool20260521)
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofCodeExecutionTool20260521Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofCodeExecutionTool20260521(
+                CodeExecutionTool20260521.builder()
+                    .addAllowedCaller(CodeExecutionTool20260521.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofBrowserToolset20260801() {
+        val browserToolset20260801 =
+            BrowserToolset20260801.builder()
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .configs(
+                    BrowserToolsetConfigs.builder()
+                        .closeTab(
+                            BrowserCloseTabConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .doubleClick(
+                            BrowserDoubleClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .fileUpload(
+                            BrowserFileUploadConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .find(BrowserFindConfig.builder().deferLoading(true).enabled(true).build())
+                        .formInput(
+                            BrowserFormInputConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .getPageText(
+                            BrowserGetPageTextConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .holdKey(
+                            BrowserHoldKeyConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .hover(
+                            BrowserHoverConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .javascriptExec(
+                            BrowserJavascriptExecConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .key(BrowserKeyConfig.builder().deferLoading(true).enabled(true).build())
+                        .leftClick(
+                            BrowserLeftClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .leftClickDrag(
+                            BrowserLeftClickDragConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .leftMouseDown(
+                            BrowserLeftMouseDownConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .leftMouseUp(
+                            BrowserLeftMouseUpConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .listTabs(
+                            BrowserListTabsConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .middleClick(
+                            BrowserMiddleClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .mouseMove(
+                            BrowserMouseMoveConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .navigate(
+                            BrowserNavigateConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .newTab(
+                            BrowserNewTabConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .readConsole(
+                            BrowserReadConsoleConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .readNetwork(
+                            BrowserReadNetworkConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .readPage(
+                            BrowserReadPageConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .rightClick(
+                            BrowserRightClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .screenshot(
+                            BrowserScreenshotConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .scroll(
+                            BrowserScrollConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .scrollTo(
+                            BrowserScrollToConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .switchTab(
+                            BrowserSwitchTabConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .tripleClick(
+                            BrowserTripleClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .type(BrowserTypeConfig.builder().deferLoading(true).enabled(true).build())
+                        .wait(BrowserWaitConfig.builder().deferLoading(true).enabled(true).build())
+                        .zoom(BrowserZoomConfig.builder().deferLoading(true).enabled(true).build())
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofBrowserToolset20260801(browserToolset20260801)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).contains(browserToolset20260801)
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofBrowserToolset20260801Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofBrowserToolset20260801(
+                BrowserToolset20260801.builder()
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .configs(
+                        BrowserToolsetConfigs.builder()
+                            .closeTab(
+                                BrowserCloseTabConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .doubleClick(
+                                BrowserDoubleClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .fileUpload(
+                                BrowserFileUploadConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .find(
+                                BrowserFindConfig.builder().deferLoading(true).enabled(true).build()
+                            )
+                            .formInput(
+                                BrowserFormInputConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .getPageText(
+                                BrowserGetPageTextConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .holdKey(
+                                BrowserHoldKeyConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .hover(
+                                BrowserHoverConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .javascriptExec(
+                                BrowserJavascriptExecConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .key(
+                                BrowserKeyConfig.builder().deferLoading(true).enabled(true).build()
+                            )
+                            .leftClick(
+                                BrowserLeftClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .leftClickDrag(
+                                BrowserLeftClickDragConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .leftMouseDown(
+                                BrowserLeftMouseDownConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .leftMouseUp(
+                                BrowserLeftMouseUpConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .listTabs(
+                                BrowserListTabsConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .middleClick(
+                                BrowserMiddleClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .mouseMove(
+                                BrowserMouseMoveConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .navigate(
+                                BrowserNavigateConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .newTab(
+                                BrowserNewTabConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .readConsole(
+                                BrowserReadConsoleConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .readNetwork(
+                                BrowserReadNetworkConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .readPage(
+                                BrowserReadPageConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .rightClick(
+                                BrowserRightClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .screenshot(
+                                BrowserScreenshotConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .scroll(
+                                BrowserScrollConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .scrollTo(
+                                BrowserScrollToConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .switchTab(
+                                BrowserSwitchTabConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .tripleClick(
+                                BrowserTripleClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .type(
+                                BrowserTypeConfig.builder().deferLoading(true).enabled(true).build()
+                            )
+                            .wait(
+                                BrowserWaitConfig.builder().deferLoading(true).enabled(true).build()
+                            )
+                            .zoom(
+                                BrowserZoomConfig.builder().deferLoading(true).enabled(true).build()
+                            )
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofMemoryTool20250818() {
+        val memoryTool20250818 =
+            MemoryTool20250818.builder()
+                .addAllowedCaller(MemoryTool20250818.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .addInputExample(
+                    MemoryTool20250818.InputExample.builder()
+                        .putAdditionalProperty("foo", JsonValue.from("bar"))
+                        .build()
+                )
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofMemoryTool20250818(memoryTool20250818)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).contains(memoryTool20250818)
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofMemoryTool20250818Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofMemoryTool20250818(
+                MemoryTool20250818.builder()
+                    .addAllowedCaller(MemoryTool20250818.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .addInputExample(
+                        MemoryTool20250818.InputExample.builder()
+                            .putAdditionalProperty("foo", JsonValue.from("bar"))
+                            .build()
+                    )
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofComputerToolset20260801() {
+        val computerToolset20260801 =
+            ComputerToolset20260801.builder()
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .configs(
+                    ComputerToolsetConfigs.builder()
+                        .cursorPosition(
+                            ComputerCursorPositionConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .doubleClick(
+                            ComputerDoubleClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .holdKey(
+                            ComputerHoldKeyConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .key(ComputerKeyConfig.builder().deferLoading(true).enabled(true).build())
+                        .leftClick(
+                            ComputerLeftClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .leftClickDrag(
+                            ComputerLeftClickDragConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .leftMouseDown(
+                            ComputerLeftMouseDownConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .leftMouseUp(
+                            ComputerLeftMouseUpConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .middleClick(
+                            ComputerMiddleClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .mouseMove(
+                            ComputerMouseMoveConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .rightClick(
+                            ComputerRightClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .screenshot(
+                            ComputerScreenshotConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .scroll(
+                            ComputerScrollConfig.builder().deferLoading(true).enabled(true).build()
+                        )
+                        .tripleClick(
+                            ComputerTripleClickConfig.builder()
+                                .deferLoading(true)
+                                .enabled(true)
+                                .build()
+                        )
+                        .type(ComputerTypeConfig.builder().deferLoading(true).enabled(true).build())
+                        .wait(ComputerWaitConfig.builder().deferLoading(true).enabled(true).build())
+                        .zoom(ComputerZoomConfig.builder().deferLoading(true).enabled(true).build())
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofComputerToolset20260801(computerToolset20260801)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).contains(computerToolset20260801)
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofComputerToolset20260801Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofComputerToolset20260801(
+                ComputerToolset20260801.builder()
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .configs(
+                        ComputerToolsetConfigs.builder()
+                            .cursorPosition(
+                                ComputerCursorPositionConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .doubleClick(
+                                ComputerDoubleClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .holdKey(
+                                ComputerHoldKeyConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .key(
+                                ComputerKeyConfig.builder().deferLoading(true).enabled(true).build()
+                            )
+                            .leftClick(
+                                ComputerLeftClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .leftClickDrag(
+                                ComputerLeftClickDragConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .leftMouseDown(
+                                ComputerLeftMouseDownConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .leftMouseUp(
+                                ComputerLeftMouseUpConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .middleClick(
+                                ComputerMiddleClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .mouseMove(
+                                ComputerMouseMoveConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .rightClick(
+                                ComputerRightClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .screenshot(
+                                ComputerScreenshotConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .scroll(
+                                ComputerScrollConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .tripleClick(
+                                ComputerTripleClickConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .type(
+                                ComputerTypeConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .wait(
+                                ComputerWaitConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .zoom(
+                                ComputerZoomConfig.builder()
+                                    .deferLoading(true)
+                                    .enabled(true)
+                                    .build()
+                            )
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofTextEditor20250124() {
+        val textEditor20250124 =
+            ToolTextEditor20250124.builder()
+                .addAllowedCaller(ToolTextEditor20250124.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .addInputExample(
+                    ToolTextEditor20250124.InputExample.builder()
+                        .putAdditionalProperty("foo", JsonValue.from("bar"))
+                        .build()
+                )
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofTextEditor20250124(textEditor20250124)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).contains(textEditor20250124)
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofTextEditor20250124Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofTextEditor20250124(
+                ToolTextEditor20250124.builder()
+                    .addAllowedCaller(ToolTextEditor20250124.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .addInputExample(
+                        ToolTextEditor20250124.InputExample.builder()
+                            .putAdditionalProperty("foo", JsonValue.from("bar"))
+                            .build()
+                    )
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofTextEditor20250429() {
+        val textEditor20250429 =
+            ToolTextEditor20250429.builder()
+                .addAllowedCaller(ToolTextEditor20250429.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .addInputExample(
+                    ToolTextEditor20250429.InputExample.builder()
+                        .putAdditionalProperty("foo", JsonValue.from("bar"))
+                        .build()
+                )
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofTextEditor20250429(textEditor20250429)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).contains(textEditor20250429)
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofTextEditor20250429Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofTextEditor20250429(
+                ToolTextEditor20250429.builder()
+                    .addAllowedCaller(ToolTextEditor20250429.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .addInputExample(
+                        ToolTextEditor20250429.InputExample.builder()
+                            .putAdditionalProperty("foo", JsonValue.from("bar"))
+                            .build()
+                    )
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofTextEditor20250728() {
+        val textEditor20250728 =
+            ToolTextEditor20250728.builder()
+                .addAllowedCaller(ToolTextEditor20250728.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .addInputExample(
+                    ToolTextEditor20250728.InputExample.builder()
+                        .putAdditionalProperty("foo", JsonValue.from("bar"))
+                        .build()
+                )
+                .maxCharacters(1L)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofTextEditor20250728(textEditor20250728)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).contains(textEditor20250728)
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofTextEditor20250728Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofTextEditor20250728(
+                ToolTextEditor20250728.builder()
+                    .addAllowedCaller(ToolTextEditor20250728.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .addInputExample(
+                        ToolTextEditor20250728.InputExample.builder()
+                            .putAdditionalProperty("foo", JsonValue.from("bar"))
+                            .build()
+                    )
+                    .maxCharacters(1L)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebSearchTool20250305() {
+        val webSearchTool20250305 =
+            WebSearchTool20250305.builder()
+                .addAllowedCaller(WebSearchTool20250305.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .maxUses(1L)
+                .strict(true)
+                .userLocation(
+                    UserLocation.builder()
+                        .city("New York")
+                        .country("US")
+                        .region("California")
+                        .timezone("America/New_York")
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofWebSearchTool20250305(webSearchTool20250305)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).contains(webSearchTool20250305)
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebSearchTool20250305Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebSearchTool20250305(
+                WebSearchTool20250305.builder()
+                    .addAllowedCaller(WebSearchTool20250305.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .maxUses(1L)
+                    .strict(true)
+                    .userLocation(
+                        UserLocation.builder()
+                            .city("New York")
+                            .country("US")
+                            .region("California")
+                            .timezone("America/New_York")
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebFetchTool20250910() {
+        val webFetchTool20250910 =
+            WebFetchTool20250910.builder()
+                .addAllowedCaller(WebFetchTool20250910.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .citations(CitationsConfigParam.builder().enabled(true).build())
+                .deferLoading(true)
+                .maxContentTokens(1L)
+                .maxUses(1L)
+                .strict(true)
+                .urlSources(
+                    WebFetchUrlSources.builder()
+                        .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                        .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                        .userInput(WebFetchUrlSourceAll.builder().build())
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofWebFetchTool20250910(webFetchTool20250910)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).contains(webFetchTool20250910)
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebFetchTool20250910Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebFetchTool20250910(
+                WebFetchTool20250910.builder()
+                    .addAllowedCaller(WebFetchTool20250910.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .citations(CitationsConfigParam.builder().enabled(true).build())
+                    .deferLoading(true)
+                    .maxContentTokens(1L)
+                    .maxUses(1L)
+                    .strict(true)
+                    .urlSources(
+                        WebFetchUrlSources.builder()
+                            .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                            .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                            .userInput(WebFetchUrlSourceAll.builder().build())
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebSearchTool20260209() {
+        val webSearchTool20260209 =
+            WebSearchTool20260209.builder()
+                .addAllowedCaller(WebSearchTool20260209.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .maxUses(1L)
+                .strict(true)
+                .userLocation(
+                    UserLocation.builder()
+                        .city("New York")
+                        .country("US")
+                        .region("California")
+                        .timezone("America/New_York")
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofWebSearchTool20260209(webSearchTool20260209)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).contains(webSearchTool20260209)
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebSearchTool20260209Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebSearchTool20260209(
+                WebSearchTool20260209.builder()
+                    .addAllowedCaller(WebSearchTool20260209.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .maxUses(1L)
+                    .strict(true)
+                    .userLocation(
+                        UserLocation.builder()
+                            .city("New York")
+                            .country("US")
+                            .region("California")
+                            .timezone("America/New_York")
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebFetchTool20260209() {
+        val webFetchTool20260209 =
+            WebFetchTool20260209.builder()
+                .addAllowedCaller(WebFetchTool20260209.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .citations(CitationsConfigParam.builder().enabled(true).build())
+                .deferLoading(true)
+                .maxContentTokens(1L)
+                .maxUses(1L)
+                .strict(true)
+                .urlSources(
+                    WebFetchUrlSources.builder()
+                        .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                        .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                        .userInput(WebFetchUrlSourceAll.builder().build())
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofWebFetchTool20260209(webFetchTool20260209)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).contains(webFetchTool20260209)
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebFetchTool20260209Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebFetchTool20260209(
+                WebFetchTool20260209.builder()
+                    .addAllowedCaller(WebFetchTool20260209.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .citations(CitationsConfigParam.builder().enabled(true).build())
+                    .deferLoading(true)
+                    .maxContentTokens(1L)
+                    .maxUses(1L)
+                    .strict(true)
+                    .urlSources(
+                        WebFetchUrlSources.builder()
+                            .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                            .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                            .userInput(WebFetchUrlSourceAll.builder().build())
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebFetchTool20260309() {
+        val webFetchTool20260309 =
+            WebFetchTool20260309.builder()
+                .addAllowedCaller(WebFetchTool20260309.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .citations(CitationsConfigParam.builder().enabled(true).build())
+                .deferLoading(true)
+                .maxContentTokens(1L)
+                .maxUses(1L)
+                .strict(true)
+                .urlSources(
+                    WebFetchUrlSources.builder()
+                        .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                        .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                        .userInput(WebFetchUrlSourceAll.builder().build())
+                        .build()
+                )
+                .useCache(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofWebFetchTool20260309(webFetchTool20260309)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).contains(webFetchTool20260309)
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebFetchTool20260309Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebFetchTool20260309(
+                WebFetchTool20260309.builder()
+                    .addAllowedCaller(WebFetchTool20260309.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .citations(CitationsConfigParam.builder().enabled(true).build())
+                    .deferLoading(true)
+                    .maxContentTokens(1L)
+                    .maxUses(1L)
+                    .strict(true)
+                    .urlSources(
+                        WebFetchUrlSources.builder()
+                            .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                            .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                            .userInput(WebFetchUrlSourceAll.builder().build())
+                            .build()
+                    )
+                    .useCache(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebSearchTool20260318() {
+        val webSearchTool20260318 =
+            WebSearchTool20260318.builder()
+                .addAllowedCaller(WebSearchTool20260318.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .maxUses(1L)
+                .responseInclusion(WebSearchTool20260318.ResponseInclusion.FULL)
+                .strict(true)
+                .userLocation(
+                    UserLocation.builder()
+                        .city("New York")
+                        .country("US")
+                        .region("California")
+                        .timezone("America/New_York")
+                        .build()
+                )
+                .build()
+
+        val toolUnion = ToolUnion.ofWebSearchTool20260318(webSearchTool20260318)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).contains(webSearchTool20260318)
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebSearchTool20260318Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebSearchTool20260318(
+                WebSearchTool20260318.builder()
+                    .addAllowedCaller(WebSearchTool20260318.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .maxUses(1L)
+                    .responseInclusion(WebSearchTool20260318.ResponseInclusion.FULL)
+                    .strict(true)
+                    .userLocation(
+                        UserLocation.builder()
+                            .city("New York")
+                            .country("US")
+                            .region("California")
+                            .timezone("America/New_York")
+                            .build()
+                    )
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofWebFetchTool20260318() {
+        val webFetchTool20260318 =
+            WebFetchTool20260318.builder()
+                .addAllowedCaller(WebFetchTool20260318.AllowedCaller.DIRECT)
+                .addAllowedDomain("string")
+                .addBlockedDomain("string")
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .citations(CitationsConfigParam.builder().enabled(true).build())
+                .deferLoading(true)
+                .maxContentTokens(1L)
+                .maxUses(1L)
+                .responseInclusion(WebFetchTool20260318.ResponseInclusion.FULL)
+                .strict(true)
+                .urlSources(
+                    WebFetchUrlSources.builder()
+                        .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                        .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                        .userInput(WebFetchUrlSourceAll.builder().build())
+                        .build()
+                )
+                .useCache(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofWebFetchTool20260318(webFetchTool20260318)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).contains(webFetchTool20260318)
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofWebFetchTool20260318Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofWebFetchTool20260318(
+                WebFetchTool20260318.builder()
+                    .addAllowedCaller(WebFetchTool20260318.AllowedCaller.DIRECT)
+                    .addAllowedDomain("string")
+                    .addBlockedDomain("string")
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .citations(CitationsConfigParam.builder().enabled(true).build())
+                    .deferLoading(true)
+                    .maxContentTokens(1L)
+                    .maxUses(1L)
+                    .responseInclusion(WebFetchTool20260318.ResponseInclusion.FULL)
+                    .strict(true)
+                    .urlSources(
+                        WebFetchUrlSources.builder()
+                            .clientToolResults(WebFetchUrlSourceAll.builder().build())
+                            .serverToolResults(WebFetchUrlSourceAll.builder().build())
+                            .userInput(WebFetchUrlSourceAll.builder().build())
+                            .build()
+                    )
+                    .useCache(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofSearchToolBm25_20251119() {
+        val searchToolBm25_20251119 =
+            ToolSearchToolBm25_20251119.builder()
+                .type(ToolSearchToolBm25_20251119.Type.TOOL_SEARCH_TOOL_BM25_20251119)
+                .addAllowedCaller(ToolSearchToolBm25_20251119.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofSearchToolBm25_20251119(searchToolBm25_20251119)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).contains(searchToolBm25_20251119)
+        assertThat(toolUnion.searchToolRegex20251119()).isEmpty
+    }
+
+    @Test
+    fun ofSearchToolBm25_20251119Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofSearchToolBm25_20251119(
+                ToolSearchToolBm25_20251119.builder()
+                    .type(ToolSearchToolBm25_20251119.Type.TOOL_SEARCH_TOOL_BM25_20251119)
+                    .addAllowedCaller(ToolSearchToolBm25_20251119.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    @Test
+    fun ofSearchToolRegex20251119() {
+        val searchToolRegex20251119 =
+            ToolSearchToolRegex20251119.builder()
+                .type(ToolSearchToolRegex20251119.Type.TOOL_SEARCH_TOOL_REGEX_20251119)
+                .addAllowedCaller(ToolSearchToolRegex20251119.AllowedCaller.DIRECT)
+                .cacheControl(
+                    CacheControlEphemeral.builder().ttl(CacheControlEphemeral.Ttl.TTL_5M).build()
+                )
+                .deferLoading(true)
+                .strict(true)
+                .build()
+
+        val toolUnion = ToolUnion.ofSearchToolRegex20251119(searchToolRegex20251119)
+
+        assertThat(toolUnion.tool()).isEmpty
+        assertThat(toolUnion.bash20250124()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250522()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20250825()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260120()).isEmpty
+        assertThat(toolUnion.codeExecutionTool20260521()).isEmpty
+        assertThat(toolUnion.browserToolset20260801()).isEmpty
+        assertThat(toolUnion.memoryTool20250818()).isEmpty
+        assertThat(toolUnion.computerToolset20260801()).isEmpty
+        assertThat(toolUnion.textEditor20250124()).isEmpty
+        assertThat(toolUnion.textEditor20250429()).isEmpty
+        assertThat(toolUnion.textEditor20250728()).isEmpty
+        assertThat(toolUnion.webSearchTool20250305()).isEmpty
+        assertThat(toolUnion.webFetchTool20250910()).isEmpty
+        assertThat(toolUnion.webSearchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260209()).isEmpty
+        assertThat(toolUnion.webFetchTool20260309()).isEmpty
+        assertThat(toolUnion.webSearchTool20260318()).isEmpty
+        assertThat(toolUnion.webFetchTool20260318()).isEmpty
+        assertThat(toolUnion.searchToolBm25_20251119()).isEmpty
+        assertThat(toolUnion.searchToolRegex20251119()).contains(searchToolRegex20251119)
+    }
+
+    @Test
+    fun ofSearchToolRegex20251119Roundtrip() {
+        val jsonMapper = jsonMapper()
+        val toolUnion =
+            ToolUnion.ofSearchToolRegex20251119(
+                ToolSearchToolRegex20251119.builder()
+                    .type(ToolSearchToolRegex20251119.Type.TOOL_SEARCH_TOOL_REGEX_20251119)
+                    .addAllowedCaller(ToolSearchToolRegex20251119.AllowedCaller.DIRECT)
+                    .cacheControl(
+                        CacheControlEphemeral.builder()
+                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                            .build()
+                    )
+                    .deferLoading(true)
+                    .strict(true)
+                    .build()
+            )
+
+        val roundtrippedToolUnion =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(toolUnion),
+                jacksonTypeRef<ToolUnion>(),
+            )
+
+        assertThat(roundtrippedToolUnion).isEqualTo(toolUnion)
+    }
+
+    enum class IncompatibleJsonShapeTestCase(val value: JsonValue) {
+        BOOLEAN(JsonValue.from(false)),
+        STRING(JsonValue.from("invalid")),
+        INTEGER(JsonValue.from(-1)),
+        FLOAT(JsonValue.from(3.14)),
+        ARRAY(JsonValue.from(listOf("invalid", "array"))),
+    }
+
+    @ParameterizedTest
+    @EnumSource
+    fun incompatibleJsonShapeDeserializesToUnknown(testCase: IncompatibleJsonShapeTestCase) {
+        val toolUnion = jsonMapper().convertValue(testCase.value, jacksonTypeRef<ToolUnion>())
+
+        val e = assertThrows<AnthropicInvalidDataException> { toolUnion.validate() }
+        assertThat(e).hasMessageStartingWith("Unknown ")
+
+        assertThat(toolUnion.cacheControl()).isEmpty
+        assertThat(toolUnion.deferLoading()).isEmpty
+        assertThat(toolUnion.strict()).isEmpty
+        assertThat(toolUnion.allowedDomains()).isEmpty
+        assertThat(toolUnion.blockedDomains()).isEmpty
+        assertThat(toolUnion.maxUses()).isEmpty
+        assertThat(toolUnion.userLocation()).isEmpty
+        assertThat(toolUnion.citations()).isEmpty
+        assertThat(toolUnion.maxContentTokens()).isEmpty
+        assertThat(toolUnion.urlSources()).isEmpty
+        assertThat(toolUnion.useCache()).isEmpty
+    }
+}

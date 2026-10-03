@@ -1,0 +1,7 @@
+Done. `nbb-clear-vs-compact.mp4` at 18:38 is newer than `beat_sheet.json` at 18:33.
+
+**REBUILT + BUILT** — `anthropics/youtube/claude-code/nbb-clear-vs-compact/`, 154.2s clean 4K master, 9/9 beats filled (7 VIDEO + 2 MANIM, zero slates). Snapshot at `beat_sheet.pre-rebuild.json`.
+
+**What happened**: sheet was a hybrid — legacy `NBB00-NBB03` bookends duplicated the canonical `B00/BVDT/BHTF/BOUT` quartet, four SLATE placeholders (verdict "Key finding one/two/three", template your-turn with `[X]` brackets), and body audio pointed at non-existent `../clear-vs-compact/mp3/`. Dropped the duplicates, authored real BVDT verdict + BHTF exercise from body content, filled B01/B04 FormBCards with real items, fixed B03 Manim's mid-word 60-char slice, VOICE-LOCK envelope, all fresh Kokoro audio.
+
+**Gates**: T PASS · V (77 frames sampled) zero BLOCKER/MAJOR · AUDIO PASS −24 dB · Lens 4/4 (Hume/Popper/Descartes/Plato). No downgrades, no loosened validators. Logged to `anthropics/youtube/FILMLOOP-LOG.md` and reel-local `AUDIT.md` + `REBUILD-LOG.md`.

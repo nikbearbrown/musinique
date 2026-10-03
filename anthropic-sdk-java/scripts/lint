@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Running lints"
+
+# Build the list of Gradle lint tasks not covered by a locally installed
+# formatter, then run them in a single invocation so we pay buildSrc
+# compilation and project configuration once instead of per language.
+# detekt has no standalone CLI fast-path here, so it always runs via Gradle.
+gradle_tasks=(detektMain detektTest)
+
+if command -v ktfmt &> /dev/null; then
+    echo "==> Checking ktfmt"
+    ./scripts/kotlin-format --dry-run --set-exit-if-changed
+else
+    gradle_tasks+=(lintKotlin)
+fi
+
+if command -v palantir-java-format &> /dev/null; then
+    echo "==> Checking palantir-java-format"
+    ./scripts/java-format --dry-run --set-exit-if-changed
+else
+    gradle_tasks+=(lintJava)
+fi
+
+echo "==> Running gradlew ${gradle_tasks[*]}"
+./gradlew "${gradle_tasks[@]}"

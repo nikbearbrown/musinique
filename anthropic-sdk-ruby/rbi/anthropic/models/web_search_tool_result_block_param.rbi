@@ -1,0 +1,190 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    class WebSearchToolResultBlockParam < Anthropic::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            Anthropic::WebSearchToolResultBlockParam,
+            Anthropic::Internal::AnyHash
+          )
+        end
+
+      sig do
+        returns(
+          T.any(
+            Anthropic::WebSearchToolRequestError,
+            T::Array[Anthropic::WebSearchResultBlockParam]
+          )
+        )
+      end
+      attr_accessor :content
+
+      sig { returns(String) }
+      attr_accessor :tool_use_id
+
+      sig { returns(Symbol) }
+      attr_accessor :type
+
+      # Create a cache control breakpoint at this content block.
+      sig { returns(T.nilable(Anthropic::CacheControlEphemeral)) }
+      attr_reader :cache_control
+
+      sig do
+        params(
+          cache_control: T.nilable(Anthropic::CacheControlEphemeral::OrHash)
+        ).void
+      end
+      attr_writer :cache_control
+
+      sig do
+        returns(
+          T.nilable(
+            T.any(
+              Anthropic::DirectCaller,
+              Anthropic::ServerToolCaller,
+              Anthropic::ServerToolCaller20260120
+            )
+          )
+        )
+      end
+      attr_reader :caller_
+
+      sig do
+        params(
+          caller_:
+            T.any(
+              Anthropic::DirectCaller::OrHash,
+              Anthropic::ServerToolCaller::OrHash,
+              Anthropic::ServerToolCaller20260120::OrHash
+            )
+        ).void
+      end
+      attr_writer :caller_
+
+      sig do
+        params(
+          content:
+            T.any(
+              Anthropic::WebSearchToolRequestError::OrHash,
+              T::Array[Anthropic::WebSearchResultBlockParam::OrHash]
+            ),
+          tool_use_id: String,
+          cache_control: T.nilable(Anthropic::CacheControlEphemeral::OrHash),
+          caller_:
+            T.any(
+              Anthropic::DirectCaller::OrHash,
+              Anthropic::ServerToolCaller::OrHash,
+              Anthropic::ServerToolCaller20260120::OrHash
+            ),
+          type: Symbol
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        content:,
+        tool_use_id:,
+        # Create a cache control breakpoint at this content block.
+        cache_control: nil,
+        caller_: nil,
+        type: :web_search_tool_result
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            content:
+              T.any(
+                Anthropic::WebSearchToolRequestError,
+                T::Array[Anthropic::WebSearchResultBlockParam]
+              ),
+            tool_use_id: String,
+            type: Symbol,
+            cache_control: T.nilable(Anthropic::CacheControlEphemeral),
+            caller_:
+              T.any(
+                Anthropic::DirectCaller,
+                Anthropic::ServerToolCaller,
+                Anthropic::ServerToolCaller20260120
+              )
+          }
+        )
+      end
+      def to_hash
+      end
+
+      module Caller
+        extend Anthropic::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              Anthropic::DirectCaller,
+              Anthropic::ServerToolCaller,
+              Anthropic::ServerToolCaller20260120
+            )
+          end
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Anthropic::WebSearchToolResultBlockParam::Caller::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DIRECT =
+            T.let(
+              :direct,
+              Anthropic::WebSearchToolResultBlockParam::Caller::Type::TaggedSymbol
+            )
+          CODE_EXECUTION_20250825 =
+            T.let(
+              :code_execution_20250825,
+              Anthropic::WebSearchToolResultBlockParam::Caller::Type::TaggedSymbol
+            )
+          CODE_EXECUTION_20260120 =
+            T.let(
+              :code_execution_20260120,
+              Anthropic::WebSearchToolResultBlockParam::Caller::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::WebSearchToolResultBlockParam::Caller::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        sig do
+          override.returns(
+            T::Array[Anthropic::WebSearchToolResultBlockParam::Caller::Variants]
+          )
+        end
+        def self.variants
+        end
+
+        # Creates a new instance of the variant class whose `type` matches the given
+        # value, passing the remaining arguments to its constructor.
+        sig do
+          params(
+            type:
+              Anthropic::WebSearchToolResultBlockParam::Caller::Type::OrSymbol,
+            tool_id: String
+          ).returns(Anthropic::WebSearchToolResultBlockParam::Caller::Variants)
+        end
+        def self.new(type:, tool_id: nil)
+        end
+      end
+    end
+  end
+end

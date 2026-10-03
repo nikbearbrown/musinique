@@ -1,0 +1,217 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    BetaRequestDocumentBlock = Beta::BetaRequestDocumentBlock
+
+    module Beta
+      class BetaRequestDocumentBlock < Anthropic::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Anthropic::Beta::BetaRequestDocumentBlock,
+              Anthropic::Internal::AnyHash
+            )
+          end
+
+        sig do
+          returns(
+            T.any(
+              Anthropic::Beta::BetaBase64PDFSource,
+              Anthropic::Beta::BetaPlainTextSource,
+              Anthropic::Beta::BetaContentBlockSource,
+              Anthropic::Beta::BetaURLPDFSource,
+              Anthropic::Beta::BetaFileDocumentSource
+            )
+          )
+        end
+        attr_accessor :source
+
+        sig { returns(Symbol) }
+        attr_accessor :type
+
+        # Create a cache control breakpoint at this content block.
+        sig { returns(T.nilable(Anthropic::Beta::BetaCacheControlEphemeral)) }
+        attr_reader :cache_control
+
+        sig do
+          params(
+            cache_control:
+              T.nilable(Anthropic::Beta::BetaCacheControlEphemeral::OrHash)
+          ).void
+        end
+        attr_writer :cache_control
+
+        sig { returns(T.nilable(Anthropic::Beta::BetaCitationsConfigParam)) }
+        attr_reader :citations
+
+        sig do
+          params(
+            citations:
+              T.nilable(Anthropic::Beta::BetaCitationsConfigParam::OrHash)
+          ).void
+        end
+        attr_writer :citations
+
+        sig { returns(T.nilable(String)) }
+        attr_accessor :context
+
+        sig { returns(T.nilable(String)) }
+        attr_accessor :title
+
+        sig do
+          params(
+            source:
+              T.any(
+                Anthropic::Beta::BetaBase64PDFSource::OrHash,
+                Anthropic::Beta::BetaPlainTextSource::OrHash,
+                Anthropic::Beta::BetaContentBlockSource::OrHash,
+                Anthropic::Beta::BetaURLPDFSource::OrHash,
+                Anthropic::Beta::BetaFileDocumentSource::OrHash
+              ),
+            cache_control:
+              T.nilable(Anthropic::Beta::BetaCacheControlEphemeral::OrHash),
+            citations:
+              T.nilable(Anthropic::Beta::BetaCitationsConfigParam::OrHash),
+            context: T.nilable(String),
+            title: T.nilable(String),
+            type: Symbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          source:,
+          # Create a cache control breakpoint at this content block.
+          cache_control: nil,
+          citations: nil,
+          context: nil,
+          title: nil,
+          type: :document
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              source:
+                T.any(
+                  Anthropic::Beta::BetaBase64PDFSource,
+                  Anthropic::Beta::BetaPlainTextSource,
+                  Anthropic::Beta::BetaContentBlockSource,
+                  Anthropic::Beta::BetaURLPDFSource,
+                  Anthropic::Beta::BetaFileDocumentSource
+                ),
+              type: Symbol,
+              cache_control:
+                T.nilable(Anthropic::Beta::BetaCacheControlEphemeral),
+              citations: T.nilable(Anthropic::Beta::BetaCitationsConfigParam),
+              context: T.nilable(String),
+              title: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Source
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::BetaBase64PDFSource,
+                Anthropic::Beta::BetaPlainTextSource,
+                Anthropic::Beta::BetaContentBlockSource,
+                Anthropic::Beta::BetaURLPDFSource,
+                Anthropic::Beta::BetaFileDocumentSource
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Anthropic::Beta::BetaRequestDocumentBlock::Source::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            BASE64 =
+              T.let(
+                :base64,
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::TaggedSymbol
+              )
+            TEXT =
+              T.let(
+                :text,
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::TaggedSymbol
+              )
+            CONTENT =
+              T.let(
+                :content,
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::TaggedSymbol
+              )
+            URL =
+              T.let(
+                :url,
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::TaggedSymbol
+              )
+            FILE =
+              T.let(
+                :file,
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type:
+                Anthropic::Beta::BetaRequestDocumentBlock::Source::Type::OrSymbol,
+              data: String,
+              media_type: Symbol,
+              content:
+                Anthropic::Beta::BetaContentBlockSource::Content::Variants,
+              url: String,
+              file_id: String
+            ).returns(
+              Anthropic::Beta::BetaRequestDocumentBlock::Source::Variants
+            )
+          end
+          def self.new(
+            type:,
+            data: nil,
+            media_type: nil,
+            content: nil,
+            url: nil,
+            file_id: nil
+          )
+          end
+        end
+      end
+    end
+  end
+end

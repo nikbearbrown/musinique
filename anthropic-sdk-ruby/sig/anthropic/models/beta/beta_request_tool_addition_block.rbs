@@ -1,0 +1,89 @@
+module Anthropic
+  module Models
+    class BetaRequestToolAdditionBlock = Beta::BetaRequestToolAdditionBlock
+
+    module Beta
+      type beta_request_tool_addition_block =
+        {
+          tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool,
+          type: :tool_addition,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+        }
+
+      class BetaRequestToolAdditionBlock < Anthropic::Internal::Type::BaseModel
+        attr_accessor tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool
+
+        attr_accessor type: :tool_addition
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        def initialize: (
+          tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool,
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?type: :tool_addition
+        ) -> void
+
+        def to_hash: -> {
+          tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool,
+          type: :tool_addition,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+        }
+
+        type tool =
+          Anthropic::Beta::BetaToolChangeToolReference
+          | Anthropic::Beta::BetaToolChangeMCPToolReference
+          | Anthropic::Beta::BetaToolChangeMCPToolsetReference
+          | Anthropic::Beta::BetaToolChangeToolDefinitionParam
+
+        module Tool
+          extend Anthropic::Internal::Type::Union
+
+          type type_ =
+            :tool_reference
+            | :mcp_tool_reference
+            | :mcp_toolset_reference
+            | :tool_definition
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TOOL_REFERENCE: :tool_reference
+            MCP_TOOL_REFERENCE: :mcp_tool_reference
+            MCP_TOOLSET_REFERENCE: :mcp_toolset_reference
+            TOOL_DEFINITION: :tool_definition
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaRequestToolAdditionBlock::Tool::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool]
+
+          def self.new:
+            (
+              type: :tool_reference | "tool_reference",
+              name: String
+            ) -> Anthropic::Beta::BetaToolChangeToolReference
+            | (
+              type: :mcp_tool_reference | "mcp_tool_reference",
+              name: String,
+              server_name: String
+            ) -> Anthropic::Beta::BetaToolChangeMCPToolReference
+            | (
+              type: :mcp_toolset_reference | "mcp_toolset_reference",
+              server_name: String
+            ) -> Anthropic::Beta::BetaToolChangeMCPToolsetReference
+            | (
+              type: :tool_definition | "tool_definition",
+              definition: Anthropic::Models::Beta::beta_tool_union
+            ) -> Anthropic::Beta::BetaToolChangeToolDefinitionParam
+            | (
+              type: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::Tool::type_
+              | String,
+              ?name: String,
+              ?server_name: String,
+              ?definition: Anthropic::Models::Beta::beta_tool_union
+            ) -> Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool
+        end
+      end
+    end
+  end
+end

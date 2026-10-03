@@ -1,0 +1,313 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 5760,
+    "dDurationMs": 2319,
+    "segs": [ {
+      "utf8": "Squidsoup is a collaborative group of"
+    } ]
+  }, {
+    "tStartMs": 8079,
+    "dDurationMs": 2361,
+    "segs": [ {
+      "utf8": "artists, designers,"
+    } ]
+  }, {
+    "tStartMs": 10440,
+    "dDurationMs": 3560,
+    "segs": [ {
+      "utf8": "and we do immersive experiences."
+    } ]
+  }, {
+    "tStartMs": 14000,
+    "dDurationMs": 2159,
+    "segs": [ {
+      "utf8": "We do sound, we do light,"
+    } ]
+  }, {
+    "tStartMs": 16159,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "and above all we do space."
+    } ]
+  }, {
+    "tStartMs": 28440,
+    "dDurationMs": 4679,
+    "segs": [ {
+      "utf8": "\"Echoes of Hill and Horizon\" was for us\na very new experience."
+    } ]
+  }, {
+    "tStartMs": 33119,
+    "dDurationMs": 2681,
+    "segs": [ {
+      "utf8": "We've never worked with an orchestra before,"
+    } ]
+  }, {
+    "tStartMs": 35800,
+    "dDurationMs": 2759,
+    "segs": [ {
+      "utf8": "let alone the Orchestra of the\nAge of Enlightenment,"
+    } ]
+  }, {
+    "tStartMs": 38559,
+    "dDurationMs": 1841,
+    "segs": [ {
+      "utf8": "which is a period orchestra."
+    } ]
+  }, {
+    "tStartMs": 40400,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "So from our point of view, it\nwas an immense challenge."
+    } ]
+  }, {
+    "tStartMs": 43760,
+    "dDurationMs": 2799,
+    "segs": [ {
+      "utf8": "The whole thing had to be very, very carefully\nchoreographed."
+    } ]
+  }, {
+    "tStartMs": 46559,
+    "dDurationMs": 3921,
+    "segs": [ {
+      "utf8": "So we were following the conductor\nas much as the orchestra was."
+    } ]
+  }, {
+    "tStartMs": 56400,
+    "dDurationMs": 2360,
+    "segs": [ {
+      "utf8": "\"Fantasia on a Theme by Thomas Tallis\""
+    } ]
+  }, {
+    "tStartMs": 58760,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "was played for the first time"
+    } ]
+  }, {
+    "tStartMs": 60840,
+    "dDurationMs": 3160,
+    "segs": [ {
+      "utf8": "in Gloucester Cathedral in the\nearly 20th century."
+    } ]
+  }, {
+    "tStartMs": 64239,
+    "dDurationMs": 3121,
+    "segs": [ {
+      "utf8": "Looking at the stained glass windows\nat Gloucester Cathedral,"
+    } ]
+  }, {
+    "tStartMs": 67360,
+    "dDurationMs": 4440,
+    "segs": [ {
+      "utf8": "they have a fantastic vibrancy to them,\nthey're just stunning."
+    } ]
+  }, {
+    "tStartMs": 71800,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "And we found playing around with the lights,"
+    } ]
+  }, {
+    "tStartMs": 74360,
+    "dDurationMs": 2799,
+    "segs": [ {
+      "utf8": "that when you put clusters of red and clusters of blue"
+    } ]
+  }, {
+    "tStartMs": 77159,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "that overlap and intertwine,"
+    } ]
+  }, {
+    "tStartMs": 78679,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "it just looks like the colors of stained glass."
+    } ]
+  }, {
+    "tStartMs": 81719,
+    "dDurationMs": 4601,
+    "segs": [ {
+      "utf8": "And seeing as there was already that connection\nwith the Thomas Tallis piece,"
+    } ]
+  }, {
+    "tStartMs": 86920,
+    "dDurationMs": 2759,
+    "segs": [ {
+      "utf8": "it just felt absolutely right to use that"
+    } ]
+  }, {
+    "tStartMs": 89679,
+    "dDurationMs": 2360,
+    "segs": [ {
+      "utf8": "as much as we could within the work."
+    } ]
+  }, {
+    "tStartMs": 110000,
+    "dDurationMs": 2199,
+    "segs": [ {
+      "utf8": "Within the tradition of arts practice,"
+    } ]
+  }, {
+    "tStartMs": 112199,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "artists actually have always been in\ndialogue with the medium."
+    } ]
+  }, {
+    "tStartMs": 115159,
+    "dDurationMs": 1480,
+    "segs": [ {
+      "utf8": "And we see ourselves as being"
+    } ]
+  }, {
+    "tStartMs": 116639,
+    "dDurationMs": 2040,
+    "segs": [ {
+      "utf8": "exactly within that tradition."
+    } ]
+  }, {
+    "tStartMs": 118679,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "We have these various bits of electronics,"
+    } ]
+  }, {
+    "tStartMs": 120599,
+    "dDurationMs": 4040,
+    "segs": [ {
+      "utf8": "these pieces of software, we have LEDs,\nwe have those things,"
+    } ]
+  }, {
+    "tStartMs": 124639,
+    "dDurationMs": 4241,
+    "segs": [ {
+      "utf8": "all of which have material properties\nwhich we're exploring."
+    } ]
+  }, {
+    "tStartMs": 128880,
+    "dDurationMs": 2319,
+    "segs": [ {
+      "utf8": "So, in that way they become our paints."
+    } ]
+  }, {
+    "tStartMs": 134360,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "We've been working with Claude for\na few months now."
+    } ]
+  }, {
+    "tStartMs": 137519,
+    "dDurationMs": 5040,
+    "segs": [ {
+      "utf8": "And one of the things that we found is that\nit's a way of getting around"
+    } ]
+  }, {
+    "tStartMs": 142559,
+    "dDurationMs": 3160,
+    "segs": [ {
+      "utf8": "clunky user interfaces in existing software"
+    } ]
+  }, {
+    "tStartMs": 145719,
+    "dDurationMs": 4121,
+    "segs": [ {
+      "utf8": "and getting existing software\nto do what you want it to do faster."
+    } ]
+  }, {
+    "tStartMs": 151400,
+    "dDurationMs": 4000,
+    "segs": [ {
+      "utf8": "What it's actually allowed us to do is to go\nfrom a very, very complicated"
+    } ]
+  }, {
+    "tStartMs": 155400,
+    "dDurationMs": 3679,
+    "segs": [ {
+      "utf8": "node structure-based form of modeling"
+    } ]
+  }, {
+    "tStartMs": 159079,
+    "dDurationMs": 4520,
+    "segs": [ {
+      "utf8": "and turn it into a toolset which references\nour understanding"
+    } ]
+  }, {
+    "tStartMs": 163599,
+    "dDurationMs": 4960,
+    "segs": [ {
+      "utf8": "of how we want those objects to be\ncreated in space."
+    } ]
+  }, {
+    "tStartMs": 168559,
+    "dDurationMs": 3761,
+    "segs": [ {
+      "utf8": "But it also opens up those tools to the rest of the team."
+    } ]
+  }, {
+    "tStartMs": 172320,
+    "dDurationMs": 2440,
+    "segs": [ {
+      "utf8": "And it's acting as a collaborator that\nsits between us,"
+    } ]
+  }, {
+    "tStartMs": 174760,
+    "dDurationMs": 3959,
+    "segs": [ {
+      "utf8": "of a very technical point of view, and\nan artistic point of view"
+    } ]
+  }, {
+    "tStartMs": 178719,
+    "dDurationMs": 1880,
+    "segs": [ {
+      "utf8": "and finding a translation\nlayer for that."
+    } ]
+  }, {
+    "tStartMs": 180599,
+    "dDurationMs": 3241,
+    "segs": [ {
+      "utf8": "And that actually allows us to work\ntogether more"
+    } ]
+  }, {
+    "tStartMs": 183840,
+    "dDurationMs": 3399,
+    "segs": [ {
+      "utf8": "and to take the ownership of different\nthings in different ways."
+    } ]
+  }, {
+    "tStartMs": 188239,
+    "dDurationMs": 3400,
+    "segs": [ {
+      "utf8": "Our goal is always to scale up\nto a point where"
+    } ]
+  }, {
+    "tStartMs": 191639,
+    "dDurationMs": 3080,
+    "segs": [ {
+      "utf8": "you're not paying any attention\nto the technology at all."
+    } ]
+  }, {
+    "tStartMs": 194719,
+    "dDurationMs": 4761,
+    "segs": [ {
+      "utf8": "You're just looking at this\nwonderful light and sound in space."
+    } ]
+  }, {
+    "tStartMs": 199480,
+    "dDurationMs": 3239,
+    "segs": [ {
+      "utf8": "You're relating to the people\nin that space with you."
+    } ]
+  } ]
+}

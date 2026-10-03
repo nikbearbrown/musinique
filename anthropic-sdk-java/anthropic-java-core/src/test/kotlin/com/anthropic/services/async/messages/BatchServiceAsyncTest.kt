@@ -1,0 +1,285 @@
+package com.anthropic.services.async.messages
+
+import com.anthropic.TestServerExtension
+import com.anthropic.client.okhttp.AnthropicOkHttpClientAsync
+import com.anthropic.core.JsonValue
+import com.anthropic.models.messages.CacheControlEphemeral
+import com.anthropic.models.messages.CitationCharLocationParam
+import com.anthropic.models.messages.ContainerParams
+import com.anthropic.models.messages.JsonOutputFormat
+import com.anthropic.models.messages.Metadata
+import com.anthropic.models.messages.Model
+import com.anthropic.models.messages.OutputConfig
+import com.anthropic.models.messages.SkillParams
+import com.anthropic.models.messages.TextBlockParam
+import com.anthropic.models.messages.ThinkingConfigAdaptive
+import com.anthropic.models.messages.Tool
+import com.anthropic.models.messages.ToolChoiceAuto
+import com.anthropic.models.messages.batches.BatchCancelParams
+import com.anthropic.models.messages.batches.BatchCreateParams
+import com.anthropic.models.messages.batches.BatchDeleteParams
+import com.anthropic.models.messages.batches.BatchResultsParams
+import com.anthropic.models.messages.batches.BatchRetrieveParams
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+
+@ExtendWith(TestServerExtension::class)
+internal class BatchServiceAsyncTest {
+
+    @Test
+    fun create() {
+        val client =
+            AnthropicOkHttpClientAsync.builder()
+                .baseUrl(TestServerExtension.BASE_URL)
+                .apiKey("my-anthropic-api-key")
+                .build()
+        val batchServiceAsync = client.messages().batches()
+
+        val messageBatchFuture =
+            batchServiceAsync.create(
+                BatchCreateParams.builder()
+                    .userProfileId("anthropic-user-profile-id")
+                    .workspaceId("wrkspc_011CZkZaBF1tNoB5wlCeusgy")
+                    .addRequest(
+                        BatchCreateParams.Request.builder()
+                            .customId("my-custom-id-1")
+                            .params(
+                                BatchCreateParams.Request.Params.builder()
+                                    .maxTokens(1024L)
+                                    .addUserMessage("Hello, world")
+                                    .model(Model.CLAUDE_OPUS_5)
+                                    .cacheControl(
+                                        CacheControlEphemeral.builder()
+                                            .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                                            .build()
+                                    )
+                                    .container(
+                                        ContainerParams.builder()
+                                            .id("id")
+                                            .addSkill(
+                                                SkillParams.builder()
+                                                    .skillId("pdf")
+                                                    .type(SkillParams.Type.ANTHROPIC)
+                                                    .version("latest")
+                                                    .build()
+                                            )
+                                            .build()
+                                    )
+                                    .inferenceGeo("inference_geo")
+                                    .metadata(
+                                        Metadata.builder()
+                                            .userId("13803d75-b4b5-4c3e-b2a2-6f21399b021b")
+                                            .build()
+                                    )
+                                    .outputConfig(
+                                        OutputConfig.builder()
+                                            .effort(OutputConfig.Effort.LOW)
+                                            .format(
+                                                JsonOutputFormat.of(
+                                                    JsonOutputFormat.Schema.builder()
+                                                        .putAdditionalProperty(
+                                                            "foo",
+                                                            JsonValue.from("bar"),
+                                                        )
+                                                        .build()
+                                                )
+                                            )
+                                            .build()
+                                    )
+                                    .serviceTier(BatchCreateParams.Request.Params.ServiceTier.AUTO)
+                                    .addStopSequence("string")
+                                    .stream(false)
+                                    .systemOfTextBlockParams(
+                                        listOf(
+                                            TextBlockParam.builder()
+                                                .text("Today's date is 2024-06-01.")
+                                                .cacheControl(
+                                                    CacheControlEphemeral.builder()
+                                                        .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                                                        .build()
+                                                )
+                                                .addCitation(
+                                                    CitationCharLocationParam.builder()
+                                                        .citedText(
+                                                            "The grass is green. The sky is blue."
+                                                        )
+                                                        .documentIndex(0L)
+                                                        .documentTitle("x")
+                                                        .endCharIndex(0L)
+                                                        .startCharIndex(0L)
+                                                        .build()
+                                                )
+                                                .build()
+                                        )
+                                    )
+                                    .temperature(1.0)
+                                    .thinking(
+                                        ThinkingConfigAdaptive.builder()
+                                            .display(ThinkingConfigAdaptive.Display.SUMMARIZED)
+                                            .build()
+                                    )
+                                    .toolChoice(
+                                        ToolChoiceAuto.builder()
+                                            .disableParallelToolUse(true)
+                                            .build()
+                                    )
+                                    .addTool(
+                                        Tool.builder()
+                                            .inputSchema(
+                                                Tool.InputSchema.builder()
+                                                    .properties(
+                                                        Tool.InputSchema.Properties.builder()
+                                                            .putAdditionalProperty(
+                                                                "location",
+                                                                JsonValue.from("bar"),
+                                                            )
+                                                            .putAdditionalProperty(
+                                                                "unit",
+                                                                JsonValue.from("bar"),
+                                                            )
+                                                            .build()
+                                                    )
+                                                    .addRequired("location")
+                                                    .build()
+                                            )
+                                            .name("name")
+                                            .addAllowedCaller(Tool.AllowedCaller.DIRECT)
+                                            .cacheControl(
+                                                CacheControlEphemeral.builder()
+                                                    .ttl(CacheControlEphemeral.Ttl.TTL_5M)
+                                                    .build()
+                                            )
+                                            .deferLoading(true)
+                                            .description(
+                                                "Get the current weather in a given location"
+                                            )
+                                            .eagerInputStreaming(true)
+                                            .addInputExample(
+                                                Tool.InputExample.builder()
+                                                    .putAdditionalProperty(
+                                                        "foo",
+                                                        JsonValue.from("bar"),
+                                                    )
+                                                    .build()
+                                            )
+                                            .strict(true)
+                                            .type(Tool.Type.CUSTOM)
+                                            .build()
+                                    )
+                                    .topK(5L)
+                                    .topP(0.7)
+                                    .build()
+                            )
+                            .build()
+                    )
+                    .build()
+            )
+
+        val messageBatch = messageBatchFuture.get()
+        messageBatch.validate()
+    }
+
+    @Test
+    fun retrieve() {
+        val client =
+            AnthropicOkHttpClientAsync.builder()
+                .baseUrl(TestServerExtension.BASE_URL)
+                .apiKey("my-anthropic-api-key")
+                .build()
+        val batchServiceAsync = client.messages().batches()
+
+        val messageBatchFuture =
+            batchServiceAsync.retrieve(
+                BatchRetrieveParams.builder()
+                    .messageBatchId("message_batch_id")
+                    .workspaceId("wrkspc_011CZkZaBF1tNoB5wlCeusgy")
+                    .build()
+            )
+
+        val messageBatch = messageBatchFuture.get()
+        messageBatch.validate()
+    }
+
+    @Test
+    fun list() {
+        val client =
+            AnthropicOkHttpClientAsync.builder()
+                .baseUrl(TestServerExtension.BASE_URL)
+                .apiKey("my-anthropic-api-key")
+                .build()
+        val batchServiceAsync = client.messages().batches()
+
+        val pageFuture = batchServiceAsync.list()
+
+        val page = pageFuture.get()
+        page.response().validate()
+    }
+
+    @Test
+    fun delete() {
+        val client =
+            AnthropicOkHttpClientAsync.builder()
+                .baseUrl(TestServerExtension.BASE_URL)
+                .apiKey("my-anthropic-api-key")
+                .build()
+        val batchServiceAsync = client.messages().batches()
+
+        val deletedMessageBatchFuture =
+            batchServiceAsync.delete(
+                BatchDeleteParams.builder()
+                    .messageBatchId("message_batch_id")
+                    .workspaceId("wrkspc_011CZkZaBF1tNoB5wlCeusgy")
+                    .build()
+            )
+
+        val deletedMessageBatch = deletedMessageBatchFuture.get()
+        deletedMessageBatch.validate()
+    }
+
+    @Test
+    fun cancel() {
+        val client =
+            AnthropicOkHttpClientAsync.builder()
+                .baseUrl(TestServerExtension.BASE_URL)
+                .apiKey("my-anthropic-api-key")
+                .build()
+        val batchServiceAsync = client.messages().batches()
+
+        val messageBatchFuture =
+            batchServiceAsync.cancel(
+                BatchCancelParams.builder()
+                    .messageBatchId("message_batch_id")
+                    .workspaceId("wrkspc_011CZkZaBF1tNoB5wlCeusgy")
+                    .build()
+            )
+
+        val messageBatch = messageBatchFuture.get()
+        messageBatch.validate()
+    }
+
+    @Test
+    fun resultsStreaming() {
+        val client =
+            AnthropicOkHttpClientAsync.builder()
+                .baseUrl(TestServerExtension.BASE_URL)
+                .apiKey("my-anthropic-api-key")
+                .build()
+        val batchServiceAsync = client.messages().batches()
+
+        val messageBatchIndividualResponseStreamResponse =
+            batchServiceAsync.resultsStreaming(
+                BatchResultsParams.builder()
+                    .messageBatchId("message_batch_id")
+                    .workspaceId("wrkspc_011CZkZaBF1tNoB5wlCeusgy")
+                    .build()
+            )
+
+        val onCompleteFuture =
+            messageBatchIndividualResponseStreamResponse
+                .subscribe { messageBatchIndividualResponse ->
+                    messageBatchIndividualResponse.validate()
+                }
+                .onCompleteFuture()
+        onCompleteFuture.get()
+    }
+}

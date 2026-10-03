@@ -1,0 +1,474 @@
+//! Closed-enum unknown-value routing to unknown_fields (proto spec).
+//! Covers owned decoder (optional/repeated/oneof) and view decoder parity.
+
+use super::{length_delimited_field, packed_field, repeated_varint_field, varint_field};
+use buffa::Message;
+
+fn priority_map_entry_wire(key: &str, values: &[u64]) -> (Vec<u8>, Vec<u8>) {
+    use buffa::encoding::{encode_varint, Tag, WireType};
+
+    let mut entry = Vec::new();
+    Tag::new(1, WireType::LengthDelimited).encode(&mut entry);
+    buffa::types::encode_string(key, &mut entry);
+    for value in values {
+        Tag::new(2, WireType::Varint).encode(&mut entry);
+        encode_varint(*value, &mut entry);
+    }
+
+    let mut wire = varint_field(1, 2); // ViewCoverage.level = HIGH.
+    Tag::new(3, WireType::LengthDelimited).encode(&mut wire);
+    encode_varint(entry.len() as u64, &mut wire);
+    wire.extend_from_slice(&entry);
+    (entry, wire)
+}
+
+#[test]
+fn test_closed_enum_optional_unknown_to_unknown_fields() {
+    use crate::proto2::ClosedEnumContexts;
+    // Field 1 (optional Priority) with value 99 (not in Priority).
+    let wire = varint_field(1, 99);
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    assert_eq!(msg.opt, None, "field must report unset for unknown value");
+    let unknowns: Vec<_> = msg.__buffa_unknown_fields.iter().collect();
+    assert_eq!(unknowns.len(), 1, "unknown value must be in unknown_fields");
+    assert_eq!(unknowns[0].number, 1);
+    assert!(matches!(
+        unknowns[0].data,
+        buffa::UnknownFieldData::Varint(99)
+    ));
+    // Round-trip: re-encode must preserve the unknown value.
+    let re = msg.encode_to_vec();
+    assert_eq!(re, wire, "round-trip bytes must match");
+}
+
+#[test]
+fn test_closed_enum_repeated_unknown_to_unknown_fields() {
+    use crate::proto2::{ClosedEnumContexts, Priority};
+    // Field 2 (repeated Priority, unpacked): [LOW=0, 99, HIGH=2, 42]
+    let mut wire = Vec::new();
+    wire.extend(varint_field(2, 0));
+    wire.extend(varint_field(2, 99));
+    wire.extend(varint_field(2, 2));
+    wire.extend(varint_field(2, 42));
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    // Known values stay in the list.
+    assert_eq!(msg.rep, vec![Priority::LOW, Priority::HIGH]);
+    // Unknown values go to unknown_fields (order preserved).
+    let unknowns: Vec<_> = msg
+        .__buffa_unknown_fields
+        .iter()
+        .filter(|u| u.number == 2)
+        .collect();
+    assert_eq!(unknowns.len(), 2);
+    assert!(matches!(
+        unknowns[0].data,
+        buffa::UnknownFieldData::Varint(99)
+    ));
+    assert!(matches!(
+        unknowns[1].data,
+        buffa::UnknownFieldData::Varint(42)
+    ));
+    // Round-trip: bytes differ (known fields serialize before unknowns per
+    // spec — "not in their original place"), but a second decode must yield
+    // equivalent state.
+    let re = msg.encode_to_vec();
+    let msg2 = ClosedEnumContexts::decode(&mut re.as_slice()).unwrap();
+    assert_eq!(msg2.rep, msg.rep);
+    assert_eq!(
+        msg2.__buffa_unknown_fields.iter().count(),
+        msg.__buffa_unknown_fields.iter().count()
+    );
+}
+
+#[test]
+fn test_closed_enum_repeated_all_unknown() {
+    // Edge case: ALL values in a repeated closed enum are unknown.
+    // List ends up empty; all values in unknown_fields.
+    use crate::proto2::ClosedEnumContexts;
+    let mut wire = Vec::new();
+    wire.extend(varint_field(2, 99));
+    wire.extend(varint_field(2, 100));
+    wire.extend(varint_field(2, 101));
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    assert!(msg.rep.is_empty(), "no known values → empty list");
+    let unknowns: Vec<_> = msg
+        .__buffa_unknown_fields
+        .iter()
+        .filter(|u| u.number == 2)
+        .collect();
+    assert_eq!(unknowns.len(), 3);
+    // Round-trip: re-encode has only the unknowns (no repeated-field bytes).
+    let re = msg.encode_to_vec();
+    let msg2 = ClosedEnumContexts::decode(&mut re.as_slice()).unwrap();
+    assert!(msg2.rep.is_empty());
+    assert_eq!(
+        msg2.__buffa_unknown_fields
+            .iter()
+            .filter(|u| u.number == 2)
+            .count(),
+        3
+    );
+}
+
+#[test]
+fn test_closed_enum_repeated_packed_unknown_to_unknown_fields() {
+    use crate::proto2::{ClosedEnumContexts, Priority};
+    use buffa::encoding::{encode_varint, Tag, WireType};
+    // Field 3 (repeated Priority, packed): [LOW=0, 99, HIGH=2]
+    // Packed encoding: length-delimited, varints concatenated.
+    let mut payload = Vec::new();
+    encode_varint(0, &mut payload);
+    encode_varint(99, &mut payload);
+    encode_varint(2, &mut payload);
+    let mut wire = Vec::new();
+    Tag::new(3, WireType::LengthDelimited).encode(&mut wire);
+    encode_varint(payload.len() as u64, &mut wire);
+    wire.extend_from_slice(&payload);
+
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    assert_eq!(msg.rep_packed, vec![Priority::LOW, Priority::HIGH]);
+    let unknowns: Vec<_> = msg
+        .__buffa_unknown_fields
+        .iter()
+        .filter(|u| u.number == 3)
+        .collect();
+    assert_eq!(unknowns.len(), 1);
+    assert!(matches!(
+        unknowns[0].data,
+        buffa::UnknownFieldData::Varint(99)
+    ));
+}
+
+/// Singular, unpacked-repeated, packed-repeated and oneof closed-enum fields
+/// share one unknown-value route in the owned decoder, which charges the
+/// unknown-field allowance once per preserved value. Each case carries two
+/// unknown values: a limit of two admits both, a limit of one rejects the
+/// second. Map values take a separate route — see the map test below.
+#[test]
+fn test_owned_closed_enum_unknowns_charge_one_limit_slot_per_value() {
+    use crate::proto2::ClosedEnumContexts;
+
+    let cases = [
+        ("singular", repeated_varint_field(1, &[99, 100])),
+        ("repeated unpacked", repeated_varint_field(2, &[99, 100])),
+        ("repeated packed", packed_field(3, &[99, 100])),
+        ("oneof", repeated_varint_field(4, &[99, 100])),
+    ];
+
+    for (context, wire) in cases {
+        let msg = buffa::DecodeOptions::new()
+            .with_unknown_field_limit(2)
+            .decode_from_slice::<ClosedEnumContexts>(&wire)
+            .unwrap_or_else(|e| panic!("{context}: two unknowns must fit a limit of two: {e:?}"));
+        let preserved: Vec<_> = msg
+            .__buffa_unknown_fields
+            .iter()
+            .map(|u| match u.data {
+                buffa::UnknownFieldData::Varint(v) => v,
+                ref other => panic!("{context}: unexpected unknown payload {other:?}"),
+            })
+            .collect();
+        assert_eq!(
+            preserved,
+            vec![99, 100],
+            "{context}: both unknown values must be preserved, each charging one slot"
+        );
+
+        let err = buffa::DecodeOptions::new()
+            .with_unknown_field_limit(1)
+            .decode_from_slice::<ClosedEnumContexts>(&wire)
+            .unwrap_err();
+        assert_eq!(
+            err,
+            buffa::DecodeError::UnknownFieldLimitExceeded,
+            "{context}: the second unknown value must exceed a limit of one"
+        );
+    }
+}
+
+/// Closed-enum map values route through `merge_entry_with_unknowns`, which
+/// preserves the whole entry and charges the allowance once per entry rather
+/// than once per value. Two entries carrying unknown values fit a limit of
+/// two; a limit of one rejects the second.
+#[test]
+fn test_owned_closed_enum_unknown_map_entries_charge_one_limit_slot_per_entry() {
+    use crate::proto2::ViewCoverage;
+
+    let mut wire = varint_field(1, 2); // ViewCoverage.level = HIGH.
+    for key in ["a", "b"] {
+        let mut entry = Vec::new();
+        buffa::encoding::Tag::new(1, buffa::encoding::WireType::LengthDelimited).encode(&mut entry);
+        buffa::types::encode_string(key, &mut entry);
+        entry.extend(varint_field(2, 99));
+        wire.extend(length_delimited_field(3, &entry));
+    }
+
+    let msg = buffa::DecodeOptions::new()
+        .with_unknown_field_limit(2)
+        .decode_from_slice::<ViewCoverage>(&wire)
+        .expect("two unknown map entries must fit a limit of two");
+    assert!(msg.priorities.is_empty(), "unknown values must not insert");
+    assert_eq!(
+        msg.__buffa_unknown_fields.iter().count(),
+        2,
+        "each unknown entry must be preserved and charge one slot"
+    );
+
+    let err = buffa::DecodeOptions::new()
+        .with_unknown_field_limit(1)
+        .decode_from_slice::<ViewCoverage>(&wire)
+        .unwrap_err();
+    assert_eq!(err, buffa::DecodeError::UnknownFieldLimitExceeded);
+}
+
+#[test]
+fn test_closed_enum_oneof_unknown_to_unknown_fields() {
+    use crate::proto2::ClosedEnumContexts;
+    // Field 4 (oneof Priority) with value 99.
+    let wire = varint_field(4, 99);
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    assert!(
+        msg.choice.is_none(),
+        "oneof must stay unset for unknown value"
+    );
+    let unknowns: Vec<_> = msg.__buffa_unknown_fields.iter().collect();
+    assert_eq!(unknowns.len(), 1);
+    assert_eq!(unknowns[0].number, 4);
+    assert!(matches!(
+        unknowns[0].data,
+        buffa::UnknownFieldData::Varint(99)
+    ));
+    // Round-trip.
+    let re = msg.encode_to_vec();
+    assert_eq!(re, wire);
+}
+
+#[test]
+fn test_closed_enum_known_value_not_routed_to_unknown() {
+    // Sanity: known values should NOT go to unknown_fields.
+    use crate::proto2::{ClosedEnumContexts, Priority};
+    let wire = varint_field(1, 2); // HIGH = 2
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    assert_eq!(msg.opt, Some(Priority::HIGH));
+    assert!(msg.__buffa_unknown_fields.is_empty());
+}
+
+#[test]
+fn test_closed_enum_negative_unknown_value_sign_extension() {
+    // Negative int32 values encode as sign-extended 10-byte varints.
+    // Routing to unknown_fields via `__raw as u64` (i32 → u64 cast is
+    // sign-extending in Rust) must preserve that on re-encode.
+    use crate::proto2::ClosedEnumContexts;
+    let wire = varint_field(1, (-999i32) as u64); // sign-extended
+    assert_eq!(wire.len(), 11, "1-byte tag + 10-byte varint");
+    let msg = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    assert_eq!(msg.opt, None);
+    let unknowns: Vec<_> = msg.__buffa_unknown_fields.iter().collect();
+    assert_eq!(unknowns.len(), 1);
+    // The stored u64 is the sign-extended value.
+    assert!(matches!(
+        unknowns[0].data,
+        buffa::UnknownFieldData::Varint(v) if v == (-999i32) as u64
+    ));
+    // Round-trip: re-encoded bytes must match exactly (single field).
+    let re = msg.encode_to_vec();
+    assert_eq!(re, wire);
+}
+
+#[test]
+fn test_closed_enum_map_unknown_value_preserves_whole_entry() {
+    use crate::proto2::{Priority, ViewCoverage};
+
+    // Field 3 is map<string, Priority>. The entry's *final* value occurrence
+    // is unknown, so the whole entry is routed to unknown fields verbatim.
+    let (entry, wire) = priority_map_entry_wire("bad", &[2, 99]);
+    let msg = ViewCoverage::decode(&mut wire.as_slice()).unwrap();
+
+    assert_eq!(msg.level, Priority::HIGH);
+    assert!(msg.priorities.is_empty());
+    let unknowns: Vec<_> = msg.__buffa_unknown_fields.iter().collect();
+    assert_eq!(unknowns.len(), 1);
+    assert_eq!(unknowns[0].number, 3);
+    assert!(matches!(
+        &unknowns[0].data,
+        buffa::UnknownFieldData::LengthDelimited(payload) if payload == &entry
+    ));
+    assert_eq!(msg.encode_to_vec(), wire);
+}
+
+#[test]
+fn test_closed_enum_map_last_value_known_inserts_entry() {
+    use crate::proto2::{Priority, ViewCoverage};
+
+    // Repeated value occurrences within a map entry are last-wins (proto map
+    // semantics). An unknown enum value followed by a known one inserts the
+    // entry with the known value, matching the C++ reference implementation.
+    let (_, wire) = priority_map_entry_wire("ok", &[99, 2]);
+    let msg = ViewCoverage::decode(&mut wire.as_slice()).unwrap();
+
+    assert_eq!(msg.priorities.get("ok"), Some(&Priority::HIGH));
+    assert_eq!(msg.__buffa_unknown_fields.iter().count(), 0);
+}
+
+// ── View decoder: same semantics ──────────────────────────────────────
+//
+// Views must preserve the same round-trip guarantee: decode_view().
+// to_owned_message().encode_to_vec() must equal the owned path.
+
+#[test]
+fn test_view_closed_enum_optional_unknown_to_unknown_fields() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use buffa::MessageView;
+    let wire = varint_field(1, 99);
+    let view = ClosedEnumContextsView::decode_view(&wire).unwrap();
+    assert_eq!(view.opt, None, "field must stay unset");
+    assert!(!view.__buffa_unknown_fields.is_empty());
+    // View → owned → encode must match original.
+    let owned = view.to_owned_message().unwrap();
+    assert_eq!(owned.encode_to_vec(), wire);
+}
+
+#[test]
+fn test_view_closed_enum_repeated_unpacked_unknown_preserved() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use crate::proto2::Priority;
+    use buffa::MessageView;
+    // Field 2 (unpacked): [LOW=0, 99, HIGH=2]
+    let mut wire = Vec::new();
+    wire.extend(varint_field(2, 0));
+    wire.extend(varint_field(2, 99));
+    wire.extend(varint_field(2, 2));
+    let view = ClosedEnumContextsView::decode_view(&wire).unwrap();
+    // Known values in the list.
+    let vals: Vec<_> = view.rep.iter().copied().collect();
+    assert_eq!(vals, vec![Priority::LOW, Priority::HIGH]);
+    // Unknown value span in unknown_fields.
+    assert!(!view.__buffa_unknown_fields.is_empty());
+    // View → owned → decode again: same state.
+    let owned = view.to_owned_message().unwrap();
+    let re = owned.encode_to_vec();
+    let view2 = ClosedEnumContextsView::decode_view(&re).unwrap();
+    let vals2: Vec<_> = view2.rep.iter().copied().collect();
+    assert_eq!(vals2, vals);
+    assert!(!view2.__buffa_unknown_fields.is_empty());
+}
+
+#[test]
+fn test_view_closed_enum_repeated_packed_unknown_preserved() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use crate::proto2::{ClosedEnumContexts, Priority};
+    use buffa::encoding::{encode_varint, Tag, WireType};
+    use buffa::{Message, MessageView};
+
+    let mut payload = Vec::new();
+    encode_varint(0, &mut payload);
+    encode_varint(99, &mut payload);
+    encode_varint(2, &mut payload);
+    let mut wire = Vec::new();
+    Tag::new(3, WireType::LengthDelimited).encode(&mut wire);
+    encode_varint(payload.len() as u64, &mut wire);
+    wire.extend_from_slice(&payload);
+
+    let owned_direct = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    let view = ClosedEnumContextsView::decode_view(&wire).unwrap();
+    let vals: Vec<_> = view.rep_packed.iter().copied().collect();
+    assert_eq!(vals, vec![Priority::LOW, Priority::HIGH]);
+    assert!(!view.__buffa_unknown_fields.is_empty());
+
+    let via_view = view.to_owned_message().unwrap();
+    assert_eq!(via_view.encode_to_vec(), owned_direct.encode_to_vec());
+}
+
+#[test]
+fn test_view_closed_enum_repeated_packed_unknown_preserves_order_before_later_unknown() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use crate::proto2::ClosedEnumContexts;
+    use buffa::encoding::{encode_varint, Tag, WireType};
+    use buffa::{Message, MessageView};
+
+    let mut payload = Vec::new();
+    encode_varint(99, &mut payload);
+    let mut wire = Vec::new();
+    Tag::new(3, WireType::LengthDelimited).encode(&mut wire);
+    encode_varint(payload.len() as u64, &mut wire);
+    wire.extend_from_slice(&payload);
+    wire.extend(varint_field(100, 7));
+
+    let owned_direct = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    let view = ClosedEnumContextsView::decode_view(&wire).unwrap();
+    assert!(!view.__buffa_unknown_fields.is_empty());
+
+    let via_view = view.to_owned_message().unwrap();
+    assert_eq!(via_view.encode_to_vec(), owned_direct.encode_to_vec());
+}
+
+#[test]
+fn test_view_closed_enum_repeated_packed_unknowns_consume_unknown_field_limit() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use buffa::encoding::{encode_varint, Tag, WireType};
+    use buffa::MessageView;
+
+    let mut payload = Vec::new();
+    encode_varint(99, &mut payload);
+    encode_varint(100, &mut payload);
+    let mut wire = Vec::new();
+    Tag::new(3, WireType::LengthDelimited).encode(&mut wire);
+    encode_varint(payload.len() as u64, &mut wire);
+    wire.extend_from_slice(&payload);
+
+    let limit = core::cell::Cell::new(1);
+    let err = ClosedEnumContextsView::decode_view_ctx(
+        &wire,
+        buffa::DecodeContext::new(buffa::RECURSION_LIMIT, &limit),
+    )
+    .unwrap_err();
+
+    assert_eq!(err, buffa::DecodeError::UnknownFieldLimitExceeded);
+}
+
+#[test]
+fn test_view_closed_enum_oneof_unknown_to_unknown_fields() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use buffa::MessageView;
+    let wire = varint_field(4, 99);
+    let view = ClosedEnumContextsView::decode_view(&wire).unwrap();
+    assert!(view.choice.is_none(), "oneof must stay unset");
+    assert!(!view.__buffa_unknown_fields.is_empty());
+    let owned = view.to_owned_message().unwrap();
+    assert_eq!(owned.encode_to_vec(), wire);
+}
+
+#[test]
+fn test_view_closed_enum_known_not_routed() {
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use crate::proto2::Priority;
+    use buffa::MessageView;
+    let wire = varint_field(1, 2); // HIGH = 2
+    let view = ClosedEnumContextsView::decode_view(&wire).unwrap();
+    assert_eq!(view.opt, Some(Priority::HIGH));
+    assert!(view.__buffa_unknown_fields.is_empty());
+}
+
+#[test]
+fn test_view_owned_parity_for_closed_enum_unknowns() {
+    // Whatever the owned decoder produces, the view path must produce
+    // byte-identical output after to_owned_message().encode_to_vec().
+    use crate::proto2::__buffa::view::ClosedEnumContextsView;
+    use crate::proto2::ClosedEnumContexts;
+    use buffa::{Message, MessageView};
+    let mut wire = Vec::new();
+    wire.extend(varint_field(1, 99)); // optional unknown
+    wire.extend(varint_field(2, 1)); // repeated known (MEDIUM)
+    wire.extend(varint_field(2, 42)); // repeated unknown
+    wire.extend(varint_field(4, 77)); // oneof unknown
+    let owned_direct = ClosedEnumContexts::decode(&mut wire.as_slice()).unwrap();
+    let via_view = ClosedEnumContextsView::decode_view(&wire)
+        .unwrap()
+        .to_owned_message()
+        .unwrap();
+    assert_eq!(
+        owned_direct.encode_to_vec(),
+        via_view.encode_to_vec(),
+        "owned and view-to-owned decode paths must produce identical output"
+    );
+}

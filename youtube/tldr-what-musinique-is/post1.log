@@ -1,0 +1,201 @@
+/Users/bear/Documents/CoWork/bear-textbooks/books/brutalist.art/runtime/scripts/post.py:487: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  bot_pixels = list(bot_region.getdata())
+/Users/bear/Documents/CoWork/bear-textbooks/books/brutalist.art/runtime/scripts/post.py:493: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  top_pixels = list(top_region.getdata())
+[master] PASS  3840×2160  24fps  yuv420p  h264  261.6s
+[loud] checking 16 beats for per-beat silence …
+[loud] PASS  -24.69 LUFS  tp=-3.49 dBTP
+[srt] PASS  69 cues  0 errors  (tldr-what-musinique-is.srt)
+
+[post] ════════════════════════════════════════════
+[post]  reel:   tldr-what-musinique-is
+[post]  dir:    /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is
+[post]  TOPOST: /Users/bear/Documents/CoWork/bear-textbooks/books/youtube/TOPOST
+[post] ════════════════════════════════════════════
+
+[post] ── STEP 1: check preconditions ──
+[post]   beat sheet: 16/16 filled, 0 slates, cut=master ✓
+[post]   GATE T: PASS ✓
+[post]   BUILD-LOG: no active MISSING: lines ✓
+[post]   audio: locked (16 beats) ✓
+[post]   all preconditions green
+
+[post] ── STEP 2: 4K audit (source resolution) ──
+[post]   B00: B00.mp4  3840×2160  ✓
+[post]   B01: B01.mp4  3840×2160  ✓
+[post]   B02: B02.mp4  3840×2160  ✓
+[post]   B03: B03.mp4  3840×2160  ✓
+[post]   B10: B10.mp4  3840×2160  ✓
+[post]   B11: B11.mp4  3840×2160  ✓
+[post]   B12: B12.mp4  3840×2160  ✓
+[post]   B13: B13.mp4  3840×2160  ✓
+[post]   B14: B14.mp4  3840×2160  ✓
+[post]   B15: B15.mp4  3840×2160  ✓
+[post]   B16: B16.mp4  3840×2160  ✓
+[post]   B17: B17.mp4  3840×2160  ✓
+[post]   B18: B18.mp4  3840×2160  ✓
+[post]   BVDT: BVDT.mp4  3840×2160  ✓
+[post]   BHTF: BHTF.mp4  3840×2160  ✓
+[post]   BOUT: BOUT.mp4  3840×2160  ✓
+[post]   all source slots are native 4K ✓
+
+[post] ── STEP 3: compile clean 4K master ──
+[post]   GATE T: re-confirmed PASS ✓
+[art] motion histogram: graphic:9  remotion:7
+[art] SKIN LINT: B00: palette=claude but the cold open is 'ClaudeTldrWhat' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (16/16 filled)
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/tldr-what-musinique-is.mp4  (261.6s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 16/16 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B10:MANIM B11:MANIM B12:MANIM B13:MANIM B14:MANIM B15:MANIM B16:MANIM B17:MANIM B18:MANIM BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+
+[post]   compile complete ✓
+
+[post] ── STEP 4: frame-assert (no marker band) ──
+[post]   frame 0 t=26s: bottom-left dark=0.0%  clean
+[post]   frame 1 t=73s: bottom-left dark=0.0%  clean
+[post]   frame 2 t=131s: bottom-left dark=0.0%  clean
+[post]   frame 3 t=188s: bottom-left dark=0.0%  clean
+[post]   frame 4 t=235s: bottom-left dark=0.0%  clean
+[post]   frame-assert: PASS ✓  (frames in _qc/post-assert)
+
+[post] ── STAGE-GATE MASTER + LOUDNESS ──
+[post]   GATE MASTER: PASS ✓
+[post]   GATE LOUDNESS: PASS ✓
+[post]   GATE SRT: PASS ✓
+
+[post] ── STEP 5: generate YouTube description ──
+[post]   wrote tldr-what-musinique-is.md  (3 chapters, ~4:20)
+
+[post] ── STAGE-GATE METADATA LIMITS ──
+[post]   metadata limits: OK ✓
+
+[post]   copied tldr-what-musinique-is.srt → TOPOST
+
+[post] ── STEP 6: move master into TOPOST ──
+[post]   tldr-what-musinique-is.mp4  24.2 MB  4:21  3840×2160
+[post]   moved → /Users/bear/Documents/CoWork/bear-textbooks/books/youtube/TOPOST/tldr-what-musinique-is.mp4
+
+[post]   sha256: 3c845390f0a5e7f0…
+
+[post] ── STEP 7: Topaz upscale — SKIPPED (--no-topaz) ──
+
+[post] ── STEP 8: upsert staged.json ──
+[post]   added new entry for tldr-what-musinique-is
+[post]   staged.json → /Users/bear/Documents/CoWork/bear-textbooks/books/youtube/TOPOST/staged.json
+
+[post]   entry:
+{
+    "slug": "tldr-what-musinique-is",
+    "title": "What Musinique Is",
+    "source_reel": "musinique/youtube/tldr-what-musinique-is/",
+    "staged_at": "2026-09-24T00:36:25-04:00",
+    "files": {
+        "master_4k": "tldr-what-musinique-is.mp4",
+        "description_md": "tldr-what-musinique-is.md",
+        "caption_srt": "tldr-what-musinique-is.srt"
+    },
+    "resolution": "3840x2160",
+    "duration_s": 261.6,
+    "beat_count": 16,
+    "all_beats_4k": true,
+    "beats_native_res": {
+        "B00": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B01": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B02": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B03": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B10": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B11": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B12": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B13": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B14": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B15": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B16": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B17": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "B18": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "BVDT": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "BHTF": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        },
+        "BOUT": {
+            "w": 3840,
+            "h": 2160,
+            "native_4k": true
+        }
+    },
+    "markers_clean": true,
+    "gate_t": "pass",
+    "topaz": {
+        "ran": false,
+        "reason": "skipped via --no-topaz (native 4K, no upscale needed)"
+    },
+    "status": "staged",
+    "sha256": "3c845390f0a5e7f0c69da9ab3bf50e25af55804c82472bbf7a8aa9257a2dd740"
+}
+
+[post] ════════════════════════════════════════════
+[post]  STAGED ✓
+[post]  master:  /Users/bear/Documents/CoWork/bear-textbooks/books/youtube/TOPOST/tldr-what-musinique-is.mp4
+[post]  topaz:   skipped — skipped via --no-topaz (native 4K, no upscale needed)
+[post]  desc:    /Users/bear/Documents/CoWork/bear-textbooks/books/youtube/TOPOST/tldr-what-musinique-is.md
+[post]  manifest:/Users/bear/Documents/CoWork/bear-textbooks/books/youtube/TOPOST/staged.json
+[post] ════════════════════════════════════════════
+[post]  STOP — human uploads from TOPOST. Never upload from here.
+[post] ════════════════════════════════════════════
+

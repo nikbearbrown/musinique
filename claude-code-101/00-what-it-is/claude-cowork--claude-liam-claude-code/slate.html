@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLATE — Vibecoders Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --cream: #FAF9F5; --ink: #3D3929; --terra: #D97757; }
+  body { background: var(--ink); font-family: system-ui,-apple-system,sans-serif; color: var(--ink); height: 100vh; overflow: hidden; cursor: pointer; user-select: none; }
+  #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--terra); transition: width .3s ease; z-index: 100; }
+  #slide-container { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .slide { display: none; width: 100%; height: 100%; background: var(--cream); padding: 48px 64px; flex-direction: column; justify-content: space-between; position: relative; }
+  .slide.active { display: flex; }
+  .slide-title .episode-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--terra); }
+  .slide-title h1 { font-family: 'EB Garamond',serif; font-size: clamp(32px,5.5vw,66px); font-weight: 600; line-height: 1.05; color: var(--ink); margin-top: 16px; }
+  .slide-title .meta { font-size: 13px; color: var(--ink); opacity: .5; margin-top: 12px; }
+  .slide-title .hint { font-size: 12px; color: var(--ink); opacity: .4; text-align: center; }
+  .beat-header { display: flex; align-items: baseline; gap: 16px; }
+  .beat-id { font-family: 'SF Mono','Fira Mono',monospace; font-size: 11px; font-weight: 600; background: var(--terra); color: var(--cream); padding: 2px 8px; border-radius: 2px; letter-spacing: .05em; flex-shrink: 0; }
+  .beat-time { font-size: 11px; color: var(--ink); opacity: .45; letter-spacing: .05em; }
+  .beat-type { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); opacity: .4; margin-left: auto; }
+  .beat-narration { font-family: 'EB Garamond',serif; font-size: clamp(15px,2vw,22px); line-height: 1.55; color: var(--ink); flex: 1; display: flex; align-items: center; padding: 20px 0; }
+  .beat-visual { font-size: 12px; color: var(--ink); opacity: .45; border-top: 1px solid currentColor; padding-top: 14px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .card-preview { background: var(--ink); color: var(--cream); border-radius: 6px; padding: 16px 20px; margin-top: 12px; }
+  .card-preview .cp-eyebrow { font-size: 9px; letter-spacing: .15em; text-transform: uppercase; opacity: .5; margin-bottom: 6px; }
+  .card-preview .cp-copy { font-family: 'EB Garamond',serif; font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--cream); }
+  .card-preview .cp-copy .accent { color: var(--terra); }
+  .card-preview .cp-sub { font-size: 11px; opacity: .6; margin-top: 6px; }
+  #nav-hint { position: fixed; bottom: 20px; right: 28px; font-size: 11px; color: var(--cream); opacity: .35; pointer-events: none; }
+  .slide-number { position: absolute; bottom: 48px; right: 64px; font-size: 11px; opacity: .3; color: var(--ink); }
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div id="slide-container">
+
+  <div class="slide slide-title active" data-index="0">
+    <div>
+      <div class="episode-label">Claude Cowork &nbsp;·&nbsp; Gate-P Slate</div>
+      <h1>Vibecoders<br>Welcome</h1>
+      <div class="meta">Slug: claude-code &nbsp;·&nbsp; Voice: Kokoro am_onyx &nbsp;·&nbsp; Est. 92 s &nbsp;·&nbsp; 8 beats</div>
+    </div>
+    <div class="hint">Click or press spacebar to advance</div>
+  </div>
+
+  <div class="slide" data-index="1">
+    <div class="beat-header">
+      <span class="beat-id">B01</span>
+      <span class="beat-time">0:00 — 0:11 · ~11 s</span>
+      <span class="beat-type">COMPOSER_ASK</span>
+    </div>
+    <div class="beat-narration">Bonjour. This is Liam, in for Bear. Someone asked Claude: can I actually build something with Claude Code if I don't know how to code? Here's what that looks like — because vibecoding is real, it's useful, and you don't write a single line.</div>
+    <div class="beat-visual">
+      <span>[COMPOSER] cold open ask + Liam sign-in</span>
+      <span>ask: "Can I actually build something with Claude Code if I don't know how to code?"</span>
+      <span>answer_preview: "Yes. Two use cases worth your time, and a 7-step setup…"</span>
+    </div>
+    <div class="slide-number">1 / 9</div>
+  </div>
+
+  <div class="slide" data-index="2">
+    <div class="beat-header">
+      <span class="beat-id">B02</span>
+      <span class="beat-time">0:11 — 0:22 · ~11 s</span>
+      <span class="beat-type">ILLUSTRATION</span>
+    </div>
+    <div class="beat-narration">Two use cases that actually hold up. One: build a clickable mockup and hand it to a developer or designer so they stop guessing what you meant. Two: build a small personal tool — a dashboard, a custom tracker — that does a specific job better than a generic chat interface. Rough edges are fine because nobody else sees them.</div>
+    <div class="beat-visual">
+      <span>[ILLUSTRATION] two use-case lanes diagram</span>
+      <span>Left: Mockup for devs (sketch → page icon) · Right: Personal tool (dashboard + one user) · terracotta vertical divider</span>
+    </div>
+    <div class="slide-number">2 / 9</div>
+  </div>
+
+  <div class="slide" data-index="3">
+    <div class="beat-header">
+      <span class="beat-id">B03</span>
+      <span class="beat-time">0:22 — 0:36 · ~14 s</span>
+      <span class="beat-type">ILLUSTRATION</span>
+    </div>
+    <div class="beat-narration">Seven steps to get set up. One: download the app and get a paid plan. Two: create one clean empty folder on your computer — nothing private, nothing you'd hate to lose. Three: turn on bypass permissions in settings so Claude doesn't ask your approval for every edit. Four: connect Netlify and Supabase — both free for basic needs — so your site can go live. Five: select the folder you created. Six: pick your model. Seven: build.</div>
+    <div class="beat-visual">
+      <span>[ILLUSTRATION] seven-step setup staircase</span>
+      <span>Numbered list · step numbers in terracotta · 7 steps: app/plan · clean folder · bypass permissions · Netlify+Supabase · select folder · pick model · build</span>
+    </div>
+    <div class="slide-number">3 / 9</div>
+  </div>
+
+  <div class="slide" data-index="4">
+    <div class="beat-header">
+      <span class="beat-id">B04</span>
+      <span class="beat-time">0:36 — 0:46 · ~10 s</span>
+      <span class="beat-type">SPARK CARD</span>
+    </div>
+    <div class="beat-narration">The fastest way to stop your site looking like every other AI-generated site: drop in a DESIGN.md file. It's a plain text file that spells out a full design system — exact colors, fonts, spacing. Drop it in your folder and tell Claude to use it for all styling. Sites like getdesign.md offer them free for dozens of well-known brands.</div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy">DESIGN.md <span class="accent">breaks</span> generic</div>
+      <div class="cp-sub">Drop in a design system file. Claude follows it everywhere.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;"><span>[SPARK] DESIGN.md brand styling card</span></div>
+    <div class="slide-number">4 / 9</div>
+  </div>
+
+  <div class="slide" data-index="5">
+    <div class="beat-header">
+      <span class="beat-id">B05</span>
+      <span class="beat-time">0:46 — 0:56 · ~10 s</span>
+      <span class="beat-type">SPARK CARD</span>
+    </div>
+    <div class="beat-narration">Tell Claude to use shadcn/ui components. That one line makes your buttons, forms, and menus look professionally built instead of homemade. It burns more tokens, so use it on projects where polish matters — dashboards, onboarding flows, anything with forms.</div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy">shadcn/ui <span class="accent">=</span> instant polish</div>
+      <div class="cp-sub">One instruction. Professional components. Worth the token cost on real projects.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;"><span>[SPARK] shadcn/ui component library card</span></div>
+    <div class="slide-number">5 / 9</div>
+  </div>
+
+  <div class="slide" data-index="6">
+    <div class="beat-header">
+      <span class="beat-id">B06</span>
+      <span class="beat-time">0:56 — 1:08 · ~12 s</span>
+      <span class="beat-type">ILLUSTRATION</span>
+    </div>
+    <div class="beat-narration">Claude Code is the wrong tool for plenty of things. Want a small widget you'll look at once — use an Artifact in a normal chat, no setup needed. Writing a document or a spreadsheet — use Cowork. Making a single image — go to ChatGPT. And the rule that stops most wasted sessions: don't take longer to build it than you'd spend using it. Performative productivity is still a trap.</div>
+    <div class="beat-visual">
+      <span>[ILLUSTRATION] when-to-use-Code routing diagram</span>
+      <span>Central diamond → four branches: Widget→Artifact · Document→Cowork · Image→ChatGPT · Real app→Code (terracotta branch)</span>
+    </div>
+    <div class="slide-number">6 / 9</div>
+  </div>
+
+  <div class="slide" data-index="7">
+    <div class="beat-header">
+      <span class="beat-id">B07</span>
+      <span class="beat-time">1:08 — 1:21 · ~13 s</span>
+      <span class="beat-type">HANDOFF</span>
+    </div>
+    <div class="beat-narration">This week: find one boring job you do manually — extracting information from files, building a simple tracker, a landing page for something real — and give Claude Code thirty minutes. Start with a screenshot of something you like, describe the end result in one sentence, and react to what comes back. You do not need to know what code is. You just need a clear picture of what you want to exist.</div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Your Turn</div>
+      <div class="cp-copy">Build one boring job away</div>
+      <div class="cp-sub">Screenshot + one sentence. React. Iterate. You don't need to touch code.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;"><span>[HANDOFF] your-turn card</span></div>
+    <div class="slide-number">7 / 9</div>
+  </div>
+
+  <div class="slide" data-index="8">
+    <div class="beat-header">
+      <span class="beat-id">B08</span>
+      <span class="beat-time">1:21 — 1:32 · ~11 s</span>
+      <span class="beat-type">OUTRO</span>
+    </div>
+    <div class="beat-narration">This is Liam, in for Bear. Vibecoders Welcome. Two use cases, seven steps, one design file, and four situations to skip it — that is the whole map.</div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy">VIBECODERS WELCOME</div>
+      <div class="cp-sub">this is Liam, in for Bear</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;"><span>[OUTRO] episode title poster</span></div>
+    <div class="slide-number">8 / 9</div>
+  </div>
+
+</div>
+<div id="nav-hint">space / click to advance</div>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progressBar = document.getElementById('progress-bar');
+  let current = 0;
+  function goTo(i) {
+    if (i < 0 || i >= slides.length) return;
+    slides[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    progressBar.style.width = (slides.length <= 1 ? 100 : (current / (slides.length - 1)) * 100) + '%';
+  }
+  document.addEventListener('click', () => goTo(current + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  });
+  goTo(0);
+</script>
+</body>
+</html>

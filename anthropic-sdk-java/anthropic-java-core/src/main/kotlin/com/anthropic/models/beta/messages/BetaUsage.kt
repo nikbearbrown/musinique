@@ -1,0 +1,1794 @@
+package com.anthropic.models.beta.messages
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.Enum
+import com.anthropic.core.ExcludeMissing
+import com.anthropic.core.JsonField
+import com.anthropic.core.JsonMissing
+import com.anthropic.core.JsonValue
+import com.anthropic.core.checkKnown
+import com.anthropic.core.checkRequired
+import com.anthropic.core.getOrThrow
+import com.anthropic.core.getProperty
+import com.anthropic.core.toImmutable
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.anthropic.models.messages.Model
+import com.fasterxml.jackson.annotation.JsonAnyGetter
+import com.fasterxml.jackson.annotation.JsonAnySetter
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Collections
+import java.util.Objects
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
+
+class BetaUsage
+@JsonCreator(mode = JsonCreator.Mode.DISABLED)
+private constructor(
+    private val cacheCreation: JsonField<BetaCacheCreation>,
+    private val cacheCreationInputTokens: JsonField<Long>,
+    private val cacheReadInputTokens: JsonField<Long>,
+    private val fallbackCredit: JsonField<BetaFallbackCreditUsage>,
+    private val inferenceGeo: JsonField<String>,
+    private val inputTokens: JsonField<Long>,
+    private val iterations: JsonField<List<Iteration>>,
+    private val outputTokens: JsonField<Long>,
+    private val outputTokensDetails: JsonField<BetaOutputTokensDetails>,
+    private val serverToolUse: JsonField<BetaServerToolUsage>,
+    private val serviceTier: JsonField<ServiceTier>,
+    private val speed: JsonField<Speed>,
+    private val additionalProperties: MutableMap<String, JsonValue>,
+) {
+
+    @JsonCreator
+    private constructor(
+        @JsonProperty("cache_creation")
+        @ExcludeMissing
+        cacheCreation: JsonField<BetaCacheCreation> = JsonMissing.of(),
+        @JsonProperty("cache_creation_input_tokens")
+        @ExcludeMissing
+        cacheCreationInputTokens: JsonField<Long> = JsonMissing.of(),
+        @JsonProperty("cache_read_input_tokens")
+        @ExcludeMissing
+        cacheReadInputTokens: JsonField<Long> = JsonMissing.of(),
+        @JsonProperty("fallback_credit")
+        @ExcludeMissing
+        fallbackCredit: JsonField<BetaFallbackCreditUsage> = JsonMissing.of(),
+        @JsonProperty("inference_geo")
+        @ExcludeMissing
+        inferenceGeo: JsonField<String> = JsonMissing.of(),
+        @JsonProperty("input_tokens")
+        @ExcludeMissing
+        inputTokens: JsonField<Long> = JsonMissing.of(),
+        @JsonProperty("iterations")
+        @ExcludeMissing
+        iterations: JsonField<List<Iteration>> = JsonMissing.of(),
+        @JsonProperty("output_tokens")
+        @ExcludeMissing
+        outputTokens: JsonField<Long> = JsonMissing.of(),
+        @JsonProperty("output_tokens_details")
+        @ExcludeMissing
+        outputTokensDetails: JsonField<BetaOutputTokensDetails> = JsonMissing.of(),
+        @JsonProperty("server_tool_use")
+        @ExcludeMissing
+        serverToolUse: JsonField<BetaServerToolUsage> = JsonMissing.of(),
+        @JsonProperty("service_tier")
+        @ExcludeMissing
+        serviceTier: JsonField<ServiceTier> = JsonMissing.of(),
+        @JsonProperty("speed") @ExcludeMissing speed: JsonField<Speed> = JsonMissing.of(),
+    ) : this(
+        cacheCreation,
+        cacheCreationInputTokens,
+        cacheReadInputTokens,
+        fallbackCredit,
+        inferenceGeo,
+        inputTokens,
+        iterations,
+        outputTokens,
+        outputTokensDetails,
+        serverToolUse,
+        serviceTier,
+        speed,
+        mutableMapOf(),
+    )
+
+    /**
+     * Breakdown of cached tokens by TTL
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun cacheCreation(): Optional<BetaCacheCreation> = cacheCreation.getOptional("cache_creation")
+
+    /**
+     * The number of input tokens used to create the cache entry.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun cacheCreationInputTokens(): Optional<Long> =
+        cacheCreationInputTokens.getOptional("cache_creation_input_tokens")
+
+    /**
+     * The number of input tokens read from the cache.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun cacheReadInputTokens(): Optional<Long> =
+        cacheReadInputTokens.getOptional("cache_read_input_tokens")
+
+    /**
+     * Outcome of the ``fallback_credit_token`` presented on this request.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun fallbackCredit(): Optional<BetaFallbackCreditUsage> =
+        fallbackCredit.getOptional("fallback_credit")
+
+    /**
+     * The geographic region where inference was performed for this request.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun inferenceGeo(): Optional<String> = inferenceGeo.getOptional("inference_geo")
+
+    /**
+     * The number of input tokens which were used.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type or is
+     *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+     */
+    fun inputTokens(): Long = inputTokens.getRequired("input_tokens")
+
+    /**
+     * Per-iteration token usage breakdown.
+     *
+     * Each entry represents one sampling iteration, with its own input/output token counts and
+     * cache statistics, discriminated by `type`. For `message` entries (model sampling iterations,
+     * such as the turns of a server-side tool use loop), this allows you to:
+     * - Determine which iterations exceeded long context thresholds (>=200k tokens)
+     * - Calculate the context window size from the last `message` entry
+     * - Understand token accumulation across server-side tool use loops
+     *
+     * A `compaction` entry reports the token usage of the compaction operation itself — the
+     * server-side request that summarizes the context being closed — NOT the size of the context
+     * that was compacted away, and its token counts can be much smaller than that closed context
+     * (for example, a compaction that closes a ~200k-token context can report only a few thousand
+     * tokens). Do not derive the context window size from a `compaction` entry, even when it is the
+     * last entry. A `compaction` entry's tokens are not included in the top-level `usage` fields.
+     * When an input-token trigger is in effect (the default — 150,000 tokens unless configured
+     * otherwise), each `compaction` entry closes a context that had reached at least that
+     * threshold, though the context can exceed it by the final iteration's output and tool results.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun iterations(): Optional<List<Iteration>> = iterations.getOptional("iterations")
+
+    /**
+     * The number of output tokens which were used.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type or is
+     *   unexpectedly missing or null (e.g. if the server responded with an unexpected value).
+     */
+    fun outputTokens(): Long = outputTokens.getRequired("output_tokens")
+
+    /**
+     * Breakdown of output tokens by category.
+     *
+     * `output_tokens` remains the inclusive, authoritative total used for billing. This object
+     * provides a read-only decomposition for observability — for example, how many of the billed
+     * output tokens were spent on internal reasoning that may have been summarized before being
+     * returned to you.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun outputTokensDetails(): Optional<BetaOutputTokensDetails> =
+        outputTokensDetails.getOptional("output_tokens_details")
+
+    /**
+     * The number of server tool requests.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun serverToolUse(): Optional<BetaServerToolUsage> =
+        serverToolUse.getOptional("server_tool_use")
+
+    /**
+     * If the request used the priority, standard, or batch tier.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun serviceTier(): Optional<ServiceTier> = serviceTier.getOptional("service_tier")
+
+    /**
+     * Inference speed mode. `fast` provides significantly faster output token generation at premium
+     * pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+     *
+     * @throws AnthropicInvalidDataException if the JSON field has an unexpected type (e.g. if the
+     *   server responded with an unexpected value).
+     */
+    fun speed(): Optional<Speed> = speed.getOptional("speed")
+
+    /**
+     * Returns the raw JSON value of [cacheCreation].
+     *
+     * Unlike [cacheCreation], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("cache_creation")
+    @ExcludeMissing
+    fun _cacheCreation(): JsonField<BetaCacheCreation> = cacheCreation
+
+    /**
+     * Returns the raw JSON value of [cacheCreationInputTokens].
+     *
+     * Unlike [cacheCreationInputTokens], this method doesn't throw if the JSON field has an
+     * unexpected type.
+     */
+    @JsonProperty("cache_creation_input_tokens")
+    @ExcludeMissing
+    fun _cacheCreationInputTokens(): JsonField<Long> = cacheCreationInputTokens
+
+    /**
+     * Returns the raw JSON value of [cacheReadInputTokens].
+     *
+     * Unlike [cacheReadInputTokens], this method doesn't throw if the JSON field has an unexpected
+     * type.
+     */
+    @JsonProperty("cache_read_input_tokens")
+    @ExcludeMissing
+    fun _cacheReadInputTokens(): JsonField<Long> = cacheReadInputTokens
+
+    /**
+     * Returns the raw JSON value of [fallbackCredit].
+     *
+     * Unlike [fallbackCredit], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("fallback_credit")
+    @ExcludeMissing
+    fun _fallbackCredit(): JsonField<BetaFallbackCreditUsage> = fallbackCredit
+
+    /**
+     * Returns the raw JSON value of [inferenceGeo].
+     *
+     * Unlike [inferenceGeo], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("inference_geo")
+    @ExcludeMissing
+    fun _inferenceGeo(): JsonField<String> = inferenceGeo
+
+    /**
+     * Returns the raw JSON value of [inputTokens].
+     *
+     * Unlike [inputTokens], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("input_tokens") @ExcludeMissing fun _inputTokens(): JsonField<Long> = inputTokens
+
+    /**
+     * Returns the raw JSON value of [iterations].
+     *
+     * Unlike [iterations], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("iterations")
+    @ExcludeMissing
+    fun _iterations(): JsonField<List<Iteration>> = iterations
+
+    /**
+     * Returns the raw JSON value of [outputTokens].
+     *
+     * Unlike [outputTokens], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("output_tokens")
+    @ExcludeMissing
+    fun _outputTokens(): JsonField<Long> = outputTokens
+
+    /**
+     * Returns the raw JSON value of [outputTokensDetails].
+     *
+     * Unlike [outputTokensDetails], this method doesn't throw if the JSON field has an unexpected
+     * type.
+     */
+    @JsonProperty("output_tokens_details")
+    @ExcludeMissing
+    fun _outputTokensDetails(): JsonField<BetaOutputTokensDetails> = outputTokensDetails
+
+    /**
+     * Returns the raw JSON value of [serverToolUse].
+     *
+     * Unlike [serverToolUse], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("server_tool_use")
+    @ExcludeMissing
+    fun _serverToolUse(): JsonField<BetaServerToolUsage> = serverToolUse
+
+    /**
+     * Returns the raw JSON value of [serviceTier].
+     *
+     * Unlike [serviceTier], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("service_tier")
+    @ExcludeMissing
+    fun _serviceTier(): JsonField<ServiceTier> = serviceTier
+
+    /**
+     * Returns the raw JSON value of [speed].
+     *
+     * Unlike [speed], this method doesn't throw if the JSON field has an unexpected type.
+     */
+    @JsonProperty("speed") @ExcludeMissing fun _speed(): JsonField<Speed> = speed
+
+    @JsonAnySetter
+    private fun putAdditionalProperty(key: String, value: JsonValue) {
+        additionalProperties.put(key, value)
+    }
+
+    @JsonAnyGetter
+    @ExcludeMissing
+    fun _additionalProperties(): Map<String, JsonValue> =
+        Collections.unmodifiableMap(additionalProperties)
+
+    fun toBuilder() = Builder().from(this)
+
+    companion object {
+
+        /**
+         * Returns a mutable builder for constructing an instance of [BetaUsage].
+         *
+         * The following fields are required:
+         * ```java
+         * .cacheCreation()
+         * .cacheCreationInputTokens()
+         * .cacheReadInputTokens()
+         * .fallbackCredit()
+         * .inferenceGeo()
+         * .inputTokens()
+         * .iterations()
+         * .outputTokens()
+         * .outputTokensDetails()
+         * .serverToolUse()
+         * .serviceTier()
+         * .speed()
+         * ```
+         */
+        @JvmStatic fun builder() = Builder()
+    }
+
+    /** A builder for [BetaUsage]. */
+    class Builder internal constructor() {
+
+        private var cacheCreation: JsonField<BetaCacheCreation>? = null
+        private var cacheCreationInputTokens: JsonField<Long>? = null
+        private var cacheReadInputTokens: JsonField<Long>? = null
+        private var fallbackCredit: JsonField<BetaFallbackCreditUsage>? = null
+        private var inferenceGeo: JsonField<String>? = null
+        private var inputTokens: JsonField<Long>? = null
+        private var iterations: JsonField<MutableList<Iteration>>? = null
+        private var outputTokens: JsonField<Long>? = null
+        private var outputTokensDetails: JsonField<BetaOutputTokensDetails>? = null
+        private var serverToolUse: JsonField<BetaServerToolUsage>? = null
+        private var serviceTier: JsonField<ServiceTier>? = null
+        private var speed: JsonField<Speed>? = null
+        private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+        @JvmSynthetic
+        internal fun from(betaUsage: BetaUsage) = apply {
+            cacheCreation = betaUsage.cacheCreation
+            cacheCreationInputTokens = betaUsage.cacheCreationInputTokens
+            cacheReadInputTokens = betaUsage.cacheReadInputTokens
+            fallbackCredit = betaUsage.fallbackCredit
+            inferenceGeo = betaUsage.inferenceGeo
+            inputTokens = betaUsage.inputTokens
+            iterations =
+                betaUsage.iterations.map { it.toMutableList() }.takeUnless { it.isMissing() }
+            outputTokens = betaUsage.outputTokens
+            outputTokensDetails = betaUsage.outputTokensDetails
+            serverToolUse = betaUsage.serverToolUse
+            serviceTier = betaUsage.serviceTier
+            speed = betaUsage.speed
+            additionalProperties = betaUsage.additionalProperties.toMutableMap()
+        }
+
+        /** Breakdown of cached tokens by TTL */
+        fun cacheCreation(cacheCreation: BetaCacheCreation?) =
+            cacheCreation(JsonField.ofNullable(cacheCreation))
+
+        /** Alias for calling [Builder.cacheCreation] with `cacheCreation.orElse(null)`. */
+        fun cacheCreation(cacheCreation: Optional<BetaCacheCreation>) =
+            cacheCreation(cacheCreation.getOrNull())
+
+        /**
+         * Sets [Builder.cacheCreation] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.cacheCreation] with a well-typed [BetaCacheCreation]
+         * value instead. This method is primarily for setting the field to an undocumented or not
+         * yet supported value.
+         */
+        fun cacheCreation(cacheCreation: JsonField<BetaCacheCreation>) = apply {
+            this.cacheCreation = cacheCreation
+        }
+
+        /** The number of input tokens used to create the cache entry. */
+        fun cacheCreationInputTokens(cacheCreationInputTokens: Long?) =
+            cacheCreationInputTokens(JsonField.ofNullable(cacheCreationInputTokens))
+
+        /**
+         * Alias for [Builder.cacheCreationInputTokens].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun cacheCreationInputTokens(cacheCreationInputTokens: Long) =
+            cacheCreationInputTokens(cacheCreationInputTokens as Long?)
+
+        /**
+         * Alias for calling [Builder.cacheCreationInputTokens] with
+         * `cacheCreationInputTokens.orElse(null)`.
+         */
+        fun cacheCreationInputTokens(cacheCreationInputTokens: Optional<Long>) =
+            cacheCreationInputTokens(cacheCreationInputTokens.getOrNull())
+
+        /**
+         * Sets [Builder.cacheCreationInputTokens] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.cacheCreationInputTokens] with a well-typed [Long] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun cacheCreationInputTokens(cacheCreationInputTokens: JsonField<Long>) = apply {
+            this.cacheCreationInputTokens = cacheCreationInputTokens
+        }
+
+        /** The number of input tokens read from the cache. */
+        fun cacheReadInputTokens(cacheReadInputTokens: Long?) =
+            cacheReadInputTokens(JsonField.ofNullable(cacheReadInputTokens))
+
+        /**
+         * Alias for [Builder.cacheReadInputTokens].
+         *
+         * This unboxed primitive overload exists for backwards compatibility.
+         */
+        fun cacheReadInputTokens(cacheReadInputTokens: Long) =
+            cacheReadInputTokens(cacheReadInputTokens as Long?)
+
+        /**
+         * Alias for calling [Builder.cacheReadInputTokens] with
+         * `cacheReadInputTokens.orElse(null)`.
+         */
+        fun cacheReadInputTokens(cacheReadInputTokens: Optional<Long>) =
+            cacheReadInputTokens(cacheReadInputTokens.getOrNull())
+
+        /**
+         * Sets [Builder.cacheReadInputTokens] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.cacheReadInputTokens] with a well-typed [Long] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun cacheReadInputTokens(cacheReadInputTokens: JsonField<Long>) = apply {
+            this.cacheReadInputTokens = cacheReadInputTokens
+        }
+
+        /** Outcome of the ``fallback_credit_token`` presented on this request. */
+        fun fallbackCredit(fallbackCredit: BetaFallbackCreditUsage?) =
+            fallbackCredit(JsonField.ofNullable(fallbackCredit))
+
+        /** Alias for calling [Builder.fallbackCredit] with `fallbackCredit.orElse(null)`. */
+        fun fallbackCredit(fallbackCredit: Optional<BetaFallbackCreditUsage>) =
+            fallbackCredit(fallbackCredit.getOrNull())
+
+        /**
+         * Sets [Builder.fallbackCredit] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.fallbackCredit] with a well-typed
+         * [BetaFallbackCreditUsage] value instead. This method is primarily for setting the field
+         * to an undocumented or not yet supported value.
+         */
+        fun fallbackCredit(fallbackCredit: JsonField<BetaFallbackCreditUsage>) = apply {
+            this.fallbackCredit = fallbackCredit
+        }
+
+        /** The geographic region where inference was performed for this request. */
+        fun inferenceGeo(inferenceGeo: String?) = inferenceGeo(JsonField.ofNullable(inferenceGeo))
+
+        /** Alias for calling [Builder.inferenceGeo] with `inferenceGeo.orElse(null)`. */
+        fun inferenceGeo(inferenceGeo: Optional<String>) = inferenceGeo(inferenceGeo.getOrNull())
+
+        /**
+         * Sets [Builder.inferenceGeo] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.inferenceGeo] with a well-typed [String] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun inferenceGeo(inferenceGeo: JsonField<String>) = apply {
+            this.inferenceGeo = inferenceGeo
+        }
+
+        /** The number of input tokens which were used. */
+        fun inputTokens(inputTokens: Long) = inputTokens(JsonField.of(inputTokens))
+
+        /**
+         * Sets [Builder.inputTokens] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.inputTokens] with a well-typed [Long] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun inputTokens(inputTokens: JsonField<Long>) = apply { this.inputTokens = inputTokens }
+
+        /**
+         * Per-iteration token usage breakdown.
+         *
+         * Each entry represents one sampling iteration, with its own input/output token counts and
+         * cache statistics, discriminated by `type`. For `message` entries (model sampling
+         * iterations, such as the turns of a server-side tool use loop), this allows you to:
+         * - Determine which iterations exceeded long context thresholds (>=200k tokens)
+         * - Calculate the context window size from the last `message` entry
+         * - Understand token accumulation across server-side tool use loops
+         *
+         * A `compaction` entry reports the token usage of the compaction operation itself — the
+         * server-side request that summarizes the context being closed — NOT the size of the
+         * context that was compacted away, and its token counts can be much smaller than that
+         * closed context (for example, a compaction that closes a ~200k-token context can report
+         * only a few thousand tokens). Do not derive the context window size from a `compaction`
+         * entry, even when it is the last entry. A `compaction` entry's tokens are not included in
+         * the top-level `usage` fields. When an input-token trigger is in effect (the default —
+         * 150,000 tokens unless configured otherwise), each `compaction` entry closes a context
+         * that had reached at least that threshold, though the context can exceed it by the final
+         * iteration's output and tool results.
+         */
+        fun iterations(iterations: List<Iteration>?) = iterations(JsonField.ofNullable(iterations))
+
+        /** Alias for calling [Builder.iterations] with `iterations.orElse(null)`. */
+        fun iterations(iterations: Optional<List<Iteration>>) = iterations(iterations.getOrNull())
+
+        /**
+         * Sets [Builder.iterations] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.iterations] with a well-typed `List<Iteration>` value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun iterations(iterations: JsonField<List<Iteration>>) = apply {
+            this.iterations = iterations.map { it.toMutableList() }
+        }
+
+        /**
+         * Adds a single [Iteration] to [iterations].
+         *
+         * @throws IllegalStateException if the field was previously set to a non-list.
+         */
+        fun addIteration(iteration: Iteration) = apply {
+            iterations =
+                (iterations ?: JsonField.of(mutableListOf())).also {
+                    checkKnown("iterations", it).add(iteration)
+                }
+        }
+
+        /** Alias for calling [addIteration] with `Iteration.ofMessage(message)`. */
+        fun addIteration(message: BetaMessageIterationUsage) =
+            addIteration(Iteration.ofMessage(message))
+
+        /** Alias for calling [addIteration] with `Iteration.ofCompaction(compaction)`. */
+        fun addIteration(compaction: BetaCompactionIterationUsage) =
+            addIteration(Iteration.ofCompaction(compaction))
+
+        /** Alias for calling [addIteration] with `Iteration.ofAdvisorMessage(advisorMessage)`. */
+        fun addIteration(advisorMessage: BetaAdvisorMessageIterationUsage) =
+            addIteration(Iteration.ofAdvisorMessage(advisorMessage))
+
+        /** Alias for calling [addIteration] with `Iteration.ofFallbackMessage(fallbackMessage)`. */
+        fun addIteration(fallbackMessage: BetaFallbackMessageIterationUsage) =
+            addIteration(Iteration.ofFallbackMessage(fallbackMessage))
+
+        /** The number of output tokens which were used. */
+        fun outputTokens(outputTokens: Long) = outputTokens(JsonField.of(outputTokens))
+
+        /**
+         * Sets [Builder.outputTokens] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.outputTokens] with a well-typed [Long] value instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun outputTokens(outputTokens: JsonField<Long>) = apply { this.outputTokens = outputTokens }
+
+        /**
+         * Breakdown of output tokens by category.
+         *
+         * `output_tokens` remains the inclusive, authoritative total used for billing. This object
+         * provides a read-only decomposition for observability — for example, how many of the
+         * billed output tokens were spent on internal reasoning that may have been summarized
+         * before being returned to you.
+         */
+        fun outputTokensDetails(outputTokensDetails: BetaOutputTokensDetails?) =
+            outputTokensDetails(JsonField.ofNullable(outputTokensDetails))
+
+        /**
+         * Alias for calling [Builder.outputTokensDetails] with `outputTokensDetails.orElse(null)`.
+         */
+        fun outputTokensDetails(outputTokensDetails: Optional<BetaOutputTokensDetails>) =
+            outputTokensDetails(outputTokensDetails.getOrNull())
+
+        /**
+         * Sets [Builder.outputTokensDetails] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.outputTokensDetails] with a well-typed
+         * [BetaOutputTokensDetails] value instead. This method is primarily for setting the field
+         * to an undocumented or not yet supported value.
+         */
+        fun outputTokensDetails(outputTokensDetails: JsonField<BetaOutputTokensDetails>) = apply {
+            this.outputTokensDetails = outputTokensDetails
+        }
+
+        /** The number of server tool requests. */
+        fun serverToolUse(serverToolUse: BetaServerToolUsage?) =
+            serverToolUse(JsonField.ofNullable(serverToolUse))
+
+        /** Alias for calling [Builder.serverToolUse] with `serverToolUse.orElse(null)`. */
+        fun serverToolUse(serverToolUse: Optional<BetaServerToolUsage>) =
+            serverToolUse(serverToolUse.getOrNull())
+
+        /**
+         * Sets [Builder.serverToolUse] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.serverToolUse] with a well-typed [BetaServerToolUsage]
+         * value instead. This method is primarily for setting the field to an undocumented or not
+         * yet supported value.
+         */
+        fun serverToolUse(serverToolUse: JsonField<BetaServerToolUsage>) = apply {
+            this.serverToolUse = serverToolUse
+        }
+
+        /** If the request used the priority, standard, or batch tier. */
+        fun serviceTier(serviceTier: ServiceTier?) = serviceTier(JsonField.ofNullable(serviceTier))
+
+        /** Alias for calling [Builder.serviceTier] with `serviceTier.orElse(null)`. */
+        fun serviceTier(serviceTier: Optional<ServiceTier>) = serviceTier(serviceTier.getOrNull())
+
+        /**
+         * Sets [Builder.serviceTier] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.serviceTier] with a well-typed [ServiceTier] value
+         * instead. This method is primarily for setting the field to an undocumented or not yet
+         * supported value.
+         */
+        fun serviceTier(serviceTier: JsonField<ServiceTier>) = apply {
+            this.serviceTier = serviceTier
+        }
+
+        /**
+         * Inference speed mode. `fast` provides significantly faster output token generation at
+         * premium pricing. Not all models support `fast`; invalid combinations are rejected at
+         * create time.
+         */
+        fun speed(speed: Speed?) = speed(JsonField.ofNullable(speed))
+
+        /** Alias for calling [Builder.speed] with `speed.orElse(null)`. */
+        fun speed(speed: Optional<Speed>) = speed(speed.getOrNull())
+
+        /**
+         * Sets [Builder.speed] to an arbitrary JSON value.
+         *
+         * You should usually call [Builder.speed] with a well-typed [Speed] value instead. This
+         * method is primarily for setting the field to an undocumented or not yet supported value.
+         */
+        fun speed(speed: JsonField<Speed>) = apply { this.speed = speed }
+
+        fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+            this.additionalProperties.clear()
+            putAllAdditionalProperties(additionalProperties)
+        }
+
+        fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+            additionalProperties.put(key, value)
+        }
+
+        fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+            this.additionalProperties.putAll(additionalProperties)
+        }
+
+        fun removeAdditionalProperty(key: String) = apply { additionalProperties.remove(key) }
+
+        fun removeAllAdditionalProperties(keys: Set<String>) = apply {
+            keys.forEach(::removeAdditionalProperty)
+        }
+
+        /**
+         * Returns an immutable instance of [BetaUsage].
+         *
+         * Further updates to this [Builder] will not mutate the returned instance.
+         *
+         * The following fields are required:
+         * ```java
+         * .cacheCreation()
+         * .cacheCreationInputTokens()
+         * .cacheReadInputTokens()
+         * .fallbackCredit()
+         * .inferenceGeo()
+         * .inputTokens()
+         * .iterations()
+         * .outputTokens()
+         * .outputTokensDetails()
+         * .serverToolUse()
+         * .serviceTier()
+         * .speed()
+         * ```
+         *
+         * @throws IllegalStateException if any required field is unset.
+         */
+        fun build(): BetaUsage =
+            BetaUsage(
+                checkRequired("cacheCreation", cacheCreation),
+                checkRequired("cacheCreationInputTokens", cacheCreationInputTokens),
+                checkRequired("cacheReadInputTokens", cacheReadInputTokens),
+                checkRequired("fallbackCredit", fallbackCredit),
+                checkRequired("inferenceGeo", inferenceGeo),
+                checkRequired("inputTokens", inputTokens),
+                checkRequired("iterations", iterations).map { it.toImmutable() },
+                checkRequired("outputTokens", outputTokens),
+                checkRequired("outputTokensDetails", outputTokensDetails),
+                checkRequired("serverToolUse", serverToolUse),
+                checkRequired("serviceTier", serviceTier),
+                checkRequired("speed", speed),
+                additionalProperties.toMutableMap(),
+            )
+    }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): BetaUsage = apply {
+        if (validated) {
+            return@apply
+        }
+
+        cacheCreation().ifPresent { it.validate() }
+        cacheCreationInputTokens()
+        cacheReadInputTokens()
+        fallbackCredit().ifPresent { it.validate() }
+        inferenceGeo()
+        inputTokens()
+        iterations().ifPresent { it.forEach { it.validate() } }
+        outputTokens()
+        outputTokensDetails().ifPresent { it.validate() }
+        serverToolUse().ifPresent { it.validate() }
+        serviceTier().ifPresent { it.validate() }
+        speed().ifPresent { it.validate() }
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        (cacheCreation.asKnown().getOrNull()?.validity() ?: 0) +
+            (if (cacheCreationInputTokens.asKnown().isPresent) 1 else 0) +
+            (if (cacheReadInputTokens.asKnown().isPresent) 1 else 0) +
+            (fallbackCredit.asKnown().getOrNull()?.validity() ?: 0) +
+            (if (inferenceGeo.asKnown().isPresent) 1 else 0) +
+            (if (inputTokens.asKnown().isPresent) 1 else 0) +
+            (iterations.asKnown().getOrNull()?.sumOf { it.validity().toInt() } ?: 0) +
+            (if (outputTokens.asKnown().isPresent) 1 else 0) +
+            (outputTokensDetails.asKnown().getOrNull()?.validity() ?: 0) +
+            (serverToolUse.asKnown().getOrNull()?.validity() ?: 0) +
+            (serviceTier.asKnown().getOrNull()?.validity() ?: 0) +
+            (speed.asKnown().getOrNull()?.validity() ?: 0)
+
+    @JsonDeserialize(using = Iteration.Deserializer::class)
+    @JsonSerialize(using = Iteration.Serializer::class)
+    class Iteration
+    private constructor(
+        private val message: BetaMessageIterationUsage? = null,
+        private val compaction: BetaCompactionIterationUsage? = null,
+        private val advisorMessage: BetaAdvisorMessageIterationUsage? = null,
+        private val fallbackMessage: BetaFallbackMessageIterationUsage? = null,
+        private val _json: JsonValue? = null,
+    ) {
+
+        fun type(): Type =
+            accept(
+                object : Visitor<Type> {
+                    override fun visitMessage(message: BetaMessageIterationUsage): Type =
+                        Type.MESSAGE
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage): Type =
+                        Type.COMPACTION
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Type = Type.ADVISOR_MESSAGE
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Type = Type.FALLBACK_MESSAGE
+
+                    override fun unknown(json: JsonValue?): Type =
+                        Type.of(json?.asObject()?.getOrNull()?.get("type") ?: JsonMissing.of())
+                }
+            )
+
+        fun cacheCreation(): Optional<BetaCacheCreation> =
+            accept(
+                object : Visitor<Optional<BetaCacheCreation>> {
+                    override fun visitMessage(
+                        message: BetaMessageIterationUsage
+                    ): Optional<BetaCacheCreation> = message.cacheCreation()
+
+                    override fun visitCompaction(
+                        compaction: BetaCompactionIterationUsage
+                    ): Optional<BetaCacheCreation> = compaction.cacheCreation()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Optional<BetaCacheCreation> = advisorMessage.cacheCreation()
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Optional<BetaCacheCreation> = fallbackMessage.cacheCreation()
+
+                    override fun unknown(json: JsonValue?): Optional<BetaCacheCreation> =
+                        json.getProperty<BetaCacheCreation>("cache_creation").asKnown()
+                }
+            )
+
+        fun cacheCreationInputTokens(): Long =
+            accept(
+                object : Visitor<Long> {
+                    override fun visitMessage(message: BetaMessageIterationUsage): Long =
+                        message.cacheCreationInputTokens()
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage): Long =
+                        compaction.cacheCreationInputTokens()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Long = advisorMessage.cacheCreationInputTokens()
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Long = fallbackMessage.cacheCreationInputTokens()
+
+                    override fun unknown(json: JsonValue?): Long =
+                        json
+                            .getProperty<Long>("cache_creation_input_tokens")
+                            .getRequired("cache_creation_input_tokens")
+                }
+            )
+
+        fun cacheReadInputTokens(): Long =
+            accept(
+                object : Visitor<Long> {
+                    override fun visitMessage(message: BetaMessageIterationUsage): Long =
+                        message.cacheReadInputTokens()
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage): Long =
+                        compaction.cacheReadInputTokens()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Long = advisorMessage.cacheReadInputTokens()
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Long = fallbackMessage.cacheReadInputTokens()
+
+                    override fun unknown(json: JsonValue?): Long =
+                        json
+                            .getProperty<Long>("cache_read_input_tokens")
+                            .getRequired("cache_read_input_tokens")
+                }
+            )
+
+        fun inputTokens(): Long =
+            accept(
+                object : Visitor<Long> {
+                    override fun visitMessage(message: BetaMessageIterationUsage): Long =
+                        message.inputTokens()
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage): Long =
+                        compaction.inputTokens()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Long = advisorMessage.inputTokens()
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Long = fallbackMessage.inputTokens()
+
+                    override fun unknown(json: JsonValue?): Long =
+                        json.getProperty<Long>("input_tokens").getRequired("input_tokens")
+                }
+            )
+
+        fun model(): Optional<Model> =
+            accept(
+                object : Visitor<Optional<Model>> {
+                    override fun visitMessage(message: BetaMessageIterationUsage): Optional<Model> =
+                        message.model()
+
+                    override fun visitCompaction(
+                        compaction: BetaCompactionIterationUsage
+                    ): Optional<Model> = Optional.empty()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Optional<Model> = Optional.of(advisorMessage.model())
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Optional<Model> = Optional.of(fallbackMessage.model())
+
+                    override fun unknown(json: JsonValue?): Optional<Model> =
+                        json.getProperty<Model>("model").asKnown()
+                }
+            )
+
+        fun outputTokens(): Long =
+            accept(
+                object : Visitor<Long> {
+                    override fun visitMessage(message: BetaMessageIterationUsage): Long =
+                        message.outputTokens()
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage): Long =
+                        compaction.outputTokens()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ): Long = advisorMessage.outputTokens()
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ): Long = fallbackMessage.outputTokens()
+
+                    override fun unknown(json: JsonValue?): Long =
+                        json.getProperty<Long>("output_tokens").getRequired("output_tokens")
+                }
+            )
+
+        /** Token usage for a sampling iteration. */
+        fun message(): Optional<BetaMessageIterationUsage> = Optional.ofNullable(message)
+
+        /** Token usage for a compaction iteration. */
+        fun compaction(): Optional<BetaCompactionIterationUsage> = Optional.ofNullable(compaction)
+
+        /** Token usage for an advisor sub-inference iteration. */
+        fun advisorMessage(): Optional<BetaAdvisorMessageIterationUsage> =
+            Optional.ofNullable(advisorMessage)
+
+        /**
+         * Token usage for the fallback-model attempt of a server-side fallback request.
+         *
+         * The terminal entry of a fallback-served turn: when a fallback hop's output is the
+         * returned message, the entry for the iteration that completed it carries this type in
+         * place of `message`. A declined hop and the serving hop's earlier tool-loop iterations
+         * produce `message` entries. Whether a fallback model served the response is signalled by
+         * the presence of this entry in `usage.iterations`.
+         */
+        fun fallbackMessage(): Optional<BetaFallbackMessageIterationUsage> =
+            Optional.ofNullable(fallbackMessage)
+
+        fun isMessage(): Boolean = message != null
+
+        fun isCompaction(): Boolean = compaction != null
+
+        fun isAdvisorMessage(): Boolean = advisorMessage != null
+
+        fun isFallbackMessage(): Boolean = fallbackMessage != null
+
+        /** Token usage for a sampling iteration. */
+        fun asMessage(): BetaMessageIterationUsage = message.getOrThrow("message")
+
+        /** Token usage for a compaction iteration. */
+        fun asCompaction(): BetaCompactionIterationUsage = compaction.getOrThrow("compaction")
+
+        /** Token usage for an advisor sub-inference iteration. */
+        fun asAdvisorMessage(): BetaAdvisorMessageIterationUsage =
+            advisorMessage.getOrThrow("advisorMessage")
+
+        /**
+         * Token usage for the fallback-model attempt of a server-side fallback request.
+         *
+         * The terminal entry of a fallback-served turn: when a fallback hop's output is the
+         * returned message, the entry for the iteration that completed it carries this type in
+         * place of `message`. A declined hop and the serving hop's earlier tool-loop iterations
+         * produce `message` entries. Whether a fallback model served the response is signalled by
+         * the presence of this entry in `usage.iterations`.
+         */
+        fun asFallbackMessage(): BetaFallbackMessageIterationUsage =
+            fallbackMessage.getOrThrow("fallbackMessage")
+
+        fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+        /**
+         * Maps this instance's current variant to a value of type [T] using the given [visitor].
+         *
+         * Note that this method is _not_ forwards compatible with new variants from the API, unless
+         * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of
+         * the SDK gracefully, consider overriding [Visitor.unknown]:
+         * ```java
+         * import com.anthropic.core.JsonValue;
+         * import java.util.Optional;
+         *
+         * Optional<String> result = iteration.accept(new Iteration.Visitor<Optional<String>>() {
+         *     @Override
+         *     public Optional<String> visitMessage(BetaMessageIterationUsage message) {
+         *         return Optional.of(message.toString());
+         *     }
+         *
+         *     // ...
+         *
+         *     @Override
+         *     public Optional<String> unknown(JsonValue json) {
+         *         // Or inspect the `json`.
+         *         return Optional.empty();
+         *     }
+         * });
+         * ```
+         *
+         * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor]
+         *   and the current variant is unknown.
+         */
+        fun <T> accept(visitor: Visitor<T>): T =
+            when {
+                message != null -> visitor.visitMessage(message)
+                compaction != null -> visitor.visitCompaction(compaction)
+                advisorMessage != null -> visitor.visitAdvisorMessage(advisorMessage)
+                fallbackMessage != null -> visitor.visitFallbackMessage(fallbackMessage)
+                else -> visitor.unknown(_json)
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): Iteration = apply {
+            if (validated) {
+                return@apply
+            }
+
+            accept(
+                object : Visitor<Unit> {
+                    override fun visitMessage(message: BetaMessageIterationUsage) {
+                        message.validate()
+                    }
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage) {
+                        compaction.validate()
+                    }
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ) {
+                        advisorMessage.validate()
+                    }
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ) {
+                        fallbackMessage.validate()
+                    }
+                }
+            )
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic
+        internal fun validity(): Int =
+            accept(
+                object : Visitor<Int> {
+                    override fun visitMessage(message: BetaMessageIterationUsage) =
+                        message.validity()
+
+                    override fun visitCompaction(compaction: BetaCompactionIterationUsage) =
+                        compaction.validity()
+
+                    override fun visitAdvisorMessage(
+                        advisorMessage: BetaAdvisorMessageIterationUsage
+                    ) = advisorMessage.validity()
+
+                    override fun visitFallbackMessage(
+                        fallbackMessage: BetaFallbackMessageIterationUsage
+                    ) = fallbackMessage.validity()
+
+                    override fun unknown(json: JsonValue?) = 0
+                }
+            )
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Iteration &&
+                message == other.message &&
+                compaction == other.compaction &&
+                advisorMessage == other.advisorMessage &&
+                fallbackMessage == other.fallbackMessage
+        }
+
+        override fun hashCode(): Int =
+            Objects.hash(message, compaction, advisorMessage, fallbackMessage)
+
+        override fun toString(): String =
+            when {
+                message != null -> "Iteration{message=$message}"
+                compaction != null -> "Iteration{compaction=$compaction}"
+                advisorMessage != null -> "Iteration{advisorMessage=$advisorMessage}"
+                fallbackMessage != null -> "Iteration{fallbackMessage=$fallbackMessage}"
+                _json != null -> "Iteration{_unknown=$_json}"
+                else -> throw IllegalStateException("Invalid Iteration")
+            }
+
+        companion object {
+
+            /** Token usage for a sampling iteration. */
+            @JvmStatic
+            fun ofMessage(message: BetaMessageIterationUsage) = Iteration(message = message)
+
+            /** Token usage for a compaction iteration. */
+            @JvmStatic
+            fun ofCompaction(compaction: BetaCompactionIterationUsage) =
+                Iteration(compaction = compaction)
+
+            /** Token usage for an advisor sub-inference iteration. */
+            @JvmStatic
+            fun ofAdvisorMessage(advisorMessage: BetaAdvisorMessageIterationUsage) =
+                Iteration(advisorMessage = advisorMessage)
+
+            /**
+             * Token usage for the fallback-model attempt of a server-side fallback request.
+             *
+             * The terminal entry of a fallback-served turn: when a fallback hop's output is the
+             * returned message, the entry for the iteration that completed it carries this type in
+             * place of `message`. A declined hop and the serving hop's earlier tool-loop iterations
+             * produce `message` entries. Whether a fallback model served the response is signalled
+             * by the presence of this entry in `usage.iterations`.
+             */
+            @JvmStatic
+            fun ofFallbackMessage(fallbackMessage: BetaFallbackMessageIterationUsage) =
+                Iteration(fallbackMessage = fallbackMessage)
+        }
+
+        /**
+         * An interface that defines how to map each variant of [Iteration] to a value of type [T].
+         */
+        interface Visitor<out T> {
+
+            /** Token usage for a sampling iteration. */
+            fun visitMessage(message: BetaMessageIterationUsage): T
+
+            /** Token usage for a compaction iteration. */
+            fun visitCompaction(compaction: BetaCompactionIterationUsage): T
+
+            /** Token usage for an advisor sub-inference iteration. */
+            fun visitAdvisorMessage(advisorMessage: BetaAdvisorMessageIterationUsage): T
+
+            /**
+             * Token usage for the fallback-model attempt of a server-side fallback request.
+             *
+             * The terminal entry of a fallback-served turn: when a fallback hop's output is the
+             * returned message, the entry for the iteration that completed it carries this type in
+             * place of `message`. A declined hop and the serving hop's earlier tool-loop iterations
+             * produce `message` entries. Whether a fallback model served the response is signalled
+             * by the presence of this entry in `usage.iterations`.
+             */
+            fun visitFallbackMessage(fallbackMessage: BetaFallbackMessageIterationUsage): T
+
+            /**
+             * Maps an unknown variant of [Iteration] to a value of type [T].
+             *
+             * An instance of [Iteration] can contain an unknown variant if it was deserialized from
+             * data that doesn't match any known variant. For example, if the SDK is on an older
+             * version than the API, then the API may respond with new variants that the SDK is
+             * unaware of.
+             *
+             * @throws AnthropicInvalidDataException in the default implementation.
+             */
+            fun unknown(json: JsonValue?): T {
+                throw AnthropicInvalidDataException("Unknown Iteration: $json")
+            }
+        }
+
+        internal class Deserializer : BaseDeserializer<Iteration>(Iteration::class) {
+
+            override fun ObjectCodec.deserialize(node: JsonNode): Iteration {
+                val json = JsonValue.fromJsonNode(node)
+                val type = json.asObject().getOrNull()?.get("type")?.asString()?.getOrNull()
+
+                when (type) {
+                    "message" -> {
+                        return tryDeserialize(node, jacksonTypeRef<BetaMessageIterationUsage>())
+                            ?.let { Iteration(message = it, _json = json) }
+                            ?: Iteration(_json = json)
+                    }
+                    "compaction" -> {
+                        return tryDeserialize(node, jacksonTypeRef<BetaCompactionIterationUsage>())
+                            ?.let { Iteration(compaction = it, _json = json) }
+                            ?: Iteration(_json = json)
+                    }
+                    "advisor_message" -> {
+                        return tryDeserialize(
+                                node,
+                                jacksonTypeRef<BetaAdvisorMessageIterationUsage>(),
+                            )
+                            ?.let { Iteration(advisorMessage = it, _json = json) }
+                            ?: Iteration(_json = json)
+                    }
+                    "fallback_message" -> {
+                        return tryDeserialize(
+                                node,
+                                jacksonTypeRef<BetaFallbackMessageIterationUsage>(),
+                            )
+                            ?.let { Iteration(fallbackMessage = it, _json = json) }
+                            ?: Iteration(_json = json)
+                    }
+                }
+
+                return Iteration(_json = json)
+            }
+        }
+
+        internal class Serializer : BaseSerializer<Iteration>(Iteration::class) {
+
+            override fun serialize(
+                value: Iteration,
+                generator: JsonGenerator,
+                provider: SerializerProvider,
+            ) {
+                when {
+                    value.message != null -> generator.writeObject(value.message)
+                    value.compaction != null -> generator.writeObject(value.compaction)
+                    value.advisorMessage != null -> generator.writeObject(value.advisorMessage)
+                    value.fallbackMessage != null -> generator.writeObject(value.fallbackMessage)
+                    value._json != null -> generator.writeObject(value._json)
+                    else -> throw IllegalStateException("Invalid Iteration")
+                }
+            }
+        }
+
+        class Type @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
+
+            /**
+             * Returns this class instance's raw value.
+             *
+             * This is usually only useful if this instance was deserialized from data that doesn't
+             * match any known member, and you want to know that value. For example, if the SDK is
+             * on an older version than the API, then the API may respond with new members that the
+             * SDK is unaware of.
+             */
+            @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+            companion object {
+
+                @JvmField val MESSAGE = of("message")
+
+                @JvmField val COMPACTION = of("compaction")
+
+                @JvmField val ADVISOR_MESSAGE = of("advisor_message")
+
+                @JvmField val FALLBACK_MESSAGE = of("fallback_message")
+
+                @JvmStatic fun of(value: String) = Type(JsonField.of(value))
+
+                @JvmSynthetic
+                internal fun of(value: JsonField<String>): Type =
+                    value.asString().getOrNull()?.let { of(it) } ?: Type(value)
+            }
+
+            /** An enum containing [Type]'s known values. */
+            enum class Known {
+                MESSAGE,
+                COMPACTION,
+                ADVISOR_MESSAGE,
+                FALLBACK_MESSAGE,
+            }
+
+            /**
+             * An enum containing [Type]'s known values, as well as an [_UNKNOWN] member.
+             *
+             * An instance of [Type] can contain an unknown value in a couple of cases:
+             * - It was deserialized from data that doesn't match any known member. For example, if
+             *   the SDK is on an older version than the API, then the API may respond with new
+             *   members that the SDK is unaware of.
+             * - It was constructed with an arbitrary value using the [of] method.
+             */
+            enum class Value {
+                MESSAGE,
+                COMPACTION,
+                ADVISOR_MESSAGE,
+                FALLBACK_MESSAGE,
+                /** An enum member indicating that [Type] was instantiated with an unknown value. */
+                _UNKNOWN,
+            }
+
+            /**
+             * Returns an enum member corresponding to this class instance's value, or
+             * [Value._UNKNOWN] if the class was instantiated with an unknown value.
+             *
+             * Use the [known] method instead if you're certain the value is always known or if you
+             * want to throw for the unknown case.
+             */
+            fun value(): Value =
+                when (this) {
+                    MESSAGE -> Value.MESSAGE
+                    COMPACTION -> Value.COMPACTION
+                    ADVISOR_MESSAGE -> Value.ADVISOR_MESSAGE
+                    FALLBACK_MESSAGE -> Value.FALLBACK_MESSAGE
+                    else -> Value._UNKNOWN
+                }
+
+            /**
+             * Returns an enum member corresponding to this class instance's value.
+             *
+             * Use the [value] method instead if you're uncertain the value is always known and
+             * don't want to throw for the unknown case.
+             *
+             * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+             *   member.
+             */
+            fun known(): Known =
+                when (this) {
+                    MESSAGE -> Known.MESSAGE
+                    COMPACTION -> Known.COMPACTION
+                    ADVISOR_MESSAGE -> Known.ADVISOR_MESSAGE
+                    FALLBACK_MESSAGE -> Known.FALLBACK_MESSAGE
+                    else -> throw AnthropicInvalidDataException("Unknown Type: $value")
+                }
+
+            /**
+             * Returns this class instance's primitive wire representation.
+             *
+             * This differs from the [toString] method because that method is primarily for
+             * debugging and generally doesn't throw.
+             *
+             * @throws AnthropicInvalidDataException if this class instance's value does not have
+             *   the expected primitive type.
+             */
+            fun asString(): String =
+                _value().asString().orElseThrow {
+                    AnthropicInvalidDataException("Value is not a String")
+                }
+
+            private var validated: Boolean = false
+
+            /**
+             * Validates that the types of all values in this object match their expected types
+             * recursively.
+             *
+             * This method is _not_ forwards compatible with new types from the API for existing
+             * fields.
+             *
+             * @throws AnthropicInvalidDataException if any value type in this object doesn't match
+             *   its expected type.
+             */
+            fun validate(): Type = apply {
+                if (validated) {
+                    return@apply
+                }
+
+                known()
+                validated = true
+            }
+
+            fun isValid(): Boolean =
+                try {
+                    validate()
+                    true
+                } catch (e: AnthropicInvalidDataException) {
+                    false
+                }
+
+            /**
+             * Returns a score indicating how many valid values are contained in this object
+             * recursively.
+             *
+             * Used for best match union deserialization.
+             */
+            @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is Type && value == other.value
+            }
+
+            override fun hashCode() = value.hashCode()
+
+            override fun toString() = value.toString()
+        }
+    }
+
+    /** If the request used the priority, standard, or batch tier. */
+    class ServiceTier @JsonCreator private constructor(private val value: JsonField<String>) :
+        Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            @JvmField val STANDARD = of("standard")
+
+            @JvmField val PRIORITY = of("priority")
+
+            @JvmField val BATCH = of("batch")
+
+            @JvmStatic fun of(value: String) = ServiceTier(JsonField.of(value))
+
+            @JvmSynthetic
+            internal fun of(value: JsonField<String>): ServiceTier =
+                value.asString().getOrNull()?.let { of(it) } ?: ServiceTier(value)
+        }
+
+        /** An enum containing [ServiceTier]'s known values. */
+        enum class Known {
+            STANDARD,
+            PRIORITY,
+            BATCH,
+        }
+
+        /**
+         * An enum containing [ServiceTier]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [ServiceTier] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            STANDARD,
+            PRIORITY,
+            BATCH,
+            /**
+             * An enum member indicating that [ServiceTier] was instantiated with an unknown value.
+             */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                STANDARD -> Value.STANDARD
+                PRIORITY -> Value.PRIORITY
+                BATCH -> Value.BATCH
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                STANDARD -> Known.STANDARD
+                PRIORITY -> Known.PRIORITY
+                BATCH -> Known.BATCH
+                else -> throw AnthropicInvalidDataException("Unknown ServiceTier: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString().orElseThrow {
+                AnthropicInvalidDataException("Value is not a String")
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): ServiceTier = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is ServiceTier && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+
+    /**
+     * Inference speed mode. `fast` provides significantly faster output token generation at premium
+     * pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+     */
+    class Speed @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            @JvmField val STANDARD = of("standard")
+
+            @JvmField val FAST = of("fast")
+
+            @JvmStatic fun of(value: String) = Speed(JsonField.of(value))
+
+            @JvmSynthetic
+            internal fun of(value: JsonField<String>): Speed =
+                value.asString().getOrNull()?.let { of(it) } ?: Speed(value)
+        }
+
+        /** An enum containing [Speed]'s known values. */
+        enum class Known {
+            STANDARD,
+            FAST,
+        }
+
+        /**
+         * An enum containing [Speed]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [Speed] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            STANDARD,
+            FAST,
+            /** An enum member indicating that [Speed] was instantiated with an unknown value. */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                STANDARD -> Value.STANDARD
+                FAST -> Value.FAST
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                STANDARD -> Known.STANDARD
+                FAST -> Known.FAST
+                else -> throw AnthropicInvalidDataException("Unknown Speed: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString().orElseThrow {
+                AnthropicInvalidDataException("Value is not a String")
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): Speed = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Speed && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is BetaUsage &&
+            cacheCreation == other.cacheCreation &&
+            cacheCreationInputTokens == other.cacheCreationInputTokens &&
+            cacheReadInputTokens == other.cacheReadInputTokens &&
+            fallbackCredit == other.fallbackCredit &&
+            inferenceGeo == other.inferenceGeo &&
+            inputTokens == other.inputTokens &&
+            iterations == other.iterations &&
+            outputTokens == other.outputTokens &&
+            outputTokensDetails == other.outputTokensDetails &&
+            serverToolUse == other.serverToolUse &&
+            serviceTier == other.serviceTier &&
+            speed == other.speed &&
+            additionalProperties == other.additionalProperties
+    }
+
+    private val hashCode: Int by lazy {
+        Objects.hash(
+            cacheCreation,
+            cacheCreationInputTokens,
+            cacheReadInputTokens,
+            fallbackCredit,
+            inferenceGeo,
+            inputTokens,
+            iterations,
+            outputTokens,
+            outputTokensDetails,
+            serverToolUse,
+            serviceTier,
+            speed,
+            additionalProperties,
+        )
+    }
+
+    override fun hashCode(): Int = hashCode
+
+    override fun toString() =
+        "BetaUsage{cacheCreation=$cacheCreation, cacheCreationInputTokens=$cacheCreationInputTokens, cacheReadInputTokens=$cacheReadInputTokens, fallbackCredit=$fallbackCredit, inferenceGeo=$inferenceGeo, inputTokens=$inputTokens, iterations=$iterations, outputTokens=$outputTokens, outputTokensDetails=$outputTokensDetails, serverToolUse=$serverToolUse, serviceTier=$serviceTier, speed=$speed, additionalProperties=$additionalProperties}"
+}

@@ -1,0 +1,11 @@
+DONE — `medhavy-vox-size-paradox` shipped as a review slate cut.
+
+**Output**: `vox-size-paradox-slate.mp4` (3.8 MB, 207.9 s, 1280×720, audio -24.0 dB) · mp4 mtime 6 s newer than beat_sheet.json ✓
+
+**Counter**: `{'VIDEO': 15}` — every beat rendered as Remotion FormACard (13 body) + OutroSeries + OutroCTA. Zero slates.
+
+**Phase 0**: pre-rebuild snapshot; dropped ElevenLabs `voice_id` + `clock` prose + `_variant_todo` + stale `build{}`; added `folderLabel: @MedhavyAI`. Narration locked verbatim (no datable-claim edits).
+
+**Phase 1**: bookends legitimately absent (non-Claude channel); punt sweep fixed all 13 slates (CARD/STILL/GRAPHIC → FormACard with narration numbers written literally, since no `scenes_std.py` exists); B14/B15 outro props fixed from wrong Claude-default schema to `{eyebrow,line}` / `{line,handle}` Medhavy schema; GATE T FAIL on B05/B08 (em-dash / arrow blob at 4K) fixed by shortening lines and removing `→`/`—` glyphs (content fix, not validator loosening); final GATE T PASS. Lens: Descartes + Hume + Plato earned; Popper partial.
+
+**Honest note**: text-heavy card-only reel — the seven intended drawn graphics (tumor-shrink contrast, total-mass bars, split-screen penetration compare, distribution verdict, two-column worked example) have no Manim scenes on disk. FormACard substitutes are honest text summaries; each flagged in AUDIT.md as wanting a proper `scenes_std.py` pass.

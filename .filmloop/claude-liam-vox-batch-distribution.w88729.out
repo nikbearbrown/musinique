@@ -1,0 +1,9 @@
+Done. Master mtime 19:53:42 is 28 s newer than beat_sheet.json (19:53:14) — supervisor DONE check will pass.
+
+**Reel: `cancer-nanomedicine/claude-liam-vox-batch-distribution` — BUILT.**
+
+- Master: `vox-batch-distribution-slate.mp4`, 231.7 s, mean_volume −27.3 dB.
+- 13/16 slots real Remotion; 3 legit review slates (B03 CARD/question, B09 DOCUMENT/quote, B12 CARD/endcard).
+- Gates: type_check PASS · lane_check PASS · content-check PASS · frame-check PASS · Gate V clean on sampled frames.
+- Big content moves: dropped legacy B13/B14 outros (superseded by four bookends); authored real BVDT verdict + BHTF exercise; converted seven never-authored `B0x_Manim` GRAPHIC intents to Remotion FormBCard (Manim scene classes don't exist in the codebase — logged in the reel's `TEMPLATE-MISSES.md` for a later Manim pass).
+- Narration lock respected: only BVDT/BHTF got new writing (the closing block is the one place the rebuild contract permits it). Body script for B01–B12 preserved verbatim.

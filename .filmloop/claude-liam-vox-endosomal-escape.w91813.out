@@ -1,0 +1,6 @@
+Done. `vox-endosomal-escape-slate.mp4` (234.8 s, 1920×1080@24, aac 48 kHz) is 20.5 s newer than the sheet — not stale.
+
+**Summary — claude-liam-vox-endosomal-escape**
+- **PHASE 0**: `beat_sheet.pre-rebuild.json` snapshot; dropped ElevenLabs `voice_id` + legacy `_variant_todo`; cleaned `clock` prose.
+- **PHASE 1**: Bookends PASS. Spark: B00 → `"Namaste, Liam."` (rotation vs adjacent Salaam/Ciao/Konnichiwa). Verdict: authored 4 real artifact lines + 55-word BVDT narration from body nouns (1–2% escape, 7.4→5.5 pH, bilayer tear, 8% vs 84%). Card text: B01 3-item FormB authored, B02 recite fixed. Punts: 6 pipeline-Manim slates (B04–B09) converted to Remotion FormB/A cards, `graphic.production_viz` preserved for future Manim pass. Lens: 2 moves earned (Plato dish/mouse, Popper LNP swap experiment). Gate T PASS.
+- **PHASE 2**: BVDT audio regen (18.22 s), 14 Remotion beats rendered, compile `--review --height 1080` → `vox-endosomal-escape-slate.mp4` (234.8 s). Gate LANE PASS (0 violations). Gate AUDIO −27.6 dB mean / −5.9 max. Gate V clean (mid-frames legible, one-terracotta, folderLabel correct, spark visible). `Counter({'VIDEO': 14, 'SLATE': 3})`.

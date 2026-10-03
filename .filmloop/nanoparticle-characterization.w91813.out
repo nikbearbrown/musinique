@@ -1,0 +1,14 @@
+Done. Reel `nanoparticle-characterization` (NikBearBrown channel) built as a review cut with all 13 beats rendered as real VIDEO (no slates).
+
+**Fixes applied to the sheet before final compile**:
+- Dropped ElevenLabs `voice_id`; normalized envelope to kokoro/am_onyx.
+- B01 FormBCard: 3 placeholder items → 3 authored items compressed from B01 narration.
+- B04/B06/B07/B08: `shot.source: null` → real FormBCards written from each beat's narration + visual_intent (4 punts eliminated).
+- BVDT: `Key finding one/two/three` placeholder → 4 real verdict lines from body nouns; empty BVDT narration → authored to speak the verdict aloud.
+- Card §8.5 title overflow (B01, B09, BOUT): shortened from 14-word full title to "The Characterization Cascade".
+- BHTF composer command: your-turn scaffolder default → specific corona-delta measurement drawn from B08.
+
+**Gates**: type_check PASS · content PASS 13/13 · frame PASS 13/13 · lane PASS · audio PASS −24.6 dB · Gate V (11 sampled frames) clean.
+
+**build.status Counter**: `Counter({'VIDEO': 13})`
+**Output**: `nanoparticle-characterization-slate.mp4` (227.9s) · mp4 mtime is 8s newer than beat_sheet.json.

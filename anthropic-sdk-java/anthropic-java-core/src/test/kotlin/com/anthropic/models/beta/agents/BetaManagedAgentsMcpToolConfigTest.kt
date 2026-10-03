@@ -1,0 +1,56 @@
+package com.anthropic.models.beta.agents
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaManagedAgentsMcpToolConfigTest {
+
+    @Test
+    fun create() {
+        val betaManagedAgentsMcpToolConfig =
+            BetaManagedAgentsMcpToolConfig.builder()
+                .enabled(true)
+                .name("name")
+                .permissionPolicy(
+                    BetaManagedAgentsAlwaysAllowPolicy.of(
+                        BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                    )
+                )
+                .build()
+
+        assertThat(betaManagedAgentsMcpToolConfig.enabled()).isEqualTo(true)
+        assertThat(betaManagedAgentsMcpToolConfig.name()).isEqualTo("name")
+        assertThat(betaManagedAgentsMcpToolConfig.permissionPolicy())
+            .isEqualTo(
+                BetaManagedAgentsMcpToolConfig.PermissionPolicy.ofAlwaysAllow(
+                    BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                )
+            )
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsMcpToolConfig =
+            BetaManagedAgentsMcpToolConfig.builder()
+                .enabled(true)
+                .name("name")
+                .permissionPolicy(
+                    BetaManagedAgentsAlwaysAllowPolicy.of(
+                        BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                    )
+                )
+                .build()
+
+        val roundtrippedBetaManagedAgentsMcpToolConfig =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsMcpToolConfig),
+                jacksonTypeRef<BetaManagedAgentsMcpToolConfig>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsMcpToolConfig)
+            .isEqualTo(betaManagedAgentsMcpToolConfig)
+    }
+}

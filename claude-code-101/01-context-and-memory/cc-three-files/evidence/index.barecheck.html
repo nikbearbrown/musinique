@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thursday Study Group Sign-Up</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --line: #d9d6cf;
+    --paper: #f7f4ee;
+    --accent: #2a5d4c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 1.15;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0;
+  }
+  section.intro p {
+    margin: 0 0 12px;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 16px;
+    margin: 20px 0 32px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  .meta dt { color: var(--muted); }
+  .meta dd { margin: 0; }
+  h2 {
+    font-size: 20px;
+    margin: 32px 0 12px;
+    font-weight: 600;
+  }
+  form {
+    display: grid;
+    gap: 16px;
+  }
+  .field { display: grid; gap: 6px; }
+  label {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  input[type="text"],
+  input[type="tel"],
+  select,
+  textarea {
+    font: inherit;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--ink);
+    width: 100%;
+  }
+  textarea { min-height: 90px; resize: vertical; }
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+  }
+  .checkbox-row input { margin-top: 4px; }
+  button {
+    font: inherit;
+    font-size: 16px;
+    padding: 12px 22px;
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: start;
+  }
+  button:hover { filter: brightness(1.08); }
+  footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="kicker">Thursdays &middot; 6:30 pm</div>
+    <h1>Thursday Study Group Sign-Up</h1>
+    <p class="subtitle">A weekly co-working hour for focused, quiet study.</p>
+  </header>
+
+  <section class="intro">
+    <p>We meet every Thursday evening to sit down together and work through what we're each learning. Bring whatever you're studying &mdash; a textbook, a problem set, a language you're picking up, notes for an exam. The first twenty minutes are for stating your goal for the session; the rest of the time is heads-down and quiet, with a short break in the middle.</p>
+    <p>Anyone is free to come. Sign up below so we know how many chairs to set out and can send you a reminder the morning of.</p>
+
+    <dl class="meta">
+      <dt>When</dt><dd>Thursdays, 6:30 &ndash; 8:30 pm</dd>
+      <dt>Where</dt><dd>Community room, second floor</dd>
+      <dt>Bring</dt><dd>Whatever you're working on, and a water bottle</dd>
+      <dt>Cost</dt><dd>Free</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Sign up</h2>
+    <form method="post" action="#">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="contact">How should we reach you (phone, handle, or however you prefer)</label>
+        <input id="contact" name="contact" type="text" required>
+      </div>
+
+      <div class="field">
+        <label for="date">First Thursday you'd like to join</label>
+        <input id="date" name="date" type="date">
+      </div>
+
+      <div class="field">
+        <label for="topic">What are you planning to work on</label>
+        <textarea id="topic" name="topic" placeholder="e.g. reviewing calculus problems, drafting a chapter, learning Spanish"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="experience">How often do you think you'll come</label>
+        <select id="experience" name="experience">
+          <option value="weekly">Most weeks</option>
+          <option value="sometimes">A couple times a month</option>
+          <option value="onetime">Just this once, to see how it goes</option>
+        </select>
+      </div>
+
+      <div class="field checkbox-row">
+        <input id="reminder" name="reminder" type="checkbox" checked>
+        <label for="reminder">Send me a short reminder the morning of each meeting.</label>
+      </div>
+
+      <button type="submit">Add me to the list</button>
+    </form>
+  </section>
+
+  <footer>
+    Questions or need to cancel a spot? Reply to the reminder message and we'll take care of it.
+  </footer>
+</main>
+</body>
+</html>

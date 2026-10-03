@@ -1,0 +1,62 @@
+module Anthropic
+  module Models
+    type raw_content_block_delta =
+      Anthropic::TextDelta
+      | Anthropic::InputJSONDelta
+      | Anthropic::CitationsDelta
+      | Anthropic::ThinkingDelta
+      | Anthropic::SignatureDelta
+
+    module RawContentBlockDelta
+      extend Anthropic::Internal::Type::Union
+
+      type type_ =
+        :text_delta
+        | :input_json_delta
+        | :citations_delta
+        | :thinking_delta
+        | :signature_delta
+
+      module Type
+        extend Anthropic::Internal::Type::Enum
+
+        TEXT_DELTA: :text_delta
+        INPUT_JSON_DELTA: :input_json_delta
+        CITATIONS_DELTA: :citations_delta
+        THINKING_DELTA: :thinking_delta
+        SIGNATURE_DELTA: :signature_delta
+
+        def self?.values: -> ::Array[Anthropic::Models::RawContentBlockDelta::type_]
+      end
+
+      def self?.variants: -> ::Array[Anthropic::Models::raw_content_block_delta]
+
+      def self.new:
+        (type: :text_delta | "text_delta", text: String) -> Anthropic::TextDelta
+        | (
+          type: :input_json_delta | "input_json_delta",
+          partial_json: String
+        ) -> Anthropic::InputJSONDelta
+        | (
+          type: :citations_delta | "citations_delta",
+          citation: Anthropic::Models::CitationsDelta::citation
+        ) -> Anthropic::CitationsDelta
+        | (
+          type: :thinking_delta | "thinking_delta",
+          thinking: String
+        ) -> Anthropic::ThinkingDelta
+        | (
+          type: :signature_delta | "signature_delta",
+          signature: String
+        ) -> Anthropic::SignatureDelta
+        | (
+          type: Anthropic::Models::RawContentBlockDelta::type_ | String,
+          ?text: String,
+          ?partial_json: String,
+          ?citation: Anthropic::Models::CitationsDelta::citation,
+          ?thinking: String,
+          ?signature: String
+        ) -> Anthropic::Models::raw_content_block_delta
+    end
+  end
+end

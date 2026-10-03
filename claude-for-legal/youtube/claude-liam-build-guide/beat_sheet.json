@@ -1,0 +1,383 @@
+{
+  "metadata": {
+    "title": "Claude, Build Guide.",
+    "slug": "claude-liam-build-guide",
+    "topic": "BUILD-GUIDE · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/claude-for-legal/legal-clinic/skills/build-guide/SKILL.md",
+    "source_detail": {
+      "capabilities": [],
+      "constraints": [
+        "Load ~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md → role (must be Supervising attorney), practice areas, jurisdiction",
+        "Every output from this skill is a supervisor-facing configuration artifact, not student work product. Do NOT prepend [AI-ASSISTED DRAFT — requires student analysis and…",
+        "When must the student stop and get your sign-off? (Filing, sending to a client, making a representation, advising on strategy)",
+        "> - Teach: The skill doesn't produce work product — students draft, the skill gives Socratic feedback and only shows models after two attempts. Slowest, most…",
+        "| Client letter (substantive advice / bad news) | [always supervisor — cannot override] |",
+        "| Draft filing (court / agency) | [always supervisor — cannot override] |",
+        "| Status update to court | [always supervisor — cannot override] |",
+        "If the supervisor names a cross-plugin skill they want, record: skill name, when students should use it, what supervision wrapper applies (always reviewer, only when…"
+      ],
+      "referenced_files": [
+        "~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md",
+        "/legal-clinic:ramp",
+        "~/.claude/plugins/config/claude-for-legal/legal-clinic/guides/<practice-area>.md",
+        "guides/",
+        "/legal-clinic:draft",
+        "[AI-ASSISTED DRAFT — requires student analysis and attorney review]",
+        "/legal-clinic:cold-start-interview",
+        "immigration-removal-defense.md",
+        "transactional-nonprofit.md",
+        "CLAUDE.md"
+      ],
+      "code_signals": [
+        "code block: markdown"
+      ],
+      "sections": [
+        "Purpose",
+        "Work-product header",
+        "Key things your guide should address",
+        "Workflow",
+        "Step 1: Check role",
+        "Step 2: Which practice area?",
+        "Step 3: Intake questions",
+        "Step 4: Pedagogy posture",
+        "Step 5: Review gates",
+        "Step 6: Cross-plugin checks"
+      ]
+    },
+    "build": {
+      "at": "2026-09-06T01:08:52",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is build-guide. >. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "BUILD-GUIDE · ANTHROPIC SKILL",
+            "segment": "Claude, Build Guide.",
+            "command": "Run the build-guide skill.",
+            "runningText": "reading build-guide SKILL.md…",
+            "output": [
+              "skill: build-guide",
+              ">",
+              "steps: 9 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 7.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is build-guide. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at ~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md, /legal-clinic:ramp, ~/.claude/plugins/config/claude-for-legal/legal-clinic/guides/<practice-area>.md, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "build-guide",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "14k",
+                "accent": true
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "1 file total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 29.76,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 9 steps. Check role → Which practice area? → Intake questions, plus 6 more. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Check role",
+                "desc": "This is a supervisor skill. Read…",
+                "accent": true
+              },
+              {
+                "label": "Which practice area?",
+                "desc": "> What clinic is this guide for? (Immigration / Housing /…",
+                "accent": false
+              },
+              {
+                "label": "Intake questions",
+                "desc": "> What should students ask a new client for this clinic…",
+                "accent": false
+              },
+              {
+                "label": "Pedagogy posture",
+                "desc": "> How much should the skills do vs. how much should the…",
+                "accent": false
+              }
+            ],
+            "footerNote": "9 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 12.44,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Load ~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md → role (must be Supervising attorney), practice areas, jurisdiction. That is the constraint in build-guide — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Load ~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md → role (must be Supervising attorney), practice areas, jurisdiction",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.15,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In build-guide, supporting material: ~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md, /legal-clinic:ramp, ~/.claude/plugins/config/claude-for-legal/legal-clinic/guides/<practice-area>.md, guides/; implementation signals: code block: markdown; sections: Purpose, Work-product header, Key things your guide should address, Workflow. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md; /legal-clinic:ramp; ~/.claude/plugins/config/claude-for-legal/legal-clinic/guides/<practice-area>.md; code block: markdown",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 30.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "build-guide makes Claude execute one task reliably. The SKILL.md is the spec — >. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, Build Guide.",
+            "artifactLines": [
+              "Skill: build-guide — Claude reads SKILL.md before acting",
+              ">",
+              "9-step pipeline: Check role → Which practice area? → Intake questions",
+              "Constraint: Load ~/.claude/plugins/config/claude-for-legal/legal-clinic/CLAUDE.md → role (must be…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 9.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to >. Read the build-guide skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "BUILD-GUIDE · ANTHROPIC SKILL",
+            "segment": "Claude, Build Guide.",
+            "command": "I want to >. Read the build-guide skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 10.71,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, Build Guide. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, Build Guide.",
+            "handle": "@NikBearBrown",
+            "subline": "build-guide · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.03,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-06T01:08:52"
+      }
+    }
+  ]
+}

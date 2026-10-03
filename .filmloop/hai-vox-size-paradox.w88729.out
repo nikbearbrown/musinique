@@ -1,0 +1,13 @@
+Cut mtime (1788161807.23) is 32.3 s newer than sheet mtime (1788161774.93). No post-compile sheet edits.
+
+**hai-vox-size-paradox — done.**
+
+- Review-slate cut: `vox-size-paradox-slate.mp4` (182.3 s, 15/15 VIDEO, mean_volume −23.8 dB, single AAC audio stream).
+- Rebuild honored: `beat_sheet.pre-rebuild.json` created byte-exact first; zero narration edits (LOCKED script preserved); envelope normalized (dropped ElevenLabs `voice_id`, simplified `clock`, added `folderLabel: @humanitariansai`).
+- HAI channel skins preserved (OutroSeries + OutroCTA — not Claude-washed).
+- Real bug caught before final compile: outro props on B14/B15 mismatched their component zod schemas → first render fell through to Claude Cowork defaults. Rewrote props to `{eyebrow, line}` / `{line, handle}`, re-rendered, re-compiled. Final t=178 s frame verified correct: "CANCER NANOMEDICINE / Part of the Cancer Nanomedicine series from Humanitarians AI."
+- Body B01–B13 filled by `media/BXX.mp4` symlinks to `../vox-size-paradox/clips/` (same source shipped by nbb and medhavy siblings).
+- Lens PASS with two moves: Popper (B03/B06 falsify the total-mass hypothesis with 15 % vs 72 % shrinkage) and Plato (B07/B11 hold artifact vs world apart — rim accumulation is not cell-level delivery).
+- `type_check.py` FAIL logged as inherited-from-parent: italic serif axis labels ("vessel"/"core") measure 8–11 px on parent's Manim clip renders; same clips ship in vox/nbb/medhavy siblings; fix belongs in parent's Cohort A rebuild, not a downstream variant. Not blocked — text is legible in the compiled cut.
+
+`Counter({'VIDEO': 15})`

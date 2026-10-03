@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLATE — Claude, Oversimplified</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF9F5;
+    --ink: #3D3929;
+    --terra: #D97757;
+  }
+
+  body {
+    background: var(--ink);
+    font-family: system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    height: 100vh;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--terra);
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  #slide-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: var(--cream);
+    padding: 48px 64px;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .slide.active { display: flex; }
+
+  /* Title slide */
+  .slide-title .episode-label {
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terra);
+  }
+
+  .slide-title h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-top: 16px;
+  }
+
+  .slide-title .meta {
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    opacity: 0.5;
+    margin-top: 12px;
+  }
+
+  .slide-title .hint {
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+    color: var(--ink);
+    opacity: 0.4;
+    text-align: center;
+  }
+
+  /* Beat slides */
+  .beat-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .beat-id {
+    font-family: 'SF Mono', 'Fira Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--terra);
+    color: var(--cream);
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .beat-time {
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    color: var(--ink);
+    opacity: 0.45;
+    letter-spacing: 0.05em;
+  }
+
+  .beat-type {
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.4;
+    margin-left: auto;
+  }
+
+  .beat-narration {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(18px, 2.4vw, 26px);
+    line-height: 1.55;
+    color: var(--ink);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .beat-visual {
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+    color: var(--ink);
+    opacity: 0.45;
+    border-top: 1px solid currentColor;
+    padding-top: 14px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .card-preview {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .card-preview .cp-eyebrow {
+    font-family: system-ui, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 6px;
+  }
+
+  .card-preview .cp-copy {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--cream);
+  }
+
+  .card-preview .cp-copy .accent { color: var(--terra); }
+
+  .card-preview .cp-sub {
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 6px;
+  }
+
+  #nav-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 28px;
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    color: var(--cream);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .slide-number {
+    position: absolute;
+    bottom: 48px;
+    right: 64px;
+    font-family: system-ui, sans-serif;
+    font-size: 11px;
+    opacity: 0.3;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="slide-container">
+
+  <!-- Title slide -->
+  <div class="slide slide-title active" data-index="0">
+    <div>
+      <div class="episode-label">Claude Cowork &nbsp;·&nbsp; Gate-P Slate</div>
+      <h1>Claude,<br>Oversimplified</h1>
+      <div class="meta">Slug: claude-101 &nbsp;·&nbsp; Voice: Kokoro am_onyx &nbsp;·&nbsp; Est. 93 s &nbsp;·&nbsp; 8 beats</div>
+    </div>
+    <div class="hint">Click or press spacebar to advance</div>
+  </div>
+
+  <!-- B01 -->
+  <div class="slide" data-index="1">
+    <div class="beat-header">
+      <span class="beat-id">B01</span>
+      <span class="beat-time">0:00 — 0:12 · ~12 s</span>
+      <span class="beat-type">COMPOSER_ASK</span>
+    </div>
+    <div class="beat-narration">
+      Hola. This is Liam, in for Bear. Someone asked Claude: what is the fastest way to understand how Claude actually works? Here's what that looks like — a two-minute map of the whole thing, so you never feel lost again.
+    </div>
+    <div class="beat-visual">
+      <span>[COMPOSER] cold open ask + Liam sign-in</span>
+      <span>ask: "What is the fastest way to understand how Claude actually works?"</span>
+      <span>answer_preview: "Claude runs in three places and three tiers…"</span>
+    </div>
+    <div class="slide-number">1 / 9</div>
+  </div>
+
+  <!-- B02 -->
+  <div class="slide" data-index="2">
+    <div class="beat-header">
+      <span class="beat-id">B02</span>
+      <span class="beat-time">0:12 — 0:23 · ~11 s</span>
+      <span class="beat-type">ILLUSTRATION</span>
+    </div>
+    <div class="beat-narration">
+      Claude lives in three places. Browser — you type, it answers, no install. Desktop app — same account, but now it can see your local files and unlocks Chat, Cowork, and Code. And Cowork — that's Claude running for minutes at a time on a real task while you step away.
+    </div>
+    <div class="beat-visual">
+      <span>[ILLUSTRATION] three-surface stack: Browser / Desktop / Cowork</span>
+      <span>Vertical stack diagram, capability badges right-aligned, terracotta on Cowork badge</span>
+    </div>
+    <div class="slide-number">2 / 9</div>
+  </div>
+
+  <!-- B03 -->
+  <div class="slide" data-index="3">
+    <div class="beat-header">
+      <span class="beat-id">B03</span>
+      <span class="beat-time">0:23 — 0:33 · ~10 s</span>
+      <span class="beat-type">SPARK CARD</span>
+    </div>
+    <div class="beat-narration">
+      Three tiers. Free tier — browser only, good for two weeks of testing. Pro tier — Cowork, Code, Projects, best model. Max tier — heavy daily use without hitting the ceiling. Pick the tier that matches how often you reach for it.
+    </div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy">Three tiers, <span class="accent">one rule</span></div>
+      <div class="cp-sub">Free to test. Pro to work. Max to never stop.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;">
+      <span>[SPARK] three-tier ladder card</span>
+    </div>
+    <div class="slide-number">3 / 9</div>
+  </div>
+
+  <!-- B04 -->
+  <div class="slide" data-index="4">
+    <div class="beat-header">
+      <span class="beat-id">B04</span>
+      <span class="beat-time">0:33 — 0:44 · ~11 s</span>
+      <span class="beat-type">SPARK CARD</span>
+    </div>
+    <div class="beat-narration">
+      Three words you need. Token — the unit Claude thinks in; a page is roughly five hundred of them. Cowork — Claude doing the work while you do something else. Claude Code — Claude inside your terminal, built for developers. Everything else is vocabulary you can learn later.
+    </div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy"><span class="accent">Token.</span> Cowork. Code.</div>
+      <div class="cp-sub">The only three words that matter before week one.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;">
+      <span>[SPARK] three-vocabulary spark card</span>
+    </div>
+    <div class="slide-number">4 / 9</div>
+  </div>
+
+  <!-- B05 -->
+  <div class="slide" data-index="5">
+    <div class="beat-header">
+      <span class="beat-id">B05</span>
+      <span class="beat-time">0:44 — 0:57 · ~13 s</span>
+      <span class="beat-type">ILLUSTRATION</span>
+    </div>
+    <div class="beat-narration">
+      Five prompting rules. Be specific — vague input, vague output. Give examples — paste something you like and say write like this. Say what you want, not what you don't. Start short, then add detail. And when the conversation gets confused, open a fresh chat. These five rules beat any prompt template.
+    </div>
+    <div class="beat-visual">
+      <span>[ILLUSTRATION] five-rule prompting checklist</span>
+      <span>Hand-drawn numbered list · terracotta checkboxes · struck-through bad examples</span>
+    </div>
+    <div class="slide-number">5 / 9</div>
+  </div>
+
+  <!-- B06 -->
+  <div class="slide" data-index="6">
+    <div class="beat-header">
+      <span class="beat-id">B06</span>
+      <span class="beat-time">0:57 — 1:07 · ~10 s</span>
+      <span class="beat-type">SPARK CARD</span>
+    </div>
+    <div class="beat-narration">
+      Expert mode is Skills plus Projects. Skills are reusable prompts you trigger with a slash command — type /negotiation and Claude runs your full playbook. Projects are persistent contexts — upload everything about a client once and every chat inside remembers. That combination is how pros make Claude feel like a dedicated employee.
+    </div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy">Skills <span class="accent">+</span> Projects <span class="accent">=</span> expert</div>
+      <div class="cp-sub">Slash commands recall your playbooks. Projects keep your context alive.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;">
+      <span>[SPARK] Skills plus Projects expert-mode card</span>
+    </div>
+    <div class="slide-number">6 / 9</div>
+  </div>
+
+  <!-- B07 -->
+  <div class="slide" data-index="7">
+    <div class="beat-header">
+      <span class="beat-id">B07</span>
+      <span class="beat-time">1:07 — 1:20 · ~13 s</span>
+      <span class="beat-type">HANDOFF</span>
+    </div>
+    <div class="beat-narration">
+      Your move this week. Pick one thing you keep doing manually — a summary, a draft, a meeting recap — and run it through Claude right now. Don't overthink the prompt. Start with two sentences. See what comes back. That first honest test is worth more than any guide you could read.
+    </div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Your Turn</div>
+      <div class="cp-copy">Run one real task in Claude today</div>
+      <div class="cp-sub">Two sentences is enough. React to the output. Improve from there.</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;">
+      <span>[HANDOFF] your-turn card</span>
+    </div>
+    <div class="slide-number">7 / 9</div>
+  </div>
+
+  <!-- B08 -->
+  <div class="slide" data-index="8">
+    <div class="beat-header">
+      <span class="beat-id">B08</span>
+      <span class="beat-time">1:20 — 1:33 · ~13 s</span>
+      <span class="beat-type">OUTRO</span>
+    </div>
+    <div class="beat-narration">
+      This is Liam, in for Bear. Claude, Oversimplified. Three surfaces, three tiers, three words, five rules, and one expert unlock. That is everything a beginner needs to stop feeling lost.
+    </div>
+    <div class="card-preview">
+      <div class="cp-eyebrow">Claude Cowork</div>
+      <div class="cp-copy">CLAUDE, OVERSIMPLIFIED</div>
+      <div class="cp-sub">this is Liam, in for Bear</div>
+    </div>
+    <div class="beat-visual" style="margin-top:12px;">
+      <span>[OUTRO] episode title poster</span>
+    </div>
+    <div class="slide-number">8 / 9</div>
+  </div>
+
+</div>
+
+<div id="nav-hint">space / click to advance</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progressBar = document.getElementById('progress-bar');
+  let current = 0;
+
+  function goTo(index) {
+    if (index < 0 || index >= slides.length) return;
+    slides[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    const pct = slides.length <= 1 ? 100 : (current / (slides.length - 1)) * 100;
+    progressBar.style.width = pct + '%';
+  }
+
+  document.addEventListener('click', () => goTo(current + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  });
+
+  goTo(0);
+</script>
+</body>
+</html>

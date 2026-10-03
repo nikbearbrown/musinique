@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intro to Git — Saturday Workshop</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf8f3;
+    --accent: #c8452a;
+    --muted: #6b6b6b;
+    --rule: #e5e0d5;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.75rem; margin-bottom: 2rem; }
+  .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .lede { font-size: 1.1rem; color: var(--muted); margin: 0; }
+  h2 {
+    font-size: 1.25rem;
+    margin: 2.25rem 0 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.5rem 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 0.98rem;
+  }
+  .meta dt { color: var(--muted); }
+  .meta dd { margin: 0; font-weight: 500; }
+  ul { padding-left: 1.25rem; margin: 0.5rem 0 1rem; }
+  li { margin-bottom: 0.4rem; }
+  .cta {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background 0.15s ease;
+  }
+  .cta:hover { background: var(--accent); }
+  code {
+    background: #f0ece2;
+    padding: 0.12em 0.4em;
+    border-radius: 3px;
+    font-size: 0.92em;
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Saturday workshop</div>
+    <h1>Intro to Git</h1>
+    <p class="lede">A hands-on morning for people who have heard "just commit it" one too many times.</p>
+  </header>
+
+  <dl class="meta">
+    <dt>When</dt><dd>Saturday — 10:00 AM to 1:00 PM</dd>
+    <dt>Where</dt><dd>TBD (link sent after RSVP)</dd>
+    <dt>Bring</dt><dd>A laptop with Git installed</dd>
+    <dt>Cost</dt><dd>Free</dd>
+  </dl>
+
+  <a class="cta" href="#rsvp">RSVP</a>
+
+  <h2>Who it's for</h2>
+  <p>Anyone who writes code (or writing, or config, or anything text-shaped) and wants to stop being afraid of the command line. No prior Git experience assumed — we start from <code>git init</code>.</p>
+
+  <h2>What you'll leave with</h2>
+  <ul>
+    <li>A working mental model of commits, branches, and remotes</li>
+    <li>Confidence to <code>clone</code>, <code>commit</code>, <code>push</code>, and <code>pull</code></li>
+    <li>The three commands that get you unstuck when things go sideways</li>
+    <li>A real repo on GitHub, made by you, during the session</li>
+  </ul>
+
+  <h2>Rough agenda</h2>
+  <ul>
+    <li><strong>10:00</strong> — What Git actually is (and isn't)</li>
+    <li><strong>10:30</strong> — Your first repo, commit by commit</li>
+    <li><strong>11:15</strong> — Branches, merges, and the undo button</li>
+    <li><strong>12:00</strong> — GitHub: pushing, pulling, pull requests</li>
+    <li><strong>12:45</strong> — Open Q&amp;A</li>
+  </ul>
+
+  <h2 id="rsvp">RSVP</h2>
+  <p>Seats are limited so we can keep it hands-on. Email <a href="mailto:bear@bearbrown.co">bear@bearbrown.co</a> with your name and one thing you'd like to be able to do with Git by lunchtime.</p>
+
+  <footer>
+    Hosted by Bear. Coffee provided. Questions welcome.
+  </footer>
+</div>
+</body>
+</html>

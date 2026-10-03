@@ -1,0 +1,9 @@
+Done. `vox-size-paradox` rebuilt and slate-review cut delivered.
+
+**Output**: `vox-size-paradox-review.mp4` and `vox-size-paradox-slate.mp4` (1920×1080@24, 177.3 s, mean_volume −24.0 dB, both mp4s newer than the sheet).
+
+**PHASE 0 rebuild**: `beat_sheet.pre-rebuild.json` snapshotted. ElevenLabs `voice_id` + `clock` prose DROPPED. Metadata envelope normalized (`engine: kokoro`, `voice: nbbhuman`, `voice_kokoro: am_onyx`, `folderLabel: "@NikBearBrown"`, `short_title`, `source`). Non-Claude vox skin retained (OutroSeries B14 + OutroCTA B15 not Claude-washed).
+
+**PHASE 1 checks**: All PASS or FIXED — B02/B07 truncated FormACard `lines[]` rewritten as complete sentences; B10 chapter-attribution changed to topic; B08/B10/B11/B12 chart-text collisions and out-of-safe-area labels fixed inside `vox_scenes.py`; three lens moves earned (Descartes/Popper/Plato); pacing 2.08–3.28 wps across all 15 beats.
+
+**PHASE 2 build**: Kokoro `am_onyx` audio regenerated (durations measured, sheet updated BEFORE compile). `vox_run.sh` re-rendered 11 Manim scenes at 1080p; Gate A / Gate W / Gate B all clean. `vox_compile.py` produced the master. Slot report: `11/15 MANIM + 4/15 SLATE` (B02/B07 AI-still slates + B14/B15 Remotion outros declared honestly). No validator loosened, no post-compile sheet edits. `AUDIT.md`, `REBUILD-LOG.md`, and `FILMLOOP-LOG.md` entry written.

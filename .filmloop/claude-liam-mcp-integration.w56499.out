@@ -1,0 +1,31 @@
+Done. Here is the complete record:
+
+---
+
+**claude-liam-mcp-integration — complete**
+
+**Phase 0**: `beat_sheet.pre-rebuild.json` created (byte-exact backup before any edit).
+
+**Phase 1 — 11 checks:**
+| Check | Result |
+|---|---|
+| Stale renders | PASS — no mp4 files existed |
+| Bookends | PASS — all four present, BVDT filled |
+| Spark lines | FIXED — BHTF `"Your Turn"` → `"Your turn."` |
+| Verdict | PASS — 6 real authored lines specific to this skill |
+| Card text | PASS — no placeholders |
+| Punt sweep | PASS — McpInt* templates confirmed on disk |
+| Card-only reel | PASS — B01/B02/B05 all draw structure |
+| Lens audit | PASS — Descartes + Popper in B05 |
+| Brand fields | FIXED — `modelLabel "Opus 4.8"` → `"Opus 4.7"` (×2); BOUT subline removed |
+| Pacing | LOG — BOUT at 1.76 wps (expected for a 3.4s outro) |
+| type_check.py | PASS — GATE T, 0 FAILs |
+
+**Phase 2 — Build:**
+- All 7 Remotion beats rendered fresh (McpIntAnatomy, McpIntPatterns, McpIntTell, ClaudeComposerAsk ×2, ClaudeVerdictArtifact, ClaudeTitleOutro)
+- Compiled: `claude-liam-mcp-integration.mp4`, 358.4s, all beats VIDEO
+- Gate V: PASS — zero BLOCKERs, zero MAJORs. All fixes confirmed in frames. BOUT now has mascot, no subline.
+- Audio: aac stream present, mean_volume -23.7 dB (threshold -40 dB)
+- Post-build punt sweep: Counter({'VIDEO': 7}), no slates
+
+**Files written**: `beat_sheet.pre-rebuild.json`, `REBUILD-LOG.md`, `AUDIT.md`, `TYPECHECK.md`, `FILMLOOP-LOG.md` (appended)

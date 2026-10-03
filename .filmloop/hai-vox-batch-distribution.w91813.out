@@ -1,0 +1,13 @@
+Freshness confirmed — mp4 mtime is 6s newer than beat_sheet.json.
+
+**Shipped `hai-vox-batch-distribution-slate.mp4` (179.1s, 10/14 VIDEO + 4 SLATE, GATE AUDIO −23.9 dB, GATE LANE PASS, GATE T PASS, mp4 newer than sheet).**
+
+Key work this pass:
+- **PHASE 0**: byte-exact `beat_sheet.pre-rebuild.json` snapshot
+- **REBUILT**: dropped ElevenLabs `voice_id`/`clock`/`_variant_todo`/stale build; added `folderLabel: @humanitariansai`, `voice: nbbhuman`, `source` pointer; corrected slug
+- **B13/B14 outro schema fix** — averted Claude-wash defect: reshaped stale `seriesTitle/tagline/authorName/ctaText` (which silently defaulted to `CLAUDE COWORK` / `@nikbearbrown`) to current `eyebrow/line`+`line/handle` with `CANCER NANOMEDICINE`/`Humanitarians AI`/`@humanitariansai`
+- **6 GRAPHIC beats reshaped to Remotion FormBCard/FormACard** (B04, B05, B06, B07, B08, B10, B11) — with B02 also getting a clean FormACard summary. B06 originally kept as GRAPHIC slate; GATE LANE refused it as pipeline-owned; second pass reshaped to FormBCard and passed
+- **Icon pantry gotcha**: first render pass failed on 5 FormBCards because I chose icons not in `form-b-icons/*.svg` (`circle`, `check`, `activity`, `alert-triangle`, `chevrons-up/down`, `circle-dot`, `minus`). Second pass swapped to `target`, `circle-check`, `layers`, `ruler`, `list-checks`, `shield-alert`, `zap`
+- **Deliverable**: 4 legit review-slate cards (B01 title, B03 question, B09 DOCUMENT quote, B12 endcard) + 10 real Remotion renders
+
+Wrote `beat_sheet.pre-rebuild.json`, `REBUILD-LOG.md`, `AUDIT.md`, `TYPECHECK.md`, and a full entry in `youtube/FILMLOOP-LOG.md`. Sheet untouched post-final-compile.

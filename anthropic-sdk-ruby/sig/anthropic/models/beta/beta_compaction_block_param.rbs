@@ -1,0 +1,89 @@
+module Anthropic
+  module Models
+    class BetaCompactionBlockParam = Beta::BetaCompactionBlockParam
+
+    module Beta
+      type beta_compaction_block_param =
+        {
+          type: :compaction,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          content: String?,
+          encrypted_content: String?,
+          signature: String?,
+          tool_changes: ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]?
+        }
+
+      class BetaCompactionBlockParam < Anthropic::Internal::Type::BaseModel
+        attr_accessor type: :compaction
+
+        attr_accessor cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+
+        attr_accessor content: String?
+
+        attr_accessor encrypted_content: String?
+
+        attr_accessor signature: String?
+
+        attr_accessor tool_changes: ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]?
+
+        def initialize: (
+          ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          ?content: String?,
+          ?encrypted_content: String?,
+          ?signature: String?,
+          ?tool_changes: ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]?,
+          ?type: :compaction
+        ) -> void
+
+        def to_hash: -> {
+          type: :compaction,
+          cache_control: Anthropic::Beta::BetaCacheControlEphemeral?,
+          content: String?,
+          encrypted_content: String?,
+          signature: String?,
+          tool_changes: ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]?
+        }
+
+        type tool_change =
+          Anthropic::Beta::BetaRequestToolAdditionBlock
+          | Anthropic::Beta::BetaRequestToolRemovalBlock
+
+        module ToolChange
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :tool_addition | :tool_removal
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TOOL_ADDITION: :tool_addition
+            TOOL_REMOVAL: :tool_removal
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::ToolChange::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change]
+
+          def self.new:
+            (
+              type: :tool_addition | "tool_addition",
+              tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool,
+              ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+            ) -> Anthropic::Beta::BetaRequestToolAdditionBlock
+            | (
+              type: :tool_removal | "tool_removal",
+              tool: Anthropic::Models::Beta::BetaRequestToolRemovalBlock::tool,
+              ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+            ) -> Anthropic::Beta::BetaRequestToolRemovalBlock
+            | (
+              type: Anthropic::Models::Beta::BetaCompactionBlockParam::ToolChange::type_
+              | String,
+              tool: Anthropic::Models::Beta::BetaRequestToolAdditionBlock::tool
+              | Anthropic::Models::Beta::BetaRequestToolRemovalBlock::tool,
+              ?cache_control: Anthropic::Beta::BetaCacheControlEphemeral?
+            ) -> Anthropic::Models::Beta::BetaCompactionBlockParam::tool_change
+        end
+      end
+    end
+  end
+end

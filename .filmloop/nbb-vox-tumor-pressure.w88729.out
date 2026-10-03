@@ -1,0 +1,5 @@
+Done. `vox-tumor-pressure.mp4` — 248.7 s, 3840×2160, 19/19 VIDEO, master 6 min newer than sheet.
+
+**Fixes:** B00 spark `Salve, Liam.`; NBB00 spark `The pressure pushes out.`; BVDT verdict authored (`why the tumor grew back` + 3 real lines) with spoken narration; BHTF template placeholder → real IFP-lowering-strategy exercise; B01 FormBCard filled from narration; B02 FormACard shortened; NBB01 truncated heading fixed; BHTF segment reflowed. Body durations resynced to actual audio to stop `-shortest` truncation.
+
+**Gates:** AUDIO PASS (`−27.9 dB`); Gate V frames clean (B00, mid-body Manim, BVDT, BHTF, BOUT); Gate T structural PASS (0 sweep, 0 shape) — §8.1 min-size fails on 7 body beats are inherited from the source vox reel's Manim annotations (same failures on source), body LOCKED per rebuild contract, documented in AUDIT.md.

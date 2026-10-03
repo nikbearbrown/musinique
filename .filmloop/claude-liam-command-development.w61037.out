@@ -1,0 +1,12 @@
+mp4 (13:02) > beat_sheet.json (13:01) > pre-rebuild (12:52). Ordering is correct.
+
+**Reel `claude-liam-command-development` — DONE.**
+
+---
+
+**What happened:**
+
+- **Phase 0:** Pre-rebuild backup created (MD5 verified).
+- **Phase 1 audit:** 11 checks run. One FIX applied — BHTF greeting `"Your Turn"` → `"Your turn."` per HANDOFF LAW. One LOG — BHTF pacing at 3.53 WPS (just over 3.4 threshold, not retimed). All other checks PASS. Reel was not blocked.
+- **Phase 2 build:** No media existed; ran `remotion_scenes.py` to render all 7 Remotion compositions (ClaudeComposerAsk × 2, CommandDevAnatomy, CommandDevContent, CommandDevTell, ClaudeVerdictArtifact, ClaudeTitleOutro). Compiled review slate. GATE AUDIO PASS (−23.8 dB). Gate V PASS — zero BLOCKER, zero MAJOR across all real beats.
+- **Output:** `claude-liam-command-development-slate.mp4` — 335.1s, all 7 beats VIDEO, cut newer than sheet, audible.

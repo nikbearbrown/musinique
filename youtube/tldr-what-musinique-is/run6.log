@@ -1,0 +1,396 @@
+[run] skip B10_TheWeek — B10 already filled
+[run] skip B13_DoItAllFaster — B13 already filled
+[run] skip B14_TwoKinds — B14 already filled
+[run] skip B15_Commit — B15 already filled
+[run] skip B16_TheGateVetoes — B16 already filled
+[run] skip B17_TheMiddle — B17 already filled
+[run] skip B18_SameWeekMoneyKept — B18 already filled
+[run] GATE L — beat-mix lint
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[run] GATE SHAPE — finance chart-shape enforcement
+[gate-shape] skip — not a finance reel (beat_sheet.json)
+[run] GATE A — static pre-flight
+
+[static-check] 1 scene(s): 1 clean · 0 warn · 0 error
+
+[static-check] 1 scene(s): 1 clean · 0 warn · 0 error
+[run] GATE W — WCAG contrast + margins + text-overlap (independent second check)
+[gateW] B11_ArtistAsData clean
+[gateW] B12_CleanTheRelease clean
+[run] rendering B11_ArtistAsData
+/bin/sh: sox: command not found
+[09/23/26 13:12:15] WARNING  SoX could not be found!              __init__.py:10
+                                                                                
+                                 If you do not have SoX, proceed                
+                             here:                                              
+                                  - - -                                         
+                             http://sox.sourceforge.net/ - - -                  
+                                                                                
+                                 If you do (or think that you                   
+                             should) have SoX, double-check your                
+                                 path variables.                                
+                                                                                
+Manim Community v0.20.1
+
+[09/23/26 13:12:16] INFO     Animation 0 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1697911619_1456283820_54279173                     
+                             7)                                                 
+Animation 0: FadeOut(Text('The Week After The Song')), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                  [09/23/26 13:12:17] INFO     Animation 1 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_1790802280_23677011                     
+                             45)                                                
+Animation 1: FadeOut(VGroup of 4 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                    [09/23/26 13:12:18] INFO     Animation 2 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_2592726413_76661829                     
+                             8)                                                 
+Animation 2: GrowFromCenter(Dot):   0%|          | 0/1 [00:00<?, ?it/s]                                                                       [09/23/26 13:12:19] INFO     Animation 3 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_847171536_1367                         
+                             772240.mp4'                                        
+Animation 4: Create(Line):   0%|          | 0/15 [00:00<?, ?it/s]Animation 4: Create(Line):  60%|██████    | 9/15 [00:00<00:00, 83.50it/s]                                                                         [09/23/26 13:12:20] INFO     Animation 4 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_4169944831_202                         
+                             1059949.mp4'                                       
+[09/23/26 13:12:22] INFO     Animation 5 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_1184144772_968                         
+                             592478.mp4'                                        
+Animation 6: FadeIn(Text('Aditi Banksy')):   0%|          | 0/10 [00:00<?, ?it/s]Animation 6: FadeIn(Text('Aditi Banksy')): 100%|██████████| 10/10 [00:00<00:00, 93.80it/s]                                                                                                              INFO     Animation 6 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_2194302045_227                         
+                             7184670.mp4'                                       
+[09/23/26 13:12:23] INFO     Animation 7 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_358236389_3940                         
+                             266937.mp4'                                        
+Animation 8: FadeIn(Text('post-punk · spoken word')):   0%|          | 0/10 [00:00<?, ?it/s]Animation 8: FadeIn(Text('post-punk · spoken word')):  80%|████████  | 8/10 [00:00<00:00, 77.99it/s]                                                                                                    [09/23/26 13:12:24] INFO     Animation 8 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_791146137_1555                         
+                             491229.mp4'                                        
+[09/23/26 13:12:25] INFO     Animation 9 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_3803168647_767                         
+                             831729.mp4'                                        
+Animation 10: FadeIn(Text('five languages')):   0%|          | 0/10 [00:00<?, ?it/s]                                                                                    [09/23/26 13:12:27] INFO     Animation 10 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_1251232117_288                         
+                             20754.mp4'                                         
+[09/23/26 13:12:28] INFO     Animation 11 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_738879207_3783                         
+                             710141.mp4'                                        
+Animation 12: Transform(Line), etc.:   0%|          | 0/24 [00:00<?, ?it/s]Animation 12: Transform(Line), etc.:  12%|█▎        | 3/24 [00:00<00:00, 24.62it/s]Animation 12: Transform(Line), etc.:  29%|██▉       | 7/24 [00:00<00:00, 29.42it/s]Animation 12: Transform(Line), etc.:  42%|████▏     | 10/24 [00:00<00:00, 29.33it/s]Animation 12: Transform(Line), etc.:  54%|█████▍    | 13/24 [00:00<00:00, 28.70it/s]Animation 12: Transform(Line), etc.:  71%|███████   | 17/24 [00:00<00:00, 28.99it/s]Animation 12: Transform(Line), etc.:  88%|████████▊ | 21/24 [00:00<00:00, 30.18it/s]                                                                                    [09/23/26 13:12:31] INFO     Animation 12 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_1779113819_854                         
+                             596889.mp4'                                        
+[09/23/26 13:12:33] INFO     Animation 13 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_3735757518_850                         
+                             867663.mp4'                                        
+Animation 14: FadeTransform(Group):   0%|          | 0/12 [00:00<?, ?it/s]                                                                          [09/23/26 13:12:34] INFO     Animation 14 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_668065242_3844                         
+                             229261.mp4'                                        
+Animation 15: FadeOut(Dot):   0%|          | 0/12 [00:00<?, ?it/s]Animation 15: FadeOut(Dot):  50%|█████     | 6/12 [00:00<00:00, 56.06it/s]Animation 15: FadeOut(Dot): 100%|██████████| 12/12 [00:00<00:00, 56.07it/s]                                                                           [09/23/26 13:12:35] INFO     Animation 15 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_2223845494_319                         
+                             4885190.mp4'                                       
+[09/23/26 13:12:38] INFO     Animation 16 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B11_ArtistAsData                         
+                             /1167814662_4187132705_346                         
+                             5593603.mp4'                                       
+                    INFO     Combining to Movie file.   scene_file_writer.py:753
+                    INFO                                scene_file_writer.py:904
+                             File ready at                                      
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/B11_Artist                         
+                             AsData.mp4'                                        
+                                                                                
+                    INFO     Rendered B11_ArtistAsData              scene.py:278
+                             Played 17 animations                               
+You are using manim version v0.20.1, but version v0.21.0 is available.
+You should consider upgrading via pip install -U manim
+/bin/sh: sox: command not found
+[09/23/26 13:12:40] WARNING  SoX could not be found!              __init__.py:10
+                                                                                
+                                 If you do not have SoX, proceed                
+                             here:                                              
+                                  - - -                                         
+                             http://sox.sourceforge.net/ - - -                  
+                                                                                
+                                 If you do (or think that you                   
+                             should) have SoX, double-check your                
+                                 path variables.                                
+                                                                                
+Animation 0: FadeOut(Text('The Week After The Song')), etc.:   0%|          | 0/8 [00:00<?, ?it/s]Animation 0: FadeOut(Text('The Week After The Song')), etc.:  25%|██▌       | 2/8 [00:00<00:00, 10.55it/s]Animation 0: FadeOut(Text('The Week After The Song')), etc.:  50%|█████     | 4/8 [00:00<00:00, 12.59it/s]Animation 0: FadeOut(Text('The Week After The Song')), etc.:  75%|███████▌  | 6/8 [00:00<00:00, 11.82it/s]Animation 0: FadeOut(Text('The Week After The Song')), etc.: 100%|██████████| 8/8 [00:00<00:00, 11.18it/s]                                                                                                          Animation 1: FadeOut(VGroup of 4 submobjects):   0%|          | 0/6 [00:00<?, ?it/s]Animation 1: FadeOut(VGroup of 4 submobjects):  67%|██████▋   | 4/6 [00:00<00:00, 33.69it/s]                                                                                            Animation 2: GrowFromCenter(Dot):   0%|          | 0/8 [00:00<?, ?it/s]                                                                       /Users/bear/Documents/CoWork/bear-textbooks/books/brutalist.art/runtime/qc/manim_layout_audit.py:149: DeprecationWarning: This method is not guaranteed to stay around. Please prefer getting the attribute normally.
+  if float(mob.get_stroke_opacity()) <= 0.02:
+Animation 4: Create(Line):   0%|          | 0/9 [00:00<?, ?it/s]                                                                Animation 6: FadeIn(Text('Aditi Banksy')):   0%|          | 0/6 [00:00<?, ?it/s]                                                                                Animation 8: FadeIn(Text('post-punk · spoken word')):   0%|          | 0/6 [00:00<?, ?it/s]                                                                                           Animation 10: FadeIn(Text('five languages')):   0%|          | 0/6 [00:00<?, ?it/s]                                                                                   Animation 12: Transform(Line), etc.:   0%|          | 0/15 [00:00<?, ?it/s]Animation 12: Transform(Line), etc.:  27%|██▋       | 4/15 [00:00<00:00, 31.92it/s]Animation 12: Transform(Line), etc.:  60%|██████    | 9/15 [00:00<00:00, 41.09it/s]Animation 12: Transform(Line), etc.:  93%|█████████▎| 14/15 [00:00<00:00, 38.55it/s]                                                                                    Animation 14: FadeTransform(Group):   0%|          | 0/8 [00:00<?, ?it/s]                                                                         Animation 15: FadeOut(Dot):   0%|          | 0/8 [00:00<?, ?it/s]                                                                 [audit] scenes: 24 snapshots → CLEAN
+[audit] report: /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/layout_audit.md
+[run] rendering B12_CleanTheRelease
+/bin/sh: sox: command not found
+[09/23/26 13:12:48] WARNING  SoX could not be found!              __init__.py:10
+                                                                                
+                                 If you do not have SoX, proceed                
+                             here:                                              
+                                  - - -                                         
+                             http://sox.sourceforge.net/ - - -                  
+                                                                                
+                                 If you do (or think that you                   
+                             should) have SoX, double-check your                
+                                 path variables.                                
+                                                                                
+Manim Community v0.20.1
+
+Animation 0: FadeOut(Text('The Artist Is Data')), etc.:   0%|          | 0/12 [00:00<?, ?it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:   8%|▊         | 1/12 [00:00<00:01,  5.60it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  17%|█▋        | 2/12 [00:00<00:01,  5.63it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  25%|██▌       | 3/12 [00:00<00:01,  6.83it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  33%|███▎      | 4/12 [00:00<00:01,  6.99it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  42%|████▏     | 5/12 [00:00<00:00,  7.75it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  58%|█████▊    | 7/12 [00:00<00:00,  9.31it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  75%|███████▌  | 9/12 [00:01<00:00, 10.90it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  92%|█████████▏| 11/12 [00:01<00:00, 12.80it/s]                                                                                                       [09/23/26 13:12:54] INFO     Animation 0 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1697911619_3731635099_                         
+                             3199592786.mp4'                                    
+Animation 1: FadeOut(VGroup of 2 submobjects):   0%|          | 0/10 [00:00<?, ?it/s]Animation 1: FadeOut(VGroup of 2 submobjects):  30%|███       | 3/10 [00:00<00:00, 24.25it/s]Animation 1: FadeOut(VGroup of 2 submobjects):  60%|██████    | 6/10 [00:00<00:00, 23.16it/s]Animation 1: FadeOut(VGroup of 2 submobjects):  90%|█████████ | 9/10 [00:00<00:00, 25.01it/s]                                                                                             [09/23/26 13:12:56] INFO     Animation 1 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1167814662_3949866136_                         
+                             2030409525.mp4'                                    
+[09/23/26 13:12:57] INFO     Animation 2 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_1589615175_11351259                     
+                             99)                                                
+Animation 2: GrowFromCenter(Dot):   0%|          | 0/1 [00:00<?, ?it/s]                                                                       [09/23/26 13:12:59] INFO     Animation 3 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_3810639935_19648322                     
+                             28)                                                
+Animation 3: FadeIn(Text('A Freedom Riders Prayer')), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                 [09/23/26 13:13:02] INFO     Animation 4 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1167814662_3852755043_                         
+                             4209538854.mp4'                                    
+[09/23/26 13:13:04] INFO     Animation 5 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_1879568691_41465294                     
+                             0)                                                 
+Animation 5: LaggedStart(Group):   0%|          | 0/1 [00:00<?, ?it/s]                                                                      [09/23/26 13:13:06] INFO     Animation 6 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_490981592_199691693                     
+                             3)                                                 
+Animation 6: Create(Line):   0%|          | 0/1 [00:00<?, ?it/s]                                                                [09/23/26 13:13:08] INFO     Animation 7 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1167814662_1485648937_                         
+                             3096711160.mp4'                                    
+                    INFO     Animation 8 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_3269269540_41601828                     
+                             72)                                                
+Animation 8: FadeIn(Text('[Chorus 2x]')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                               [09/23/26 13:13:11] INFO     Animation 9 : Partial      scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1167814662_3323530007_                         
+                             281011071.mp4'                                     
+[09/23/26 13:13:13] INFO     Animation 10 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_2791125508_29102344                     
+                             56)                                                
+Animation 10: ReplacementTransform(Text('[Chorus 2x]')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [09/23/26 13:13:17] INFO     Animation 11 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1167814662_2280529465_                         
+                             3711931475.mp4'                                    
+[09/23/26 13:13:19] INFO     Animation 12 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_4084032282_24534801                     
+                             52)                                                
+Animation 12: FadeIn(Text('constructed example · a test can prove these rules')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                       [09/23/26 13:13:24] INFO     Animation 13 : Partial     scene_file_writer.py:601
+                             movie file written in                              
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/partial_mo                         
+                             vie_files/B12_CleanTheRele                         
+                             ase/1167814662_3821812622_                         
+                             2128319280.mp4'                                    
+[09/23/26 13:13:25] INFO     Animation 14 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_2475892636_28138536                     
+                             78)                                                
+Animation 14: FadeTransform(Group):   0%|          | 0/1 [00:00<?, ?it/s]                                                                         [09/23/26 13:13:27] INFO     Animation 15 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_3150275227_66879415                     
+                             )                                                  
+Animation 15: FadeTransform(Group):   0%|          | 0/1 [00:00<?, ?it/s]                                                                         [09/23/26 13:13:29] INFO     Animation 16 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_773427520_21710648)                     
+Animation 16: FadeOut(Dot):   0%|          | 0/1 [00:00<?, ?it/s]                                                                 [09/23/26 13:13:31] INFO     Animation 17 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             1167814662_2688965532_29110390                     
+                             38)                                                
+[09/23/26 13:13:32] INFO     Combining to Movie file.   scene_file_writer.py:753
+                    INFO                                scene_file_writer.py:904
+                             File ready at                                      
+                             '/Users/bear/Documents/CoW                         
+                             ork/bear-textbooks/books/m                         
+                             usinique/youtube/tldr-what                         
+                             -musinique-is/media/videos                         
+                             /scenes/2160p24/B12_CleanT                         
+                             heRelease.mp4'                                     
+                                                                                
+                    INFO     Rendered B12_CleanTheRelease           scene.py:278
+                             Played 18 animations                               
+You are using manim version v0.20.1, but version v0.21.0 is available.
+You should consider upgrading via pip install -U manim
+/bin/sh: sox: command not found
+[09/23/26 13:13:35] WARNING  SoX could not be found!              __init__.py:10
+                                                                                
+                                 If you do not have SoX, proceed                
+                             here:                                              
+                                  - - -                                         
+                             http://sox.sourceforge.net/ - - -                  
+                                                                                
+                                 If you do (or think that you                   
+                             should) have SoX, double-check your                
+                                 path variables.                                
+                                                                                
+Animation 0: FadeOut(Text('The Artist Is Data')), etc.:   0%|          | 0/8 [00:00<?, ?it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  38%|███▊      | 3/8 [00:00<00:00, 20.49it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.:  75%|███████▌  | 6/8 [00:00<00:00, 12.90it/s]Animation 0: FadeOut(Text('The Artist Is Data')), etc.: 100%|██████████| 8/8 [00:00<00:00, 13.53it/s]                                                                                                     Animation 1: FadeOut(VGroup of 2 submobjects):   0%|          | 0/6 [00:00<?, ?it/s]Animation 1: FadeOut(VGroup of 2 submobjects):  50%|█████     | 3/6 [00:00<00:00, 28.18it/s]                                                                                            Animation 2: GrowFromCenter(Dot):   0%|          | 0/5 [00:00<?, ?it/s]                                                                       Animation 3: FadeIn(Text('A Freedom Riders Prayer')), etc.:   0%|          | 0/18 [00:00<?, ?it/s]Animation 3: FadeIn(Text('A Freedom Riders Prayer')), etc.:  33%|███▎      | 6/18 [00:00<00:00, 43.67it/s]Animation 3: FadeIn(Text('A Freedom Riders Prayer')), etc.:  78%|███████▊  | 14/18 [00:00<00:00, 62.17it/s]                                                                                                           /Users/bear/Documents/CoWork/bear-textbooks/books/brutalist.art/runtime/qc/manim_layout_audit.py:149: DeprecationWarning: This method is not guaranteed to stay around. Please prefer getting the attribute normally.
+  if float(mob.get_stroke_opacity()) <= 0.02:
+Animation 5: LaggedStart(Group):   0%|          | 0/15 [00:00<?, ?it/s]                                                                       Animation 6: Create(Line):   0%|          | 0/8 [00:00<?, ?it/s]                                                                Animation 8: FadeIn(Text('[Chorus 2x]')):   0%|          | 0/6 [00:00<?, ?it/s]                                                                               Animation 10: ReplacementTransform(Text('[Chorus 2x]')):   0%|          | 0/12 [00:00<?, ?it/s]Animation 10: ReplacementTransform(Text('[Chorus 2x]')):  33%|███▎      | 4/12 [00:00<00:00, 26.94it/s]Animation 10: ReplacementTransform(Text('[Chorus 2x]')):  58%|█████▊    | 7/12 [00:00<00:00, 23.33it/s]Animation 10: ReplacementTransform(Text('[Chorus 2x]')):  83%|████████▎ | 10/12 [00:00<00:00, 25.30it/s]                                                                                                        Animation 12: FadeIn(Text('constructed example · a test can prove these rules')):   0%|          | 0/8 [00:00<?, ?it/s]                                                                                                                       Animation 14: FadeTransform(Group):   0%|          | 0/6 [00:00<?, ?it/s]                                                                         Animation 15: FadeTransform(Group):   0%|          | 0/6 [00:00<?, ?it/s]                                                                         Animation 16: FadeOut(Dot):   0%|          | 0/5 [00:00<?, ?it/s]Animation 16: FadeOut(Dot):  60%|██████    | 3/5 [00:00<00:00, 20.29it/s]                                                                         [audit] scenes: 24 snapshots → CLEAN
+[audit] report: /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/layout_audit.md
+[remotion] B00: filled already (skip)
+[remotion] B01: filled already (skip)
+[remotion] B02: filled already (skip)
+[remotion] B03: filled already (skip)
+[remotion] BVDT: filled already (skip)
+[remotion] BHTF: filled already (skip)
+[remotion] BOUT: filled already (skip)
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] compiled B11  MANIM    18.0s  ← B11.mp4
+[art] compiled B12  MANIM    17.0s  ← B12.mp4
+[art] motion histogram: graphic:9  remotion:7
+[art] SKIN LINT: B00: palette=claude but the cold open is 'ClaudeTldrWhat' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] build stamp → beat_sheet.json (16/16 filled)
+[art] QC contact sheet → /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/qc-sheet.png
+[art] wrote /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/tldr-what-musinique-is-slate.mp4  (251.9s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 16/16 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B10:MANIM B11:MANIM B12:MANIM B13:MANIM B14:MANIM B15:MANIM B16:MANIM B17:MANIM B18:MANIM BVDT:VIDEO BHTF:VIDEO BOUT:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=32 BLOCKER=0 MAJOR=0 → /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/_qc/REPORT.md
+[run] done → /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is  (QC gates: on)
+[run] REVIEW built; no final exported. Use ./art final <reel> for a verified master.
+[run] any remaining slates are YOUR slots — see /Users/bear/Documents/CoWork/bear-textbooks/books/musinique/youtube/tldr-what-musinique-is/SHOTLIST.md
+exit 0

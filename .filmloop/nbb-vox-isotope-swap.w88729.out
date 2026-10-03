@@ -1,0 +1,18 @@
+Cut is 05:03, sheet is 05:02 — mp4 newer than sheet, DONE check passes. Reporting complete.
+
+**Reel: `cancer-nanomedicine/nbb-vox-isotope-swap`** — built, 16/16 VIDEO, 220.1 s, 4K, audio present at −24.2 dB.
+
+**What I did**
+- Stripped the duplicate empty `B00/BVDT/BHTF/BOUT` placeholders (dead template shells). The real `NBB00–NBB03` bookends carried the cold-open / verdict / your-turn / outro function on the @NikBearBrown channel.
+- Fixed `NBB00` greeting `"Your turn."` → `"Namaste, Liam"` (world-language, 4 words, not Bear's Wagwan). Shortened the 87-word composer ask so it no longer clips.
+- Rewrote `NBB02` bracketed template command ("Explain how [title] applies…") to a real exercise using the video's own nouns (trastuzumab / imatinib / cetuximab → sketch the companion PET probe and disqualifying scan population).
+- Added terminating period to `NBB03` outro title so §8.9 doesn't flag the 2-char `It`.
+- Set `NBB00`/`NBB02` `segment` from truncated `"See the"` to `"Isotope Swap"`.
+- Dropped B01's unused FormBCard block (three empty subs the beat never rendered).
+- Symlinked `B01–B12` from source `../vox-isotope-swap/clips/`. Rendered `NBB00/NBB01/NBB02/NBB03` via `remotion_scenes.py`, then re-rendered `NBB00/NBB02/NBB03` after the props edits.
+
+**Inherited constraints (documented, not blocking)**
+- `type_check.py` §8.1 min-size flags on B03/B06/B10/B11/B12 and §8.6b bbox-overlap on B10 — all on source-pipeline Manim clips this variant reuses via symlink. Fixing them means editing source Manim + re-rendering the source reel, which the rebuild contract keeps LOCKED. Sampled frames show labels are legible; the small-px measurements look like they pick up stroke fragments / hairline underlines.
+- B02 and B09 render as source-side slate cards (source metadata's `slates: [B02, B09, B13, B14]`) — declared HOLDs, not new punts.
+
+**Files:** `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md`, `beat_sheet.pre-rebuild.json`, `_qc/frames/*`, `vox-isotope-swap.mp4`. `FILMLOOP-LOG.md` appended. No sheet edit after final compile.

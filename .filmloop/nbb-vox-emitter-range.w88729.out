@@ -1,0 +1,9 @@
+Done. Master mp4 mtime is 2 min newer than beat_sheet.json — the reel passes the supervisor's stale check.
+
+**nbb-vox-emitter-range** shipped:
+- `vox-emitter-range.mp4` · 186.2 s · 16/16 real beats (`Counter({'VIDEO': 15, 'STILL': 1})`) · mean_volume −24.2 dB
+- **PHASE 0**: pre-rebuild snapshot written; envelope normalized
+- **PHASE 1**: consolidated duplicate SLATE bookends (dropped B00/BVDT/BHTF/BOUT scaffold, renamed NBB00-03 into their slots with renamed mp3s); spark greeting `"Hola, Liam"` on B00; verdict authored fresh (4 real key findings from body numbers); BHTF `[bracket]` template replaced with a real exercise + 3 real next-step lines; B01 FormBCard items filled; body GRAPHIC beats given FormACard patterns compressed from each beat's own `production_viz.label`; §8.9 truncation false-positive on the title's "Pick It" ending fixed by a trailing period on display titles only
+- **PHASE 2**: bookend + body Remotion renders (16 real); first compile mux truncated to 186 s because inherited `actual_duration_s` values were padded 0.2–3.0 s past the actual mp3 durations (worst offender B11: 21.97→19.03); re-measured, wrote true durations back, recompiled with `--force`; all 16 beats now visible; final master mtime 22:57 > sheet mtime 22:55
+- **Gates**: TYPECHECK PASS · content-check PASS · frame-check PASS · lane-check PASS · GATE AUDIO PASS
+- **Downgrades**: none. No validator loosened.

@@ -1,0 +1,275 @@
+1
+00:00:00,000 --> 00:00:04,455
+Namaste. This is Liam, in for Bear. This film is about what Musinique is. It's an
+
+2
+00:00:04,475 --> 00:00:08,090
+independent label, and now a free toolkit being built for indie musicians. The
+
+3
+00:00:08,110 --> 00:00:12,006
+machine offers drafts and does the busywork. You listen, refine, and make the calls,
+
+4
+00:00:12,026 --> 00:00:16,760
+on your own data. And the trap: thinking it's one more AI that writes your songs for
+
+5
+00:00:16,780 --> 00:00:17,040
+you.
+
+6
+00:00:17,110 --> 00:00:21,185
+Why should you care? For an indie artist, the scarce thing isn't songs. It's money
+
+7
+00:00:21,205 --> 00:00:25,553
+and attention. Pay for the wrong playlist, and the streams can be fake and the money
+
+8
+00:00:25,573 --> 00:00:29,102
+gone. Skip the release chores, and the song stays invisible. Get the decisions
+
+9
+00:00:29,122 --> 00:00:33,470
+right, and a small budget goes where a record, not a feeling, says it can matter.
+
+10
+00:00:33,540 --> 00:00:38,084
+The real question: what will it help me decide? 'What will it write for me' is the
+
+11
+00:00:38,104 --> 00:00:41,842
+trap. Drafts got cheap, and every tool makes them now. Deciding what's good, and
+
+12
+00:00:41,862 --> 00:00:43,990
+where your time and money go, did not.
+
+13
+00:00:44,060 --> 00:00:48,745
+Three terms. A distributor is a service, like DistroKid, that delivers your song to
+
+14
+00:00:48,765 --> 00:00:52,778
+the streaming platforms. Spotify for Artists is Spotify's dashboard of your own
+
+15
+00:00:52,798 --> 00:00:57,820
+streams, listeners, and their cities. And playlist placement is a fee paid to get a
+
+16
+00:00:57,840 --> 00:00:59,500
+song added to someone's playlist.
+
+17
+00:00:59,570 --> 00:01:03,702
+Here's an artist with a finished song. Now the week begins. Lyrics to finish, a
+
+18
+00:01:03,722 --> 00:01:07,853
+title to clean, release files for the distributor, a description and a bio. And an
+
+19
+00:01:07,873 --> 00:01:11,728
+offer: pay for a playlist placement, and a scanner says the playlist is clean.
+
+20
+00:01:11,748 --> 00:01:15,880
+There's one small budget. So which of these jobs deserves it, and on what evidence?
+
+21
+00:01:15,950 --> 00:01:20,046
+Start with the lyrics. Musinique keeps each artist as data: a profile with the
+
+22
+00:01:20,066 --> 00:01:24,163
+voice, the languages, the genres. Ask for ideas as Aditi Banksy, and you get
+
+23
+00:01:24,183 --> 00:01:27,985
+post-punk spoken word drafts in five languages. Swap in Mama Sparrow, same request,
+
+24
+00:01:28,005 --> 00:01:32,984
+and you get lullaby sketches. But a draft isn't a song. You sing it, hear it, cut
+
+25
+00:01:33,004 --> 00:01:35,630
+it, and rewrite it. The machine suggests. You finish.
+
+26
+00:01:35,700 --> 00:01:40,126
+Now the release. A working title like this one: a version tag, the word final, a
+
+27
+00:01:40,146 --> 00:01:44,572
+year. The stores want a clean title, so the machine strips it to 'A Freedom Riders
+
+28
+00:01:44,592 --> 00:01:48,184
+Prayer'. Same with the lyrics: 'chorus, two times' becomes the chorus, written out
+
+29
+00:01:48,204 --> 00:01:52,630
+twice. These rules are fixed, so a test can prove them. Again, the machine does it.
+
+30
+00:01:52,700 --> 00:01:57,232
+So is that the whole idea? An AI that does everything, faster? Let's try it. Hand
+
+31
+00:01:57,252 --> 00:02:01,216
+every job to the machine, even the lyrics, even the playlist. The scanner said
+
+32
+00:02:01,236 --> 00:02:05,484
+clean, so it pays. Watch the budget. Everything got faster, and the money still went
+
+33
+00:02:05,504 --> 00:02:07,760
+to the one job that speed can't answer.
+
+34
+00:02:07,830 --> 00:02:11,811
+Back up. Here's the reframe. Every job is one of two kinds. Execution: clean the
+
+35
+00:02:11,831 --> 00:02:15,545
+title, fill in the forms, draft the description. That's cheap now, and the machine
+
+36
+00:02:15,565 --> 00:02:19,812
+should do it. Or a decision: which lyric is true, release this, pay for that. A
+
+37
+00:02:19,832 --> 00:02:23,546
+decision needs a person, and evidence: your ear, your data. The machine can offer
+
+38
+00:02:23,566 --> 00:02:27,280
+drafts for it, but Musinique sorts every job into one of those two kinds.
+
+39
+00:02:27,350 --> 00:02:31,973
+So look at the playlist with your own data. The scanner says clean. Your Spotify for
+
+40
+00:02:31,993 --> 00:02:36,037
+Artists page says the playlist has about a dozen followers, sends you hundreds of
+
+41
+00:02:36,057 --> 00:02:40,680
+streams a day, and the top city is Ashburn, Virginia. Before it moves: pay, or skip?
+
+42
+00:02:40,750 --> 00:02:44,939
+Skip. Ashburn is one of the world's biggest data-center hubs, and a dozen followers
+
+43
+00:02:44,959 --> 00:02:49,748
+rarely explain hundreds of plays a day. In the plan, a data-center city is a gate,
+
+44
+00:02:49,768 --> 00:02:54,258
+not a vote. It vetoes the payment, whatever the scanner said. And look at the
+
+45
+00:02:54,278 --> 00:02:55,460
+budget. It never moved.
+
+46
+00:02:55,530 --> 00:02:59,119
+That's what Musinique is. The machine does the chores and suggests drafts. You
+
+47
+00:02:59,139 --> 00:03:03,005
+listen, decide, and finish, on your own data. It doesn't try to do everything
+
+48
+00:03:03,025 --> 00:03:06,891
+itself. Brand and copy go to Madison. Video goes to brutalist dot art. Musinique
+
+49
+00:03:06,911 --> 00:03:11,332
+keeps the part in the middle: what to make, what to release, and where the money
+
+50
+00:03:11,352 --> 00:03:11,610
+goes.
+
+51
+00:03:11,680 --> 00:03:16,080
+Back to our artist. Same song, same week. The chores are done by the machine, the
+
+52
+00:03:16,100 --> 00:03:20,223
+lyrics are yours, finished by ear, and the budget is still there for something the
+
+53
+00:03:20,243 --> 00:03:24,367
+evidence supports. One honest note: Musinique is a plan today, and the build is just
+
+54
+00:03:24,387 --> 00:03:28,234
+starting. Not taught here: how the audit weighs each piece of evidence. That's your
+
+55
+00:03:28,254 --> 00:03:28,510
+turn.
+
+56
+00:03:28,580 --> 00:03:32,912
+Let's recap with Claude. Musinique is an independent label, and a free toolkit being
+
+57
+00:03:32,932 --> 00:03:36,953
+built for indie musicians. The machine suggests lyric drafts and does the chores:
+
+58
+00:03:36,973 --> 00:03:41,616
+clean titles, release files. You hear, refine, and decide, on your own data, and a
+
+59
+00:03:41,636 --> 00:03:46,589
+gate vetoes a bad spend. Brand and copy go to Madison. Video goes to brutalist dot
+
+60
+00:03:46,609 --> 00:03:46,900
+art.
+
+61
+00:03:46,970 --> 00:03:50,838
+Your turn. Paste this into Claude: Here is a playlist offer I received: [paste the
+
+62
+00:03:50,858 --> 00:03:54,468
+offer]. Here is what my Spotify for Artists page shows for that playlist: [paste
+
+63
+00:03:54,488 --> 00:03:58,615
+followers, streams per day, top cities, and the date my song was added]. Do not tell
+
+64
+00:03:58,635 --> 00:04:03,022
+me whether to pay yet. First, list which of these facts you can check and which you
+
+65
+00:04:03,042 --> 00:04:06,911
+are only inferring. Then name any top city that is a known data-center hub, and
+
+66
+00:04:06,931 --> 00:04:10,281
+compare streams per day with followers. Finish with one question I must answer
+
+67
+00:04:10,301 --> 00:04:14,169
+before I spend anything. Two things to look for. Did it separate what it checked
+
+68
+00:04:14,189 --> 00:04:17,280
+from what it inferred? And did it leave the decision with you?
+
+69
+00:04:17,350 --> 00:04:21,220
+What Musinique Is. At Nik Bear Brown.

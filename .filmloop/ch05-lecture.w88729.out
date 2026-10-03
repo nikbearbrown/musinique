@@ -1,0 +1,8 @@
+Done. Master mtime Aug 31 07:36 is newer than beat_sheet.json Jul 12 17:05 (not stale).
+
+**cancer-nanomedicine-ch05-antibody-drug-conjugates** — REVIEW CUT (lecture-deck):
+- `cancer-nanomedicine-ch05-antibody-drug-conjugates.mp4`, 634.7 s / 10.6 min · 1280×720 p30 · h264 · AAC 44.1 kHz mono · 20.1 MB · 12/12 real slides + 12/12 real ElevenLabs Bear audio segments. `build.status = Counter({'real': 12, 'slate': 0})`.
+- Gate V (frames read at 0/5/10 min): clean brutalist palette, terracotta warn chip on S01, five wire rows on S07 legible with no overflow, dark canvas + green tag row on S12 close.
+- Audio: mean_volume −18.4 dB (well above −40 dB gate).
+- PHASE 1: 3 PASS (stale, punt, brand), 8 N/A (all claude-liam-specific checks — this is an HTML lecture deck), 1 PASS-with-log (S06 slow-read 1.97 wps deliberate on the T-DM1 vs T-DXd comparison).
+- Sheet locked, `beat_sheet.pre-rebuild.json` written byte-exact BEFORE any edit. `AUDIT.md` + `TYPECHECK.md` written. FILMLOOP-LOG entry appended.

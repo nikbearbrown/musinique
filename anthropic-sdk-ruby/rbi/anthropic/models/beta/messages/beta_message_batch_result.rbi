@@ -1,0 +1,97 @@
+# typed: strong
+
+module Anthropic
+  module Models
+    module Beta
+      module Messages
+        # Processing result for this request.
+        #
+        # Contains a Message output if processing was successful, an error response if
+        # processing failed, or the reason why processing was not attempted, such as
+        # cancellation or expiration.
+        module BetaMessageBatchResult
+          extend Anthropic::Internal::Type::Union
+
+          Variants =
+            T.type_alias do
+              T.any(
+                Anthropic::Beta::Messages::BetaMessageBatchSucceededResult,
+                Anthropic::Beta::Messages::BetaMessageBatchErroredResult,
+                Anthropic::Beta::Messages::BetaMessageBatchCanceledResult,
+                Anthropic::Beta::Messages::BetaMessageBatchExpiredResult
+              )
+            end
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Anthropic::Beta::Messages::BetaMessageBatchResult::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            SUCCEEDED =
+              T.let(
+                :succeeded,
+                Anthropic::Beta::Messages::BetaMessageBatchResult::Type::TaggedSymbol
+              )
+            ERRORED =
+              T.let(
+                :errored,
+                Anthropic::Beta::Messages::BetaMessageBatchResult::Type::TaggedSymbol
+              )
+            CANCELED =
+              T.let(
+                :canceled,
+                Anthropic::Beta::Messages::BetaMessageBatchResult::Type::TaggedSymbol
+              )
+            EXPIRED =
+              T.let(
+                :expired,
+                Anthropic::Beta::Messages::BetaMessageBatchResult::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Anthropic::Beta::Messages::BetaMessageBatchResult::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          sig do
+            override.returns(
+              T::Array[
+                Anthropic::Beta::Messages::BetaMessageBatchResult::Variants
+              ]
+            )
+          end
+          def self.variants
+          end
+
+          # Creates a new instance of the variant class whose `type` matches the given
+          # value, passing the remaining arguments to its constructor.
+          sig do
+            params(
+              type:
+                Anthropic::Beta::Messages::BetaMessageBatchResult::Type::OrSymbol,
+              message: Anthropic::Beta::BetaMessage::OrHash,
+              error: Anthropic::BetaErrorResponse::OrHash
+            ).returns(
+              Anthropic::Beta::Messages::BetaMessageBatchResult::Variants
+            )
+          end
+          def self.new(type:, message: nil, error: nil)
+          end
+        end
+      end
+    end
+  end
+end

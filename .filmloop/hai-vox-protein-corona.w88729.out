@@ -1,0 +1,4 @@
+Done. Cut is 44s newer than the sheet.
+
+**`hai-vox-protein-corona` — DONE.**
+Delivered `vox-protein-corona-slate.mp4` (151.8s, 3840×2160, 9 real beats + 4 honest CARD slates). HAI vox reel, not Claude-washed. Fixes: dropped dead ElevenLabs `voice_id`/`clock`; filled B02 empty sub; reshaped B04–B10 GRAPHIC beats to Remotion `FormBCard` (no `scenes.py` existed, sibling `hai-vox-delivery-diagnosis` did the same reshape 2026-08-27); reshaped B12/B13 outro props from old schema (which silently rendered `CLAUDE COWORK` on a HAI reel) to current `eyebrow/line` / `line/handle`. All gates PASS (content, frame, lane, audio, TYPECHECK, Gate V frame read). No validator loosened.

@@ -1,0 +1,18 @@
+You've hit your session limit · resets 9:40pm (America/New_York)
+You've hit your session limit · resets 9:40pm (America/New_York)
+You've hit your session limit · resets 9:40pm (America/New_York)
+Both show 22:02 — exact seconds: mp4 `1787709755` > beat_sheet `1787709751` (4 s newer). ✓
+
+---
+
+**DONE — claude-liam-fhir**
+
+`claude-liam-fhir-slate.mp4` written. 106.0 s. 7/7 VIDEO. No slates. Audible (−23.8 dB). Cut is newer than the sheet.
+
+**Phase 1 audit — all 11 checks PASS:**
+Inherited fixes from prior session: modelLabel Opus 4.8 → 4.7; B02 card-only → FlowDiagram; B03/BHTF truncations restored; BVDT boilerplate verdict replaced with reel-specific content; sparkLine lengths corrected.
+
+**Phase 2 Gate V fix:**
+B02 FHIR R4 Server node sub "Epic · Cerner · MEDITECH" was truncated to "Epic · Cerner ·" (MAJOR). Changed to "any SMART endpoint" — renders as "any SMART" (ADVISORY; node width limit; "endpoint" drops but concept is intact). B02 re-rendered, master recompiled.
+
+**Build Counter:** `{'VIDEO': 7}`

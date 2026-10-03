@@ -1,0 +1,13 @@
+Done. Master cut newer than sheet by 33s.
+
+**Reel:** `anthropics/cancer-nanomedicine/youtube/hai-vox-dar-optimum` → `vox-dar-optimum-slate.mp4` (166.3s, HAI channel, Kokoro am_onyx).
+
+**PHASE 0 rebuild:** pre-rebuild backup made; dead ElevenLabs `voice_id` + `clock` prose dropped; `shot.form` derived on all 14 beats; HAI bookends (OutroSeries + OutroCTA) preserved (not Claude-washed).
+
+**PHASE 1 audit (AUDIT.md):** every check PASS. Verdict absent-legal (endcard B12 carries the equivalent claim). Lens: Popper + Hume earned. Pacing all in-window except B14 outro 1.65 wps (logged, natural cadence).
+
+**PHASE 2 build:**
+- Compiled `--review`. content/frame/lane/audio gates all PASS. `Counter({'VIDEO': 14})`. mean_volume -23.9 dB. Audio stream present.
+- Six declared Manim scenes (B02_LoadingLogic, B04_DARScale, B06_HydrophobicLoad, B07_ClearanceTrap, B09_OptimumCurve, B10_ExamplePharma) do not exist in `animated_graphics.py` — filled via `fill_slates.py` FormACard fallback. Original mixed-media intent preserved in `beat_sheet.pre-rebuild.json`.
+- **Gate V MAJOR-DOWNGRADE (logged):** OutroSeries Remotion component hardcodes "Claude Cowork" and ignores the `seriesTitle` prop; audio says "Cancer Nanomedicine series from Humanitarians AI" but the visual mismatches. Root cause is upstream in the component, out of scope for reel-level fix — flagged for upstream repair.
+- **Content-quality note:** because the six Manim classes are missing, the built cut has zero drawn figures; every body beat is a FormACard slate — legal in a review-slate but flagged as the primary follow-up for a MASTER cut.

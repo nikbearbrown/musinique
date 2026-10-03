@@ -1,0 +1,373 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 1543,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "Before a new Claude model ships,"
+    } ]
+  }, {
+    "tStartMs": 4796,
+    "dDurationMs": 4046,
+    "segs": [ {
+      "utf8": "a small group of customers\nis already testing it, breaking it,"
+    } ]
+  }, {
+    "tStartMs": 8842,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "and shaping what ships with it."
+    } ]
+  }, {
+    "tStartMs": 11511,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "We sat down to see what they're learning."
+    } ]
+  }, {
+    "tStartMs": 20395,
+    "dDurationMs": 3211,
+    "segs": [ {
+      "utf8": "When you get something new from Anthropic, what is the energy like?"
+    } ]
+  }, {
+    "tStartMs": 23606,
+    "dDurationMs": 2294,
+    "segs": [ {
+      "utf8": "We know a storm's ahead,\nbut there's something exciting"
+    } ]
+  }, {
+    "tStartMs": 25900,
+    "dDurationMs": 2586,
+    "segs": [ {
+      "utf8": "about a storm\nbecause it's all hands on deck."
+    } ]
+  }, {
+    "tStartMs": 28486,
+    "dDurationMs": 2086,
+    "segs": [ {
+      "utf8": "Yeah, it feels like\nwe're moving at the speed of light."
+    } ]
+  }, {
+    "tStartMs": 31156,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "That's like getting the call and jumping\nfrom whatever you're working on."
+    } ]
+  }, {
+    "tStartMs": 33867,
+    "dDurationMs": 2669,
+    "segs": [ {
+      "utf8": "We have something new,\nlet's figure out what it's like."
+    } ]
+  }, {
+    "tStartMs": 36536,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "The moment we get\na new model from Anthropic,"
+    } ]
+  }, {
+    "tStartMs": 38997,
+    "dDurationMs": 3128,
+    "segs": [ {
+      "utf8": "we realize the grounding has changed."
+    } ]
+  }, {
+    "tStartMs": 43877,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "What's it like to work at a company\nthat's helping to shape the frontier?"
+    } ]
+  }, {
+    "tStartMs": 47422,
+    "dDurationMs": 1084,
+    "segs": [ {
+      "utf8": "It's insanely fun."
+    } ]
+  }, {
+    "tStartMs": 48506,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "All of us are just in learning mode."
+    } ]
+  }, {
+    "tStartMs": 50216,
+    "dDurationMs": 3838,
+    "segs": [ {
+      "utf8": "This moment just feels like a generational\nopportunity for anyone in this industry."
+    } ]
+  }, {
+    "tStartMs": 54054,
+    "dDurationMs": 4838,
+    "segs": [ {
+      "utf8": "I feel very lucky\nand also very responsible."
+    } ]
+  }, {
+    "tStartMs": 58892,
+    "dDurationMs": 3962,
+    "segs": [ {
+      "utf8": "We need to continue to push the envelope,\ncontinue innovating, being more secure,"
+    } ]
+  }, {
+    "tStartMs": 62854,
+    "dDurationMs": 1919,
+    "segs": [ {
+      "utf8": "and making things easier to build with."
+    } ]
+  }, {
+    "tStartMs": 64773,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "In a way, I love that I can unlock\na new class of developers and builders."
+    } ]
+  }, {
+    "tStartMs": 71488,
+    "dDurationMs": 2252,
+    "segs": [ {
+      "utf8": "What's the first thing\nyou throw at a new model?"
+    } ]
+  }, {
+    "tStartMs": 73740,
+    "dDurationMs": 4087,
+    "segs": [ {
+      "utf8": "The very first thing\nis we will start automated evals"
+    } ]
+  }, {
+    "tStartMs": 77827,
+    "dDurationMs": 1627,
+    "segs": [ {
+      "utf8": "just so that they start\nrunning in the background."
+    } ]
+  }, {
+    "tStartMs": 79454,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "One use case that is a\npipe dream that's easy to point to"
+    } ]
+  }, {
+    "tStartMs": 82457,
+    "dDurationMs": 3629,
+    "segs": [ {
+      "utf8": "as a particularly complex legal task\nis drafting an S1."
+    } ]
+  }, {
+    "tStartMs": 86086,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "Now with agentic capabilities\nwhere these models can go out"
+    } ]
+  }, {
+    "tStartMs": 89631,
+    "dDurationMs": 4463,
+    "segs": [ {
+      "utf8": "and find information that they need,\nsynthesize it, edit documents,"
+    } ]
+  }, {
+    "tStartMs": 94094,
+    "dDurationMs": 4087,
+    "segs": [ {
+      "utf8": "we're getting to larger\nand larger chunks of the S1"
+    } ]
+  }, {
+    "tStartMs": 98181,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "that you can just send\nthe model on its way to do."
+    } ]
+  }, {
+    "tStartMs": 100892,
+    "dDurationMs": 2127,
+    "segs": [ {
+      "utf8": "Just by swapping in that one model,"
+    } ]
+  }, {
+    "tStartMs": 103019,
+    "dDurationMs": 2628,
+    "segs": [ {
+      "utf8": "every question I ever wanted\nto ask it started getting answered."
+    } ]
+  }, {
+    "tStartMs": 105647,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "It went from this agent can\nsometimes answer questions,"
+    } ]
+  }, {
+    "tStartMs": 109234,
+    "dDurationMs": 1543,
+    "segs": [ {
+      "utf8": "sometimes get stuck, to,"
+    } ]
+  }, {
+    "tStartMs": 110777,
+    "dDurationMs": 3337,
+    "segs": [ {
+      "utf8": "oh, my God, it is answering\nevery question quickly and accurately."
+    } ]
+  }, {
+    "tStartMs": 114114,
+    "dDurationMs": 4129,
+    "segs": [ {
+      "utf8": "The dashboard of the testing agent\nsuccess rate has just increased"
+    } ]
+  }, {
+    "tStartMs": 118243,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "by, I think it's 20%."
+    } ]
+  }, {
+    "tStartMs": 121496,
+    "dDurationMs": 3420,
+    "segs": [ {
+      "utf8": "Things that don't work today\nare the best sign for,"
+    } ]
+  }, {
+    "tStartMs": 124916,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "here's what the next models\nare going to be way better at."
+    } ]
+  }, {
+    "tStartMs": 127127,
+    "dDurationMs": 2877,
+    "segs": [ {
+      "utf8": "Seeing evals that have never\nworked start working"
+    } ]
+  }, {
+    "tStartMs": 130004,
+    "dDurationMs": 1961,
+    "segs": [ {
+      "utf8": "and then start working consistently,"
+    } ]
+  }, {
+    "tStartMs": 131965,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "this model is going\nto be something special."
+    } ]
+  }, {
+    "tStartMs": 135677,
+    "dDurationMs": 1960,
+    "segs": [ {
+      "utf8": "What's it like working with Anthropic?"
+    } ]
+  }, {
+    "tStartMs": 137637,
+    "dDurationMs": 3504,
+    "segs": [ {
+      "utf8": "It feels like I have a conversation\nwith you almost every other day."
+    } ]
+  }, {
+    "tStartMs": 141141,
+    "dDurationMs": 2752,
+    "segs": [ {
+      "utf8": "The engineers on the team, I feel like,\nare almost on the same team."
+    } ]
+  }, {
+    "tStartMs": 143893,
+    "dDurationMs": 3254,
+    "segs": [ {
+      "utf8": "It's less like we're just\nbuying something from you,"
+    } ]
+  }, {
+    "tStartMs": 147147,
+    "dDurationMs": 2419,
+    "segs": [ {
+      "utf8": "and more like we build with you."
+    } ]
+  }, {
+    "tStartMs": 149566,
+    "dDurationMs": 2877,
+    "segs": [ {
+      "utf8": "We have a very high trust bar\nthat anything you publish"
+    } ]
+  }, {
+    "tStartMs": 152443,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "is not going to be slop."
+    } ]
+  }, {
+    "tStartMs": 155321,
+    "dDurationMs": 4255,
+    "segs": [ {
+      "utf8": "What is one word or phrase\nthat characterizes what it feels like"
+    } ]
+  }, {
+    "tStartMs": 159576,
+    "dDurationMs": 1418,
+    "segs": [ {
+      "utf8": "to actually be building at the frontier?"
+    } ]
+  }, {
+    "tStartMs": 160994,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "Dazzling, if that makes sense."
+    } ]
+  }, {
+    "tStartMs": 163037,
+    "dDurationMs": 1710,
+    "segs": [ {
+      "utf8": "It can be blinding at times."
+    } ]
+  }, {
+    "tStartMs": 164747,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "Just the brightness,\nopportunity, excitement."
+    } ]
+  }, {
+    "tStartMs": 166958,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "Compounding, we get the latest tools,"
+    } ]
+  }, {
+    "tStartMs": 169169,
+    "dDurationMs": 2043,
+    "segs": [ {
+      "utf8": "which leads to our customers\ngetting a better product,"
+    } ]
+  }, {
+    "tStartMs": 171212,
+    "dDurationMs": 2044,
+    "segs": [ {
+      "utf8": "which leads to us getting better products."
+    } ]
+  }, {
+    "tStartMs": 173256,
+    "dDurationMs": 5130,
+    "segs": [ {
+      "utf8": "You have a big wave under\nyou that is changing"
+    } ]
+  }, {
+    "tStartMs": 178386,
+    "dDurationMs": 3837,
+    "segs": [ {
+      "utf8": "the way your user is working\nand changing the way you are working."
+    } ]
+  }, {
+    "tStartMs": 182223,
+    "dDurationMs": 2211,
+    "segs": [ {
+      "utf8": "And you have to keep your balance."
+    } ]
+  }, {
+    "tStartMs": 184434,
+    "dDurationMs": 1793,
+    "segs": [ {
+      "utf8": "And you know there are\nbigger waves coming."
+    } ]
+  } ]
+}

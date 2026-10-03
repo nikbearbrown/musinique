@@ -1,0 +1,16 @@
+You've hit your session limit · resets 3:50am (America/New_York)
+You've hit your session limit · resets 3:50am (America/New_York)
+You've hit your session limit · resets 3:50am (America/New_York)
+You've hit your session limit · resets 3:50am (America/New_York)
+You've hit your session limit · resets 3:50am (America/New_York)
+DONE. `claude-liam-support.mp4` (04:44) is newer than `beat_sheet.json` (04:43). Supervisor DONE check passes.
+
+**Summary of this invocation:**
+
+- **Reel:** claude-liam-support — "Claude, On Call — The Support Plugin"
+- **GATE T:** PASS (5 kerning/contrast failures → 0 after 3 type_check rounds)
+- **GATE AUDIO:** PASS (−24.2 dB)
+- **Gate V:** PASS (5 spot-checks, zero blockers)
+- **Cut:** `claude-liam-support.mp4`, 333.6s, 31 beats
+
+Key fixes applied: B18 TERRA stroke→INK (contrast), B02 pipeline opacity (kerning), B03 bubble stroke+unified box (kerning), B13 font+accent bar (kerning), B15 FAQ bar (kerning), B06 missing audio generated (11.35s am_onyx).

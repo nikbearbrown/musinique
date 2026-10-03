@@ -1,0 +1,404 @@
+{
+  "metadata": {
+    "title": "Claude, K12 Lesson Planning.",
+    "slug": "claude-liam-k12-lesson-planning",
+    "topic": "K12-LESSON-PLANNING · ANTHROPIC SKILL",
+    "register": "Teardown",
+    "audience": "Claude",
+    "brand": "claude-liam",
+    "persona": "Liam (in for Bear)",
+    "voice": "am_onyx",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "greeting": "Hola, Liam",
+    "folderLabel": "@NikBearBrown",
+    "in_for_bear": true,
+    "playlist": "Claude Taught",
+    "modifier": "skill-teardown",
+    "modelLabel": "Opus 4.8",
+    "source_skill": "/Users/bear/Documents/CoWork/bear-textbooks/books/anthropics/k12-teacher-skills/plugin/skills/k12-lesson-planning/SKILL.md",
+    "source_detail": {
+      "capabilities": [],
+      "constraints": [
+        "Creates a lesson plan, student-facing materials, and observation template. Load this skill BEFORE asking the teacher any clarifying question about grade, subject, topic…",
+        "\"The teacher\" throughout this skill is the user you are talking with — the same person, never",
+        "teacher can watch them check off; the only reason to skip this is that no such tool exists",
+        "Teacher language only — name what the teacher is getting, never tool names, file names,",
+        "file doesn't cover, follow its \"no curriculum named\" path and do not fake",
+        "critical failure. Extract only what each call specifies, then proceed directly to Step 3 — do",
+        "general best practice.\"* Do not invent KG citations or attribute content to curriculum",
+        "structure, and non-negotiables. Respect the Copyright guardrail below — never reproduce"
+      ],
+      "referenced_files": [
+        "references/math.md",
+        "references/ela.md",
+        "references/science.md",
+        "references/social_studies.md",
+        "find_standard_statement",
+        "references/learning-commons-kg.md",
+        "lesson.json",
+        "{\"type\": \"from_shared\", \"key\": …}",
+        "references/example_lesson.json",
+        ".html"
+      ],
+      "code_signals": [
+        "code block: bash"
+      ],
+      "sections": [
+        "Keeping the teacher posted",
+        "Step 0 — Route (silent, before anything else)",
+        "Step 1 — Clarify",
+        "Step 2 — Ground in standards",
+        "Step 3 — Build the lesson",
+        "Copyright guardrail",
+        "Step 4 — The draft offer",
+        "Step 5 — Output (one turn)",
+        "5a. Write the complete lesson.json (same turn)",
+        "5b. Render every Word document — one command, same turn"
+      ]
+    },
+    "build": {
+      "at": "2026-09-05T21:07:29",
+      "cut": "review",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "cold open",
+      "narration_text": "Hola — this is Liam, in for Bear. The skill is k12-lesson-planning. >. A SKILL.md tells Claude exactly how. Let me show you what's in it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hola, Liam",
+            "topic": "K12-LESSON-PLANNING · ANTHROPIC SKILL",
+            "segment": "Claude, K12 Lesson Planning.",
+            "command": "Run the k12-lesson-planning skill.",
+            "runningText": "reading k12-lesson-planning SKILL.md…",
+            "output": [
+              "skill: k12-lesson-planning",
+              ">",
+              "steps: 6 — executing."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 8.41,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "anatomy",
+      "narration_text": "A skill is a folder Claude reads before it works. This one is k12-lesson-planning. The SKILL.md contains the full instruction set — plain language, no hidden logic. It also points at references/math.md, references/ela.md, references/science.md, so the skill is more than one paragraph of advice. Claude reads it, then acts. The file is the program.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownAnatomy",
+          "props": {
+            "skillName": "k12-lesson-planning",
+            "eyebrow": "SKILL · ANATOMY",
+            "title": "A skill is a folder.",
+            "files": [
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "LICENSE",
+                "size": "11k",
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📄",
+                "name": "SKILL.md",
+                "size": "29k",
+                "accent": true
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "references",
+                "size": null,
+                "accent": false
+              },
+              {
+                "indent": 1,
+                "icon": "📁",
+                "name": "scripts",
+                "size": null,
+                "accent": false
+              }
+            ],
+            "calloutText": "The SKILL.md is the instruction set.",
+            "calloutSub": "4 files total.",
+            "sparkLine": "The file is the program."
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 20.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "pipeline",
+      "narration_text": "The pipeline has 6 steps. Route (silent, before anything else) → Clarify → Ground in standards, plus 3 more. Each step is a discrete action — Claude works through them in sequence. Input in, steps run, output out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownPipeline",
+          "props": {
+            "eyebrow": "SKILL · PIPELINE",
+            "title": "How the skill works.",
+            "inputLabel": "YOUR REQUEST",
+            "outputLabel": "RESULT",
+            "phases": [
+              {
+                "label": "Route (silent, before…",
+                "desc": "1. Subject. Determine the subject of the requested lesson…",
+                "accent": true
+              },
+              {
+                "label": "Clarify",
+                "desc": "Read the subject file first — its clarify section defines…",
+                "accent": false
+              },
+              {
+                "label": "Ground in standards",
+                "desc": "If the LC Knowledge Graph is connected: follow the…",
+                "accent": false
+              },
+              {
+                "label": "Build the lesson",
+                "desc": "Follow the subject file's build section: curriculum…",
+                "accent": false
+              }
+            ],
+            "footerNote": "6 steps. Linear execution.",
+            "sparkLine": "Input in. Output out."
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 13.14,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "design tell",
+      "narration_text": "Here is the design tell. Creates a lesson plan, student-facing materials, and observation template. Load this skill BEFORE asking the teacher any clarifying question about grade, subject, topic…. That is the constraint in k12-lesson-planning — not decoration, but a rule that changes how Claude is supposed to act.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DESIGN TELL",
+            "heading": "The interesting constraint.",
+            "body": "Creates a lesson plan, student-facing materials, and observation template. Load this skill BEFORE asking the teacher any clarifying question about grade, subject, topic…",
+            "sparkLine": "This is the part worth knowing."
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.77,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "detail layer",
+      "narration_text": "The detail layer matters. In k12-lesson-planning, supporting material: references/math.md, references/ela.md, references/science.md, references/social_studies.md; implementation signals: code block: bash; sections: Keeping the teacher posted, Step 0 — Route (silent, before anything else), Step 1 — Clarify, Step 2 — Ground in standards. That is what keeps the explanation tied to the actual skill, not a generic Claude demo.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "SkillTeardownMechanism",
+          "props": {
+            "eyebrow": "SKILL · DETAIL LAYER",
+            "heading": "What the source actually names.",
+            "body": "references/math.md; references/ela.md; references/science.md; code block: bash",
+            "sparkLine": "Ground the reel in the file."
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 26.22,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "BVDT",
+      "act": "verdict",
+      "narration_text": "k12-lesson-planning makes Claude execute one task reliably. The SKILL.md is the spec — >. Same input, same output, every run. Know the limit: only what the file says.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Claude, K12 Lesson Planning.",
+            "artifactLines": [
+              "Skill: k12-lesson-planning — Claude reads SKILL.md before acting",
+              ">",
+              "6-step pipeline: Route (silent, before anything else) → Clarify → Ground in standards",
+              "Constraint: Creates a lesson plan, student-facing materials, and observation template. Load this…",
+              "Same input → same output, every run"
+            ]
+          },
+          "rendered": {
+            "out": "media/BVDT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BVDT.mp3",
+      "actual_duration_s": 10.54,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BVDT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "handoff — Your Turn",
+      "narration_text": "Your turn. Paste this into Claude: 'I want to >. Read the k12-lesson-planning skill and walk me through what you will do before you do it.' That clause matters — explaining first surfaces the real constraint logic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "K12-LESSON-PLANNING · ANTHROPIC SKILL",
+            "segment": "Claude, K12 Lesson Planning.",
+            "command": "I want to >. Read the k12-lesson-planning skill and walk me through what you will do before you do it.",
+            "runningText": "paste this into Claude…",
+            "output": [],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Opus 4.8",
+            "effortLabel": "High"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BHTF.mp3",
+      "actual_duration_s": 11.61,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Claude, K12 Lesson Planning. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6,
+      "shot": {
+        "type": "REMOTION",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Claude, K12 Lesson Planning.",
+            "handle": "@NikBearBrown",
+            "subline": "k12-lesson-planning · Anthropic Skills"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 3.88,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-09-05T21:07:29"
+      }
+    }
+  ]
+}

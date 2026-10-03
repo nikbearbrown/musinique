@@ -1,0 +1,106 @@
+module Anthropic
+  module Models
+    class BetaManagedAgentsModelConfig = Beta::BetaManagedAgentsModelConfig
+
+    module Beta
+      type beta_managed_agents_model_config =
+        {
+          id: Anthropic::Models::Beta::beta_managed_agents_model,
+          effort: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort,
+          inference_geo: String,
+          speed: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed
+        }
+
+      class BetaManagedAgentsModelConfig < Anthropic::Internal::Type::BaseModel
+        attr_accessor id: Anthropic::Models::Beta::beta_managed_agents_model
+
+        attr_reader effort: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort?
+
+        def effort=: (
+          Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort
+        ) -> Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort
+
+        attr_reader inference_geo: String?
+
+        def inference_geo=: (String) -> String
+
+        attr_reader speed: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed?
+
+        def speed=: (
+          Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed
+        ) -> Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed
+
+        def initialize: (
+          id: Anthropic::Models::Beta::beta_managed_agents_model,
+          ?effort: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort,
+          ?inference_geo: String,
+          ?speed: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed
+        ) -> void
+
+        def to_hash: -> {
+          id: Anthropic::Models::Beta::beta_managed_agents_model,
+          effort: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort,
+          inference_geo: String,
+          speed: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed
+        }
+
+        type effort =
+          Anthropic::Beta::BetaManagedAgentsEffortLow
+          | Anthropic::Beta::BetaManagedAgentsEffortMedium
+          | Anthropic::Beta::BetaManagedAgentsEffortHigh
+          | Anthropic::Beta::BetaManagedAgentsEffortXhigh
+          | Anthropic::Beta::BetaManagedAgentsEffortMax
+
+        module Effort
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :low | :medium | :high | :xhigh | :max
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            LOW: :low
+            MEDIUM: :medium
+            HIGH: :high
+            XHIGH: :xhigh
+            MAX: :max
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsModelConfig::Effort::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort]
+
+          def self.new:
+            (type: :low | "low") -> Anthropic::Beta::BetaManagedAgentsEffortLow
+            | (
+              type: :medium | "medium"
+            ) -> Anthropic::Beta::BetaManagedAgentsEffortMedium
+            | (
+              type: :high | "high"
+            ) -> Anthropic::Beta::BetaManagedAgentsEffortHigh
+            | (
+              type: :xhigh | "xhigh"
+            ) -> Anthropic::Beta::BetaManagedAgentsEffortXhigh
+            | (
+              type: :max | "max"
+            ) -> Anthropic::Beta::BetaManagedAgentsEffortMax
+            | (
+              type: Anthropic::Models::Beta::BetaManagedAgentsModelConfig::Effort::type_
+              | String
+            ) -> Anthropic::Models::Beta::BetaManagedAgentsModelConfig::effort
+        end
+
+        type speed = :standard | :fast
+
+        module Speed
+          extend Anthropic::Internal::Type::Enum
+
+          STANDARD: :standard
+          FAST: :fast
+
+          def self?.values: -> ::Array[Anthropic::Models::Beta::BetaManagedAgentsModelConfig::speed]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,463 @@
+package github_test
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/gruntwork-io/terragrunt/internal/github"
+	"github.com/gruntwork-io/terragrunt/pkg/log"
+	"github.com/gruntwork-io/terragrunt/test/helpers"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+)
+
+func TestNewClient(t *testing.T) {
+	t.Parallel()
+
+	client := github.NewGitHubAPIClient()
+	require.NotNil(t, client)
+
+	assert.NotNil(t, client)
+}
+
+func TestGithubAuthPickupOrder(t *testing.T) {
+
+	t.Run("prefer GH_TOKEN", func(t *testing.T) {
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			assert.Equal(t, "Bearer goodtoken", r.Header.Get("Authorization"))
+
+			w.Header().Set("Content-Type", "application/json")
+			response := `{
+				"tag_name": "v1.2.3",
+				"name": "Release v1.2.3",
+				"html_url": "https://github.com/owner/repo/releases/tag/v1.2.3"
+			}`
+			_, err := fmt.Fprint(w, response)
+			require.NoError(t, err)
+		}))
+		defer server.Close()
+
+		t.Setenv("GH_TOKEN", "goodtoken")
+		t.Setenv("GITHUB_TOKEN", "badtoken")
+
+		client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL), github.WithGithubComDefaultAuth())
+
+		_, err := client.GetLatestRelease(t.Context(), "owner/repo")
+		require.NoError(t, err)
+	})
+
+	t.Run("use GITHUB_TOKEN", func(t *testing.T) {
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			assert.Equal(t, "Bearer goodtoken", r.Header.Get("Authorization"))
+
+			w.Header().Set("Content-Type", "application/json")
+			response := `{
+				"tag_name": "v1.2.3",
+				"name": "Release v1.2.3",
+				"html_url": "https://github.com/owner/repo/releases/tag/v1.2.3"
+			}`
+			_, err := fmt.Fprint(w, response)
+			require.NoError(t, err)
+		}))
+		defer server.Close()
+
+		t.Setenv("GH_TOKEN", "")
+		t.Setenv("GITHUB_TOKEN", "goodtoken")
+		client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL), github.WithGithubComDefaultAuth())
+
+		_, err := client.GetLatestRelease(t.Context(), "owner/repo")
+		require.NoError(t, err)
+	})
+}
+
+func TestNewClientWithOptions(t *testing.T) {
+	t.Parallel()
+
+	customHTTPClient := &http.Client{Timeout: 10 * time.Second}
+	customBaseURL := "https://custom.github.com"
+
+	client := github.NewGitHubAPIClient(
+		github.WithHTTPClient(customHTTPClient),
+		github.WithBaseURL(customBaseURL),
+	)
+
+	assert.NotNil(t, client)
+}
+
+func TestGetLatestRelease(t *testing.T) {
+	t.Parallel()
+
+	// Create a mock server
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+		assert.Equal(t, "/repos/owner/repo/releases/latest", r.URL.Path)
+		assert.Equal(t, "application/vnd.github.v3+json", r.Header.Get("Accept"))
+
+		w.Header().Set("Content-Type", "application/json")
+		response := `{
+			"tag_name": "v1.2.3",
+			"name": "Release v1.2.3",
+			"html_url": "https://github.com/owner/repo/releases/tag/v1.2.3"
+		}`
+		_, err := fmt.Fprint(w, response)
+		assert.NoError(t, err)
+	}))
+	defer server.Close()
+
+	client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL))
+
+	release, err := client.GetLatestRelease(t.Context(), "owner/repo")
+	require.NoError(t, err)
+
+	assert.Equal(t, "v1.2.3", release.TagName)
+	assert.Equal(t, "Release v1.2.3", release.Name)
+	assert.Equal(t, "https://github.com/owner/repo/releases/tag/v1.2.3", release.URL)
+}
+
+func TestGetLatestReleaseTag(t *testing.T) {
+	t.Parallel()
+
+	// Create a mock server
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		response := `{"tag_name": "v2.0.0"}`
+		_, err := fmt.Fprint(w, response)
+		assert.NoError(t, err)
+	}))
+	defer server.Close()
+
+	client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL))
+
+	tag, err := client.GetLatestReleaseTag(t.Context(), "owner/repo")
+	require.NoError(t, err)
+
+	assert.Equal(t, "v2.0.0", tag)
+}
+
+func TestGetLatestReleaseInvalidRepository(t *testing.T) {
+	t.Parallel()
+
+	client := github.NewGitHubAPIClient()
+
+	testCases := []string{
+		"",
+		"invalid",
+		"too/many/parts",
+	}
+
+	for _, repo := range testCases {
+		t.Run(fmt.Sprintf("repo=%s", repo), func(tt *testing.T) {
+			_, err := client.GetLatestRelease(tt.Context(), repo)
+			require.Error(t, err)
+		})
+	}
+}
+
+func TestGetLatestReleaseHTTPError(t *testing.T) {
+	t.Parallel()
+
+	// Create a mock server that returns 404
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusNotFound)
+		_, err := fmt.Fprint(w, "Not Found")
+		require.NoError(t, err)
+	}))
+	defer server.Close()
+
+	client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL))
+
+	_, err := client.GetLatestRelease(t.Context(), "owner/repo")
+	require.Error(t, err)
+	assert.ErrorContains(t, err, "GitHub API request to determine latest release failed with status 404")
+}
+
+func TestGetLatestReleaseEmptyTag(t *testing.T) {
+	t.Parallel()
+
+	// Create a mock server that returns empty tag
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		response := `{"tag_name": ""}`
+		_, err := fmt.Fprint(w, response)
+		require.NoError(t, err)
+	}))
+	defer server.Close()
+
+	client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL))
+
+	_, err := client.GetLatestRelease(t.Context(), "owner/repo")
+	require.Error(t, err)
+	assert.ErrorContains(t, err, "GitHub API returned empty tag name for latest release")
+}
+
+func TestGetLatestReleaseCaching(t *testing.T) {
+	t.Parallel()
+
+	callCount := 0
+	// Create a mock server that tracks how many times it's called
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		callCount++
+		w.Header().Set("Content-Type", "application/json")
+		response := `{"tag_name": "v1.0.0"}`
+		_, err := fmt.Fprint(w, response)
+		require.NoError(t, err)
+	}))
+	defer server.Close()
+
+	client := github.NewGitHubAPIClient(github.WithBaseURL(server.URL))
+
+	// First call should hit the server
+	tag1, err := client.GetLatestReleaseTag(t.Context(), "owner/repo")
+	require.NoError(t, err)
+
+	assert.Equal(t, "v1.0.0", tag1)
+	assert.Equal(t, 1, callCount)
+
+	// Second call should use cache
+	tag2, err := client.GetLatestReleaseTag(t.Context(), "owner/repo")
+	require.NoError(t, err)
+
+	assert.Equal(t, "v1.0.0", tag2)
+	assert.Equal(t, 1, callCount)
+}
+
+// Tests for GitHubReleasesDownloadClient
+
+func TestNewGitHubReleasesDownloadClient(t *testing.T) {
+	t.Parallel()
+
+	client := github.NewGitHubReleasesDownloadClient()
+	require.NotNil(t, client)
+}
+
+func TestNewGitHubReleasesDownloadClientWithOptions(t *testing.T) {
+	t.Parallel()
+
+	logger := log.New()
+	client := github.NewGitHubReleasesDownloadClient(github.WithLogger(logger))
+	require.NotNil(t, client)
+}
+
+func TestDownloadReleaseAssetsValidation(t *testing.T) {
+	t.Parallel()
+
+	client := github.NewGitHubReleasesDownloadClient()
+	ctx := context.Background()
+
+	testCases := []struct {
+		name     string
+		assets   *github.ReleaseAssets
+		errorMsg string
+	}{
+		{
+			name:     "empty repository",
+			assets:   &github.ReleaseAssets{Repository: "", PackageFile: "/tmp/package.zip"},
+			errorMsg: "repository cannot be empty",
+		},
+		{
+			name:     "empty package file",
+			assets:   &github.ReleaseAssets{Repository: "owner/repo", PackageFile: ""},
+			errorMsg: "package file path cannot be empty",
+		},
+		{
+			name:     "missing version for GitHub repo",
+			assets:   &github.ReleaseAssets{Repository: "owner/repo", Version: "", PackageFile: "/tmp/package.zip"},
+			errorMsg: "version cannot be empty for GitHub repository downloads",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			_, err := client.DownloadReleaseAssets(ctx, tc.assets)
+			require.Error(t, err)
+			assert.ErrorContains(t, err, tc.errorMsg)
+		})
+	}
+}
+
+func TestDownloadReleaseAssetsGitHubRelease(t *testing.T) {
+	t.Parallel()
+
+	tempDir := helpers.TmpDirWOSymlinks(t)
+
+	// Create mock server for GitHub releases
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		path := r.URL.Path
+
+		// Serve different content based on the requested file
+		if strings.HasSuffix(path, "package.zip") {
+			w.Header().Set("Content-Type", "application/zip")
+			fmt.Fprint(w, "fake-zip-content")
+			return
+		}
+
+		if strings.HasSuffix(path, "SHA256SUMS") {
+			w.Header().Set("Content-Type", "text/plain")
+			fmt.Fprint(w, "fake-checksum-content")
+			return
+		}
+
+		if strings.HasSuffix(path, "SHA256SUMS.sig") {
+			w.Header().Set("Content-Type", "text/plain")
+			fmt.Fprint(w, "fake-signature-content")
+			return
+		}
+
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}))
+	defer server.Close()
+
+	// Use direct URL approach for testing since mock servers are complex to set up for GitHub releases format
+	client := github.NewGitHubReleasesDownloadClient()
+
+	assets := &github.ReleaseAssets{
+		Repository:  server.URL + "/package.zip", // Direct URL
+		PackageFile: filepath.Join(tempDir, "package.zip"),
+		// Direct URLs don't use checksum files
+	}
+
+	ctx := context.Background()
+	result, err := client.DownloadReleaseAssets(ctx, assets)
+	require.NoError(t, err)
+
+	// Verify result
+	assert.Equal(t, assets.PackageFile, result.PackageFile)
+	assert.Equal(t, "", result.ChecksumFile)
+	assert.Equal(t, "", result.ChecksumSigFile)
+
+	// Verify package file was created and has expected content
+	verifyFileContent(t, result.PackageFile, "fake-zip-content")
+}
+
+func TestDownloadReleaseAssetsGitHubReleaseUsesToken(t *testing.T) {
+	tempDir := helpers.TmpDirWOSymlinks(t)
+
+	// shared logic for handlers
+	doResp := func(w http.ResponseWriter, r *http.Request) {
+		// Serve different content based on the requested file
+		path := r.URL.Path
+
+		if strings.HasSuffix(path, "package.zip") {
+			w.Header().Set("Content-Type", "application/zip")
+			fmt.Fprint(w, "fake-zip-content")
+			return
+		}
+
+		if strings.HasSuffix(path, "SHA256SUMS") {
+			w.Header().Set("Content-Type", "text/plain")
+			fmt.Fprint(w, "fake-checksum-content")
+			return
+		}
+
+		if strings.HasSuffix(path, "SHA256SUMS.sig") {
+			w.Header().Set("Content-Type", "text/plain")
+			fmt.Fprint(w, "fake-signature-content")
+			return
+		}
+
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	// Use direct URL approach for testing since mock servers are complex to set up for GitHub releases format
+	client := github.NewGitHubReleasesDownloadClient()
+
+	t.Run("prefer GH_TOKEN", func(t *testing.T) {
+		t.Setenv("GH_TOKEN", "goodtoken")
+		t.Setenv("GITHUB_TOKEN", "badtoken")
+
+		// Create mock server for GitHub releases
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			assert.Equal(t, "Bearer goodtoken", r.Header.Get("Authorization"))
+
+			doResp(w, r)
+		}))
+		defer server.Close()
+
+		ctx := t.Context()
+
+		assets := &github.ReleaseAssets{
+			Repository:  server.URL + "/package.zip", // Direct URL
+			PackageFile: filepath.Join(tempDir, "package.zip"),
+			// Direct URLs don't use checksum files
+		}
+
+		_, err := client.DownloadReleaseAssets(ctx, assets)
+		require.NoError(t, err)
+	})
+
+	t.Run("use GITHUB_TOKEN", func(t *testing.T) {
+		t.Setenv("GH_TOKEN", "")
+		t.Setenv("GITHUB_TOKEN", "goodtoken")
+
+		// Create mock server for GitHub releases
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			assert.Equal(t, "Bearer goodtoken", r.Header.Get("Authorization"))
+
+			doResp(w, r)
+		}))
+		defer server.Close()
+
+		ctx := t.Context()
+
+		assets := &github.ReleaseAssets{
+			Repository:  server.URL + "/package.zip", // Direct URL
+			PackageFile: filepath.Join(tempDir, "package.zip"),
+			// Direct URLs don't use checksum files
+		}
+		_, err := client.DownloadReleaseAssets(ctx, assets)
+		require.NoError(t, err)
+	})
+}
+
+func TestDownloadReleaseAssetsDirectURL(t *testing.T) {
+	t.Parallel()
+
+	tempDir := helpers.TmpDirWOSymlinks(t)
+
+	// Create mock server
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/zip")
+		fmt.Fprint(w, "direct-url-content")
+	}))
+	defer server.Close()
+
+	client := github.NewGitHubReleasesDownloadClient()
+
+	assets := &github.ReleaseAssets{
+		Repository:  server.URL + "/direct-download.zip",
+		PackageFile: filepath.Join(tempDir, "direct.zip"),
+		// Note: No Version, ChecksumFile, or ChecksumSigFile for direct URLs
+	}
+
+	result, err := client.DownloadReleaseAssets(t.Context(), assets)
+	require.NoError(t, err)
+
+	// Verify result
+	assert.Equal(t, assets.PackageFile, result.PackageFile)
+	assert.Equal(t, "", result.ChecksumFile)
+	assert.Equal(t, "", result.ChecksumSigFile)
+
+	// Verify file was created and has expected content
+	verifyFileContent(t, result.PackageFile, "direct-url-content")
+}
+
+// Helper function to verify file content
+func verifyFileContent(t *testing.T, filePath, expectedContent string) {
+	t.Helper()
+
+	require.FileExists(t, filePath)
+
+	content, err := os.ReadFile(filePath)
+	require.NoError(t, err)
+
+	assert.Equal(t, expectedContent, string(content))
+}

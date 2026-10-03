@@ -1,0 +1,359 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.JsonValue
+import com.anthropic.core.allMaxBy
+import com.anthropic.core.getOrThrow
+import com.anthropic.core.getProperty
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Objects
+import java.util.Optional
+
+@JsonDeserialize(using = CodeExecutionToolResultBlockContent.Deserializer::class)
+@JsonSerialize(using = CodeExecutionToolResultBlockContent.Serializer::class)
+class CodeExecutionToolResultBlockContent
+private constructor(
+    private val error: CodeExecutionToolResultError? = null,
+    private val resultBlock: CodeExecutionResultBlock? = null,
+    private val encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock? = null,
+    private val _json: JsonValue? = null,
+) {
+
+    fun content(): Optional<List<CodeExecutionOutputBlock>> =
+        accept(
+            object : Visitor<Optional<List<CodeExecutionOutputBlock>>> {
+                override fun visitError(
+                    error: CodeExecutionToolResultError
+                ): Optional<List<CodeExecutionOutputBlock>> = Optional.empty()
+
+                override fun visitResultBlock(
+                    resultBlock: CodeExecutionResultBlock
+                ): Optional<List<CodeExecutionOutputBlock>> = Optional.of(resultBlock.content())
+
+                override fun visitEncryptedCodeExecutionResultBlock(
+                    encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+                ): Optional<List<CodeExecutionOutputBlock>> =
+                    Optional.of(encryptedCodeExecutionResultBlock.content())
+
+                override fun unknown(json: JsonValue?): Optional<List<CodeExecutionOutputBlock>> =
+                    json.getProperty<List<CodeExecutionOutputBlock>>("content").asKnown()
+            }
+        )
+
+    fun returnCode(): Optional<Long> =
+        accept(
+            object : Visitor<Optional<Long>> {
+                override fun visitError(error: CodeExecutionToolResultError): Optional<Long> =
+                    Optional.empty()
+
+                override fun visitResultBlock(
+                    resultBlock: CodeExecutionResultBlock
+                ): Optional<Long> = Optional.of(resultBlock.returnCode())
+
+                override fun visitEncryptedCodeExecutionResultBlock(
+                    encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+                ): Optional<Long> = Optional.of(encryptedCodeExecutionResultBlock.returnCode())
+
+                override fun unknown(json: JsonValue?): Optional<Long> =
+                    json.getProperty<Long>("return_code").asKnown()
+            }
+        )
+
+    fun stderr(): Optional<String> =
+        accept(
+            object : Visitor<Optional<String>> {
+                override fun visitError(error: CodeExecutionToolResultError): Optional<String> =
+                    Optional.empty()
+
+                override fun visitResultBlock(
+                    resultBlock: CodeExecutionResultBlock
+                ): Optional<String> = Optional.of(resultBlock.stderr())
+
+                override fun visitEncryptedCodeExecutionResultBlock(
+                    encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+                ): Optional<String> = Optional.of(encryptedCodeExecutionResultBlock.stderr())
+
+                override fun unknown(json: JsonValue?): Optional<String> =
+                    json.getProperty<String>("stderr").asKnown()
+            }
+        )
+
+    fun error(): Optional<CodeExecutionToolResultError> = Optional.ofNullable(error)
+
+    fun resultBlock(): Optional<CodeExecutionResultBlock> = Optional.ofNullable(resultBlock)
+
+    /** Code execution result with encrypted stdout for PFC + web_search results. */
+    fun encryptedCodeExecutionResultBlock(): Optional<EncryptedCodeExecutionResultBlock> =
+        Optional.ofNullable(encryptedCodeExecutionResultBlock)
+
+    fun isError(): Boolean = error != null
+
+    fun isResultBlock(): Boolean = resultBlock != null
+
+    fun isEncryptedCodeExecutionResultBlock(): Boolean = encryptedCodeExecutionResultBlock != null
+
+    fun asError(): CodeExecutionToolResultError = error.getOrThrow("error")
+
+    fun asResultBlock(): CodeExecutionResultBlock = resultBlock.getOrThrow("resultBlock")
+
+    /** Code execution result with encrypted stdout for PFC + web_search results. */
+    fun asEncryptedCodeExecutionResultBlock(): EncryptedCodeExecutionResultBlock =
+        encryptedCodeExecutionResultBlock.getOrThrow("encryptedCodeExecutionResultBlock")
+
+    fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+    /**
+     * Maps this instance's current variant to a value of type [T] using the given [visitor].
+     *
+     * Note that this method is _not_ forwards compatible with new variants from the API, unless
+     * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of the
+     * SDK gracefully, consider overriding [Visitor.unknown]:
+     * ```java
+     * import com.anthropic.core.JsonValue;
+     * import java.util.Optional;
+     *
+     * Optional<String> result = codeExecutionToolResultBlockContent.accept(new CodeExecutionToolResultBlockContent.Visitor<Optional<String>>() {
+     *     @Override
+     *     public Optional<String> visitError(CodeExecutionToolResultError error) {
+     *         return Optional.of(error.toString());
+     *     }
+     *
+     *     // ...
+     *
+     *     @Override
+     *     public Optional<String> unknown(JsonValue json) {
+     *         // Or inspect the `json`.
+     *         return Optional.empty();
+     *     }
+     * });
+     * ```
+     *
+     * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor] and
+     *   the current variant is unknown.
+     */
+    fun <T> accept(visitor: Visitor<T>): T =
+        when {
+            error != null -> visitor.visitError(error)
+            resultBlock != null -> visitor.visitResultBlock(resultBlock)
+            encryptedCodeExecutionResultBlock != null ->
+                visitor.visitEncryptedCodeExecutionResultBlock(encryptedCodeExecutionResultBlock)
+            else -> visitor.unknown(_json)
+        }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): CodeExecutionToolResultBlockContent = apply {
+        if (validated) {
+            return@apply
+        }
+
+        accept(
+            object : Visitor<Unit> {
+                override fun visitError(error: CodeExecutionToolResultError) {
+                    error.validate()
+                }
+
+                override fun visitResultBlock(resultBlock: CodeExecutionResultBlock) {
+                    resultBlock.validate()
+                }
+
+                override fun visitEncryptedCodeExecutionResultBlock(
+                    encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+                ) {
+                    encryptedCodeExecutionResultBlock.validate()
+                }
+            }
+        )
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        accept(
+            object : Visitor<Int> {
+                override fun visitError(error: CodeExecutionToolResultError) = error.validity()
+
+                override fun visitResultBlock(resultBlock: CodeExecutionResultBlock) =
+                    resultBlock.validity()
+
+                override fun visitEncryptedCodeExecutionResultBlock(
+                    encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+                ) = encryptedCodeExecutionResultBlock.validity()
+
+                override fun unknown(json: JsonValue?) = 0
+            }
+        )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is CodeExecutionToolResultBlockContent &&
+            error == other.error &&
+            resultBlock == other.resultBlock &&
+            encryptedCodeExecutionResultBlock == other.encryptedCodeExecutionResultBlock
+    }
+
+    override fun hashCode(): Int =
+        Objects.hash(error, resultBlock, encryptedCodeExecutionResultBlock)
+
+    override fun toString(): String =
+        when {
+            error != null -> "CodeExecutionToolResultBlockContent{error=$error}"
+            resultBlock != null -> "CodeExecutionToolResultBlockContent{resultBlock=$resultBlock}"
+            encryptedCodeExecutionResultBlock != null ->
+                "CodeExecutionToolResultBlockContent{encryptedCodeExecutionResultBlock=$encryptedCodeExecutionResultBlock}"
+            _json != null -> "CodeExecutionToolResultBlockContent{_unknown=$_json}"
+            else -> throw IllegalStateException("Invalid CodeExecutionToolResultBlockContent")
+        }
+
+    companion object {
+
+        @JvmStatic
+        fun ofError(error: CodeExecutionToolResultError) =
+            CodeExecutionToolResultBlockContent(error = error)
+
+        /**
+         * Returns an immutable instance of [CodeExecutionToolResultBlockContent] whose [ofError]
+         * variant is built from the given required [errorCode].
+         */
+        @JvmStatic
+        fun ofError(errorCode: CodeExecutionToolResultErrorCode) =
+            ofError(CodeExecutionToolResultError.of(errorCode))
+
+        @JvmStatic
+        fun ofResultBlock(resultBlock: CodeExecutionResultBlock) =
+            CodeExecutionToolResultBlockContent(resultBlock = resultBlock)
+
+        /** Code execution result with encrypted stdout for PFC + web_search results. */
+        @JvmStatic
+        fun ofEncryptedCodeExecutionResultBlock(
+            encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+        ) =
+            CodeExecutionToolResultBlockContent(
+                encryptedCodeExecutionResultBlock = encryptedCodeExecutionResultBlock
+            )
+    }
+
+    /**
+     * An interface that defines how to map each variant of [CodeExecutionToolResultBlockContent] to
+     * a value of type [T].
+     */
+    interface Visitor<out T> {
+
+        fun visitError(error: CodeExecutionToolResultError): T
+
+        fun visitResultBlock(resultBlock: CodeExecutionResultBlock): T
+
+        /** Code execution result with encrypted stdout for PFC + web_search results. */
+        fun visitEncryptedCodeExecutionResultBlock(
+            encryptedCodeExecutionResultBlock: EncryptedCodeExecutionResultBlock
+        ): T
+
+        /**
+         * Maps an unknown variant of [CodeExecutionToolResultBlockContent] to a value of type [T].
+         *
+         * An instance of [CodeExecutionToolResultBlockContent] can contain an unknown variant if it
+         * was deserialized from data that doesn't match any known variant. For example, if the SDK
+         * is on an older version than the API, then the API may respond with new variants that the
+         * SDK is unaware of.
+         *
+         * @throws AnthropicInvalidDataException in the default implementation.
+         */
+        fun unknown(json: JsonValue?): T {
+            throw AnthropicInvalidDataException(
+                "Unknown CodeExecutionToolResultBlockContent: $json"
+            )
+        }
+    }
+
+    internal class Deserializer :
+        BaseDeserializer<CodeExecutionToolResultBlockContent>(
+            CodeExecutionToolResultBlockContent::class
+        ) {
+
+        override fun ObjectCodec.deserialize(node: JsonNode): CodeExecutionToolResultBlockContent {
+            val json = JsonValue.fromJsonNode(node)
+
+            val bestMatches =
+                sequenceOf(
+                        tryDeserialize(node, jacksonTypeRef<CodeExecutionToolResultError>())?.let {
+                            CodeExecutionToolResultBlockContent(error = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<CodeExecutionResultBlock>())?.let {
+                            CodeExecutionToolResultBlockContent(resultBlock = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<EncryptedCodeExecutionResultBlock>())
+                            ?.let {
+                                CodeExecutionToolResultBlockContent(
+                                    encryptedCodeExecutionResultBlock = it,
+                                    _json = json,
+                                )
+                            },
+                    )
+                    .filterNotNull()
+                    .allMaxBy { it.validity() }
+                    .toList()
+            return when (bestMatches.size) {
+                // This can happen if what we're deserializing is completely incompatible with all
+                // the possible variants (e.g. deserializing from boolean).
+                0 -> CodeExecutionToolResultBlockContent(_json = json)
+                1 -> bestMatches.single()
+                // If there's more than one match with the highest validity, then use the first
+                // completely valid match, or simply the first match if none are completely valid.
+                else -> bestMatches.firstOrNull { it.isValid() } ?: bestMatches.first()
+            }
+        }
+    }
+
+    internal class Serializer :
+        BaseSerializer<CodeExecutionToolResultBlockContent>(
+            CodeExecutionToolResultBlockContent::class
+        ) {
+
+        override fun serialize(
+            value: CodeExecutionToolResultBlockContent,
+            generator: JsonGenerator,
+            provider: SerializerProvider,
+        ) {
+            when {
+                value.error != null -> generator.writeObject(value.error)
+                value.resultBlock != null -> generator.writeObject(value.resultBlock)
+                value.encryptedCodeExecutionResultBlock != null ->
+                    generator.writeObject(value.encryptedCodeExecutionResultBlock)
+                value._json != null -> generator.writeObject(value._json)
+                else -> throw IllegalStateException("Invalid CodeExecutionToolResultBlockContent")
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+package anthropic_test
+
+import (
+	"context"
+	"errors"
+	"os"
+	"testing"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/internal/testutil"
+	"github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func TestBetaOrganizationUserGet(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := anthropic.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("my-anthropic-api-key"),
+	)
+	_, err := client.Beta.Organization.Users.Get(context.TODO(), "user_id")
+	if err != nil {
+		var apierr *anthropic.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestBetaOrganizationUserUpdate(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := anthropic.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("my-anthropic-api-key"),
+	)
+	_, err := client.Beta.Organization.Users.Update(
+		context.TODO(),
+		"user_id",
+		anthropic.BetaOrganizationUserUpdateParams{
+			Role: anthropic.BetaOrganizationUserUpdateParamsRoleUser,
+		},
+	)
+	if err != nil {
+		var apierr *anthropic.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestBetaOrganizationUserListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := anthropic.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("my-anthropic-api-key"),
+	)
+	_, err := client.Beta.Organization.Users.List(context.TODO(), anthropic.BetaOrganizationUserListParams{
+		AfterID:  anthropic.String("after_id"),
+		BeforeID: anthropic.String("before_id"),
+		Email:    anthropic.String("dev@stainless.com"),
+		Limit:    anthropic.Int(1),
+		Roles:    []string{"string"},
+	})
+	if err != nil {
+		var apierr *anthropic.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestBetaOrganizationUserRemove(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := anthropic.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("my-anthropic-api-key"),
+	)
+	_, err := client.Beta.Organization.Users.Remove(context.TODO(), "user_id")
+	if err != nil {
+		var apierr *anthropic.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}

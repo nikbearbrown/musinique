@@ -1,0 +1,32 @@
+package com.anthropic.models.beta.agents
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaManagedAgentsEffortLowTest {
+
+    @Test
+    fun create() {
+        val betaManagedAgentsEffortLow =
+            BetaManagedAgentsEffortLow.of(BetaManagedAgentsEffortLow.Type.LOW)
+
+        assertThat(betaManagedAgentsEffortLow.type()).isEqualTo(BetaManagedAgentsEffortLow.Type.LOW)
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsEffortLow =
+            BetaManagedAgentsEffortLow.of(BetaManagedAgentsEffortLow.Type.LOW)
+
+        val roundtrippedBetaManagedAgentsEffortLow =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsEffortLow),
+                jacksonTypeRef<BetaManagedAgentsEffortLow>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsEffortLow).isEqualTo(betaManagedAgentsEffortLow)
+    }
+}

@@ -1,0 +1,16 @@
+Done. The reel is complete.
+
+**`claude-liam-product` — DELIVERED**
+
+| Item | Result |
+|---|---|
+| Backup | `beat_sheet.pre-rebuild.json` written before any edits |
+| Beats | 36/36 VIDEO (was 37 before BVDT strip) |
+| Punts authored | 8 (6 DoodleScene → Remotion, 2 SlateCard → Remotion) |
+| Verdict | BVDT stripped (template defaults); V01 real authored ✅ |
+| Brand | `@NikBearBrown` on both BHTF and H01 ✅ |
+| Gate AUDIO | −26.0 dB (passes −40 dB floor) ✅ |
+| Gate LANE | 0 slates in cut ✅ |
+| Gate V | PASS — 0 blockers, 0 majors; 3 minor-log (component-design multi-terracotta, not fixable at beat level) |
+| DONE check | mp4 is 15s newer than beat_sheet ✅ |
+| Deliverable | `claude-liam-product-slate.mp4` — 393.8s (6m34s), 6.7 MB |

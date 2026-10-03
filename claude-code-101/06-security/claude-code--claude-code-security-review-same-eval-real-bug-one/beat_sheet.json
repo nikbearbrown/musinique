@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "slug": "claude-code-security-review-same-eval-real-bug-one",
+    "title": "Why the same eval() is a real bug in one file and noise in another",
+    "topic": "Semantic understanding vs. pattern-based detection",
+    "purpose": "An LLM reads code in context — data flow, entry points, architectural intent — and assesses whether an attacker can actually reach and trigger the sink, not merely whether the dangerous token appears.",
+    "category": "claude-code",
+    "playlist": "Claude Code",
+    "channel": "NikBearBrown",
+    "folderLabel": "@NikBearBrown",
+    "engine": "kokoro",
+    "voice_kokoro": "am_onyx",
+    "voice": "am_onyx",
+    "audience": "claude-liam",
+    "palette": "claude",
+    "register": "Teardown",
+    "style_preset": "teardown",
+    "aspect_ratio": "16:9",
+    "scaffold": true,
+    "scaffold_source": "anthropics/youtube/video-ideas.md — ai-explainer Sweep 2026-07-24",
+    "builder": "ai-explainer",
+    "source": "`anthropics/claude-code-security-review/README.md`",
+    "origin": "promoted",
+    "score": "9/10",
+    "length_band": "2–3 min",
+    "still_lanes": "c2v, raster",
+    "prerequisites": "static analysis / SAST basics",
+    "exclusions": "specific vuln types, GitHub Action wiring, custom rule syntax",
+    "visual_object": "Two parallel flows (left: regex sweeping tokens; right: model reading the diff + architecture) converging on a severity line; unsafe cases cross above, safe stay below.",
+    "manim_move": "compare",
+    "hook": "A regex scanner finds 100 false positives; a reviewer that understands intent finds the 5 that are reachable.",
+    "greeting": "Konnichiwa, Liam",
+    "design_version": "v2-rebuild",
+    "build": {
+      "at": "2026-08-31T18:54:39",
+      "cut": "master",
+      "filled": 8,
+      "of": 8,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "beat_type": "cold_open",
+      "narration_text": "The identical hardcoded key is excluded in `test_config.py` and reported in `main.py` where it handles user input; a pattern matcher flags both equally.",
+      "estimated_duration_s": 15,
+      "visual": "Claude composer, cold open",
+      "scaffold_note": "from Key case — cold open on the concrete instance",
+      "act": "cold open",
+      "lane": "BOOKEND",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "COMPOSER_ASK",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Konnichiwa, Liam",
+            "topic": "Semantic understanding vs. pattern-based detection",
+            "segment": "Same eval(), Two Verdicts",
+            "command": "Why is the same eval() call a real bug in one file and noise in another?",
+            "runningText": "reading the code in context…",
+            "output": [
+              "Because the token is not the vulnerability.",
+              "Reachability is."
+            ],
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet"
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 9.86,
+      "audio_file": "mp3/beat-B00.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "beat_type": "question",
+      "narration_text": "A security tool flags code identical to a known vulnerability. Pattern matchers trigger on every instance; this one doesn't. Why?",
+      "estimated_duration_s": 10,
+      "visual": "three-up: same token, only one is reachable",
+      "scaffold_note": "gap-form question beat",
+      "act": "I — exec summary",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "FORM_B_CARD",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "Same pattern, different verdict",
+            "items": [
+              {
+                "label": "Same token",
+                "sub": "eval() appears in both files",
+                "icon": "target",
+                "cueFrame": 20
+              },
+              {
+                "label": "One is reachable",
+                "sub": "user input flows in",
+                "icon": "list-checks",
+                "cueFrame": 60
+              },
+              {
+                "label": "The other is sealed",
+                "sub": "sandboxed test, fixed input",
+                "icon": "zap",
+                "cueFrame": 100
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 7.79,
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "beat_type": "setup",
+      "narration_text": "A regex scanner finds 100 false positives; a reviewer that understands intent finds the 5 that are reachable.",
+      "estimated_duration_s": 8,
+      "visual": "two-up: regex 100 vs LLM 5",
+      "scaffold_note": "the tension, quantified",
+      "act": "I — exec summary",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "FORM_B_CARD",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "One sweep, two totals",
+            "items": [
+              {
+                "label": "Regex sweep",
+                "sub": "100 false positives",
+                "icon": "target",
+                "cueFrame": 20
+              },
+              {
+                "label": "Context-aware review",
+                "sub": "5 real, reachable bugs",
+                "icon": "zap",
+                "cueFrame": 70
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B02.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 7.66,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "beat_type": "mechanism",
+      "narration_text": "An LLM reads code in context — data flow, entry points, architectural intent — and assesses whether an attacker can actually reach and trigger the sink, not merely whether the dangerous token appears.",
+      "estimated_duration_s": 18,
+      "visual": "four-up: the four things a reviewer weighs",
+      "manim_move": "compare",
+      "scaffold_note": "the resolving mechanism; the four things named",
+      "act": "II — mechanism",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "FORM_B_CARD",
+        "remotion": {
+          "pattern": "FormBCard",
+          "props": {
+            "title": "What context adds to a match",
+            "items": [
+              {
+                "label": "Data flow",
+                "sub": "does user input reach the sink",
+                "icon": "target",
+                "cueFrame": 20
+              },
+              {
+                "label": "Entry point",
+                "sub": "authenticated or public",
+                "icon": "list-checks",
+                "cueFrame": 80
+              },
+              {
+                "label": "Architectural intent",
+                "sub": "test, sandbox, or handler",
+                "icon": "zap",
+                "cueFrame": 140
+              },
+              {
+                "label": "Reachability",
+                "sub": "can an attacker trigger it",
+                "icon": "target",
+                "cueFrame": 200
+              }
+            ]
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 11.65,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "beat_type": "example",
+      "narration_text": "`eval(user_input)` in an unauthenticated web handler → reported; `eval(expr)` inside a sandboxed math test → excluded.",
+      "estimated_duration_s": 16,
+      "visual": "two eval() call sites, stacked",
+      "scaffold_note": "THE EXAMPLE act, illustrative",
+      "act": "III — example",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "CODE_BEAT",
+        "remotion": {
+          "pattern": "ClaudeCodeBeat",
+          "props": {
+            "title": "same_eval.py — reachable vs sealed",
+            "code": "# main.py — public web handler\n@app.post(\"/calc\")\ndef calc(req):\n    return eval(req.body)        # REPORTED — user input reaches the sink\n\n# test_config.py — sandboxed math test\ndef test_expr():\n    expr = \"1 + 2\"\n    assert eval(expr) == 3       # EXCLUDED — fixed input, no path in",
+            "sparkLine": "same token · different reachability"
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 8.55,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "beat_type": "recap",
+      "narration_text": "An LLM reads code in context — data flow, entry points, architectural intent — and assesses whether an attacker can actually reach and trigger the sink, not merely whether the dangerous token appears.",
+      "estimated_duration_s": 8,
+      "visual": "recap card",
+      "scaffold_note": "recap of the mechanism",
+      "act": "IV — recap",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "FORM_A_CARD",
+        "remotion": {
+          "pattern": "FormACard",
+          "props": {
+            "lines": [
+              "The token isn't the bug.",
+              "Reachability is."
+            ]
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 11.65,
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "BHTF",
+      "act": "your turn",
+      "lane": "BOOKEND",
+      "narration_text": "Your turn. Take a scan result from your own repo and pick one flagged line. Trace it: where does the input originate, does anything reach it from outside the process, and would the sink actually fire with attacker-controlled data? Ask Claude to walk you through the reachability check on that one line — then decide report or exclude.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 22,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "COMPOSER_ASK",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "CLAUDE CODE · @NikBearBrown",
+            "segment": "Trace one flagged line to a real verdict",
+            "command": "Here is one line my scanner flagged: <paste snippet + 20 lines of surrounding context>. Walk me through the reachability check: origin of the input, path to the sink, entry-point exposure, and any sandboxing. End with report or exclude and the single sentence that justifies it.",
+            "runningText": "paste one flagged line and its surroundings…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude Sonnet"
+          },
+          "rendered": {
+            "out": "media/BHTF.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BHTF.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 16.85,
+      "audio_file": "mp3/beat-BHTF.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "lane": "BOOKEND",
+      "narration_text": "Why the same eval() is a real bug in one file and noise in another. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "voice_kokoro": "am_onyx",
+      "estimated_duration_s": 8,
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "form": "TITLE_OUTRO",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Why the same eval() is a real bug in one file and noise in another",
+            "handle": "@NikBearBrown",
+            "mascotSeed": "claude-code-security-review-same-eval-real-bug-one"
+          },
+          "rendered": {
+            "out": "media/BOUT.mp4",
+            "at": ""
+          }
+        }
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/BOUT.mp4",
+        "filled_by": "media",
+        "at": "2026-08-31T18:54:39"
+      },
+      "actual_duration_s": 5.82,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ]
+}

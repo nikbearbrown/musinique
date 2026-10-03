@@ -1,0 +1,373 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 15515,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "I'm excited to chat with you today\nAnna. I know me too, Mark."
+    } ]
+  }, {
+    "tStartMs": 18351,
+    "dDurationMs": 4630,
+    "segs": [ {
+      "utf8": "I help lead a team of product lawyers\nwho focus on Anthropic"
+    } ]
+  }, {
+    "tStartMs": 23189,
+    "dDurationMs": 1293,
+    "segs": [ {
+      "utf8": "enterprise product offerings."
+    } ]
+  }, {
+    "tStartMs": 24482,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "That includes the platform things like\nClaude code and other enterprise verticals."
+    } ]
+  }, {
+    "tStartMs": 28361,
+    "dDurationMs": 4546,
+    "segs": [ {
+      "utf8": "And so we're often reviewing new features\nand products that are coming out,"
+    } ]
+  }, {
+    "tStartMs": 32907,
+    "dDurationMs": 5381,
+    "segs": [ {
+      "utf8": "from Anthropic and sometimes I need advice\nand counsel from trusted experts."
+    } ]
+  }, {
+    "tStartMs": 38621,
+    "dDurationMs": 4130,
+    "segs": [ {
+      "utf8": "And so I call Anna, I am\nthe global co-head of AI at Freshfields,"
+    } ]
+  }, {
+    "tStartMs": 42751,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "which means I help head up our\nAI practice globally."
+    } ]
+  }, {
+    "tStartMs": 46337,
+    "dDurationMs": 1210,
+    "segs": [ {
+      "utf8": "And my own personal practice."
+    } ]
+  }, {
+    "tStartMs": 47547,
+    "dDurationMs": 2711,
+    "segs": [ {
+      "utf8": "I do a lot of what you might call\nas AI product counseling."
+    } ]
+  }, {
+    "tStartMs": 50258,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "We have, I think, 5700,"
+    } ]
+  }, {
+    "tStartMs": 53762,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "staff and lawyers\nworldwide who are using AI."
+    } ]
+  }, {
+    "tStartMs": 56765,
+    "dDurationMs": 3044,
+    "segs": [ {
+      "utf8": "And usually one of the stickiest\nand kind of trickiest areas"
+    } ]
+  }, {
+    "tStartMs": 59809,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "for us to navigate is the context gap."
+    } ]
+  }, {
+    "tStartMs": 63021,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "And understanding,\nlike what does the spec look like today?"
+    } ]
+  }, {
+    "tStartMs": 65899,
+    "dDurationMs": 1918,
+    "segs": [ {
+      "utf8": "And the fact\nthat it might look different tomorrow"
+    } ]
+  }, {
+    "tStartMs": 67817,
+    "dDurationMs": 2336,
+    "segs": [ {
+      "utf8": "and your engineering teams\nare moving at the speed of light?"
+    } ]
+  }, {
+    "tStartMs": 70153,
+    "dDurationMs": 3253,
+    "segs": [ {
+      "utf8": "A lot of lawyers, when they first start\nusing Claude, are just using it"
+    } ]
+  }, {
+    "tStartMs": 73406,
+    "dDurationMs": 3462,
+    "segs": [ {
+      "utf8": "for these sort of chat based question\nand answer experiences."
+    } ]
+  }, {
+    "tStartMs": 77327,
+    "dDurationMs": 3503,
+    "segs": [ {
+      "utf8": "But the more powerful stuff to be unlocked\nis by leveraging code,"
+    } ]
+  }, {
+    "tStartMs": 81081,
+    "dDurationMs": 4254,
+    "segs": [ {
+      "utf8": "which is, the ability for Claude\nto use your local computer"
+    } ]
+  }, {
+    "tStartMs": 85543,
+    "dDurationMs": 3462,
+    "segs": [ {
+      "utf8": "to create the types of files\nthat you would typically be"
+    } ]
+  }, {
+    "tStartMs": 89130,
+    "dDurationMs": 1752,
+    "segs": [ {
+      "utf8": "using as a knowledge worker."
+    } ]
+  }, {
+    "tStartMs": 90882,
+    "dDurationMs": 3921,
+    "segs": [ {
+      "utf8": "So that could be, Microsoft Word document\nor an Excel spreadsheet"
+    } ]
+  }, {
+    "tStartMs": 94803,
+    "dDurationMs": 1042,
+    "segs": [ {
+      "utf8": "or even a PowerPoint."
+    } ]
+  }, {
+    "tStartMs": 95845,
+    "dDurationMs": 3754,
+    "segs": [ {
+      "utf8": "If there's one thing that I feel like\nAI is very good at, it's making sense"
+    } ]
+  }, {
+    "tStartMs": 99599,
+    "dDurationMs": 3212,
+    "segs": [ {
+      "utf8": "of large bodies of information\nand spotting themes across them."
+    } ]
+  }, {
+    "tStartMs": 103269,
+    "dDurationMs": 3963,
+    "segs": [ {
+      "utf8": "And so being able to upload\na lot of existing memos and docs"
+    } ]
+  }, {
+    "tStartMs": 107232,
+    "dDurationMs": 4170,
+    "segs": [ {
+      "utf8": "and product roadmaps and new legislation\nthat's coming out"
+    } ]
+  }, {
+    "tStartMs": 111402,
+    "dDurationMs": 4004,
+    "segs": [ {
+      "utf8": "and just putting that all in one place\nand then be able to have a conversation"
+    } ]
+  }, {
+    "tStartMs": 115406,
+    "dDurationMs": 3462,
+    "segs": [ {
+      "utf8": "with Claude to create that new artifact\nthat's based on all the things"
+    } ]
+  }, {
+    "tStartMs": 118868,
+    "dDurationMs": 1835,
+    "segs": [ {
+      "utf8": "it's seeing across\nthose different surfaces."
+    } ]
+  }, {
+    "tStartMs": 120703,
+    "dDurationMs": 4046,
+    "segs": [ {
+      "utf8": "Everyone's asking this question, how does\nI make us different in the future?"
+    } ]
+  }, {
+    "tStartMs": 124833,
+    "dDurationMs": 3503,
+    "segs": [ {
+      "utf8": "What does the future\nbring to knowledge, work or otherwise?"
+    } ]
+  }, {
+    "tStartMs": 128628,
+    "dDurationMs": 3545,
+    "segs": [ {
+      "utf8": "And from my perspective,\nyou know, one of the core questions in"
+    } ]
+  }, {
+    "tStartMs": 132173,
+    "dDurationMs": 5798,
+    "segs": [ {
+      "utf8": "that is how do we add value if we are,\nyou know, one of the top global law firms?"
+    } ]
+  }, {
+    "tStartMs": 138388,
+    "dDurationMs": 2836,
+    "segs": [ {
+      "utf8": "What does it mean to be"
+    } ]
+  }, {
+    "tStartMs": 141224,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "the most, you know, fluent in our clients?"
+    } ]
+  }, {
+    "tStartMs": 144310,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "Enterprises and their kinds of,\nyou know, hopes and dreams?"
+    } ]
+  }, {
+    "tStartMs": 147355,
+    "dDurationMs": 3670,
+    "segs": [ {
+      "utf8": "How do we actually deliver on advice\nin the most seamless,"
+    } ]
+  }, {
+    "tStartMs": 151025,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "contextual way possible?"
+    } ]
+  }, {
+    "tStartMs": 153027,
+    "dDurationMs": 2962,
+    "segs": [ {
+      "utf8": "We as an institution\nare doing all these great things."
+    } ]
+  }, {
+    "tStartMs": 156156,
+    "dDurationMs": 3044,
+    "segs": [ {
+      "utf8": "But what if we took everything\nwe were separately doing with AI"
+    } ]
+  }, {
+    "tStartMs": 159200,
+    "dDurationMs": 2878,
+    "segs": [ {
+      "utf8": "and then brought it\nto the center of the conversation?"
+    } ]
+  }, {
+    "tStartMs": 162078,
+    "dDurationMs": 2544,
+    "segs": [ {
+      "utf8": "I really appreciate\nsometimes our junior associates."
+    } ]
+  }, {
+    "tStartMs": 164622,
+    "dDurationMs": 3879,
+    "segs": [ {
+      "utf8": "Sometimes they have such an inherent\nunderstanding of,"
+    } ]
+  }, {
+    "tStartMs": 168501,
+    "dDurationMs": 2002,
+    "segs": [ {
+      "utf8": "you know, the benefits,\nbut also the limitations"
+    } ]
+  }, {
+    "tStartMs": 170503,
+    "dDurationMs": 3087,
+    "segs": [ {
+      "utf8": "and the right process\nfor checking and being in the loop."
+    } ]
+  }, {
+    "tStartMs": 173715,
+    "dDurationMs": 5464,
+    "segs": [ {
+      "utf8": "The role that we play, ideally for\nour clients, is to help them sail a ship."
+    } ]
+  }, {
+    "tStartMs": 179262,
+    "dDurationMs": 5255,
+    "segs": [ {
+      "utf8": "Sometimes they're sailing\nthrough a really rocky, strait"
+    } ]
+  }, {
+    "tStartMs": 184809,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "and there might be, you know, rocks\nto the left and rocks to the right."
+    } ]
+  }, {
+    "tStartMs": 187812,
+    "dDurationMs": 3670,
+    "segs": [ {
+      "utf8": "And they're being slammed by,\nyou know, hail and all of these things."
+    } ]
+  }, {
+    "tStartMs": 191482,
+    "dDurationMs": 2461,
+    "segs": [ {
+      "utf8": "But at the end of the day,\nour judgment is the thing"
+    } ]
+  }, {
+    "tStartMs": 193943,
+    "dDurationMs": 1377,
+    "segs": [ {
+      "utf8": "that keeps the rudder straight."
+    } ]
+  }, {
+    "tStartMs": 195320,
+    "dDurationMs": 3879,
+    "segs": [ {
+      "utf8": "At Anthropic, we have this saying\nof, holding light and shade."
+    } ]
+  }, {
+    "tStartMs": 199574,
+    "dDurationMs": 2210,
+    "segs": [ {
+      "utf8": "And that's one of our values."
+    } ]
+  }, {
+    "tStartMs": 201784,
+    "dDurationMs": 2962,
+    "segs": [ {
+      "utf8": "And for me, that can represent that."
+    } ]
+  }, {
+    "tStartMs": 204746,
+    "dDurationMs": 3003,
+    "segs": [ {
+      "utf8": "I feel like there's\nso much risks in this technology"
+    } ]
+  }, {
+    "tStartMs": 207957,
+    "dDurationMs": 3587,
+    "segs": [ {
+      "utf8": "and that as lawyers, we often help\nour clients navigate that risk."
+    } ]
+  }, {
+    "tStartMs": 211878,
+    "dDurationMs": 1209,
+    "segs": [ {
+      "utf8": "But there's also a lot of promise."
+    } ]
+  } ]
+}

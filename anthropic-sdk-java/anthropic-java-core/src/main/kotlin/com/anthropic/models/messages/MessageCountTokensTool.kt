@@ -1,0 +1,1978 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.JsonValue
+import com.anthropic.core.allMaxBy
+import com.anthropic.core.getOrThrow
+import com.anthropic.core.getProperty
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Objects
+import java.util.Optional
+
+@JsonDeserialize(using = MessageCountTokensTool.Deserializer::class)
+@JsonSerialize(using = MessageCountTokensTool.Serializer::class)
+class MessageCountTokensTool
+private constructor(
+    private val tool: Tool? = null,
+    private val toolBash20250124: ToolBash20250124? = null,
+    private val codeExecutionTool20250522: CodeExecutionTool20250522? = null,
+    private val codeExecutionTool20250825: CodeExecutionTool20250825? = null,
+    private val codeExecutionTool20260120: CodeExecutionTool20260120? = null,
+    private val codeExecutionTool20260521: CodeExecutionTool20260521? = null,
+    private val browserToolset20260801: BrowserToolset20260801? = null,
+    private val memoryTool20250818: MemoryTool20250818? = null,
+    private val computerToolset20260801: ComputerToolset20260801? = null,
+    private val toolTextEditor20250124: ToolTextEditor20250124? = null,
+    private val toolTextEditor20250429: ToolTextEditor20250429? = null,
+    private val toolTextEditor20250728: ToolTextEditor20250728? = null,
+    private val webSearchTool20250305: WebSearchTool20250305? = null,
+    private val webFetchTool20250910: WebFetchTool20250910? = null,
+    private val webSearchTool20260209: WebSearchTool20260209? = null,
+    private val webFetchTool20260209: WebFetchTool20260209? = null,
+    private val webFetchTool20260309: WebFetchTool20260309? = null,
+    private val webSearchTool20260318: WebSearchTool20260318? = null,
+    private val webFetchTool20260318: WebFetchTool20260318? = null,
+    private val toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119? = null,
+    private val toolSearchToolRegex20251119: ToolSearchToolRegex20251119? = null,
+    private val _json: JsonValue? = null,
+) {
+
+    fun cacheControl(): Optional<CacheControlEphemeral> =
+        accept(
+            object : Visitor<Optional<CacheControlEphemeral>> {
+                override fun visitTool(tool: Tool): Optional<CacheControlEphemeral> =
+                    tool.cacheControl()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<CacheControlEphemeral> = toolBash20250124.cacheControl()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<CacheControlEphemeral> = codeExecutionTool20250522.cacheControl()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<CacheControlEphemeral> = codeExecutionTool20250825.cacheControl()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<CacheControlEphemeral> = codeExecutionTool20260120.cacheControl()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<CacheControlEphemeral> = codeExecutionTool20260521.cacheControl()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<CacheControlEphemeral> = browserToolset20260801.cacheControl()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<CacheControlEphemeral> = memoryTool20250818.cacheControl()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<CacheControlEphemeral> = computerToolset20260801.cacheControl()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<CacheControlEphemeral> = toolTextEditor20250124.cacheControl()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<CacheControlEphemeral> = toolTextEditor20250429.cacheControl()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<CacheControlEphemeral> = toolTextEditor20250728.cacheControl()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<CacheControlEphemeral> = webSearchTool20250305.cacheControl()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<CacheControlEphemeral> = webFetchTool20250910.cacheControl()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<CacheControlEphemeral> = webSearchTool20260209.cacheControl()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<CacheControlEphemeral> = webFetchTool20260209.cacheControl()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<CacheControlEphemeral> = webFetchTool20260309.cacheControl()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<CacheControlEphemeral> = webSearchTool20260318.cacheControl()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<CacheControlEphemeral> = webFetchTool20260318.cacheControl()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<CacheControlEphemeral> = toolSearchToolBm25_20251119.cacheControl()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<CacheControlEphemeral> = toolSearchToolRegex20251119.cacheControl()
+
+                override fun unknown(json: JsonValue?): Optional<CacheControlEphemeral> =
+                    json.getProperty<CacheControlEphemeral>("cache_control").asKnown()
+            }
+        )
+
+    fun deferLoading(): Optional<Boolean> =
+        accept(
+            object : Visitor<Optional<Boolean>> {
+                override fun visitTool(tool: Tool): Optional<Boolean> = tool.deferLoading()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<Boolean> = toolBash20250124.deferLoading()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<Boolean> = codeExecutionTool20250522.deferLoading()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<Boolean> = codeExecutionTool20250825.deferLoading()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<Boolean> = codeExecutionTool20260120.deferLoading()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<Boolean> = codeExecutionTool20260521.deferLoading()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<Boolean> = memoryTool20250818.deferLoading()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<Boolean> = toolTextEditor20250124.deferLoading()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<Boolean> = toolTextEditor20250429.deferLoading()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<Boolean> = toolTextEditor20250728.deferLoading()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<Boolean> = webSearchTool20250305.deferLoading()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<Boolean> = webFetchTool20250910.deferLoading()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<Boolean> = webSearchTool20260209.deferLoading()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<Boolean> = webFetchTool20260209.deferLoading()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<Boolean> = webFetchTool20260309.deferLoading()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<Boolean> = webSearchTool20260318.deferLoading()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<Boolean> = webFetchTool20260318.deferLoading()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<Boolean> = toolSearchToolBm25_20251119.deferLoading()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<Boolean> = toolSearchToolRegex20251119.deferLoading()
+
+                override fun unknown(json: JsonValue?): Optional<Boolean> =
+                    json.getProperty<Boolean>("defer_loading").asKnown()
+            }
+        )
+
+    fun strict(): Optional<Boolean> =
+        accept(
+            object : Visitor<Optional<Boolean>> {
+                override fun visitTool(tool: Tool): Optional<Boolean> = tool.strict()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<Boolean> = toolBash20250124.strict()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<Boolean> = codeExecutionTool20250522.strict()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<Boolean> = codeExecutionTool20250825.strict()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<Boolean> = codeExecutionTool20260120.strict()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<Boolean> = codeExecutionTool20260521.strict()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<Boolean> = memoryTool20250818.strict()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<Boolean> = toolTextEditor20250124.strict()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<Boolean> = toolTextEditor20250429.strict()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<Boolean> = toolTextEditor20250728.strict()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<Boolean> = webSearchTool20250305.strict()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<Boolean> = webFetchTool20250910.strict()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<Boolean> = webSearchTool20260209.strict()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<Boolean> = webFetchTool20260209.strict()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<Boolean> = webFetchTool20260309.strict()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<Boolean> = webSearchTool20260318.strict()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<Boolean> = webFetchTool20260318.strict()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<Boolean> = toolSearchToolBm25_20251119.strict()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<Boolean> = toolSearchToolRegex20251119.strict()
+
+                override fun unknown(json: JsonValue?): Optional<Boolean> =
+                    json.getProperty<Boolean>("strict").asKnown()
+            }
+        )
+
+    fun allowedDomains(): Optional<List<String>> =
+        accept(
+            object : Visitor<Optional<List<String>>> {
+                override fun visitTool(tool: Tool): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<List<String>> = webSearchTool20250305.allowedDomains()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<List<String>> = webFetchTool20250910.allowedDomains()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<List<String>> = webSearchTool20260209.allowedDomains()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<List<String>> = webFetchTool20260209.allowedDomains()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<List<String>> = webFetchTool20260309.allowedDomains()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<List<String>> = webSearchTool20260318.allowedDomains()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<List<String>> = webFetchTool20260318.allowedDomains()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<List<String>> =
+                    json.getProperty<List<String>>("allowed_domains").asKnown()
+            }
+        )
+
+    fun blockedDomains(): Optional<List<String>> =
+        accept(
+            object : Visitor<Optional<List<String>>> {
+                override fun visitTool(tool: Tool): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<List<String>> = webSearchTool20250305.blockedDomains()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<List<String>> = webFetchTool20250910.blockedDomains()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<List<String>> = webSearchTool20260209.blockedDomains()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<List<String>> = webFetchTool20260209.blockedDomains()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<List<String>> = webFetchTool20260309.blockedDomains()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<List<String>> = webSearchTool20260318.blockedDomains()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<List<String>> = webFetchTool20260318.blockedDomains()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<List<String>> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<List<String>> =
+                    json.getProperty<List<String>>("blocked_domains").asKnown()
+            }
+        )
+
+    fun maxUses(): Optional<Long> =
+        accept(
+            object : Visitor<Optional<Long>> {
+                override fun visitTool(tool: Tool): Optional<Long> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<Long> = webSearchTool20250305.maxUses()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<Long> = webFetchTool20250910.maxUses()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<Long> = webSearchTool20260209.maxUses()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<Long> = webFetchTool20260209.maxUses()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<Long> = webFetchTool20260309.maxUses()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<Long> = webSearchTool20260318.maxUses()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<Long> = webFetchTool20260318.maxUses()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<Long> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<Long> =
+                    json.getProperty<Long>("max_uses").asKnown()
+            }
+        )
+
+    fun userLocation(): Optional<UserLocation> =
+        accept(
+            object : Visitor<Optional<UserLocation>> {
+                override fun visitTool(tool: Tool): Optional<UserLocation> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<UserLocation> = webSearchTool20250305.userLocation()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<UserLocation> = webSearchTool20260209.userLocation()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<UserLocation> = webSearchTool20260318.userLocation()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<UserLocation> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<UserLocation> =
+                    json.getProperty<UserLocation>("user_location").asKnown()
+            }
+        )
+
+    fun citations(): Optional<CitationsConfigParam> =
+        accept(
+            object : Visitor<Optional<CitationsConfigParam>> {
+                override fun visitTool(tool: Tool): Optional<CitationsConfigParam> =
+                    Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<CitationsConfigParam> = webFetchTool20250910.citations()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<CitationsConfigParam> = webFetchTool20260209.citations()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<CitationsConfigParam> = webFetchTool20260309.citations()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<CitationsConfigParam> = webFetchTool20260318.citations()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<CitationsConfigParam> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<CitationsConfigParam> =
+                    json.getProperty<CitationsConfigParam>("citations").asKnown()
+            }
+        )
+
+    fun maxContentTokens(): Optional<Long> =
+        accept(
+            object : Visitor<Optional<Long>> {
+                override fun visitTool(tool: Tool): Optional<Long> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<Long> = webFetchTool20250910.maxContentTokens()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<Long> = webFetchTool20260209.maxContentTokens()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<Long> = webFetchTool20260309.maxContentTokens()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<Long> = webFetchTool20260318.maxContentTokens()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<Long> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<Long> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<Long> =
+                    json.getProperty<Long>("max_content_tokens").asKnown()
+            }
+        )
+
+    fun urlSources(): Optional<WebFetchUrlSources> =
+        accept(
+            object : Visitor<Optional<WebFetchUrlSources>> {
+                override fun visitTool(tool: Tool): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<WebFetchUrlSources> = webFetchTool20250910.urlSources()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<WebFetchUrlSources> = webFetchTool20260209.urlSources()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<WebFetchUrlSources> = webFetchTool20260309.urlSources()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<WebFetchUrlSources> = webFetchTool20260318.urlSources()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<WebFetchUrlSources> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<WebFetchUrlSources> =
+                    json.getProperty<WebFetchUrlSources>("url_sources").asKnown()
+            }
+        )
+
+    fun useCache(): Optional<Boolean> =
+        accept(
+            object : Visitor<Optional<Boolean>> {
+                override fun visitTool(tool: Tool): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolBash20250124(
+                    toolBash20250124: ToolBash20250124
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitMemoryTool20250818(
+                    memoryTool20250818: MemoryTool20250818
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitWebFetchTool20250910(
+                    webFetchTool20250910: WebFetchTool20250910
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitWebFetchTool20260209(
+                    webFetchTool20260209: WebFetchTool20260209
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitWebFetchTool20260309(
+                    webFetchTool20260309: WebFetchTool20260309
+                ): Optional<Boolean> = webFetchTool20260309.useCache()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitWebFetchTool20260318(
+                    webFetchTool20260318: WebFetchTool20260318
+                ): Optional<Boolean> = webFetchTool20260318.useCache()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ): Optional<Boolean> = Optional.empty()
+
+                override fun unknown(json: JsonValue?): Optional<Boolean> =
+                    json.getProperty<Boolean>("use_cache").asKnown()
+            }
+        )
+
+    fun tool(): Optional<Tool> = Optional.ofNullable(tool)
+
+    fun toolBash20250124(): Optional<ToolBash20250124> = Optional.ofNullable(toolBash20250124)
+
+    fun codeExecutionTool20250522(): Optional<CodeExecutionTool20250522> =
+        Optional.ofNullable(codeExecutionTool20250522)
+
+    fun codeExecutionTool20250825(): Optional<CodeExecutionTool20250825> =
+        Optional.ofNullable(codeExecutionTool20250825)
+
+    /** Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint). */
+    fun codeExecutionTool20260120(): Optional<CodeExecutionTool20260120> =
+        Optional.ofNullable(codeExecutionTool20260120)
+
+    /** Code execution tool with REPL state persistence. */
+    fun codeExecutionTool20260521(): Optional<CodeExecutionTool20260521> =
+        Optional.ofNullable(codeExecutionTool20260521)
+
+    /**
+     * The browser toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+     * browser tool family. The model is served the family's tool with any members disabled via
+     * ``configs`` removed from its schema.
+     */
+    fun browserToolset20260801(): Optional<BrowserToolset20260801> =
+        Optional.ofNullable(browserToolset20260801)
+
+    fun memoryTool20250818(): Optional<MemoryTool20250818> = Optional.ofNullable(memoryTool20250818)
+
+    /**
+     * The computer toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+     * computer tool family. The model is served the family's tool with any members disabled via
+     * ``configs`` removed from its schema. Every member is enabled by default, zoom included. The
+     * single-tool options ``display_number`` and ``enable_zoom`` are not fields of a toolset entry
+     * — it carries only ``type``, ``configs``, and ``cache_control``; zoom is controlled via
+     * ``configs.zoom.enabled``.
+     */
+    fun computerToolset20260801(): Optional<ComputerToolset20260801> =
+        Optional.ofNullable(computerToolset20260801)
+
+    fun toolTextEditor20250124(): Optional<ToolTextEditor20250124> =
+        Optional.ofNullable(toolTextEditor20250124)
+
+    fun toolTextEditor20250429(): Optional<ToolTextEditor20250429> =
+        Optional.ofNullable(toolTextEditor20250429)
+
+    fun toolTextEditor20250728(): Optional<ToolTextEditor20250728> =
+        Optional.ofNullable(toolTextEditor20250728)
+
+    fun webSearchTool20250305(): Optional<WebSearchTool20250305> =
+        Optional.ofNullable(webSearchTool20250305)
+
+    fun webFetchTool20250910(): Optional<WebFetchTool20250910> =
+        Optional.ofNullable(webFetchTool20250910)
+
+    fun webSearchTool20260209(): Optional<WebSearchTool20260209> =
+        Optional.ofNullable(webSearchTool20260209)
+
+    fun webFetchTool20260209(): Optional<WebFetchTool20260209> =
+        Optional.ofNullable(webFetchTool20260209)
+
+    /** Web fetch tool with use_cache parameter for bypassing cached content. */
+    fun webFetchTool20260309(): Optional<WebFetchTool20260309> =
+        Optional.ofNullable(webFetchTool20260309)
+
+    fun webSearchTool20260318(): Optional<WebSearchTool20260318> =
+        Optional.ofNullable(webSearchTool20260318)
+
+    fun webFetchTool20260318(): Optional<WebFetchTool20260318> =
+        Optional.ofNullable(webFetchTool20260318)
+
+    fun toolSearchToolBm25_20251119(): Optional<ToolSearchToolBm25_20251119> =
+        Optional.ofNullable(toolSearchToolBm25_20251119)
+
+    fun toolSearchToolRegex20251119(): Optional<ToolSearchToolRegex20251119> =
+        Optional.ofNullable(toolSearchToolRegex20251119)
+
+    fun isTool(): Boolean = tool != null
+
+    fun isToolBash20250124(): Boolean = toolBash20250124 != null
+
+    fun isCodeExecutionTool20250522(): Boolean = codeExecutionTool20250522 != null
+
+    fun isCodeExecutionTool20250825(): Boolean = codeExecutionTool20250825 != null
+
+    fun isCodeExecutionTool20260120(): Boolean = codeExecutionTool20260120 != null
+
+    fun isCodeExecutionTool20260521(): Boolean = codeExecutionTool20260521 != null
+
+    fun isBrowserToolset20260801(): Boolean = browserToolset20260801 != null
+
+    fun isMemoryTool20250818(): Boolean = memoryTool20250818 != null
+
+    fun isComputerToolset20260801(): Boolean = computerToolset20260801 != null
+
+    fun isToolTextEditor20250124(): Boolean = toolTextEditor20250124 != null
+
+    fun isToolTextEditor20250429(): Boolean = toolTextEditor20250429 != null
+
+    fun isToolTextEditor20250728(): Boolean = toolTextEditor20250728 != null
+
+    fun isWebSearchTool20250305(): Boolean = webSearchTool20250305 != null
+
+    fun isWebFetchTool20250910(): Boolean = webFetchTool20250910 != null
+
+    fun isWebSearchTool20260209(): Boolean = webSearchTool20260209 != null
+
+    fun isWebFetchTool20260209(): Boolean = webFetchTool20260209 != null
+
+    fun isWebFetchTool20260309(): Boolean = webFetchTool20260309 != null
+
+    fun isWebSearchTool20260318(): Boolean = webSearchTool20260318 != null
+
+    fun isWebFetchTool20260318(): Boolean = webFetchTool20260318 != null
+
+    fun isToolSearchToolBm25_20251119(): Boolean = toolSearchToolBm25_20251119 != null
+
+    fun isToolSearchToolRegex20251119(): Boolean = toolSearchToolRegex20251119 != null
+
+    fun asTool(): Tool = tool.getOrThrow("tool")
+
+    fun asToolBash20250124(): ToolBash20250124 = toolBash20250124.getOrThrow("toolBash20250124")
+
+    fun asCodeExecutionTool20250522(): CodeExecutionTool20250522 =
+        codeExecutionTool20250522.getOrThrow("codeExecutionTool20250522")
+
+    fun asCodeExecutionTool20250825(): CodeExecutionTool20250825 =
+        codeExecutionTool20250825.getOrThrow("codeExecutionTool20250825")
+
+    /** Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint). */
+    fun asCodeExecutionTool20260120(): CodeExecutionTool20260120 =
+        codeExecutionTool20260120.getOrThrow("codeExecutionTool20260120")
+
+    /** Code execution tool with REPL state persistence. */
+    fun asCodeExecutionTool20260521(): CodeExecutionTool20260521 =
+        codeExecutionTool20260521.getOrThrow("codeExecutionTool20260521")
+
+    /**
+     * The browser toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+     * browser tool family. The model is served the family's tool with any members disabled via
+     * ``configs`` removed from its schema.
+     */
+    fun asBrowserToolset20260801(): BrowserToolset20260801 =
+        browserToolset20260801.getOrThrow("browserToolset20260801")
+
+    fun asMemoryTool20250818(): MemoryTool20250818 =
+        memoryTool20250818.getOrThrow("memoryTool20250818")
+
+    /**
+     * The computer toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+     * computer tool family. The model is served the family's tool with any members disabled via
+     * ``configs`` removed from its schema. Every member is enabled by default, zoom included. The
+     * single-tool options ``display_number`` and ``enable_zoom`` are not fields of a toolset entry
+     * — it carries only ``type``, ``configs``, and ``cache_control``; zoom is controlled via
+     * ``configs.zoom.enabled``.
+     */
+    fun asComputerToolset20260801(): ComputerToolset20260801 =
+        computerToolset20260801.getOrThrow("computerToolset20260801")
+
+    fun asToolTextEditor20250124(): ToolTextEditor20250124 =
+        toolTextEditor20250124.getOrThrow("toolTextEditor20250124")
+
+    fun asToolTextEditor20250429(): ToolTextEditor20250429 =
+        toolTextEditor20250429.getOrThrow("toolTextEditor20250429")
+
+    fun asToolTextEditor20250728(): ToolTextEditor20250728 =
+        toolTextEditor20250728.getOrThrow("toolTextEditor20250728")
+
+    fun asWebSearchTool20250305(): WebSearchTool20250305 =
+        webSearchTool20250305.getOrThrow("webSearchTool20250305")
+
+    fun asWebFetchTool20250910(): WebFetchTool20250910 =
+        webFetchTool20250910.getOrThrow("webFetchTool20250910")
+
+    fun asWebSearchTool20260209(): WebSearchTool20260209 =
+        webSearchTool20260209.getOrThrow("webSearchTool20260209")
+
+    fun asWebFetchTool20260209(): WebFetchTool20260209 =
+        webFetchTool20260209.getOrThrow("webFetchTool20260209")
+
+    /** Web fetch tool with use_cache parameter for bypassing cached content. */
+    fun asWebFetchTool20260309(): WebFetchTool20260309 =
+        webFetchTool20260309.getOrThrow("webFetchTool20260309")
+
+    fun asWebSearchTool20260318(): WebSearchTool20260318 =
+        webSearchTool20260318.getOrThrow("webSearchTool20260318")
+
+    fun asWebFetchTool20260318(): WebFetchTool20260318 =
+        webFetchTool20260318.getOrThrow("webFetchTool20260318")
+
+    fun asToolSearchToolBm25_20251119(): ToolSearchToolBm25_20251119 =
+        toolSearchToolBm25_20251119.getOrThrow("toolSearchToolBm25_20251119")
+
+    fun asToolSearchToolRegex20251119(): ToolSearchToolRegex20251119 =
+        toolSearchToolRegex20251119.getOrThrow("toolSearchToolRegex20251119")
+
+    fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+    /**
+     * Maps this instance's current variant to a value of type [T] using the given [visitor].
+     *
+     * Note that this method is _not_ forwards compatible with new variants from the API, unless
+     * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of the
+     * SDK gracefully, consider overriding [Visitor.unknown]:
+     * ```java
+     * import com.anthropic.core.JsonValue;
+     * import java.util.Optional;
+     *
+     * Optional<String> result = messageCountTokensTool.accept(new MessageCountTokensTool.Visitor<Optional<String>>() {
+     *     @Override
+     *     public Optional<String> visitTool(Tool tool) {
+     *         return Optional.of(tool.toString());
+     *     }
+     *
+     *     // ...
+     *
+     *     @Override
+     *     public Optional<String> unknown(JsonValue json) {
+     *         // Or inspect the `json`.
+     *         return Optional.empty();
+     *     }
+     * });
+     * ```
+     *
+     * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor] and
+     *   the current variant is unknown.
+     */
+    fun <T> accept(visitor: Visitor<T>): T =
+        when {
+            tool != null -> visitor.visitTool(tool)
+            toolBash20250124 != null -> visitor.visitToolBash20250124(toolBash20250124)
+            codeExecutionTool20250522 != null ->
+                visitor.visitCodeExecutionTool20250522(codeExecutionTool20250522)
+            codeExecutionTool20250825 != null ->
+                visitor.visitCodeExecutionTool20250825(codeExecutionTool20250825)
+            codeExecutionTool20260120 != null ->
+                visitor.visitCodeExecutionTool20260120(codeExecutionTool20260120)
+            codeExecutionTool20260521 != null ->
+                visitor.visitCodeExecutionTool20260521(codeExecutionTool20260521)
+            browserToolset20260801 != null ->
+                visitor.visitBrowserToolset20260801(browserToolset20260801)
+            memoryTool20250818 != null -> visitor.visitMemoryTool20250818(memoryTool20250818)
+            computerToolset20260801 != null ->
+                visitor.visitComputerToolset20260801(computerToolset20260801)
+            toolTextEditor20250124 != null ->
+                visitor.visitToolTextEditor20250124(toolTextEditor20250124)
+            toolTextEditor20250429 != null ->
+                visitor.visitToolTextEditor20250429(toolTextEditor20250429)
+            toolTextEditor20250728 != null ->
+                visitor.visitToolTextEditor20250728(toolTextEditor20250728)
+            webSearchTool20250305 != null ->
+                visitor.visitWebSearchTool20250305(webSearchTool20250305)
+            webFetchTool20250910 != null -> visitor.visitWebFetchTool20250910(webFetchTool20250910)
+            webSearchTool20260209 != null ->
+                visitor.visitWebSearchTool20260209(webSearchTool20260209)
+            webFetchTool20260209 != null -> visitor.visitWebFetchTool20260209(webFetchTool20260209)
+            webFetchTool20260309 != null -> visitor.visitWebFetchTool20260309(webFetchTool20260309)
+            webSearchTool20260318 != null ->
+                visitor.visitWebSearchTool20260318(webSearchTool20260318)
+            webFetchTool20260318 != null -> visitor.visitWebFetchTool20260318(webFetchTool20260318)
+            toolSearchToolBm25_20251119 != null ->
+                visitor.visitToolSearchToolBm25_20251119(toolSearchToolBm25_20251119)
+            toolSearchToolRegex20251119 != null ->
+                visitor.visitToolSearchToolRegex20251119(toolSearchToolRegex20251119)
+            else -> visitor.unknown(_json)
+        }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): MessageCountTokensTool = apply {
+        if (validated) {
+            return@apply
+        }
+
+        accept(
+            object : Visitor<Unit> {
+                override fun visitTool(tool: Tool) {
+                    tool.validate()
+                }
+
+                override fun visitToolBash20250124(toolBash20250124: ToolBash20250124) {
+                    toolBash20250124.validate()
+                }
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ) {
+                    codeExecutionTool20250522.validate()
+                }
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ) {
+                    codeExecutionTool20250825.validate()
+                }
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ) {
+                    codeExecutionTool20260120.validate()
+                }
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ) {
+                    codeExecutionTool20260521.validate()
+                }
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ) {
+                    browserToolset20260801.validate()
+                }
+
+                override fun visitMemoryTool20250818(memoryTool20250818: MemoryTool20250818) {
+                    memoryTool20250818.validate()
+                }
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ) {
+                    computerToolset20260801.validate()
+                }
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ) {
+                    toolTextEditor20250124.validate()
+                }
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ) {
+                    toolTextEditor20250429.validate()
+                }
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ) {
+                    toolTextEditor20250728.validate()
+                }
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ) {
+                    webSearchTool20250305.validate()
+                }
+
+                override fun visitWebFetchTool20250910(webFetchTool20250910: WebFetchTool20250910) {
+                    webFetchTool20250910.validate()
+                }
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ) {
+                    webSearchTool20260209.validate()
+                }
+
+                override fun visitWebFetchTool20260209(webFetchTool20260209: WebFetchTool20260209) {
+                    webFetchTool20260209.validate()
+                }
+
+                override fun visitWebFetchTool20260309(webFetchTool20260309: WebFetchTool20260309) {
+                    webFetchTool20260309.validate()
+                }
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ) {
+                    webSearchTool20260318.validate()
+                }
+
+                override fun visitWebFetchTool20260318(webFetchTool20260318: WebFetchTool20260318) {
+                    webFetchTool20260318.validate()
+                }
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ) {
+                    toolSearchToolBm25_20251119.validate()
+                }
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ) {
+                    toolSearchToolRegex20251119.validate()
+                }
+            }
+        )
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        accept(
+            object : Visitor<Int> {
+                override fun visitTool(tool: Tool) = tool.validity()
+
+                override fun visitToolBash20250124(toolBash20250124: ToolBash20250124) =
+                    toolBash20250124.validity()
+
+                override fun visitCodeExecutionTool20250522(
+                    codeExecutionTool20250522: CodeExecutionTool20250522
+                ) = codeExecutionTool20250522.validity()
+
+                override fun visitCodeExecutionTool20250825(
+                    codeExecutionTool20250825: CodeExecutionTool20250825
+                ) = codeExecutionTool20250825.validity()
+
+                override fun visitCodeExecutionTool20260120(
+                    codeExecutionTool20260120: CodeExecutionTool20260120
+                ) = codeExecutionTool20260120.validity()
+
+                override fun visitCodeExecutionTool20260521(
+                    codeExecutionTool20260521: CodeExecutionTool20260521
+                ) = codeExecutionTool20260521.validity()
+
+                override fun visitBrowserToolset20260801(
+                    browserToolset20260801: BrowserToolset20260801
+                ) = browserToolset20260801.validity()
+
+                override fun visitMemoryTool20250818(memoryTool20250818: MemoryTool20250818) =
+                    memoryTool20250818.validity()
+
+                override fun visitComputerToolset20260801(
+                    computerToolset20260801: ComputerToolset20260801
+                ) = computerToolset20260801.validity()
+
+                override fun visitToolTextEditor20250124(
+                    toolTextEditor20250124: ToolTextEditor20250124
+                ) = toolTextEditor20250124.validity()
+
+                override fun visitToolTextEditor20250429(
+                    toolTextEditor20250429: ToolTextEditor20250429
+                ) = toolTextEditor20250429.validity()
+
+                override fun visitToolTextEditor20250728(
+                    toolTextEditor20250728: ToolTextEditor20250728
+                ) = toolTextEditor20250728.validity()
+
+                override fun visitWebSearchTool20250305(
+                    webSearchTool20250305: WebSearchTool20250305
+                ) = webSearchTool20250305.validity()
+
+                override fun visitWebFetchTool20250910(webFetchTool20250910: WebFetchTool20250910) =
+                    webFetchTool20250910.validity()
+
+                override fun visitWebSearchTool20260209(
+                    webSearchTool20260209: WebSearchTool20260209
+                ) = webSearchTool20260209.validity()
+
+                override fun visitWebFetchTool20260209(webFetchTool20260209: WebFetchTool20260209) =
+                    webFetchTool20260209.validity()
+
+                override fun visitWebFetchTool20260309(webFetchTool20260309: WebFetchTool20260309) =
+                    webFetchTool20260309.validity()
+
+                override fun visitWebSearchTool20260318(
+                    webSearchTool20260318: WebSearchTool20260318
+                ) = webSearchTool20260318.validity()
+
+                override fun visitWebFetchTool20260318(webFetchTool20260318: WebFetchTool20260318) =
+                    webFetchTool20260318.validity()
+
+                override fun visitToolSearchToolBm25_20251119(
+                    toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+                ) = toolSearchToolBm25_20251119.validity()
+
+                override fun visitToolSearchToolRegex20251119(
+                    toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+                ) = toolSearchToolRegex20251119.validity()
+
+                override fun unknown(json: JsonValue?) = 0
+            }
+        )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is MessageCountTokensTool &&
+            tool == other.tool &&
+            toolBash20250124 == other.toolBash20250124 &&
+            codeExecutionTool20250522 == other.codeExecutionTool20250522 &&
+            codeExecutionTool20250825 == other.codeExecutionTool20250825 &&
+            codeExecutionTool20260120 == other.codeExecutionTool20260120 &&
+            codeExecutionTool20260521 == other.codeExecutionTool20260521 &&
+            browserToolset20260801 == other.browserToolset20260801 &&
+            memoryTool20250818 == other.memoryTool20250818 &&
+            computerToolset20260801 == other.computerToolset20260801 &&
+            toolTextEditor20250124 == other.toolTextEditor20250124 &&
+            toolTextEditor20250429 == other.toolTextEditor20250429 &&
+            toolTextEditor20250728 == other.toolTextEditor20250728 &&
+            webSearchTool20250305 == other.webSearchTool20250305 &&
+            webFetchTool20250910 == other.webFetchTool20250910 &&
+            webSearchTool20260209 == other.webSearchTool20260209 &&
+            webFetchTool20260209 == other.webFetchTool20260209 &&
+            webFetchTool20260309 == other.webFetchTool20260309 &&
+            webSearchTool20260318 == other.webSearchTool20260318 &&
+            webFetchTool20260318 == other.webFetchTool20260318 &&
+            toolSearchToolBm25_20251119 == other.toolSearchToolBm25_20251119 &&
+            toolSearchToolRegex20251119 == other.toolSearchToolRegex20251119
+    }
+
+    override fun hashCode(): Int =
+        Objects.hash(
+            tool,
+            toolBash20250124,
+            codeExecutionTool20250522,
+            codeExecutionTool20250825,
+            codeExecutionTool20260120,
+            codeExecutionTool20260521,
+            browserToolset20260801,
+            memoryTool20250818,
+            computerToolset20260801,
+            toolTextEditor20250124,
+            toolTextEditor20250429,
+            toolTextEditor20250728,
+            webSearchTool20250305,
+            webFetchTool20250910,
+            webSearchTool20260209,
+            webFetchTool20260209,
+            webFetchTool20260309,
+            webSearchTool20260318,
+            webFetchTool20260318,
+            toolSearchToolBm25_20251119,
+            toolSearchToolRegex20251119,
+        )
+
+    override fun toString(): String =
+        when {
+            tool != null -> "MessageCountTokensTool{tool=$tool}"
+            toolBash20250124 != null -> "MessageCountTokensTool{toolBash20250124=$toolBash20250124}"
+            codeExecutionTool20250522 != null ->
+                "MessageCountTokensTool{codeExecutionTool20250522=$codeExecutionTool20250522}"
+            codeExecutionTool20250825 != null ->
+                "MessageCountTokensTool{codeExecutionTool20250825=$codeExecutionTool20250825}"
+            codeExecutionTool20260120 != null ->
+                "MessageCountTokensTool{codeExecutionTool20260120=$codeExecutionTool20260120}"
+            codeExecutionTool20260521 != null ->
+                "MessageCountTokensTool{codeExecutionTool20260521=$codeExecutionTool20260521}"
+            browserToolset20260801 != null ->
+                "MessageCountTokensTool{browserToolset20260801=$browserToolset20260801}"
+            memoryTool20250818 != null ->
+                "MessageCountTokensTool{memoryTool20250818=$memoryTool20250818}"
+            computerToolset20260801 != null ->
+                "MessageCountTokensTool{computerToolset20260801=$computerToolset20260801}"
+            toolTextEditor20250124 != null ->
+                "MessageCountTokensTool{toolTextEditor20250124=$toolTextEditor20250124}"
+            toolTextEditor20250429 != null ->
+                "MessageCountTokensTool{toolTextEditor20250429=$toolTextEditor20250429}"
+            toolTextEditor20250728 != null ->
+                "MessageCountTokensTool{toolTextEditor20250728=$toolTextEditor20250728}"
+            webSearchTool20250305 != null ->
+                "MessageCountTokensTool{webSearchTool20250305=$webSearchTool20250305}"
+            webFetchTool20250910 != null ->
+                "MessageCountTokensTool{webFetchTool20250910=$webFetchTool20250910}"
+            webSearchTool20260209 != null ->
+                "MessageCountTokensTool{webSearchTool20260209=$webSearchTool20260209}"
+            webFetchTool20260209 != null ->
+                "MessageCountTokensTool{webFetchTool20260209=$webFetchTool20260209}"
+            webFetchTool20260309 != null ->
+                "MessageCountTokensTool{webFetchTool20260309=$webFetchTool20260309}"
+            webSearchTool20260318 != null ->
+                "MessageCountTokensTool{webSearchTool20260318=$webSearchTool20260318}"
+            webFetchTool20260318 != null ->
+                "MessageCountTokensTool{webFetchTool20260318=$webFetchTool20260318}"
+            toolSearchToolBm25_20251119 != null ->
+                "MessageCountTokensTool{toolSearchToolBm25_20251119=$toolSearchToolBm25_20251119}"
+            toolSearchToolRegex20251119 != null ->
+                "MessageCountTokensTool{toolSearchToolRegex20251119=$toolSearchToolRegex20251119}"
+            _json != null -> "MessageCountTokensTool{_unknown=$_json}"
+            else -> throw IllegalStateException("Invalid MessageCountTokensTool")
+        }
+
+    companion object {
+
+        @JvmStatic fun ofTool(tool: Tool) = MessageCountTokensTool(tool = tool)
+
+        @JvmStatic
+        fun ofToolBash20250124(toolBash20250124: ToolBash20250124) =
+            MessageCountTokensTool(toolBash20250124 = toolBash20250124)
+
+        @JvmStatic
+        fun ofCodeExecutionTool20250522(codeExecutionTool20250522: CodeExecutionTool20250522) =
+            MessageCountTokensTool(codeExecutionTool20250522 = codeExecutionTool20250522)
+
+        @JvmStatic
+        fun ofCodeExecutionTool20250825(codeExecutionTool20250825: CodeExecutionTool20250825) =
+            MessageCountTokensTool(codeExecutionTool20250825 = codeExecutionTool20250825)
+
+        /** Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint). */
+        @JvmStatic
+        fun ofCodeExecutionTool20260120(codeExecutionTool20260120: CodeExecutionTool20260120) =
+            MessageCountTokensTool(codeExecutionTool20260120 = codeExecutionTool20260120)
+
+        /** Code execution tool with REPL state persistence. */
+        @JvmStatic
+        fun ofCodeExecutionTool20260521(codeExecutionTool20260521: CodeExecutionTool20260521) =
+            MessageCountTokensTool(codeExecutionTool20260521 = codeExecutionTool20260521)
+
+        /**
+         * The browser toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+         * browser tool family. The model is served the family's tool with any members disabled via
+         * ``configs`` removed from its schema.
+         */
+        @JvmStatic
+        fun ofBrowserToolset20260801(browserToolset20260801: BrowserToolset20260801) =
+            MessageCountTokensTool(browserToolset20260801 = browserToolset20260801)
+
+        @JvmStatic
+        fun ofMemoryTool20250818(memoryTool20250818: MemoryTool20250818) =
+            MessageCountTokensTool(memoryTool20250818 = memoryTool20250818)
+
+        /**
+         * The computer toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+         * computer tool family. The model is served the family's tool with any members disabled via
+         * ``configs`` removed from its schema. Every member is enabled by default, zoom included.
+         * The single-tool options ``display_number`` and ``enable_zoom`` are not fields of a
+         * toolset entry — it carries only ``type``, ``configs``, and ``cache_control``; zoom is
+         * controlled via ``configs.zoom.enabled``.
+         */
+        @JvmStatic
+        fun ofComputerToolset20260801(computerToolset20260801: ComputerToolset20260801) =
+            MessageCountTokensTool(computerToolset20260801 = computerToolset20260801)
+
+        @JvmStatic
+        fun ofToolTextEditor20250124(toolTextEditor20250124: ToolTextEditor20250124) =
+            MessageCountTokensTool(toolTextEditor20250124 = toolTextEditor20250124)
+
+        @JvmStatic
+        fun ofToolTextEditor20250429(toolTextEditor20250429: ToolTextEditor20250429) =
+            MessageCountTokensTool(toolTextEditor20250429 = toolTextEditor20250429)
+
+        @JvmStatic
+        fun ofToolTextEditor20250728(toolTextEditor20250728: ToolTextEditor20250728) =
+            MessageCountTokensTool(toolTextEditor20250728 = toolTextEditor20250728)
+
+        @JvmStatic
+        fun ofWebSearchTool20250305(webSearchTool20250305: WebSearchTool20250305) =
+            MessageCountTokensTool(webSearchTool20250305 = webSearchTool20250305)
+
+        @JvmStatic
+        fun ofWebFetchTool20250910(webFetchTool20250910: WebFetchTool20250910) =
+            MessageCountTokensTool(webFetchTool20250910 = webFetchTool20250910)
+
+        @JvmStatic
+        fun ofWebSearchTool20260209(webSearchTool20260209: WebSearchTool20260209) =
+            MessageCountTokensTool(webSearchTool20260209 = webSearchTool20260209)
+
+        @JvmStatic
+        fun ofWebFetchTool20260209(webFetchTool20260209: WebFetchTool20260209) =
+            MessageCountTokensTool(webFetchTool20260209 = webFetchTool20260209)
+
+        /** Web fetch tool with use_cache parameter for bypassing cached content. */
+        @JvmStatic
+        fun ofWebFetchTool20260309(webFetchTool20260309: WebFetchTool20260309) =
+            MessageCountTokensTool(webFetchTool20260309 = webFetchTool20260309)
+
+        @JvmStatic
+        fun ofWebSearchTool20260318(webSearchTool20260318: WebSearchTool20260318) =
+            MessageCountTokensTool(webSearchTool20260318 = webSearchTool20260318)
+
+        @JvmStatic
+        fun ofWebFetchTool20260318(webFetchTool20260318: WebFetchTool20260318) =
+            MessageCountTokensTool(webFetchTool20260318 = webFetchTool20260318)
+
+        @JvmStatic
+        fun ofToolSearchToolBm25_20251119(
+            toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+        ) = MessageCountTokensTool(toolSearchToolBm25_20251119 = toolSearchToolBm25_20251119)
+
+        /**
+         * Returns an immutable instance of [MessageCountTokensTool] whose
+         * [ofToolSearchToolBm25_20251119] variant is built from the given required [type].
+         */
+        @JvmStatic
+        fun ofToolSearchToolBm25_20251119(type: ToolSearchToolBm25_20251119.Type) =
+            ofToolSearchToolBm25_20251119(ToolSearchToolBm25_20251119.of(type))
+
+        @JvmStatic
+        fun ofToolSearchToolRegex20251119(
+            toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+        ) = MessageCountTokensTool(toolSearchToolRegex20251119 = toolSearchToolRegex20251119)
+
+        /**
+         * Returns an immutable instance of [MessageCountTokensTool] whose
+         * [ofToolSearchToolRegex20251119] variant is built from the given required [type].
+         */
+        @JvmStatic
+        fun ofToolSearchToolRegex20251119(type: ToolSearchToolRegex20251119.Type) =
+            ofToolSearchToolRegex20251119(ToolSearchToolRegex20251119.of(type))
+    }
+
+    /**
+     * An interface that defines how to map each variant of [MessageCountTokensTool] to a value of
+     * type [T].
+     */
+    interface Visitor<out T> {
+
+        fun visitTool(tool: Tool): T
+
+        fun visitToolBash20250124(toolBash20250124: ToolBash20250124): T
+
+        fun visitCodeExecutionTool20250522(codeExecutionTool20250522: CodeExecutionTool20250522): T
+
+        fun visitCodeExecutionTool20250825(codeExecutionTool20250825: CodeExecutionTool20250825): T
+
+        /** Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint). */
+        fun visitCodeExecutionTool20260120(codeExecutionTool20260120: CodeExecutionTool20260120): T
+
+        /** Code execution tool with REPL state persistence. */
+        fun visitCodeExecutionTool20260521(codeExecutionTool20260521: CodeExecutionTool20260521): T
+
+        /**
+         * The browser toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+         * browser tool family. The model is served the family's tool with any members disabled via
+         * ``configs`` removed from its schema.
+         */
+        fun visitBrowserToolset20260801(browserToolset20260801: BrowserToolset20260801): T
+
+        fun visitMemoryTool20250818(memoryTool20250818: MemoryTool20250818): T
+
+        /**
+         * The computer toolset: a single ``tools[]`` entry (carrying no ``name``) that declares the
+         * computer tool family. The model is served the family's tool with any members disabled via
+         * ``configs`` removed from its schema. Every member is enabled by default, zoom included.
+         * The single-tool options ``display_number`` and ``enable_zoom`` are not fields of a
+         * toolset entry — it carries only ``type``, ``configs``, and ``cache_control``; zoom is
+         * controlled via ``configs.zoom.enabled``.
+         */
+        fun visitComputerToolset20260801(computerToolset20260801: ComputerToolset20260801): T
+
+        fun visitToolTextEditor20250124(toolTextEditor20250124: ToolTextEditor20250124): T
+
+        fun visitToolTextEditor20250429(toolTextEditor20250429: ToolTextEditor20250429): T
+
+        fun visitToolTextEditor20250728(toolTextEditor20250728: ToolTextEditor20250728): T
+
+        fun visitWebSearchTool20250305(webSearchTool20250305: WebSearchTool20250305): T
+
+        fun visitWebFetchTool20250910(webFetchTool20250910: WebFetchTool20250910): T
+
+        fun visitWebSearchTool20260209(webSearchTool20260209: WebSearchTool20260209): T
+
+        fun visitWebFetchTool20260209(webFetchTool20260209: WebFetchTool20260209): T
+
+        /** Web fetch tool with use_cache parameter for bypassing cached content. */
+        fun visitWebFetchTool20260309(webFetchTool20260309: WebFetchTool20260309): T
+
+        fun visitWebSearchTool20260318(webSearchTool20260318: WebSearchTool20260318): T
+
+        fun visitWebFetchTool20260318(webFetchTool20260318: WebFetchTool20260318): T
+
+        fun visitToolSearchToolBm25_20251119(
+            toolSearchToolBm25_20251119: ToolSearchToolBm25_20251119
+        ): T
+
+        fun visitToolSearchToolRegex20251119(
+            toolSearchToolRegex20251119: ToolSearchToolRegex20251119
+        ): T
+
+        /**
+         * Maps an unknown variant of [MessageCountTokensTool] to a value of type [T].
+         *
+         * An instance of [MessageCountTokensTool] can contain an unknown variant if it was
+         * deserialized from data that doesn't match any known variant. For example, if the SDK is
+         * on an older version than the API, then the API may respond with new variants that the SDK
+         * is unaware of.
+         *
+         * @throws AnthropicInvalidDataException in the default implementation.
+         */
+        fun unknown(json: JsonValue?): T {
+            throw AnthropicInvalidDataException("Unknown MessageCountTokensTool: $json")
+        }
+    }
+
+    internal class Deserializer :
+        BaseDeserializer<MessageCountTokensTool>(MessageCountTokensTool::class) {
+
+        override fun ObjectCodec.deserialize(node: JsonNode): MessageCountTokensTool {
+            val json = JsonValue.fromJsonNode(node)
+
+            val bestMatches =
+                sequenceOf(
+                        tryDeserialize(node, jacksonTypeRef<Tool>())?.let {
+                            MessageCountTokensTool(tool = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ToolBash20250124>())?.let {
+                            MessageCountTokensTool(toolBash20250124 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<CodeExecutionTool20250522>())?.let {
+                            MessageCountTokensTool(codeExecutionTool20250522 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<CodeExecutionTool20250825>())?.let {
+                            MessageCountTokensTool(codeExecutionTool20250825 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<CodeExecutionTool20260120>())?.let {
+                            MessageCountTokensTool(codeExecutionTool20260120 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<CodeExecutionTool20260521>())?.let {
+                            MessageCountTokensTool(codeExecutionTool20260521 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<BrowserToolset20260801>())?.let {
+                            MessageCountTokensTool(browserToolset20260801 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<MemoryTool20250818>())?.let {
+                            MessageCountTokensTool(memoryTool20250818 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ComputerToolset20260801>())?.let {
+                            MessageCountTokensTool(computerToolset20260801 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ToolTextEditor20250124>())?.let {
+                            MessageCountTokensTool(toolTextEditor20250124 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ToolTextEditor20250429>())?.let {
+                            MessageCountTokensTool(toolTextEditor20250429 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ToolTextEditor20250728>())?.let {
+                            MessageCountTokensTool(toolTextEditor20250728 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebSearchTool20250305>())?.let {
+                            MessageCountTokensTool(webSearchTool20250305 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebFetchTool20250910>())?.let {
+                            MessageCountTokensTool(webFetchTool20250910 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebSearchTool20260209>())?.let {
+                            MessageCountTokensTool(webSearchTool20260209 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebFetchTool20260209>())?.let {
+                            MessageCountTokensTool(webFetchTool20260209 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebFetchTool20260309>())?.let {
+                            MessageCountTokensTool(webFetchTool20260309 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebSearchTool20260318>())?.let {
+                            MessageCountTokensTool(webSearchTool20260318 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<WebFetchTool20260318>())?.let {
+                            MessageCountTokensTool(webFetchTool20260318 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ToolSearchToolBm25_20251119>())?.let {
+                            MessageCountTokensTool(toolSearchToolBm25_20251119 = it, _json = json)
+                        },
+                        tryDeserialize(node, jacksonTypeRef<ToolSearchToolRegex20251119>())?.let {
+                            MessageCountTokensTool(toolSearchToolRegex20251119 = it, _json = json)
+                        },
+                    )
+                    .filterNotNull()
+                    .allMaxBy { it.validity() }
+                    .toList()
+            return when (bestMatches.size) {
+                // This can happen if what we're deserializing is completely incompatible with all
+                // the possible variants (e.g. deserializing from boolean).
+                0 -> MessageCountTokensTool(_json = json)
+                1 -> bestMatches.single()
+                // If there's more than one match with the highest validity, then use the first
+                // completely valid match, or simply the first match if none are completely valid.
+                else -> bestMatches.firstOrNull { it.isValid() } ?: bestMatches.first()
+            }
+        }
+    }
+
+    internal class Serializer :
+        BaseSerializer<MessageCountTokensTool>(MessageCountTokensTool::class) {
+
+        override fun serialize(
+            value: MessageCountTokensTool,
+            generator: JsonGenerator,
+            provider: SerializerProvider,
+        ) {
+            when {
+                value.tool != null -> generator.writeObject(value.tool)
+                value.toolBash20250124 != null -> generator.writeObject(value.toolBash20250124)
+                value.codeExecutionTool20250522 != null ->
+                    generator.writeObject(value.codeExecutionTool20250522)
+                value.codeExecutionTool20250825 != null ->
+                    generator.writeObject(value.codeExecutionTool20250825)
+                value.codeExecutionTool20260120 != null ->
+                    generator.writeObject(value.codeExecutionTool20260120)
+                value.codeExecutionTool20260521 != null ->
+                    generator.writeObject(value.codeExecutionTool20260521)
+                value.browserToolset20260801 != null ->
+                    generator.writeObject(value.browserToolset20260801)
+                value.memoryTool20250818 != null -> generator.writeObject(value.memoryTool20250818)
+                value.computerToolset20260801 != null ->
+                    generator.writeObject(value.computerToolset20260801)
+                value.toolTextEditor20250124 != null ->
+                    generator.writeObject(value.toolTextEditor20250124)
+                value.toolTextEditor20250429 != null ->
+                    generator.writeObject(value.toolTextEditor20250429)
+                value.toolTextEditor20250728 != null ->
+                    generator.writeObject(value.toolTextEditor20250728)
+                value.webSearchTool20250305 != null ->
+                    generator.writeObject(value.webSearchTool20250305)
+                value.webFetchTool20250910 != null ->
+                    generator.writeObject(value.webFetchTool20250910)
+                value.webSearchTool20260209 != null ->
+                    generator.writeObject(value.webSearchTool20260209)
+                value.webFetchTool20260209 != null ->
+                    generator.writeObject(value.webFetchTool20260209)
+                value.webFetchTool20260309 != null ->
+                    generator.writeObject(value.webFetchTool20260309)
+                value.webSearchTool20260318 != null ->
+                    generator.writeObject(value.webSearchTool20260318)
+                value.webFetchTool20260318 != null ->
+                    generator.writeObject(value.webFetchTool20260318)
+                value.toolSearchToolBm25_20251119 != null ->
+                    generator.writeObject(value.toolSearchToolBm25_20251119)
+                value.toolSearchToolRegex20251119 != null ->
+                    generator.writeObject(value.toolSearchToolRegex20251119)
+                value._json != null -> generator.writeObject(value._json)
+                else -> throw IllegalStateException("Invalid MessageCountTokensTool")
+            }
+        }
+    }
+}

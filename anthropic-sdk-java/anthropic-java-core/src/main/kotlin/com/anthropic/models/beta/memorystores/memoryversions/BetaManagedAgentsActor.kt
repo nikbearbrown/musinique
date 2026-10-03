@@ -1,0 +1,559 @@
+package com.anthropic.models.beta.memorystores.memoryversions
+
+import com.anthropic.core.BaseDeserializer
+import com.anthropic.core.BaseSerializer
+import com.anthropic.core.Enum
+import com.anthropic.core.JsonField
+import com.anthropic.core.JsonMissing
+import com.anthropic.core.JsonValue
+import com.anthropic.core.getOrThrow
+import com.anthropic.errors.AnthropicInvalidDataException
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.ObjectCodec
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import java.util.Objects
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
+
+/**
+ * Identifies who performed a write or redact operation. Captured at write time on the
+ * `memory_version` row. The API key that created a session is not recorded on agent writes;
+ * attribution answers who made the write, not who is ultimately responsible. Look up session
+ * provenance separately via the [Sessions API](/en/api/beta/sessions/retrieve).
+ */
+@JsonDeserialize(using = BetaManagedAgentsActor.Deserializer::class)
+@JsonSerialize(using = BetaManagedAgentsActor.Serializer::class)
+class BetaManagedAgentsActor
+private constructor(
+    private val session: BetaManagedAgentsSessionActor? = null,
+    private val api: BetaManagedAgentsApiActor? = null,
+    private val user: BetaManagedAgentsUserActor? = null,
+    private val serviceAccount: BetaManagedAgentsServiceAccountActor? = null,
+    private val _json: JsonValue? = null,
+) {
+
+    fun type(): Type =
+        accept(
+            object : Visitor<Type> {
+                override fun visitSession(session: BetaManagedAgentsSessionActor): Type =
+                    Type.SESSION_ACTOR
+
+                override fun visitApi(api: BetaManagedAgentsApiActor): Type = Type.API_ACTOR
+
+                override fun visitUser(user: BetaManagedAgentsUserActor): Type = Type.USER_ACTOR
+
+                override fun visitServiceAccount(
+                    serviceAccount: BetaManagedAgentsServiceAccountActor
+                ): Type = Type.SERVICE_ACCOUNT_ACTOR
+
+                override fun unknown(json: JsonValue?): Type =
+                    Type.of(json?.asObject()?.getOrNull()?.get("type") ?: JsonMissing.of())
+            }
+        )
+
+    /**
+     * Attribution for a write made by an agent during a session, through the mounted filesystem at
+     * `/mnt/memory/`.
+     */
+    fun session(): Optional<BetaManagedAgentsSessionActor> = Optional.ofNullable(session)
+
+    /** Attribution for a write made directly via the public API (outside of any session). */
+    fun api(): Optional<BetaManagedAgentsApiActor> = Optional.ofNullable(api)
+
+    /** Attribution for a write made by a human user through the Anthropic Console. */
+    fun user(): Optional<BetaManagedAgentsUserActor> = Optional.ofNullable(user)
+
+    /**
+     * Attribution for a write made by a workload authenticated as a service account, for example
+     * via Workload Identity Federation.
+     */
+    fun serviceAccount(): Optional<BetaManagedAgentsServiceAccountActor> =
+        Optional.ofNullable(serviceAccount)
+
+    fun isSession(): Boolean = session != null
+
+    fun isApi(): Boolean = api != null
+
+    fun isUser(): Boolean = user != null
+
+    fun isServiceAccount(): Boolean = serviceAccount != null
+
+    /**
+     * Attribution for a write made by an agent during a session, through the mounted filesystem at
+     * `/mnt/memory/`.
+     */
+    fun asSession(): BetaManagedAgentsSessionActor = session.getOrThrow("session")
+
+    /** Attribution for a write made directly via the public API (outside of any session). */
+    fun asApi(): BetaManagedAgentsApiActor = api.getOrThrow("api")
+
+    /** Attribution for a write made by a human user through the Anthropic Console. */
+    fun asUser(): BetaManagedAgentsUserActor = user.getOrThrow("user")
+
+    /**
+     * Attribution for a write made by a workload authenticated as a service account, for example
+     * via Workload Identity Federation.
+     */
+    fun asServiceAccount(): BetaManagedAgentsServiceAccountActor =
+        serviceAccount.getOrThrow("serviceAccount")
+
+    fun _json(): Optional<JsonValue> = Optional.ofNullable(_json)
+
+    /**
+     * Maps this instance's current variant to a value of type [T] using the given [visitor].
+     *
+     * Note that this method is _not_ forwards compatible with new variants from the API, unless
+     * [visitor] overrides [Visitor.unknown]. To handle variants not known to this version of the
+     * SDK gracefully, consider overriding [Visitor.unknown]:
+     * ```java
+     * import com.anthropic.core.JsonValue;
+     * import java.util.Optional;
+     *
+     * Optional<String> result = betaManagedAgentsActor.accept(new BetaManagedAgentsActor.Visitor<Optional<String>>() {
+     *     @Override
+     *     public Optional<String> visitSession(BetaManagedAgentsSessionActor session) {
+     *         return Optional.of(session.toString());
+     *     }
+     *
+     *     // ...
+     *
+     *     @Override
+     *     public Optional<String> unknown(JsonValue json) {
+     *         // Or inspect the `json`.
+     *         return Optional.empty();
+     *     }
+     * });
+     * ```
+     *
+     * @throws AnthropicInvalidDataException if [Visitor.unknown] is not overridden in [visitor] and
+     *   the current variant is unknown.
+     */
+    fun <T> accept(visitor: Visitor<T>): T =
+        when {
+            session != null -> visitor.visitSession(session)
+            api != null -> visitor.visitApi(api)
+            user != null -> visitor.visitUser(user)
+            serviceAccount != null -> visitor.visitServiceAccount(serviceAccount)
+            else -> visitor.unknown(_json)
+        }
+
+    private var validated: Boolean = false
+
+    /**
+     * Validates that the types of all values in this object match their expected types recursively.
+     *
+     * This method is _not_ forwards compatible with new types from the API for existing fields.
+     *
+     * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+     *   expected type.
+     */
+    fun validate(): BetaManagedAgentsActor = apply {
+        if (validated) {
+            return@apply
+        }
+
+        accept(
+            object : Visitor<Unit> {
+                override fun visitSession(session: BetaManagedAgentsSessionActor) {
+                    session.validate()
+                }
+
+                override fun visitApi(api: BetaManagedAgentsApiActor) {
+                    api.validate()
+                }
+
+                override fun visitUser(user: BetaManagedAgentsUserActor) {
+                    user.validate()
+                }
+
+                override fun visitServiceAccount(
+                    serviceAccount: BetaManagedAgentsServiceAccountActor
+                ) {
+                    serviceAccount.validate()
+                }
+            }
+        )
+        validated = true
+    }
+
+    fun isValid(): Boolean =
+        try {
+            validate()
+            true
+        } catch (e: AnthropicInvalidDataException) {
+            false
+        }
+
+    /**
+     * Returns a score indicating how many valid values are contained in this object recursively.
+     *
+     * Used for best match union deserialization.
+     */
+    @JvmSynthetic
+    internal fun validity(): Int =
+        accept(
+            object : Visitor<Int> {
+                override fun visitSession(session: BetaManagedAgentsSessionActor) =
+                    session.validity()
+
+                override fun visitApi(api: BetaManagedAgentsApiActor) = api.validity()
+
+                override fun visitUser(user: BetaManagedAgentsUserActor) = user.validity()
+
+                override fun visitServiceAccount(
+                    serviceAccount: BetaManagedAgentsServiceAccountActor
+                ) = serviceAccount.validity()
+
+                override fun unknown(json: JsonValue?) = 0
+            }
+        )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is BetaManagedAgentsActor &&
+            session == other.session &&
+            api == other.api &&
+            user == other.user &&
+            serviceAccount == other.serviceAccount
+    }
+
+    override fun hashCode(): Int = Objects.hash(session, api, user, serviceAccount)
+
+    override fun toString(): String =
+        when {
+            session != null -> "BetaManagedAgentsActor{session=$session}"
+            api != null -> "BetaManagedAgentsActor{api=$api}"
+            user != null -> "BetaManagedAgentsActor{user=$user}"
+            serviceAccount != null -> "BetaManagedAgentsActor{serviceAccount=$serviceAccount}"
+            _json != null -> "BetaManagedAgentsActor{_unknown=$_json}"
+            else -> throw IllegalStateException("Invalid BetaManagedAgentsActor")
+        }
+
+    companion object {
+
+        /**
+         * Attribution for a write made by an agent during a session, through the mounted filesystem
+         * at `/mnt/memory/`.
+         */
+        @JvmStatic
+        fun ofSession(session: BetaManagedAgentsSessionActor) =
+            BetaManagedAgentsActor(session = session)
+
+        /**
+         * Returns an immutable instance of [BetaManagedAgentsActor] whose [ofSession] variant is
+         * built from the given required [sessionId].
+         */
+        @JvmStatic
+        fun ofSession(sessionId: String) =
+            ofSession(
+                BetaManagedAgentsSessionActor.builder()
+                    .type(BetaManagedAgentsSessionActor.Type.SESSION_ACTOR)
+                    .sessionId(sessionId)
+                    .build()
+            )
+
+        /** Attribution for a write made directly via the public API (outside of any session). */
+        @JvmStatic fun ofApi(api: BetaManagedAgentsApiActor) = BetaManagedAgentsActor(api = api)
+
+        /**
+         * Returns an immutable instance of [BetaManagedAgentsActor] whose [ofApi] variant is built
+         * from the given required [apiKeyId].
+         */
+        @JvmStatic
+        fun ofApi(apiKeyId: String) =
+            ofApi(
+                BetaManagedAgentsApiActor.builder()
+                    .type(BetaManagedAgentsApiActor.Type.API_ACTOR)
+                    .apiKeyId(apiKeyId)
+                    .build()
+            )
+
+        /** Attribution for a write made by a human user through the Anthropic Console. */
+        @JvmStatic
+        fun ofUser(user: BetaManagedAgentsUserActor) = BetaManagedAgentsActor(user = user)
+
+        /**
+         * Returns an immutable instance of [BetaManagedAgentsActor] whose [ofUser] variant is built
+         * from the given required [userId].
+         */
+        @JvmStatic
+        fun ofUser(userId: String) =
+            ofUser(
+                BetaManagedAgentsUserActor.builder()
+                    .type(BetaManagedAgentsUserActor.Type.USER_ACTOR)
+                    .userId(userId)
+                    .build()
+            )
+
+        /**
+         * Attribution for a write made by a workload authenticated as a service account, for
+         * example via Workload Identity Federation.
+         */
+        @JvmStatic
+        fun ofServiceAccount(serviceAccount: BetaManagedAgentsServiceAccountActor) =
+            BetaManagedAgentsActor(serviceAccount = serviceAccount)
+
+        /**
+         * Returns an immutable instance of [BetaManagedAgentsActor] whose [ofServiceAccount]
+         * variant is built from the given required [serviceAccountId].
+         */
+        @JvmStatic
+        fun ofServiceAccount(serviceAccountId: String) =
+            ofServiceAccount(BetaManagedAgentsServiceAccountActor.of(serviceAccountId))
+    }
+
+    /**
+     * An interface that defines how to map each variant of [BetaManagedAgentsActor] to a value of
+     * type [T].
+     */
+    interface Visitor<out T> {
+
+        /**
+         * Attribution for a write made by an agent during a session, through the mounted filesystem
+         * at `/mnt/memory/`.
+         */
+        fun visitSession(session: BetaManagedAgentsSessionActor): T
+
+        /** Attribution for a write made directly via the public API (outside of any session). */
+        fun visitApi(api: BetaManagedAgentsApiActor): T
+
+        /** Attribution for a write made by a human user through the Anthropic Console. */
+        fun visitUser(user: BetaManagedAgentsUserActor): T
+
+        /**
+         * Attribution for a write made by a workload authenticated as a service account, for
+         * example via Workload Identity Federation.
+         */
+        fun visitServiceAccount(serviceAccount: BetaManagedAgentsServiceAccountActor): T
+
+        /**
+         * Maps an unknown variant of [BetaManagedAgentsActor] to a value of type [T].
+         *
+         * An instance of [BetaManagedAgentsActor] can contain an unknown variant if it was
+         * deserialized from data that doesn't match any known variant. For example, if the SDK is
+         * on an older version than the API, then the API may respond with new variants that the SDK
+         * is unaware of.
+         *
+         * @throws AnthropicInvalidDataException in the default implementation.
+         */
+        fun unknown(json: JsonValue?): T {
+            throw AnthropicInvalidDataException("Unknown BetaManagedAgentsActor: $json")
+        }
+    }
+
+    internal class Deserializer :
+        BaseDeserializer<BetaManagedAgentsActor>(BetaManagedAgentsActor::class) {
+
+        override fun ObjectCodec.deserialize(node: JsonNode): BetaManagedAgentsActor {
+            val json = JsonValue.fromJsonNode(node)
+            val type = json.asObject().getOrNull()?.get("type")?.asString()?.getOrNull()
+
+            when (type) {
+                "session_actor" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaManagedAgentsSessionActor>())
+                        ?.let { BetaManagedAgentsActor(session = it, _json = json) }
+                        ?: BetaManagedAgentsActor(_json = json)
+                }
+                "api_actor" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaManagedAgentsApiActor>())?.let {
+                        BetaManagedAgentsActor(api = it, _json = json)
+                    } ?: BetaManagedAgentsActor(_json = json)
+                }
+                "user_actor" -> {
+                    return tryDeserialize(node, jacksonTypeRef<BetaManagedAgentsUserActor>())?.let {
+                        BetaManagedAgentsActor(user = it, _json = json)
+                    } ?: BetaManagedAgentsActor(_json = json)
+                }
+                "service_account_actor" -> {
+                    return tryDeserialize(
+                            node,
+                            jacksonTypeRef<BetaManagedAgentsServiceAccountActor>(),
+                        )
+                        ?.let { BetaManagedAgentsActor(serviceAccount = it, _json = json) }
+                        ?: BetaManagedAgentsActor(_json = json)
+                }
+            }
+
+            return BetaManagedAgentsActor(_json = json)
+        }
+    }
+
+    internal class Serializer :
+        BaseSerializer<BetaManagedAgentsActor>(BetaManagedAgentsActor::class) {
+
+        override fun serialize(
+            value: BetaManagedAgentsActor,
+            generator: JsonGenerator,
+            provider: SerializerProvider,
+        ) {
+            when {
+                value.session != null -> generator.writeObject(value.session)
+                value.api != null -> generator.writeObject(value.api)
+                value.user != null -> generator.writeObject(value.user)
+                value.serviceAccount != null -> generator.writeObject(value.serviceAccount)
+                value._json != null -> generator.writeObject(value._json)
+                else -> throw IllegalStateException("Invalid BetaManagedAgentsActor")
+            }
+        }
+    }
+
+    class Type @JsonCreator private constructor(private val value: JsonField<String>) : Enum {
+
+        /**
+         * Returns this class instance's raw value.
+         *
+         * This is usually only useful if this instance was deserialized from data that doesn't
+         * match any known member, and you want to know that value. For example, if the SDK is on an
+         * older version than the API, then the API may respond with new members that the SDK is
+         * unaware of.
+         */
+        @com.fasterxml.jackson.annotation.JsonValue fun _value(): JsonField<String> = value
+
+        companion object {
+
+            @JvmField val SESSION_ACTOR = of("session_actor")
+
+            @JvmField val API_ACTOR = of("api_actor")
+
+            @JvmField val USER_ACTOR = of("user_actor")
+
+            @JvmField val SERVICE_ACCOUNT_ACTOR = of("service_account_actor")
+
+            @JvmStatic fun of(value: String) = Type(JsonField.of(value))
+
+            @JvmSynthetic
+            internal fun of(value: JsonField<String>): Type =
+                value.asString().getOrNull()?.let { of(it) } ?: Type(value)
+        }
+
+        /** An enum containing [Type]'s known values. */
+        enum class Known {
+            SESSION_ACTOR,
+            API_ACTOR,
+            USER_ACTOR,
+            SERVICE_ACCOUNT_ACTOR,
+        }
+
+        /**
+         * An enum containing [Type]'s known values, as well as an [_UNKNOWN] member.
+         *
+         * An instance of [Type] can contain an unknown value in a couple of cases:
+         * - It was deserialized from data that doesn't match any known member. For example, if the
+         *   SDK is on an older version than the API, then the API may respond with new members that
+         *   the SDK is unaware of.
+         * - It was constructed with an arbitrary value using the [of] method.
+         */
+        enum class Value {
+            SESSION_ACTOR,
+            API_ACTOR,
+            USER_ACTOR,
+            SERVICE_ACCOUNT_ACTOR,
+            /** An enum member indicating that [Type] was instantiated with an unknown value. */
+            _UNKNOWN,
+        }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value, or [Value._UNKNOWN]
+         * if the class was instantiated with an unknown value.
+         *
+         * Use the [known] method instead if you're certain the value is always known or if you want
+         * to throw for the unknown case.
+         */
+        fun value(): Value =
+            when (this) {
+                SESSION_ACTOR -> Value.SESSION_ACTOR
+                API_ACTOR -> Value.API_ACTOR
+                USER_ACTOR -> Value.USER_ACTOR
+                SERVICE_ACCOUNT_ACTOR -> Value.SERVICE_ACCOUNT_ACTOR
+                else -> Value._UNKNOWN
+            }
+
+        /**
+         * Returns an enum member corresponding to this class instance's value.
+         *
+         * Use the [value] method instead if you're uncertain the value is always known and don't
+         * want to throw for the unknown case.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value is a not a known
+         *   member.
+         */
+        fun known(): Known =
+            when (this) {
+                SESSION_ACTOR -> Known.SESSION_ACTOR
+                API_ACTOR -> Known.API_ACTOR
+                USER_ACTOR -> Known.USER_ACTOR
+                SERVICE_ACCOUNT_ACTOR -> Known.SERVICE_ACCOUNT_ACTOR
+                else -> throw AnthropicInvalidDataException("Unknown Type: $value")
+            }
+
+        /**
+         * Returns this class instance's primitive wire representation.
+         *
+         * This differs from the [toString] method because that method is primarily for debugging
+         * and generally doesn't throw.
+         *
+         * @throws AnthropicInvalidDataException if this class instance's value does not have the
+         *   expected primitive type.
+         */
+        fun asString(): String =
+            _value().asString().orElseThrow {
+                AnthropicInvalidDataException("Value is not a String")
+            }
+
+        private var validated: Boolean = false
+
+        /**
+         * Validates that the types of all values in this object match their expected types
+         * recursively.
+         *
+         * This method is _not_ forwards compatible with new types from the API for existing fields.
+         *
+         * @throws AnthropicInvalidDataException if any value type in this object doesn't match its
+         *   expected type.
+         */
+        fun validate(): Type = apply {
+            if (validated) {
+                return@apply
+            }
+
+            known()
+            validated = true
+        }
+
+        fun isValid(): Boolean =
+            try {
+                validate()
+                true
+            } catch (e: AnthropicInvalidDataException) {
+                false
+            }
+
+        /**
+         * Returns a score indicating how many valid values are contained in this object
+         * recursively.
+         *
+         * Used for best match union deserialization.
+         */
+        @JvmSynthetic internal fun validity(): Int = if (value() == Value._UNKNOWN) 0 else 1
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) {
+                return true
+            }
+
+            return other is Type && value == other.value
+        }
+
+        override fun hashCode() = value.hashCode()
+
+        override fun toString() = value.toString()
+    }
+}

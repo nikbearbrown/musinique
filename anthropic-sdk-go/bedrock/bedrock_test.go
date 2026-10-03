@@ -1,0 +1,935 @@
+package bedrock
+
+import (
+	"bytes"
+	"context"
+	"encoding/base64"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream"
+	"github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream/eventstreamapi"
+	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
+	"github.com/aws/aws-sdk-go-v2/credentials"
+	"github.com/aws/smithy-go/auth/bearer"
+	"github.com/tidwall/gjson"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/option"
+)
+
+func TestBedrockURLEncoding(t *testing.T) {
+	testCases := []struct {
+		name            string
+		model           string
+		stream          bool
+		expectedPath    string
+		expectedRawPath string
+	}{
+		{
+			name:            "regular model name",
+			model:           "claude-3-sonnet",
+			stream:          false,
+			expectedPath:    "/model/claude-3-sonnet/invoke",
+			expectedRawPath: "/model/claude-3-sonnet/invoke",
+		},
+		{
+			name:            "regular model name with streaming",
+			model:           "claude-3-sonnet",
+			stream:          true,
+			expectedPath:    "/model/claude-3-sonnet/invoke-with-response-stream",
+			expectedRawPath: "/model/claude-3-sonnet/invoke-with-response-stream",
+		},
+		{
+			name:            "inference profile ARN with slashes",
+			model:           "arn:aws:bedrock:us-east-1:947123456126:application-inference-profile/xv9example4b",
+			stream:          false,
+			expectedPath:    "/model/arn:aws:bedrock:us-east-1:947123456126:application-inference-profile/xv9example4b/invoke",
+			expectedRawPath: "/model/arn%3Aaws%3Abedrock%3Aus-east-1%3A947123456126%3Aapplication-inference-profile%2Fxv9example4b/invoke",
+		},
+		{
+			name:            "inference profile ARN with streaming",
+			model:           "arn:aws:bedrock:us-east-1:947123456126:application-inference-profile/xv9example4b",
+			stream:          true,
+			expectedPath:    "/model/arn:aws:bedrock:us-east-1:947123456126:application-inference-profile/xv9example4b/invoke-with-response-stream",
+			expectedRawPath: "/model/arn%3Aaws%3Abedrock%3Aus-east-1%3A947123456126%3Aapplication-inference-profile%2Fxv9example4b/invoke-with-response-stream",
+		},
+		{
+			name:            "foundation model ARN with colons",
+			model:           "arn:aws:bedrock:us-east-1:123456789012:foundation-model/anthropic.claude-3-sonnet-20240229-v1:0",
+			stream:          false,
+			expectedPath:    "/model/arn:aws:bedrock:us-east-1:123456789012:foundation-model/anthropic.claude-3-sonnet-20240229-v1:0/invoke",
+			expectedRawPath: "/model/arn%3Aaws%3Abedrock%3Aus-east-1%3A123456789012%3Afoundation-model%2Fanthropic.claude-3-sonnet-20240229-v1%3A0/invoke",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			// Create a mock AWS config
+			cfg := aws.Config{
+				Region: "us-east-1",
+				Credentials: credentials.StaticCredentialsProvider{
+					Value: aws.Credentials{
+						AccessKeyID:     "test-access-key",
+						SecretAccessKey: "test-secret-key",
+					},
+				},
+			}
+
+			signer := v4.NewSigner()
+			middleware := bedrockMiddleware(signer, cfg)
+
+			// Create request body
+			requestBody := map[string]any{
+				"model":  tc.model,
+				"stream": tc.stream,
+				"messages": []map[string]string{
+					{"role": "user", "content": "Hello"},
+				},
+			}
+
+			bodyBytes, err := json.Marshal(requestBody)
+			if err != nil {
+				t.Fatalf("Failed to marshal request body: %v", err)
+			}
+
+			// Create HTTP request
+			req, err := http.NewRequest("POST", "https://bedrock-runtime.us-east-1.amazonaws.com/v1/messages", bytes.NewReader(bodyBytes))
+			if err != nil {
+				t.Fatalf("Failed to create request: %v", err)
+			}
+			req.Header.Set("Content-Type", "application/json")
+
+			// Apply middleware
+			_, err = middleware(req, func(r *http.Request) (*http.Response, error) {
+				// Verify the URL paths are set correctly
+				if r.URL.Path != tc.expectedPath {
+					t.Errorf("Expected Path %q, got %q", tc.expectedPath, r.URL.Path)
+				}
+
+				if r.URL.RawPath != tc.expectedRawPath {
+					t.Errorf("Expected RawPath %q, got %q", tc.expectedRawPath, r.URL.RawPath)
+				}
+
+				// Verify that the URL string contains the properly encoded path
+				urlString := r.URL.String()
+				expectedURL := fmt.Sprintf("https://bedrock-runtime.us-east-1.amazonaws.com%s", tc.expectedRawPath)
+				if urlString != expectedURL {
+					t.Errorf("Expected URL %q, got %q", expectedURL, urlString)
+				}
+
+				// Return a dummy response
+				return &http.Response{
+					StatusCode: 200,
+					Body:       http.NoBody,
+				}, nil
+			})
+
+			if err != nil {
+				t.Fatalf("Middleware failed: %v", err)
+			}
+		})
+	}
+}
+
+func TestBedrockBetaHeadersReRoutedThroughBody(t *testing.T) {
+	// Create a mock AWS config
+	cfg := aws.Config{
+		Region: "us-east-1",
+		Credentials: credentials.StaticCredentialsProvider{
+			Value: aws.Credentials{
+				AccessKeyID:     "test-access-key",
+				SecretAccessKey: "test-secret-key",
+			},
+		},
+	}
+
+	signer := v4.NewSigner()
+	middleware := bedrockMiddleware(signer, cfg)
+
+	// Create HTTP request with beta headers
+	type fakeRequest struct {
+		Model         string              `json:"model"`
+		AnthropicBeta []string            `json:"anthropic_beta,omitempty"`
+		Messages      []map[string]string `json:"messages"`
+	}
+	reqBody := fakeRequest{
+		Model: "fake-model",
+		Messages: []map[string]string{
+			{"role": "user", "content": "Hello"},
+		},
+	}
+	requestBodyBytes, err := json.Marshal(reqBody)
+	if err != nil {
+		t.Fatalf("Failed to marshal request body: %v", err)
+	}
+
+	req, err := http.NewRequest("POST", "https://bedrock-runtime.us-east-1.amazonaws.com/v1/messages", bytes.NewReader(requestBodyBytes))
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Add("anthropic-beta", "beta-feature-1")
+	req.Header.Add("anthropic-beta", "beta-feature-2")
+
+	// Apply middleware
+	_, err = middleware(req, func(r *http.Request) (*http.Response, error) {
+		// Read the modified body
+		bodyBytes, err := io.ReadAll(r.Body)
+		if err != nil {
+			t.Fatalf("Failed to read request body: %v", err)
+		}
+		var modifiedBody fakeRequest
+		err = json.Unmarshal(bodyBytes, &modifiedBody)
+		if err != nil {
+			t.Fatalf("Failed to unmarshal modified body: %v", err)
+		}
+
+		// Verify that the anthropic_beta field is present in the body
+		expectedBetas := []string{"beta-feature-1", "beta-feature-2"}
+		if len(modifiedBody.AnthropicBeta) != len(expectedBetas) {
+			t.Fatalf("Expected %d beta features, got %d", len(expectedBetas), len(modifiedBody.AnthropicBeta))
+		}
+		for i, beta := range expectedBetas {
+			if modifiedBody.AnthropicBeta[i] != beta {
+				t.Errorf("Expected beta feature %q, got %q", beta, modifiedBody.AnthropicBeta[i])
+			}
+		}
+
+		// Return a dummy response
+		return &http.Response{
+			StatusCode: 200,
+			Body:       http.NoBody,
+		}, nil
+	})
+
+	if err != nil {
+		t.Fatalf("Middleware failed: %v", err)
+	}
+}
+
+func TestBedrockBetaHeaderValuesSplitIntoBody(t *testing.T) {
+	t.Setenv("ANTHROPIC_API_KEY", "")
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+
+	testCases := []struct {
+		name         string
+		headerValues []string
+	}{
+		{name: "separate header lines", headerValues: []string{"a", "b"}},
+		{name: "one comma-joined value", headerValues: []string{"a,b"}},
+		{name: "one comma-joined value with a space", headerValues: []string{"a, b"}},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			var wireBetaHeader []string
+			var wireBody []byte
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				wireBetaHeader = r.Header.Values("anthropic-beta")
+				var err error
+				if wireBody, err = io.ReadAll(r.Body); err != nil {
+					t.Errorf("Failed to read wire body: %v", err)
+				}
+				writeMessagesResponse(w)
+			}))
+			t.Cleanup(server.Close)
+
+			client := anthropic.NewClient(
+				option.WithoutEnvironmentDefaults(),
+				WithConfig(makeStaticAWSConfig("us-east-1")),
+				option.WithBaseURL(server.URL),
+			)
+
+			var opts []option.RequestOption
+			for _, value := range tc.headerValues {
+				opts = append(opts, option.WithHeaderAdd("anthropic-beta", value))
+			}
+			_, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+				Model:     "claude-3-sonnet",
+				MaxTokens: 1,
+				Messages: []anthropic.MessageParam{
+					anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+				},
+			}, opts...)
+			if err != nil {
+				t.Fatalf("Request failed: %v", err)
+			}
+
+			if got := gjson.GetBytes(wireBody, "anthropic_beta").Raw; got != `["a","b"]` {
+				t.Errorf("Expected anthropic_beta %s in the wire body, got %s", `["a","b"]`, got)
+			}
+			if len(wireBetaHeader) != 0 {
+				t.Errorf("Expected no anthropic-beta header on the wire, got %q", wireBetaHeader)
+			}
+		})
+	}
+}
+
+func TestBedrockBearerToken(t *testing.T) {
+	token := "test-bearer-token"
+	region := "us-west-2"
+
+	cfg := aws.Config{
+		Region:                  region,
+		BearerAuthTokenProvider: NewStaticBearerTokenProvider(token),
+	}
+	middleware := bedrockMiddleware(nil, cfg)
+
+	requestBody := map[string]any{
+		"model": "claude-3-sonnet",
+		"messages": []map[string]string{
+			{"role": "user", "content": "Hello"},
+		},
+	}
+
+	bodyBytes, err := json.Marshal(requestBody)
+	if err != nil {
+		t.Fatalf("Failed to marshal request body: %v", err)
+	}
+
+	req, err := http.NewRequest("POST", "https://bedrock-runtime.us-west-2.amazonaws.com/v1/messages", bytes.NewReader(bodyBytes))
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	_, err = middleware(req, func(r *http.Request) (*http.Response, error) {
+		authHeader := r.Header.Get("Authorization")
+		expectedAuth := "Bearer " + token
+		if authHeader != expectedAuth {
+			t.Errorf("Expected Authorization header %q, got %q", expectedAuth, authHeader)
+		}
+
+		if r.Header.Get("X-Amz-Date") != "" {
+			t.Error("Expected no AWS SigV4 headers when using bearer token")
+		}
+
+		return &http.Response{
+			StatusCode: 200,
+			Body:       http.NoBody,
+		}, nil
+	})
+
+	if err != nil {
+		t.Fatalf("Middleware failed: %v", err)
+	}
+}
+
+type roundTripperFunc func(*http.Request) (*http.Response, error)
+
+func (f roundTripperFunc) RoundTrip(r *http.Request) (*http.Response, error) { return f(r) }
+
+func TestBedrockAuthModeResolution(t *testing.T) {
+	const providerToken = "provider-token"
+	const envToken = "env-token"
+
+	tests := []struct {
+		name         string
+		envToken     string
+		preference   []string
+		credentials  bool
+		provider     bool
+		wantBearer   string
+		wantProvider bool
+	}{
+		{
+			name:        "an SSO token provider beside static credentials signs with SigV4",
+			credentials: true,
+			provider:    true,
+		},
+		{
+			name:        "the environment token wins over credentials and a provider",
+			envToken:    envToken,
+			credentials: true,
+			provider:    true,
+			wantBearer:  envToken,
+		},
+		{
+			name:         "an auth scheme preference led by httpBearerAuth uses the provider",
+			preference:   []string{"httpBearerAuth", "sigv4"},
+			credentials:  true,
+			provider:     true,
+			wantBearer:   providerToken,
+			wantProvider: true,
+		},
+		{
+			name:         "a provider without credentials uses the provider",
+			provider:     true,
+			wantBearer:   providerToken,
+			wantProvider: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			t.Setenv("ANTHROPIC_API_KEY", "")
+			t.Setenv("AWS_BEARER_TOKEN_BEDROCK", tt.envToken)
+
+			providerCalled := false
+			cfg := aws.Config{Region: "us-east-1", AuthSchemePreference: tt.preference}
+			if tt.credentials {
+				cfg.Credentials = makeStaticAWSConfig("us-east-1").Credentials
+			}
+			if tt.provider {
+				cfg.BearerAuthTokenProvider = bearer.TokenProviderFunc(func(context.Context) (bearer.Token, error) {
+					providerCalled = true
+					return bearer.Token{Value: providerToken}, nil
+				})
+			}
+
+			var gotAuth string
+			transport := roundTripperFunc(func(r *http.Request) (*http.Response, error) {
+				gotAuth = r.Header.Get("Authorization")
+				return &http.Response{
+					StatusCode: http.StatusOK,
+					Header:     http.Header{"Content-Type": []string{"application/json"}},
+					Body:       io.NopCloser(strings.NewReader(`{}`)),
+					Request:    r,
+				}, nil
+			})
+
+			client := anthropic.NewClient(
+				WithConfig(cfg),
+				option.WithHTTPClient(&http.Client{Transport: transport}),
+			)
+			_, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+				Model:     "claude-3-sonnet",
+				MaxTokens: 1,
+				Messages: []anthropic.MessageParam{
+					anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+				},
+			})
+			if err != nil {
+				t.Fatalf("request failed: %v", err)
+			}
+
+			if tt.wantBearer != "" {
+				if gotAuth != "Bearer "+tt.wantBearer {
+					t.Errorf("expected a bearer Authorization header with the expected token, got scheme %q", strings.SplitN(gotAuth, " ", 2)[0])
+				}
+			} else if !strings.HasPrefix(gotAuth, "AWS4-HMAC-SHA256 ") {
+				t.Errorf("expected a SigV4 Authorization header, got scheme %q", strings.SplitN(gotAuth, " ", 2)[0])
+			}
+			if providerCalled != tt.wantProvider {
+				t.Errorf("bearer provider called = %v, want %v", providerCalled, tt.wantProvider)
+			}
+		})
+	}
+}
+
+// TestBedrockWithConfigRequiresCredentials verifies that a config with no
+// bearer token and no AWS credentials fails with a clear setup error rather
+// than a nil-pointer panic on the first request.
+func TestBedrockWithConfigRequiresCredentials(t *testing.T) {
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+
+	client := anthropic.NewClient(
+		option.WithoutEnvironmentDefaults(),
+		WithConfig(aws.Config{Region: "us-east-1"}),
+	)
+
+	_, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+		Model:     "claude-3-sonnet",
+		MaxTokens: 1,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+		},
+	})
+
+	if err == nil || !strings.Contains(err.Error(), "expected AWS credentials to be set") {
+		t.Fatalf("Expected credentials error, got: %v", err)
+	}
+}
+
+// --- EventStream → SSE response normalization tests ---
+
+// encodeChunkFrame writes an EventStream "chunk" event frame whose payload
+// carries the given Anthropic event JSON, the way Bedrock streams responses.
+func encodeChunkFrame(t *testing.T, w io.Writer, eventJSON string) {
+	t.Helper()
+	payload, err := json.Marshal(eventstreamChunk{Bytes: base64.StdEncoding.EncodeToString([]byte(eventJSON))})
+	if err != nil {
+		t.Fatalf("Failed to marshal chunk payload: %v", err)
+	}
+	msg := eventstream.Message{Payload: payload}
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(eventstreamapi.EventTypeHeader, eventstream.StringValue("chunk"))
+	if err := eventstream.NewEncoder().Encode(w, msg); err != nil {
+		t.Fatalf("Failed to encode event frame: %v", err)
+	}
+}
+
+// encodeExceptionFrame writes an EventStream exception frame, the way Bedrock
+// reports mid-stream errors such as throttling.
+func encodeExceptionFrame(t *testing.T, w io.Writer, exceptionType, message string) {
+	t.Helper()
+	payload, err := json.Marshal(map[string]string{"message": message})
+	if err != nil {
+		t.Fatalf("Failed to marshal exception payload: %v", err)
+	}
+	msg := eventstream.Message{Payload: payload}
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	msg.Headers.Set(eventstreamapi.ExceptionTypeHeader, eventstream.StringValue(exceptionType))
+	if err := eventstream.NewEncoder().Encode(w, msg); err != nil {
+		t.Fatalf("Failed to encode exception frame: %v", err)
+	}
+}
+
+// encodeErrorFrame writes an EventStream error frame, which carries its code
+// and message in headers rather than the payload.
+func encodeErrorFrame(t *testing.T, w io.Writer, code, message string) {
+	t.Helper()
+	msg := eventstream.Message{}
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ErrorMessageType))
+	msg.Headers.Set(eventstreamapi.ErrorCodeHeader, eventstream.StringValue(code))
+	msg.Headers.Set(eventstreamapi.ErrorMessageHeader, eventstream.StringValue(message))
+	if err := eventstream.NewEncoder().Encode(w, msg); err != nil {
+		t.Fatalf("Failed to encode error frame: %v", err)
+	}
+}
+
+// applyStreamingMiddleware runs bedrockMiddleware over a fake streaming
+// request, with the wire responding with the given EventStream body, and
+// returns the response the middleware produced.
+func applyStreamingMiddleware(t *testing.T, frames *bytes.Buffer) *http.Response {
+	t.Helper()
+	middleware := bedrockMiddleware(v4.NewSigner(), makeStaticAWSConfig("us-east-1"))
+
+	body := `{"model": "claude-3-sonnet", "stream": true, "messages": [{"role": "user", "content": "Hello"}]}`
+	req, err := http.NewRequest("POST", "https://bedrock-runtime.us-east-1.amazonaws.com/v1/messages", strings.NewReader(body))
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+
+	res, err := middleware(req, func(r *http.Request) (*http.Response, error) {
+		return &http.Response{
+			StatusCode: 200,
+			Header:     http.Header{"Content-Type": []string{"application/vnd.amazon.eventstream"}},
+			Body:       io.NopCloser(frames),
+		}, nil
+	})
+	if err != nil {
+		t.Fatalf("Middleware failed: %v", err)
+	}
+	return res
+}
+
+func TestBedrockStreamingResponseNormalizedToSSE(t *testing.T) {
+	messageStartJSON := `{"type":"message_start","message":{"id":"msg_test"}}`
+	deltaJSON := `{"type":"content_block_delta","delta":{"type":"text_delta","text":"Hi"}}`
+	frames := &bytes.Buffer{}
+	encodeChunkFrame(t, frames, messageStartJSON)
+	encodeChunkFrame(t, frames, deltaJSON)
+
+	res := applyStreamingMiddleware(t, frames)
+
+	if got := res.Header.Get("Content-Type"); got != "text/event-stream" {
+		t.Errorf("Expected Content-Type %q, got %q", "text/event-stream", got)
+	}
+	sse, err := io.ReadAll(res.Body)
+	if err != nil {
+		t.Fatalf("Failed to read normalized body: %v", err)
+	}
+	expected := "event: message_start\ndata: " + messageStartJSON + "\n\n" +
+		"event: content_block_delta\ndata: " + deltaJSON + "\n\n"
+	if string(sse) != expected {
+		t.Errorf("Expected SSE body %q, got %q", expected, string(sse))
+	}
+}
+
+func TestBedrockStreamingErrorFramesNormalizedToSSEError(t *testing.T) {
+	messageStartJSON := `{"type":"message_start","message":{"id":"msg_test"}}`
+	tests := map[string]struct {
+		encode    func(t *testing.T, w io.Writer)
+		errorJSON string
+	}{
+		"exception frame": {
+			encode: func(t *testing.T, w io.Writer) {
+				encodeExceptionFrame(t, w, "throttlingException", "Too many requests")
+			},
+			errorJSON: `{"type":"error","error":{"type":"throttlingException","message":"Too many requests"}}`,
+		},
+		"error frame": {
+			encode: func(t *testing.T, w io.Writer) {
+				encodeErrorFrame(t, w, "InternalFailure", "Something went wrong")
+			},
+			errorJSON: `{"type":"error","error":{"type":"InternalFailure","message":"Something went wrong"}}`,
+		},
+	}
+	for name, tt := range tests {
+		t.Run(name, func(t *testing.T) {
+			frames := &bytes.Buffer{}
+			encodeChunkFrame(t, frames, messageStartJSON)
+			tt.encode(t, frames)
+
+			res := applyStreamingMiddleware(t, frames)
+
+			sse, err := io.ReadAll(res.Body)
+			if err != nil {
+				t.Fatalf("Failed to read normalized body: %v", err)
+			}
+			expected := "event: message_start\ndata: " + messageStartJSON + "\n\n" +
+				"event: error\ndata: " + tt.errorJSON + "\n\n"
+			if string(sse) != expected {
+				t.Errorf("Expected SSE body %q, got %q", expected, string(sse))
+			}
+		})
+	}
+}
+
+func TestBedrockStreamingMalformedFrameSurfacesAsBodyError(t *testing.T) {
+	messageStartJSON := `{"type":"message_start","message":{"id":"msg_test"}}`
+	frames := &bytes.Buffer{}
+	encodeChunkFrame(t, frames, messageStartJSON)
+	if err := eventstream.NewEncoder().Encode(frames, eventstream.Message{}); err != nil {
+		t.Fatalf("Failed to encode frame: %v", err)
+	}
+
+	res := applyStreamingMiddleware(t, frames)
+
+	sse, err := io.ReadAll(res.Body)
+	if err == nil {
+		t.Fatal("Expected an error reading a stream containing a malformed frame")
+	}
+	expectedSSE := "event: message_start\ndata: " + messageStartJSON + "\n\n"
+	if string(sse) != expectedSSE {
+		t.Errorf("Expected SSE body %q before the error, got %q", expectedSSE, string(sse))
+	}
+}
+
+// --- Middleware ordering tests ---
+
+// TestBedrockUserMiddlewareObservesAnthropicShape verifies the documented
+// ordering: middleware registered before the Bedrock option observes the
+// Anthropic-shaped, unsigned request, while the wire receives the rewritten,
+// signed Bedrock request.
+func TestBedrockUserMiddlewareObservesAnthropicShape(t *testing.T) {
+	t.Setenv("ANTHROPIC_API_KEY", "")
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+
+	var wirePath, wireAuth string
+	var wireBody map[string]any
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		wirePath = r.URL.Path
+		wireAuth = r.Header.Get("Authorization")
+		if err := json.NewDecoder(r.Body).Decode(&wireBody); err != nil {
+			t.Errorf("Failed to decode wire body: %v", err)
+		}
+		writeMessagesResponse(w)
+	}))
+	t.Cleanup(server.Close)
+
+	var observedPath, observedAuth string
+	var observedBody map[string]any
+	spy := func(r *http.Request, next option.MiddlewareNext) (*http.Response, error) {
+		observedPath = r.URL.Path
+		observedAuth = r.Header.Get("Authorization")
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			return nil, err
+		}
+		if err := json.Unmarshal(body, &observedBody); err != nil {
+			return nil, err
+		}
+		r.Body = io.NopCloser(bytes.NewReader(body))
+		return next(r)
+	}
+
+	client := anthropic.NewClient(
+		option.WithoutEnvironmentDefaults(),
+		option.WithMiddleware(spy),
+		WithConfig(makeStaticAWSConfig("us-east-1")),
+		option.WithBaseURL(server.URL),
+	)
+
+	_, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+		Model:     "claude-3-sonnet",
+		MaxTokens: 1,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+		},
+	})
+	if err != nil {
+		t.Fatalf("Request failed: %v", err)
+	}
+
+	// The spy (outside the Bedrock adaptation) sees the Anthropic shape.
+	if observedPath != "/v1/messages" {
+		t.Errorf("Expected middleware to observe path %q, got %q", "/v1/messages", observedPath)
+	}
+	if observedBody["model"] != "claude-3-sonnet" {
+		t.Errorf("Expected middleware to observe model in body, got %v", observedBody["model"])
+	}
+	if observedAuth != "" {
+		t.Errorf("Expected middleware to observe no Authorization header, got %q", observedAuth)
+	}
+
+	// The wire sees the rewritten, signed Bedrock shape.
+	if wirePath != "/model/claude-3-sonnet/invoke" {
+		t.Errorf("Expected wire path %q, got %q", "/model/claude-3-sonnet/invoke", wirePath)
+	}
+	if _, ok := wireBody["model"]; ok {
+		t.Error("Expected model to be removed from the wire body")
+	}
+	if wireBody["anthropic_version"] != DefaultVersion {
+		t.Errorf("Expected anthropic_version %q on the wire, got %v", DefaultVersion, wireBody["anthropic_version"])
+	}
+	if !strings.HasPrefix(wireAuth, "AWS4-HMAC-SHA256") {
+		t.Errorf("Expected SigV4 Authorization on the wire, got %q", wireAuth)
+	}
+}
+
+// TestBedrockStreamingEndToEnd verifies that an EventStream wire response
+// decodes into the same stream events a first-party SSE response would.
+func TestBedrockStreamingEndToEnd(t *testing.T) {
+	t.Setenv("ANTHROPIC_API_KEY", "")
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+
+	eventJSONs := []string{
+		`{"type":"message_start","message":{"id":"msg_test","type":"message","role":"assistant","content":[],"model":"claude-3-sonnet","usage":{"input_tokens":1,"output_tokens":1}}}`,
+		`{"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}}`,
+		`{"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Hi"}}`,
+		`{"type":"content_block_stop","index":0}`,
+		`{"type":"message_delta","delta":{"stop_reason":"end_turn"},"usage":{"output_tokens":2}}`,
+		`{"type":"message_stop"}`,
+	}
+	frames := &bytes.Buffer{}
+	for _, eventJSON := range eventJSONs {
+		encodeChunkFrame(t, frames, eventJSON)
+	}
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/vnd.amazon.eventstream")
+		w.Write(frames.Bytes())
+	}))
+	t.Cleanup(server.Close)
+
+	client := anthropic.NewClient(
+		option.WithoutEnvironmentDefaults(),
+		WithConfig(makeStaticAWSConfig("us-east-1")),
+		option.WithBaseURL(server.URL),
+	)
+
+	stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
+		Model:     "claude-3-sonnet",
+		MaxTokens: 1,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+		},
+	})
+
+	var gotTypes []string
+	for stream.Next() {
+		gotTypes = append(gotTypes, string(stream.Current().Type))
+	}
+	if err := stream.Err(); err != nil {
+		t.Fatalf("Expected no stream error, got: %v", err)
+	}
+
+	expectedTypes := []string{
+		"message_start", "content_block_start", "content_block_delta",
+		"content_block_stop", "message_delta", "message_stop",
+	}
+	if len(gotTypes) != len(expectedTypes) {
+		t.Fatalf("Expected %d events %v, got %d: %v", len(expectedTypes), expectedTypes, len(gotTypes), gotTypes)
+	}
+	for i, expected := range expectedTypes {
+		if gotTypes[i] != expected {
+			t.Errorf("Expected event %d to be %q, got %q", i, expected, gotTypes[i])
+		}
+	}
+}
+
+// TestBedrockStreamingExceptionEndToEnd verifies that a mid-stream Bedrock
+// exception surfaces the same API error a first-party SSE error event would,
+// after the events that preceded it.
+func TestBedrockStreamingExceptionEndToEnd(t *testing.T) {
+	t.Setenv("ANTHROPIC_API_KEY", "")
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+
+	frames := &bytes.Buffer{}
+	encodeChunkFrame(t, frames, `{"type":"message_start","message":{"id":"msg_test","type":"message","role":"assistant","content":[],"model":"claude-3-sonnet","usage":{"input_tokens":1,"output_tokens":1}}}`)
+	encodeExceptionFrame(t, frames, "throttlingException", "Too many requests")
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/vnd.amazon.eventstream")
+		w.Write(frames.Bytes())
+	}))
+	t.Cleanup(server.Close)
+
+	client := anthropic.NewClient(
+		option.WithoutEnvironmentDefaults(),
+		WithConfig(makeStaticAWSConfig("us-east-1")),
+		option.WithBaseURL(server.URL),
+		option.WithMaxRetries(0),
+	)
+
+	stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
+		Model:     "claude-3-sonnet",
+		MaxTokens: 1,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+		},
+	})
+
+	var gotTypes []string
+	for stream.Next() {
+		gotTypes = append(gotTypes, string(stream.Current().Type))
+	}
+	if len(gotTypes) != 1 || gotTypes[0] != "message_start" {
+		t.Errorf("Expected events [message_start] before the error, got %v", gotTypes)
+	}
+
+	var apiErr *anthropic.Error
+	if !errors.As(stream.Err(), &apiErr) {
+		t.Fatalf("Expected *anthropic.Error, got %T: %v", stream.Err(), stream.Err())
+	}
+	if apiErr.Type() != "throttlingException" {
+		t.Errorf("Expected error type %q, got %q", "throttlingException", apiErr.Type())
+	}
+	if message := gjson.Get(apiErr.RawJSON(), "error.message").String(); message != "Too many requests" {
+		t.Errorf("Expected error message %q, got %q", "Too many requests", message)
+	}
+}
+
+// TestBedrockClientIgnoresConfigStore is a regression test for the
+// first-party credential chain leaking into Bedrock clients: a client
+// constructed with static AWS credentials must never consult the shared
+// config store (ANTHROPIC_CONFIG_DIR), so no store-derived value — the
+// resolvable profile's workspace id or its access token — may reach the
+// wire. Authorization must stay a SigV4 signature from the static AWS
+// credentials.
+func TestBedrockClientIgnoresConfigStore(t *testing.T) {
+	t.Setenv("ANTHROPIC_API_KEY", "")
+	t.Setenv("ANTHROPIC_AUTH_TOKEN", "")
+	unsetEnv(t, "ANTHROPIC_PROFILE")
+	unsetEnv(t, "ANTHROPIC_FEDERATION_RULE_ID")
+	unsetEnv(t, "ANTHROPIC_ORGANIZATION_ID")
+	unsetEnv(t, "ANTHROPIC_IDENTITY_TOKEN")
+	unsetEnv(t, "ANTHROPIC_IDENTITY_TOKEN_FILE")
+	unsetEnv(t, "ANTHROPIC_WORKSPACE_ID")
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+	writeFakeConfigStore(t)
+
+	var wireHeaders http.Header
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		wireHeaders = r.Header.Clone()
+		writeMessagesResponse(w)
+	}))
+	t.Cleanup(server.Close)
+
+	client := anthropic.NewClient(
+		WithConfig(makeStaticAWSConfig("us-east-1")),
+		option.WithBaseURL(server.URL),
+	)
+	_, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+		Model:     "claude-3-sonnet",
+		MaxTokens: 1,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("hi")),
+		},
+	})
+	if err != nil {
+		t.Fatalf("Request failed: %v", err)
+	}
+
+	if got, ok := wireHeaders[http.CanonicalHeaderKey("anthropic-workspace-id")]; ok {
+		t.Errorf("Expected no anthropic-workspace-id header, got %q", got)
+	}
+	if got := wireHeaders.Get("X-Api-Key"); got != "" {
+		t.Errorf("Expected no X-Api-Key header, got %q", got)
+	}
+	if auth := wireHeaders.Get("Authorization"); !strings.HasPrefix(auth, "AWS4-HMAC-SHA256 Credential=test-access-key/") {
+		t.Errorf("Expected SigV4 Authorization from the static AWS credentials, got %q", auth)
+	}
+}
+
+// writeFakeConfigStore points ANTHROPIC_CONFIG_DIR at a temp config store
+// holding a resolvable default profile with a workspace id, so a client
+// that (incorrectly) walks the first-party credential chain would pick it
+// up. Values are deliberately fake.
+func writeFakeConfigStore(t *testing.T) {
+	t.Helper()
+	dir := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(dir, "configs"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Join(dir, "credentials"), 0o700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(dir, "configs", "default.json"), []byte(`{
+		"authentication": {"type": "user_oauth"},
+		"workspace_id": "wrkspc_fake_store_value"
+	}`), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(dir, "credentials", "default.json"),
+		[]byte(`{"type":"oauth_token","access_token":"fake-store-access-token"}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("ANTHROPIC_CONFIG_DIR", dir)
+}
+
+// unsetEnv unsets an env var for the duration of the test, restoring the
+// original value afterwards (t.Setenv registers the restore).
+func unsetEnv(t *testing.T, key string) {
+	t.Helper()
+	t.Setenv(key, "")
+	os.Unsetenv(key)
+}
+
+// TestBedrockNonJSONBodyPassesThroughUntouched verifies that a raw,
+// non-JSON request body reaches the wire byte-for-byte and is still
+// SigV4-signed, rather than being replaced by injected JSON fields.
+func TestBedrockNonJSONBodyPassesThroughUntouched(t *testing.T) {
+	t.Setenv("ANTHROPIC_API_KEY", "")
+	t.Setenv("AWS_BEARER_TOKEN_BEDROCK", "")
+
+	payload := []byte{0x89, 'P', 'N', 'G', '\r', '\n', 0x1a, '\n', 0x00, 0x01, 0x02, 0xff}
+
+	var wireBody []byte
+	var wireAuth, wireContentType string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		wireAuth = r.Header.Get("Authorization")
+		wireContentType = r.Header.Get("Content-Type")
+		var err error
+		if wireBody, err = io.ReadAll(r.Body); err != nil {
+			t.Errorf("Failed to read wire body: %v", err)
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(`{}`))
+	}))
+	t.Cleanup(server.Close)
+
+	client := anthropic.NewClient(
+		option.WithoutEnvironmentDefaults(),
+		WithConfig(makeStaticAWSConfig("us-east-1")),
+		option.WithBaseURL(server.URL),
+	)
+
+	var res map[string]any
+	err := client.Post(context.Background(), "/model/anthropic.claude-sonnet-4-5-20250929-v1:0/invoke", nil, &res,
+		option.WithRequestBody("application/octet-stream", bytes.NewReader(payload)),
+	)
+	if err != nil {
+		t.Fatalf("Request failed: %v", err)
+	}
+
+	if !bytes.Equal(wireBody, payload) {
+		t.Errorf("Expected wire body %x, got %x (%q)", payload, wireBody, wireBody)
+	}
+	if wireContentType != "application/octet-stream" {
+		t.Errorf("Expected Content-Type %q on the wire, got %q", "application/octet-stream", wireContentType)
+	}
+	if !strings.HasPrefix(wireAuth, "AWS4-HMAC-SHA256") {
+		t.Errorf("Expected SigV4 Authorization on the wire, got %q", wireAuth)
+	}
+}

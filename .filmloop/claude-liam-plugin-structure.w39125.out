@@ -1,0 +1,34 @@
+Done. Here is what actually happened:
+
+---
+
+## claude-liam-plugin-structure — complete
+
+**Phase 0 — Rebuild contract:** `beat_sheet.pre-rebuild.json` already existed from the prior rebuild. Narration untouched. VOICE-LOCK already clean (no dead ElevenLabs fields).
+
+**Phase 1 — Audit (11 checks):**
+
+| Check | Result |
+|-------|--------|
+| 1. Stale renders | **FIXED** — all 7 `media/*.mp4` + `clips/*.mp4` (timestamps 10:52–11:19) deleted; beat_sheet was 11:47:22 |
+| 2. Bookends | PASS — B00/BVDT/BHTF/BOUT all correct patterns |
+| 3. Spark lines | **FIXED** — BHTF greeting `"Your Turn"` → `"Your turn."` (lowercase t, period) |
+| 4. Verdict | PASS — 6 authored specific lines, not template defaults |
+| 5. Card text | PASS — no placeholder subs |
+| 6. Punt sweep | PASS — all 3 custom patterns (PluginStructureAnatomy/Components/Tell) confirmed in scenes.json and TSX |
+| 7. Card-only | PASS — drawn diagram + table + comparison |
+| 8. Lens | PASS — Descartes (B05: what makes it fail) + Popper (BHTF: 4 gates stated in advance) |
+| 9. Brand fields | PASS — @NikBearBrown, kokoro am_onyx, IN-FOR-BEAR LAW satisfied |
+| 10. Pacing | PASS — 2.1–3.0 wps across all beats |
+| 11. type_check.py | PASS — GATE T green |
+
+**Phase 2 — Build:**
+- Audio regenerated (7 beats, $0.00, kokoro am_onyx)
+- All 7 Remotion beats re-rendered
+- Compiled: 333.6s, 7/7 VIDEO, GATE AUDIO −23.8 dB
+- Gate V: 21 frames read — 0 BLOCKER, 0 STRUCTURAL, 1 COSMETIC (B01 deliberate negative space)
+- GATE T: PASS
+
+**Post-build build.status Counter:** `{'VIDEO': 7}`
+
+**Output:** `claude-liam-plugin-structure.mp4` — newer than sheet, audible. DONE.

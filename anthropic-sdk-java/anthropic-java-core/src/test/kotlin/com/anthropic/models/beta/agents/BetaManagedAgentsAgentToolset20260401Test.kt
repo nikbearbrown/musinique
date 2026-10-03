@@ -1,0 +1,102 @@
+package com.anthropic.models.beta.agents
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class BetaManagedAgentsAgentToolset20260401Test {
+
+    @Test
+    fun create() {
+        val betaManagedAgentsAgentToolset20260401 =
+            BetaManagedAgentsAgentToolset20260401.builder()
+                .addConfig(
+                    BetaManagedAgentsBashToolConfig.builder()
+                        .enabled(true)
+                        .permissionPolicy(
+                            BetaManagedAgentsAlwaysAllowPolicy.of(
+                                BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                            )
+                        )
+                        .build()
+                )
+                .defaultConfig(
+                    BetaManagedAgentsAgentToolsetDefaultConfig.builder()
+                        .enabled(true)
+                        .permissionPolicy(
+                            BetaManagedAgentsAlwaysAllowPolicy.of(
+                                BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                            )
+                        )
+                        .build()
+                )
+                .type(BetaManagedAgentsAgentToolset20260401.Type.AGENT_TOOLSET_20260401)
+                .build()
+
+        assertThat(betaManagedAgentsAgentToolset20260401.configs())
+            .containsExactly(
+                BetaManagedAgentsAgentToolConfig.ofBash(
+                    BetaManagedAgentsBashToolConfig.builder()
+                        .enabled(true)
+                        .permissionPolicy(
+                            BetaManagedAgentsAlwaysAllowPolicy.of(
+                                BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                            )
+                        )
+                        .build()
+                )
+            )
+        assertThat(betaManagedAgentsAgentToolset20260401.defaultConfig())
+            .isEqualTo(
+                BetaManagedAgentsAgentToolsetDefaultConfig.builder()
+                    .enabled(true)
+                    .permissionPolicy(
+                        BetaManagedAgentsAlwaysAllowPolicy.of(
+                            BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                        )
+                    )
+                    .build()
+            )
+        assertThat(betaManagedAgentsAgentToolset20260401.type())
+            .isEqualTo(BetaManagedAgentsAgentToolset20260401.Type.AGENT_TOOLSET_20260401)
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val betaManagedAgentsAgentToolset20260401 =
+            BetaManagedAgentsAgentToolset20260401.builder()
+                .addConfig(
+                    BetaManagedAgentsBashToolConfig.builder()
+                        .enabled(true)
+                        .permissionPolicy(
+                            BetaManagedAgentsAlwaysAllowPolicy.of(
+                                BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                            )
+                        )
+                        .build()
+                )
+                .defaultConfig(
+                    BetaManagedAgentsAgentToolsetDefaultConfig.builder()
+                        .enabled(true)
+                        .permissionPolicy(
+                            BetaManagedAgentsAlwaysAllowPolicy.of(
+                                BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW
+                            )
+                        )
+                        .build()
+                )
+                .type(BetaManagedAgentsAgentToolset20260401.Type.AGENT_TOOLSET_20260401)
+                .build()
+
+        val roundtrippedBetaManagedAgentsAgentToolset20260401 =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(betaManagedAgentsAgentToolset20260401),
+                jacksonTypeRef<BetaManagedAgentsAgentToolset20260401>(),
+            )
+
+        assertThat(roundtrippedBetaManagedAgentsAgentToolset20260401)
+            .isEqualTo(betaManagedAgentsAgentToolset20260401)
+    }
+}

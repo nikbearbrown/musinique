@@ -1,0 +1,3373 @@
+{
+  "wireMagic": "pb3",
+  "pens": [ {
+  
+  } ],
+  "wsWinStyles": [ {
+  
+  } ],
+  "wpWinPositions": [ {
+  
+  } ],
+  "events": [ {
+    "tStartMs": 400,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "When we first released Claude Code,"
+    } ]
+  }, {
+    "tStartMs": 2160,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "it was like a little video"
+    } ]
+  }, {
+    "tStartMs": 3520,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "and I remember posting it to Slack,"
+    } ]
+  }, {
+    "tStartMs": 4880,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "and there was like two people\nthat gave like the reactions"
+    } ]
+  }, {
+    "tStartMs": 7600,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "and like people were like excited."
+    } ]
+  }, {
+    "tStartMs": 9360,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "I thought it was really cool,"
+    } ]
+  }, {
+    "tStartMs": 10800,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "especially for my very easy\nengineering tasks."
+    } ]
+  }, {
+    "tStartMs": 13680,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "It was quite good at it."
+    } ]
+  }, {
+    "tStartMs": 14640,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "That's like a really nice way\nto say that"
+    } ]
+  }, {
+    "tStartMs": 16000,
+    "dDurationMs": 13520,
+    "segs": [ {
+      "utf8": "it wasn't really good."
+    } ]
+  }, {
+    "tStartMs": 31040,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "I can't believe\nit's only been a year"
+    } ]
+  }, {
+    "tStartMs": 32720,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "since we first launched\nClaude Code."
+    } ]
+  }, {
+    "tStartMs": 34480,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "It's hard to remember what\nwhat that was like."
+    } ]
+  }, {
+    "tStartMs": 36960,
+    "dDurationMs": 3760,
+    "segs": [ {
+      "utf8": "Like, it’s so different\nthan what we're doing today."
+    } ]
+  }, {
+    "tStartMs": 40720,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "Like, now I just have, like,\narmies of agents"
+    } ]
+  }, {
+    "tStartMs": 42800,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "that are doing stuff like I'm"
+    } ]
+  }, {
+    "tStartMs": 44560,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "prompting one agent\nor I have like an agent"
+    } ]
+  }, {
+    "tStartMs": 46560,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "that's like prompting agents,\nthat's prompting agents."
+    } ]
+  }, {
+    "tStartMs": 48560,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "And it's like a tree\nof like thousands of agents."
+    } ]
+  }, {
+    "tStartMs": 50880,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "But I think it's just like\nthe most important idea"
+    } ]
+  }, {
+    "tStartMs": 53040,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "when working on this stuff"
+    } ]
+  }, {
+    "tStartMs": 54000,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "is like, every single time\nClaude makes a mistake."
+    } ]
+  }, {
+    "tStartMs": 57200,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "I don't tell Claude\nto do it differently,"
+    } ]
+  }, {
+    "tStartMs": 58960,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "I tell it to write it\nto the CLAUDE.md,"
+    } ]
+  }, {
+    "tStartMs": 60880,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "or to like make a skill or"
+    } ]
+  }, {
+    "tStartMs": 62480,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "or something\nto do it differently."
+    } ]
+  }, {
+    "tStartMs": 64480,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And if you can do this,\nthen Claude"
+    } ]
+  }, {
+    "tStartMs": 66000,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "can just like run forever."
+    } ]
+  }, {
+    "tStartMs": 67600,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And I think the other thing\nthat we kind of realize is"
+    } ]
+  }, {
+    "tStartMs": 69680,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "the verification\nis really important."
+    } ]
+  }, {
+    "tStartMs": 71600,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "Like we didn't realize that."
+    } ]
+  }, {
+    "tStartMs": 72640,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "I hear this come up\na lot with developers"
+    } ]
+  }, {
+    "tStartMs": 75200,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "and enterprises\nthat we meet with."
+    } ]
+  }, {
+    "tStartMs": 77520,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "What are your tips for making\na really good"
+    } ]
+  }, {
+    "tStartMs": 79680,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "making Claude Code really good\nat verification?"
+    } ]
+  }, {
+    "tStartMs": 81760,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "I sort of feel like this"
+    } ]
+  }, {
+    "tStartMs": 82720,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "is this thing that"
+    } ]
+  }, {
+    "tStartMs": 83840,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "just like everyone misunderstands"
+    } ]
+  }, {
+    "tStartMs": 85280,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "because whenever we talk about\nverification,"
+    } ]
+  }, {
+    "tStartMs": 87360,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "people are thinking like unit tests"
+    } ]
+  }, {
+    "tStartMs": 88720,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "or they're thinking like lint\nor like type check."
+    } ]
+  }, {
+    "tStartMs": 91280,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "These are the things that are"
+    } ]
+  }, {
+    "tStartMs": 92400,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "obviously really easy to automate."
+    } ]
+  }, {
+    "tStartMs": 93920,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "And these are the things\nthat were already automated."
+    } ]
+  }, {
+    "tStartMs": 96480,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "But actually when we talk\nabout verification"
+    } ]
+  }, {
+    "tStartMs": 98000,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "for agents, it's\nsomething slightly different."
+    } ]
+  }, {
+    "tStartMs": 100160,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "It's like can the agent run\nthe thing?"
+    } ]
+  }, {
+    "tStartMs": 102240,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "It takes a little bit of\nmental work"
+    } ]
+  }, {
+    "tStartMs": 104080,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "to figure out\nhow exactly do you do this,"
+    } ]
+  }, {
+    "tStartMs": 105920,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "because it's often\nnot straightforward."
+    } ]
+  }, {
+    "tStartMs": 107600,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "And I think that's like,"
+    } ]
+  }, {
+    "tStartMs": 108560,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "that’s one of the challenges.\nI remember"
+    } ]
+  }, {
+    "tStartMs": 110400,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "I remember with Opus 4"
+    } ]
+  }, {
+    "tStartMs": 112720,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "Claude tested itself."
+    } ]
+  }, {
+    "tStartMs": 114720,
+    "dDurationMs": 3280,
+    "segs": [ {
+      "utf8": "And we just like\nhooked it up to Opus 4"
+    } ]
+  }, {
+    "tStartMs": 118000,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "And I was like, Claude\nbuild the feature"
+    } ]
+  }, {
+    "tStartMs": 119840,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "and then test yourself\nin like bash."
+    } ]
+  }, {
+    "tStartMs": 122560,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "And it opened a little Claude\nCLI and tested"
+    } ]
+  }, {
+    "tStartMs": 125920,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "its own feature."
+    } ]
+  }, {
+    "tStartMs": 127520,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "And I was just like, whoa."
+    } ]
+  }, {
+    "tStartMs": 130000,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "It's crazy!"
+    } ]
+  }, {
+    "tStartMs": 130720,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "Like now,\nnow we're so used to it."
+    } ]
+  }, {
+    "tStartMs": 132160,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "Like now, you know, now\nwe have these loops going for,"
+    } ]
+  }, {
+    "tStartMs": 134640,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "you know,\nlike the iOS simulator"
+    } ]
+  }, {
+    "tStartMs": 135760,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "and the Android simulator\nand like computers"
+    } ]
+  }, {
+    "tStartMs": 138160,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "for desktop,\nlike it's not surprising."
+    } ]
+  }, {
+    "tStartMs": 140480,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "But back then that was crazy."
+    } ]
+  }, {
+    "tStartMs": 142080,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "How are, like,\nhow are you doing it?"
+    } ]
+  }, {
+    "tStartMs": 144480,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "So I've been mainly"
+    } ]
+  }, {
+    "tStartMs": 145920,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "hacking on the desktop app\nthese days."
+    } ]
+  }, {
+    "tStartMs": 147920,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "And one of the engineers\non the team"
+    } ]
+  }, {
+    "tStartMs": 149760,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "actually added this desktop"
+    } ]
+  }, {
+    "tStartMs": 151040,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "development skill"
+    } ]
+  }, {
+    "tStartMs": 152000,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "that teaches Claude how\nto run the local desktop app."
+    } ]
+  }, {
+    "tStartMs": 155040,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "And I've been having it\nuse it,"
+    } ]
+  }, {
+    "tStartMs": 156480,
+    "dDurationMs": 3680,
+    "segs": [ {
+      "utf8": "and it still runs into issues\nor like bugs"
+    } ]
+  }, {
+    "tStartMs": 160160,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "with the staging environment\nsometimes."
+    } ]
+  }, {
+    "tStartMs": 162320,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And so what I have it do\nis in those cases,"
+    } ]
+  }, {
+    "tStartMs": 164400,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "I have it read\nSlack and understand, hey,"
+    } ]
+  }, {
+    "tStartMs": 166640,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "is staging down right now?"
+    } ]
+  }, {
+    "tStartMs": 168320,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "Or has someone\nelse already hit this?"
+    } ]
+  }, {
+    "tStartMs": 171680,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "And then when it"
+    } ]
+  }, {
+    "tStartMs": 172800,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "debugs the whole issue,"
+    } ]
+  }, {
+    "tStartMs": 174160,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "I tell it to update\nthe desktop development skill."
+    } ]
+  }, {
+    "tStartMs": 176320,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "What the skill does is"
+    } ]
+  }, {
+    "tStartMs": 177840,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "Claude actually spins up\na local desktop app,"
+    } ]
+  }, {
+    "tStartMs": 180160,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "and it uses computer\nuse to click around on it."
+    } ]
+  }, {
+    "tStartMs": 183120,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And so when I add a new UX,"
+    } ]
+  }, {
+    "tStartMs": 185200,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "it clicks around\nto invoke the new UX."
+    } ]
+  }, {
+    "tStartMs": 187920,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "It also tests edge cases,"
+    } ]
+  }, {
+    "tStartMs": 189840,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "and when there's an issue\nit fixes it and re-checks."
+    } ]
+  }, {
+    "tStartMs": 193040,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "This is like honestly,\none of my favorite things"
+    } ]
+  }, {
+    "tStartMs": 194880,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "about this team\nis everyone codes."
+    } ]
+  }, {
+    "tStartMs": 197920,
+    "dDurationMs": 3440,
+    "segs": [ {
+      "utf8": "I've never been on a\nteam where, like,"
+    } ]
+  }, {
+    "tStartMs": 202080,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "my PM would code"
+    } ]
+  }, {
+    "tStartMs": 203360,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "and it's like crazy and like\nyour code is like really good."
+    } ]
+  }, {
+    "tStartMs": 206720,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "You’re too nice."
+    } ]
+  }, {
+    "tStartMs": 208720,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "But I also just feel like it's"
+    } ]
+  }, {
+    "tStartMs": 210480,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "it's also just becoming easier"
+    } ]
+  }, {
+    "tStartMs": 211840,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "because it's like essentially\nClaude writes the code."
+    } ]
+  }, {
+    "tStartMs": 214720,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "And so what matters\na little more is like,"
+    } ]
+  }, {
+    "tStartMs": 216720,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "what's the idea that you have?"
+    } ]
+  }, {
+    "tStartMs": 218480,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "And I feel like"
+    } ]
+  }, {
+    "tStartMs": 219520,
+    "dDurationMs": 560,
+    "segs": [ {
+      "utf8": "if you're a person"
+    } ]
+  }, {
+    "tStartMs": 220080,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "that has like\nthe product context"
+    } ]
+  }, {
+    "tStartMs": 221120,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "and the business context\nand you're thinking"
+    } ]
+  }, {
+    "tStartMs": 222480,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "about the design and the user,"
+    } ]
+  }, {
+    "tStartMs": 224160,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "you're just going to come up\nwith better ideas."
+    } ]
+  }, {
+    "tStartMs": 226160,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "It's kind of like\nall the roles are merging."
+    } ]
+  }, {
+    "tStartMs": 228160,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "I remember seeing Megan\nour designer’s PRs"
+    } ]
+  }, {
+    "tStartMs": 230800,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "and I was just horrified\nat the beginning"
+    } ]
+  }, {
+    "tStartMs": 232400,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "I was like, oh my God, why is\nMegan putting up PRs?"
+    } ]
+  }, {
+    "tStartMs": 234800,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "And then she was like,\nyeah, yeah."
+    } ]
+  }, {
+    "tStartMs": 236000,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "I'm just like,\nI'm fixing the button."
+    } ]
+  }, {
+    "tStartMs": 237760,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "And I was like,"
+    } ]
+  }, {
+    "tStartMs": 238480,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "okay, all right, well,\nthe code looks good,"
+    } ]
+  }, {
+    "tStartMs": 240240,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "so maybe it's maybe it's fine."
+    } ]
+  }, {
+    "tStartMs": 242160,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "And I feel like now it's\njust like it's totally normal."
+    } ]
+  }, {
+    "tStartMs": 244560,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "Yeah, and we see this across"
+    } ]
+  }, {
+    "tStartMs": 245760,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "all the enterprises we talk with."
+    } ]
+  }, {
+    "tStartMs": 247680,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "Like, it's the engineers adopt\nClaude Code first"
+    } ]
+  }, {
+    "tStartMs": 250880,
+    "dDurationMs": 3840,
+    "segs": [ {
+      "utf8": "and then the, the eng adjecent\nroles look over their shoulder"
+    } ]
+  }, {
+    "tStartMs": 254720,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "and they're like, whoa,\nthis thing is very powerful."
+    } ]
+  }, {
+    "tStartMs": 256800,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "Let me try it out.\nAnd we found it's crazy."
+    } ]
+  }, {
+    "tStartMs": 259680,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "We found that, like,"
+    } ]
+  }, {
+    "tStartMs": 260560,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "our designers are more\nproductive making prototypes"
+    } ]
+  }, {
+    "tStartMs": 263280,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "and making changes\ndirectly in the app"
+    } ]
+  }, {
+    "tStartMs": 265120,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "instead of pinging an engineer,"
+    } ]
+  }, {
+    "tStartMs": 266800,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "PMs are making changes in the app."
+    } ]
+  }, {
+    "tStartMs": 269680,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "Our finance team runs\nand in Claude Code,"
+    } ]
+  }, {
+    "tStartMs": 272160,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "they do their projections there."
+    } ]
+  }, {
+    "tStartMs": 274320,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "Data science."
+    } ]
+  }, {
+    "tStartMs": 276240,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "Like if you talk with our\ndata scientists, it's so cool."
+    } ]
+  }, {
+    "tStartMs": 278800,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "It's just like everyone just has"
+    } ]
+  }, {
+    "tStartMs": 280480,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "Claude Codes up on their screens."
+    } ]
+  }, {
+    "tStartMs": 282960,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "I feel like it's remarkably versatile"
+    } ]
+  }, {
+    "tStartMs": 286160,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "for different roles."
+    } ]
+  }, {
+    "tStartMs": 287200,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "What do you feel like nowadays,"
+    } ]
+  }, {
+    "tStartMs": 288560,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "are the use cases\nthat are pushing the limit?"
+    } ]
+  }, {
+    "tStartMs": 291600,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "One that I'm super excited\nabout is routines."
+    } ]
+  }, {
+    "tStartMs": 294800,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "There is one engineer\non our team"
+    } ]
+  }, {
+    "tStartMs": 296640,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "who launched voice mode across\nall of our products."
+    } ]
+  }, {
+    "tStartMs": 299840,
+    "dDurationMs": 4080,
+    "segs": [ {
+      "utf8": "And, he has his routine set up\nthat just listens for"
+    } ]
+  }, {
+    "tStartMs": 303920,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "every ticket that comes,\nevery GitHub issue, every"
+    } ]
+  }, {
+    "tStartMs": 307120,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "bug report about voice mode."
+    } ]
+  }, {
+    "tStartMs": 308800,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "And his Claude just picks it up,"
+    } ]
+  }, {
+    "tStartMs": 310640,
+    "dDurationMs": 3920,
+    "segs": [ {
+      "utf8": "proactively puts up a fix,\nand then pings the PR to him."
+    } ]
+  }, {
+    "tStartMs": 314560,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "And when he got that working"
+    } ]
+  }, {
+    "tStartMs": 315840,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "for voice, he thought, okay,"
+    } ]
+  }, {
+    "tStartMs": 317280,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "we're getting a lot"
+    } ]
+  }, {
+    "tStartMs": 318080,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "of other feedback"
+    } ]
+  }, {
+    "tStartMs": 319280,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "that isn't being responded to."
+    } ]
+  }, {
+    "tStartMs": 321280,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "So, he also set up a routine\nto listen for that."
+    } ]
+  }, {
+    "tStartMs": 324240,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "So I ship this, small feature."
+    } ]
+  }, {
+    "tStartMs": 326640,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "And there was like an edge\ncase in it that I didn't see."
+    } ]
+  }, {
+    "tStartMs": 329280,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And so someone filed\na bug for it,"
+    } ]
+  }, {
+    "tStartMs": 331360,
+    "dDurationMs": 3280,
+    "segs": [ {
+      "utf8": "and I was going to\nget to the bug that night."
+    } ]
+  }, {
+    "tStartMs": 334640,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "And my Claude was working,\nit said, wait a second,"
+    } ]
+  }, {
+    "tStartMs": 337200,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "another Claude\nhas already fixed this."
+    } ]
+  }, {
+    "tStartMs": 339360,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "And I was like,\nhow is this possible?"
+    } ]
+  }, {
+    "tStartMs": 340800,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "Like, I've never talked to him"
+    } ]
+  }, {
+    "tStartMs": 341840,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "about this feature before"
+    } ]
+  }, {
+    "tStartMs": 343040,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "and so I pinged him,"
+    } ]
+  }, {
+    "tStartMs": 343760,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "and I was like,\nhow did you fix this"
+    } ]
+  }, {
+    "tStartMs": 345360,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "so quickly?"
+    } ]
+  }, {
+    "tStartMs": 346080,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And he said,\nhe has another routine"
+    } ]
+  }, {
+    "tStartMs": 347600,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "that just looks\nfor bug reports"
+    } ]
+  }, {
+    "tStartMs": 349200,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "that haven't been responded\nto in five hours"
+    } ]
+  }, {
+    "tStartMs": 351440,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "and puts up a fix,\nand he merges the ones that"
+    } ]
+  }, {
+    "tStartMs": 353840,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "are easy to verify."
+    } ]
+  }, {
+    "tStartMs": 355840,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "Claude tells me this\nlike all the time now."
+    } ]
+  }, {
+    "tStartMs": 357760,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "That someone else\nhas already fixed it?"
+    } ]
+  }, {
+    "tStartMs": 359280,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "There's always like\nanother person’s"
+    } ]
+  }, {
+    "tStartMs": 360400,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "Claude that's working on it."
+    } ]
+  }, {
+    "tStartMs": 361840,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "It's like, yeah, that's\nbeen one of the changes."
+    } ]
+  }, {
+    "tStartMs": 364400,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "I feel like we're,"
+    } ]
+  }, {
+    "tStartMs": 366160,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "a while ago\nwe were trying to figure out,"
+    } ]
+  }, {
+    "tStartMs": 367440,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "like, how to use routines,"
+    } ]
+  }, {
+    "tStartMs": 368400,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "and I feel like\njust like the agent SDK"
+    } ]
+  }, {
+    "tStartMs": 370240,
+    "dDurationMs": 4080,
+    "segs": [ {
+      "utf8": "was this first idea\nthat we could use Claude Code"
+    } ]
+  }, {
+    "tStartMs": 374320,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "programmatically. But"
+    } ]
+  }, {
+    "tStartMs": 375680,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "I feel like at the beginning,\nit just wasn't obvious."
+    } ]
+  }, {
+    "tStartMs": 378160,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "How do we use it?\nWhat do we use it for?"
+    } ]
+  }, {
+    "tStartMs": 380320,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "And I think routines are"
+    } ]
+  }, {
+    "tStartMs": 381920,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "the first\nreally obvious application."
+    } ]
+  }, {
+    "tStartMs": 384400,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "And I don't know, like"
+    } ]
+  }, {
+    "tStartMs": 386320,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "it just does like all the code\nreview,"
+    } ]
+  }, {
+    "tStartMs": 388240,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "it babysits like every PR,"
+    } ]
+  }, {
+    "tStartMs": 390720,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "you remember back in the day\nyou used to actually"
+    } ]
+  }, {
+    "tStartMs": 392880,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "have to like respond to code\nreview comments."
+    } ]
+  }, {
+    "tStartMs": 394880,
+    "dDurationMs": 3680,
+    "segs": [ {
+      "utf8": "You used to have to like\nfix CI. You used to have to rebase."
+    } ]
+  }, {
+    "tStartMs": 398560,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "Yeah. Like I haven't done that\nin a long time."
+    } ]
+  }, {
+    "tStartMs": 400960,
+    "dDurationMs": 400,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 401360,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "When you're in the CLI"
+    } ]
+  }, {
+    "tStartMs": 402880,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "and you're synchronously\nworking with Claude,"
+    } ]
+  }, {
+    "tStartMs": 405120,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "what are your go to features?"
+    } ]
+  }, {
+    "tStartMs": 407280,
+    "dDurationMs": 320,
+    "segs": [ {
+      "utf8": "Okay."
+    } ]
+  }, {
+    "tStartMs": 407600,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "What they used to\nbe is plan mode."
+    } ]
+  }, {
+    "tStartMs": 409840,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "I don't use that anymore."
+    } ]
+  }, {
+    "tStartMs": 411360,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "What do you use instead?"
+    } ]
+  }, {
+    "tStartMs": 412400,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "Auto mode."
+    } ]
+  }, {
+    "tStartMs": 413200,
+    "dDurationMs": 640,
+    "segs": [ {
+      "utf8": "Auto mode?"
+    } ]
+  }, {
+    "tStartMs": 413840,
+    "dDurationMs": 640,
+    "segs": [ {
+      "utf8": "It’s the best."
+    } ]
+  }, {
+    "tStartMs": 414480,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "Instead of plan mode?"
+    } ]
+  }, {
+    "tStartMs": 415600,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "Instead of plan mode."
+    } ]
+  }, {
+    "tStartMs": 416480,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "Yeah because the newer models"
+    } ]
+  }, {
+    "tStartMs": 418240,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "they don't actually need\nlike a planning step anymore."
+    } ]
+  }, {
+    "tStartMs": 421120,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "I think this was really"
+    } ]
+  }, {
+    "tStartMs": 422160,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "important for like Opus 4\nthrough maybe 4.5."
+    } ]
+  }, {
+    "tStartMs": 425520,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "Then I think starting with\nfour six and definitely with"
+    } ]
+  }, {
+    "tStartMs": 427440,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "four seven, it just doesn't\nneed that planning step."
+    } ]
+  }, {
+    "tStartMs": 429520,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "I think some people\nstill use it."
+    } ]
+  }, {
+    "tStartMs": 430720,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "They like to have that artifact."
+    } ]
+  }, {
+    "tStartMs": 431840,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "I don't use it"
+    } ]
+  }, {
+    "tStartMs": 433120,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "And I just do\nauto mode for everything"
+    } ]
+  }, {
+    "tStartMs": 434720,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "because then I start my Claude,"
+    } ]
+  }, {
+    "tStartMs": 436640,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "it starts to work"
+    } ]
+  }, {
+    "tStartMs": 437440,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "and then I just like move on\nto the next Claude"
+    } ]
+  }, {
+    "tStartMs": 439520,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "and I don't have to sit there\nand watch it."
+    } ]
+  }, {
+    "tStartMs": 441120,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "But from the very early\nstage we had this"
+    } ]
+  }, {
+    "tStartMs": 442800,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "like permission prompts model\nfor Claude Code, right?"
+    } ]
+  }, {
+    "tStartMs": 445840,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "Like it runs a tool\nand then it asks you like,"
+    } ]
+  }, {
+    "tStartMs": 447520,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "hey, are you okay\nrunning this tool?"
+    } ]
+  }, {
+    "tStartMs": 449520,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "And you had to say yes or no."
+    } ]
+  }, {
+    "tStartMs": 451680,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "And at the time,"
+    } ]
+  }, {
+    "tStartMs": 452880,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "that was kind of the best\nwe had a year and a half ago"
+    } ]
+  }, {
+    "tStartMs": 454880,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "because we didn't have,\nyou know, classifiers."
+    } ]
+  }, {
+    "tStartMs": 456720,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "The model was not as well\naligned as it is today."
+    } ]
+  }, {
+    "tStartMs": 458880,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "So auto mode was just such a"
+    } ]
+  }, {
+    "tStartMs": 460320,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "it was such a big step up\nbecause actually"
+    } ]
+  }, {
+    "tStartMs": 462560,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "you don't want to read\nmost of these requests."
+    } ]
+  }, {
+    "tStartMs": 464560,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "Just routing it\nto a different model"
+    } ]
+  }, {
+    "tStartMs": 466080,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "and having it check for\nsecurity works so much better."
+    } ]
+  }, {
+    "tStartMs": 468720,
+    "dDurationMs": 560,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 469280,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "And if a thing like\nis a little suss or,"
+    } ]
+  }, {
+    "tStartMs": 471760,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "you know,\nthis isn't the command that"
+    } ]
+  }, {
+    "tStartMs": 473680,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "you think you want to run\nor it's not safe,"
+    } ]
+  }, {
+    "tStartMs": 476400,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "the model will just deny it."
+    } ]
+  }, {
+    "tStartMs": 477760,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "And then you can go back\nand you can allow it later."
+    } ]
+  }, {
+    "tStartMs": 480160,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "I think this has been\none of those, like, step changes."
+    } ]
+  }, {
+    "tStartMs": 482480,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "We just, there's no way"
+    } ]
+  }, {
+    "tStartMs": 483440,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "we could have done this a year\nand a half ago."
+    } ]
+  }, {
+    "tStartMs": 484960,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "It's just human nature,"
+    } ]
+  }, {
+    "tStartMs": 485920,
+    "dDurationMs": 3840,
+    "segs": [ {
+      "utf8": "when you accept\n99% of requests, that your eyes"
+    } ]
+  }, {
+    "tStartMs": 489760,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "just glaze over\nwhen you read it."
+    } ]
+  }, {
+    "tStartMs": 491520,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "And so actually, we feel\nthat auto mode is more safe"
+    } ]
+  }, {
+    "tStartMs": 494640,
+    "dDurationMs": 640,
+    "segs": [ {
+      "utf8": "than reading"
+    } ]
+  }, {
+    "tStartMs": 495280,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "every single\npermission prompt,"
+    } ]
+  }, {
+    "tStartMs": 496800,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "because it means"
+    } ]
+  }, {
+    "tStartMs": 497520,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "that your only paying attention\nto the most important thing"
+    } ]
+  }, {
+    "tStartMs": 500640,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "and not like being spammed"
+    } ]
+  }, {
+    "tStartMs": 502320,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "a bunch of things\nthat are just 99% yes."
+    } ]
+  }, {
+    "tStartMs": 504720,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "I think security\nis one of these things."
+    } ]
+  }, {
+    "tStartMs": 506240,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "Like you can talk about it"
+    } ]
+  }, {
+    "tStartMs": 507280,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "and then"
+    } ]
+  }, {
+    "tStartMs": 508080,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "it's a totally different thing\nto actually do it correctly,"
+    } ]
+  }, {
+    "tStartMs": 510560,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "because it just doesn't\nalways look"
+    } ]
+  }, {
+    "tStartMs": 512160,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "the way that you think\nit's going to look."
+    } ]
+  }, {
+    "tStartMs": 513440,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "And it's just all about"
+    } ]
+  }, {
+    "tStartMs": 514480,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "like always red teaming,\nalways pentesting"
+    } ]
+  }, {
+    "tStartMs": 517600,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "always looking,"
+    } ]
+  }, {
+    "tStartMs": 518480,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "you know,\nalways having a threat model"
+    } ]
+  }, {
+    "tStartMs": 519760,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "and then using that\nto figure out,"
+    } ]
+  }, {
+    "tStartMs": 521280,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "you know, how is this thing\ngoing to get attacked?"
+    } ]
+  }, {
+    "tStartMs": 523280,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "How are people going to get\nprompt injected?"
+    } ]
+  }, {
+    "tStartMs": 525440,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "And I just feel like\nlike the team"
+    } ]
+  }, {
+    "tStartMs": 527200,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "is just like obsessed\nwith this."
+    } ]
+  }, {
+    "tStartMs": 528800,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "And it's so important\nbecause as a result,"
+    } ]
+  }, {
+    "tStartMs": 532000,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "I just trust the agent to run"
+    } ]
+  }, {
+    "tStartMs": 533840,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "and I can move on"
+    } ]
+  }, {
+    "tStartMs": 535280,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "and I can just have\nlike a second agent."
+    } ]
+  }, {
+    "tStartMs": 537520,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "And if I didn't trust it,"
+    } ]
+  }, {
+    "tStartMs": 538720,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "then I just wouldn't\nhave been able to do that."
+    } ]
+  }, {
+    "tStartMs": 540960,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "And internally,"
+    } ]
+  }, {
+    "tStartMs": 542400,
+    "dDurationMs": 2800,
+    "segs": [ {
+      "utf8": "to actually get auto\nmode out to our users,"
+    } ]
+  }, {
+    "tStartMs": 545200,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "we needed to really\ntrust it first."
+    } ]
+  }, {
+    "tStartMs": 547520,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "And so what we did\nwas we collected thousands"
+    } ]
+  }, {
+    "tStartMs": 550480,
+    "dDurationMs": 3520,
+    "segs": [ {
+      "utf8": "of transcripts\nof like an entire agent"
+    } ]
+  }, {
+    "tStartMs": 554000,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "trajectory\nand a permission prompt"
+    } ]
+  }, {
+    "tStartMs": 555920,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "and had auto mode classify\nwhether or not it was safe."
+    } ]
+  }, {
+    "tStartMs": 558960,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And it was extremely good\nat this."
+    } ]
+  }, {
+    "tStartMs": 560480,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "So then we got red teamers,"
+    } ]
+  }, {
+    "tStartMs": 561920,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "and we asked them"
+    } ]
+  }, {
+    "tStartMs": 562880,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "to try to prompt inject,\nand try to hack"
+    } ]
+  }, {
+    "tStartMs": 565920,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "the code base."
+    } ]
+  }, {
+    "tStartMs": 567120,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "And we use this\nto create evals"
+    } ]
+  }, {
+    "tStartMs": 568960,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "and make sure\nthat all of these were denied."
+    } ]
+  }, {
+    "tStartMs": 570800,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "And then we had our own\ninternal teams"
+    } ]
+  }, {
+    "tStartMs": 573200,
+    "dDurationMs": 4240,
+    "segs": [ {
+      "utf8": "try to prompt inject and\nhack Claude Code’s auto mode."
+    } ]
+  }, {
+    "tStartMs": 577440,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "And then we improved auto mode"
+    } ]
+  }, {
+    "tStartMs": 579120,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "to make sure\nthat we caught all of these."
+    } ]
+  }, {
+    "tStartMs": 580720,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "So it's not only just protecting you"
+    } ]
+  }, {
+    "tStartMs": 582400,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "against the vulnerabilities"
+    } ]
+  }, {
+    "tStartMs": 583840,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "that are out there\nin the wild today, but,"
+    } ]
+  }, {
+    "tStartMs": 585840,
+    "dDurationMs": 4400,
+    "segs": [ {
+      "utf8": "the most intelligent attacks\nthat we can construct."
+    } ]
+  }, {
+    "tStartMs": 590240,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "Yeah. I mean, it's like,"
+    } ]
+  }, {
+    "tStartMs": 591040,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "it’s honestly\nlike a weird approach."
+    } ]
+  }, {
+    "tStartMs": 592720,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "I feel like there's, like,\nall these features"
+    } ]
+  }, {
+    "tStartMs": 594720,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "the last year"
+    } ]
+  }, {
+    "tStartMs": 595440,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "where the first time\nsomeone pitched it,"
+    } ]
+  }, {
+    "tStartMs": 597040,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "I was like, no way,\nthat's not going to work."
+    } ]
+  }, {
+    "tStartMs": 599360,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "And I feel like over time\nI just learned,"
+    } ]
+  }, {
+    "tStartMs": 600720,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "like I'm actually wrong,\nlike so often now."
+    } ]
+  }, {
+    "tStartMs": 603440,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "Because, like, building on\nthe model is so weird."
+    } ]
+  }, {
+    "tStartMs": 606560,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "It's just like all this,"
+    } ]
+  }, {
+    "tStartMs": 607520,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "like, engineering stuff"
+    } ]
+  }, {
+    "tStartMs": 608560,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "that I've learned over the\nyears."
+    } ]
+  }, {
+    "tStartMs": 609920,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "So much of it I just have to, like,\nthrow out."
+    } ]
+  }, {
+    "tStartMs": 611680,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "And this is just like part\nof what the job is now."
+    } ]
+  }, {
+    "tStartMs": 613520,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "We're building on a new thing"
+    } ]
+  }, {
+    "tStartMs": 614400,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "and we just have\nto relearn it."
+    } ]
+  }, {
+    "tStartMs": 616560,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "And auto mode was\ndefinitely one of these."
+    } ]
+  }, {
+    "tStartMs": 618560,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "I was like,\nthe first time I heard it,"
+    } ]
+  }, {
+    "tStartMs": 619760,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "I was like, route\nthe prompt for a model?"
+    } ]
+  }, {
+    "tStartMs": 621680,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "No way.\nThat's not going to work."
+    } ]
+  }, {
+    "tStartMs": 623040,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "And then it actually\nturns out empirically,"
+    } ]
+  }, {
+    "tStartMs": 624880,
+    "dDurationMs": 1240,
+    "segs": [ {
+      "utf8": "it works really, really well."
+    } ]
+  }, {
+    "tStartMs": 626120,
+    "dDurationMs": 2120,
+    "segs": [ {
+      "utf8": "But I heard you also love\nloop."
+    } ]
+  }, {
+    "tStartMs": 628880,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "Yeah, I love loop."
+    } ]
+  }, {
+    "tStartMs": 630160,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "How do you use it?"
+    } ]
+  }, {
+    "tStartMs": 631200,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "I think for loop, there's"
+    } ]
+  }, {
+    "tStartMs": 632720,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "this transition\nthat we went through"
+    } ]
+  }, {
+    "tStartMs": 634480,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "like a year and a half ago"
+    } ]
+  }, {
+    "tStartMs": 636240,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "where we were like,\nall right there’s source code."
+    } ]
+  }, {
+    "tStartMs": 639440,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "But actually the thing\nan engineer should interact"
+    } ]
+  }, {
+    "tStartMs": 642800,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "with, maybe\nit's not the source code,"
+    } ]
+  }, {
+    "tStartMs": 644320,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "maybe it's the agent."
+    } ]
+  }, {
+    "tStartMs": 645680,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "And so we made this leap of"
+    } ]
+  }, {
+    "tStartMs": 647600,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "I don't write the source code,"
+    } ]
+  }, {
+    "tStartMs": 648800,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "I talked to an agent,\nand the agent writes"
+    } ]
+  }, {
+    "tStartMs": 650240,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "the source code for me."
+    } ]
+  }, {
+    "tStartMs": 651440,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "And I think right now\nwhat's happening"
+    } ]
+  }, {
+    "tStartMs": 653040,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "is we're making the next leap."
+    } ]
+  }, {
+    "tStartMs": 655040,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "I don't talk to an agent\nanymore."
+    } ]
+  }, {
+    "tStartMs": 656720,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "I talk to loop or I talk to a routine"
+    } ]
+  }, {
+    "tStartMs": 659440,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "and it prompts Claude for me."
+    } ]
+  }, {
+    "tStartMs": 662080,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "And it's just it's crazy."
+    } ]
+  }, {
+    "tStartMs": 664400,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "I mean, it's been like,\nit's a year and a half"
+    } ]
+  }, {
+    "tStartMs": 665840,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "and this was like\ntwo big leaps."
+    } ]
+  }, {
+    "tStartMs": 667360,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "If you take like, a step back,\nhow are you"
+    } ]
+  }, {
+    "tStartMs": 669680,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "seeing entire engineering\norgs change?"
+    } ]
+  }, {
+    "tStartMs": 672400,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "I'm going to put on my\nbusiness cat hat."
+    } ]
+  }, {
+    "tStartMs": 674640,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "I have this, like,\nfavorite case study."
+    } ]
+  }, {
+    "tStartMs": 676400,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "This is like a Harvard\nBusiness Review from the 90s."
+    } ]
+  }, {
+    "tStartMs": 678800,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And they were talking about,\nlike, computers are here."
+    } ]
+  }, {
+    "tStartMs": 680880,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "Why are we not seeing\nthe productivity benefits?"
+    } ]
+  }, {
+    "tStartMs": 683120,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "And it's just this, like\namazing snapshot into like,"
+    } ]
+  }, {
+    "tStartMs": 685760,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "what it actually felt like\nat the time"
+    } ]
+  }, {
+    "tStartMs": 687600,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "because, like, you know,\npeople used to use mainframes."
+    } ]
+  }, {
+    "tStartMs": 689680,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "At some point companies\nswitch to personal computers."
+    } ]
+  }, {
+    "tStartMs": 692640,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "It was sort of a new thing,\nand the companies were trying"
+    } ]
+  }, {
+    "tStartMs": 694240,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "to figure out"
+    } ]
+  }, {
+    "tStartMs": 694960,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "how to use it."
+    } ]
+  }, {
+    "tStartMs": 695840,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "The same way\nthey're trying to figure out"
+    } ]
+  }, {
+    "tStartMs": 697040,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "how to use AI right now."
+    } ]
+  }, {
+    "tStartMs": 698800,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "And it turned out that\nto get the productivity"
+    } ]
+  }, {
+    "tStartMs": 701360,
+    "dDurationMs": 2880,
+    "segs": [ {
+      "utf8": "benefits from computers,\nwhat you had to do isn't like"
+    } ]
+  }, {
+    "tStartMs": 704240,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "you have your paper"
+    } ]
+  }, {
+    "tStartMs": 705120,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "filing cabinet and your, like,\npaper and pen"
+    } ]
+  }, {
+    "tStartMs": 707680,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "business process."
+    } ]
+  }, {
+    "tStartMs": 708720,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "And then there's like"
+    } ]
+  }, {
+    "tStartMs": 709440,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "a computer on the side\nthat does something."
+    } ]
+  }, {
+    "tStartMs": 711840,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "Actually, what you have to do"
+    } ]
+  }, {
+    "tStartMs": 712800,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "is you throw out the filing\ncabinet,"
+    } ]
+  }, {
+    "tStartMs": 714320,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "you have to throw out all\nyour paper and all your pens,"
+    } ]
+  }, {
+    "tStartMs": 716480,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "and then you put a computer\nin the center"
+    } ]
+  }, {
+    "tStartMs": 718160,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "and everything has to run\nthrough the computer."
+    } ]
+  }, {
+    "tStartMs": 719920,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "It has to be at the center\nof every business process."
+    } ]
+  }, {
+    "tStartMs": 721920,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And I feel like at Anthropic"
+    } ]
+  }, {
+    "tStartMs": 723440,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "we do this thing\nwhere when you on board,"
+    } ]
+  }, {
+    "tStartMs": 725840,
+    "dDurationMs": 2960,
+    "segs": [ {
+      "utf8": "you don't ask people questions\nlike no one asks me"
+    } ]
+  }, {
+    "tStartMs": 728800,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "questions when they on board."
+    } ]
+  }, {
+    "tStartMs": 729840,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "You probably have\nthe same thing, they ask Claude."
+    } ]
+  }, {
+    "tStartMs": 732960,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "And this\nis kind of weird, like,"
+    } ]
+  }, {
+    "tStartMs": 734720,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "this is the first company\nI've been at like that."
+    } ]
+  }, {
+    "tStartMs": 737040,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "And I feel like for us, Claude"
+    } ]
+  }, {
+    "tStartMs": 738320,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "is just at the center\nof everything."
+    } ]
+  }, {
+    "tStartMs": 739360,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "Whenever I have a question,\nI ask Claude."
+    } ]
+  }, {
+    "tStartMs": 741360,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "Whenever I write code,\nI use Claude."
+    } ]
+  }, {
+    "tStartMs": 742960,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "Whenever I need a code\nreview, Claude does it,"
+    } ]
+  }, {
+    "tStartMs": 745520,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "whenever I need a security\nreview, Claude does it,"
+    } ]
+  }, {
+    "tStartMs": 747840,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "whenever I need to"
+    } ]
+  }, {
+    "tStartMs": 748640,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "you know,\nfill out a form or something,"
+    } ]
+  }, {
+    "tStartMs": 750080,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "Co-work does it."
+    } ]
+  }, {
+    "tStartMs": 751200,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "So it's just like Claude is\nat the center of everything."
+    } ]
+  }, {
+    "tStartMs": 753760,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "And I feel like the companies"
+    } ]
+  }, {
+    "tStartMs": 755200,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "that are really\nfiguring it out,"
+    } ]
+  }, {
+    "tStartMs": 756400,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "and there's\na bunch of them now,"
+    } ]
+  }, {
+    "tStartMs": 758240,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "they're just putting\nClaude at the center of it."
+    } ]
+  }, {
+    "tStartMs": 760080,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "And I think for computers,"
+    } ]
+  }, {
+    "tStartMs": 761200,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "the transition\ntook 10 to 15 years."
+    } ]
+  }, {
+    "tStartMs": 763600,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "But actually for AI,\nbecause so much of our work"
+    } ]
+  }, {
+    "tStartMs": 766080,
+    "dDurationMs": 3760,
+    "segs": [ {
+      "utf8": "is already digitized\nand Claude can use a computer"
+    } ]
+  }, {
+    "tStartMs": 769840,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "and it can write code\nand run code."
+    } ]
+  }, {
+    "tStartMs": 772000,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "This transition is happening\na lot faster."
+    } ]
+  }, {
+    "tStartMs": 774000,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "I think it's just like,\nreally, it's"
+    } ]
+  }, {
+    "tStartMs": 775680,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "just really exciting."
+    } ]
+  }, {
+    "tStartMs": 776720,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "Like,"
+    } ]
+  }, {
+    "tStartMs": 777600,
+    "dDurationMs": 640,
+    "segs": [ {
+      "utf8": "I feel like"
+    } ]
+  }, {
+    "tStartMs": 778240,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "now I don't\nhave to bug people anymore"
+    } ]
+  }, {
+    "tStartMs": 780400,
+    "dDurationMs": 640,
+    "segs": [ {
+      "utf8": "and when I"
+    } ]
+  }, {
+    "tStartMs": 781040,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "interact with people, it's"
+    } ]
+  }, {
+    "tStartMs": 782080,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "because it's like fun"
+    } ]
+  }, {
+    "tStartMs": 782960,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "and I get to collaborate\nwith them on stuff"
+    } ]
+  }, {
+    "tStartMs": 784640,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "and we get to create something\ntogether."
+    } ]
+  }, {
+    "tStartMs": 786640,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "It's not that like,\nI need them."
+    } ]
+  }, {
+    "tStartMs": 788000,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "I need something,"
+    } ]
+  }, {
+    "tStartMs": 789600,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "you know, from them"
+    } ]
+  }, {
+    "tStartMs": 790560,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "because, like, Claude\ncan actually do"
+    } ]
+  }, {
+    "tStartMs": 791920,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "a lot of that stuff now."
+    } ]
+  }, {
+    "tStartMs": 793200,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And I also feel like\nas an engineer,"
+    } ]
+  }, {
+    "tStartMs": 794720,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "I've just never had this much"
+    } ]
+  }, {
+    "tStartMs": 795920,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "fun doing engineering\nbecause the"
+    } ]
+  }, {
+    "tStartMs": 797680,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "like the tedious part\nI don't have to do."
+    } ]
+  }, {
+    "tStartMs": 799200,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "Like I'm\njust coming up with ideas."
+    } ]
+  }, {
+    "tStartMs": 800480,
+    "dDurationMs": 3920,
+    "segs": [ {
+      "utf8": "I'm talking to customers\nand every idea, like,"
+    } ]
+  }, {
+    "tStartMs": 804400,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "I don't have a\nto do list anymore."
+    } ]
+  }, {
+    "tStartMs": 805680,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "Like Claude\njust builds everything."
+    } ]
+  }, {
+    "tStartMs": 807520,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "And so my job is to come up"
+    } ]
+  }, {
+    "tStartMs": 808640,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "with these ideas\nand it's just so fun."
+    } ]
+  }, {
+    "tStartMs": 810560,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "Okay, so here's a question."
+    } ]
+  }, {
+    "tStartMs": 811600,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "Is the future product or engineering?"
+    } ]
+  }, {
+    "tStartMs": 813600,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "Like, is everyone going to be a PM"
+    } ]
+  }, {
+    "tStartMs": 814720,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "or is everyone going to be\nan engineer?"
+    } ]
+  }, {
+    "tStartMs": 816400,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "Everyone's going to be both."
+    } ]
+  }, {
+    "tStartMs": 818400,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "I feel pretty strongly\nthat these roles are merging."
+    } ]
+  }, {
+    "tStartMs": 821600,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "Like when we look at our team,\nour product team"
+    } ]
+  }, {
+    "tStartMs": 824720,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "all writes code."
+    } ]
+  }, {
+    "tStartMs": 825840,
+    "dDurationMs": 4160,
+    "segs": [ {
+      "utf8": "Our Devrel team all writes code.\nOur design team all writes code."
+    } ]
+  }, {
+    "tStartMs": 830000,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "And then we look at our"
+    } ]
+  }, {
+    "tStartMs": 830960,
+    "dDurationMs": 3600,
+    "segs": [ {
+      "utf8": "engineers and a lot of them\nship products end to end."
+    } ]
+  }, {
+    "tStartMs": 834560,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "They have an idea for what\nto build."
+    } ]
+  }, {
+    "tStartMs": 836640,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "They build it."
+    } ]
+  }, {
+    "tStartMs": 837920,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "They work with legal\nand marketing to figure out"
+    } ]
+  }, {
+    "tStartMs": 840400,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "how we communicate this\nto the world"
+    } ]
+  }, {
+    "tStartMs": 841920,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "and make sure it's safe\nand with security, too."
+    } ]
+  }, {
+    "tStartMs": 844480,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "And a lot of times\nthey just see through"
+    } ]
+  }, {
+    "tStartMs": 846160,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "this whole process end to end."
+    } ]
+  }, {
+    "tStartMs": 848000,
+    "dDurationMs": 3280,
+    "segs": [ {
+      "utf8": "So I think right now\nAI really benefits people"
+    } ]
+  }, {
+    "tStartMs": 851280,
+    "dDurationMs": 3440,
+    "segs": [ {
+      "utf8": "people who have a lot of curiosity,\nhave a lot of product tastes"
+    } ]
+  }, {
+    "tStartMs": 854720,
+    "dDurationMs": 3520,
+    "segs": [ {
+      "utf8": "who love to have this\nlike end to end ownership."
+    } ]
+  }, {
+    "tStartMs": 858240,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "And now a lot of people"
+    } ]
+  }, {
+    "tStartMs": 859680,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "are running\nlike hundreds of agents."
+    } ]
+  }, {
+    "tStartMs": 862000,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "What are the products\nthat you think"
+    } ]
+  }, {
+    "tStartMs": 863680,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "people should be adopting"
+    } ]
+  }, {
+    "tStartMs": 864800,
+    "dDurationMs": 4320,
+    "segs": [ {
+      "utf8": "as they transition from single\nto multiple to hundreds?"
+    } ]
+  }, {
+    "tStartMs": 869120,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "Until recently,"
+    } ]
+  }, {
+    "tStartMs": 870240,
+    "dDurationMs": 3920,
+    "segs": [ {
+      "utf8": "the way that I wrote code was\nI had like six terminal tabs"
+    } ]
+  }, {
+    "tStartMs": 874160,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "with six git checkout\non the same repo,"
+    } ]
+  }, {
+    "tStartMs": 876480,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "and then I would just like tab\nbetween them."
+    } ]
+  }, {
+    "tStartMs": 879040,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "Now it's pretty different."
+    } ]
+  }, {
+    "tStartMs": 880080,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "I have like one tab,"
+    } ]
+  }, {
+    "tStartMs": 881360,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "I use the new agent view\nthat we just shipped."
+    } ]
+  }, {
+    "tStartMs": 883360,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "It's like so good."
+    } ]
+  }, {
+    "tStartMs": 884640,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And I'm so glad\nthat we took a while"
+    } ]
+  }, {
+    "tStartMs": 886160,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "to iterate on it\nto make that really good."
+    } ]
+  }, {
+    "tStartMs": 888560,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "And I also use the desktop app"
+    } ]
+  }, {
+    "tStartMs": 890880,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "because I don't have to fiddle\nwith checkouts that way."
+    } ]
+  }, {
+    "tStartMs": 893280,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "It just like, you know,"
+    } ]
+  }, {
+    "tStartMs": 894160,
+    "dDurationMs": 2480,
+    "segs": [ {
+      "utf8": "it does the work tree cloning\nor the like, it"
+    } ]
+  }, {
+    "tStartMs": 896640,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "creates the work trees for me."
+    } ]
+  }, {
+    "tStartMs": 898640,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And the thing\nthat I would not have expected"
+    } ]
+  }, {
+    "tStartMs": 900720,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "six months ago is probably\nhalf my engineering now"
+    } ]
+  }, {
+    "tStartMs": 903920,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "I do on my phone."
+    } ]
+  }, {
+    "tStartMs": 905600,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "So I just have like\nI have so many agents"
+    } ]
+  }, {
+    "tStartMs": 907840,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "running that\nI just start for my phone."
+    } ]
+  }, {
+    "tStartMs": 909440,
+    "dDurationMs": 2800,
+    "segs": [ {
+      "utf8": "I use a remote control,\nwhich is like amazing now"
+    } ]
+  }, {
+    "tStartMs": 912240,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "and like I will start\nsomething on my computer."
+    } ]
+  }, {
+    "tStartMs": 914080,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And then I’ll just remote\ncontrol in from my phone"
+    } ]
+  }, {
+    "tStartMs": 916160,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "and I’ll just like, walk around"
+    } ]
+  }, {
+    "tStartMs": 917280,
+    "dDurationMs": 880,
+    "segs": [ {
+      "utf8": "I’ll get coffee,"
+    } ]
+  }, {
+    "tStartMs": 918160,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "and then I'll check in\non my agents"
+    } ]
+  }, {
+    "tStartMs": 919920,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "and maybe\nI'll start another agent."
+    } ]
+  }, {
+    "tStartMs": 921840,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "And sometimes I'm like,\ntalking to someone"
+    } ]
+  }, {
+    "tStartMs": 923520,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "and we come up\nwith a new idea."
+    } ]
+  }, {
+    "tStartMs": 925200,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "I’ll just start an agent on the spot."
+    } ]
+  }, {
+    "tStartMs": 926720,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "I like talk to it\nwith voice mode"
+    } ]
+  }, {
+    "tStartMs": 928480,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "and just have it build\nsomething,"
+    } ]
+  }, {
+    "tStartMs": 930000,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "and I don't even have to go\nback to my computer anymore."
+    } ]
+  }, {
+    "tStartMs": 932240,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "I remember\nwhen you started doing this"
+    } ]
+  }, {
+    "tStartMs": 933920,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "because you would actually"
+    } ]
+  }, {
+    "tStartMs": 935600,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "leave work,"
+    } ]
+  }, {
+    "tStartMs": 936320,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "have your computer\non your desk"
+    } ]
+  }, {
+    "tStartMs": 937920,
+    "dDurationMs": 2400,
+    "segs": [ {
+      "utf8": "open, plugged\nin, screen locked,"
+    } ]
+  }, {
+    "tStartMs": 940320,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "and I just thought you would,\nlike, come back to the office"
+    } ]
+  }, {
+    "tStartMs": 942400,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "at some point\nto get your computer,"
+    } ]
+  }, {
+    "tStartMs": 944000,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "but then it would be like\npretty late and I was like,"
+    } ]
+  }, {
+    "tStartMs": 946560,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "maybe he just left it here by accident."
+    } ]
+  }, {
+    "tStartMs": 948800,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "And then it happened again\nthe next day."
+    } ]
+  }, {
+    "tStartMs": 950480,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "And then it happened again\nthe next day."
+    } ]
+  }, {
+    "tStartMs": 952000,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "And I was like,"
+    } ]
+  }, {
+    "tStartMs": 952800,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "wait, it's so weird\nbecause you're landing PRs"
+    } ]
+  }, {
+    "tStartMs": 954960,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "but your computer is right\nnext to me,"
+    } ]
+  }, {
+    "tStartMs": 957200,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "and I remember you responding\nand you're like, yeah,"
+    } ]
+  }, {
+    "tStartMs": 959760,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "I'm coding from my couch."
+    } ]
+  }, {
+    "tStartMs": 961280,
+    "dDurationMs": 960,
+    "segs": [ {
+      "utf8": "Yeah,"
+    } ]
+  }, {
+    "tStartMs": 962240,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "that was the week the remote\ncontrol got really good."
+    } ]
+  }, {
+    "tStartMs": 964400,
+    "dDurationMs": 560,
+    "segs": [ {
+      "utf8": "Yeah."
+    } ]
+  }, {
+    "tStartMs": 964960,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "So another thing that users"
+    } ]
+  }, {
+    "tStartMs": 966560,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "are asking\nabout all the time is"
+    } ]
+  }, {
+    "tStartMs": 968480,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "how do you do\ncontext engineering,"
+    } ]
+  }, {
+    "tStartMs": 970160,
+    "dDurationMs": 1920,
+    "segs": [ {
+      "utf8": "especially\nin a large enterprise?"
+    } ]
+  }, {
+    "tStartMs": 972080,
+    "dDurationMs": 480,
+    "segs": [ {
+      "utf8": "This is a thing."
+    } ]
+  }, {
+    "tStartMs": 972560,
+    "dDurationMs": 1760,
+    "segs": [ {
+      "utf8": "You know, people used to talk\nabout prompt engineering."
+    } ]
+  }, {
+    "tStartMs": 974320,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "They used to like work\ncontext engineering."
+    } ]
+  }, {
+    "tStartMs": 976480,
+    "dDurationMs": 4400,
+    "segs": [ {
+      "utf8": "This is sort of matching where\nthe model was at the time."
+    } ]
+  }, {
+    "tStartMs": 980880,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "Back in the days\nof Sonnet 3.5,"
+    } ]
+  }, {
+    "tStartMs": 982480,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "you had to prompt engineer\nback in the days of Opus 4,"
+    } ]
+  }, {
+    "tStartMs": 985200,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "you had to context engineer."
+    } ]
+  }, {
+    "tStartMs": 986720,
+    "dDurationMs": 2800,
+    "segs": [ {
+      "utf8": "But with the models of today,\nyou don't do any of this."
+    } ]
+  }, {
+    "tStartMs": 989520,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "You give it the minimal\npossible system prompt,"
+    } ]
+  }, {
+    "tStartMs": 992160,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "the minimal possible tools,"
+    } ]
+  }, {
+    "tStartMs": 994000,
+    "dDurationMs": 2240,
+    "segs": [ {
+      "utf8": "and then you let the model\nfigure it out."
+    } ]
+  }, {
+    "tStartMs": 996240,
+    "dDurationMs": 800,
+    "segs": [ {
+      "utf8": "Like you just have to give"
+    } ]
+  }, {
+    "tStartMs": 997040,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "the model some way\nto pull in the context."
+    } ]
+  }, {
+    "tStartMs": 998560,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "I think that's\nthe most important thing."
+    } ]
+  }, {
+    "tStartMs": 1000400,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "How do you think about it?"
+    } ]
+  }, {
+    "tStartMs": 1001440,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "I see things very similarly."
+    } ]
+  }, {
+    "tStartMs": 1002720,
+    "dDurationMs": 4160,
+    "segs": [ {
+      "utf8": "I'm a context minimalist,\nso my general philosophy is"
+    } ]
+  }, {
+    "tStartMs": 1006880,
+    "dDurationMs": 3200,
+    "segs": [ {
+      "utf8": "tell the model\nonly what it needs to know"
+    } ]
+  }, {
+    "tStartMs": 1010080,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "and let it figure out\nthe rest of it."
+    } ]
+  }, {
+    "tStartMs": 1013120,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "I think\nwhen you give the model"
+    } ]
+  }, {
+    "tStartMs": 1014400,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "too much context, it's\nkind of like"
+    } ]
+  }, {
+    "tStartMs": 1016240,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "you're micromanaging it."
+    } ]
+  }, {
+    "tStartMs": 1018080,
+    "dDurationMs": 2560,
+    "segs": [ {
+      "utf8": "And sometimes the model knows\na better way"
+    } ]
+  }, {
+    "tStartMs": 1020640,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "to get to the same outcome."
+    } ]
+  }, {
+    "tStartMs": 1022480,
+    "dDurationMs": 3120,
+    "segs": [ {
+      "utf8": "And I personally prefer\nto give the model that freedom"
+    } ]
+  }, {
+    "tStartMs": 1025600,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "to do that."
+    } ]
+  }, {
+    "tStartMs": 1027280,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "And then in general, we're"
+    } ]
+  }, {
+    "tStartMs": 1028400,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "also making our harness\nmore lean"
+    } ]
+  }, {
+    "tStartMs": 1030240,
+    "dDurationMs": 3040,
+    "segs": [ {
+      "utf8": "so that you have more room\nfor your own prompts."
+    } ]
+  }, {
+    "tStartMs": 1033280,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "And so that follows\nyour prompts better."
+    } ]
+  }, {
+    "tStartMs": 1034960,
+    "dDurationMs": 2320,
+    "segs": [ {
+      "utf8": "There's all these\ndifferent ways to Claude now,"
+    } ]
+  }, {
+    "tStartMs": 1037280,
+    "dDurationMs": 1440,
+    "segs": [ {
+      "utf8": "but I feel like in a year it's"
+    } ]
+  }, {
+    "tStartMs": 1038720,
+    "dDurationMs": 2160,
+    "segs": [ {
+      "utf8": "going to be\na totally new set of things,"
+    } ]
+  }, {
+    "tStartMs": 1040880,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "and it's\ngoing to be so surprising"
+    } ]
+  }, {
+    "tStartMs": 1042880,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "if it's still these\nsame things,"
+    } ]
+  }, {
+    "tStartMs": 1044400,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "because I think, like"
+    } ]
+  }, {
+    "tStartMs": 1045440,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "we're seeing\nthese giant trends happening"
+    } ]
+  }, {
+    "tStartMs": 1047520,
+    "dDurationMs": 1840,
+    "segs": [ {
+      "utf8": "right now,\nagents are running for longer."
+    } ]
+  }, {
+    "tStartMs": 1049360,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "They're more autonomous."
+    } ]
+  }, {
+    "tStartMs": 1051040,
+    "dDurationMs": 2720,
+    "segs": [ {
+      "utf8": "Very rarely am I running one\nagent at a time."
+    } ]
+  }, {
+    "tStartMs": 1053760,
+    "dDurationMs": 1600,
+    "segs": [ {
+      "utf8": "It's usually like a few agents"
+    } ]
+  }, {
+    "tStartMs": 1055360,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "or dozens\nor hundreds or thousands."
+    } ]
+  }, {
+    "tStartMs": 1057440,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "And so like the form factor\nfor that, it's"
+    } ]
+  }, {
+    "tStartMs": 1059520,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "going to be really different\nthan what came before."
+    } ]
+  }, {
+    "tStartMs": 1061520,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "And I don't know\nwhat it's going to be."
+    } ]
+  }, {
+    "tStartMs": 1062800,
+    "dDurationMs": 1680,
+    "segs": [ {
+      "utf8": "And I think\nin a large part, it's"
+    } ]
+  }, {
+    "tStartMs": 1064480,
+    "dDurationMs": 2080,
+    "segs": [ {
+      "utf8": "going to be up to the team\nto figure it out."
+    } ]
+  }, {
+    "tStartMs": 1066560,
+    "dDurationMs": 1120,
+    "segs": [ {
+      "utf8": "And this is,"
+    } ]
+  }, {
+    "tStartMs": 1067680,
+    "dDurationMs": 720,
+    "segs": [ {
+      "utf8": "this is why I'm like,"
+    } ]
+  }, {
+    "tStartMs": 1068400,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "so happy we run the team\nthat the way that we do,"
+    } ]
+  }, {
+    "tStartMs": 1071040,
+    "dDurationMs": 1520,
+    "segs": [ {
+      "utf8": "where everyone just comes up\nwith ideas"
+    } ]
+  }, {
+    "tStartMs": 1072560,
+    "dDurationMs": 2640,
+    "segs": [ {
+      "utf8": "and everyone is able\nto think about the product."
+    } ]
+  }, {
+    "tStartMs": 1075200,
+    "dDurationMs": 2000,
+    "segs": [ {
+      "utf8": "Everyone talks\nto users all the time"
+    } ]
+  }, {
+    "tStartMs": 1077200,
+    "dDurationMs": 1200,
+    "segs": [ {
+      "utf8": "because I don't think\nthese ideas"
+    } ]
+  }, {
+    "tStartMs": 1078400,
+    "dDurationMs": 1040,
+    "segs": [ {
+      "utf8": "are going to come from us."
+    } ]
+  }, {
+    "tStartMs": 1079440,
+    "dDurationMs": 1280,
+    "segs": [ {
+      "utf8": "It's going to come\nfrom the team."
+    } ]
+  }, {
+    "tStartMs": 1080720,
+    "dDurationMs": 1360,
+    "segs": [ {
+      "utf8": "Totally, and from everyone"
+    } ]
+  }, {
+    "tStartMs": 1082080,
+    "dDurationMs": 3360,
+    "segs": [ {
+      "utf8": "in our community\nbuilding with us."
+    } ]
+  } ]
+}

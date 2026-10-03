@@ -1,0 +1,7 @@
+Done — `cancer-nanomedicine-ch03-nanocarrier-platforms.mp4` (18 MB, 10.1 min, aac, mean_volume −18.5 dB) is built and newer than the sheet.
+
+**Format:** HTML lecture deck (12 segments, deck.html → slides/*.png → per-slide audio → concat mp4), same shape as ch02 — not a claude-liam Remotion reel, so bookend / verdict / spark / Your-Turn / Manim-chart / lens checks are N/A.
+
+**Phase 0:** `beat_sheet.pre-rebuild.json` written byte-exact.
+**Phase 1:** AUDIT.md + TYPECHECK.md written. Applicable checks — stale (PASS, no mp4 existed), punt sweep (PASS), brand fields (PASS), pacing 2.24–2.59 wps (PASS), type_check (PASS).
+**Phase 2:** rendered via `runtime/scripts/render.py` (12/12 slides re-screenshot from deck.html, 12/12 clips muxed with existing EL-Bear audio). Gate V: 3 frames read — clean typography, single terracotta per frame, no overflow. FILMLOOP-LOG.md appended.

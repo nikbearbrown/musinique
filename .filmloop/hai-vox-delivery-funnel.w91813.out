@@ -1,0 +1,11 @@
+DONE — `hai-vox-delivery-funnel-slate.mp4` (123.5s, 2.4 MB) built and gated.
+
+**What shipped**
+- 9 Remotion beats rendered (5× FormBCard for the delivery chain + steps 1–5, 1× FormBCard for targeting-fixes-only-step-4, 1× FormACard for cell-culture setup, 1× FormACard for 100-unit illustrative breakdown, OutroSeries + OutroCTA with correct HAI branding).
+- 4 human-owned CARD slates (B01 title / B03 question / B09 quote / B11 endcard) — legit for a review slate cut.
+- Kokoro `am_onyx` audio (existing July mp3s, narration unchanged) muxed at −24.2 dB mean_volume.
+- MP4 mtime 3.69 s newer than sheet.
+
+**Blocked B12/B13 outro Claude-wash averted** — the pre-rebuild sheet passed legacy `seriesTitle/tagline/githubSlug` + `authorName/handle/ctaText` props that Remotion silently fell back to `CLAUDE COWORK` / `Part of the Claude Cowork series.` / `@nikbearbrown`. Reshaped to current `eyebrow/line` + `line/handle` schema with HAI values. Documented in REBUILD-LOG.md and AUDIT.md.
+
+**Gate summary**: CONTENT PASS · FRAME PASS · LANE PASS · TYPE PASS · AUDIO PASS (−24.2 dB) · V PASS (13 frames read; contact sheet clean). One motion-histogram advisory (fade 61%, expected for a FormBCard-heavy reel).

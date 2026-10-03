@@ -1,0 +1,11 @@
+mp4 (02:46:59) is 35 seconds newer than beat_sheet.json (02:46:24). DONE check passes. Stopping.
+
+---
+
+**FILMLOOP summary — dispatch-analysts-parallel-orchestration**
+
+Build status: `{'VIDEO': 14}` — zero punts, zero slates.
+
+**Checks fixed:** 5 over-length spark lines (B01/B02/B05/B06/B07), BVDT template verdict → 3 real lines with reel-specific numbers, BHTF folderLabel/command/topic/modelLabel, BOUT missing handle+subline, datable claim "Fable 5" → "claude-sonnet-4-6" on B00/B09/BHTF, GATE T topic truncation, Gate V BHTF model-label defect caught and re-rendered.
+
+**Cut:** `dispatch-analysts-parallel-orchestration.mp4` — 293.1s, 4K, mean_volume −24.7 dB, 14/14 VIDEO, mp4 newer than sheet.

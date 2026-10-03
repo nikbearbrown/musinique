@@ -1,0 +1,59 @@
+module Anthropic
+  module Models
+    module Beta
+      module MemoryStores
+        type beta_managed_agents_memory_list_item =
+          Anthropic::Beta::MemoryStores::BetaManagedAgentsMemory
+          | Anthropic::Beta::MemoryStores::BetaManagedAgentsMemoryPrefix
+
+        module BetaManagedAgentsMemoryListItem
+          extend Anthropic::Internal::Type::Union
+
+          type type_ = :memory | :memory_prefix
+
+          module Type
+            extend Anthropic::Internal::Type::Enum
+
+            MEMORY: :memory
+            MEMORY_PREFIX: :memory_prefix
+
+            def self?.values: -> ::Array[Anthropic::Models::Beta::MemoryStores::BetaManagedAgentsMemoryListItem::type_]
+          end
+
+          def self?.variants: -> ::Array[Anthropic::Models::Beta::MemoryStores::beta_managed_agents_memory_list_item]
+
+          def self.new:
+            (
+              type: :memory | "memory",
+              id: String,
+              content_sha256: String,
+              content_size_bytes: Integer,
+              created_at: Time,
+              memory_store_id: String,
+              memory_version_id: String,
+              path: String,
+              updated_at: Time,
+              ?content: String?
+            ) -> Anthropic::Beta::MemoryStores::BetaManagedAgentsMemory
+            | (
+              type: :memory_prefix | "memory_prefix",
+              path: String
+            ) -> Anthropic::Beta::MemoryStores::BetaManagedAgentsMemoryPrefix
+            | (
+              type: Anthropic::Models::Beta::MemoryStores::BetaManagedAgentsMemoryListItem::type_
+              | String,
+              path: String,
+              ?id: String,
+              ?content_sha256: String,
+              ?content_size_bytes: Integer,
+              ?created_at: Time,
+              ?memory_store_id: String,
+              ?memory_version_id: String,
+              ?updated_at: Time,
+              ?content: String?
+            ) -> Anthropic::Models::Beta::MemoryStores::beta_managed_agents_memory_list_item
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thursday Study Group — Sign Up</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-ink: #ffffff;
+      --ok: #16a34a;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1e293b 0%, transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, #312e81 0%, transparent 55%),
+        var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: #eef2ff;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    h1 {
+      margin: 12px 0 6px;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+    p.lede {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .meta span { display: inline-flex; align-items: center; gap: 6px; }
+    form { display: grid; gap: 14px; }
+    label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; }
+    input, textarea, select {
+      font: inherit;
+      color: var(--ink);
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+    textarea { resize: vertical; min-height: 84px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
+    button {
+      margin-top: 6px;
+      font: inherit;
+      font-weight: 600;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      cursor: pointer;
+      transition: transform 0.05s, background 0.15s;
+    }
+    button:hover { background: #4338ca; }
+    button:active { transform: translateY(1px); }
+    .success {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      font-size: 14px;
+    }
+    .success.show { display: block; }
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <span class="eyebrow">Weekly · Study Group</span>
+    <h1>Thursday Study Group Sign-Up</h1>
+    <p class="lede">Join us this Thursday to work through problems together, share notes, and stay accountable.</p>
+
+    <div class="meta">
+      <span>📅 Thursdays</span>
+      <span>🕕 6:00–8:00 PM</span>
+      <span>📍 Details sent after sign-up</span>
+    </div>
+
+    <form id="signup" novalidate>
+      <label>
+        Full name
+        <input type="text" name="name" autocomplete="name" required />
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" autocomplete="email" required />
+      </label>
+
+      <div class="row">
+        <label>
+          Focus area
+          <select name="focus">
+            <option>Undecided</option>
+            <option>Math</option>
+            <option>Programming</option>
+            <option>Reading / Discussion</option>
+            <option>Exam prep</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>
+          Experience
+          <select name="level">
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        Anything you'd like the group to know? (optional)
+        <textarea name="notes" placeholder="Topics you want to cover, dietary notes, etc."></textarea>
+      </label>
+
+      <button type="submit">Sign me up</button>
+
+      <div class="success" id="success">Thanks! Your email app should open — send the message to finish signing up. We'll be in touch with location details before Thursday.</div>
+    </form>
+
+    <footer>Questions? Reply to the sign-up email and we'll get back to you.</footer>
+  </main>
+
+  <script>
+    const form = document.getElementById('signup');
+    const success = document.getElementById('success');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const name = data.get('name');
+      const email = data.get('email');
+      const focus = data.get('focus');
+      const level = data.get('level');
+      const notes = (data.get('notes') || '').toString().trim();
+
+      const subject = `Study group sign-up: ${name}`;
+      const body =
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Focus: ${focus}\n` +
+        `Experience: ${level}\n` +
+        (notes ? `\nNotes:\n${notes}\n` : '');
+
+      // Replace this address with the organizer's email.
+      const to = 'organizer@example.com';
+      window.location.href =
+        `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      success.classList.add('show');
+    });
+  </script>
+</body>
+</html>

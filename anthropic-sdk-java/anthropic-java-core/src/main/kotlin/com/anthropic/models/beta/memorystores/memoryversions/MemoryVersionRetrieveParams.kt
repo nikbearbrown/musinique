@@ -1,0 +1,329 @@
+package com.anthropic.models.beta.memorystores.memoryversions
+
+import com.anthropic.core.Params
+import com.anthropic.core.checkRequired
+import com.anthropic.core.http.Headers
+import com.anthropic.core.http.QueryParams
+import com.anthropic.core.toImmutable
+import com.anthropic.models.beta.AnthropicBeta
+import com.anthropic.models.beta.memorystores.memories.BetaManagedAgentsMemoryView
+import java.util.Objects
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
+
+/** Retrieve a memory version */
+class MemoryVersionRetrieveParams
+private constructor(
+    private val memoryStoreId: String,
+    private val memoryVersionId: String?,
+    private val view: BetaManagedAgentsMemoryView?,
+    private val betas: List<AnthropicBeta>?,
+    private val workspaceId: String?,
+    private val additionalHeaders: Headers,
+    private val additionalQueryParams: QueryParams,
+) : Params {
+
+    /** The ID of the memory store that holds the version (`memstore_...`). */
+    fun memoryStoreId(): String = memoryStoreId
+
+    /** The ID of the memory version to retrieve (`memver_...`). */
+    fun memoryVersionId(): Optional<String> = Optional.ofNullable(memoryVersionId)
+
+    /**
+     * Selects which projection of a `memory` or `memory_version` the server returns. `basic`
+     * returns the object with `content` set to `null`; `full` populates `content`. When omitted,
+     * the default is endpoint-specific: retrieve operations default to `full`; list, create, and
+     * update operations default to `basic`. Listing with `view=full` caps `limit` at 20.
+     */
+    fun view(): Optional<BetaManagedAgentsMemoryView> = Optional.ofNullable(view)
+
+    /** Optional header to specify the beta version(s) you want to use. */
+    fun betas(): Optional<List<AnthropicBeta>> = Optional.ofNullable(betas)
+
+    /**
+     * Optional header to select the Workspace for this request. The value is a Workspace ID (for
+     * example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+     *
+     * Only needed for credentials that can act on more than one Workspace. A credential that
+     * belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+     */
+    fun workspaceId(): Optional<String> = Optional.ofNullable(workspaceId)
+
+    /** Additional headers to send with the request. */
+    fun _additionalHeaders(): Headers = additionalHeaders
+
+    /** Additional query param to send with the request. */
+    fun _additionalQueryParams(): QueryParams = additionalQueryParams
+
+    fun toBuilder() = Builder().from(this)
+
+    companion object {
+
+        /**
+         * Returns a mutable builder for constructing an instance of [MemoryVersionRetrieveParams].
+         *
+         * The following fields are required:
+         * ```java
+         * .memoryStoreId()
+         * ```
+         */
+        @JvmStatic fun builder() = Builder()
+    }
+
+    /** A builder for [MemoryVersionRetrieveParams]. */
+    class Builder internal constructor() {
+
+        private var memoryStoreId: String? = null
+        private var memoryVersionId: String? = null
+        private var view: BetaManagedAgentsMemoryView? = null
+        private var betas: MutableList<AnthropicBeta>? = null
+        private var workspaceId: String? = null
+        private var additionalHeaders: Headers.Builder = Headers.builder()
+        private var additionalQueryParams: QueryParams.Builder = QueryParams.builder()
+
+        @JvmSynthetic
+        internal fun from(memoryVersionRetrieveParams: MemoryVersionRetrieveParams) = apply {
+            memoryStoreId = memoryVersionRetrieveParams.memoryStoreId
+            memoryVersionId = memoryVersionRetrieveParams.memoryVersionId
+            view = memoryVersionRetrieveParams.view
+            betas = memoryVersionRetrieveParams.betas?.toMutableList()
+            workspaceId = memoryVersionRetrieveParams.workspaceId
+            additionalHeaders = memoryVersionRetrieveParams.additionalHeaders.toBuilder()
+            additionalQueryParams = memoryVersionRetrieveParams.additionalQueryParams.toBuilder()
+        }
+
+        /** The ID of the memory store that holds the version (`memstore_...`). */
+        fun memoryStoreId(memoryStoreId: String) = apply { this.memoryStoreId = memoryStoreId }
+
+        /** The ID of the memory version to retrieve (`memver_...`). */
+        fun memoryVersionId(memoryVersionId: String?) = apply {
+            this.memoryVersionId = memoryVersionId
+        }
+
+        /** Alias for calling [Builder.memoryVersionId] with `memoryVersionId.orElse(null)`. */
+        fun memoryVersionId(memoryVersionId: Optional<String>) =
+            memoryVersionId(memoryVersionId.getOrNull())
+
+        /**
+         * Selects which projection of a `memory` or `memory_version` the server returns. `basic`
+         * returns the object with `content` set to `null`; `full` populates `content`. When
+         * omitted, the default is endpoint-specific: retrieve operations default to `full`; list,
+         * create, and update operations default to `basic`. Listing with `view=full` caps `limit`
+         * at 20.
+         */
+        fun view(view: BetaManagedAgentsMemoryView?) = apply { this.view = view }
+
+        /** Alias for calling [Builder.view] with `view.orElse(null)`. */
+        fun view(view: Optional<BetaManagedAgentsMemoryView>) = view(view.getOrNull())
+
+        /** Optional header to specify the beta version(s) you want to use. */
+        fun betas(betas: List<AnthropicBeta>?) = apply { this.betas = betas?.toMutableList() }
+
+        /** Alias for calling [Builder.betas] with `betas.orElse(null)`. */
+        fun betas(betas: Optional<List<AnthropicBeta>>) = betas(betas.getOrNull())
+
+        /**
+         * Adds a single [AnthropicBeta] to [betas].
+         *
+         * @throws IllegalStateException if the field was previously set to a non-list.
+         */
+        fun addBeta(beta: AnthropicBeta) = apply {
+            betas = (betas ?: mutableListOf()).apply { add(beta) }
+        }
+
+        /**
+         * Sets [addBeta] to an arbitrary [String].
+         *
+         * You should usually call [addBeta] with a well-typed [AnthropicBeta] constant instead.
+         * This method is primarily for setting the field to an undocumented or not yet supported
+         * value.
+         */
+        fun addBeta(value: String) = addBeta(AnthropicBeta.of(value))
+
+        /**
+         * Optional header to select the Workspace for this request. The value is a Workspace ID
+         * (for example, `wrkspc_011CZkZaBF1tNoB5wlCeusgy`).
+         *
+         * Only needed for credentials that can act on more than one Workspace. A credential that
+         * belongs to a specific Workspace may omit it; if sent, it must match that Workspace.
+         */
+        fun workspaceId(workspaceId: String?) = apply { this.workspaceId = workspaceId }
+
+        /** Alias for calling [Builder.workspaceId] with `workspaceId.orElse(null)`. */
+        fun workspaceId(workspaceId: Optional<String>) = workspaceId(workspaceId.getOrNull())
+
+        fun additionalHeaders(additionalHeaders: Headers) = apply {
+            this.additionalHeaders.clear()
+            putAllAdditionalHeaders(additionalHeaders)
+        }
+
+        fun additionalHeaders(additionalHeaders: Map<String, Iterable<String>>) = apply {
+            this.additionalHeaders.clear()
+            putAllAdditionalHeaders(additionalHeaders)
+        }
+
+        fun putAdditionalHeader(name: String, value: String) = apply {
+            additionalHeaders.put(name, value)
+        }
+
+        fun putAdditionalHeaders(name: String, values: Iterable<String>) = apply {
+            additionalHeaders.put(name, values)
+        }
+
+        fun putAllAdditionalHeaders(additionalHeaders: Headers) = apply {
+            this.additionalHeaders.putAll(additionalHeaders)
+        }
+
+        fun putAllAdditionalHeaders(additionalHeaders: Map<String, Iterable<String>>) = apply {
+            this.additionalHeaders.putAll(additionalHeaders)
+        }
+
+        fun replaceAdditionalHeaders(name: String, value: String) = apply {
+            additionalHeaders.replace(name, value)
+        }
+
+        fun replaceAdditionalHeaders(name: String, values: Iterable<String>) = apply {
+            additionalHeaders.replace(name, values)
+        }
+
+        fun replaceAllAdditionalHeaders(additionalHeaders: Headers) = apply {
+            this.additionalHeaders.replaceAll(additionalHeaders)
+        }
+
+        fun replaceAllAdditionalHeaders(additionalHeaders: Map<String, Iterable<String>>) = apply {
+            this.additionalHeaders.replaceAll(additionalHeaders)
+        }
+
+        fun removeAdditionalHeaders(name: String) = apply { additionalHeaders.remove(name) }
+
+        fun removeAllAdditionalHeaders(names: Set<String>) = apply {
+            additionalHeaders.removeAll(names)
+        }
+
+        fun additionalQueryParams(additionalQueryParams: QueryParams) = apply {
+            this.additionalQueryParams.clear()
+            putAllAdditionalQueryParams(additionalQueryParams)
+        }
+
+        fun additionalQueryParams(additionalQueryParams: Map<String, Iterable<String>>) = apply {
+            this.additionalQueryParams.clear()
+            putAllAdditionalQueryParams(additionalQueryParams)
+        }
+
+        fun putAdditionalQueryParam(key: String, value: String) = apply {
+            additionalQueryParams.put(key, value)
+        }
+
+        fun putAdditionalQueryParams(key: String, values: Iterable<String>) = apply {
+            additionalQueryParams.put(key, values)
+        }
+
+        fun putAllAdditionalQueryParams(additionalQueryParams: QueryParams) = apply {
+            this.additionalQueryParams.putAll(additionalQueryParams)
+        }
+
+        fun putAllAdditionalQueryParams(additionalQueryParams: Map<String, Iterable<String>>) =
+            apply {
+                this.additionalQueryParams.putAll(additionalQueryParams)
+            }
+
+        fun replaceAdditionalQueryParams(key: String, value: String) = apply {
+            additionalQueryParams.replace(key, value)
+        }
+
+        fun replaceAdditionalQueryParams(key: String, values: Iterable<String>) = apply {
+            additionalQueryParams.replace(key, values)
+        }
+
+        fun replaceAllAdditionalQueryParams(additionalQueryParams: QueryParams) = apply {
+            this.additionalQueryParams.replaceAll(additionalQueryParams)
+        }
+
+        fun replaceAllAdditionalQueryParams(additionalQueryParams: Map<String, Iterable<String>>) =
+            apply {
+                this.additionalQueryParams.replaceAll(additionalQueryParams)
+            }
+
+        fun removeAdditionalQueryParams(key: String) = apply { additionalQueryParams.remove(key) }
+
+        fun removeAllAdditionalQueryParams(keys: Set<String>) = apply {
+            additionalQueryParams.removeAll(keys)
+        }
+
+        /**
+         * Returns an immutable instance of [MemoryVersionRetrieveParams].
+         *
+         * Further updates to this [Builder] will not mutate the returned instance.
+         *
+         * The following fields are required:
+         * ```java
+         * .memoryStoreId()
+         * ```
+         *
+         * @throws IllegalStateException if any required field is unset.
+         */
+        fun build(): MemoryVersionRetrieveParams =
+            MemoryVersionRetrieveParams(
+                checkRequired("memoryStoreId", memoryStoreId),
+                memoryVersionId,
+                view,
+                betas?.toImmutable(),
+                workspaceId,
+                additionalHeaders.build(),
+                additionalQueryParams.build(),
+            )
+    }
+
+    fun _pathParam(index: Int): String =
+        when (index) {
+            0 -> memoryStoreId
+            1 -> memoryVersionId ?: ""
+            else -> ""
+        }
+
+    override fun _headers(): Headers =
+        Headers.builder()
+            .apply {
+                betas?.forEach { put("anthropic-beta", it.toString()) }
+                workspaceId?.let { put("anthropic-workspace-id", it) }
+                putAll(additionalHeaders)
+            }
+            .build()
+
+    override fun _queryParams(): QueryParams =
+        QueryParams.builder()
+            .apply {
+                view?.let { put("view", it.toString()) }
+                putAll(additionalQueryParams)
+            }
+            .build()
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        return other is MemoryVersionRetrieveParams &&
+            memoryStoreId == other.memoryStoreId &&
+            memoryVersionId == other.memoryVersionId &&
+            view == other.view &&
+            betas == other.betas &&
+            workspaceId == other.workspaceId &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
+    }
+
+    override fun hashCode(): Int =
+        Objects.hash(
+            memoryStoreId,
+            memoryVersionId,
+            view,
+            betas,
+            workspaceId,
+            additionalHeaders,
+            additionalQueryParams,
+        )
+
+    override fun toString() =
+        "MemoryVersionRetrieveParams{memoryStoreId=$memoryStoreId, memoryVersionId=$memoryVersionId, view=$view, betas=$betas, workspaceId=$workspaceId, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
+}

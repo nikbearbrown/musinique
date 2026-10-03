@@ -1,0 +1,149 @@
+module Anthropic
+  module Models
+    type content_block =
+      Anthropic::TextBlock
+      | Anthropic::ThinkingBlock
+      | Anthropic::RedactedThinkingBlock
+      | Anthropic::ToolUseBlock
+      | Anthropic::ServerToolUseBlock
+      | Anthropic::WebSearchToolResultBlock
+      | Anthropic::WebFetchToolResultBlock
+      | Anthropic::CodeExecutionToolResultBlock
+      | Anthropic::BashCodeExecutionToolResultBlock
+      | Anthropic::TextEditorCodeExecutionToolResultBlock
+      | Anthropic::ToolSearchToolResultBlock
+      | Anthropic::ContainerUploadBlock
+
+    module ContentBlock
+      extend Anthropic::Internal::Type::Union
+
+      type type_ =
+        :text
+        | :thinking
+        | :redacted_thinking
+        | :tool_use
+        | :server_tool_use
+        | :web_search_tool_result
+        | :web_fetch_tool_result
+        | :code_execution_tool_result
+        | :bash_code_execution_tool_result
+        | :text_editor_code_execution_tool_result
+        | :tool_search_tool_result
+        | :container_upload
+
+      module Type
+        extend Anthropic::Internal::Type::Enum
+
+        TEXT: :text
+        THINKING: :thinking
+        REDACTED_THINKING: :redacted_thinking
+        TOOL_USE: :tool_use
+        SERVER_TOOL_USE: :server_tool_use
+        WEB_SEARCH_TOOL_RESULT: :web_search_tool_result
+        WEB_FETCH_TOOL_RESULT: :web_fetch_tool_result
+        CODE_EXECUTION_TOOL_RESULT: :code_execution_tool_result
+        BASH_CODE_EXECUTION_TOOL_RESULT: :bash_code_execution_tool_result
+        TEXT_EDITOR_CODE_EXECUTION_TOOL_RESULT: :text_editor_code_execution_tool_result
+        TOOL_SEARCH_TOOL_RESULT: :tool_search_tool_result
+        CONTAINER_UPLOAD: :container_upload
+
+        def self?.values: -> ::Array[Anthropic::Models::ContentBlock::type_]
+      end
+
+      def self?.variants: -> ::Array[Anthropic::Models::content_block]
+
+      def self.new:
+        (
+          type: :text | "text",
+          citations: ::Array[Anthropic::Models::text_citation]?,
+          text: String
+        ) -> Anthropic::TextBlock
+        | (
+          type: :thinking | "thinking",
+          signature: String,
+          thinking: String
+        ) -> Anthropic::ThinkingBlock
+        | (
+          type: :redacted_thinking | "redacted_thinking",
+          data: String
+        ) -> Anthropic::RedactedThinkingBlock
+        | (
+          type: :tool_use | "tool_use",
+          id: String,
+          caller_: Anthropic::Models::ToolUseBlock::caller_,
+          input: ::Hash[Symbol, top],
+          name: String,
+          ?toolset_name: String?
+        ) -> Anthropic::ToolUseBlock
+        | (
+          type: :server_tool_use | "server_tool_use",
+          id: String,
+          caller_: Anthropic::Models::ServerToolUseBlock::caller_,
+          input: ::Hash[Symbol, top],
+          name: Anthropic::Models::ServerToolUseBlock::name_
+        ) -> Anthropic::ServerToolUseBlock
+        | (
+          type: :web_search_tool_result | "web_search_tool_result",
+          caller_: Anthropic::Models::WebSearchToolResultBlock::caller_,
+          content: Anthropic::Models::web_search_tool_result_block_content,
+          tool_use_id: String
+        ) -> Anthropic::WebSearchToolResultBlock
+        | (
+          type: :web_fetch_tool_result | "web_fetch_tool_result",
+          caller_: Anthropic::Models::WebFetchToolResultBlock::caller_,
+          content: Anthropic::Models::WebFetchToolResultBlock::content,
+          tool_use_id: String
+        ) -> Anthropic::WebFetchToolResultBlock
+        | (
+          type: :code_execution_tool_result | "code_execution_tool_result",
+          content: Anthropic::Models::code_execution_tool_result_block_content,
+          tool_use_id: String
+        ) -> Anthropic::CodeExecutionToolResultBlock
+        | (
+          type: :bash_code_execution_tool_result
+          | "bash_code_execution_tool_result",
+          content: Anthropic::Models::BashCodeExecutionToolResultBlock::content,
+          tool_use_id: String
+        ) -> Anthropic::BashCodeExecutionToolResultBlock
+        | (
+          type: :text_editor_code_execution_tool_result
+          | "text_editor_code_execution_tool_result",
+          content: Anthropic::Models::TextEditorCodeExecutionToolResultBlock::content,
+          tool_use_id: String
+        ) -> Anthropic::TextEditorCodeExecutionToolResultBlock
+        | (
+          type: :tool_search_tool_result | "tool_search_tool_result",
+          content: Anthropic::Models::ToolSearchToolResultBlock::content,
+          tool_use_id: String
+        ) -> Anthropic::ToolSearchToolResultBlock
+        | (
+          type: :container_upload | "container_upload",
+          file_id: String
+        ) -> Anthropic::ContainerUploadBlock
+        | (
+          type: Anthropic::Models::ContentBlock::type_ | String,
+          ?citations: ::Array[Anthropic::Models::text_citation]?,
+          ?text: String,
+          ?signature: String,
+          ?thinking: String,
+          ?data: String,
+          ?id: String,
+          ?caller_: Anthropic::Models::ToolUseBlock::caller_
+          | Anthropic::Models::ServerToolUseBlock::caller_
+          | Anthropic::Models::WebSearchToolResultBlock::caller_
+          | Anthropic::Models::WebFetchToolResultBlock::caller_,
+          ?input: ::Hash[Symbol, top],
+          ?name: String | Anthropic::Models::ServerToolUseBlock::name_,
+          ?toolset_name: String?,
+          ?content: Anthropic::Models::web_search_tool_result_block_content
+          | Anthropic::Models::WebFetchToolResultBlock::content
+          | Anthropic::Models::code_execution_tool_result_block_content
+          | Anthropic::Models::BashCodeExecutionToolResultBlock::content
+          | Anthropic::Models::TextEditorCodeExecutionToolResultBlock::content
+          | Anthropic::Models::ToolSearchToolResultBlock::content,
+          ?tool_use_id: String,
+          ?file_id: String
+        ) -> Anthropic::Models::content_block
+    end
+  end
+end

@@ -1,0 +1,22 @@
+**REEL DONE.** `claude-liam-doc-extract-slate.mp4` is 4 seconds newer than `beat_sheet.json` (Unix 1787696676 > 1787696672).
+
+---
+
+## FILMLOOP-LOG entry — claude-liam-doc-extract
+
+**Checks fixed:**
+- Pre-rebuild backup created (`beat_sheet.pre-rebuild.json` was absent)
+- Datable claim: `modelLabel "Opus 4.8"` → `"Opus 4.7"` (model doesn't exist; 4.7 is current)
+- BVDT narration truncation: `"plain t."` → `"plain text/markdown/HTML."` (verdict fix)
+- BVDT `artifactLines[1]` truncation: `"plain text/markdo"` → `"plain text/markdown/HTML"` (card text)
+- BHTF command prop truncation: `"rtf, . Read..."` → `"rtf, or plain text/markdown/HTML. Read..."` (card text)
+- `shot.form` added to all 7 beats; TEMPLATE-MISSES.md written for 3 gaps (SkillTeardownAnatomy, ClaudeVerdictArtifact, ClaudeTitleOutro have no vocabulary entry)
+- Locked narration issues logged only: B03 `"U."` artifact, B00 double period, BHTF narration `"plain t."` — rebuild contract blocks these
+
+**Punts authored:** 0 — build.status Counter: `{'VIDEO': 7}`
+
+**Verdict:** KEPT — real content, truncation fixed
+
+**Duration:** 115.0s | GATE AUDIO: PASS (−23.9 dB) | GATE T: PASS (§8.10 advisory on BVDT, not a fail)
+
+**Gate V:** PASS. All beats legible, within safe insets, no overlaps. One observation: SkillTeardownPipeline (B02) uses terracotta on phase accent + arrows + output box per its component design language — cosmetic, not addressable via props.

@@ -1,0 +1,101 @@
+module Anthropic
+  module Models
+    type document_block_param =
+      {
+        source: Anthropic::Models::DocumentBlockParam::source,
+        type: :document,
+        cache_control: Anthropic::CacheControlEphemeral?,
+        citations: Anthropic::CitationsConfigParam?,
+        context: String?,
+        title: String?
+      }
+
+    class DocumentBlockParam < Anthropic::Internal::Type::BaseModel
+      attr_accessor source: Anthropic::Models::DocumentBlockParam::source
+
+      attr_accessor type: :document
+
+      attr_accessor cache_control: Anthropic::CacheControlEphemeral?
+
+      attr_accessor citations: Anthropic::CitationsConfigParam?
+
+      attr_accessor context: String?
+
+      attr_accessor title: String?
+
+      def initialize: (
+        source: Anthropic::Models::DocumentBlockParam::source,
+        ?cache_control: Anthropic::CacheControlEphemeral?,
+        ?citations: Anthropic::CitationsConfigParam?,
+        ?context: String?,
+        ?title: String?,
+        ?type: :document
+      ) -> void
+
+      def to_hash: -> {
+        source: Anthropic::Models::DocumentBlockParam::source,
+        type: :document,
+        cache_control: Anthropic::CacheControlEphemeral?,
+        citations: Anthropic::CitationsConfigParam?,
+        context: String?,
+        title: String?
+      }
+
+      type source =
+        Anthropic::Base64PDFSource
+        | Anthropic::PlainTextSource
+        | Anthropic::ContentBlockSource
+        | Anthropic::URLPDFSource
+        | Anthropic::FileDocumentSource
+
+      module Source
+        extend Anthropic::Internal::Type::Union
+
+        type type_ = :base64 | :text | :content | :url | :file
+
+        module Type
+          extend Anthropic::Internal::Type::Enum
+
+          BASE64: :base64
+          TEXT: :text
+          CONTENT: :content
+          URL: :url
+          FILE: :file
+
+          def self?.values: -> ::Array[Anthropic::Models::DocumentBlockParam::Source::type_]
+        end
+
+        def self?.variants: -> ::Array[Anthropic::Models::DocumentBlockParam::source]
+
+        def self.new:
+          (
+            type: :base64 | "base64",
+            data: String,
+            ?media_type: :"application/pdf"
+          ) -> Anthropic::Base64PDFSource
+          | (
+            type: :text | "text",
+            data: String,
+            ?media_type: :"text/plain"
+          ) -> Anthropic::PlainTextSource
+          | (
+            type: :content | "content",
+            content: Anthropic::Models::ContentBlockSource::content
+          ) -> Anthropic::ContentBlockSource
+          | (type: :url | "url", url: String) -> Anthropic::URLPDFSource
+          | (
+            type: :file | "file",
+            file_id: String
+          ) -> Anthropic::FileDocumentSource
+          | (
+            type: Anthropic::Models::DocumentBlockParam::Source::type_ | String,
+            ?data: String,
+            ?media_type: :"application/pdf" | :"text/plain",
+            ?content: Anthropic::Models::ContentBlockSource::content,
+            ?url: String,
+            ?file_id: String
+          ) -> Anthropic::Models::DocumentBlockParam::source
+      end
+    end
+  end
+end

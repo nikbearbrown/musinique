@@ -1,0 +1,16 @@
+mp4 epoch 1787719365 > beat_sheet epoch 1787719357 — 8 seconds newer. ✓ Duration: 70.68s.
+
+---
+
+**DONE — claude-liam-weekly-report**
+
+`claude-liam-weekly-report.mp4` — 70.7s, 6/6 VIDEO beats, GATE AUDIO −23.8 dB, GATE T PASS.
+
+**Checks fixed:**
+- **Verdict** — BVDT stripped (3-beat/106-word body, boilerplate lines)
+- **Card text** — B03 narration truncation repaired; B00 output truncation; BHTF command rewritten (clean, usable)
+- **Lens audit** — Plato move added to B02 footerNote; Popper verdictLabel added to B03 (two moves earned without touching locked narration)
+- **Brand** — `modelLabel` "Opus 4.8" → "Opus 4.7" (fictitious model); BOUT subline removed (OUTRO-LOCK)
+- **GATE T** — B03 §8.5 wordy-card fail fixed by splitting 23-word body into 7-word label + quote prop for trigger phrases; re-rendered and passed
+
+**MAJOR noted (not fixed, component-level):** B02 pipeline renders two terracotta elements (accent phase + output box border) — SkillTeardownPipeline component design, no prop to suppress.

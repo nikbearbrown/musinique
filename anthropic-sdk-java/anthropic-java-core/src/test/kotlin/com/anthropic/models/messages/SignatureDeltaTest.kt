@@ -1,0 +1,30 @@
+package com.anthropic.models.messages
+
+import com.anthropic.core.jsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class SignatureDeltaTest {
+
+    @Test
+    fun create() {
+        val signatureDelta = SignatureDelta.of("signature")
+
+        assertThat(signatureDelta.signature()).isEqualTo("signature")
+    }
+
+    @Test
+    fun roundtrip() {
+        val jsonMapper = jsonMapper()
+        val signatureDelta = SignatureDelta.of("signature")
+
+        val roundtrippedSignatureDelta =
+            jsonMapper.readValue(
+                jsonMapper.writeValueAsString(signatureDelta),
+                jacksonTypeRef<SignatureDelta>(),
+            )
+
+        assertThat(roundtrippedSignatureDelta).isEqualTo(signatureDelta)
+    }
+}

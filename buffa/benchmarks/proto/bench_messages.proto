@@ -1,0 +1,167 @@
+// Benchmark message types for buffa performance testing.
+//
+// These messages represent common real-world patterns:
+// - ApiResponse: flat message with mixed scalars (typical REST/gRPC response)
+// - LogRecord: string-heavy message (structured log entry)
+// - AnalyticsEvent: deeply nested message with repeated sub-messages
+
+syntax = "proto3";
+
+package bench;
+
+// A typical REST/gRPC response with mixed scalar types.
+// Target payload: ~200-500 bytes.
+message ApiResponse {
+  int64 request_id = 1;
+  int32 status_code = 2;
+  string message = 3;
+  double latency_ms = 4;
+  bool cached = 5;
+  optional string trace_id = 6;
+  optional int64 retry_after_ms = 7;
+  repeated string tags = 8;
+}
+
+// A structured log entry. String-heavy to test allocation overhead.
+// Target payload: ~1-5KB.
+message LogRecord {
+  int64 timestamp_nanos = 1;
+  string service_name = 2;
+  string instance_id = 3;
+
+  enum Severity {
+    UNSPECIFIED = 0;
+    DEBUG = 1;
+    INFO = 2;
+    WARN = 3;
+    ERROR = 4;
+  }
+  Severity severity = 4;
+  string message = 5;
+  map<string, string> labels = 6;
+  string trace_id = 7;
+  string span_id = 8;
+
+  message Context {
+    string file = 1;
+    int32 line = 2;
+    string function = 3;
+  }
+  optional Context source = 9;
+}
+
+// Deeply nested message with repeated sub-messages.
+// Tests cached-size benefit and recursive decode.
+// Target payload: ~10-50KB with 3-4 levels of nesting.
+message AnalyticsEvent {
+  string event_id = 1;
+  int64 timestamp = 2;
+  string user_id = 3;
+
+  message Property {
+    string key = 1;
+    oneof value {
+      string string_value = 2;
+      int64 int_value = 3;
+      double double_value = 4;
+      bool bool_value = 5;
+    }
+  }
+  repeated Property properties = 4;
+
+  message Nested {
+    string name = 1;
+    repeated Property attributes = 2;
+    repeated Nested children = 3;
+  }
+  repeated Nested sections = 5;
+}
+
+// Binary-payload-heavy message: exercises the `bytes` field type, both as a
+// single large blob and as repeated / mapped sub-blobs. Used to contrast
+// prost's `prost-build`'s `.bytes(["."])` zero-copy substitution with buffa
+// views.
+// Target payload: ~3-25KB.
+message MediaFrame {
+  string frame_id = 1;
+  int64 timestamp_nanos = 2;
+  string content_type = 3;
+  bytes body = 4;                     // primary payload, ~1-10 KB
+  repeated bytes chunks = 5;          // 2-6 sub-chunks, ~200-2000 bytes each
+  map<string, bytes> attachments = 6; // 0-4 named sub-blobs
+}
+
+// Many small sub-messages, each carrying short packed repeated scalar
+// fields (the map-tile / telemetry shape from issue #171). Per-payload
+// decode cost is dominated by many small vector allocations rather than a
+// few large ones, which pins the packed-decode pre-allocation path: varint
+// fields reserve the counted element count (terminator bytes), fixed-width
+// fields reserve the exact element count.
+// Target payload: ~5-8KB (64 cells, ~16 packed varints each).
+message PackedTile {
+  message Cell {
+    uint32 id = 1;
+    repeated uint32 geometry = 2;   // packed varints, 12-20 elems
+    repeated float samples = 3;     // packed fixed32-width, 4-8 elems
+    repeated double positions = 4;  // packed fixed64-width, 2-4 elems
+  }
+  repeated Cell cells = 1;          // 64 small cells per tile
+  repeated uint64 checksums = 2;    // one larger packed varint field
+}
+
+// Many small singular sub-messages per repeated element (issue #248). Each
+// `Face` holds four singular `Vertex` fields, so a boxed `MessageField<Vertex>`
+// costs four heap allocations per face on decode that an inline pointer
+// (`PointerRepr::Inline`, the default) eliminates. None of the other benchmark
+// messages has more than one singular message field per payload, so this is the
+// regression target for the inline-by-default storage.
+// Target payload: ~18KB (256 faces).
+message TriMesh {
+  message Vertex {
+    float px = 1;
+    float py = 2;
+    float pz = 3;
+  }
+  message Face {
+    Vertex a = 1;
+    Vertex b = 2;
+    Vertex c = 3;
+    Vertex n = 4;
+  }
+  repeated Face faces = 1;
+}
+
+// Control for the packed-varint reservation path's worst case: negative
+// `int32`/`int64` always encode to 10 bytes per element, so reserving from the
+// payload byte length over-allocated ~10x. Reserving from the counted varint
+// terminators instead allocates the exact element count. This message exists to
+// make that allocation delta measurable: a `decode_view` over it before the fix
+// reserved ~10x the needed capacity per field.
+message PackedSigned {
+  repeated int32 deltas = 1;     // negative -> 10-byte varints each
+  repeated int64 wide_deltas = 2;  // negative -> 10-byte varints each
+}
+
+// A columnar record batch: one field per column, holding every row's value for
+// that column, which is how analytics and telemetry pipelines put data on the
+// wire (Arrow and Parquet readers included). It exists because every other
+// packed message here carries a handful of elements per field — PackedTile's
+// widest is 20 — and packed decoding has two regimes: short arrays sit under
+// per-field dispatch overhead, while long ones are dominated by per-element
+// work. Only this message measures the second.
+//
+// The columns are chosen to cover each decode path a batch actually exercises:
+// a dictionary-encoded string column (how columnar formats keep repeated labels
+// cheap), an index column of 1-2 byte varints, a timestamp column of 9-byte
+// varints, and float and double value columns for the two packed fixed widths.
+// Target payload: ~24KB (1024 rows, 32-symbol dictionary).
+message ColumnBatch {
+  // Dictionary-encoded label column: the distinct values, then one index per
+  // row. Short strings, so the borrow path sees many small spans.
+  repeated string symbol_dict = 1;
+  repeated uint32 symbol_ids = 2;  // packed, 1-2 byte varints
+
+  repeated int64 timestamps = 3;  // packed, absolute epoch nanos -> 9-byte varints
+  repeated double values = 4;     // packed fixed64
+  repeated float weights = 5;     // packed fixed32
+}

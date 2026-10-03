@@ -1,0 +1,20 @@
+Done. `vox-fdg-proxy.mp4` (01:19) is 3m11s newer than `beat_sheet.json` (01:16). No post-compile sheet edits.
+
+## Summary
+
+Rebuilt and shipped **`claude-liam-vox-fdg-proxy`** as a clean 16/16 VIDEO review cut (`vox-fdg-proxy.mp4`, 225.3 s, 3840×2160, `mean_volume −27.2 dB`).
+
+**Phase 0 (rebuild contract):** byte-exact `beat_sheet.pre-rebuild.json` captured before any edit. Dropped ElevenLabs `voice_id`, `clock` prose, `_variant_todo`, stale `build` block.
+
+**Phase 1 audit — FIX'd:**
+- Added 4 canonical bookends (`B00`/`BVDT`/`BHTF`/`BOUT`), removed banned `B13 OutroSeries` and `B14 OutroCTA`.
+- `B00.greeting` `"Liam"` → `"Olá, Liam"` (Portuguese, unused in 19 sibling reels).
+- Verdict AUTHORED — placeholder `Key finding one/two/three` → four real lines from body's own nouns (PET reads metabolism / false positives / false negatives / imaging suggests, biopsy confirms) + real narration.
+- YOUR-TURN AUTHORED — replaced the `[X]`-in-brackets scaffolder with a real scaffolded exercise on proxies.
+- Every body beat rebuilt from unrunnable Manim/STILL-ai/DOCUMENT punts to real `FormBCard`/`FormACard` content.
+- FormBCard icon 404s (activity/arrow-right/clock/circle/user/check) remapped to allowed registry (target/list-checks/zap/lock/layers/snowflake/tag/clipboard-list/circle-check).
+- §8.9 truncation fix on `B05.items[1].sub`.
+
+**Gate T PASS · Gate V PASS (contact sheet + 28 frames) · Gate AUDIO PASS.** Three lens moves earned (Plato/Popper/Hume).
+
+**No slates, no downgrades, no validator loosened. Post-compile sheet edits: NONE.**

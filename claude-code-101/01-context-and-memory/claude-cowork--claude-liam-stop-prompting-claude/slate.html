@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slate — Let the Files Do the Prompting | claude-liam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #FAF9F5; --ink: #3D3929; --accent: #D97757; }
+  html, body { width: 100%; height: 100%; background: var(--ink); font-family: 'EB Garamond', Georgia, serif; }
+  #slideshow { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+  .slide { position: absolute; inset: 0; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 7vw 9vw; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+  .slide.active { opacity: 1; pointer-events: all; }
+  .slide-title { justify-content: center; align-items: center; text-align: center; }
+  .slide-title .ep-label { font-size: clamp(0.7rem, 1.2vw, 1rem); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+  .slide-title h1 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.1; color: var(--ink); max-width: 20ch; }
+  .slide-title .duration { margin-top: 2rem; font-size: clamp(0.9rem, 1.5vw, 1.2rem); color: var(--ink); opacity: 0.55; font-style: italic; }
+  .slide-title .channel { margin-top: 0.6rem; font-size: clamp(0.75rem, 1.1vw, 0.95rem); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); opacity: 0.4; }
+  .beat-id { font-size: clamp(0.65rem, 1vw, 0.85rem); letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .beat-time { font-size: clamp(0.65rem, 1vw, 0.82rem); letter-spacing: 0.1em; color: var(--ink); opacity: 0.45; margin-bottom: 1.5rem; }
+  .shot-type { display: inline-block; font-size: clamp(0.6rem, 0.9vw, 0.78rem); letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--ink); color: var(--ink); padding: 0.2em 0.65em; margin-bottom: 1.8rem; opacity: 0.55; }
+  .card-copy { font-size: clamp(1.6rem, 3.5vw, 3.2rem); font-weight: 700; line-height: 1.15; color: var(--ink); max-width: 22ch; margin-bottom: 1.2rem; }
+  .card-sub { font-size: clamp(0.95rem, 1.6vw, 1.35rem); line-height: 1.55; color: var(--ink); opacity: 0.7; max-width: 55ch; }
+  .narration-label { font-size: clamp(0.6rem, 0.85vw, 0.75rem); letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); opacity: 0.35; margin-top: 2.2rem; margin-bottom: 0.5rem; }
+  .narration { font-size: clamp(0.9rem, 1.4vw, 1.15rem); line-height: 1.65; color: var(--ink); opacity: 0.65; max-width: 60ch; font-style: italic; }
+  .accent-rule { width: 3rem; height: 3px; background: var(--accent); margin-bottom: 1.8rem; }
+  .handoff-eyebrow, .outro-eyebrow { font-size: clamp(0.65rem, 1vw, 0.85rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  #progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--accent); transition: width 0.35s ease; z-index: 100; }
+  #nav-hint { position: fixed; bottom: 1.2rem; right: 1.8rem; font-family: 'EB Garamond', serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); opacity: 0.45; }
+</style>
+</head>
+<body>
+<div id="slideshow">
+
+  <div class="slide slide-title active">
+    <div class="ep-label">Claude Cowork · Reel 14 · Tutorial</div>
+    <h1>Let the Files Do the Prompting</h1>
+    <div class="duration">~90 seconds · 9 beats</div>
+    <div class="channel">claude-liam · voice: am_onyx · gate-p slate</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B01</div>
+    <div class="beat-time">0:00 – 0:09 · est. 9 s</div>
+    <div class="shot-type">COMPOSER ASK</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">Write a LinkedIn post in my voice.</div>
+    <div class="card-sub">Answer preview: "Claude already knows your tone, your rules, your goals — because it read your files first."</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">Konnichiwa. This is Liam, in for Bear. What if you never had to type a long prompt again? What if Claude already knew everything about you — before the first word? The files are the prompt. Let me show you.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B02</div>
+    <div class="beat-time">0:09 – 0:18 · est. 9 s</div>
+    <div class="shot-type">CARD — SPARK</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">Files are the prompt.</div>
+    <div class="card-sub">Save your style, rules, and goals as .md files. Claude reads them before every session — automatically.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">Claude Cowork connects to a folder on your computer. You save text files in that folder — your style, your rules, your goals. Claude reads them automatically before every session. The files are the prompt. Forever. No more 500-word instruction blocks every time you start a chat.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B03</div>
+    <div class="beat-time">0:18 – 0:28 · est. 10 s</div>
+    <div class="shot-type">ILLUSTRATION — DRAW-ON</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">Cowork folder structure</div>
+    <div class="card-sub">Root: Claude Cowork. Branch 1: about-me (3 files). Branch 2: claude-output (do not touch). Branch 3: templates (do not touch). Global Instructions node → reads about-me automatically. Top-down draw-in.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">The Cowork folder structure: three subfolders. About-me — three files: about-me, anti-ai-writing-style, my-company. Claude-output — you never touch this; it's where Claude stores its work. Templates — same. Set up Global Instructions to tell Claude: always read about-me, leave the rest alone.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B04</div>
+    <div class="beat-time">0:28 – 0:37 · est. 9 s</div>
+    <div class="shot-type">CARD — SPARK</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">The files go stale.</div>
+    <div class="card-sub">Raw .md files are hard to edit. Most people never update them. Stale context = generic output.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">The problem: managing .md files is genuinely annoying. You double-click one, it opens a geeky text editor full of hashtags and asterisks. Hard to read. Hard to edit. Most people set up Cowork once, then never touch their files again. So the context goes stale.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B05</div>
+    <div class="beat-time">0:37 – 0:47 · est. 10 s</div>
+    <div class="shot-type">CARD — SPARK</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">Obsidian. It's free.</div>
+    <div class="card-sub">Point it at your Cowork folder. Every .md file becomes a clean, editable doc. Edit → Claude knows immediately.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">The fix is Obsidian. It's free. You point it at your Cowork folder and it turns every file into a beautifully rendered document. A sidebar to navigate. Search across everything. You click a file, edit it right there. It saves back to the same folder Cowork reads. One edit in Obsidian, Claude knows instantly.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B06</div>
+    <div class="beat-time">0:47 – 0:59 · est. 12 s</div>
+    <div class="shot-type">ILLUSTRATION — DRAW-ON</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">Why Obsidian wins</div>
+    <div class="card-sub">Left column (✗): Notion (re-import required) / Google Docs (format conversion) / VS Code (developer-only) / GitHub (requires git). Right column (✓): Obsidian — reads existing folder directly / no import or sync / .md files untouched. Left reveals fast, right reveals deliberately.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">Why Obsidian and not the others? Notion: cloud-based, you'd have to re-import every time Cowork updates a file. Google Docs: not .md files, constant conversion. VS Code: for developers. GitHub: requires git and commits. Obsidian reads your existing folder directly. No import. No sync. No hidden metadata. Your .md files stay exactly as Cowork expects them.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B07</div>
+    <div class="beat-time">0:59 – 1:09 · est. 10 s</div>
+    <div class="shot-type">CARD — SPARK</div>
+    <div class="accent-rule"></div>
+    <div class="card-copy">Two apps. One folder.</div>
+    <div class="card-sub">Obsidian = update the brain. Cowork = build. Same folder, always in sync. Add a Skills subfolder for slash-command workflows.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">The daily workflow is two apps, one folder. Open Obsidian to browse, search, read, and edit your files. Open Cowork to build new work. Both look at the same folder. Always in sync. Obsidian is where you update the brain. Cowork is where you build. You can also add a Skills folder — one file per repeated task, callable with a slash command.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B08</div>
+    <div class="beat-time">1:09 – 1:19 · est. 10 s</div>
+    <div class="shot-type">CARD — HANDOFF</div>
+    <div class="accent-rule"></div>
+    <div class="handoff-eyebrow">YOUR TURN</div>
+    <div class="card-copy">Download Obsidian now</div>
+    <div class="card-sub">obsidian.md — free. Open folder as vault. Point at Cowork. Change one line in about-me. Watch it land.</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">Your turn. Download Obsidian from obsidian.md — it's free. Click 'Open folder as a vault.' Point it at your Cowork folder. Open your about-me file. Change one line. Open a new Cowork session. Watch Claude reflect the change.</div>
+  </div>
+
+  <div class="slide">
+    <div class="beat-id">B09</div>
+    <div class="beat-time">1:19 – 1:30 · est. 11 s</div>
+    <div class="shot-type">CARD — OUTRO</div>
+    <div class="accent-rule"></div>
+    <div class="outro-eyebrow">CLAUDE COWORK</div>
+    <div class="card-copy">LET THE FILES DO THE PROMPTING</div>
+    <div class="card-sub">this is Liam, in for Bear</div>
+    <div class="narration-label">Narration</div>
+    <div class="narration">Stop prompting. Let the files do the prompting. Your Second Brain, for free. This is Liam, in for Bear.</div>
+  </div>
+
+</div>
+
+<div id="progress"></div>
+<div id="nav-hint">click · space · ← →</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    document.getElementById('progress').style.width = ((current / (slides.length - 1)) * 100) + '%';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+  });
+  document.getElementById('slideshow').addEventListener('click', () => show(current + 1));
+  show(0);
+</script>
+</body>
+</html>

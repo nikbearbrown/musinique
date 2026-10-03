@@ -1,0 +1,9 @@
+Done. Reel is DONE by supervisor's rule: `vox-complexity-yield-slate.mp4` (5.5 MB, 222.2 s, 3840×2160) is 9 seconds newer than `beat_sheet.json`.
+
+**Summary**
+- Fixed sheet: dropped dead ElevenLabs `voice_id`/`clock`; authored real BVDT verdict (3 lines + 55-word narration) from body numbers; replaced B01 FormBCard placeholder items; set B00 spark to "Guten tag, Liam." (unused by adjacent reels).
+- Authored `scenes_std.py` with 6 Manim scenes for the graphic beats (B04 gates, B05 yield-collapse, B06 arithmetic, B07 one-vs-six, B09 batch grid, B10 design-choice annotation).
+- Rendered 8 Remotion beats (B00, B01, B02, B12, B13, BVDT, BHTF, BOUT) and 6 Manim beats. B03/B08/B11 are honest declared slates on `shot.type=CARD` (lane_check PASS).
+- Compiled `--review` slate cut. Gate Content PASS, Gate Frame PASS, Gate Lane PASS, Gate Audio PASS (mean_volume −27.5 dB).
+- Gate V spot-check on 444 QC frames caught a `0.9^6` ordinal-stripping bug in the Verdict pattern; rewrote line, re-rendered BVDT, RECOMPILED so cut stays newest.
+- Build: `Counter({'VIDEO': 8, 'MANIM': 6, 'SLATE': 3})`. Logs written to reel's `AUDIT.md`, `REBUILD-LOG.md`, and appended to `youtube/FILMLOOP-LOG.md`.

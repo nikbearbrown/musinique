@@ -1,0 +1,6 @@
+**DONE — nbb-vox-complexity-yield.mp4 shipped, 228.2 s, 15/15 VIDEO.**
+
+- Phase 0 rebuild contract: pre-rebuild backup + REBUILD-LOG.md logging every dropped/edited field.
+- Phase 1 audit: all 12 checks PASS/FIXED (see AUDIT.md). Consolidated legacy NBB00–NBB03 into canonical B00/BVDT/BHTF/BOUT; authored real verdict + real Your-Turn; spark line `"Namaste, Bear"`; type_check GATE T PASS.
+- Phase 2 build: 15/15 real renders (parent's mp4s reused for B02/B04–B07/B09–B10; B00/B01/B03/B08/B11/BVDT/BHTF/BOUT rendered fresh via Remotion). GATE AUDIO −24.3 dB, punt sweep `Counter({'VIDEO': 15})`.
+- **Fielded one real BLOCKER at Gate V**: first BVDT render showed `"9^6 = 53%"` (factually wrong — the component's `stripLeadNum` regex ate the `"0."` prefix). Rewrote the line to `"Six 90% gates → 0.9^6 = 53% batch yield."`, re-rendered BVDT, and RECOMPILED. Final mp4 (02:24) is newer than sheet (02:23). Logged fix in FILMLOOP-LOG.md.

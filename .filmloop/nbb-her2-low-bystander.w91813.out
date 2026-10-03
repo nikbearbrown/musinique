@@ -1,0 +1,10 @@
+Done. Freshness gate holds: mp4 mtime (15:06) is 1 min newer than beat_sheet.json mtime (15:05) — no post-compile sheet edit.
+
+**Reel: nbb-her2-low-bystander — SHIPPED**
+
+- **Deliverable:** `her2-low-bystander.mp4` (11.6 MB, 205.8 s @ 3840×2160 24 fps, AAC 48 kHz mono).
+- **build.status Counter:** `Counter({'VIDEO': 12})` — 12/12 real, zero declared slates.
+- **Consolidation:** Pre-rebuild carried filled `NBB0[0-3]` alongside empty `BVDT/BHTF/BOUT` stubs (placeholder `Key finding one/two/three`) plus a parent-mirror `B00` that would double-open. Promoted NBB* payloads into canonical `B00/BVDT/BHTF/BOUT`, dropped the four duplicates and mirror B00, renamed mp3s, symlinked B01–B08 to `../her2-low-bystander/clips/`.
+- **Fixes:** B00 greeting `"Your turn." → "Bonjour, Liam"` (French, unused by adjacent nbb-* siblings). BVDT `artifactLines` swapped from ellipsis-terminated body fragments to four authored one-liners (T-DM1/T-DXd cleavability, DESTINY-Breast04 PFS, 55% patient shift, DAR + TROP2/lung generalization). Envelope VOICE-LOCKed, scaffold fields dropped.
+- **Gates:** GATE T PASS, GATE V PASS (14 QC frames spot-read), GATE AUDIO PASS (`mean_volume -24.1 dB`), verdict_audit clean.
+- **Log entry:** appended to `youtube/FILMLOOP-LOG.md`.

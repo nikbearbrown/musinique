@@ -1,0 +1,210 @@
+// Package externalcmd provides a provider that runs an external command that returns a json string with credentials.
+package externalcmd
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"maps"
+	"path/filepath"
+	"strings"
+
+	"github.com/gruntwork-io/terragrunt/internal/errors"
+	"github.com/gruntwork-io/terragrunt/internal/iam"
+	"github.com/gruntwork-io/terragrunt/internal/runner/run/creds/providers"
+	"github.com/gruntwork-io/terragrunt/internal/runner/run/creds/providers/amazonsts"
+	"github.com/gruntwork-io/terragrunt/internal/shell"
+	"github.com/gruntwork-io/terragrunt/pkg/log"
+	"github.com/mattn/go-shellwords"
+)
+
+// Provider runs external command that returns a json string with credentials.
+type Provider struct {
+	runOpts         *shell.ShellOptions
+	authProviderCmd string
+}
+
+// NewProvider returns a new Provider instance.
+func NewProvider(l log.Logger, authProviderCmd string, runOpts *shell.ShellOptions) providers.Provider {
+	return &Provider{
+		authProviderCmd: authProviderCmd,
+		runOpts:         runOpts,
+	}
+}
+
+// Name implements providers.Name
+func (provider *Provider) Name() string {
+	return fmt.Sprintf("external %s command", provider.authProviderCmd)
+}
+
+// GetCredentials implements providers.GetCredentials
+func (provider *Provider) GetCredentials(ctx context.Context, l log.Logger) (*providers.Credentials, error) {
+	if provider.authProviderCmd == "" {
+		return nil, nil
+	}
+
+	parser := shellwords.NewParser()
+
+	// Normalize Windows paths before parsing - shellwords treats backslashes as escape characters
+	parts, err := parser.Parse(filepath.ToSlash(provider.authProviderCmd))
+	if err != nil {
+		return nil, errors.Errorf("failed to parse auth provider command: %w", err)
+	}
+
+	command := parts[0]
+
+	args := []string{}
+	if len(parts) > 1 {
+		args = parts[1:]
+	}
+
+	output, err := shell.RunCommandWithOutput(ctx, l, provider.runOpts, "", true, false, command, args...)
+	if err != nil {
+		return nil, err
+	}
+
+	if output.Stdout.String() == "" {
+		return nil, errors.Errorf(
+			"command %s completed successfully, but the response does not contain JSON string",
+			provider.authProviderCmd,
+		)
+	}
+
+	resp := &Response{Envs: make(map[string]string)}
+
+	if err := json.Unmarshal(output.Stdout.Bytes(), &resp); err != nil {
+		return nil, errors.Errorf("command %s returned a response with invalid JSON format", command)
+	}
+
+	creds := &providers.Credentials{
+		Name: providers.AWSCredentials,
+		Envs: resp.Envs,
+	}
+
+	if resp.AWSCredentials != nil {
+		if envs := resp.AWSCredentials.Envs(ctx, l, provider.authProviderCmd); envs != nil {
+			l.Debugf("Obtaining AWS credentials from the %s.", provider.Name())
+			maps.Copy(creds.Envs, envs)
+		}
+
+		return creds, nil
+	}
+
+	if resp.AWSRole != nil {
+		if envs := resp.AWSRole.Envs(ctx, l, provider.authProviderCmd); envs != nil {
+			l.Debugf("Assuming AWS role %s using the %s.", resp.AWSRole.RoleARN, provider.Name())
+			maps.Copy(creds.Envs, envs)
+		}
+
+		return creds, nil
+	}
+
+	return creds, nil
+}
+
+// Response is the JSON response expected from an auth provider command.
+type Response struct {
+	// AWSCredentials contains AWS credentials to set as environment variables.
+	AWSCredentials *AWSCredentials `json:"awsCredentials,omitempty"`
+	// AWSRole contains AWS role information for role assumption.
+	AWSRole *AWSRole `json:"awsRole,omitempty"`
+	// Envs contains additional environment variables to set.
+	Envs map[string]string `json:"envs,omitempty"`
+}
+
+// AWSCredentials is the JSON schema for direct AWS credentials.
+type AWSCredentials struct {
+	// AccessKeyID is the AWS access key ID.
+	AccessKeyID string `json:"ACCESS_KEY_ID" jsonschema:"required"`
+	// SecretAccessKey is the AWS secret access key.
+	SecretAccessKey string `json:"SECRET_ACCESS_KEY" jsonschema:"required"`
+	// SessionToken is the AWS session token (optional).
+	SessionToken string `json:"SESSION_TOKEN,omitempty"`
+}
+
+// AWSRole is the JSON schema for AWS role assumption.
+type AWSRole struct {
+	// RoleARN is the ARN of the IAM role to assume.
+	RoleARN string `json:"roleARN" jsonschema:"required"`
+	// RoleSessionName is the session name for the assumed role.
+	RoleSessionName string `json:"roleSessionName,omitempty"`
+	// WebIdentityToken is the web identity token for OIDC-based role assumption.
+	WebIdentityToken string `json:"webIdentityToken,omitempty"`
+	// Duration is the duration in seconds for the assumed role session.
+	Duration int64 `json:"duration,omitempty" jsonschema:"minimum=0"`
+}
+
+func (role *AWSRole) Envs(ctx context.Context, l log.Logger, authProviderCmd string) map[string]string {
+	if role.RoleARN == "" {
+		l.Warnf("The command %s completed successfully, but AWS role assumption contains empty required value: roleARN, nothing is being done.", authProviderCmd)
+		return nil
+	}
+
+	sessionName := role.RoleSessionName
+	if sessionName == "" {
+		sessionName = iam.GetDefaultAssumeRoleSessionName()
+	}
+
+	duration := role.Duration
+	if duration == 0 {
+		duration = iam.DefaultAssumeRoleDuration
+	}
+
+	iamRoleOpts := iam.RoleOptions{
+		RoleARN:               role.RoleARN,
+		AssumeRoleDuration:    duration,
+		AssumeRoleSessionName: sessionName,
+	}
+
+	if role.WebIdentityToken != "" {
+		iamRoleOpts.WebIdentityToken = role.WebIdentityToken
+	}
+
+	provider := amazonsts.NewProvider(l, iamRoleOpts, nil)
+
+	creds, err := provider.GetCredentials(ctx, l)
+	if err != nil {
+		l.Warnf("Failed to assume role %s: %v", role.RoleARN, err)
+		return nil
+	}
+
+	if creds == nil {
+		l.Warnf("The command %s completed successfully, but failed to assume role %s, nothing is being done.", authProviderCmd, role.RoleARN)
+		return nil
+	}
+
+	envs := map[string]string{
+		"AWS_ACCESS_KEY_ID":     creds.Envs["AWS_ACCESS_KEY_ID"],
+		"AWS_SECRET_ACCESS_KEY": creds.Envs["AWS_SECRET_ACCESS_KEY"],
+		"AWS_SESSION_TOKEN":     creds.Envs["AWS_SESSION_TOKEN"],
+		"AWS_SECURITY_TOKEN":    creds.Envs["AWS_SESSION_TOKEN"],
+	}
+
+	return envs
+}
+
+func (creds *AWSCredentials) Envs(_ context.Context, l log.Logger, authProviderCmd string) map[string]string {
+	var emptyFields []string
+
+	if creds.AccessKeyID == "" {
+		emptyFields = append(emptyFields, "ACCESS_KEY_ID")
+	}
+
+	if creds.SecretAccessKey == "" {
+		emptyFields = append(emptyFields, "SECRET_ACCESS_KEY")
+	}
+
+	if len(emptyFields) > 0 {
+		l.Warnf("The command %s completed successfully, but AWS credentials contains empty required values: %s, nothing is being done.", authProviderCmd, strings.Join(emptyFields, ", "))
+		return nil
+	}
+
+	envs := map[string]string{
+		"AWS_ACCESS_KEY_ID":     creds.AccessKeyID,
+		"AWS_SECRET_ACCESS_KEY": creds.SecretAccessKey,
+		"AWS_SESSION_TOKEN":     creds.SessionToken,
+		"AWS_SECURITY_TOKEN":    creds.SessionToken,
+	}
+
+	return envs
+}

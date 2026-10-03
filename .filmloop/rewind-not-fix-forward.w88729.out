@@ -1,0 +1,11 @@
+Done. Sheet 16:50:45, cut 16:51:33 — cut newer, sheet untouched after compile.
+
+**Summary — rewind-not-fix-forward (claude-code): BUILT**
+
+- Cut: `rewind-not-fix-forward.mp4` · 162.8s · **clean master (no slates, 10/10 filled)** · audio −24.2 dB
+- Phase 0: `beat_sheet.pre-rebuild.json` backed up byte-exact; body narration LOCKED.
+- Phase 1 fixes: B00 greeting Liam→"Zdravo, Liam"; B01 FormBCard placeholder→3 real items from narration; B04 gained a real FormBCard pattern (was `motion: stagger` only, would have slated); BVDT template `Key finding one/two/three` → 3 real artifactLines + authored narration that discusses (not recites) the verdict; BHTF bracketed placeholder → real exercise using B02/B03 method + 3 real output lines + authored narration; scenes_std.py B02/B03 rewritten from `Text(narration[:50])` truncations to short category nouns + one complete bottom caption each (§5b).
+- Gates: content, frame, lane, AUDIO, GATE T — all PASS.
+- Gate V (sampled 15/50/85% on 8 beats): all CLEAN. Pacing WARN logged on B00/B04/B05 (>3.4 wps, dense proper-noun content — not silently retimed).
+- Counter: `{VIDEO: 8, MANIM: 2}`. Sheet UNTOUCHED after final compile.
+- Logs: `AUDIT.md`, `REBUILD-LOG.md`, `TYPECHECK.md` in reel dir; entry appended to `youtube/FILMLOOP-LOG.md`.

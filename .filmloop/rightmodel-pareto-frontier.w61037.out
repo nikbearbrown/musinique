@@ -1,0 +1,22 @@
+Both show 01:50. Confirmed by exact seconds: mp4 at 01:50:48, sheet at 01:50:38. Cut is 10 seconds newer. Done.
+
+---
+
+**rightmodel-pareto-frontier — DONE**
+
+**Phase 0:** `beat_sheet.pre-rebuild.json` created before any edit.
+
+**Phase 1 — 9 checks fixed:**
+1. Stale renders: PASS (no mp4s existed)
+2. Bookends: BVDT template stripped → real verdict; BHTF folderLabel `@claude-liam` → `@NikBearBrown`; BHTF generic command → specific pareto sweep prompt
+3. Spark lines: B01(5→4), B03(6→3), B05(7→3), B06(6→3), B07(7→4) words trimmed
+4. Verdict: BVDT authored from body (Sonnet $0.04/90%, $4K/100K calls); narration authored aloud
+5. Card text: BHTF command fixed
+6. Punts: B01/B02/B04 (CwcConceptCard aliases) had only `sparkLine` in props — would render "⚠ SET IN BEAT SHEET"; added eyebrow/title/body for each
+7. Card-only reel: PASS (data visualization scenes present)
+8. Lens: PASS (Popper B04, Hume B05, Plato B06 — 3 moves)
+9. Brand fields: PASS after BHTF fix
+10. Pacing: 7 beats >3.4 wps logged (brisk Kokoro delivery; narration locked)
+11. GATE T: PASS
+
+**Phase 2:** Audio generated (12 beats, Kokoro am_onyx, free). All 14 Remotion beats rendered. Compiled to `rightmodel-pareto-frontier-slate.mp4` (306.8s, 14/14 VIDEO, -24.3 dB). Gate V: zero BLOCKER, zero MAJOR. One MINOR (BHTF topic pre-existing truncation "THE CHEAPES"). Cut is 10 seconds newer than sheet.

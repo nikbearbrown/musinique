@@ -1,0 +1,2708 @@
+//! Runtime descriptor pool.
+//!
+//! [`DescriptorPool`] takes one or more `FileDescriptorProto`s and produces a
+//! flat, linked, feature-resolved set of [`MessageDescriptor`]s and
+//! [`EnumDescriptor`]s. Cross-references (a field of message type, an enum
+//! value type) are resolved to pool-local [`MessageIndex`] / [`EnumIndex`]
+//! handles. Edition features (presence, packed, delimited, enum openness) are
+//! resolved at build time, so every [`FieldDescriptor`] carries final values
+//! and consumers never need to walk a `FeatureSet` chain.
+//!
+//! Construction is two-pass:
+//!
+//! 1. **Register**: walk every file, recording the fully-qualified name of
+//!    every message and enum (including nested ones) and assigning each a
+//!    pool index. This makes forward references and cross-file references
+//!    resolvable in the second pass.
+//! 2. **Link**: walk every file again, building the linked [`MessageDescriptor`]
+//!    for each message: resolving `type_name` strings to indices, classifying
+//!    fields as singular / list / map, resolving features down the
+//!    file → message → field chain, and validating `u16` field-count limits.
+//!
+//! The pool retains the original `FileDescriptorProto`s after linking — gRPC
+//! server reflection needs the raw bytes, and they're cheap to keep relative
+//! to the linked structures.
+
+use alloc::boxed::Box;
+use alloc::collections::{BTreeMap, BTreeSet};
+use alloc::format;
+use alloc::string::{String, ToString};
+use alloc::vec::Vec;
+
+use crate::desc::{
+    EnumDescriptor, EnumIndex, EnumValueDescriptor, ExtensionDescriptor, ExtensionIndex,
+    FieldDescriptor, FieldKind, MessageDescriptor, MessageIndex, MethodDescriptor, OneofDescriptor,
+    ScalarType, ServiceDescriptor, ServiceIndex, SingularKind,
+};
+use crate::features::{self, ResolvedFeatures};
+use crate::generated::descriptor::field_descriptor_proto::{Label, Type as ProtoType};
+use crate::generated::descriptor::{
+    feature_set, DescriptorProto, EnumDescriptorProto, FieldDescriptorProto, FileDescriptorProto,
+    FileDescriptorSet, ServiceDescriptorProto,
+};
+use buffa::editions::{
+    EnumType, FieldPresence, JsonFormat, MessageEncoding, RepeatedFieldEncoding,
+};
+use buffa::MessageField;
+
+/// Clone a descriptor's raw `*Options` into a boxed `Option`, the form the
+/// linked descriptors store. `None` for the common no-options case; one
+/// allocation only when options are present. Generic over the source field's
+/// pointer (`Inline` for non-recursive fields under the default, `Box` for the
+/// recursive `FieldOptions.features` chain).
+fn clone_options<T: Clone + Default, P: buffa::ProtoBox<T>>(
+    opts: &MessageField<T, P>,
+) -> Option<Box<T>> {
+    opts.as_option().cloned().map(Box::new)
+}
+
+/// Maximum length of a fully-qualified symbol name, in bytes.
+///
+/// Matches protoc's own cap. Two things depend on it, neither obvious.
+///
+/// A name is built by concatenating its parent's, and every descendant
+/// stores its own full copy — four of them, across the symbol table, the
+/// name index, the descriptor, and the file index. A deep prefix is paid
+/// once on the wire and once per descendant, so `K` leaf messages under a
+/// `P`-byte prefix cost `4KP` bytes of pool from roughly `P + 7K` bytes of
+/// input. The ratio grows with `P`, which the decode-time element budget
+/// does not bound: a message's `name` is a singular field and is never
+/// charged against it.
+///
+/// It also bounds nesting. Pool construction walks nested messages
+/// recursively in four places with no depth counter of their own, and each
+/// level adds at least one byte to the name, so a name limit is a depth
+/// limit — reached in pass 1, before the other three walks run.
+pub const MAX_SYMBOL_LEN: usize = 512;
+
+/// Reserved number ranges, sorted and coalesced, so a number or a range is
+/// checked with one binary search rather than a scan. Stored half-open;
+/// `DescriptorProto.ReservedRange` is half-open already and
+/// `EnumReservedRange`'s inclusive end is converted on the way in.
+/// Descriptor sets are untrusted input, and a message or enum may declare
+/// tens of thousands of fields or values and as many reserved ranges within
+/// the element budget, so the per-field check must not be linear in the
+/// range count.
+struct ReservedRanges(Vec<(i64, i64)>);
+
+impl ReservedRanges {
+    /// Index a message's reserved ranges, validating each as protoc does: an
+    /// unset bound reads as 0, and the half-open range must satisfy
+    /// `0 < start < end`.
+    fn for_message(
+        message_fqn: &str,
+        ranges: &[crate::generated::descriptor::descriptor_proto::ReservedRange],
+    ) -> Result<Self, PoolError> {
+        let mut checked = Vec::with_capacity(ranges.len());
+        for r in ranges {
+            let (start, end) = (r.start.unwrap_or(0), r.end.unwrap_or(0));
+            if start <= 0 || start >= end {
+                return Err(PoolError::InvalidMessageReservedRange {
+                    message: message_fqn.to_string(),
+                    start: r.start,
+                    end: r.end,
+                });
+            }
+            checked.push((i64::from(start), i64::from(end)));
+        }
+        Ok(Self::from_half_open(checked.into_iter()))
+    }
+
+    /// Index an enum's reserved ranges, validating each as protoc does: an
+    /// unset bound reads as 0, the range is inclusive, may be negative, and
+    /// must satisfy `start <= end`.
+    fn for_enum(
+        enum_fqn: &str,
+        ranges: &[crate::generated::descriptor::enum_descriptor_proto::EnumReservedRange],
+    ) -> Result<Self, PoolError> {
+        let mut checked = Vec::with_capacity(ranges.len());
+        for r in ranges {
+            let (start, end) = (r.start.unwrap_or(0), r.end.unwrap_or(0));
+            if start > end {
+                return Err(PoolError::InvalidEnumReservedRange {
+                    enum_name: enum_fqn.to_string(),
+                    start: r.start,
+                    end: r.end,
+                });
+            }
+            checked.push((i64::from(start), i64::from(end) + 1));
+        }
+        Ok(Self::from_half_open(checked.into_iter()))
+    }
+
+    /// Sort and coalesce validated half-open ranges. Callers validate first;
+    /// the `start < end` filter only protects the coalescing invariant.
+    fn from_half_open(ranges: impl Iterator<Item = (i64, i64)>) -> Self {
+        let mut sorted: Vec<(i64, i64)> = ranges.filter(|&(start, end)| start < end).collect();
+        sorted.sort_unstable();
+        let mut merged: Vec<(i64, i64)> = Vec::with_capacity(sorted.len());
+        for (start, end) in sorted {
+            match merged.last_mut() {
+                Some(last) if start <= last.1 => last.1 = last.1.max(end),
+                _ => merged.push((start, end)),
+            }
+        }
+        Self(merged)
+    }
+
+    fn contains(&self, number: impl Into<i64>) -> bool {
+        let number = number.into();
+        let idx = self.0.partition_point(|&(start, _)| start <= number);
+        idx > 0 && number < self.0[idx - 1].1
+    }
+
+    /// Whether the half-open `start..end` overlaps any reserved range.
+    fn overlaps(&self, start: u32, end: u32) -> bool {
+        let (start, end) = (i64::from(start), i64::from(end));
+        let idx = self
+            .0
+            .partition_point(|&(_, reserved_end)| reserved_end <= start);
+        self.0
+            .get(idx)
+            .is_some_and(|&(reserved_start, _)| reserved_start < end)
+    }
+}
+
+/// Errors that can occur while building a [`DescriptorPool`].
+#[derive(Clone, Debug)]
+#[non_exhaustive]
+pub enum PoolError {
+    /// The `FileDescriptorSet` bytes did not decode. Carries the underlying
+    /// wire-format error.
+    Decode(buffa::DecodeError),
+    /// A file's `public_dependency` names an index outside its `dependency`
+    /// list. The indices are positions in that list, so an out-of-range one
+    /// names no import at all.
+    InvalidPublicDependencyIndex {
+        file: String,
+        index: i32,
+        dependency_count: usize,
+    },
+    /// A file's `weak_dependency` names an index outside its `dependency`
+    /// list.
+    InvalidWeakDependencyIndex {
+        file: String,
+        index: i32,
+        dependency_count: usize,
+    },
+    /// Two files in one `FileDescriptorSet` have the same `name`. protoc
+    /// rejects a file listed twice; the pool's filename index would
+    /// otherwise keep only the last.
+    DuplicateFileName { file: String },
+    /// A file lists a `dependency` that is not in the pool or the set being
+    /// added. Only reported under
+    /// [`LinkOptions::with_required_dependencies`]; by default a missing
+    /// import is tolerated and only the types actually referenced must
+    /// resolve.
+    DependencyNotFound { file: String, dependency: String },
+    /// A `type_name`, `extendee`, or method input/output type resolved to a
+    /// definition in a file the referring file does not import, either
+    /// directly or through a chain of `import public`. protoc rejects the
+    /// same reference ("seems to be defined in ..., which is not imported
+    /// by ..."). `field` is the fully-qualified referring field, extension
+    /// or method. Reported only while
+    /// [`LinkOptions::with_import_visibility`] is on (the default).
+    TypeNotImported {
+        file: String,
+        field: String,
+        type_name: String,
+        defined_in: String,
+    },
+    /// A field had no `type_name` for a `TYPE_MESSAGE`/`TYPE_GROUP`/`TYPE_ENUM`.
+    MissingTypeName { field: String },
+    /// A field whose `type` is set to a scalar carries a non-empty
+    /// `type_name`, which is only valid for message, group, and enum fields.
+    UnexpectedTypeName { field: String, type_name: String },
+    /// A field's `type_name` did not resolve to any registered message or
+    /// enum. Carries the dangling name and the field's fully-qualified name.
+    UnresolvedTypeName { type_name: String, field: String },
+    /// A field's `type_name` resolved to the wrong kind (e.g. a `TYPE_ENUM`
+    /// field referencing a message). Carries the name and the field.
+    WrongTypeKind { type_name: String, field: String },
+    /// Two declarations share the same fully-qualified symbol name.
+    DuplicateName(String),
+    /// A fully-qualified name exceeds [`MAX_SYMBOL_LEN`].
+    NameTooLong { len: usize, limit: usize },
+    /// A message has more than 65 535 fields, exceeding the `u16` index
+    /// limit of the internal field-number lookup table behind
+    /// [`MessageDescriptor::field`].
+    TooManyFields { message: String, count: usize },
+    /// Two fields in one message declare the same field number.
+    DuplicateFieldNumber { message: String, number: u32 },
+    /// Two fields in one message claim the same proto or JSON name.
+    DuplicateFieldName { message: String, name: String },
+    /// A field refers to a oneof declaration that does not exist in its
+    /// containing message.
+    InvalidOneofIndex {
+        message: String,
+        field: String,
+        index: i32,
+    },
+    /// Two oneof declarations in one message have the same name.
+    DuplicateOneofName { message: String, name: String },
+    /// A field number is outside the valid range
+    /// `[1, MAX_FIELD_NUMBER]` (`(1 << 29) - 1`).
+    InvalidFieldNumber { field: String, number: i32 },
+    /// A field number, or a finite extension range, overlaps the field-number
+    /// interval reserved for the protobuf implementation. The bounds are
+    /// [`buffa::encoding::FIRST_RESERVED_FIELD_NUMBER`] through
+    /// [`buffa::encoding::LAST_RESERVED_FIELD_NUMBER`].
+    ReservedFieldNumber { field: String, number: i32 },
+    /// A map entry message did not have exactly fields 1 (key) and 2 (value),
+    /// or the key type is not a valid map key per the protobuf spec.
+    MalformedMapEntry { message: String },
+    /// Two extensions claim the same field number on the same message.
+    /// protoc rejects this within one compilation unit, but it can arise
+    /// when merging independently-compiled `FileDescriptorSet`s.
+    DuplicateExtensionNumber { extendee: String, number: u32 },
+    /// Two methods in one service have the same proto name.
+    DuplicateMethodName { service: String, name: String },
+    /// Two enum values in the same symbol scope have the same proto name.
+    DuplicateEnumValueName { enum_name: String, name: String },
+    /// A message field reuses a name reserved by its containing message.
+    ReservedMessageFieldName { message: String, name: String },
+    /// A message declares the same reserved name more than once.
+    DuplicateMessageReservedName { message: String, name: String },
+    /// A message field uses a number reserved by its containing message.
+    ReservedMessageFieldNumber {
+        message: String,
+        name: String,
+        number: u32,
+    },
+    /// A message extension range overlaps a range reserved by that message.
+    /// `end` is exclusive, as in `DescriptorProto.ReservedRange` and
+    /// `ExtensionRange` (`extensions 5 to 7;` is `start: 5, end: 8`).
+    ReservedExtensionRange {
+        message: String,
+        start: u32,
+        end: u32,
+    },
+    /// A message extension range does not satisfy `0 < start < end`. `end`
+    /// is exclusive, as in `DescriptorProto.ExtensionRange` (`extensions 5
+    /// to 7;` is `start: 5, end: 8`), and an unset bound reads as 0, as protoc
+    /// reads it — so a missing `start` or `end` is reported here too. The
+    /// bounds are carried as declared.
+    InvalidExtensionRange {
+        message: String,
+        start: Option<i32>,
+        end: Option<i32>,
+    },
+    /// Two extension ranges declared by the same message overlap. `end` is
+    /// exclusive, as in `DescriptorProto.ExtensionRange`. Carries both ranges
+    /// as declared: `start..end` is the later of the two in declaration
+    /// order, `other_start..other_end` the earlier one it collides with.
+    /// Contrast [`PoolError::ReservedExtensionRange`], an overlap with a
+    /// *reserved* range.
+    OverlappingExtensionRange {
+        message: String,
+        start: u32,
+        end: u32,
+        other_start: u32,
+        other_end: u32,
+    },
+    /// A message field's number lies inside one of the message's own
+    /// extension ranges.
+    FieldNumberInExtensionRange {
+        message: String,
+        name: String,
+        number: u32,
+    },
+    /// An open enum's first declared value has a non-zero number.
+    OpenEnumFirstValueNotZero {
+        enum_name: String,
+        name: String,
+        number: i32,
+    },
+    /// An enum value reuses a name reserved by its enum declaration.
+    ReservedEnumValueName { enum_name: String, name: String },
+    /// An enum declares the same reserved name more than once.
+    DuplicateEnumReservedName { enum_name: String, name: String },
+    /// An enum value uses a number reserved by its enum declaration.
+    ReservedEnumValueNumber {
+        enum_name: String,
+        name: String,
+        number: i32,
+    },
+    /// Two enum values in the same enum have the same number without
+    /// `allow_alias` enabled.
+    DuplicateEnumValueNumber {
+        enum_name: String,
+        name: String,
+        number: i32,
+    },
+    /// A message reserved range does not satisfy `0 < start < end`. `end` is
+    /// exclusive, as in `DescriptorProto.ReservedRange`, and an unset bound
+    /// reads as 0, as protoc reads it. The bounds are carried as declared.
+    InvalidMessageReservedRange {
+        message: String,
+        start: Option<i32>,
+        end: Option<i32>,
+    },
+    /// An enum reserved range has `start > end`. Both bounds are inclusive,
+    /// as in `EnumDescriptorProto.EnumReservedRange`, may be negative, and an
+    /// unset bound reads as 0. The bounds are carried as declared.
+    InvalidEnumReservedRange {
+        enum_name: String,
+        start: Option<i32>,
+        end: Option<i32>,
+    },
+    /// An enum declares no values.
+    EmptyEnum { enum_name: String },
+}
+
+/// Renders an optional range bound for [`PoolError`] messages: the number,
+/// or `unset` when the descriptor left it out.
+struct Bound(Option<i32>);
+
+impl core::fmt::Display for Bound {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        match self.0 {
+            Some(n) => write!(f, "{n}"),
+            None => f.write_str("unset"),
+        }
+    }
+}
+
+impl core::fmt::Display for PoolError {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        match self {
+            Self::Decode(e) => write!(f, "FileDescriptorSet decode failed: {e}"),
+            Self::InvalidPublicDependencyIndex {
+                file,
+                index,
+                dependency_count,
+            } => {
+                write!(
+                    f,
+                    "file {file} public_dependency index {index} is out of range \
+                     ({dependency_count} dependencies declared)"
+                )
+            }
+            Self::InvalidWeakDependencyIndex {
+                file,
+                index,
+                dependency_count,
+            } => {
+                write!(
+                    f,
+                    "file {file} weak_dependency index {index} is out of range \
+                     ({dependency_count} dependencies declared)"
+                )
+            }
+            Self::MissingTypeName { field } => write!(f, "field {field} has no type_name"),
+            Self::UnexpectedTypeName { field, type_name } => write!(
+                f,
+                "field {field} with scalar type has type_name {type_name:?}"
+            ),
+            Self::DuplicateFileName { file } => {
+                write!(f, "file {file} appears more than once in the set")
+            }
+            Self::DependencyNotFound { file, dependency } => {
+                write!(
+                    f,
+                    "file {file} imports {dependency}, which is not in the pool"
+                )
+            }
+            Self::TypeNotImported {
+                file,
+                field,
+                type_name,
+                defined_in,
+            } => write!(
+                f,
+                "field {field} references {type_name:?}, which is defined in {defined_in} \
+                 and not imported by {file}; add {defined_in} to its dependency list"
+            ),
+            Self::UnresolvedTypeName { type_name, field } => {
+                write!(f, "unresolved type name {type_name:?} on field {field}")
+            }
+            Self::WrongTypeKind { type_name, field } => {
+                write!(
+                    f,
+                    "type name {type_name:?} on field {field} resolves to the wrong kind"
+                )
+            }
+            Self::DuplicateName(name) => write!(f, "duplicate symbol name {name:?}"),
+            Self::NameTooLong { len, limit } => write!(
+                f,
+                "fully-qualified name is {len} bytes, over the {limit}-byte limit"
+            ),
+            Self::TooManyFields { message, count } => {
+                write!(
+                    f,
+                    "message {message} has {count} fields, exceeding the u16 limit"
+                )
+            }
+            Self::DuplicateFieldNumber { message, number } => {
+                write!(
+                    f,
+                    "message {message} declares field number {number} more than once"
+                )
+            }
+            Self::DuplicateFieldName { message, name } => {
+                write!(
+                    f,
+                    "message {message} declares field name {name:?} more than once"
+                )
+            }
+            Self::InvalidOneofIndex {
+                message,
+                field,
+                index,
+            } => write!(
+                f,
+                "field {field} in message {message} has invalid oneof index {index}"
+            ),
+            Self::DuplicateOneofName { message, name } => {
+                write!(
+                    f,
+                    "message {message} declares oneof name {name:?} more than once"
+                )
+            }
+            Self::InvalidFieldNumber { field, number } => {
+                write!(f, "field {field} has invalid field number {number}")
+            }
+            Self::ReservedFieldNumber { field, number } => {
+                write!(
+                    f,
+                    "field {field} uses field number {number}, which is reserved for the protobuf implementation"
+                )
+            }
+            Self::MalformedMapEntry { message } => {
+                write!(f, "malformed map entry message {message}")
+            }
+            Self::DuplicateExtensionNumber { extendee, number } => {
+                write!(
+                    f,
+                    "more than one extension claims field number {number} on {extendee}"
+                )
+            }
+            Self::DuplicateMethodName { service, name } => {
+                write!(
+                    f,
+                    "service {service} declares method {name:?} more than once"
+                )
+            }
+            Self::DuplicateEnumValueName { enum_name, name } => {
+                write!(f, "enum {enum_name} declares value {name:?} more than once")
+            }
+            Self::ReservedMessageFieldName { message, name } => {
+                write!(f, "message {message} field {name:?} reuses a reserved name")
+            }
+            Self::DuplicateMessageReservedName { message, name } => {
+                write!(
+                    f,
+                    "message {message} declares reserved name {name:?} more than once"
+                )
+            }
+            Self::ReservedMessageFieldNumber {
+                message,
+                name,
+                number,
+            } => write!(
+                f,
+                "message {message} field {name:?} uses reserved number {number}"
+            ),
+            Self::ReservedExtensionRange {
+                message,
+                start,
+                end,
+            } => write!(
+                f,
+                "message {message} extension range {start}..{end} overlaps a reserved range"
+            ),
+            Self::InvalidExtensionRange {
+                message,
+                start,
+                end,
+            } => write!(
+                f,
+                "message {message} extension range {}..{} is invalid; bounds must satisfy 0 < start < end",
+                Bound(*start),
+                Bound(*end),
+            ),
+            Self::OverlappingExtensionRange {
+                message,
+                start,
+                end,
+                other_start,
+                other_end,
+            } => write!(
+                f,
+                "message {message} extension range {start}..{end} overlaps extension range \
+                 {other_start}..{other_end}"
+            ),
+            Self::FieldNumberInExtensionRange {
+                message,
+                name,
+                number,
+            } => write!(
+                f,
+                "message {message} field {name:?} uses number {number} inside an extension range"
+            ),
+            Self::OpenEnumFirstValueNotZero {
+                enum_name,
+                name,
+                number,
+            } => write!(
+                f,
+                "open enum {enum_name} first value {name:?} has non-zero number {number}"
+            ),
+            Self::ReservedEnumValueName { enum_name, name } => {
+                write!(f, "enum {enum_name} reuses reserved value name {name:?}")
+            }
+            Self::DuplicateEnumReservedName { enum_name, name } => {
+                write!(
+                    f,
+                    "enum {enum_name} declares reserved name {name:?} more than once"
+                )
+            }
+            Self::ReservedEnumValueNumber {
+                enum_name,
+                name,
+                number,
+            } => write!(
+                f,
+                "enum {enum_name} value {name:?} uses reserved number {number}"
+            ),
+            Self::DuplicateEnumValueNumber {
+                enum_name,
+                name,
+                number,
+            } => write!(
+                f,
+                "enum {enum_name} value {name:?} reuses number {number} without allow_alias"
+            ),
+            Self::InvalidMessageReservedRange {
+                message,
+                start,
+                end,
+            } => write!(
+                f,
+                "message {message} reserved range {}..{} is invalid; bounds must satisfy 0 < start < end",
+                Bound(*start),
+                Bound(*end),
+            ),
+            Self::InvalidEnumReservedRange {
+                enum_name,
+                start,
+                end,
+            } => write!(
+                f,
+                "enum {enum_name} reserved range {} to {} is invalid; start must not exceed end",
+                Bound(*start),
+                Bound(*end),
+            ),
+            Self::EmptyEnum { enum_name } => {
+                write!(f, "enum {enum_name} declares no values")
+            }
+        }
+    }
+}
+
+impl From<buffa::DecodeError> for PoolError {
+    fn from(e: buffa::DecodeError) -> Self {
+        Self::Decode(e)
+    }
+}
+
+#[cfg(feature = "std")]
+impl std::error::Error for PoolError {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            Self::Decode(e) => Some(e),
+            _ => None,
+        }
+    }
+}
+
+/// What a fully-qualified name resolves to within the pool.
+#[derive(Clone, Copy, Debug)]
+enum Definition {
+    Message(MessageIndex),
+    Enum(EnumIndex),
+}
+
+#[derive(Clone, Copy, Debug)]
+enum SymbolKind {
+    Message,
+    Enum,
+    Service,
+    Method,
+    Extension,
+    EnumValue,
+}
+
+/// How strictly [`DescriptorPool`] links files against their import lists.
+///
+/// The defaults match what a `protoc`-produced `FileDescriptorSet` always
+/// satisfies: a file may only reference types from itself, the files it
+/// lists in `dependency`, and anything those re-export through `import
+/// public` ([`import_visibility`](Self::import_visibility), on); a
+/// `dependency` that is absent from the pool is tolerated as long as nothing
+/// referenced lives in it
+/// ([`required_dependencies`](Self::required_dependencies), off), which
+/// keeps sets that strip option-only imports such as
+/// `google/api/annotations.proto` loadable. Pass a value to
+/// [`DescriptorPool::decode_with_link_options`] or
+/// [`DescriptorPool::with_link_options`] to change either:
+///
+/// ```no_run
+/// # use buffa_descriptor::{DescriptorPool, LinkOptions};
+/// # fn f(bytes: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
+/// // Pre-0.10 behaviour: resolve every name across the whole pool.
+/// let pool = DescriptorPool::decode_with_link_options(
+///     bytes,
+///     &buffa::DecodeOptions::new(),
+///     LinkOptions::new().with_import_visibility(false),
+/// )?;
+/// # let _ = pool; Ok(())
+/// # }
+/// ```
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct LinkOptions {
+    import_visibility: bool,
+    required_dependencies: bool,
+}
+
+impl Default for LinkOptions {
+    fn default() -> Self {
+        Self {
+            import_visibility: true,
+            required_dependencies: false,
+        }
+    }
+}
+
+impl LinkOptions {
+    /// The defaults: import visibility enforced, absent imports tolerated.
+    #[must_use]
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    /// Whether a reference to a type defined in a file the referring file does
+    /// not import is rejected ([`PoolError::TypeNotImported`]). Default
+    /// `true`; `false` restores the pre-0.10 behaviour of resolving every type
+    /// name against the whole pool regardless of imports.
+    #[must_use]
+    pub fn with_import_visibility(mut self, on: bool) -> Self {
+        self.import_visibility = on;
+        self
+    }
+
+    /// Whether a file whose `dependency` list names a file that is neither in
+    /// the pool nor in the set being added is rejected
+    /// ([`PoolError::DependencyNotFound`]). Default `false`. Weak
+    /// dependencies (`weak_dependency`) are exempt, as under `protoc`.
+    #[must_use]
+    pub fn with_required_dependencies(mut self, on: bool) -> Self {
+        self.required_dependencies = on;
+        self
+    }
+
+    /// See [`with_import_visibility`](Self::with_import_visibility).
+    #[must_use]
+    pub fn import_visibility(&self) -> bool {
+        self.import_visibility
+    }
+
+    /// See [`with_required_dependencies`](Self::with_required_dependencies).
+    #[must_use]
+    pub fn required_dependencies(&self) -> bool {
+        self.required_dependencies
+    }
+}
+
+/// The file a link step runs for and the files whose symbols it may name.
+#[derive(Clone, Copy)]
+struct LinkScope<'a> {
+    /// Index of the referring file in `files` / `file_by_name`.
+    file: usize,
+    /// Itself, its direct and weak dependencies, and their transitive
+    /// `public_dependency` closure; `None` when visibility is not enforced.
+    visible: Option<&'a BTreeSet<usize>>,
+}
+
+/// A pool of linked, feature-resolved protobuf descriptors.
+///
+/// Built from one or more `FileDescriptorProto`s via [`DescriptorPool::new`]
+/// or accumulated via [`DescriptorPool::add_file_descriptor_set`]. Once built,
+/// the pool is immutable — descriptor handles are pool indices and all data
+/// is stored in flat `Vec`s.
+#[derive(Clone, Debug, Default)]
+pub struct DescriptorPool {
+    /// Original file descriptors, retained for raw access.
+    files: Vec<FileDescriptorProto>,
+    /// Linked message descriptors, indexed by [`MessageIndex`].
+    messages: Vec<MessageDescriptor>,
+    /// Linked enum descriptors, indexed by [`EnumIndex`].
+    enums: Vec<EnumDescriptor>,
+    /// Linked service descriptors, indexed by [`ServiceIndex`].
+    services: Vec<ServiceDescriptor>,
+    /// Linked extension descriptors, indexed by [`ExtensionIndex`].
+    extensions: Vec<ExtensionDescriptor>,
+    /// FQN (no leading dot) → definition lookup.
+    by_name: BTreeMap<String, Definition>,
+    /// Every registered symbol FQN, including methods and enum values.
+    symbols: BTreeMap<String, SymbolKind>,
+    /// Service FQN (no leading dot) → index. Separate from `by_name`
+    /// because `Definition` is `MessageIndex`-or-`EnumIndex` and services
+    /// are linked in a single pass after types resolve.
+    service_by_name: BTreeMap<String, ServiceIndex>,
+    /// Extension FQN (no leading dot) → index. The JSON-parse lookup for
+    /// `"[pkg.ext]"` keys.
+    extension_by_name: BTreeMap<String, ExtensionIndex>,
+    /// `(extendee, field number)` → index. The wire-decode and
+    /// JSON-serialize lookup ("this number on this message is which
+    /// extension?"), and the backing store for
+    /// [`extensions_of`](Self::extensions_of) via a range scan.
+    extension_by_extendee: BTreeMap<(MessageIndex, u32), ExtensionIndex>,
+    /// Filename → index into `files`.
+    file_by_name: BTreeMap<String, usize>,
+    /// Declared symbol FQN → index into `files`. Covers messages (including
+    /// nested), enums (including nested), services, methods, and extensions
+    /// — the symbols gRPC server reflection's `FindFileContainingSymbol`
+    /// resolves.
+    symbol_file: BTreeMap<String, usize>,
+    /// Defining file (index into `files`) of each message, parallel to
+    /// `messages`.
+    message_file: Vec<usize>,
+    /// Defining file (index into `files`) of each enum, parallel to `enums`.
+    enum_file: Vec<usize>,
+    /// Link strictness for every `add_file_descriptor_set` on this pool.
+    link_options: LinkOptions,
+}
+
+impl DescriptorPool {
+    /// An empty pool that links with `options` instead of the defaults; fill
+    /// it with [`add_file_descriptor_set`](Self::add_file_descriptor_set).
+    /// [`new`](Self::new) and [`decode`](Self::decode) use
+    /// [`LinkOptions::default`]; for bytes in hand,
+    /// [`decode_with_link_options`](Self::decode_with_link_options) is the
+    /// one-call form.
+    #[must_use]
+    pub fn with_link_options(options: LinkOptions) -> Self {
+        Self {
+            link_options: options,
+            ..Self::default()
+        }
+    }
+
+    /// The [`LinkOptions`] this pool links with.
+    #[must_use]
+    pub fn link_options(&self) -> LinkOptions {
+        self.link_options
+    }
+
+    /// Build a pool from a single `FileDescriptorSet`.
+    ///
+    /// # Errors
+    ///
+    /// Returns a [`PoolError`] if any type name fails to resolve or resolves
+    /// to a file the referring file does not import, a symbol or field
+    /// identity is declared twice, a field number is out of range or in
+    /// the implementation-reserved band (19000-19999), a field uses a name or
+    /// number its message reserved, an extension range overlaps a reserved
+    /// range, a message or enum declares a reserved name twice, an open enum's
+    /// first value is non-zero, an enum value reuses a reserved name or number
+    /// or a duplicate number without `allow_alias`, a oneof index is invalid,
+    /// a message exceeds 65 535 fields, or a map entry is malformed.
+    pub fn new(set: FileDescriptorSet) -> Result<Self, PoolError> {
+        let mut pool = Self::default();
+        pool.add_file_descriptor_set(set)?;
+        Ok(pool)
+    }
+
+    /// Build a pool from raw `FileDescriptorSet` bytes.
+    ///
+    /// `bytes` is treated as untrusted input — consumers loading a
+    /// `FileDescriptorSet` from a schema registry, gRPC server reflection
+    /// peer, or on-disk policy bundle should call this rather than decoding
+    /// and calling [`DescriptorPool::new`] separately.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`PoolError::Decode`] if the bytes are not a well-formed
+    /// `FileDescriptorSet`, or any other [`PoolError`] on a structural
+    /// validation failure (dangling or unimported type names, out-of-range or
+    /// implementation-reserved field numbers, reserved message fields, an
+    /// overlapping extension range, duplicate symbols or field identities,
+    /// duplicate reserved names, an open enum whose first value is non-zero,
+    /// reserved enum values, duplicate enum numbers without `allow_alias`,
+    /// invalid oneof indices, or malformed map entries).
+    ///
+    /// A large descriptor set can exceed the default element-memory bound —
+    /// the descriptor types are wide structs, so the element footprint runs
+    /// several times the encoded size, and a schema of a few hundred `.proto`
+    /// files can pass it. Use [`decode_with_options`](Self::decode_with_options)
+    /// when the bytes are trusted and large.
+    pub fn decode(bytes: &[u8]) -> Result<Self, PoolError> {
+        Self::decode_with_options(bytes, &buffa::DecodeOptions::new())
+    }
+
+    /// Build a pool from raw `FileDescriptorSet` bytes under caller-supplied
+    /// decode limits.
+    ///
+    /// Every [`DecodeOptions`](buffa::DecodeOptions) field applies; the
+    /// element-memory bound is simply the one a large descriptor set usually
+    /// needs raised.
+    ///
+    /// [`decode`](Self::decode) applies buffa's defaults, which are sized for
+    /// untrusted input. Descriptor sets produced by your own build — a
+    /// `protoc` invocation you control, or bytes a generator embedded — are
+    /// trusted, and a large one will exceed the default element-memory bound.
+    /// Raise or remove it for those:
+    ///
+    /// ```no_run
+    /// # use buffa_descriptor::DescriptorPool;
+    /// # fn f(bytes: &[u8]) -> Result<(), Box<dyn std::error::Error>> {
+    /// let opts = buffa::DecodeOptions::new().with_element_memory_limit(usize::MAX);
+    /// let pool = DescriptorPool::decode_with_options(bytes, &opts)?;
+    /// # let _ = pool; Ok(())
+    /// # }
+    /// ```
+    ///
+    /// # Errors
+    ///
+    /// As [`decode`](Self::decode).
+    pub fn decode_with_options(
+        bytes: &[u8],
+        opts: &buffa::DecodeOptions,
+    ) -> Result<Self, PoolError> {
+        Self::decode_with_link_options(bytes, opts, LinkOptions::default())
+    }
+
+    /// Build a pool from raw `FileDescriptorSet` bytes under caller-supplied
+    /// decode limits and [`LinkOptions`].
+    ///
+    /// [`decode`](Self::decode) and
+    /// [`decode_with_options`](Self::decode_with_options) link with
+    /// [`LinkOptions::default`]; this is the entry point for a set that needs
+    /// the pre-0.10 flat name resolution
+    /// (`LinkOptions::new().with_import_visibility(false)`) or strict import
+    /// presence.
+    ///
+    /// # Errors
+    ///
+    /// As [`decode`](Self::decode), under the given link options.
+    pub fn decode_with_link_options(
+        bytes: &[u8],
+        opts: &buffa::DecodeOptions,
+        link: LinkOptions,
+    ) -> Result<Self, PoolError> {
+        let set = opts.decode_from_slice::<FileDescriptorSet>(bytes)?;
+        let mut pool = Self::with_link_options(link);
+        pool.add_file_descriptor_set(set)?;
+        Ok(pool)
+    }
+
+    /// Add the files in a `FileDescriptorSet` to the pool, registering and
+    /// linking new types. Files already in the pool (by filename) are skipped.
+    /// If linking fails, the pool is left unchanged.
+    ///
+    /// Failure atomicity is implemented by staging the add against a clone of
+    /// the pool, so each call that introduces new files costs a deep copy of
+    /// the existing pool. Callers loading many files should batch them into a
+    /// single `FileDescriptorSet` rather than adding files one set at a time.
+    ///
+    /// A file added here may reference types in files added by an earlier
+    /// call, provided it lists them in `dependency` (see [`LinkOptions`]). A
+    /// `dependency` not yet in the pool is tolerated by default; a reference
+    /// into it fails as [`PoolError::UnresolvedTypeName`], as it always has,
+    /// so a client streaming files one response at a time should add
+    /// dependencies before dependents or batch them into one set. Two files
+    /// with the same name in one set are rejected
+    /// ([`PoolError::DuplicateFileName`]).
+    ///
+    /// # Errors
+    ///
+    /// Returns a [`PoolError`] on resolution or structural validation
+    /// failure, including a reference to a type in a file the referring file
+    /// does not import ([`PoolError::TypeNotImported`]).
+    pub fn add_file_descriptor_set(&mut self, set: FileDescriptorSet) -> Result<(), PoolError> {
+        // Pass 0: per-file structural checks that need no name resolution,
+        // and the fast path for no-op re-adds. Both run ahead of the staged
+        // clone below, so neither a malformed file nor a set whose files are
+        // all present already costs a deep copy of the pool.
+        //
+        // Only new files are checked, as in every later pass: a file already
+        // in the pool cleared this when it was added, and a re-add has to
+        // stay a no-op.
+        let mut new_names = BTreeSet::new();
+        let mut has_new_files = false;
+        for file in &set.file {
+            let is_new = file
+                .name
+                .as_deref()
+                // MSRV: `Option::is_none_or` requires 1.82.
+                .map_or(true, |n| !self.file_by_name.contains_key(n));
+            if is_new {
+                has_new_files = true;
+                if let Some(n) = file.name.as_deref() {
+                    if !new_names.insert(n) {
+                        return Err(PoolError::DuplicateFileName {
+                            file: n.to_string(),
+                        });
+                    }
+                }
+                validate_dependency_indices(file)?;
+            }
+        }
+        if !has_new_files {
+            return Ok(());
+        }
+
+        // Build against a staged clone so fallible later passes cannot leave
+        // the live pool partially mutated.
+        let mut staged = self.clone();
+        staged.add_file_descriptor_set_staged(set)?;
+        *self = staged;
+        Ok(())
+    }
+
+    /// Must only run on the staged clone made by
+    /// [`add_file_descriptor_set`](Self::add_file_descriptor_set): it mutates
+    /// `file_by_name` and the descriptor tables before validation completes
+    /// and relies on the caller discarding the clone on error.
+    fn add_file_descriptor_set_staged(&mut self, set: FileDescriptorSet) -> Result<(), PoolError> {
+        // Filter out files already present (idempotent re-add).
+        let new_files: Vec<FileDescriptorProto> = set
+            .file
+            .into_iter()
+            .filter(|f| {
+                f.name
+                    .as_deref()
+                    // MSRV: `Option::is_none_or` requires 1.82.
+                    .map_or(true, |n| !self.file_by_name.contains_key(n))
+            })
+            .collect();
+        if new_files.is_empty() {
+            return Ok(());
+        }
+
+        // Assign file indices and record filenames up front: dependency
+        // lists name files, and a new file may import another new file.
+        let base = self.files.len();
+        for (i, f) in new_files.iter().enumerate() {
+            if let Some(n) = f.name.as_deref() {
+                self.file_by_name.insert(n.to_string(), base + i);
+            }
+        }
+
+        // Under `required_dependencies`, reject a listed import that is
+        // nowhere in the pool or the set before anything is registered.
+        for f in &new_files {
+            self.check_dependencies_present(f)?;
+        }
+
+        // Pass 1: register all message/enum FQNs and assign indices.
+        // This walk is over the new files only; existing names are already in
+        // `by_name`.
+        let first_new_message = self.messages.len();
+        for (i, file) in new_files.iter().enumerate() {
+            let pkg = file.package.as_deref().unwrap_or("");
+            for msg in &file.message_type {
+                self.register_message(pkg, msg, base + i)?;
+            }
+            for e in &file.enum_type {
+                self.register_enum(pkg, e, base + i)?;
+            }
+        }
+
+        // Pass 2: link. We need to iterate the new files again to fill in
+        // the placeholder `MessageDescriptor`s. Walk in the same order.
+        // Each file links under its own visible set (itself, its
+        // `dependency` entries, and their transitive `public_dependency`
+        // closure). The set is rebuilt per file and per pass rather than
+        // tabulated for the whole batch: a chain of public imports makes the
+        // table quadratic in the file count, and the input is untrusted.
+        let mut linked = first_new_message;
+        for (i, file) in new_files.iter().enumerate() {
+            let pkg = file.package.as_deref().unwrap_or("");
+            let file_features = features::for_file(file);
+            let visible = self.visible_files(base + i, file, base, &new_files);
+            let scope = LinkScope {
+                file: base + i,
+                visible: visible.as_ref(),
+            };
+            for msg in &file.message_type {
+                linked = self.link_message(pkg, msg, &file_features, linked, scope)?;
+            }
+            for e in &file.enum_type {
+                self.link_enum(pkg, e, &file_features)?;
+            }
+        }
+        debug_assert_eq!(linked, self.messages.len());
+
+        // Pass 3: link services and extensions. Both reference message types
+        // by name (a service's method input/output, an extension's extendee
+        // and value type), so they link after the type passes. There's no
+        // register/link split because neither has forward references to its
+        // own kind.
+        let first_new_extension = self.extensions.len();
+        for (i, file) in new_files.iter().enumerate() {
+            let pkg = file.package.as_deref().unwrap_or("");
+            let file_features = features::for_file(file);
+            let visible = self.visible_files(base + i, file, base, &new_files);
+            let scope = LinkScope {
+                file: base + i,
+                visible: visible.as_ref(),
+            };
+            for svc in &file.service {
+                self.link_service(pkg, svc, scope)?;
+            }
+            // File-level extensions: `extend Foo { ... }` at the top level.
+            for ext in &file.extension {
+                self.link_extension(pkg, ext, &file_features, scope)?;
+            }
+            // Message-scoped extensions: `message Scope { extend Foo {...} }`,
+            // registered under `pkg.Scope.ext_name`. Recurses into nested
+            // messages.
+            for msg in &file.message_type {
+                self.link_nested_extensions(pkg, msg, &file_features, scope)?;
+            }
+        }
+        self.finalize_field_enum_types(first_new_message, first_new_extension);
+
+        // Record the symbol → file index (for `FindFileContainingSymbol`).
+        for (i, f) in new_files.iter().enumerate() {
+            self.index_file_symbols(f, base + i);
+        }
+        debug_assert_eq!(self.message_file.len(), self.messages.len());
+        debug_assert_eq!(self.enum_file.len(), self.enums.len());
+        self.files.extend(new_files);
+
+        Ok(())
+    }
+
+    /// Under [`LinkOptions::with_required_dependencies`], reject a
+    /// `dependency` that is neither in the pool nor in the set being added.
+    /// Weak dependencies are exempt, as under `protoc`, which substitutes a
+    /// placeholder for a missing weak import.
+    fn check_dependencies_present(&self, file: &FileDescriptorProto) -> Result<(), PoolError> {
+        if !self.link_options.required_dependencies {
+            return Ok(());
+        }
+        let is_weak = |i: usize| {
+            file.weak_dependency
+                .iter()
+                .any(|&w| usize::try_from(w) == Ok(i))
+        };
+        for (i, dep) in file.dependency.iter().enumerate() {
+            if !self.file_by_name.contains_key(dep.as_str()) && !is_weak(i) {
+                return Err(PoolError::DependencyNotFound {
+                    file: file.name.clone().unwrap_or_default(),
+                    dependency: dep.clone(),
+                });
+            }
+        }
+        Ok(())
+    }
+
+    /// The set of file indices whose types `file` (at index `file_idx`) may
+    /// reference: itself, each `dependency` present in the pool or in
+    /// `new_files` (weak dependencies are entries in that list like any
+    /// other), and, transitively, whatever those re-export through
+    /// `public_dependency`. `None` when visibility is not enforced.
+    ///
+    /// A `dependency` name that is not in the pool contributes nothing; a
+    /// reference into it then fails as `UnresolvedTypeName`.
+    /// `public_dependency` indices were validated against the `dependency`
+    /// list before this runs.
+    fn visible_files(
+        &self,
+        file_idx: usize,
+        file: &FileDescriptorProto,
+        base: usize,
+        new_files: &[FileDescriptorProto],
+    ) -> Option<BTreeSet<usize>> {
+        if !self.link_options.import_visibility {
+            return None;
+        }
+        let proto_at = |idx: usize| -> &FileDescriptorProto {
+            if idx >= base {
+                &new_files[idx - base]
+            } else {
+                &self.files[idx]
+            }
+        };
+        let mut visible = BTreeSet::new();
+        visible.insert(file_idx);
+        // Direct dependencies seed the walk; from there only `import public`
+        // edges are followed, which is protoc's rule (an ordinary import is
+        // not re-exported to the importer's importers).
+        let mut frontier: Vec<usize> = file
+            .dependency
+            .iter()
+            .filter_map(|dep| self.file_by_name.get(dep.as_str()).copied())
+            .filter(|&idx| visible.insert(idx))
+            .collect();
+        while let Some(idx) = frontier.pop() {
+            let dep_file = proto_at(idx);
+            for &pub_i in &dep_file.public_dependency {
+                let reexported = usize::try_from(pub_i)
+                    .ok()
+                    .and_then(|i| dep_file.dependency.get(i))
+                    .and_then(|name| self.file_by_name.get(name.as_str()));
+                // An out-of-range index was rejected in pass 0 (or when the
+                // pooled file was added); an absent file contributes nothing.
+                if let Some(&next) = reexported {
+                    if visible.insert(next) {
+                        frontier.push(next);
+                    }
+                }
+            }
+        }
+        Some(visible)
+    }
+
+    /// Name of the file at `idx`, for error messages. Unnamed files render
+    /// as the empty string, as elsewhere in [`PoolError`].
+    fn file_name_of(&self, idx: usize) -> &str {
+        self.file_by_name
+            .iter()
+            .find_map(|(name, &i)| (i == idx).then_some(name.as_str()))
+            .unwrap_or("")
+    }
+
+    /// Enforce import visibility for a resolved reference: `def_file` is the
+    /// file defining the type that `type_name` resolved to, `referrer` the
+    /// fully-qualified field, extension, or method naming it.
+    fn check_visible(
+        &self,
+        scope: LinkScope<'_>,
+        def_file: usize,
+        type_name: &str,
+        referrer: &str,
+    ) -> Result<(), PoolError> {
+        match scope.visible {
+            Some(visible) if !visible.contains(&def_file) => Err(PoolError::TypeNotImported {
+                file: self.file_name_of(scope.file).to_string(),
+                field: referrer.to_string(),
+                type_name: type_name.to_string(),
+                defined_in: self.file_name_of(def_file).to_string(),
+            }),
+            _ => Ok(()),
+        }
+    }
+
+    /// Record every symbol declared in `file` into `symbol_file`. Indexes the
+    /// full set of named descriptors gRPC server reflection's
+    /// `FindFileContainingSymbol` accepts — messages, fields, oneofs,
+    /// enums, enum values, services, methods, and extensions — each at its
+    /// fully-qualified name, all mapping to the declaring file.
+    fn index_file_symbols(&mut self, file: &FileDescriptorProto, file_idx: usize) {
+        let pkg = file.package.as_deref().unwrap_or("");
+        let join = |scope: &str, name: &str| {
+            if scope.is_empty() {
+                name.to_string()
+            } else {
+                format!("{scope}.{name}")
+            }
+        };
+        for msg in &file.message_type {
+            self.index_message_symbols(pkg, msg, file_idx);
+        }
+        for e in &file.enum_type {
+            self.index_enum_symbols(pkg, e, file_idx);
+        }
+        for svc in &file.service {
+            let svc_fqn = join(pkg, svc.name.as_deref().unwrap_or(""));
+            for m in &svc.method {
+                self.symbol_file.insert(
+                    format!("{svc_fqn}.{}", m.name.as_deref().unwrap_or("")),
+                    file_idx,
+                );
+            }
+            self.symbol_file.insert(svc_fqn, file_idx);
+        }
+        for ext in &file.extension {
+            self.symbol_file
+                .insert(join(pkg, ext.name.as_deref().unwrap_or("")), file_idx);
+        }
+    }
+
+    /// Recursive helper for [`index_file_symbols`](Self::index_file_symbols):
+    /// records `msg` and everything declared inside it (fields, oneofs,
+    /// nested messages, nested enums, message-scoped extensions).
+    fn index_message_symbols(&mut self, scope: &str, msg: &DescriptorProto, file_idx: usize) {
+        let name = msg.name.as_deref().unwrap_or("");
+        let fqn = if scope.is_empty() {
+            name.to_string()
+        } else {
+            format!("{scope}.{name}")
+        };
+        for field in &msg.field {
+            self.symbol_file.insert(
+                format!("{fqn}.{}", field.name.as_deref().unwrap_or("")),
+                file_idx,
+            );
+        }
+        for oneof in &msg.oneof_decl {
+            self.symbol_file.insert(
+                format!("{fqn}.{}", oneof.name.as_deref().unwrap_or("")),
+                file_idx,
+            );
+        }
+        for nested in &msg.nested_type {
+            self.index_message_symbols(&fqn, nested, file_idx);
+        }
+        for e in &msg.enum_type {
+            self.index_enum_symbols(&fqn, e, file_idx);
+        }
+        for ext in &msg.extension {
+            self.symbol_file.insert(
+                format!("{fqn}.{}", ext.name.as_deref().unwrap_or("")),
+                file_idx,
+            );
+        }
+        self.symbol_file.insert(fqn, file_idx);
+    }
+
+    /// Record an enum and its values. Enum values live in the enum's
+    /// *parent* scope per protobuf naming (`pkg.VALUE`, not
+    /// `pkg.Enum.VALUE`), matching how gRPC reflection resolves them.
+    fn index_enum_symbols(&mut self, scope: &str, e: &EnumDescriptorProto, file_idx: usize) {
+        let fqn = if scope.is_empty() {
+            e.name.clone().unwrap_or_default()
+        } else {
+            format!("{scope}.{}", e.name.as_deref().unwrap_or(""))
+        };
+        for v in &e.value {
+            self.symbol_file.insert(
+                format!("{scope}.{}", v.name.as_deref().unwrap_or("")),
+                file_idx,
+            );
+        }
+        self.symbol_file.insert(fqn, file_idx);
+    }
+
+    // ── Public lookup API ──────────────────────────────────────────────────
+
+    /// Look up a message by fully-qualified name (no leading dot).
+    #[must_use]
+    pub fn message_by_name(&self, full_name: &str) -> Option<&MessageDescriptor> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        match self.by_name.get(name)? {
+            Definition::Message(idx) => Some(&self.messages[idx.0 as usize]),
+            Definition::Enum(_) => None,
+        }
+    }
+
+    /// Look up an enum by fully-qualified name (no leading dot).
+    #[must_use]
+    pub fn enum_by_name(&self, full_name: &str) -> Option<&EnumDescriptor> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        match self.by_name.get(name)? {
+            Definition::Enum(idx) => Some(&self.enums[idx.0 as usize]),
+            Definition::Message(_) => None,
+        }
+    }
+
+    /// Look up a message by its [`MessageIndex`].
+    ///
+    /// Indices are stable for the lifetime of the pool — adding files via
+    /// [`add_file_descriptor_set`](Self::add_file_descriptor_set) only appends
+    /// new entries.
+    ///
+    /// # Panics
+    ///
+    /// Panics if `idx`'s ordinal is at or beyond this pool's message count,
+    /// which can only happen with an index issued by a *different* pool.
+    /// `MessageIndex` carries no pool identity; passing an index across pools
+    /// is a logic error and may also silently return the wrong descriptor
+    /// without panicking. Hold one pool per schema and don't mix indices.
+    #[must_use]
+    pub fn message(&self, idx: MessageIndex) -> &MessageDescriptor {
+        &self.messages[idx.0 as usize]
+    }
+
+    /// Look up an enum by its [`EnumIndex`].
+    ///
+    /// # Panics
+    ///
+    /// Same cross-pool hazard as [`Self::message`].
+    #[must_use]
+    pub fn enumeration(&self, idx: EnumIndex) -> &EnumDescriptor {
+        &self.enums[idx.0 as usize]
+    }
+
+    /// The [`MessageIndex`] for a fully-qualified name, if present.
+    #[must_use]
+    pub fn message_index(&self, full_name: &str) -> Option<MessageIndex> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        match self.by_name.get(name)? {
+            Definition::Message(idx) => Some(*idx),
+            Definition::Enum(_) => None,
+        }
+    }
+
+    /// The [`EnumIndex`] for a fully-qualified name, if present.
+    #[must_use]
+    pub fn enum_index(&self, full_name: &str) -> Option<EnumIndex> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        match self.by_name.get(name)? {
+            Definition::Enum(idx) => Some(*idx),
+            Definition::Message(_) => None,
+        }
+    }
+
+    /// All linked messages, in pool index order.
+    #[must_use]
+    pub fn messages(&self) -> &[MessageDescriptor] {
+        &self.messages
+    }
+
+    /// All linked enums, in pool index order.
+    #[must_use]
+    pub fn enums(&self) -> &[EnumDescriptor] {
+        &self.enums
+    }
+
+    /// All linked services, in pool index order.
+    #[must_use]
+    pub fn services(&self) -> &[ServiceDescriptor] {
+        &self.services
+    }
+
+    /// Look up a service by its fully-qualified proto name.
+    #[must_use]
+    pub fn service_by_name(&self, full_name: &str) -> Option<&ServiceDescriptor> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        let idx = self.service_by_name.get(name)?;
+        self.services.get(idx.0 as usize)
+    }
+
+    /// Look up a service by its [`ServiceIndex`].
+    ///
+    /// # Panics
+    ///
+    /// Same cross-pool hazard as [`Self::message`].
+    #[must_use]
+    pub fn service(&self, idx: ServiceIndex) -> &ServiceDescriptor {
+        &self.services[idx.0 as usize]
+    }
+
+    /// The [`ServiceIndex`] for a fully-qualified name, if present.
+    #[must_use]
+    pub fn service_index(&self, full_name: &str) -> Option<ServiceIndex> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        self.service_by_name.get(name).copied()
+    }
+
+    /// All linked extensions, in pool index order.
+    #[must_use]
+    pub fn extensions(&self) -> &[ExtensionDescriptor] {
+        &self.extensions
+    }
+
+    /// Look up an extension by its fully-qualified registration name
+    /// (`pkg.ext_name` for file-level, `pkg.Scope.ext_name` for one declared
+    /// inside a message). This is the JSON `"[...]"` key without the
+    /// brackets.
+    #[must_use]
+    pub fn extension_by_name(&self, full_name: &str) -> Option<&ExtensionDescriptor> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        let idx = self.extension_by_name.get(name)?;
+        self.extensions.get(idx.0 as usize)
+    }
+
+    /// Look up the extension that occupies field number `number` on
+    /// `extendee`, if one is registered.
+    ///
+    /// This is the wire-decode and JSON-serialize lookup: "this field number
+    /// is in `extendee`'s extension range — which extension is it?"
+    #[must_use]
+    pub fn extension_for(
+        &self,
+        extendee: MessageIndex,
+        number: u32,
+    ) -> Option<&ExtensionDescriptor> {
+        let idx = self.extension_by_extendee.get(&(extendee, number))?;
+        self.extensions.get(idx.0 as usize)
+    }
+
+    /// All registered extensions of `extendee`, in field-number order.
+    pub fn extensions_of(
+        &self,
+        extendee: MessageIndex,
+    ) -> impl Iterator<Item = &ExtensionDescriptor> {
+        self.extension_by_extendee
+            .range((extendee, 0)..=(extendee, u32::MAX))
+            .filter_map(|(_, idx)| self.extensions.get(idx.0 as usize))
+    }
+
+    /// The [`ExtensionIndex`] for a fully-qualified registration name, if
+    /// present.
+    #[must_use]
+    pub fn extension_index(&self, full_name: &str) -> Option<ExtensionIndex> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        self.extension_by_name.get(name).copied()
+    }
+
+    /// Look up an extension by its [`ExtensionIndex`].
+    ///
+    /// # Panics
+    ///
+    /// Same cross-pool hazard as [`Self::message`].
+    #[must_use]
+    pub fn extension(&self, idx: ExtensionIndex) -> &ExtensionDescriptor {
+        &self.extensions[idx.0 as usize]
+    }
+
+    /// The original `FileDescriptorProto`s the pool was built from.
+    #[must_use]
+    pub fn files(&self) -> &[FileDescriptorProto] {
+        &self.files
+    }
+
+    /// Look up a `FileDescriptorProto` by filename.
+    #[must_use]
+    pub fn file_by_name(&self, name: &str) -> Option<&FileDescriptorProto> {
+        let idx = *self.file_by_name.get(name)?;
+        Some(&self.files[idx])
+    }
+
+    /// The `FileDescriptorProto` that declares a fully-qualified symbol, the
+    /// way gRPC server reflection's `FindFileContainingSymbol` resolves it.
+    ///
+    /// Resolves messages (including nested), enums (including nested),
+    /// services, methods (`pkg.Service.Method`), and extensions — every
+    /// symbol kind a reflection client queries. `O(log n)` over the symbol
+    /// index.
+    #[must_use]
+    pub fn file_containing_symbol(&self, full_name: &str) -> Option<&FileDescriptorProto> {
+        let name = full_name.strip_prefix('.').unwrap_or(full_name);
+        let idx = *self.symbol_file.get(name)?;
+        Some(&self.files[idx])
+    }
+
+    // ── Pass 1: register names ──────────────────────────────────────────────
+
+    fn register_symbol(&mut self, fqn: &str, kind: SymbolKind) -> Result<(), PoolError> {
+        if fqn.len() > MAX_SYMBOL_LEN {
+            return Err(PoolError::NameTooLong {
+                len: fqn.len(),
+                limit: MAX_SYMBOL_LEN,
+            });
+        }
+        if self.symbols.insert(fqn.to_string(), kind).is_some() {
+            return Err(PoolError::DuplicateName(fqn.to_string()));
+        }
+        Ok(())
+    }
+
+    fn register_message(
+        &mut self,
+        parent_fqn: &str,
+        msg: &DescriptorProto,
+        file_idx: usize,
+    ) -> Result<(), PoolError> {
+        let name = msg.name.as_deref().unwrap_or("");
+        let fqn = if parent_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{parent_fqn}.{name}")
+        };
+        self.register_symbol(&fqn, SymbolKind::Message)?;
+        let idx = MessageIndex(
+            u32::try_from(self.messages.len()).expect("pool message count fits in u32"),
+        );
+        if self
+            .by_name
+            .insert(fqn.clone(), Definition::Message(idx))
+            .is_some()
+        {
+            return Err(PoolError::DuplicateName(fqn));
+        }
+        // Push a placeholder; pass 2 fills it in.
+        self.messages.push(MessageDescriptor {
+            full_name: fqn.clone(),
+            fields: Vec::new(),
+            field_by_number: Vec::new(),
+            field_by_name: Vec::new(),
+            oneofs: Vec::new(),
+            extension_ranges: Vec::new(),
+            options: None,
+        });
+        self.message_file.push(file_idx);
+        for nested in &msg.nested_type {
+            self.register_message(&fqn, nested, file_idx)?;
+        }
+        for nested_enum in &msg.enum_type {
+            self.register_enum(&fqn, nested_enum, file_idx)?;
+        }
+        Ok(())
+    }
+
+    fn register_enum(
+        &mut self,
+        parent_fqn: &str,
+        e: &EnumDescriptorProto,
+        file_idx: usize,
+    ) -> Result<(), PoolError> {
+        let name = e.name.as_deref().unwrap_or("");
+        let fqn = if parent_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{parent_fqn}.{name}")
+        };
+        self.register_symbol(&fqn, SymbolKind::Enum)?;
+        let idx = EnumIndex(u32::try_from(self.enums.len()).expect("pool enum count fits in u32"));
+        if self
+            .by_name
+            .insert(fqn.clone(), Definition::Enum(idx))
+            .is_some()
+        {
+            return Err(PoolError::DuplicateName(fqn));
+        }
+        // Enums don't need a second pass — they have no cross-references —
+        // so we can't fully link them here either, because feature resolution
+        // walks the message hierarchy. Push a placeholder.
+        self.enums.push(EnumDescriptor {
+            full_name: fqn,
+            values: Vec::new(),
+            enum_type: EnumType::Open,
+            options: None,
+        });
+        self.enum_file.push(file_idx);
+        Ok(())
+    }
+
+    // ── Pass 2: link ────────────────────────────────────────────────────────
+
+    /// Link a message and its nested messages/enums. Returns the index after
+    /// the last message linked (used to walk in registration order).
+    fn link_message(
+        &mut self,
+        parent_fqn: &str,
+        msg: &DescriptorProto,
+        parent_features: &ResolvedFeatures,
+        next_index: usize,
+        scope: LinkScope<'_>,
+    ) -> Result<usize, PoolError> {
+        let name = msg.name.as_deref().unwrap_or("");
+        let fqn = if parent_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{parent_fqn}.{name}")
+        };
+        let msg_features =
+            features::resolve_child(parent_features, features::message_features(msg));
+
+        // u16 field index cap.
+        let field_count = msg.field.len();
+        if field_count > u16::MAX as usize {
+            return Err(PoolError::TooManyFields {
+                message: fqn,
+                count: field_count,
+            });
+        }
+
+        // Build oneof descriptors. Track member field indices as we go.
+        let mut oneof_names: BTreeSet<&str> = BTreeSet::new();
+        let mut oneofs = Vec::with_capacity(msg.oneof_decl.len());
+        for o in &msg.oneof_decl {
+            let oneof_name = o.name.as_deref().unwrap_or("");
+            if !oneof_names.insert(oneof_name) {
+                return Err(PoolError::DuplicateOneofName {
+                    message: fqn,
+                    name: oneof_name.to_string(),
+                });
+            }
+            oneofs.push(OneofDescriptor {
+                name: oneof_name.to_string(),
+                field_indices: Vec::new(),
+                synthetic: false,
+                options: clone_options(&o.options),
+            });
+        }
+
+        // Build field descriptors.
+        let mut fields = Vec::with_capacity(field_count);
+        let mut field_by_number: Vec<(u32, u16)> = Vec::with_capacity(field_count);
+        let mut field_by_name: Vec<(String, u16)> = Vec::with_capacity(field_count * 2);
+        let mut field_numbers: BTreeMap<u32, usize> = BTreeMap::new();
+        let mut reserved_names = BTreeSet::new();
+        for name in &msg.reserved_name {
+            if !reserved_names.insert(name.as_str()) {
+                return Err(PoolError::DuplicateMessageReservedName {
+                    message: fqn.clone(),
+                    name: name.clone(),
+                });
+            }
+        }
+        let reserved_ranges = ReservedRanges::for_message(&fqn, &msg.reserved_range)?;
+        let mut field_names: BTreeMap<String, usize> = BTreeMap::new();
+        // Two fields resolving to one JSON name make JSON lookup ambiguous, but
+        // protobuf permits it where JSON is best-effort: protoc emits such a
+        // set for proto2 with only a warning, and honours
+        // `deprecated_legacy_json_field_conflicts` to opt a proto3 or editions
+        // message back into that leniency. Enforcing here regardless would
+        // reject descriptor sets protoc produced, so gate on the same signals
+        // it uses — `json_format` already resolves to `LegacyBestEffort` for
+        // proto2 and `Allow` for proto3 and editions. protoc rejects every
+        // conflict this leaves through, so the check still catches ambiguity in
+        // a hand-built or third-party set without ever refusing protoc's own
+        // output.
+        let enforce_json_names = msg_features.json_format == JsonFormat::Allow
+            && !msg
+                .options
+                .deprecated_legacy_json_field_conflicts
+                .unwrap_or(false);
+        for (i, f) in msg.field.iter().enumerate() {
+            if let Some(oneof_index) = f.oneof_index {
+                let valid = usize::try_from(oneof_index)
+                    .ok()
+                    .is_some_and(|index| index < oneofs.len());
+                if !valid {
+                    return Err(PoolError::InvalidOneofIndex {
+                        message: fqn.clone(),
+                        field: format!("{fqn}.{}", f.name.as_deref().unwrap_or("")),
+                        index: oneof_index,
+                    });
+                }
+            }
+            let fd = self.link_field(&fqn, f, &msg_features, Some(msg), scope)?;
+            if reserved_names.contains(fd.name.as_str()) {
+                return Err(PoolError::ReservedMessageFieldName {
+                    message: fqn.clone(),
+                    name: fd.name.clone(),
+                });
+            }
+            if reserved_ranges.contains(fd.number) {
+                return Err(PoolError::ReservedMessageFieldNumber {
+                    message: fqn.clone(),
+                    name: fd.name.clone(),
+                    number: fd.number,
+                });
+            }
+            if field_numbers.insert(fd.number, i).is_some() {
+                return Err(PoolError::DuplicateFieldNumber {
+                    message: fqn.clone(),
+                    number: fd.number,
+                });
+            }
+            if field_names.insert(fd.name.clone(), i).is_some() {
+                return Err(PoolError::DuplicateFieldName {
+                    message: fqn.clone(),
+                    name: fd.name.clone(),
+                });
+            }
+            if enforce_json_names
+                && fd.json_name != fd.name
+                && field_names.insert(fd.json_name.clone(), i).is_some()
+            {
+                return Err(PoolError::DuplicateFieldName {
+                    message: fqn.clone(),
+                    name: fd.json_name.clone(),
+                });
+            }
+            let i16 = i as u16;
+            // Wire up oneof membership.
+            if let Some(oneof_idx) = fd.oneof_index {
+                let oi = oneof_idx as usize;
+                if let Some(o) = oneofs.get_mut(oi) {
+                    o.field_indices.push(i16);
+                }
+            }
+            field_by_number.push((fd.number, i16));
+            // Index both the proto name and the JSON name so a single
+            // `field_by_name` resolves either — JSON parsers must accept
+            // both per the proto3 JSON spec, and CEL evaluators look up by
+            // the proto name.
+            field_by_name.push((fd.name.clone(), i16));
+            if fd.json_name != fd.name {
+                field_by_name.push((fd.json_name.clone(), i16));
+            }
+            fields.push(fd);
+        }
+        field_by_number.sort_unstable_by_key(|&(n, _)| n);
+        field_by_name.sort_unstable_by(|(a, _), (b, _)| a.cmp(b));
+
+        // Mark synthetic oneofs (proto3 optional). Per protobuf semantics,
+        // a synthetic oneof has exactly one member field and that field has
+        // `proto3_optional = true`.
+        for o in &mut oneofs {
+            if o.field_indices.len() == 1 {
+                let fidx = o.field_indices[0] as usize;
+                if msg.field[fidx].proto3_optional == Some(true) {
+                    o.synthetic = true;
+                }
+            }
+        }
+
+        // protoc reads an unset bound as 0 and then requires `0 < start < end`,
+        // so a negative, zero, missing, empty or reversed range is one error.
+        let mut extension_ranges: Vec<(u32, u32)> = Vec::with_capacity(msg.extension_range.len());
+        for r in &msg.extension_range {
+            let bounds = match (
+                u32::try_from(r.start.unwrap_or(0)),
+                u32::try_from(r.end.unwrap_or(0)),
+            ) {
+                (Ok(start), Ok(end)) if start > 0 && start < end => Some((start, end)),
+                _ => None,
+            };
+            let Some((start, end)) = bounds else {
+                return Err(PoolError::InvalidExtensionRange {
+                    message: fqn.clone(),
+                    start: r.start,
+                    end: r.end,
+                });
+            };
+            if reserved_ranges.overlaps(start, end) {
+                return Err(PoolError::ReservedExtensionRange {
+                    message: fqn.clone(),
+                    start,
+                    end,
+                });
+            }
+            // Ranges that span the implementation-reserved band are kept as
+            // declared, as protoc and protobuf-go do (`descriptor.proto`'s own
+            // `extensions 1000 to max;` spans it). An extension *numbered* in
+            // the band is rejected in `link_field` before any range check.
+            extension_ranges.push((start, end));
+        }
+
+        // Overlap is independent of declaration order, so check a copy sorted
+        // by start: after sorting, any overlap shows up between a range and
+        // the furthest-reaching range before it. The declaration index rides
+        // along so the error names the later-declared range first, as protoc
+        // does. (`extension_ranges` itself stays in declaration order.)
+        let mut by_start: Vec<(u32, u32, usize)> = extension_ranges
+            .iter()
+            .enumerate()
+            .map(|(i, &(start, end))| (start, end, i))
+            .collect();
+        by_start.sort_unstable();
+        let mut reach: Option<(u32, u32, usize)> = None;
+        for &(start, end, i) in &by_start {
+            if let Some((prev_start, prev_end, j)) = reach {
+                if start < prev_end {
+                    let (later, earlier) = if i > j {
+                        ((start, end), (prev_start, prev_end))
+                    } else {
+                        ((prev_start, prev_end), (start, end))
+                    };
+                    return Err(PoolError::OverlappingExtensionRange {
+                        message: fqn,
+                        start: later.0,
+                        end: later.1,
+                        other_start: earlier.0,
+                        other_end: earlier.1,
+                    });
+                }
+            }
+            if reach.map_or(true, |(_, prev_end, _)| end > prev_end) {
+                reach = Some((start, end, i));
+            }
+        }
+
+        // A declared field may not sit inside one of the message's own
+        // extension ranges (protoc: "Extension range $0 to $1 includes field
+        // $2"). Index the ranges once so the check is a binary search per
+        // field rather than a scan of every range.
+        let extension_lookup = ReservedRanges::from_half_open(
+            extension_ranges
+                .iter()
+                .map(|&(start, end)| (i64::from(start), i64::from(end))),
+        );
+        if let Some(fd) = fields
+            .iter()
+            .find(|fd| extension_lookup.contains(fd.number))
+        {
+            return Err(PoolError::FieldNumberInExtensionRange {
+                message: fqn,
+                name: fd.name.clone(),
+                number: fd.number,
+            });
+        }
+
+        // Replace the placeholder. Pass 1 registered messages depth-first
+        // (this message before its nested messages), and pass 2 walks in the
+        // same order, so `next_index` is exactly this message's slot.
+        //
+        // This invariant is load-bearing for cross-reference correctness —
+        // a desync would silently write a `MessageDescriptor` into the wrong
+        // slot, corrupting every cross-reference in the pool. Assert it in
+        // release builds: a panic on bad input is preferable to a pool that
+        // returns wrong descriptors at runtime.
+        assert_eq!(
+            self.messages[next_index].full_name, fqn,
+            "pass-1/pass-2 walk order desync (this is a bug in DescriptorPool)"
+        );
+        self.messages[next_index] = MessageDescriptor {
+            full_name: fqn.clone(),
+            fields,
+            field_by_number,
+            field_by_name,
+            oneofs,
+            extension_ranges,
+            options: clone_options(&msg.options),
+        };
+        let mut after = next_index + 1;
+
+        // Recurse into nested messages. The nested message indices follow
+        // this one in registration order.
+        for nested in &msg.nested_type {
+            after = self.link_message(&fqn, nested, &msg_features, after, scope)?;
+        }
+        // Link nested enums.
+        for nested_enum in &msg.enum_type {
+            self.link_enum(&fqn, nested_enum, &msg_features)?;
+        }
+        Ok(after)
+    }
+
+    fn link_enum(
+        &mut self,
+        parent_fqn: &str,
+        e: &EnumDescriptorProto,
+        parent_features: &ResolvedFeatures,
+    ) -> Result<(), PoolError> {
+        let name = e.name.as_deref().unwrap_or("");
+        let fqn = if parent_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{parent_fqn}.{name}")
+        };
+        let enum_features = features::resolve_child(parent_features, features::enum_features(e));
+        if e.value.is_empty() {
+            return Err(PoolError::EmptyEnum { enum_name: fqn });
+        }
+        if enum_features.enum_type == EnumType::Open {
+            if let Some(first) = e.value.first() {
+                let number = first.number.unwrap_or(0);
+                if number != 0 {
+                    return Err(PoolError::OpenEnumFirstValueNotZero {
+                        enum_name: fqn.clone(),
+                        name: first.name.clone().unwrap_or_default(),
+                        number,
+                    });
+                }
+            }
+        }
+        let idx = self.enum_index(&fqn).expect("enum registered in pass 1");
+        let mut reserved_names = BTreeSet::new();
+        for name in &e.reserved_name {
+            if !reserved_names.insert(name.as_str()) {
+                return Err(PoolError::DuplicateEnumReservedName {
+                    enum_name: fqn.clone(),
+                    name: name.clone(),
+                });
+            }
+        }
+        let reserved_ranges = ReservedRanges::for_enum(&fqn, &e.reserved_range)?;
+        let allow_alias = e
+            .options
+            .as_option()
+            .and_then(|options| options.allow_alias)
+            .unwrap_or(false);
+        let mut value_names = BTreeSet::new();
+        let mut value_numbers = BTreeSet::new();
+        let mut values = Vec::with_capacity(e.value.len());
+        for v in &e.value {
+            let value_name = v.name.clone().unwrap_or_default();
+            if !value_names.insert(value_name.clone()) {
+                return Err(PoolError::DuplicateEnumValueName {
+                    enum_name: fqn.clone(),
+                    name: value_name,
+                });
+            }
+            if reserved_names.contains(value_name.as_str()) {
+                return Err(PoolError::ReservedEnumValueName {
+                    enum_name: fqn.clone(),
+                    name: value_name,
+                });
+            }
+            let number = v.number.unwrap_or(0);
+            if reserved_ranges.contains(number) {
+                return Err(PoolError::ReservedEnumValueNumber {
+                    enum_name: fqn.clone(),
+                    name: value_name,
+                    number,
+                });
+            }
+            // With allow_alias the set is never populated: protoc allows any
+            // number to repeat then, and lookup keeps the first declaration.
+            if !allow_alias && !value_numbers.insert(number) {
+                return Err(PoolError::DuplicateEnumValueNumber {
+                    enum_name: fqn.clone(),
+                    name: value_name,
+                    number,
+                });
+            }
+            let value_fqn = if parent_fqn.is_empty() {
+                value_name.clone()
+            } else {
+                format!("{parent_fqn}.{value_name}")
+            };
+            if matches!(self.symbols.get(&value_fqn), Some(SymbolKind::EnumValue)) {
+                return Err(PoolError::DuplicateEnumValueName {
+                    enum_name: fqn.clone(),
+                    name: value_name,
+                });
+            }
+            self.register_symbol(&value_fqn, SymbolKind::EnumValue)?;
+            values.push(EnumValueDescriptor {
+                name: value_name,
+                number,
+                options: clone_options(&v.options),
+            });
+        }
+        self.enums[idx.0 as usize] = EnumDescriptor {
+            full_name: fqn,
+            values,
+            enum_type: enum_features.enum_type,
+            options: clone_options(&e.options),
+        };
+        Ok(())
+    }
+
+    fn link_service(
+        &mut self,
+        parent_fqn: &str,
+        svc: &ServiceDescriptorProto,
+        scope: LinkScope<'_>,
+    ) -> Result<(), PoolError> {
+        let name = svc.name.as_deref().unwrap_or("");
+        let fqn = if parent_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{parent_fqn}.{name}")
+        };
+        let mut method_names = BTreeSet::new();
+        let mut methods = Vec::with_capacity(svc.method.len());
+        for m in &svc.method {
+            let mname = m.name.as_deref().unwrap_or("").to_string();
+            if !method_names.insert(mname.clone()) {
+                return Err(PoolError::DuplicateMethodName {
+                    service: fqn.clone(),
+                    name: mname,
+                });
+            }
+            let method_fqn = format!("{fqn}.{}", m.name.as_deref().unwrap_or(""));
+            self.register_symbol(&method_fqn, SymbolKind::Method)?;
+            let input =
+                self.resolve_message_type_name(m.input_type.as_deref(), &method_fqn, scope)?;
+            let output =
+                self.resolve_message_type_name(m.output_type.as_deref(), &method_fqn, scope)?;
+            methods.push(MethodDescriptor {
+                name: mname,
+                input,
+                output,
+                client_streaming: m.client_streaming.unwrap_or(false),
+                server_streaming: m.server_streaming.unwrap_or(false),
+                options: clone_options(&m.options),
+            });
+        }
+        self.register_symbol(&fqn, SymbolKind::Service)?;
+        let idx = ServiceIndex(
+            u32::try_from(self.services.len()).expect("pool service count fits in u32"),
+        );
+        self.service_by_name.insert(fqn.clone(), idx);
+        self.services.push(ServiceDescriptor {
+            full_name: fqn,
+            methods,
+            options: clone_options(&svc.options),
+        });
+        Ok(())
+    }
+
+    /// Link one extension declaration scoped under `scope_fqn` (the package
+    /// for file-level extensions, the declaring message's FQN for nested
+    /// ones).
+    fn link_extension(
+        &mut self,
+        scope_fqn: &str,
+        ext: &FieldDescriptorProto,
+        parent_features: &ResolvedFeatures,
+        scope: LinkScope<'_>,
+    ) -> Result<(), PoolError> {
+        let name = ext.name.as_deref().unwrap_or("");
+        let fqn = if scope_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{scope_fqn}.{name}")
+        };
+        self.register_symbol(&fqn, SymbolKind::Extension)?;
+        let extendee = self.resolve_message_type_name(ext.extendee.as_deref(), &fqn, scope)?;
+        // The field links exactly like a declared field. `containing_msg` is
+        // `None` because extensions cannot be map fields (a map requires a
+        // synthetic MapEntry message nested in the declaring message, which
+        // an `extend` block cannot contain).
+        let mut field = self.link_field(scope_fqn, ext, parent_features, None, scope)?;
+        // Extensions cannot be oneof members. A malformed FieldDescriptorProto
+        // carrying `oneof_index` would otherwise make `set()` clear the
+        // *extendee's* declared oneof members (the index would be interpreted
+        // against the extendee's oneof table). Scrub rather than reject —
+        // there is exactly one valid interpretation of an extension's oneof
+        // membership, and it is "none".
+        field.oneof_index = None;
+        // Validate the number falls inside one of the extendee's declared
+        // extension ranges.
+        let extendee_message = &self.messages[extendee.0 as usize];
+        if !extendee_message.in_extension_range(field.number) {
+            return Err(PoolError::InvalidFieldNumber {
+                field: fqn,
+                // `link_field` bounds the number to `MAX_FIELD_NUMBER`
+                // (2^29 - 1), which fits `i32`; saturate defensively anyway.
+                number: i32::try_from(field.number).unwrap_or(i32::MAX),
+            });
+        }
+        // Two extensions claiming the same field number on the same message
+        // is a conflict protoc rejects within one compilation unit but which
+        // can arise when merging independently-compiled FileDescriptorSets.
+        // Registering both would make one a phantom: resolvable by name but
+        // never used by the wire or JSON codecs.
+        if self
+            .extension_by_extendee
+            .contains_key(&(extendee, field.number))
+        {
+            return Err(PoolError::DuplicateExtensionNumber {
+                extendee: self.messages[extendee.0 as usize].full_name.clone(),
+                number: field.number,
+            });
+        }
+        let json_key = format!("[{fqn}]");
+        let idx = ExtensionIndex(
+            u32::try_from(self.extensions.len()).expect("pool extension count fits in u32"),
+        );
+        self.extension_by_name.insert(fqn.clone(), idx);
+        self.extension_by_extendee
+            .insert((extendee, field.number), idx);
+        self.extensions.push(ExtensionDescriptor {
+            field,
+            full_name: fqn,
+            json_key,
+            extendee,
+        });
+        Ok(())
+    }
+
+    /// Recursively link extensions declared inside `msg` and its nested
+    /// messages. A nested extension's registration name is scoped under the
+    /// declaring message: `pkg.Scope.ext_name`.
+    fn link_nested_extensions(
+        &mut self,
+        parent_fqn: &str,
+        msg: &DescriptorProto,
+        parent_features: &ResolvedFeatures,
+        scope: LinkScope<'_>,
+    ) -> Result<(), PoolError> {
+        let name = msg.name.as_deref().unwrap_or("");
+        let fqn = if parent_fqn.is_empty() {
+            name.to_string()
+        } else {
+            format!("{parent_fqn}.{name}")
+        };
+        let msg_features =
+            features::resolve_child(parent_features, features::message_features(msg));
+        for ext in &msg.extension {
+            self.link_extension(&fqn, ext, &msg_features, scope)?;
+        }
+        for nested in &msg.nested_type {
+            self.link_nested_extensions(&fqn, nested, &msg_features, scope)?;
+        }
+        Ok(())
+    }
+
+    /// Resolve a method's `input_type`/`output_type` (a leading-dot FQN like
+    /// `.my.pkg.Request`) to a [`MessageIndex`].
+    fn resolve_message_type_name(
+        &self,
+        type_name: Option<&str>,
+        method_fqn: &str,
+        scope: LinkScope<'_>,
+    ) -> Result<MessageIndex, PoolError> {
+        let tn = type_name.ok_or_else(|| PoolError::MissingTypeName {
+            field: method_fqn.to_string(),
+        })?;
+        let lookup = tn.strip_prefix('.').unwrap_or(tn);
+        match self.by_name.get(lookup) {
+            Some(Definition::Message(midx)) => {
+                self.check_visible(scope, self.message_file[midx.0 as usize], tn, method_fqn)?;
+                Ok(*midx)
+            }
+            Some(Definition::Enum(_)) => Err(PoolError::WrongTypeKind {
+                type_name: tn.to_string(),
+                field: method_fqn.to_string(),
+            }),
+            None => Err(PoolError::UnresolvedTypeName {
+                type_name: tn.to_string(),
+                field: method_fqn.to_string(),
+            }),
+        }
+    }
+
+    fn link_field(
+        &self,
+        msg_fqn: &str,
+        f: &FieldDescriptorProto,
+        parent_features: &ResolvedFeatures,
+        containing_msg: Option<&DescriptorProto>,
+        scope: LinkScope<'_>,
+    ) -> Result<FieldDescriptor, PoolError> {
+        let name = f.name.clone().unwrap_or_default();
+        let field_fqn = format!("{msg_fqn}.{name}");
+        let resolved = features::resolve_child(parent_features, features::field_features(f));
+
+        let label = f.label.unwrap_or_default();
+        let proto_ty = f.r#type.unwrap_or_default();
+        let is_repeated = label == Label::LABEL_REPEATED;
+
+        // Resolve the singular kind (element type).
+        let element = self.resolve_singular(f.r#type, f.type_name.as_deref(), &field_fqn, scope)?;
+
+        // Detect map fields: repeated + message type + the message is a
+        // map_entry. `containing_msg` is `None` for extensions, which cannot
+        // be map fields — the lookup is skipped entirely.
+        let (kind, enum_type) = if is_repeated {
+            if let SingularKind::Message(midx) = element {
+                if let Some(entry) = containing_msg.and_then(|m| self.find_map_entry(m, f)) {
+                    let (key_ty, value_kind) = self.resolve_map_entry(entry, &field_fqn, scope)?;
+                    let enum_type = entry
+                        .field
+                        .iter()
+                        .find(|field| field.number == Some(2))
+                        .and_then(|field| self.resolve_field_enum_type(field, value_kind));
+                    // Map entry messages are synthetic — they're not real
+                    // pool members for reflection purposes, but we leave
+                    // them registered (consumers can ignore them).
+                    let _ = midx;
+                    (
+                        FieldKind::Map {
+                            key: key_ty,
+                            value: value_kind,
+                        },
+                        enum_type,
+                    )
+                } else {
+                    (FieldKind::List(element), None)
+                }
+            } else {
+                (
+                    FieldKind::List(element),
+                    self.resolve_field_enum_type(f, element),
+                )
+            }
+        } else {
+            (
+                FieldKind::Singular(element),
+                self.resolve_field_enum_type(f, element),
+            )
+        };
+
+        // Resolve presence.
+        let presence = if is_repeated {
+            // Repeated/map fields have no presence.
+            FieldPresence::Implicit
+        } else if label == Label::LABEL_REQUIRED {
+            FieldPresence::LegacyRequired
+        } else if f.proto3_optional == Some(true) || f.oneof_index.is_some() {
+            // proto3 `optional` and any oneof member always have explicit
+            // presence regardless of edition features. A oneof field set
+            // to its type's default value is still "present" — the oneof
+            // discriminant carries that information on the wire.
+            FieldPresence::Explicit
+        } else if matches!(element, SingularKind::Message(_))
+            && !matches!(kind, FieldKind::Map { .. })
+        {
+            // Singular message fields always have explicit presence (you can
+            // distinguish absent from default).
+            FieldPresence::Explicit
+        } else {
+            resolved.field_presence
+        };
+
+        // Resolve packed encoding.
+        // Per the spec, only repeated scalar/enum fields are packable.
+        let packable = matches!(
+            kind,
+            FieldKind::List(SingularKind::Scalar(s)) if !matches!(s, ScalarType::String | ScalarType::Bytes)
+        ) || matches!(kind, FieldKind::List(SingularKind::Enum(_)));
+        let packed = if packable {
+            // An explicit [packed = ...] option wins over feature resolution.
+            match f.options.as_option().and_then(|o| o.packed) {
+                Some(p) => p,
+                None => resolved.repeated_field_encoding == RepeatedFieldEncoding::Packed,
+            }
+        } else {
+            false
+        };
+
+        // Resolve delimited (group) encoding.
+        // proto2/proto3: TYPE_GROUP is delimited; TYPE_MESSAGE is length-prefixed.
+        // editions: message_encoding feature controls it.
+        let delimited = if proto_ty == ProtoType::TYPE_GROUP {
+            true
+        } else if matches!(element, SingularKind::Message(_)) {
+            resolved.message_encoding == MessageEncoding::Delimited
+        } else {
+            false
+        };
+
+        let oneof_index = f.oneof_index.and_then(|i| u16::try_from(i).ok());
+
+        let json_name = f
+            .json_name
+            .clone()
+            .unwrap_or_else(|| derive_json_name(&name));
+
+        // Validate the field number. The wire format reserves 0, and the
+        // upper bound is `(1 << 29) - 1`. Spec-compliant `protoc` never emits
+        // an invalid number, but the input is no longer trusted to come from
+        // `protoc` once consumers feed network-loaded descriptors.
+        let raw_number = f.number.unwrap_or(0);
+        let number = u32::try_from(raw_number)
+            .ok()
+            .filter(|&n| (1..=buffa::encoding::MAX_FIELD_NUMBER).contains(&n))
+            .ok_or_else(|| PoolError::InvalidFieldNumber {
+                field: field_fqn.clone(),
+                number: raw_number,
+            })?;
+        if (buffa::encoding::FIRST_RESERVED_FIELD_NUMBER
+            ..=buffa::encoding::LAST_RESERVED_FIELD_NUMBER)
+            .contains(&number)
+        {
+            return Err(PoolError::ReservedFieldNumber {
+                field: field_fqn,
+                number: raw_number,
+            });
+        }
+
+        Ok(FieldDescriptor {
+            name,
+            json_name,
+            number,
+            kind,
+            presence,
+            packed,
+            delimited,
+            oneof_index,
+            enum_type,
+            options: clone_options(&f.options),
+        })
+    }
+
+    fn resolve_field_enum_type(
+        &self,
+        field: &FieldDescriptorProto,
+        kind: SingularKind,
+    ) -> Option<EnumType> {
+        let SingularKind::Enum(_) = kind else {
+            return None;
+        };
+        let field_opens_enum = features::field_features(field).and_then(|fs| fs.enum_type)
+            == Some(feature_set::EnumType::OPEN);
+        field_opens_enum.then_some(EnumType::Open)
+    }
+
+    fn finalize_field_enum_types(&mut self, first_new_message: usize, first_new_extension: usize) {
+        let enums = &self.enums;
+        let resolve = |field: &mut FieldDescriptor| {
+            if field.enum_type.is_some() {
+                return;
+            }
+            let eidx = match field.kind {
+                FieldKind::Singular(SingularKind::Enum(eidx))
+                | FieldKind::List(SingularKind::Enum(eidx))
+                | FieldKind::Map {
+                    value: SingularKind::Enum(eidx),
+                    ..
+                } => eidx,
+                _ => return,
+            };
+            field.enum_type = Some(enums[eidx.0 as usize].enum_type());
+        };
+        for message in &mut self.messages[first_new_message..] {
+            for field in &mut message.fields {
+                resolve(field);
+            }
+        }
+        for extension in &mut self.extensions[first_new_extension..] {
+            resolve(&mut extension.field);
+        }
+    }
+
+    fn resolve_singular(
+        &self,
+        ty: Option<ProtoType>,
+        type_name: Option<&str>,
+        field_fqn: &str,
+        scope: LinkScope<'_>,
+    ) -> Result<SingularKind, PoolError> {
+        let explicit_ty = ty.is_some();
+        let ty = ty.unwrap_or_default();
+        if let Some(scalar) = ScalarType::from_proto(ty) {
+            // A `type_name` is an error only beside an explicit scalar `type`,
+            // and an empty one counts as absent. protoc and protobuf-go infer
+            // the kind of a field with no `type` from its `type_name`; this
+            // pool does not, and links such a field as the default scalar.
+            if explicit_ty {
+                if let Some(type_name) = type_name.filter(|tn| !tn.is_empty()) {
+                    return Err(PoolError::UnexpectedTypeName {
+                        field: field_fqn.to_string(),
+                        type_name: type_name.to_string(),
+                    });
+                }
+            }
+            return Ok(SingularKind::Scalar(scalar));
+        }
+        // ENUM, MESSAGE, GROUP — resolve type_name.
+        let tn = type_name.ok_or_else(|| PoolError::MissingTypeName {
+            field: field_fqn.to_string(),
+        })?;
+        let lookup = tn.strip_prefix('.').unwrap_or(tn);
+        match self.by_name.get(lookup) {
+            Some(Definition::Message(midx))
+                if matches!(ty, ProtoType::TYPE_MESSAGE | ProtoType::TYPE_GROUP) =>
+            {
+                self.check_visible(scope, self.message_file[midx.0 as usize], tn, field_fqn)?;
+                Ok(SingularKind::Message(*midx))
+            }
+            Some(Definition::Enum(eidx)) if ty == ProtoType::TYPE_ENUM => {
+                self.check_visible(scope, self.enum_file[eidx.0 as usize], tn, field_fqn)?;
+                Ok(SingularKind::Enum(*eidx))
+            }
+            Some(_) => Err(PoolError::WrongTypeKind {
+                type_name: tn.to_string(),
+                field: field_fqn.to_string(),
+            }),
+            None => Err(PoolError::UnresolvedTypeName {
+                type_name: tn.to_string(),
+                field: field_fqn.to_string(),
+            }),
+        }
+    }
+
+    /// Find the nested map-entry message for a repeated message field.
+    fn find_map_entry<'a>(
+        &self,
+        containing: &'a DescriptorProto,
+        f: &FieldDescriptorProto,
+    ) -> Option<&'a DescriptorProto> {
+        if f.label.unwrap_or_default() != Label::LABEL_REPEATED {
+            return None;
+        }
+        if f.r#type.unwrap_or_default() != ProtoType::TYPE_MESSAGE {
+            return None;
+        }
+        let tn = f.type_name.as_deref()?;
+        // Map entry messages are nested inside the containing message and
+        // have name `<FieldName>Entry`. The type_name's last segment is the
+        // entry message name.
+        let entry_name = tn.rsplit('.').next()?;
+        let entry = containing
+            .nested_type
+            .iter()
+            .find(|n| n.name.as_deref() == Some(entry_name))?;
+        if entry.options.as_option().and_then(|o| o.map_entry) == Some(true) {
+            Some(entry)
+        } else {
+            None
+        }
+    }
+
+    fn resolve_map_entry(
+        &self,
+        entry: &DescriptorProto,
+        field_fqn: &str,
+        scope: LinkScope<'_>,
+    ) -> Result<(ScalarType, SingularKind), PoolError> {
+        let key_fd = entry.field.iter().find(|f| f.number == Some(1));
+        let val_fd = entry.field.iter().find(|f| f.number == Some(2));
+        let (Some(kf), Some(vf)) = (key_fd, val_fd) else {
+            return Err(PoolError::MalformedMapEntry {
+                message: field_fqn.to_string(),
+            });
+        };
+        let key_ty = ScalarType::from_proto(kf.r#type.unwrap_or_default()).ok_or_else(|| {
+            PoolError::MalformedMapEntry {
+                message: field_fqn.to_string(),
+            }
+        })?;
+        if !key_ty.is_valid_map_key() {
+            return Err(PoolError::MalformedMapEntry {
+                message: field_fqn.to_string(),
+            });
+        }
+        let value_kind =
+            self.resolve_singular(vf.r#type, vf.type_name.as_deref(), field_fqn, scope)?;
+        Ok((key_ty, value_kind))
+    }
+}
+
+/// Derive the default JSON name for a proto field name (lowerCamelCase).
+fn derive_json_name(proto_name: &str) -> String {
+    let mut out = String::with_capacity(proto_name.len());
+    let mut capitalize = false;
+    for c in proto_name.chars() {
+        if c == '_' {
+            capitalize = true;
+        } else if capitalize {
+            out.extend(c.to_uppercase());
+            capitalize = false;
+        } else {
+            out.push(c);
+        }
+    }
+    out
+}
+
+/// Check that a file's `public_dependency` and `weak_dependency` entries name
+/// positions in its own `dependency` list.
+///
+/// Both fields are `repeated int32` indices into `dependency`, so an index
+/// that is negative or past the end names no import at all. protoc rejects
+/// such a file with "Invalid public dependency index."; without this check a
+/// hand-built or truncated `FileDescriptorSet` carrying one links silently.
+fn validate_dependency_indices(file: &FileDescriptorProto) -> Result<(), PoolError> {
+    let dependency_count = file.dependency.len();
+    let out_of_range = |index: i32| match usize::try_from(index) {
+        Ok(i) => i >= dependency_count,
+        Err(_) => true,
+    };
+    for &index in &file.public_dependency {
+        if out_of_range(index) {
+            return Err(PoolError::InvalidPublicDependencyIndex {
+                file: file.name.clone().unwrap_or_default(),
+                index,
+                dependency_count,
+            });
+        }
+    }
+    for &index in &file.weak_dependency {
+        if out_of_range(index) {
+            return Err(PoolError::InvalidWeakDependencyIndex {
+                file: file.name.clone().unwrap_or_default(),
+                index,
+                dependency_count,
+            });
+        }
+    }
+    Ok(())
+}
+
+#[cfg(test)]
+mod dependency_index_tests {
+    use super::{validate_dependency_indices, PoolError};
+    use crate::generated::descriptor::FileDescriptorProto;
+
+    fn file(public: &[i32], weak: &[i32], deps: &[&str]) -> FileDescriptorProto {
+        FileDescriptorProto {
+            name: Some("a.proto".into()),
+            dependency: deps.iter().map(|d| (*d).to_string()).collect(),
+            public_dependency: public.to_vec(),
+            weak_dependency: weak.to_vec(),
+            ..Default::default()
+        }
+    }
+
+    #[test]
+    fn accepts_indices_inside_the_dependency_list() {
+        let f = file(&[0, 1], &[1], &["b.proto", "c.proto"]);
+        assert!(validate_dependency_indices(&f).is_ok());
+    }
+
+    #[test]
+    fn accepts_a_file_with_no_dependencies_and_no_indices() {
+        assert!(validate_dependency_indices(&file(&[], &[], &[])).is_ok());
+    }
+
+    #[test]
+    fn rejects_a_public_index_past_the_end() {
+        let f = file(&[1], &[], &["b.proto"]);
+        assert!(matches!(
+            validate_dependency_indices(&f),
+            Err(PoolError::InvalidPublicDependencyIndex {
+                index: 1,
+                dependency_count: 1,
+                ..
+            })
+        ));
+    }
+
+    #[test]
+    fn rejects_a_negative_public_index() {
+        let f = file(&[-1], &[], &["b.proto"]);
+        assert!(matches!(
+            validate_dependency_indices(&f),
+            Err(PoolError::InvalidPublicDependencyIndex { index: -1, .. })
+        ));
+    }
+
+    #[test]
+    fn rejects_a_weak_index_past_the_end() {
+        let f = file(&[], &[3], &["b.proto"]);
+        let err = validate_dependency_indices(&f).unwrap_err();
+        assert!(matches!(
+            err,
+            PoolError::InvalidWeakDependencyIndex {
+                index: 3,
+                dependency_count: 1,
+                ..
+            }
+        ));
+        // The two Display arms differ only in the field name they print.
+        assert_eq!(
+            err.to_string(),
+            "file a.proto weak_dependency index 3 is out of range (1 dependencies declared)"
+        );
+    }
+
+    #[test]
+    fn rejects_any_index_when_the_file_declares_no_dependencies() {
+        let f = file(&[0], &[], &[]);
+        assert!(matches!(
+            validate_dependency_indices(&f),
+            Err(PoolError::InvalidPublicDependencyIndex {
+                index: 0,
+                dependency_count: 0,
+                ..
+            })
+        ));
+    }
+}
+
+#[cfg(test)]
+mod reserved_ranges_tests {
+    use super::ReservedRanges;
+    use crate::generated::descriptor::descriptor_proto::ReservedRange;
+
+    fn ranges(spec: &[(Option<i32>, Option<i32>)]) -> ReservedRanges {
+        let raw: Vec<ReservedRange> = spec
+            .iter()
+            .map(|&(start, end)| ReservedRange {
+                start,
+                end,
+                ..Default::default()
+            })
+            .collect();
+        ReservedRanges::for_message("t.M", &raw).expect("valid message reserved ranges")
+    }
+
+    #[test]
+    fn coalesces_overlapping_and_adjacent_ranges_in_any_order() {
+        // 9..12 and 12..15 are adjacent, 20..30 and 25..27 nest, 5..6 stands alone.
+        let r = ranges(&[
+            (Some(20), Some(30)),
+            (Some(12), Some(15)),
+            (Some(5), Some(6)),
+            (Some(25), Some(27)),
+            (Some(9), Some(12)),
+        ]);
+        assert_eq!(r.0, vec![(5, 6), (9, 15), (20, 30)]);
+    }
+
+    #[test]
+    fn message_ranges_follow_protoc_bounds_rules() {
+        use super::PoolError;
+        // protoc reads an unset bound as 0 and requires `0 < start < end`.
+        for (start, end) in [
+            (Some(1), None),
+            (None, Some(4)),
+            (None, None),
+            (Some(7), Some(7)),
+            (Some(8), Some(3)),
+            (Some(0), Some(3)),
+            (Some(-2), Some(3)),
+        ] {
+            let raw = [ReservedRange {
+                start,
+                end,
+                ..Default::default()
+            }];
+            assert!(
+                matches!(
+                    ReservedRanges::for_message("t.M", &raw),
+                    Err(PoolError::InvalidMessageReservedRange { start: s, end: e, .. }) if (s, e) == (start, end)
+                ),
+                "{start:?}..{end:?} should be rejected"
+            );
+        }
+    }
+
+    #[test]
+    fn enum_ranges_read_unset_bounds_as_zero() {
+        use super::PoolError;
+        use crate::generated::descriptor::enum_descriptor_proto::EnumReservedRange;
+        let range = |start, end| EnumReservedRange {
+            start,
+            end,
+            ..Default::default()
+        };
+        // `reserved 0 to 8`, `reserved -3 to 0`, and `reserved 0` respectively.
+        let r = ReservedRanges::for_enum(
+            "t.E",
+            &[
+                range(None, Some(8)),
+                range(Some(-3), None),
+                range(None, None),
+            ],
+        )
+        .expect("unset enum bounds read as 0 and are valid");
+        assert!(r.contains(-3) && r.contains(0) && r.contains(8) && !r.contains(9));
+        assert!(matches!(
+            ReservedRanges::for_enum("t.E", &[range(Some(5), Some(4))]),
+            Err(PoolError::InvalidEnumReservedRange { .. })
+        ));
+    }
+
+    #[test]
+    fn enum_ranges_are_inclusive_and_may_be_negative() {
+        use crate::generated::descriptor::enum_descriptor_proto::EnumReservedRange;
+        let raw: Vec<EnumReservedRange> = [(-5, -3), (7, 9), (9, 9), (i32::MAX, i32::MAX)]
+            .into_iter()
+            .map(|(start, end)| EnumReservedRange {
+                start: Some(start),
+                end: Some(end),
+                ..Default::default()
+            })
+            .collect();
+        let r = ReservedRanges::for_enum("t.E", &raw).expect("valid enum reserved ranges");
+        assert_eq!(
+            r.0,
+            vec![
+                (-5, -2),
+                (7, 10),
+                (i64::from(i32::MAX), i64::from(i32::MAX) + 1)
+            ]
+        );
+        assert!(r.contains(-5));
+        assert!(r.contains(-3));
+        assert!(!r.contains(-2));
+        assert!(r.contains(9));
+        assert!(!r.contains(10));
+        assert!(r.contains(i32::MAX));
+    }
+
+    #[test]
+    fn contains_is_half_open() {
+        let r = ranges(&[(Some(9), Some(12)), (Some(20), Some(30))]);
+        assert!(!r.contains(8));
+        assert!(r.contains(9));
+        assert!(r.contains(11));
+        assert!(!r.contains(12));
+        assert!(!r.contains(19));
+        assert!(r.contains(29));
+        assert!(!r.contains(30));
+    }
+
+    #[test]
+    fn overlaps_is_half_open_on_both_sides() {
+        let r = ranges(&[(Some(9), Some(12)), (Some(20), Some(30))]);
+        // Adjacent on either side: no overlap.
+        assert!(!r.overlaps(5, 9));
+        assert!(!r.overlaps(12, 20));
+        assert!(!r.overlaps(30, 40));
+        // One number in: overlap.
+        assert!(r.overlaps(5, 10));
+        assert!(r.overlaps(11, 20));
+        assert!(r.overlaps(29, 40));
+        // Enclosing and enclosed.
+        assert!(r.overlaps(0, 100));
+        assert!(r.overlaps(22, 23));
+    }
+}

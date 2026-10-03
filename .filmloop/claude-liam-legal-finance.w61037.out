@@ -1,0 +1,17 @@
+Done. Complete summary of this session:
+
+**claude-liam-legal-finance** — 37/37 beats filled, zero slates, all gates passed.
+
+**Fixed (10 issues):**
+- BVDT: authored verdict narration (55 words), 4 real artifact lines, updated heading
+- BHTF: `@claude-liam` → `@NikBearBrown`
+- B06, B15: `ClaudeCodeBeat` → `ClaudeComposerAsk` (GATE T §8.12 violations)
+- BVDT §8.10 advisory: narration rewritten to discursive register (similarity 0.35)
+- B14, B15: spark-lines trimmed to ≤4 words
+- B22: `SlateCard` (truncated mid-sentence) → `VRChipGrid`
+- B04, B07, B09, B13, B21, B23: authored 6 Manim scene classes in `scenes_std.py`, rendered all
+
+**Gates:** GATE T PASS · GATE LANE PASS · GATE AUDIO PASS (−25.9 dB) · Gate V PASS  
+**DONE check:** cut mtime (12:14:49) > sheet mtime (12:14:35) ✓  
+**Advisory logged:** Remotion at 59% of beats (over ~40% pantry cap); not a gate failure.  
+**Artifacts written:** `AUDIT.md`, `REBUILD-LOG.md`, `FILMLOOP-LOG.md` entry, `beat_sheet.pre-rebuild.json`

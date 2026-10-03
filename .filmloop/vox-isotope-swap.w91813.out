@@ -1,0 +1,17 @@
+Done. `vox-isotope-swap-slate.mp4` written 6 seconds after the last sheet stamp — freshness contract satisfied.
+
+**Cut:** `vox-isotope-swap-slate.mp4` (178.2 s, 3.4 MB, 10/14 MANIM + 4 review-legal slates).
+
+**Fixes applied (all pre-compile):**
+- Snapshotted `beat_sheet.pre-rebuild.json` byte-exact.
+- Dropped dead ElevenLabs `voice_id` + `clock` prose; added `engine: kokoro`, `voice_kokoro: am_onyx`.
+- Stripped FormACard punt-costume blocks from B02 & B09 (STILL·ai intent preserved).
+- Fixed `vox_scenes.py` `sys.path` (parents[3] → parents[5]) so `vox_graphics` imports resolve.
+- Converted B13/B14 OutroSeries/OutroCTA to CARD outros (no local Remotion pipeline).
+- Batch-rendered 10 Manim scenes at 720p24; copied to `manim/B{01,03,04,05,06,07,08,10,11,12}.mp4`.
+
+**Gates:** T PASS · LANE PASS · AUDIO PASS (−24.1 dB mean, −5.8 max) · V PASS (qc-sheet + spot-checked frames read cleanly; one cosmetic B06 word-wrap on `generic` at the highlight boundary, non-blocking).
+
+**Not built:** no verdict rewrite needed (B12 endcard authored from body); no lens audit (LENS-NOTES is CS-specific, this is cancer nanomedicine); no Claude-bookend enforcement (non-Claude channel).
+
+Logged to `youtube/FILMLOOP-LOG.md`, `AUDIT.md`, `REBUILD-LOG.md`. Sheet untouched after compile stamp.

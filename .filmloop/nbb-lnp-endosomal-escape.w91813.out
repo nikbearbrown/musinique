@@ -1,0 +1,18 @@
+Reel `nbb-lnp-endosomal-escape` shipped a clean 12/12 review slate.
+
+**Result summary:**
+- Cohort-B reel (never built; parent `../lnp-endosomal-escape` also unbuilt). All body renders + audio built fresh in this pass.
+- Beat sheet remastered: `NBB00→B00` (Liam cold open), `NBB01→BVDT`, `NBB02→BHTF`, `NBB03→BOUT`; dropped the duplicate empty `BVDT/BHTF/BOUT` scaffolds and the source `NikBearBrownOpen`.
+- Spark line: B00 `"Your turn."` → `"Sawubona, Liam."` (Zulu, 2 words, not adjacent to Namaste/Bonjour/Olá/Annyeong/Vanakkam in sibling reels). BHTF `"Your turn."` retained.
+- Verdict: three ellipsis-truncated body-sentence fragments → 4 real lines from body nouns/numbers; heading `"Key findings"` → `"lnp escape: 1–2% is the floor, not the ceiling"`.
+- Card authoring: B01 (was `Key point one/two/three` template) and B06/B07/B08 (were `source: null` slate holes) all written as real FormBCards from each beat's own narration.
+- BHTF prompt: generic bracketed-title template → pKa + PEG-shedding rubric-bearing prompt.
+- BOUT subline: mid-word body-sentence snippet → `"1–2% escape is the mRNA-medicine bottleneck."`
+- All 12 mp3s regenerated fresh with Kokoro `am_onyx`; every beat pacing 2.4–3.0 wps.
+- Manim B04 rework: source `vox_scenes.py` had cream bg rects narrower than text → adjacent slate boxes clipped letters mid-word (ENDOSOME → NDOSOM, LNP → NP). Rewrote with a `_boxed()` helper that sizes bg from text width + padding; repositioned labels; added `self.wait()` calls. Compile slow-mo dropped from 3.9× (extreme-slow warning) to 1.13×.
+- **Output**: `lnp-endosomal-escape-slate.mp4` (4:29.6, 1280×720, aac 48 kHz, mean_volume −23.7 dB).
+- **build.status Counter**: `Counter({'VIDEO': 11, 'MANIM': 1})`.
+- **Freshness**: mp4 mtime 18:33:13 > sheet mtime 18:33:04 (9 s newer). Not stale.
+- Gates CONTENT/FRAME/LANE/AUDIO all PASS; Gate V midframes read for B00/B03/B04/BVDT, zero BLOCKER/MAJOR.
+
+Logged to `AUDIT.md`, `REBUILD-LOG.md`, and `youtube/FILMLOOP-LOG.md`. No validator loosened.
