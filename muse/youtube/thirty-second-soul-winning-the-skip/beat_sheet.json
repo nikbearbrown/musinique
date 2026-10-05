@@ -1,0 +1,180 @@
+{
+  "beats": [
+    {
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "beat_id": "BIDEA",
+      "narration_text": "There's a moment every musician now knows to fear: the twenty-ninth second. Nothing magical happens at thirty seconds \u2014 no chord resolves, no meaning crystallizes. But at exactly thirty seconds, a binary decision occurs in Spotify's machinery. Leave before it, and your departure registers as a skip: a strong negative signal. Leave after it, and the same departure counts as a completed stream. The difference between twenty-nine and thirty-one seconds is the difference between commercial death and survival.",
+      "shot": {
+        "dek": "Twenty-nine seconds: a skip. Thirty-one: a stream. Survival measured in milliseconds.",
+        "kind": "card",
+        "title": "The Thirty-Second Soul"
+      },
+      "actual_duration_s": 31.01
+    },
+    {
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "beat_id": "BDEFS",
+      "narration_text": "This is not metaphor. A song that loses listeners at twenty-eight seconds \u2014 however profound its third verse, however devastating its bridge \u2014 will be algorithmically suppressed, invisible to the millions whose taste profiles suggest they might love it. The platform's logic is merciless: if you cannot justify your existence in half a minute, you do not deserve to exist at all.",
+      "shot": {
+        "dek": "A masterpiece at 0:28 is invisible. The platform's logic is merciless.",
+        "kind": "card",
+        "title": "Twenty-Nine Seconds of Mercy"
+      },
+      "actual_duration_s": 18.69
+    },
+    {
+      "audio_file": "mp3/beat-B01.mp3",
+      "beat_id": "B01",
+      "narration_text": "Behind the threshold sits a surveillance architecture: three interlocking systems converting sound into machine-legible data. Natural language processing reads lyrics and discourse to file tracks into mood categories. Raw audio analysis detects tempo, key, danceability, energy \u2014 what engineers call a sonic fingerprint. And collaborative filtering matches you against your behavioral twins: people whose listening histories resemble yours.",
+      "shot": {
+        "dek": "Lyrics as data, sound as fingerprint, you as a predictable pattern.",
+        "kind": "card",
+        "title": "The Surveillance Architecture"
+      },
+      "actual_duration_s": 20.52
+    },
+    {
+      "audio_file": "mp3/beat-B02.mp3",
+      "beat_id": "B02",
+      "narration_text": "Legibility is only the entry fee. What decides a song's fate is the hierarchy of interaction data. The platform monitors every gesture: skips before thirty seconds \u2014 the kiss of death. Saves to the library: a super-like. Playlist additions: very strong positive. Repeat listens: replay value. Artists compete not for a listener's soul, but for their involuntary motor responses. One guitarist calls her dashboard 'being slowly digested by a very attentive algorithm.'",
+      "shot": {
+        "dek": "Every gesture is a vote. The skip is a behavioral rejection with binary finality.",
+        "kind": "card",
+        "title": "The Hierarchy of Gestures"
+      },
+      "actual_duration_s": 30.76
+    },
+    {
+      "audio_file": "mp3/beat-B03.mp3",
+      "beat_id": "B03",
+      "narration_text": "Pitchfork's Marc Hogan noted that the first twenty seconds of a track must now serve as a thesis statement \u2014 everything after is commentary. That birthed the engineering playbook: immediate vocal entry, because a human voice grabs attention faster than instruments; front-loaded hooks, chorus inside fifteen seconds; high-impact intros designed to prevent skipping. Some artists now ship streaming edits that remove the sections where their data shows listeners bail \u2014 letting the algorithm edit the song.",
+      "shot": {
+        "dek": "Chorus in fifteen seconds. Or the algorithm edits the song for you.",
+        "kind": "card",
+        "title": "The Engineering Playbook"
+      },
+      "actual_duration_s": 28.0
+    },
+    {
+      "audio_file": "mp3/beat-B04.mp3",
+      "beat_id": "B04",
+      "narration_text": "The morphological evidence is quantifiable. In the mid-1980s, the average intro for a top-ten single ran twenty to twenty-five seconds. By the 2010s: five seconds. By the 2020s: zero to three. An eighty percent decrease in a single generation. Led Zeppelin's Stairway to Heaven, with its patient two-minute acoustic introduction, has become structurally unthinkable for any commercial artist seeking algorithmic promotion.",
+      "shot": {
+        "dek": "Twenty seconds of intro became three. Stairway to Heaven is now unthinkable.",
+        "kind": "card",
+        "title": "The Vanishing Intro"
+      },
+      "actual_duration_s": 20.8
+    },
+    {
+      "audio_file": "mp3/beat-B05.mp3",
+      "beat_id": "B05",
+      "narration_text": "Here's what unsettles most: the system doesn't just change music. It changes us. The algorithm notices listeners respond to immediate hooks and short intros. Artists, reading their streaming data, supply those elements to get recommended. Listeners, exposed mostly to front-loaded music, grow accustomed to instant gratification. Their data confirms they skip anything slow to develop \u2014 reinforcing the algorithm's original logic. This isn't a feedback loop. It's a training program. And we are both the students and the curriculum.",
+      "shot": {
+        "dek": "We train the machine, the machine trains us, the loop tightens.",
+        "kind": "card",
+        "title": "A Training Program"
+      },
+      "actual_duration_s": 32.36
+    },
+    {
+      "audio_file": "mp3/beat-B06.mp3",
+      "beat_id": "B06",
+      "narration_text": "Consider Tuma Basa, the legendary hip-hop curator, who described his selection process as tasting a teaspoon of soup to know if it needs salt \u2014 human intuition that transcends measurement. In Spotify's algotorial model, human editors pick the pool of tracks, but the algorithm decides which users see which songs. If Basa picks a profound but challenging track and the data shows high abandonment, it gets suppressed. Over time, curators learn \u2014 like artists \u2014 to pick what performs. The human gut gets trained by the machine's metrics.",
+      "shot": {
+        "dek": "A teaspoon of soup, overruled by the skip rate.",
+        "kind": "card",
+        "title": "The Teaspoon and the Algorithm"
+      },
+      "actual_duration_s": 31.84
+    },
+    {
+      "audio_file": "mp3/beat-B07.mp3",
+      "beat_id": "B07",
+      "narration_text": "What the system optimizes isn't really music \u2014 it's frictionlessness. The bridge, traditionally placed before the final chorus for harmonic departure, gets simplified or removed. When it survives, it's repetitive phrases holding the rhythm rather than challenging it. The guitar solo has largely vanished; a solo risks disrupting the vibe the algorithm maintains. The listener is never jarred, never asked to wait, never required to trust that something meaningful might emerge from patience.",
+      "shot": {
+        "dek": "No bridges, no solos, no waiting. Friction is the enemy of the feed.",
+        "kind": "card",
+        "title": "Optimized Frictionlessness"
+      },
+      "actual_duration_s": 30.05
+    },
+    {
+      "audio_file": "mp3/beat-B08.mp3",
+      "beat_id": "B08",
+      "narration_text": "The result is structural homogenization: verse and chorus built on the same riff, dressed in different production layers to create an illusion of variety over a safe, repetitive core. And the slow burn \u2014 tension building over minutes toward a payoff \u2014 embodies a theory of music that values the listener's capacity to be transformed by extended experience. If a song's most devastating moment lands at two minutes forty-five, but the listener skipped at zero twenty-five, that moment is lost. Not prohibited. Just unviable.",
+      "shot": {
+        "dek": "The payoff at 2:45 never happens if the skip came at 0:25.",
+        "kind": "card",
+        "title": "The Death of the Slow Burn"
+      },
+      "actual_duration_s": 30.8
+    },
+    {
+      "audio_file": "mp3/beat-B09.mp3",
+      "beat_id": "B09",
+      "narration_text": "Then comes functionalization. Spotify recognized that active listening \u2014 focused entirely on music \u2014 is a small, shrinking slice of consumption. Most music is background: work, fitness, study, sleep. So the Mood Machine built playlists defined by utility: chill lists need lo-fi beats, minimal dynamic range, non-intrusive vocals; fitness demands high BPM and aggressive hooks; sleep wants near-zero valence and no sudden sounds. Music becomes utility, like light or heat, engineered to disappear into the room.",
+      "shot": {
+        "dek": "Chill, workout, sleep: music as utility, like light or heat.",
+        "kind": "card",
+        "title": "The Mood Machine"
+      },
+      "actual_duration_s": 32.57
+    },
+    {
+      "audio_file": "mp3/beat-B10.mp3",
+      "beat_id": "B10",
+      "narration_text": "A singer describes the tension this creates with live performance. Songs optimized for streaming \u2014 zero intros, immediate high-output vocals \u2014 are physically punishing to perform on stage. The human body requires exactly what the algorithm demands be removed: time. Vocalists need atmospheric intros to warm up, to read the room, to prepare for sustained effort. The ghost in the machine is a product built for a surveillance environment that ignores the biological reality of how music is actually made and felt.",
+      "shot": {
+        "dek": "The body needs the time the algorithm deletes.",
+        "kind": "card",
+        "title": "The Body's Rebellion"
+      },
+      "actual_duration_s": 32.06
+    },
+    {
+      "audio_file": "mp3/beat-B11.mp3",
+      "beat_id": "B11",
+      "narration_text": "And here's the contradiction: despite access to more music than ever, our listening narrows. One study found fifty-eight percent of users' libraries contain music from only three genres. The algorithm doesn't want us transformed by the unfamiliar \u2014 it wants us inside safe, predictable confines of what we already know, where our behavior is most profitable. More choice than any generation in history, and smaller taste than ever.",
+      "shot": {
+        "dek": "Infinite choice. Fifty-eight percent live in three genres.",
+        "kind": "card",
+        "title": "More Music, Smaller Taste"
+      },
+      "actual_duration_s": 19.41
+    },
+    {
+      "audio_file": "mp3/beat-B12.mp3",
+      "beat_id": "B12",
+      "narration_text": "And yet the emotional product of music refuses full reduction to data. Curators still attend live shows to feel the room. Artists rearrange songs for the stage, restoring the intros the algorithm excised. Those gut feelings refuse complete quantification. This tension \u2014 the teaspoon of soup versus the skip rate \u2014 is the central conflict of modern music: two theories of humanity. One sees humans as predictable machines to optimize. The other sees beings capable of being transformed by the difficult, the unfamiliar, the beautiful.",
+      "shot": {
+        "dek": "Curators still feel the room. Intros return on stage. The gut refuses quantification.",
+        "kind": "card",
+        "title": "What Refuses Quantification"
+      },
+      "actual_duration_s": 33.19
+    },
+    {
+      "audio_file": "mp3/beat-B13.mp3",
+      "beat_id": "B13",
+      "narration_text": "The next frontier is already being built: reinforcement learning models that adjust recommendations in real time by simulating your reactions, and biometric data \u2014 heart rate from wearables, sleep stages, activity levels \u2014 dynamically tuning your playlist. Music becomes not background utility but a physiological regulator, and the artist a mere provider of raw material for biological control systems. Engineers even describe the endpoint: the Atomic Song \u2014 sequences of optimized audio events, combined by algorithms in real time. Perfectly personalized. Perfectly forgettable.",
+      "shot": {
+        "dek": "Heart rate as a track parameter. The Atomic Song: optimized, personalized, forgettable.",
+        "kind": "card",
+        "title": "The Atomic Song"
+      },
+      "actual_duration_s": 35.41
+    },
+    {
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "beat_id": "BOUT",
+      "narration_text": "The Thirty-Second Soul is the current champion of the platform economy, but it's a hollow victory. In engineering music for survival, we risk a system where music survives but meaning does not. The challenge for the next generation of creators and listeners is to resist the circular logic of the algorithm, reclaim the slow burn, and keep faith that something more profound than a behavioral response can happen in the space between a sound and a soul. The question isn't whether we'll survive the Thirty-Second Soul. It's whether we'll remember what we lost.",
+      "shot": {
+        "dek": "Win the skip without surrendering the soul. That is the work.",
+        "kind": "card",
+        "title": "Winning the Skip"
+      },
+      "actual_duration_s": 30.78
+    }
+  ]
+}
