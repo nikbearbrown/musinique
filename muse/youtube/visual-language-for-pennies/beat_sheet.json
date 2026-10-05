@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "audience": "indie musicians",
+    "channel": "@Musinique",
+    "engine": "kokoro",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. Voice am_puck (Musinique) per the mission scout; re-render cheap if Liam/am_onyx preferred.",
+    "palette": "claude",
+    "persona": "Musinique",
+    "register": "Sardonic",
+    "slug": "film-06-visual-language",
+    "source_article": "nikbearbrown/musinique articles/musinique-189811052-the-dollar-that-looks-like-fifty-midjourney-pcodes-and-the-art-of-creating-a-visual-language.md",
+    "title": "A Visual Language for Pennies",
+    "voice_kokoro": "am_puck"
+  },
+  "beats": [
+    {
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "beat_id": "BIDEA",
+      "narration_text": "Someone looked at this image and saw fifty dollars. They were off by a factor of five thousand. It cost less than a penny to generate. Smoke over a rubble-choked street. Burnt sienna where grey should be, a teal sky where ash should dominate. It doesn't look like AI. It looks like a photojournalist's lost roll of Kodachrome.",
+      "shot": {
+        "dek": "Less than a penny. Guessed at fifty.",
+        "kind": "card",
+        "title": "The dollar that looks like fifty"
+      },
+      "actual_duration_s": 17.17
+    },
+    {
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "beat_id": "BDEFS",
+      "narration_text": "Here's how. Midjourney lets you train the platform on a set of reference images and lock that visual fingerprint into a reusable code \u2014 a Style Reference Profile. The community calls it a pcode. Two of them shaped every image in that series. Type them into any prompt, and the model's eye changes.",
+      "shot": {
+        "dek": "A reusable visual fingerprint.",
+        "kind": "card",
+        "title": "What a pcode is"
+      },
+      "actual_duration_s": 16.49
+    },
+    {
+      "audio_file": "mp3/beat-B01.mp3",
+      "beat_id": "B01",
+      "narration_text": "First misconception to kill: a pcode is not a filter. A filter sits on top of an image and changes its surface \u2014 flat photo in, flat photo with grain out. A pcode sits inside the generation process and changes what the model reaches for. It trains the model to see the way a specific visual tradition sees.",
+      "shot": {
+        "dek": "Filters sit on top. Pcodes sit inside.",
+        "kind": "card",
+        "title": "Not a filter"
+      },
+      "actual_duration_s": 17.96
+    },
+    {
+      "audio_file": "mp3/beat-B02.mp3",
+      "beat_id": "B02",
+      "narration_text": "Think of it this way. Want to paint like Caravaggio? You could buy brown paint and add it to any painting \u2014 that's a filter. Or you could study how Caravaggio thought about where light enters a scene, why he drowned his subjects in darkness and pulled only their hands and faces into the beam. That changes how you compose before you ever pick up a brush. That's a pcode.",
+      "shot": {
+        "dek": "Study the thinking, not the surface.",
+        "kind": "card",
+        "title": "Paint like Caravaggio"
+      },
+      "actual_duration_s": 17.49
+    },
+    {
+      "audio_file": "mp3/beat-B03.mp3",
+      "beat_id": "B03",
+      "narration_text": "The mechanism: Midjourney's profile flag takes those style codes, and during diffusion they act as conditioning signals alongside your text. The model asks two questions at once \u2014 what does this text describe, and what would this visual tradition do with that description? Every generated pixel gets shaped by both.",
+      "shot": {
+        "dek": "The profile shapes every pixel.",
+        "kind": "card",
+        "title": "Two questions at once"
+      },
+      "actual_duration_s": 17.6
+    },
+    {
+      "audio_file": "mp3/beat-B04.mp3",
+      "beat_id": "B04",
+      "narration_text": "Now watch what the prompt itself is doing, on two levels. The text sets content and technical aesthetics \u2014 iPhone photography, Kodachrome colors, shallow depth of field, harsh natural light. The profile does something else entirely. It's the difference between saying take a documentary photo, and handing someone Robert Capa's camera, still loaded with his film.",
+      "shot": {
+        "dek": "Capa's camera, loaded with his film.",
+        "kind": "card",
+        "title": "Two levels of prompt"
+      },
+      "actual_duration_s": 18.82
+    },
+    {
+      "audio_file": "mp3/beat-B05.mp3",
+      "beat_id": "B05",
+      "narration_text": "So how do you build one? Step one: articulate the philosophy, not the surface. Dark and moody is a surface. Oblique angles that create psychological instability, shadows that hide more than they reveal, the past bleeding into the present \u2014 that's a philosophy. A pcode captures philosophy. It will not save you from vague thinking.",
+      "shot": {
+        "dek": "It won't save you from vague thinking.",
+        "kind": "card",
+        "title": "Step one: the philosophy"
+      },
+      "actual_duration_s": 18.01
+    },
+    {
+      "audio_file": "mp3/beat-B06.mp3",
+      "beat_id": "B06",
+      "narration_text": "Step two: curate reference images obsessively. Ten to twenty minimum. They must share a visual language, not a subject \u2014 war photography and wedding photography can share a language if the framing and film stock match. And here's what the tutorials skip: he didn't start with an archive. He started with a vague instinct, generated fifty images, kept five, and grew a moodboard from the model's own best outputs, filtered through his eye.",
+      "shot": {
+        "dek": "Generate fifty. Keep five. Repeat.",
+        "kind": "card",
+        "title": "Step two: curate obsessively"
+      },
+      "actual_duration_s": 19.14
+    },
+    {
+      "audio_file": "mp3/beat-B07.mp3",
+      "beat_id": "B07",
+      "narration_text": "That feedback loop is the whole secret. Five keepers out of fifty became forty out of fifty. The model learned \u2014 through the accumulated weight of what he kept selecting \u2014 what he was actually reaching for. The pcode encoded that learning. By the end, the style had become self-reinforcing.",
+      "shot": {
+        "dek": "Five of fifty became forty of fifty.",
+        "kind": "card",
+        "title": "The feedback loop"
+      },
+      "actual_duration_s": 16.49
+    },
+    {
+      "audio_file": "mp3/beat-B08.mp3",
+      "beat_id": "B08",
+      "narration_text": "Step three: in Midjourney, the tune command. Upload your reference images, and it generates style variations and asks which ones capture what you're after. It's iterative \u2014 you're training the model on your preferences, not just on the images. The string it hands back is your pcode.",
+      "shot": {
+        "dek": "Train it on your preferences.",
+        "kind": "card",
+        "title": "Step three: tune it"
+      },
+      "actual_duration_s": 15.98
+    },
+    {
+      "audio_file": "mp3/beat-B09.mp3",
+      "beat_id": "B09",
+      "narration_text": "Step four: test destructively. Give the pcode subjects that should resist the aesthetic, and watch whether it holds. He fed his war-documentary profile a quiet coffee shop, an empty kitchen, a road at midday. Every result looked pulled from a photojournalist's contact sheet. If the grammar holds across content, the pcode is strong. If it collapses into generic mush, it's weak.",
+      "shot": {
+        "dek": "Give it subjects that resist.",
+        "kind": "card",
+        "title": "Step four: test destructively"
+      },
+      "actual_duration_s": 19.29
+    },
+    {
+      "audio_file": "mp3/beat-B10.mp3",
+      "beat_id": "B10",
+      "narration_text": "Here's what the comments couldn't see. The double-exposure in the portraits \u2014 children's faces composited with warzone scenes \u2014 isn't Photoshop. The prompt never asked for it. The pcode's training images used that technique, so the model reaches for it naturally. The teal sky fighting the orange smoke? That's Kodachrome's color science under hard sun. The oblique framing? A compositional philosophy, not a camera setting.",
+      "shot": {
+        "dek": "The prompt never asked for it.",
+        "kind": "card",
+        "title": "What the comments couldn't see"
+      },
+      "actual_duration_s": 19.63
+    },
+    {
+      "audio_file": "mp3/beat-B11.mp3",
+      "beat_id": "B11",
+      "narration_text": "Now \u2014 what does any of this have to do with you? Everything. Every single you release needs cover art. Every EP needs a visual world. A designer costs hundreds per piece; a coherent look across a whole campaign costs thousands. Or: one afternoon building a pcode, and every image you generate for the next year looks like it came from the same eye. The dollar that looks like fifty.",
+      "shot": {
+        "dek": "One afternoon. A year of coherence.",
+        "kind": "card",
+        "title": "Your cover art"
+      },
+      "actual_duration_s": 18.22
+    },
+    {
+      "audio_file": "mp3/beat-B12.mp3",
+      "beat_id": "B12",
+      "narration_text": "And remember the economics. The expensive part was never the generation \u2014 that takes seconds. It was the hour of thinking beforehand: curating references, running the tuning, testing against resistant subjects. Effort spent before the prompt is leverage. Effort spent in the prompt is expense. The people burning money are writing longer prompts, hoping more words substitute for visual clarity.",
+      "shot": {
+        "dek": "Thinking first, generating second.",
+        "kind": "card",
+        "title": "Leverage versus expense"
+      },
+      "actual_duration_s": 18.88
+    },
+    {
+      "audio_file": "mp3/beat-B13.mp3",
+      "beat_id": "B13",
+      "narration_text": "One honest caveat, and it's his, not mine. The visual traditions in that pcode belong to working photojournalists \u2014 people who spent careers in difficult, dangerous places to make the images his model learned from. Capturing their grammar for pennies is technically possible. Whether it's ethically clean is not obvious. Know what tradition you're borrowing, and borrow it with your eyes open.",
+      "shot": {
+        "dek": "Borrow with your eyes open.",
+        "kind": "card",
+        "title": "The honest caveat"
+      },
+      "actual_duration_s": 19.11
+    },
+    {
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "beat_id": "BOUT",
+      "narration_text": "The video that article accompanies cost less than a dollar. It looks like a documentary. That gap \u2014 between what something costs to produce, and what it costs to understand \u2014 is the gap worth closing. Your taste is the pcode. Train it.",
+      "shot": {
+        "dek": "Your taste is the pcode.",
+        "kind": "card",
+        "title": "The gap worth closing"
+      },
+      "actual_duration_s": 14.29
+    }
+  ]
+}
