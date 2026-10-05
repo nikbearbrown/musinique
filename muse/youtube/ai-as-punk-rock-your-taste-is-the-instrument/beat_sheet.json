@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "slug": "film-01-ai-as-punk-rock",
+    "title": "AI as Punk Rock: Your Taste Is the Instrument",
+    "engine": "kokoro",
+    "voice_kokoro": "am_puck",
+    "persona": "Musinique",
+    "channel": "@Musinique",
+    "register": "Sardonic",
+    "palette": "claude",
+    "audience": "indie musicians",
+    "source_article": "nikbearbrown/musinique articles/musinique-187481091-ai-as-the-punk-rock-of-music-software.md",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. Voice am_puck (Musinique) per the mission scout; re-render cheap if Liam/am_onyx preferred."
+  },
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "narration_text": "Rick Rubin cannot operate a soundboard. Never could. The man behind Johnny Cash's American Recordings and the Beastie Boys — one of the greatest producers alive — doesn't touch the knobs. His genius is taste. Knowing when it feels right. And that is about to be the only skill that matters.",
+      "shot": {
+        "kind": "card",
+        "title": "The man who can't work a soundboard",
+        "dek": "Taste, not knobs."
+      },
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "actual_duration_s": 16.47
+    },
+    {
+      "beat_id": "BDEFS",
+      "narration_text": "There's an argument going around: AI is the punk rock of software. The kids with three chords who accidentally invented punk are now the kids with one prompt. As technical barriers go to zero, creative access goes to infinity. Half-brilliant. Half-terrifying. Let's take it seriously.",
+      "shot": {
+        "kind": "card",
+        "title": "The pitch",
+        "dek": "AI is the punk rock of software."
+      },
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "actual_duration_s": 17.49
+    },
+    {
+      "beat_id": "B01",
+      "narration_text": "For most of history, imagination had a toll booth. Hear a melody? Spend ten years on notation and counterpoint. See an elegant algorithm? First, master three programming languages. Classical era: the barrier was mastery. Analog: hardware cost. The DAW era: software complexity. Now: taste and vision alone.",
+      "shot": {
+        "kind": "card",
+        "title": "The toll booth eras",
+        "dek": "Mastery. Hardware. Complexity. Now: taste."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 17.51
+    },
+    {
+      "beat_id": "B02",
+      "narration_text": "Exhibit A: AlphaGo's Move 37. DeepMind's AI placed a stone that violated three thousand years of Go tradition — and won. It won not because it knew more, but because it knew less. Beginner's mind. No coach, no reverence for proper play. The Ramones thought they were making bubblegum pop and accidentally invented punk rock.",
+      "shot": {
+        "kind": "card",
+        "title": "Move 37",
+        "dek": "The machine won by knowing less."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.94
+    },
+    {
+      "beat_id": "B03",
+      "narration_text": "And it's working. Real people, real things. One example: 80 Days to Stay — 568,707 SEC filings scraped to help international students find visa-sponsoring employers before their 80 days run out. Built by someone who's no immigration lawyer. Just someone who saw a problem and let AI handle the execution.",
+      "shot": {
+        "kind": "card",
+        "title": "80 Days to Stay",
+        "dek": "Execution handled. Mission supplied."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 18.47
+    },
+    {
+      "beat_id": "B04",
+      "narration_text": "The manifesto writes itself: the secretary who sees a better interface can build it. The teacher who imagines a lesson can manifest it. The parent who hears a lullaby can compose it. Creative Revolution equals access to execution, times permission to ignore syntax, times point of view.",
+      "shot": {
+        "kind": "card",
+        "title": "The manifesto",
+        "dek": "Access × permission × point of view."
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 17.34
+    },
+    {
+      "beat_id": "B05",
+      "narration_text": "But here's what the punk analogy gets wrong, and it's not small. Punk rock wasn't just accessible. It was necessary. The Ramones weren't stripping down music because they couldn't play — arena rock had become bloated spectacle, prog was music for musicians. Three chords weren't a limitation. They were a middle finger.",
+      "shot": {
+        "kind": "card",
+        "title": "The turn",
+        "dek": "Punk wasn't just accessible. It was necessary."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.92
+    },
+    {
+      "beat_id": "B06",
+      "narration_text": "Anyone can make anything — that's not a message, that's a condition. And conditions don't generate art. Fury does. Desperation does. The democratization of publishing didn't make everyone worth reading. The democratization of recording didn't make everyone worth hearing. Access is necessary. It is not sufficient.",
+      "shot": {
+        "kind": "card",
+        "title": "Access is not urgency",
+        "dek": "Conditions don't generate art."
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 17.62
+    },
+    {
+      "beat_id": "B07",
+      "narration_text": "Rubin calls it the AI Ick: models trained on existing work drift to the statistical center — what's most likely to please everyone. The math is brutal. Cultural value equals uniqueness times resonance, and uniqueness is one over algorithm conformity. AI makes resonance trivial. That's not art. Art is confrontation. Art widens the audience's reality.",
+      "shot": {
+        "kind": "card",
+        "title": "The AI Ick",
+        "dek": "Models drift to the statistical center."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 19.24
+    },
+    {
+      "beat_id": "B08",
+      "narration_text": "An AI-composed lullaby sounds good. Competent. Pleasant. Indistinguishable from one written by a trained composer. Which means it communicates exactly one thing: this was easy to make. And easy to make rarely equals worth hearing. Punk's crudeness signaled authenticity. AI's polish signals nothing but capability.",
+      "shot": {
+        "kind": "card",
+        "title": "Easy to make isn't worth hearing",
+        "dek": "Polish signals capability. Nothing more."
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 18.58
+    },
+    {
+      "beat_id": "B09",
+      "narration_text": "There's a statistical defense: if AI multiplies attempts a hundredfold, even with lower quality, the absolute number of great works rises. Mathematically true. Culturally devastating. We don't experience art mathematically. Attention is the scarcest resource, and mediocrity is the flood we're drowning in.",
+      "shot": {
+        "kind": "card",
+        "title": "The 100x defense",
+        "dek": "Mathematically true. Culturally devastating."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.07
+    },
+    {
+      "beat_id": "B10",
+      "narration_text": "So what actually works? 80 Days to Stay works — not because AI made it possible, but because someone needed it to exist. International students face deportation without a sponsoring employer. That's urgency. The AI handles execution; the mission supplies the reason.",
+      "shot": {
+        "kind": "card",
+        "title": "What works: urgency",
+        "dek": "Someone needed it to exist."
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 16.45
+    },
+    {
+      "beat_id": "B11",
+      "narration_text": "Contrast Oz Songs: a year adapting all fourteen Wizard of Oz books with AI art and music. Ambitious. Technically impressive. But it's closer to a tech demo than to art — proof of concept, not confrontation. Or The Way of Code: Rubin's beautiful Tao Te Ching for software. A meditation on how we might feel about AI creation — not what it might accomplish that matters.",
+      "shot": {
+        "kind": "card",
+        "title": "What doesn't: tech demos",
+        "dek": "Proof of concept, not confrontation."
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 19.18
+    },
+    {
+      "beat_id": "B12",
+      "narration_text": "That's the line: punk rock versus punk aesthetic. One confronts power. The other cosplays confrontation. AI makes aesthetic effortless — which might be accelerating our drift toward the cosplay.",
+      "shot": {
+        "kind": "card",
+        "title": "Punk rock vs. punk aesthetic",
+        "dek": "Confrontation, or cosplay."
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 12.48
+    },
+    {
+      "beat_id": "B13",
+      "narration_text": "Back to Rubin, who still can't work a soundboard and still doesn't need to. Democratized tools didn't make everyone a producer worth hiring. They made the few with genuine taste more valuable, not less. The barriers to making something that matters — point of view, taste, the judgment to know when it's done — are exactly as high as they've ever been. Maybe higher. Now you can't blame your tools.",
+      "shot": {
+        "kind": "card",
+        "title": "Taste gets more valuable",
+        "dek": "Now you can't blame your tools."
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 17.92
+    },
+    {
+      "beat_id": "BOUT",
+      "narration_text": "Three chords and the truth, the old saying goes. In the AI era: one prompt and a vision. But the truth was always the hard part. The soundboard is optional. The urgency isn't.",
+      "shot": {
+        "kind": "card",
+        "title": "The close",
+        "dek": "One prompt and a vision."
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 11.75
+    }
+  ]
+}
