@@ -1,0 +1,180 @@
+{
+  "beats": [
+    {
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "beat_id": "BIDEA",
+      "narration_text": "There's a song enslaved people sang about Satan's kingdom falling \u2014 and everyone knew which kingdom they really meant. Nik Bear Brown took it, stripped out every trace of theology, and rewrote it as a direct protest anthem with AI. Five dollars. Five hours. One and a half million views in three months. Ninety-nine percent approval. This film is about the question hiding inside those numbers: what should AI be allowed to touch?",
+      "shot": {
+        "dek": "Five dollars, five hours, 1.5 million views \u2014 and one hard question.",
+        "kind": "card",
+        "title": "What AI Should Be Allowed to Touch"
+      },
+      "actual_duration_s": 19.39
+    },
+    {
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "beat_id": "BDEFS",
+      "narration_text": "The song is \"Satan, Your Kingdom Must Come Down.\" Enslaved people who couldn't own drums, couldn't gather freely, couldn't write down what they meant \u2014 sang it anyway. Satan was code. Kingdom was code. Blind Joe Taggart recorded it in 1931. The African American Heritage Hymnal catalogued it as entry 485. Robert Plant sang it in 2010. The song survived by being careful: wrapped in theology, protected by metaphor.",
+      "shot": {
+        "dek": "Enslaved people sang about Satan's kingdom. Everyone knew which kingdom they meant.",
+        "kind": "card",
+        "title": "The Song Was Code"
+      },
+      "actual_duration_s": 20.03
+    },
+    {
+      "audio_file": "mp3/beat-B01.mp3",
+      "beat_id": "B01",
+      "narration_text": "Brown kept the skeleton and replaced the theology. The original lives in the future tense: God will handle this, Jesus will return, the kingdom will fall when the end times come. The song gives you something to hold onto while you wait. His version lives in the present: \"Heard it in the wind last night, somethin' ain't sittin' right.\" Not prophecy. Observation. The kingdom isn't falling someday. It's falling now. Maybe you're pulling it down yourself.",
+      "shot": {
+        "dek": "The original waited on God. Brown's version says the kingdom is falling now.",
+        "kind": "card",
+        "title": "From Prophecy to Present Tense"
+      },
+      "actual_duration_s": 18.79
+    },
+    {
+      "audio_file": "mp3/beat-B02.mp3",
+      "beat_id": "B02",
+      "narration_text": "Where the hymnal names the workers \u2014 \"The preachers are gonna preach your kingdom down, the deacons are gonna pray your kingdom down\" \u2014 Brown substitutes imagery anyone can map onto their own fight: \"Built it high on broken backs, sold the truth for paper stacks, but the people rise and the walls crack.\" Iranian protesters hear their leader. Americans hear oligarchy. He didn't make the song more specific. He made it more portable.",
+      "shot": {
+        "dek": "Iranian protesters hear their leader. Americans hear oligarchy.",
+        "kind": "card",
+        "title": "Built for Portability"
+      },
+      "actual_duration_s": 18.28
+    },
+    {
+      "audio_file": "mp3/beat-B03.mp3",
+      "beat_id": "B03",
+      "narration_text": "The production tells the same story. The traditional spiritual is performed slowly \u2014 what musicologists call funereal pace. Brown's is urgent. Faster tempo, clearer beat, no haunting, no moaning. Just declaration. And he built it with AI: Suno generated the instrumental backing, an AI voice trained on his own speech sang the lead, and a video model rendered the music video. Total cost: five dollars. Total time: five hours.",
+      "shot": {
+        "dek": "Suno, an AI voice, a generated video \u2014 versus a studio, a band, and months.",
+        "kind": "card",
+        "title": "Five Hours, Five Dollars"
+      },
+      "actual_duration_s": 19.93
+    },
+    {
+      "audio_file": "mp3/beat-B04.mp3",
+      "beat_id": "B04",
+      "narration_text": "Compare that to the old way. A studio single costs five hundred to two thousand dollars minimum. A professional music video costs five thousand to fifty thousand. Time required: weeks to months. Brown's version competes with institutional production while one person keeps total creative control \u2014 something institutions almost never permit.",
+      "shot": {
+        "dek": "A single: $500 to $2,000. A video: $5,000 to $50,000. One person kept full control.",
+        "kind": "card",
+        "title": "The Old Way Still Costs"
+      },
+      "actual_duration_s": 18.15
+    },
+    {
+      "audio_file": "mp3/beat-B05.mp3",
+      "beat_id": "B05",
+      "narration_text": "But here's what the tools didn't do. The AI didn't decide which lines of the original to keep. It didn't recognize that \"Satan\" was doing rhetorical work that needed replacing with something equally specific. It didn't hear the phonetic lock between \"broken backs\" and \"paper stacks\" that makes the line land. Brown did all of that. The AI gave him production capability. He brought the judgment.",
+      "shot": {
+        "dek": "Which lines to keep, what \"Satan\" was really doing \u2014 Brown decided. The tools executed.",
+        "kind": "card",
+        "title": "The AI Didn't Judge"
+      },
+      "actual_duration_s": 18.47
+    },
+    {
+      "audio_file": "mp3/beat-B06.mp3",
+      "beat_id": "B06",
+      "narration_text": "Which brings us to the real question. Not \"can AI touch sacred music\" \u2014 Brown proved it can. The technology exists, the barriers have collapsed, and anyone with five dollars and an internet connection can now do what used to require a recording studio, a team of musicians, and weeks of production time. The question is should they. Should AI tools be allowed to touch sacred music at all?",
+      "shot": {
+        "dek": "Anyone with five dollars can do this now. Should they touch sacred music?",
+        "kind": "card",
+        "title": "The Question Isn't \"Can They\""
+      },
+      "actual_duration_s": 18.3
+    },
+    {
+      "audio_file": "mp3/beat-B07.mp3",
+      "beat_id": "B07",
+      "narration_text": "Start with the case for it. The original spiritual wasn't about theology in the abstract \u2014 it was about enslaved people singing that the power crushing them would fall. Satan was code. Kingdom was code. Brown kept the function and made the code explicit. He didn't change what the song does; he made what it does undeniable. And he kept its core mechanism: inevitability. \"Must come down\" is natural law \u2014 the prophetic register of the original.",
+      "shot": {
+        "dek": "\"Satan\" was code for the masters' kingdom. Brown kept the function, made the code explicit.",
+        "kind": "card",
+        "title": "The Case For: Function"
+      },
+      "actual_duration_s": 19.73
+    },
+    {
+      "audio_file": "mp3/beat-B08.mp3",
+      "beat_id": "B08",
+      "narration_text": "He's also explicit about the source. The credits acknowledge the traditional spiritual. The \"No Kings\" framing offers the song as a tool, not an authority: here's a version you can use if the traditional one doesn't serve you \u2014 not here's the definitive version. That changes the power dynamic. The song is for people who need to protest power, which is what the spiritual was always for.",
+      "shot": {
+        "dek": "Credited, \"No Kings\" \u2014 a tool you can use, not an authority claiming to replace.",
+        "kind": "card",
+        "title": "The Case For: Framing"
+      },
+      "actual_duration_s": 18.39
+    },
+    {
+      "audio_file": "mp3/beat-B09.mp3",
+      "beat_id": "B09",
+      "narration_text": "Now the other side. Sacred music is sacred because it's protected \u2014 maintained and transmitted for over a century in contexts that honored its origins and its purpose. The theology wasn't decoration. It was load-bearing structure. The original promises: you may suffer now, but God will make this right. Justice is guaranteed by divine authority. Brown's version says: you're on your own. No one's coming. Pull the kingdom down yourself. That's not an update. It's a replacement theology.",
+      "shot": {
+        "dek": "The original promised God will make it right. The new one says: you're on your own.",
+        "kind": "card",
+        "title": "The Case Against: Load-Bearing Theology"
+      },
+      "actual_duration_s": 30.14
+    },
+    {
+      "audio_file": "mp3/beat-B10.mp3",
+      "beat_id": "B10",
+      "narration_text": "And the elements should generate backlash. Sacred Black music, stripped by AI tools built by tech companies, distributed through corporate platforms, sung under a persona named for a Black soul legend \u2014 by someone who isn't Black. Every element of this should spark controversy. It hasn't. Ninety-nine percent approval on the remastered version. Comments in multiple languages praising it. No visible backlash.",
+      "shot": {
+        "dek": "Ninety-nine percent approval. Comments in multiple languages. No visible controversy.",
+        "kind": "card",
+        "title": "The Backlash That Never Came"
+      },
+      "actual_duration_s": 19.33
+    },
+    {
+      "audio_file": "mp3/beat-B11.mp3",
+      "beat_id": "B11",
+      "narration_text": "So which is it? One: the one and a half million people who watched this don't understand what they're approving. Two: the traditional understanding of sacred music's boundaries is changing faster than we realize. Or three: the function of the song actually matters more than its form, and Brown preserved what needed preserving. The honest answer is probably number three. But the uncertainty itself is important.",
+      "shot": {
+        "dek": "They don't understand. The boundaries moved. Or function matters more than form.",
+        "kind": "card",
+        "title": "Three Explanations"
+      },
+      "actual_duration_s": 18.73
+    },
+    {
+      "audio_file": "mp3/beat-B12.mp3",
+      "beat_id": "B12",
+      "narration_text": "Let's be precise about the numbers. The original upload, October 2025: 448,529 views, 96 percent approval. The December remaster: 1,033,873 views, 99 percent. Combined: 1.48 million views in under three months. For context, Uncle Tupelo's version of the traditional spiritual accumulated roughly two million streams over thirty-three years. Brown's AI rewrite needed about ninety days.",
+      "shot": {
+        "dek": "Uncle Tupelo needed 33 years for two million streams. Brown needed ninety days.",
+        "kind": "card",
+        "title": "1.5 Million in Three Months"
+      },
+      "actual_duration_s": 32.57
+    },
+    {
+      "audio_file": "mp3/beat-B13.mp3",
+      "beat_id": "B13",
+      "narration_text": "This isn't really about one song. Production costs collapsed from fifty thousand dollars to five. Production time from months to hours. The printing press and the internet democratized distribution. AI is democratizing creation \u2014 and creation is where judgment lives, where tradition gets transmitted, where you learn what's worth preserving and what needs changing. Brown made good judgments. But the tools don't teach judgment. They execute whatever judgment you bring.",
+      "shot": {
+        "dek": "The press democratized distribution. AI democratizes creation \u2014 where judgment lives.",
+        "kind": "card",
+        "title": "Democratized Creation"
+      },
+      "actual_duration_s": 20.1
+    },
+    {
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "beat_id": "BOUT",
+      "narration_text": "So the real test isn't whether Brown's version works \u2014 it does. It's what happens when everyone realizes they can do it too. Maybe a world with more good protest songs, more tools for resistance, more ways to name power and demand it fall. Or maybe a world where nothing stays sacred long enough to accumulate meaning, where every song is just content. The tools are neutral. The judgment isn't. The kingdom must come down \u2014 that part's clear. The question is whether the song survives long enough to help pull it down.",
+      "shot": {
+        "dek": "More protest songs, or just more noise? The answer is probably both.",
+        "kind": "card",
+        "title": "The Tools Are Neutral. The Judgment Isn't."
+      },
+      "actual_duration_s": 30.69
+    }
+  ]
+}
