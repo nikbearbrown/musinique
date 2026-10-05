@@ -35,7 +35,7 @@ Nothing is rendered or published from here; MP3/MP4 files are never committed. *
 
 | Film | Render prompt | Package |
 |------|---------------|---------|
-| Vibe-Coding Your Promo Site | [render prompt](youtube/vibe-coding-your-promo-site/CLAUDE-CODE-RENDER.md) | planned |
+| Vibe-Coding Your Promo Site | [render prompt](youtube/vibe-coding-your-promo-site/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/vibe-coding-your-promo-site/) (16 beats, 245s, rendered 2026-10-05) |
 | Muse vs Codex vs Gemini: The Indie Artist's Stack | [render prompt](youtube/indie-artists-ai-stack/CLAUDE-CODE-RENDER.md) | planned |
 
 ## Rendering (Claude Code on the Mac)
