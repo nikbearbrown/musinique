@@ -12,7 +12,7 @@ Nothing is rendered or published from here; MP3/MP4 files are never committed. *
 |------|---------------|---------|
 | AI as Punk Rock: Your Taste Is the Instrument | [render prompt](youtube/ai-as-punk-rock-your-taste-is-the-instrument/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/ai-as-punk-rock-your-taste-is-the-instrument/) (16 beats, 279s, rendered 2026-10-04) |
 | The Secrets of Songwriting, Accelerated | [render prompt](youtube/secrets-of-songwriting-accelerated/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/secrets-of-songwriting-accelerated/) (16 beats, 296s, rendered 2026-10-04) |
-| What AI Should Be Allowed to Touch | [render prompt](youtube/what-ai-should-be-allowed-to-touch/CLAUDE-CODE-RENDER.md) | planned |
+| What AI Should Be Allowed to Touch | [render prompt](youtube/what-ai-should-be-allowed-to-touch/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/what-ai-should-be-allowed-to-touch/) (16 beats, 341s, rendered 2026-10-04) |
 
 ## Promoting music with AI
 
