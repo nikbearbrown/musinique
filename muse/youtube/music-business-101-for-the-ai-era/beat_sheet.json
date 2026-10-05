@@ -1,0 +1,193 @@
+{
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "narration_text": "There is a story in Donald Passman's music business bible about a bulldog named Rosie and a stud named Winston. The owner turns pregnant Rosie over to the breeder, the puppies are sold, and for each puppy sold the owner gets a piece of the money. That is, more or less, a recording contract. You are the bulldog. The label is the breeder. And the puppies are your records.",
+      "shot": {
+        "kind": "card",
+        "title": "The bulldog and the puppies",
+        "dek": "You are the bulldog. The label is the breeder."
+      },
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "actual_duration_s": 18.41
+    },
+    {
+      "beat_id": "BDEFS",
+      "narration_text": "This is Music Business one-oh-one for the AI era. Passman's book, now in its eleventh edition, is the most analytically rigorous guide ever written to how the money moves in music. But it was written for a world where making a record cost money. In the AI era, the puppies are free. The contract math hasn't changed. That is the problem.",
+      "shot": {
+        "kind": "card",
+        "title": "The pitch",
+        "dek": "The puppies are free. The math hasn't changed."
+      },
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "actual_duration_s": 18.58
+    },
+    {
+      "beat_id": "B01",
+      "narration_text": "First, the good news. Piracy nearly killed recorded music. United States revenue fell from fourteen point six billion dollars in nineteen ninety nine to roughly half that, and stayed there for sixteen years. Then streaming brought it back to a new all-time high of fifteen point nine billion. The bad news: streaming turned royalties into a zero-sum pool. Your streams don't just earn you money. They shrink everyone else's slice, including your own.",
+      "shot": {
+        "kind": "card",
+        "title": "Streaming saved the patient",
+        "dek": "Fifteen point nine billion. Zero-sum."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 19.26
+    },
+    {
+      "beat_id": "B02",
+      "narration_text": "Before the money, the people. Passman says your team is the most consequential business decision you will make. The personal manager takes fifteen to twenty percent of your gross, and gross is the scam word. On a hundred thousand dollars of touring gross where you net forty five, the manager's fifteen percent is a third of your actual income. The business manager handles the money itself, and in California needs no credentials whatsoever to call themselves one. The attorney sees more deals than anyone and quietly becomes the most powerful person in the room. The agent takes ten percent and books the shows. Four people. All paid before you.",
+      "shot": {
+        "kind": "card",
+        "title": "Your team: four people, paid first",
+        "dek": "Fifteen percent of gross can be a third of you."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 35.6
+    },
+    {
+      "beat_id": "B03",
+      "narration_text": "The label's old job was manufacturing records and getting them into stores. That job is gone. A hundred thousand tracks hit the streaming services every single day, and a distributor will put yours up for pocket change. What the label still sells is the one thing you can't buy cheap: being heard. Data, marketing muscle, relationships with the playlist editors. Passman is honest that nobody can tell you exactly how much that's worth. Which is itself the answer. The industry keeps that number opaque on purpose.",
+      "shot": {
+        "kind": "card",
+        "title": "Do you need a label?",
+        "dek": "Distribution is cheap. Being heard isn't."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 30.54
+    },
+    {
+      "beat_id": "B04",
+      "narration_text": "Now the core of the book, and the ugliest math in music. You sign. You get an advance. Say the label spends two million dollars making and marketing your album, and the album earns two million back. You're even, right? Wrong. You're twenty thousand dollars in the hole, unrecouped, and you personally owe your producer forty thousand dollars in royalties his contract just triggered. The album made its money back, and you owe money. Success generated obligations faster than it generated revenue. This isn't an edge case. It's the design.",
+      "shot": {
+        "kind": "card",
+        "title": "The recoupment trap",
+        "dek": "The album broke even. You owe forty thousand."
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 30.46
+    },
+    {
+      "beat_id": "B05",
+      "narration_text": "Passman writes it on the blackboard: options are never good for you. A record deal is one firm album plus options for three or four more, but the options belong to the label. Album one flops, they walk away. Album one hits, they exercise the option at the royalty rate you negotiated when you had no leverage, and you're locked in cheap. Olivia Newton-John, Dean Martin, Frank Zappa: every clause in the modern contract exists because some artist once found the loophole, and the industry closed it.",
+      "shot": {
+        "kind": "card",
+        "title": "Options are never good for you",
+        "dek": "They can leave. You can't."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 29.56
+    },
+    {
+      "beat_id": "B06",
+      "narration_text": "Then there's the three-sixty: the label takes fifteen to twenty percent of your touring, your merch, your publishing. Everything. The sales pitch is that they're building your brand. Passman's dry observation: nobody has actually proven the brand-building happens. On touring, where margins are thin, the take drops to seven and a half to ten percent, which still comes off the gross, before the bus, the crew, the hotels. Your empire. Their percentage.",
+      "shot": {
+        "kind": "card",
+        "title": "The three-sixty deal",
+        "dek": "Your empire. Their percentage."
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 19.33
+    },
+    {
+      "beat_id": "B07",
+      "narration_text": "Here's what the whole machine is built on. The moment you fix a song in a tangible form, and a voice memo counts, you own the copyright. Registration just buys you better legal weapons. And there's a beautiful absurdity buried in the law: anyone can record your song without asking, as long as they pay the statutory rate. Twelve cents, or two point three one cents per minute, whichever is more. It dates to nineteen oh nine, when Congress feared a player-piano monopoly and declared jukeboxes to be toys. The music business still runs on a player-piano panic from over a century ago.",
+      "shot": {
+        "kind": "card",
+        "title": "The one thing you actually own",
+        "dek": "A voice memo is a copyright."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 33.55
+    },
+    {
+      "beat_id": "B08",
+      "narration_text": "Your streaming subscription goes into one big pool, divided by total streams. That's pro-rata. The alternative, your ten dollars split only among the artists you actually played, sounds fairer. France studied it. The result: the top ten artists lose twelve to seventeen percent, artists ranked a hundred to a thousand gain two to three percent, and everyone below the top ten thousand gains about ten euros a year. Ten euros. Not a revolution. A rounding error with implementation costs.",
+      "shot": {
+        "kind": "card",
+        "title": "Who gets your ten dollars",
+        "dek": "Ten euros a year. Not a revolution."
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 30.39
+    },
+    {
+      "beat_id": "B09",
+      "narration_text": "And now the AI-era problem Passman saw coming but couldn't solve. Music can be generated at near-zero cost, uploaded by the thousand, and streamed by bots, and thirty-one seconds clears the payment threshold. Every bot stream dilutes the pool your real streams draw from. His proposed fixes, laws requiring AI identification, segregated catalogs, are by his own honest admission speculative. The dilution isn't a future threat. It's the present tense.",
+      "shot": {
+        "kind": "card",
+        "title": "The pool is leaking",
+        "dek": "Thirty-one seconds clears the threshold."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 21.06
+    },
+    {
+      "beat_id": "B10",
+      "narration_text": "Which brings us to this month. Universal Music Group is suing DistroKid, the distributor behind a huge share of independent music, in Delaware federal court. Four counts of copyright infringement, one of deceptive trade practices, over AI slop passed off as human-made music. The complaint's numbers: twelve million tracks delivered to a single streaming service in six months, more than half of everything it received. One account released four thousand five hundred sixty-two tracks in a year. A pace, the lawsuit says, no human musician could achieve. A thousand works named, a hundred fifty thousand dollars per work on the table. This is a developing story. Those are allegations, not findings. But the distribution layer you depend on is now a legal battleground.",
+      "shot": {
+        "kind": "card",
+        "title": "The news: UMG versus DistroKid",
+        "dek": "Twelve million tracks. One distributor."
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 37.75
+    },
+    {
+      "beat_id": "B11",
+      "narration_text": "Here's the part that should worry you even if you've never touched a generator. Artists are reporting their own releases vanishing in the crackdown, tracks they say contain no AI at all. Those reports are unconfirmed, artist social posts, not verified. But the lesson holds regardless. Document your process. Keep the DAW sessions, the stems, the dated voice memos. Disclose any AI use clearly. The lawsuit explicitly carves out AI music that's honestly disclosed. And read your distributor's takedown and appeal process before you need it. Your distributor is no longer just a checkout page. It's a risk decision.",
+      "shot": {
+        "kind": "card",
+        "title": "What it means for you",
+        "dek": "Your distributor is a risk decision now."
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 35.77
+    },
+    {
+      "beat_id": "B12",
+      "narration_text": "So what changes, and what doesn't? AI collapses your production costs. The demo, the arrangement, the mix references, all cheap. Nothing in this film changes the contract math. Recoupment still recoups. Options still option. The pool is still zero-sum, and now it's leaking. What changes is leverage. If you can make the record for nothing, you need the advance less, which means you can negotiate less desperately, or skip the deal entirely. Own your masters when you can. License, don't assign. And remember the team math: fifteen percent of your gross is still fifteen percent of your gross, even when the gross was made by a machine.",
+      "shot": {
+        "kind": "card",
+        "title": "The AI-era playbook",
+        "dek": "License, don't assign."
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 34.96
+    },
+    {
+      "beat_id": "B13",
+      "narration_text": "Passman's book has one thesis it never quite states outright. The industry is a system designed to extract maximum value from creative labor at minimum risk to capital, and it's good at it because it sells you the one thing you can't make yourself: scale. AI doesn't change that design. It just lets more of us walk into the machine. The difference between the artists who survive it and the ones who don't was never talent. It was reading the contract.",
+      "shot": {
+        "kind": "card",
+        "title": "The close: eyes open",
+        "dek": "It was reading the contract."
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 19.14
+    },
+    {
+      "beat_id": "BOUT",
+      "narration_text": "Rosie had puppies. Winston got paid. Korky took her share. Jules got the rest. In the AI era the puppies are free, which means the only question left is the one Passman has been asking for forty years. When the money gets divided, are you Jules? Or are you the bulldog?",
+      "shot": {
+        "kind": "card",
+        "title": "The bulldog question",
+        "dek": "Are you Jules? Or the bulldog?"
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 16.9
+    }
+  ],
+  "metadata": {
+    "slug": "film-08-music-business-101",
+    "title": "Music Business 101 for the AI Era",
+    "engine": "kokoro",
+    "voice_kokoro": "am_puck",
+    "persona": "Musinique",
+    "channel": "@Musinique",
+    "register": "Sardonic",
+    "palette": "claude",
+    "audience": "indie musicians",
+    "source_article": "nikbearbrown/musinique articles/musinique-188685388-all-you-need-to-know-about-the-music-business-11th-edition.md",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. UMG v. DistroKid beat (B10-B11) is current-news context from the mission brief, not the source article \u2014 see FACTCHECK."
+  }
+}
