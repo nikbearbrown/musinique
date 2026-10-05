@@ -1,0 +1,193 @@
+{
+  "beats": [
+    {
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "beat_id": "BIDEA",
+      "narration_text": "A man released a hundred and fifty songs. Built an expensive studio. Screamed into the social media void. And nobody listened. Then he did one thing differently \u2014 he stopped thinking like an artist. This is the story of the curator's playbook, and why your next career move might be a playlist.",
+      "shot": {
+        "dek": "Stop thinking like an artist.",
+        "kind": "card",
+        "title": "The man with 150 songs nobody heard"
+      },
+      "actual_duration_s": 15.96
+    },
+    {
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "beat_id": "BDEFS",
+      "narration_text": "Here's the heresy: the path to music success isn't better music. It's a better mindset. Batushi built a playlist called Mood Lifting Happy Songs, grew it from under a thousand followers to over twenty-five hundred \u2014 and his own songs started getting discovered inside it. He stopped begging for a seat at someone else's table. He built his own table.",
+      "shot": {
+        "dek": "The playlist is the product.",
+        "kind": "card",
+        "title": "The pitch"
+      },
+      "actual_duration_s": 17.88
+    },
+    {
+      "audio_file": "mp3/beat-B01.mp3",
+      "beat_id": "B01",
+      "narration_text": "'Please listen to my song' \u2014 that's the struggling artist. Supplicant. Asking for a favor. The curator says something different: 'I've created an experience for you.' Authority. Offering value. Same music. Completely different power dynamic. One asks for attention. The other earns it.",
+      "shot": {
+        "dek": "Supplicant vs. authority.",
+        "kind": "card",
+        "title": "The power shift"
+      },
+      "actual_duration_s": 16.02
+    },
+    {
+      "audio_file": "mp3/beat-B02.mp3",
+      "beat_id": "B02",
+      "narration_text": "In the curator's playbook, your playlist is the product \u2014 and your music is just one ingredient. Not the main dish. The vital seasoning. You grow the playlist. You serve the mood. And when listeners stumble onto your track at position twenty, it feels like finding a hidden gem \u2014 not sitting through an ad.",
+      "shot": {
+        "dek": "Your music is the seasoning.",
+        "kind": "card",
+        "title": "Playlist as product"
+      },
+      "actual_duration_s": 16.38
+    },
+    {
+      "audio_file": "mp3/beat-B03.mp3",
+      "beat_id": "B03",
+      "narration_text": "Batushi calls it the gapfiller philosophy. Don't ask what's popular \u2014 ask what's missing. What feeling doesn't have its perfect soundtrack yet? What quiet happy Sunday morning is still waiting for its playlist? You're not competing for attention. You're completing the puzzle.",
+      "shot": {
+        "dek": "Ask what's missing, not what's popular.",
+        "kind": "card",
+        "title": "The gapfiller philosophy"
+      },
+      "actual_duration_s": 15.19
+    },
+    {
+      "audio_file": "mp3/beat-B04.mp3",
+      "beat_id": "B04",
+      "narration_text": "A winning playlist serves one precise mood. Not 'happy' \u2014 that's useless. Try: uplifting, energetic, windows-down summer drive. Then you name the listener and the context. Every track faces one question: does this serve the mood? Anything less than a resounding yes doesn't make the cut. Ruthless focus builds trust \u2014 listeners stop thinking and just feel.",
+      "shot": {
+        "dek": "Specificity builds trust.",
+        "kind": "card",
+        "title": "Anatomy of a mood"
+      },
+      "actual_duration_s": 17.86
+    },
+    {
+      "audio_file": "mp3/beat-B05.mp3",
+      "beat_id": "B05",
+      "narration_text": "Here's the discipline: out of a hundred songs on your playlist, only eight are yours. Eight percent. Any more and you're not a curator \u2014 you're a spammer with a playlist. Restraint is credibility. The playlist has to be genuinely good on its own merits, or nobody follows it, and your eight songs ride along with nothing.",
+      "shot": {
+        "dek": "Restraint is credibility.",
+        "kind": "card",
+        "title": "The 8% rule"
+      },
+      "actual_duration_s": 16.87
+    },
+    {
+      "audio_file": "mp3/beat-B06.mp3",
+      "beat_id": "B06",
+      "narration_text": "Then there's placement. Batushi claims eight 'golden positions' in a hundred-song playlist \u2014 slots two, four, six, nine, twenty, twenty-eight, forty-eight, eighty-five. Position one has the highest skip rate \u2014 everyone's still settling in. By the middle, trust is established. Near the end, recency bias does the work. Plausible psychology. Whether those exact slots are science or superstition \u2014 we'll come back to that.",
+      "shot": {
+        "dek": "Plausible. Proven? Not quite.",
+        "kind": "card",
+        "title": "The golden positions"
+      },
+      "actual_duration_s": 19.63
+    },
+    {
+      "audio_file": "mp3/beat-B07.mp3",
+      "beat_id": "B07",
+      "narration_text": "The rotation system: your top eight tracks are anchors, proven by data. Two challengers rotate in to test against them. Winners stay, losers leave. No ego, no attachment \u2014 the listeners' actions decide. At least, that's the theory. There's a catch: if you test challengers in weak positions while anchors hold the golden ones, it's not a fair fight. The data might just be telling you what the positions already decided.",
+      "shot": {
+        "dek": "Handicapped tests lie.",
+        "kind": "card",
+        "title": "Top 8 + 2 challengers"
+      },
+      "actual_duration_s": 19.2
+    },
+    {
+      "audio_file": "mp3/beat-B08.mp3",
+      "beat_id": "B08",
+      "narration_text": "Now the metric that matters. Batushi had three hundred seventy-four monthly listeners \u2014 but they streamed his music an average of three point eight three times each. Depth, not breadth. Ten thousand listeners who play you once are a puddle. Three hundred seventy-four who come back are a community. The goal isn't to be heard. It's to be heard again.",
+      "shot": {
+        "dek": "Depth beats breadth.",
+        "kind": "card",
+        "title": "Streams per listener"
+      },
+      "actual_duration_s": 17.62
+    },
+    {
+      "audio_file": "mp3/beat-B09.mp3",
+      "beat_id": "B09",
+      "narration_text": "But let's do the math nobody does. Fourteen hundred thirty-four streams a month, at roughly three-tenths of a cent per stream \u2014 that's about four dollars and thirty cents. A month. And he's spending three hundred dollars a month promoting the playlist. The playbook is a brilliant mindset shift. It is not, at this scale, a business.",
+      "shot": {
+        "dek": "$4.30 in, $300 out.",
+        "kind": "card",
+        "title": "The math nobody does"
+      },
+      "actual_duration_s": 16.6
+    },
+    {
+      "audio_file": "mp3/beat-B10.mp3",
+      "beat_id": "B10",
+      "narration_text": "Where does the three hundred go? SubmitHub ads \u2014 promoting the playlist, never the songs. Instagram retargeting. The clever bit: by becoming a curator on SubmitHub himself, reviewing other artists' submissions, he sharpens his taste, builds his network, and earns a credibility badge \u2014 all while the ads grow the playlist. A flywheel. Slow, but real.",
+      "shot": {
+        "dek": "Promote the playlist, never the songs.",
+        "kind": "card",
+        "title": "The SubmitHub flywheel"
+      },
+      "actual_duration_s": 17.37
+    },
+    {
+      "audio_file": "mp3/beat-B11.mp3",
+      "beat_id": "B11",
+      "narration_text": "Now here's where it gets interesting for you. Everything in this playbook is labor \u2014 and labor is exactly what AI eats. Gap analysis? Feed an AI a hundred playlists in your niche and ask what's missing. Mood mapping? Have it draft ten hyper-specific playlist concepts before breakfast. The curator's playbook took Batushi years of trial and error. AI compresses the trial part to an afternoon.",
+      "shot": {
+        "dek": "Years of trial, one afternoon.",
+        "kind": "card",
+        "title": "AI does the labor"
+      },
+      "actual_duration_s": 19.29
+    },
+    {
+      "audio_file": "mp3/beat-B12.mp3",
+      "beat_id": "B12",
+      "narration_text": "Playlist pitches to curators and editors \u2014 AI drafts them, you add the taste. Rotation analytics \u2014 AI reads your Spotify for Artists data and flags which challengers are actually winning. The rule from the songwriting film still holds: feed AI particulars, never ask it to invent them. It does the craft. The curation judgment \u2014 what serves the mood \u2014 that's still yours.",
+      "shot": {
+        "dek": "Feed it particulars, never taste.",
+        "kind": "card",
+        "title": "Pitches and analytics"
+      },
+      "actual_duration_s": 18.65
+    },
+    {
+      "audio_file": "mp3/beat-B13.mp3",
+      "beat_id": "B13",
+      "narration_text": "So what do you steal, and what do you doubt? Steal the reframe \u2014 curator beats supplicant, every time. Steal the discipline \u2014 the eight percent rule, the ruthless mood focus. Doubt the golden positions \u2014 one playlist, no controls, no proof. And doubt the economics until the math works. The mindset is the contribution. The specific tactics are one man's notes, not science.",
+      "shot": {
+        "dek": "Steal the mindset, doubt the math.",
+        "kind": "card",
+        "title": "What to steal, what to doubt"
+      },
+      "actual_duration_s": 17.98
+    },
+    {
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "beat_id": "BOUT",
+      "narration_text": "Stop begging for a seat at someone else's table. Build your own table, fill the gaps nobody else sees, and let listeners discover you like a hidden gem. In the AI era, one person can run a whole curator operation \u2014 research, pitches, analytics \u2014 before lunch. The soundboard is optional. The table is yours to build.",
+      "shot": {
+        "dek": "One prompt and a vision.",
+        "kind": "card",
+        "title": "Build your own table"
+      },
+      "actual_duration_s": 18.52
+    }
+  ],
+  "metadata": {
+    "audience": "indie musicians",
+    "channel": "@Musinique",
+    "engine": "kokoro",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. Voice am_puck (Musinique) per the mission scout; re-render cheap if Liam/am_onyx preferred.",
+    "palette": "claude",
+    "persona": "Musinique",
+    "register": "Sardonic",
+    "slug": "film-05-curators-playbook",
+    "source_article": "nikbearbrown/musinique articles/musinique-188014429-spotify-the-curator-s-playbook.md",
+    "title": "The Curator's Playbook: Stop Thinking Like an Artist",
+    "voice_kokoro": "am_puck"
+  }
+}
