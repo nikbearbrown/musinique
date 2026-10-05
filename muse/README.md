@@ -29,7 +29,7 @@ Nothing is rendered or published from here; MP3/MP4 files are never committed. *
 |------|---------------|---------|
 | Music Business 101 for the AI Era | [render prompt](youtube/music-business-101-for-the-ai-era/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/music-business-101-for-the-ai-era/) (16 beats, 431s, rendered 2026-10-04) |
 | Your AI Manager | [render prompt](youtube/your-ai-manager/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/your-ai-manager/) (16 beats, 292s, rendered 2026-10-04) |
-| The Wizard Has a Balance Sheet | [render prompt](youtube/wizard-has-a-balance-sheet/CLAUDE-CODE-RENDER.md) | planned |
+| The Wizard Has a Balance Sheet | [render prompt](youtube/wizard-has-a-balance-sheet/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/wizard-has-a-balance-sheet/) (16 beats, 399s, rendered 2026-10-04) |
 
 ## The AI stack
 
