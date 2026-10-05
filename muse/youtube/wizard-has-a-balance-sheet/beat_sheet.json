@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "slug": "film-10-wizard-balance-sheet",
+    "title": "The Wizard Has a Balance Sheet",
+    "engine": "kokoro",
+    "voice_kokoro": "am_puck",
+    "persona": "Musinique",
+    "channel": "@Musinique",
+    "register": "Sardonic",
+    "palette": "claude",
+    "audience": "indie musicians",
+    "source_article": "nikbearbrown/musinique articles/musinique-188950081-the-wizard-behind-the-curtain-has-a-balance-sheet.md",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. Numbers written as words for Kokoro."
+  },
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "narration_text": "Every magic trick has an accountant. Spotify's trick is making you feel like the music found you \u2014 the perfect playlist, the uncanny recommendation, the Wrapped card that knows your soul. But behind the curtain there is no wizard. There is a balance sheet. And if you are an independent musician, that balance sheet is billing you. Follow the money.",
+      "shot": {
+        "kind": "card",
+        "title": "The wizard has a balance sheet",
+        "dek": "Follow the money, not the magic."
+      },
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "actual_duration_s": 15.53
+    },
+    {
+      "beat_id": "BDEFS",
+      "narration_text": "Here's the pitch: in twenty twenty-four, Spotify's big AI Wrapped recap collapsed in public. A Google-powered podcast that told users their top genre was, and I quote, Pink Pilates Princess Strut Pop. Mockery everywhere. And the company learned the exact wrong lesson \u2014 or the exact right one, depending on whose money we're talking about. Users did not object to AI running their music. They objected to knowing about it.",
+      "shot": {
+        "kind": "card",
+        "title": "The pitch",
+        "dek": "Users didn't hate the AI. They hated knowing."
+      },
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "actual_duration_s": 17.41
+    },
+    {
+      "beat_id": "B01",
+      "narration_text": "Rewind to December of twenty twenty-three. Spotify laid off fifteen hundred people \u2014 seventeen percent of the company \u2014 including the data scientists, motion designers, and curatorial architects who had built Wrapped's emotional intelligence over years. Glenn McDonald, the man behind Every Noise at Once, the closest thing to genuine thinking about music's inner life, walked out the door. What replaced human judgment was automation that could copy the shape of Wrapped without understanding what it was for. Wrapped was never about data. It was about being seen. The AI saw the data. It never saw you.",
+      "shot": {
+        "kind": "card",
+        "title": "What twenty twenty-four broke",
+        "dek": "The humans walked out; the automation walked in."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 29.65
+    },
+    {
+      "beat_id": "B02",
+      "narration_text": "So in twenty twenty-five came the pivot: stealth AI. Same machine learning infrastructure, now invisible, wrapped in a visual aesthetic borrowed from cassette and mixtape culture. The analog nostalgia was not decoration. It was the strategy. The AI did not leave. The AI branding did. And it worked \u2014 on every metric the company chose to publish.",
+      "shot": {
+        "kind": "card",
+        "title": "The concealment pivot",
+        "dek": "The AI didn't leave. The branding did."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 16.55
+    },
+    {
+      "beat_id": "B03",
+      "narration_text": "The recovery numbers, for the record: two hundred million engaged users in twenty-four hours, versus sixty-two hours the year before. Five hundred million social shares, versus an estimated three hundred fifty-four million. Engagement up nineteen percent year over year. Impressive. And completely silent about what users were actually hearing underneath the brand campaign. Metrics validate the surface. They cannot see the foundation.",
+      "shot": {
+        "kind": "card",
+        "title": "The recovery metrics",
+        "dek": "Two hundred million users in twenty-four hours."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 17.69
+    },
+    {
+      "beat_id": "B04",
+      "narration_text": "Then the co-CEO said the quiet part out loud. On the twenty twenty-five fourth-quarter earnings call, Gustav S\u00f6derstr\u00f6m said Spotify's most experienced engineers had not written a single line of code since December \u2014 they were directing AI-generated code through prompts. And he named the limiting factor on further AI integration: not quality, not accuracy \u2014 the amount of change that consumers are comfortable with. Read that twice. The constraint is your tolerance, not the product. They optimized for the first.",
+      "shot": {
+        "kind": "card",
+        "title": "The quote",
+        "dek": "The limit is not quality. It's tolerance."
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 27.83
+    },
+    {
+      "beat_id": "B05",
+      "narration_text": "Now the infrastructure the brand narrative cannot see. Spring Euphemia: two hundred forty-five thousand monthly listeners, five hundred twenty-nine followers. For every hundred thousand people who heard the music, two hundred fifteen cared enough to click follow. An organic artist runs five to fifteen percent. This is twenty-three times lower than the floor of real. The top track has fifty-one million plays. Fifty-one million times someone heard this music and felt nothing about whoever made it. That is not a coincidence. That is a design specification.",
+      "shot": {
+        "kind": "card",
+        "title": "Exhibit A: Spring Euphemia",
+        "dek": "Two hundred forty-five thousand listeners. Five hundred twenty-nine followers."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 28.79
+    },
+    {
+      "beat_id": "B06",
+      "narration_text": "It is not one artist. Garc\u00edia: nearly one and a half million monthly listeners, six hundred eighty followers. Red Ripples: two hundred twenty-seven thousand listeners, thirteen followers. Thirteen. Vin\u00edcius \u00c9nnae: six hundred twenty-nine thousand listeners, one hundred eight followers, publisher listed as Firefly Entertainment of Stockholm, compositions tracing to Swedish producers through the Swedish collection society. No Instagram, no Wikipedia, no tour dates, no verifiable identity outside Spotify's own copy. Forty artists in the documented sample. Identical pattern. This is not artist music with a small fanbase. This is content with consumers.",
+      "shot": {
+        "kind": "card",
+        "title": "The ghost roster",
+        "dek": "Forty artists. One statistical signature."
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 32.08
+    },
+    {
+      "beat_id": "B07",
+      "narration_text": "Why does this exist? Follow the money. Spotify pays on pro-rata: pool all the revenue, divide it by share of total streams. Thirty seconds of ambient piano earns exactly what thirty seconds of Nina Simone earns. So a listener running a sleep playlist for eight hours a night is worth more to the pool than a devoted fan playing your album twice a day. Place hundreds of fabricated profiles on high-volume mood playlists and you capture royalty share wildly out of proportion to fandom. Functional music is not a genre. It is an arbitrage.",
+      "shot": {
+        "kind": "card",
+        "title": "The pro-rata machine",
+        "dek": "Thirty seconds of piano equals thirty seconds of Nina Simone."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 28.54
+    },
+    {
+      "beat_id": "B08",
+      "narration_text": "And the arbitrage pays. Spring Euphemia's fifty-one million plays represent roughly one hundred two thousand to two hundred fifty-five thousand dollars in gross royalties. For a fabricated identity. Built from session musicians on buyout deals, licensed to the platform at below-standard rates. Every dollar flowing to Spring Euphemia is a dollar not flowing to the independent artist displaced from that same playlist when the production company arrived. The pool is fixed. Your share is someone else's loss, and vice versa.",
+      "shot": {
+        "kind": "card",
+        "title": "Where the money goes",
+        "dek": "Fifty-one million plays. A fabricated identity."
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 28.2
+    },
+    {
+      "beat_id": "B09",
+      "narration_text": "Spotify will tell you it cleaned house: seventy-five million tracks removed in twenty twenty-five, presented as creator protection. But if that number approaches seventy-five percent of the total catalog, as the math suggests, then the platform let industrial-scale algorithmic pollution run for years before acting. Removing spam corrects a condition Spotify itself created, by building financial incentives that rewarded upload volume over human artistry. That is not compensation. That is arsonists selling fire extinguishers.",
+      "shot": {
+        "kind": "card",
+        "title": "The cleanup",
+        "dek": "Seventy-five million tracks removed. Credit claimed."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 29.14
+    },
+    {
+      "beat_id": "B10",
+      "narration_text": "The balance sheet, then: seven hundred fifty-one million monthly active users. Ten percent premium subscriber growth. Twenty point four billion dollars in annual revenue, up eight point two percent. The official conclusion: the cultural backlash did not materially affect the business. Maybe. Or maybe subscriber retention measures lock-in as readily as loyalty. When your playlists, your history, your algorithmic self live inside one platform, leaving is not a weekend project. The numbers are the most verifiable data in this story. The conclusions drawn from them are the weakest.",
+      "shot": {
+        "kind": "card",
+        "title": "The balance sheet",
+        "dek": "Twenty point four billion dollars. Up eight point two percent."
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 30.86
+    },
+    {
+      "beat_id": "B11",
+      "narration_text": "Which brings us to twenty twenty-six. Spotify's roadmap promises Prompted Playlists \u2014 telling users they are steering the algorithm \u2014 and human editors as quote context providers. The one-liner explanations for each recommended track are themselves AI-generated. The editors are framing an automated system, not replacing it. The question: does transparency perform as well as concealment? If yes, twenty twenty-five was a bridge. If no \u2014 if the mixtape magic only worked because the machinery was hidden \u2014 then the problem was never solved. It was delayed.",
+      "shot": {
+        "kind": "card",
+        "title": "The twenty twenty-six test",
+        "dek": "Does transparency perform like concealment?"
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 30.2
+    },
+    {
+      "beat_id": "B12",
+      "narration_text": "And here is the endgame the ghost artists preview. The ghost program proved users do not revolt when fabricated identities replace real musicians. AI removes even the session musicians. Boomi has already generated fourteen point five million AI-produced songs. Endel has a partnership with Warner Music generating mood remixes algorithmically. When the session players inside Firefly get replaced by prompts, nothing in your experience changes. Spring Euphemia remains. The bio remains. The fifty-one million plays remain. The real artists are already gone.",
+      "shot": {
+        "kind": "card",
+        "title": "The endgame",
+        "dek": "Fourteen point five million AI songs and counting."
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 31.93
+    },
+    {
+      "beat_id": "B13",
+      "narration_text": "So what do you do, independent musician? First: watch the balance sheet, not the brand. Every platform announcement is marketing; every royalty statement is evidence. Second: build follows, not streams \u2014 direct connection is the one metric that cannot be faked by a ghost. Third: assume the pool is rigged toward whoever games it, and price your effort accordingly. And fourth: the next time a platform sells you magic, ask who is paying the wizard. It might be you.",
+      "shot": {
+        "kind": "card",
+        "title": "What you do about it",
+        "dek": "Watch the balance sheet, not the brand."
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 17.62
+    },
+    {
+      "beat_id": "BOUT",
+      "narration_text": "The wizard behind the curtain has a balance sheet. The magic is infrastructure. The money is the message. Spotify did not recover from its AI disaster by building better AI. It recovered by hiding the AI better \u2014 and by building an economy underneath where fabricated artists capture real dollars. Pay the wizard no mind. Pay yourself.",
+      "shot": {
+        "kind": "card",
+        "title": "The close",
+        "dek": "The magic is infrastructure. The money is the message."
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 16.9
+    }
+  ]
+}
