@@ -1,0 +1,193 @@
+{
+  "beats": [
+    {
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "beat_id": "BIDEA",
+      "narration_text": "In 2003, Susan Tucker interviewed thirteen Nashville hit songwriters to find the secret of songwriting. Hundreds of number-one singles between them. Tens of millions of records sold. The secret they confessed? There isn't one. There's only showing up. Now AI is here to accelerate everything around the secret \u2014 which is great news, and a trap.",
+      "shot": {
+        "dek": "Thirteen hit writers. One confession.",
+        "kind": "card",
+        "title": "There is no secret"
+      },
+      "actual_duration_s": 18.45
+    },
+    {
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "beat_id": "BDEFS",
+      "narration_text": "Songwriter Jason Blume names the two-equation problem. Equation one: catharsis \u2014 the subconscious gift that bubbles up. Equation two: craft \u2014 the conscious structure that makes it receivable. The gift without craft stays private. Craft without the gift produces heartless songs. AI can now be hired for equation two. It cannot be hired for equation one.",
+      "shot": {
+        "dek": "Catharsis + craft. AI does one.",
+        "kind": "card",
+        "title": "The two-equation problem"
+      },
+      "actual_duration_s": 18.69
+    },
+    {
+      "audio_file": "mp3/beat-B01.mp3",
+      "beat_id": "B01",
+      "narration_text": "Mike Reid's metaphor: the creative self is a separate entity, living in darkness, desperate to come into the light. You make appointments with it. You keep them faithfully. 'It's not going to take part in a faithless relationship.' The secret of Romeo and Juliet isn't passion \u2014 it's the appointments. They showed up. AI is now in the room at 2am. But the appointment is still yours to keep.",
+      "shot": {
+        "dek": "The muse keeps office hours.",
+        "kind": "card",
+        "title": "Keep the appointment"
+      },
+      "actual_duration_s": 17.58
+    },
+    {
+      "audio_file": "mp3/beat-B02.mp3",
+      "beat_id": "B02",
+      "narration_text": "Every one of Tucker's thirteen hits the same wall. Blume: 'I'm afraid I'll never write again.' Tia Sillers, fresh off a Grammy: 'That's that, you're a has-been.' The voice saying you're finished is universal. What separates the survivors isn't the absence of the voice \u2014 it's writing anyway. AI shrinks the blank page the voice hides behind. Less white space, less to fear.",
+      "shot": {
+        "dek": "Universal. Write anyway.",
+        "kind": "card",
+        "title": "The voice that says you're finished"
+      },
+      "actual_duration_s": 18.35
+    },
+    {
+      "audio_file": "mp3/beat-B03.mp3",
+      "beat_id": "B03",
+      "narration_text": "Three writers, same arc, no coordination. Blume, Steve Seskin, Mike Reid: first, pure emotion with no technique. Then learned craft \u2014 and the voice vanishes. Songs get correct and stop feeling real. Then, years later, integration. AI hands you stage-two craft instantly: chords, structure, rhyme on demand. Useful \u2014 unless you mistake the shortcut for the journey. The arc can't be skipped. Only shortened.",
+      "shot": {
+        "dek": "Craft without catharsis is heartless.",
+        "kind": "card",
+        "title": "Don't skip the arc"
+      },
+      "actual_duration_s": 19.24
+    },
+    {
+      "audio_file": "mp3/beat-B04.mp3",
+      "beat_id": "B04",
+      "narration_text": "The second thing all thirteen agree on: life is the material. Not generic life \u2014 yours. Reid spent eighteen months writing by the numbers until his publisher said: stop putting other people's emotions in the container. Shamblin: hoe in your own garden. Wiseman: the public has a sophisticated bullshit meter. AI has no life. It generates plausible. It cannot generate true. The particular is still yours to supply.",
+      "shot": {
+        "dek": "Yours. Specifically.",
+        "kind": "card",
+        "title": "Life is the material"
+      },
+      "actual_duration_s": 19.48
+    },
+    {
+      "audio_file": "mp3/beat-B05.mp3",
+      "beat_id": "B05",
+      "narration_text": "Wiseman nearly cut the railroad trestle from 'Young' \u2014 too esoteric, he thought. It became the line audiences loved most. What is most particular is most universal. Here's the AI trap: models drift to the statistical center. Ask AI for a detail, you get the average detail. Your weird, specific, slightly embarrassing memory beats its plausible average every single time. Feed it the particular; never ask it to invent one.",
+      "shot": {
+        "dek": "The weird detail wins.",
+        "kind": "card",
+        "title": "The trestle"
+      },
+      "actual_duration_s": 20.61
+    },
+    {
+      "audio_file": "mp3/beat-B06.mp3",
+      "beat_id": "B06",
+      "narration_text": "Shamblin's free-flow technique: write fast, longhand, no editing, no rhyming \u2014 let the heart spill out. Keep the creator nine feet tall and the critic two feet tall. Blume's version: set a timer, ten minutes, don't invite the critic. AI is the perfect free-flow partner. It never judges, never interrupts, never gets bored. Dictate the mess. Let it hold the mess. Shape it later.",
+      "shot": {
+        "dek": "Creator big. Critic small.",
+        "kind": "card",
+        "title": "Nine feet tall"
+      },
+      "actual_duration_s": 18.3
+    },
+    {
+      "audio_file": "mp3/beat-B07.mp3",
+      "beat_id": "B07",
+      "narration_text": "Hugh Prestwood writes maybe a song a month, and protects each one like a fire. Get the spark, shelter it before anyone blows it out \u2014 don't play it for your wife until the fire's going. He even builds the demo incrementally to trap himself into finishing. AI gives you twenty private variants before breakfast. The spark stays protected \u2014 but don't let infinite options become infinite dithering. Fire still needs committing to.",
+      "shot": {
+        "dek": "Generate in private. Commit in public.",
+        "kind": "card",
+        "title": "Protect the spark"
+      },
+      "actual_duration_s": 18.77
+    },
+    {
+      "audio_file": "mp3/beat-B08.mp3",
+      "beat_id": "B08",
+      "narration_text": "Stewart Harris meditated twenty-seven years to thin the membrane between conscious and subconscious. His father's warning: the well empties if you only take. His mother's rule: go to the studio every day \u2014 'woe be to he who is not there when the angel comes bearing gifts.' AI cannot refill your well. Only living does. But it lowers the cost of showing up, which is half the battle.",
+      "shot": {
+        "dek": "AI can't live for you.",
+        "kind": "card",
+        "title": "Refill the well"
+      },
+      "actual_duration_s": 18.33
+    },
+    {
+      "audio_file": "mp3/beat-B09.mp3",
+      "beat_id": "B09",
+      "narration_text": "Reid's prescription: 'If you're a writer, you have to write every day. I don't care if it's ten minutes.' Carolyn Dawn Johnson: do something every day that gets you closer to the big picture. The math of ten minutes changes when setup cost hits zero. No tuning, no templates, no session to book. Open the laptop. Ten minutes. A verse exists that didn't this morning.",
+      "shot": {
+        "dek": "Zero setup cost.",
+        "kind": "card",
+        "title": "Ten minutes"
+      },
+      "actual_duration_s": 17.81
+    },
+    {
+      "audio_file": "mp3/beat-B10.mp3",
+      "beat_id": "B10",
+      "narration_text": "Seskin's cardinal rule: don't let commerce into the creation. Write it as art first; figure out who to sell it to after. 'Don't Laugh at Me': four hours, no rewrites. 'Cactus in a Coffee Can': eighty hours over six months. Same writers, same standard \u2014 different songs take what they take. AI is pure commerce-speed: instant and cheap. That's exactly why you quarantine it from the art phase. Hire it for craft. Never for caring.",
+      "shot": {
+        "dek": "Quarantine the speed.",
+        "kind": "card",
+        "title": "Art before commerce"
+      },
+      "actual_duration_s": 19.16
+    },
+    {
+      "audio_file": "mp3/beat-B11.mp3",
+      "beat_id": "B11",
+      "narration_text": "Bob DiPiero is a co-writing animal \u2014 another mind in the room is fuel. Johnson says co-writing creates accountability. AI is the most available co-writer in history: midnight, no ego, never flakes. But Shamblin's warning stands: co-writing, over time, can diminish your gift. Schedule solo sessions to stay in contact with your own voice. The roommate is great. Don't let it move into your head.",
+      "shot": {
+        "dek": "But schedule solo sessions.",
+        "kind": "card",
+        "title": "The co-writer who never flakes"
+      },
+      "actual_duration_s": 18.65
+    },
+    {
+      "audio_file": "mp3/beat-B12.mp3",
+      "beat_id": "B12",
+      "narration_text": "Gretchen Peters, on why it never gets easier: 'The little target you're aiming at gets smaller and smaller the better you get.' AI raises the floor \u2014 competent songs get cheap. The ceiling doesn't move. When everyone has the same accelerant, the differentiator is the one thing it can't supply: your life, your need, your particular. Taste becomes more valuable, not less.",
+      "shot": {
+        "dek": "AI raises the floor, not the ceiling.",
+        "kind": "card",
+        "title": "The target gets smaller"
+      },
+      "actual_duration_s": 18.24
+    },
+    {
+      "audio_file": "mp3/beat-B13.mp3",
+      "beat_id": "B13",
+      "narration_text": "Tucker promised to name the mysterious ingredient separating good from great. She never does. The honest answer, visible across all thirteen: the ingredient is the need itself. Brett Beavers: 'I couldn't not write.' Craft can be taught. Discipline can be built. The need cannot. AI is the great revealer \u2014 when execution costs nothing, the only question left is whether you need to say it. No more blaming the tools.",
+      "shot": {
+        "dek": "The one thing that can't be taught.",
+        "kind": "card",
+        "title": "The need"
+      },
+      "actual_duration_s": 18.47
+    },
+    {
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "beat_id": "BOUT",
+      "narration_text": "Thirteen writers. Hundreds of number ones. Two convictions: the work is in the writing, and life is the material. AI doesn't change the secret. It removes the excuses. The well, the spark, the ten minutes \u2014 accelerated. The need \u2014 still, entirely, yours.",
+      "shot": {
+        "dek": "The secret, accelerated.",
+        "kind": "card",
+        "title": "No more excuses"
+      },
+      "actual_duration_s": 15.51
+    }
+  ],
+  "metadata": {
+    "audience": "indie musicians",
+    "channel": "@Musinique",
+    "engine": "kokoro",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. Voice am_puck (Musinique, Sardonic). AI-application framing is the film's own synthesis; book/writer claims grounded in the musinique article.",
+    "palette": "claude",
+    "persona": "Musinique",
+    "register": "Sardonic",
+    "slug": "film-02-secrets-of-songwriting",
+    "source_article": "nikbearbrown/musinique articles/musinique-188688496-the-secrets-of-songwriting.md",
+    "title": "The Secrets of Songwriting, Accelerated",
+    "voice_kokoro": "am_puck"
+  }
+}
