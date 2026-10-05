@@ -1,0 +1,193 @@
+{
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "narration_text": "A music manager takes twenty percent of everything. Your gross, not your profit. Twenty percent of the gig money, the merch money, the sync money \u2014 before you've paid the band, the van, or yourself. And here's the question nobody asks until it's too late: what exactly are you buying?",
+      "shot": {
+        "kind": "card",
+        "title": "The most expensive employee you'll never interview",
+        "dek": "Twenty percent of everything."
+      },
+      "actual_duration_s": 15.74,
+      "audio_file": "mp3/beat-BIDEA.mp3"
+    },
+    {
+      "beat_id": "BDEFS",
+      "narration_text": "This is a film about hiring a manager who works for free, never sleeps, never takes twenty percent, and never sues you. It's called AI. And before you roll your eyes \u2014 no, it cannot replace a manager. But it can do about half of the manager's job. Which raises an awkward question about what the other half is worth.",
+      "shot": {
+        "kind": "card",
+        "title": "The pitch",
+        "dek": "A manager who never sleeps, never bills."
+      },
+      "actual_duration_s": 17.22,
+      "audio_file": "mp3/beat-BDEFS.mp3"
+    },
+    {
+      "beat_id": "B01",
+      "narration_text": "Strip away the mythology and a manager does four things. One: builds your team \u2014 lawyer, accountant, agent, publisher. Two: negotiates your deals. Three: runs the business day to day \u2014 money in, money out, schedule. Four: tells you the truth when nobody else will. Three of those four are paperwork. And paperwork is what AI eats.",
+      "shot": {
+        "kind": "card",
+        "title": "What a manager actually does",
+        "dek": "Four jobs. Three are paperwork."
+      },
+      "actual_duration_s": 17.98,
+      "audio_file": "mp3/beat-B01.mp3"
+    },
+    {
+      "beat_id": "B02",
+      "narration_text": "Here's the legal bit, and it matters. A manager owes you a fiduciary duty \u2014 the highest duty the law knows. They must put your interests ahead of their own. Courts have enforced it for decades: Gilbert O'Sullivan's contracts voided in nineteen eighty-five, Elton John versus Dick James in ninety-one. An AI owes you nothing. No duty, no loyalty, no liability. Which is clarifying, actually. The responsibility was always yours.",
+      "shot": {
+        "kind": "card",
+        "title": "The fiduciary lecture",
+        "dek": "AI owes you nothing. Clarifying, actually."
+      },
+      "actual_duration_s": 19.84,
+      "audio_file": "mp3/beat-B02.mp3"
+    },
+    {
+      "beat_id": "B03",
+      "narration_text": "The book this film is built on \u2014 Ann Harrison's Music: The Business \u2014 documents a pattern across four decades. Young artist, no advice, signs a bad contract. O'Sullivan. Armatrading. The Stone Roses. Frankie Goes To Hollywood. Every one of them signed when they were unknown and fought when they were valuable. The industry's business model has always included your ignorance as a line item.",
+      "shot": {
+        "kind": "card",
+        "title": "The pattern",
+        "dek": "Your ignorance was always a line item."
+      },
+      "actual_duration_s": 19.16,
+      "audio_file": "mp3/beat-B03.mp3"
+    },
+    {
+      "beat_id": "B04",
+      "narration_text": "Harrison's prescription is the same on every page: get a lawyer before you sign anything. Even before there's anything to sign. The problem: a twenty-two-year-old with no income can't tell a standard deal from a robbery \u2014 even with good advice. This is where your AI manager earns its keep. Feed it the contract. Ask it to translate every clause into plain English. Ask it what's unusual. Ask it what to ask the lawyer. You still hire the lawyer. But you walk in dangerous. Informed.",
+      "shot": {
+        "kind": "card",
+        "title": "Frontload the knowledge",
+        "dek": "Walk in dangerous. Informed."
+      },
+      "actual_duration_s": 19.67,
+      "audio_file": "mp3/beat-B04.mp3"
+    },
+    {
+      "beat_id": "B05",
+      "narration_text": "Before the negotiation, rehearse it. Tell the AI: you are the label's lawyer, you want a three-sixty deal with twenty percent of my live income, and you think I'm desperate. Then argue. It will find the holes in your position at two in the morning, for free \u2014 which is more than most real managers do. The point isn't that the AI is right. The point is you stop being surprised.",
+      "shot": {
+        "kind": "card",
+        "title": "The sparring partner",
+        "dek": "Rehearse the negotiation at two a.m."
+      },
+      "actual_duration_s": 17.94,
+      "audio_file": "mp3/beat-B05.mp3"
+    },
+    {
+      "beat_id": "B06",
+      "narration_text": "Publishing is where careers quietly bleed out. Harrison shows the math: on a receipts deal, a French sub-publisher takes fifteen percent off the top, then your UK publisher takes twenty-five percent of what's left \u2014 you keep about sixty-four percent. On an at-source deal, you keep seventy-five. Same songs. Same France. Eleven percent of your money, decided by one clause. Your AI manager runs these numbers before you sign, not after the accountant finds them.",
+      "shot": {
+        "kind": "card",
+        "title": "The royalty arithmetic",
+        "dek": "Eleven percent, decided by one clause."
+      },
+      "actual_duration_s": 20.5,
+      "audio_file": "mp3/beat-B06.mp3"
+    },
+    {
+      "beat_id": "B07",
+      "narration_text": "In two thousand six, an organist named Matthew Fisher was awarded forty percent of the musical copyright in A Whiter Shade of Pale \u2014 thirty-nine years after the recording. Session players, co-writers, the friend who hummed the hook: get it in writing now, or litigate it in twenty sixty-five. Your AI manager drafts the session agreement before the session. Not after the hit.",
+      "shot": {
+        "kind": "card",
+        "title": "The forty-year warning",
+        "dek": "Get it in writing, or litigate in twenty sixty-five."
+      },
+      "actual_duration_s": 18.88,
+      "audio_file": "mp3/beat-B07.mp3"
+    },
+    {
+      "beat_id": "B08",
+      "narration_text": "Harrison admits it outright: most bands never write a band agreement, despite every lawyer telling them to. Who owns the name? What happens when someone leaves? Frankie Goes To Hollywood fought over exactly this. An AI drafts a first version in ten minutes \u2014 ownership splits, leaving-member terms, name rights. It's not a substitute for a lawyer. It's a substitute for the blank page, which is where most bands stop.",
+      "shot": {
+        "kind": "card",
+        "title": "The agreement nobody writes",
+        "dek": "A substitute for the blank page."
+      },
+      "actual_duration_s": 18.65,
+      "audio_file": "mp3/beat-B08.mp3"
+    },
+    {
+      "beat_id": "B09",
+      "narration_text": "Touring is the healthiest part of the music economy and the most punishing to run. Routing, guarantees versus door splits, curfews \u2014 George Michael was once fined a hundred and thirty thousand pounds for overrunning a Wembley curfew, ten thousand pounds a minute. Your AI manager builds the routing spreadsheet, totals the real costs, flags the curfew, drafts the promoter emails. The road still breaks you. It just stops surprising you.",
+      "shot": {
+        "kind": "card",
+        "title": "Tour logistics",
+        "dek": "The road stops surprising you."
+      },
+      "actual_duration_s": 19.24,
+      "audio_file": "mp3/beat-B09.mp3"
+    },
+    {
+      "beat_id": "B10",
+      "narration_text": "The average independent artist is also their own publicist, booker, merch manager, and customer service desk. The inbox is where careers go to drown quietly. Triage is a manager's job and it's pure pattern recognition: draft the replies, sort the urgent from the noise, write the follow-ups you keep forgetting. The least glamorous beat in this film. The one that saves the most hours.",
+      "shot": {
+        "kind": "card",
+        "title": "The inbox",
+        "dek": "Where careers drown quietly."
+      },
+      "actual_duration_s": 19.22,
+      "audio_file": "mp3/beat-B10.mp3"
+    },
+    {
+      "beat_id": "B11",
+      "narration_text": "A manager's calendar is a defensive weapon: hold dates, protect writing weeks, say no early. Feed your AI the gig offers, the release timeline, the travel, and ask it what's colliding. It has no ego about telling you you're overbooked. Your human collaborators will thank it.",
+      "shot": {
+        "kind": "card",
+        "title": "The calendar",
+        "dek": "A defensive weapon."
+      },
+      "actual_duration_s": 15.59,
+      "audio_file": "mp3/beat-B11.mp3"
+    },
+    {
+      "beat_id": "B12",
+      "narration_text": "So what is the human manager's twenty percent actually buying? Judgment. Relationships. The phone call that gets the support slot. Taste \u2014 knowing which deal to walk away from. AI can't do any of that. No relationships, no reputation, no skin in the game. Anyone selling you an AI that replaces your manager is selling the same fantasy the industry sold O'Sullivan in nineteen eighty-five: that the paperwork is the relationship.",
+      "shot": {
+        "kind": "card",
+        "title": "The twenty percent question",
+        "dek": "The paperwork isn't the relationship."
+      },
+      "actual_duration_s": 20.12,
+      "audio_file": "mp3/beat-B12.mp3"
+    },
+    {
+      "beat_id": "B13",
+      "narration_text": "Here's the reframe. A manager works for you \u2014 fiduciary duty, remember \u2014 but most artists behave like they work for the manager. An AI manager fixes the posture without changing the facts: it works for you, visibly, with no commission and no ego. You remain the principal. The decisions, the taste, the nerve \u2014 those were always yours. The industry just preferred you didn't know that.",
+      "shot": {
+        "kind": "card",
+        "title": "The close: you're the principal",
+        "dek": "The nerve was always yours."
+      },
+      "actual_duration_s": 18.58,
+      "audio_file": "mp3/beat-B13.mp3"
+    },
+    {
+      "beat_id": "BOUT",
+      "narration_text": "You don't need permission to run your business like a business. You need a manager who shows up. Hire the human for judgment. Hire the machine for everything else. And read the contract before midnight \u2014 or better, have it read to you.",
+      "shot": {
+        "kind": "card",
+        "title": "Outro",
+        "dek": "Read the contract before midnight."
+      },
+      "actual_duration_s": 13.14,
+      "audio_file": "mp3/beat-BOUT.mp3"
+    }
+  ],
+  "metadata": {
+    "slug": "film-09-ai-manager",
+    "title": "Your AI Manager",
+    "engine": "kokoro",
+    "voice_kokoro": "am_puck",
+    "persona": "Musinique",
+    "channel": "@Musinique",
+    "register": "Sardonic",
+    "palette": "claude",
+    "audience": "indie musicians",
+    "source_article": "nikbearbrown/musinique articles/musinique-189322198-music-the-business.md",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. AI-manager playbook beats are the film's own advice-synthesis mapped onto Ann Harrison's Music: The Business (4th ed., 2008) \u2014 phrased as recommendations, never attributed to Harrison. See FACTCHECK."
+  }
+}
