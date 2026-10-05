@@ -19,7 +19,7 @@ Nothing is rendered or published from here; MP3/MP4 files are never committed. *
 | Film | Render prompt | Package |
 |------|---------------|---------|
 | The Thirty-Second Soul: Winning the Skip | [render prompt](youtube/thirty-second-soul-winning-the-skip/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/thirty-second-soul-winning-the-skip/) (16 beats, 458s, rendered 2026-10-04) |
-| The Curator's Playbook: Stop Thinking Like an Artist | [render prompt](youtube/curators-playbook-stop-thinking-like-an-artist/CLAUDE-CODE-RENDER.md) | planned |
+| The Curator's Playbook: Stop Thinking Like an Artist | [render prompt](youtube/curators-playbook-stop-thinking-like-an-artist/CLAUDE-CODE-RENDER.md) | **slate cut** — [source package](youtube/curators-playbook-stop-thinking-like-an-artist/) (16 beats, 281s, rendered 2026-10-04) |
 | A Visual Language for Pennies | [render prompt](youtube/visual-language-for-pennies/CLAUDE-CODE-RENDER.md) | planned |
 | Ghost Artists and Real Ones | [render prompt](youtube/ghost-artists-and-real-ones/CLAUDE-CODE-RENDER.md) | planned |
 
