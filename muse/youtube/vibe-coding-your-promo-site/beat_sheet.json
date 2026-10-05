@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "slug": "film-11-vibe-coding",
+    "title": "Vibe-Coding Your Promo Site",
+    "engine": "kokoro",
+    "voice_kokoro": "am_puck",
+    "persona": "Musinique",
+    "channel": "@Musinique",
+    "register": "Sardonic",
+    "palette": "claude",
+    "audience": "indie musicians",
+    "source_article": "nikbearbrown/musinique articles/musinique-190031133-the-platform-is-not-your-friend-what-spotify-s-own-distribution-guide-reveals-about-who-the-system-was-built-for.md",
+    "note": "Slate cut per Bear's 2026-10-04 standing rule. Numbers written as words for Kokoro."
+  },
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "narration_text": "Your Spotify profile is a rented room in someone else's building. You don't own the walls, you don't set the rent, and last January the landlord took your nameplate off the door and hung it in the basement. That actually happened. And it is the least of your problems.",
+      "shot": {
+        "kind": "card",
+        "title": "The rented room",
+        "dek": "Your profile is a room in someone else's building."
+      },
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "actual_duration_s": 13.21
+    },
+    {
+      "beat_id": "BDEFS",
+      "narration_text": "There is a sentence in Spotify's own distribution guide that stops you cold. It says the platform works with companies who handle your licensing, your distribution, and paying you the royalties you earn. Read it slowly. Between you and the biggest stage on earth, there will always be someone else. Someone whose interests are not yours. This film is about the exit.",
+      "shot": {
+        "kind": "card",
+        "title": "The pitch",
+        "dek": "The platform is not your friend."
+      },
+      "audio_file": "mp3/beat-BDEFS.mp3",
+      "actual_duration_s": 15.74
+    },
+    {
+      "beat_id": "B01",
+      "narration_text": "Spotify does not let individual artists upload directly. That is not a bug, it is architecture. Labels or distributors only. Which built an entire industry of middlemen, a two-and-a-half-billion-dollar black box of unclaimed royalties, and what one twenty twenty-five analysis called, without euphemism, an extractive system that relies on the massive scale of independent labor while providing minimal protections for that labor.",
+      "shot": {
+        "kind": "card",
+        "title": "The gateway",
+        "dek": "Between you and the stage: always someone else."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 18.01
+    },
+    {
+      "beat_id": "B02",
+      "narration_text": "The guide tells you which distributors to use. It does not tell you what they will do with your music. AI training clauses buried in the agreements. Subscription models where your catalog vanishes the month you stop paying. Fraud detection that punishes you when bots touch your songs without your knowledge. You agreed to all of it in a document you may not have read.",
+      "shot": {
+        "kind": "card",
+        "title": "The fine print",
+        "dek": "Read the document you didn't read."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.98
+    },
+    {
+      "beat_id": "B03",
+      "narration_text": "On the twenty-eighth of January, twenty twenty-six, Spotify renamed the Verified Artist checkmark to Registered Artist and moved the badge off your name into the About section. Same obligations \u2014 you still need it to pitch playlists \u2014 less proof you exist. The terms can change without your input. The platform's logic was never your career.",
+      "shot": {
+        "kind": "card",
+        "title": "The nameplate",
+        "dek": "Verified became Registered. The badge moved."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.02
+    },
+    {
+      "beat_id": "B04",
+      "narration_text": "Then the algorithm changed what it counts. Not streams anymore \u2014 saves, searches, follows. A save is worth roughly a hundred streams. A skip before thirty seconds is a penalty. So the atmospheric intro dies. The slow burn dies. The song that needs four minutes to earn its arrival is structurally disadvantaged by design. Not because listeners don't want it. Because the algorithm doesn't know how to count it.",
+      "shot": {
+        "kind": "card",
+        "title": "The thirty-second economy",
+        "dek": "The algorithm can't count your slow burn."
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 16.83
+    },
+    {
+      "beat_id": "B05",
+      "narration_text": "Buried in the documentation is the number that clarifies everything. One hoodie sale can net what a hundred thousand streams pay. A million streams is three to five thousand dollars. A single decent show can match that in one night. Spotify knows. That is why it bolted on merch stores and ticket links. Streaming was never the product. Streaming is the advertisement. The product is you.",
+      "shot": {
+        "kind": "card",
+        "title": "The merch math",
+        "dek": "One hoodie equals a hundred thousand streams."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.92
+    },
+    {
+      "beat_id": "B06",
+      "narration_text": "So here is the question the article leaves you with. If streaming is the ad, where is the store? If the platform controls the mechanism, where do you control anything? The answer is the oldest one on the internet, and the one artists keep forgetting: your own website. One address where you make the rules, keep the money, and own the relationship.",
+      "shot": {
+        "kind": "card",
+        "title": "The turn",
+        "dek": "If streaming is the ad, where's the store?"
+      },
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.42
+    },
+    {
+      "beat_id": "B07",
+      "narration_text": "A promo site is not a project. It is one page that does five jobs. Listen links. A bio and photos that don't read like a hostage note. Press quotes. Show dates. A mailing list signup. A booking contact. That's it. The electronic press kit, the link in bio, the storefront \u2014 one page, your name on the deed.",
+      "shot": {
+        "kind": "card",
+        "title": "What the site is",
+        "dek": "One page. Five jobs. Your name on the deed."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 15.45
+    },
+    {
+      "beat_id": "B08",
+      "narration_text": "Until recently this cost you five grand and a developer who answered emails like an oracle \u2014 rarely, and in riddles. Or you rented a template that made you look like every other artist on the same template. The toll booth stood between you and your own front door.",
+      "shot": {
+        "kind": "card",
+        "title": "The old way",
+        "dek": "Five grand and a developer who never emails back."
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.74
+    },
+    {
+      "beat_id": "B09",
+      "narration_text": "Now you describe the site out loud and the machine writes the code. That's vibe-coding. You say: one page, dark background, my photo up top, tour dates in the middle, email signup at the bottom. Muse drafts it. Codex refactors it. Claude Code wires the form. Gemini checks the layout. You are the art director now. The machine lays the bricks.",
+      "shot": {
+        "kind": "card",
+        "title": "Vibe-coding",
+        "dek": "Describe the site. The machine writes the code."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 16.0
+    },
+    {
+      "beat_id": "B10",
+      "narration_text": "The workflow is a loop, and the loop is the whole skill. Prompt. Look at what it made. Say what's wrong in plain words \u2014 bigger headline, warmer colors, move the signup higher. It fixes it. Repeat until it feels like you. An afternoon, not an agency. The barrier isn't syntax anymore. It's taste.",
+      "shot": {
+        "kind": "card",
+        "title": "The workflow",
+        "dek": "Prompt. Look. Correct. Repeat."
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 14.31
+    },
+    {
+      "beat_id": "B11",
+      "narration_text": "And the mailing list is the point of the whole exercise. Not the pretty page \u2014 the email addresses. Nobody can demonetize your inbox. No algorithm stands between you and the fan who would buy the hoodie. A thousand true fans on a list you own beats a hundred thousand monthly listeners you rent.",
+      "shot": {
+        "kind": "card",
+        "title": "The list is the point",
+        "dek": "A thousand owned emails beat rented listeners."
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.91
+    },
+    {
+      "beat_id": "B12",
+      "narration_text": "Two honest warnings. One: keep it to one page until you have a reason for two. Every extra page is a page you'll abandon. Two: open it on your phone before you tell anyone it exists. If it looks broken on a phone, it is broken, because that is where your fans live.",
+      "shot": {
+        "kind": "card",
+        "title": "Keep it honest",
+        "dek": "One page. Check it on your phone."
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 13.72
+    },
+    {
+      "beat_id": "B13",
+      "narration_text": "The article's closing line is the whole game: the tools are the same, the intent is yours. The platform's infrastructure can carry your music to someone who needs it, or it can farm you for engagement. A vibe-coded site can be your storefront or another template. The machine doesn't choose. That is your job. It always was.",
+      "shot": {
+        "kind": "card",
+        "title": "The intent is yours",
+        "dek": "The tools are the same. The intent is yours."
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 15.53
+    },
+    {
+      "beat_id": "BOUT",
+      "narration_text": "The platform will never be your home. It was built to be the landlord. So build your house \u2014 one page, your name on the deed, an afternoon of describing what you want out loud. One prompt and a vision. The truth was always the hard part. The landlord was optional.",
+      "shot": {
+        "kind": "card",
+        "title": "Build your house",
+        "dek": "One prompt and a vision."
+      },
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 13.31
+    }
+  ]
+}
